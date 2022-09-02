@@ -1,4 +1,12 @@
 baseURL = 'https://aryido.github.io/'
 languageCode = 'zh-tw'
-title = 'Aryido Tech Note'
-theme = "ananke"
+title = 'Aryido'
+theme = ["github.com/theNewDynamic/gohugo-theme-ananke"]
+
+
+[params]
+  commentoEnable = true
+  author = "Aryido"
+  description = "The last theme you'll ever need. Maybe."
+  background_color_class = "bg-black"
+  recent_posts_number = 3
