@@ -1,5 +1,5 @@
-#  https://aryido.github.io/
+https://aryido.github.io/#
 
-# hugo server -D
+hugo server -D
 
-# https://github.com/theNewDynamic/gohugo-theme-ananke
+https://github.com/theNewDynamic/gohugo-theme-ananke

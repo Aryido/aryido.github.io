@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Aryido Tech Note on Aryido</title>
-    <link>https://aryido.github.io/</link>
-    <description>Recent content in Aryido Tech Note on Aryido</description>
+    <title>Grafana on Aryido</title>
+    <link>https://aryido.github.io/tags/grafana/</link>
+    <description>Recent content in Grafana on Aryido</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-tw</language><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-tw</language><atom:link href="https://aryido.github.io/tags/grafana/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Grafana</title>
       <link>https://aryido.github.io/post/20200902/</link>
