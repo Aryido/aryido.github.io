@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Grafana | Aryido</title>
+    <title>建立grafana dashboard plugin | Aryido</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="Grafana">
+    <meta name="description" content="Grafana news">
     <meta name="generator" content="Hugo 0.102.3" />
     
     
@@ -29,20 +29,20 @@
 
     
     
-    <meta property="og:title" content="Grafana" />
-<meta property="og:description" content="Grafana" />
+    <meta property="og:title" content="建立grafana dashboard plugin" />
+<meta property="og:description" content="Grafana news" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://aryido.github.io/post/20200902/" /><meta property="article:section" content="post" />
 
 
 
-<meta itemprop="name" content="Grafana">
-<meta itemprop="description" content="Grafana">
+<meta itemprop="name" content="建立grafana dashboard plugin">
+<meta itemprop="description" content="Grafana news">
 
-<meta itemprop="wordCount" content="48">
+<meta itemprop="wordCount" content="88">
 <meta itemprop="keywords" content="Grafana," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Grafana"/>
-<meta name="twitter:description" content="Grafana"/>
+<meta name="twitter:title" content="建立grafana dashboard plugin"/>
+<meta name="twitter:description" content="Grafana news"/>
 
 	
   </head>
@@ -78,10 +78,10 @@
 
       <div class="tc-l pv6 ph3 ph4-ns">
         
-          <h1 class="f2 f1-l fw2 white-90 mb0 lh-title">Grafana</h1>
+          <h1 class="f2 f1-l fw2 white-90 mb0 lh-title">建立grafana dashboard plugin</h1>
           
             <h2 class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
-              Grafana
+              Grafana news
             </h2>
           
         
@@ -116,7 +116,7 @@
   </div>
 
 
-      <h1 class="f1 athelas mt3 mb1">Grafana</h1>
+      <h1 class="f1 athelas mt3 mb1">建立grafana dashboard plugin</h1>
       
       <p class="tracked">
         By <strong>Aryido</strong>
@@ -128,8 +128,51 @@
       
       
     </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>Grafana allows you to query, visualize, alert on and understand your metrics no matter where they are stored. Create, explore, and share beautiful dashboards with your team and foster a data driven culture.</p>
-<p>The easiest way to get started is with Grafana Cloud, our fully composable observability stack.</p>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>雖然 Grafana 已經內置了多種類型的dashboard，但有時候可能會覺得官方或其他免費開源plugin，提供的功能不太夠。這時就需要建立自己的dashboard。</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<h3 id="grafana-70">Grafana &gt;=7.0</h3>
+<p>grafana 於 7.0 版，整合了<code>Time series</code> 和 <code>Table structures</code> 為一個更廣義的data structure，稱<a href="https://grafana.com/docs/grafana/latest/developers/plugins/data-frames/">Data frames</a></p>
+<h3 id="nodejs-14">NodeJS &gt;=14</h3>
+<p>panel 部分都由typescript撰寫，需要編譯成js</p>
+<h3 id="yarn">yarn</h3>
+<p>前端打包工具(類似maven)</p>
+<hr>
+<h2 id="環境架設">環境架設</h2>
+<p>grafana有提供一個CLI application，工具叫做grafana-toolkit。運用該工具，在create一個新的plugin後，會把環境和基礎模板設定好，可以更方便我們打包自製plugin和建立環境
+<img src="https://i.imgur.com/ChJrAQw.png" alt=""></p>
+<hr>
+<h2 id="plugin-模板分析">plugin 模板分析</h2>
+<p>grafana在讀取plugin時，會參考兩個重要檔案。</p>
+<pre><code>1. plugin.json
+2. module.ts(js)
+</code></pre>
+<h3 id="pluginjson">plugin.json</h3>
+<p>當 Grafana server啟動時，它會掃描Grafana server內的plugin目錄(預設/var/lib/grafana/plugins)下的一層子目錄，查找包含 plugin.json的目錄。</p>
+<p>舉例一些plugin.json強制需要的屬性：</p>
+<ul>
+<li>
+<p>type
+告訴Grafana是什麼類型的plugin。只有三種。app, datasource, panel.</p>
+</li>
+<li>
+<p>name
+在登入grafana後，製作panel時右邊視覺化選單列表中，看到的名稱。</p>
+</li>
+<li>
+<p>id
+Unique name of the plugin. If the plugin is published on grafana.com, then the plugin id has to follow the naming conventions.。</p>
+</li>
+</ul>
+<p><a href="https://grafana.com/docs/grafana/v7.5/developers/plugins/metadata/">plugin.json 其他詳細介紹</a></p>
+<h3 id="moduletsmodulejs">module.ts(module.js)</h3>
+<p>藉由plugin.json發現plugin後，Grafana 會加載 module.ts(js) 文件，是plugin的入口點。 module.ts(js)會expose plugin 的 implementation。</p>
+<p>module.ts(js) 需要extends GrafanaPlugin 的object，並且該object可以是：</p>
+<ul>
+<li>PanelPlugin</li>
+<li>DataSourcePlugin</li>
+<li>AppPlugin</li>
+</ul>
+<p>之後就可以開始自製plugin了</p>
 <ul class="pa0">
   
    <li class="list di">

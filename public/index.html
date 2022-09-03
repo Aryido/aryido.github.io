@@ -126,19 +126,28 @@
           
         <div class="pr3-ns mb4 mb0-ns w-100 w-40-ns">
           <a href="/post/20200902/" class="db grow">
-            <img src="https://aryido.github.io/images/20220902/grafana-icon.jpg" class="img" alt="image from Grafana">
+            <img src="https://aryido.github.io/images/20220902/grafana-icon.jpg" class="img" alt="image from 建立grafana dashboard plugin">
           </a>
         </div>
       
       <div class="blah w-100 w-60-ns pl3-ns">
         <h1 class="f3 fw1 athelas mt0 lh-title">
           <a href="/post/20200902/" class="color-inherit dim link">
-            Grafana
+            建立grafana dashboard plugin
             </a>
         </h1>
         <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          Grafana allows you to query, visualize, alert on and understand your metrics no matter where they are stored. Create, explore, and share beautiful dashboards with your team and foster a data driven culture.
-The easiest way to get started is with Grafana Cloud, our fully composable observability stack.
+          雖然 Grafana 已經內置了多種類型的dashboard，但有時候可能會覺得官方或其他免費開源plugin，提供的功能不太夠。這時就需要建立自己的dashboard。
+Prerequisites Grafana &gt;=7.0 grafana 於 7.0 版，整合了Time series 和 Table structures 為一個更廣義的data structure，稱Data frames
+NodeJS &gt;=14 panel 部分都由typescript撰寫，需要編譯成js
+yarn 前端打包工具(類似maven)
+環境架設 grafana有提供一個CLI application，工具叫做grafana-toolkit。運用該工具，在create一個新的plugin後，會把環境和基礎模板設定好，可以更方便我們打包自製plugin和建立環境 plugin 模板分析 grafana在讀取plugin時，會參考兩個重要檔案。
+1. plugin.json2. module.ts(js)plugin.json 當 Grafana server啟動時，它會掃描Grafana server內的plugin目錄(預設/var/lib/grafana/plugins)下的一層子目錄，查找包含 plugin.json的目錄。
+舉例一些plugin.json強制需要的屬性：
+type 告訴Grafana是什麼類型的plugin。只有三種。app, datasource, panel.
+name 在登入grafana後，製作panel時右邊視覺化選單列表中，看到的名稱。
+id Unique name of the plugin. If the plugin is published on grafana.com, then the plugin id has to follow the naming conventions.。
+plugin.json 其他詳細介紹
         </div>
           <a href="/post/20200902/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
         

@@ -1,14 +1,27 @@
 ---
-date: 2022/09
-description: "Grafana news"
-featured_image: "/images/20220902/grafana-icon.jpg"
-tags: ["Grafana"]
-title: "建立grafana dashboard plugin"
+title: 建立自己的 grafana dashboard plugin - 1
+
+description: ""
+
+author: Aryido
+
+date: 2022-09-02
+
+thumbnailImage: "/images/grafana/grafana-icon.jpg"
+
+categories:
+- Grafana
+
+tags:
+- Grafana
+
 comment: false
 reward: false
 ---
 
 雖然 Grafana 已經內置了多種類型的dashboard，但有時候可能會覺得官方或其他免費開源plugin，提供的功能不太夠。這時就需要建立自己的dashboard。
+
+<!--more-->
 
 ## Prerequisites
 ### Grafana >=7.0
@@ -19,12 +32,12 @@ panel 部分都由typescript撰寫，需要編譯成js
 ### yarn
 前端打包工具(類似maven)
 
----
+
 ## 環境架設
 grafana有提供一個CLI application，工具叫做grafana-toolkit。運用該工具，在create一個新的plugin後，會把環境和基礎模板設定好，可以更方便我們打包自製plugin和建立環境
 ![](https://i.imgur.com/ChJrAQw.png)
 
----
+
 ## plugin 模板分析
 grafana在讀取plugin時，會參考兩個重要檔案。
 
@@ -56,3 +69,4 @@ module.ts(js) 需要extends GrafanaPlugin 的object，並且該object可以是�
 - AppPlugin
 
 之後就可以開始自製plugin了
+---
