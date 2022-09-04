@@ -5,7 +5,7 @@ description: ""
 
 author: Aryido
 
-date: 2022-09-02
+date: 2022-09-04T11:17:52+08:00
 
 thumbnailImage: "/images/grafana/grafana-icon.jpg"
 
@@ -63,14 +63,14 @@ reward: false
 在docker-compose加上github release路徑
 例如:
 ```
-
 GF_INSTALL_PLUGINS:"https://github.com/xxxx/XXXX.zip;jsontext"
-
 ```
 
 ### step4.
 因為plugin還沒簽章，故在docker-compose加上認證未簽章認證，使得grafana server可以讀取該plugin
-
+```
+GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: jsontext
+```
 
 ### step5.
 檢查grafana server啟動訊息

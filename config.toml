@@ -1,5 +1,6 @@
 baseURL = 'https://aryido.github.io/'
-defaultContentLanguage = "zh-tw"
+languageCode = "en-us"
+defaultContentLanguage = "en-us"
 title = 'Aryido Tech Note'
 theme = "hugo-tranquilpeak-theme"
 paginate = 7
@@ -15,7 +16,6 @@ canonifyurls = true
     ordered = false
     startLevel = 1
 
-
 # ------
 # Author
 # ------
@@ -26,7 +26,6 @@ canonifyurls = true
   location = "Taiwan"
   picture = "images/aboutme/head-shot.jpg"
 
-
 # ------------
 # Sidebar menu
 # ------------
@@ -36,24 +35,28 @@ canonifyurls = true
   name = "Home"
   pre = "<i class=\"sidebar-button-icon fas fa-lg fa-home\" aria-hidden=\"true\"></i>"
   url = "/"
+
 [[menu.main]]
   weight = 2
   identifier = "categories"
   name = "Categories"
   pre = "<i class=\"sidebar-button-icon fas fa-lg fa-bookmark\" aria-hidden=\"true\"></i>"
   url = "/categories"
+
 [[menu.main]]
   weight = 3
   identifier = "tags"
   name = "Tags"
   pre = "<i class=\"sidebar-button-icon fas fa-lg fa-tags\" aria-hidden=\"true\"></i>"
   url = "/tags"
+
 [[menu.main]]
   weight = 4
   identifier = "github"
   name = "GitHub"
   pre = "<i class=\"sidebar-button-icon fab fa-lg fa-github\" aria-hidden=\"true\"></i>"
   url = "https://github.com/Aryido"
+
 [[menu.main]]
   weight = 5
   identifier = "rss"
@@ -64,6 +67,7 @@ canonifyurls = true
 [params]
   description = "Aryido Tech Note"
   syntaxHighlighter = "highlight.js"
+
   clearReading = true
   hierarchicalCategories = true
   sidebarBehavior = 1
