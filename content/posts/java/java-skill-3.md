@@ -30,7 +30,7 @@ reward: false
 Map<K, List<V>> map = new HashMap<>();
 
 //有可能 NullPointException，因為找不到 key 時 map.get(key) 為null.
-//map.get(key).add(val);
+map.get(key).add(val);
 
 //初階處理方式
 if(!map.containsKey(key)){
