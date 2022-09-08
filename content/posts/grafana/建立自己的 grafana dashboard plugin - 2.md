@@ -18,7 +18,7 @@ comment: false
 reward: false
 ---
 
-參考[官方教學](https://grafana.com/tutorials/build-a-panel-plugin/)遇到的一些小問題...
+> 參考[官方教學](https://grafana.com/tutorials/build-a-panel-plugin/)遇到的一些小問題...
 
 <!--more-->
 
