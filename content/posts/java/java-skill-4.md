@@ -24,31 +24,49 @@ reward: false
 <!--more-->
 主要介紹 java.lang.Object 的 java.util.Arrays 類。
 
+#  Arrays.copyOf()
+array 是 reference 傳遞的，想要實現 value 傳遞，則使用 copy
+
 ```java
 int[] nums = {1, 4, 3, 2, 6, 9, 8};
-
-// array 是 reference 傳遞的，想要實現 value 傳遞，則使用 copy。
 int[] newNums = Arrays.copyOf(nums, nums.length);
+```
 
-// 快速 print array
-// 直接使用 nums.toString()，會得到一個 reference 地址 EX: [I@564fabc8
+# Arrays.toString()
+可以快速 print array。因為直接使用 nums.toString()，會得到一個 reference 地址 EX: [I@564fabc8
+```java
 Arrays.toString(nums);
 System.out.println(Arrays.toString(nums));
+```
 
-// 默認升序
+# Arrays.sort
+默認升序
+
+```java
 Arrays.sort(nums)
+```
 
-// 獲取 array 中最大值、最小值的簡單寫法
-// 最後需要 getAsInt() 方法是因為 stream 出來會是 optional 類型
+# 獲取 array 中最大值、最小值
+最後需要 getAsInt() 方法是因為 stream 出來會是 optional 類型
+
+```java
 int minNum = Arrays.stream(nums).min().getAsInt();
 int minNum = Arrays.stream(nums).max().getAsInt();
+```
 
+# Arrays.fill()
+此方法可填充 value 至指定 index 範圍，若沒寫 index 範圍則代表全部置換
+
+```java
 // Arrays.fill(arrayname,value)
 // Arrays.fill(arrayname ,starting index ,ending index ,value)
-// 此方法可填充 value 至指定 index 範圍，若沒寫 index 範圍則代表全部置換
 Arrays.fill(nums, 100);
+```
 
-// 打印多維array
+# Arrays.deepToString()
+打印多維array
+
+```java
 int[][] mat = new int[2][2];
 mat[0][0] = 99;
 mat[0][1] = 151;
