@@ -5,7 +5,7 @@ author: Aryido
 
 date: {{ .Date }}
 
-thumbnailImage: "/images/java/java-bean-log.jpg"
+thumbnailImage: "/images/java/java-bean-logo{{ index (seq 7 | shuffle) 0 }}.jpg"
 
 categories:
 - java

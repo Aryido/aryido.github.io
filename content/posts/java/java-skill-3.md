@@ -5,7 +5,7 @@ author: Aryido
 
 date: 2022-09-06T23:28:59+08:00
 
-thumbnailImage: "/images/java/java-bean-log.jpg"
+thumbnailImage: "/images/java/java-bean-logo3.jpg"
 
 categories:
 - java
@@ -20,7 +20,7 @@ reward: false
 ---
 <!--BODY-->
 
-優雅處理 ```Map<K, Collection<T>>``` 類型的方式。
+> 優雅處理 ```Map<K, Collection<T>>``` 類型的方式。
 
 <!--more-->
 

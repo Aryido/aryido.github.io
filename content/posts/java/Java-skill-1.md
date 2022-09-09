@@ -5,7 +5,7 @@ author: Aryido
 
 date: 2022-09-01T08:11:32+08:00
 
-thumbnailImage: "/images/java/java-bean-log.jpg"
+thumbnailImage: "/images/java/java-bean-logo1.jpg"
 
 categories:
 - java
@@ -20,7 +20,7 @@ reward: false
 ---
 <!--BODY-->
 
-把 List of array 轉成 2D-array
+> 把 List of array 轉成 2D-array
 ```java
 List<T[]> list = new ArrayList();
 

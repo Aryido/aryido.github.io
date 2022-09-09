@@ -5,7 +5,7 @@ author: Aryido
 
 date: 2022-09-05T00:54:48+08:00
 
-thumbnailImage: "/images/java/java-bean-log.jpg"
+thumbnailImage: "/images/java/java-bean-logo2.jpg"
 
 categories:
 - java
@@ -19,7 +19,7 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-Java中的 Stack、Deque、ArrayDeque、LinkedList 簡單介紹。
+> Java中的 Stack、Deque、ArrayDeque、LinkedList 簡單介紹。
 
 <!--more-->
 # Stack
