@@ -12,7 +12,7 @@ categories:
 
 tags:
 - java
-- LeetCode
+- array
 
 comment: false
 
@@ -39,7 +39,6 @@ List<Integer> list1 = List.of( 1, 2, 3, 55, 78, 465, 354131, 12, 6 );
 Integer[] integers = list1.toArray( new Integer[list1.size()] );
 
 ```
-看了一些 API 和文章，ArrayList 與 array 互轉，在遇到基本類型和包裝類時，還是要老老實實用for循環...
 
 # Exercise
 ## [LeetCode57. Insert Interval](https://leetcode.com/problems/insert-interval/)

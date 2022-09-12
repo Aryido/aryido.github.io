@@ -1,5 +1,5 @@
 ---
-title: 57. Insert Interval by Java
+title: 57. Insert Interval
 
 author: Aryido
 
