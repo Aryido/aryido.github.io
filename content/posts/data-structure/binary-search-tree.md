@@ -20,7 +20,7 @@ reward: false
 ---
 <!--BODY-->
 
-二元搜尋樹（英語：Binary Search Tree），也稱為有序二元樹（ordered binary tree）或排序二元樹（sorted binary tree）
+> 二元搜尋樹（英語：Binary Search Tree），也稱為有序二元樹（ordered binary tree）或排序二元樹（sorted binary tree）
 
 <!--more-->
 
