@@ -2,4 +2,6 @@
 &lt;blockquote>
 &lt;p>這是一道關於二叉搜索樹 Binary Search Tree 的題目。提示是讓我們用&lt;em>中序遍歷In-Order&lt;/em>來解題。 可以複習一下 DFS 解法的 Pre-Order、In-Order Post-Order。 另外這道題的 Follow up 可以多思考，是假設該 BST 被修改的很頻繁，而且查找第 k 小元素的操作也很頻繁，問如何優化。&lt;/p>
 &lt;/blockquote></description></item><item><title>Binary Search Tree</title><link>https://aryido.github.io/posts/data-structure/binary-search-tree/</link><pubDate>Sun, 11 Sep 2022 14:53:52 +0800</pubDate><guid>https://aryido.github.io/posts/data-structure/binary-search-tree/</guid><description>&lt;!-- raw HTML omitted -->
-&lt;p>二元搜尋樹（英語：Binary Search Tree），也稱為有序二元樹（ordered binary tree）或排序二元樹（sorted binary tree）&lt;/p></description></item></channel></rss>
+&lt;blockquote>
+&lt;p>二元搜尋樹（英語：Binary Search Tree），也稱為有序二元樹（ordered binary tree）或排序二元樹（sorted binary tree）&lt;/p>
+&lt;/blockquote></description></item></channel></rss>
