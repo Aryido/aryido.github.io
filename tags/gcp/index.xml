@@ -1,4 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gcp on Aryido Tech Note</title><link>https://aryido.github.io/tags/gcp/</link><description>Recent content in gcp on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 15 Sep 2022 23:13:26 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/gcp/index.xml" rel="self" type="application/rss+xml"/><item><title>Google Cloud 常用指令</title><link>https://aryido.github.io/posts/google-cloud/gcp1/</link><pubDate>Thu, 15 Sep 2022 23:13:26 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp1/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gcp on Aryido Tech Note</title><link>https://aryido.github.io/tags/gcp/</link><description>Recent content in gcp on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 17 Sep 2022 00:23:55 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/gcp/index.xml" rel="self" type="application/rss+xml"/><item><title>Google Cloud CLI - 2</title><link>https://aryido.github.io/posts/google-cloud/gcp2/</link><pubDate>Sat, 17 Sep 2022 00:23:55 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp2/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>最近開始碰google Cloud了，來記錄些常用到的簡單指令吧!(待修正排版)&lt;/p>
+&lt;p>使用 gcloud CLI 時，第一步都是要登入雲端才能獲得授權。 gcloud CLI 提供了兩個選項：&lt;/p>
+&lt;ul>
+&lt;li>User account authorization&lt;/li>
+&lt;li>Service account authorization&lt;/li>
+&lt;/ul>
+&lt;/blockquote></description></item><item><title>Google Cloud CLI - 1</title><link>https://aryido.github.io/posts/google-cloud/gcp1/</link><pubDate>Thu, 15 Sep 2022 23:13:26 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp1/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>gcloud CLI 可以用於創建和管理 gcp 資源的工具。雖然可以使用 CLI 從命令行或腳本自動化執行許多常見的平台任務。但更多是會用 例如 &lt;strong>Terraform&lt;/strong> 來部屬資源。故現在基本上用最多是在 &lt;strong>管理身份驗證(manage authentication)&lt;/strong>、&lt;strong>自定義本地配置(customize local configuration)&lt;/strong>&lt;/p>
 &lt;/blockquote></description></item></channel></rss>
