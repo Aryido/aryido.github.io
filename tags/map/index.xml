@@ -1,4 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>map on Aryido Tech Note</title><link>https://aryido.github.io/tags/map/</link><description>Recent content in map on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 06 Sep 2022 23:28:59 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/map/index.xml" rel="self" type="application/rss+xml"/><item><title>Java Skill 3</title><link>https://aryido.github.io/posts/java/java-skill-3/</link><pubDate>Tue, 06 Sep 2022 23:28:59 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-3/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>map on Aryido Tech Note</title><link>https://aryido.github.io/tags/map/</link><description>Recent content in map on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 17 Sep 2022 12:44:22 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/map/index.xml" rel="self" type="application/rss+xml"/><item><title>computeIfAbsent() 用法詳解</title><link>https://aryido.github.io/posts/java/java-skill-5/</link><pubDate>Sat, 17 Sep 2022 12:44:22 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-5/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>使用 HashMap 的方法 &lt;strong>computeIfAbsent(K key, Function remappingFunction)&lt;/strong> ，其中 &lt;em>remappingFunction&lt;/em> 是一個 input 為 &lt;strong>key&lt;/strong>，output 為 &lt;strong>map 的 value&lt;/strong> 的一個 &lt;strong>Functional interface&lt;/strong>。&lt;/p>
+&lt;p>使用時有兩種情況；&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;ol>
+&lt;li>若 key &lt;strong>不在&lt;/strong> map 裡，則會把這個 &lt;strong>key&lt;/strong> 和 &lt;strong>remappingFunction 的 output&lt;/strong> 添加到 hashMap 裡。 返回值為 &lt;strong>remappingFunction 的 output&lt;/strong>&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>
+&lt;ol start="2">
+&lt;li>若 key &lt;strong>在&lt;/strong> map 裡，則不會重新計算 value。 返回值為 key 對應的 value&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul>
+&lt;/blockquote></description></item><item><title>Java Skill</title><link>https://aryido.github.io/posts/java/java-skill-3/</link><pubDate>Tue, 06 Sep 2022 23:28:59 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-3/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>優雅處理 &lt;code>Map&amp;lt;K, Collection&amp;lt;T&amp;gt;&amp;gt;&lt;/code> 類型的方式。&lt;/p>
 &lt;/blockquote></description></item></channel></rss>

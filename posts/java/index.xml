@@ -1,13 +1,32 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/java/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 09 Sep 2022 19:59:56 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/java/index.xml" rel="self" type="application/rss+xml"/><item><title>Java Skill 4</title><link>https://aryido.github.io/posts/java/java-skill-4/</link><pubDate>Fri, 09 Sep 2022 19:59:56 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-4/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/java/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 17 Sep 2022 12:49:55 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/java/index.xml" rel="self" type="application/rss+xml"/><item><title>ArrayList &amp; LinkedList 使用小優化情境</title><link>https://aryido.github.io/posts/java/java-skill-6/</link><pubDate>Sat, 17 Sep 2022 12:49:55 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-6/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>在 &lt;em>leetcode 332. Reconstruct Itinerary&lt;/em> 時，答案須回傳 &lt;strong>List&lt;!-- raw HTML omitted -->&lt;/strong>，因為題目是 &lt;strong>Post-order traversal on Edges&lt;/strong> ，所以添加答案要往第一個元素插入。 這裡就是一個可以使用 &lt;strong>LinkedList&lt;/strong> 而非 &lt;strong>ArrayList&lt;/strong> 的好情境!&lt;/p>
+&lt;/blockquote></description></item><item><title>computeIfAbsent() 用法詳解</title><link>https://aryido.github.io/posts/java/java-skill-5/</link><pubDate>Sat, 17 Sep 2022 12:44:22 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-5/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>使用 HashMap 的方法 &lt;strong>computeIfAbsent(K key, Function remappingFunction)&lt;/strong> ，其中 &lt;em>remappingFunction&lt;/em> 是一個 input 為 &lt;strong>key&lt;/strong>，output 為 &lt;strong>map 的 value&lt;/strong> 的一個 &lt;strong>Functional interface&lt;/strong>。&lt;/p>
+&lt;p>使用時有兩種情況；&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;ol>
+&lt;li>若 key &lt;strong>不在&lt;/strong> map 裡，則會把這個 &lt;strong>key&lt;/strong> 和 &lt;strong>remappingFunction 的 output&lt;/strong> 添加到 hashMap 裡。 返回值為 &lt;strong>remappingFunction 的 output&lt;/strong>&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>
+&lt;ol start="2">
+&lt;li>若 key &lt;strong>在&lt;/strong> map 裡，則不會重新計算 value。 返回值為 key 對應的 value&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul>
+&lt;/blockquote></description></item><item><title>Java Arrays 方法</title><link>https://aryido.github.io/posts/java/java-skill-4/</link><pubDate>Fri, 09 Sep 2022 19:59:56 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-4/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>刷題時很常出現 Array 的結構如 &lt;code>int[]、char[]&lt;/code> 等等&amp;hellip;，故在這邊條列一些常用的 Arrays 方法&lt;/p>
-&lt;/blockquote></description></item><item><title>Java Skill 3</title><link>https://aryido.github.io/posts/java/java-skill-3/</link><pubDate>Tue, 06 Sep 2022 23:28:59 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-3/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Java Skill</title><link>https://aryido.github.io/posts/java/java-skill-3/</link><pubDate>Tue, 06 Sep 2022 23:28:59 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-3/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>優雅處理 &lt;code>Map&amp;lt;K, Collection&amp;lt;T&amp;gt;&amp;gt;&lt;/code> 類型的方式。&lt;/p>
-&lt;/blockquote></description></item><item><title>Java Skill 2</title><link>https://aryido.github.io/posts/java/java-skill-2/</link><pubDate>Mon, 05 Sep 2022 00:54:48 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-2/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Stack、Deque、ArrayDeque、LinkedList 簡單介紹</title><link>https://aryido.github.io/posts/java/java-skill-2/</link><pubDate>Mon, 05 Sep 2022 00:54:48 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-2/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>Java中的 Stack、Deque、ArrayDeque、LinkedList 簡單介紹。&lt;/p>
-&lt;/blockquote></description></item><item><title>Java Skill 1</title><link>https://aryido.github.io/posts/java/java-skill-1/</link><pubDate>Thu, 01 Sep 2022 08:11:32 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-1/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;p>Java中的 Stack、Deque、ArrayDeque、LinkedList 簡單介紹和比較。&lt;/p>
+&lt;/blockquote></description></item><item><title>把 List of array 轉成 2D-array</title><link>https://aryido.github.io/posts/java/java-skill-1/</link><pubDate>Thu, 01 Sep 2022 08:11:32 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-1/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>把 List of array 轉成 2D-array&lt;/p>
 &lt;/blockquote>
