@@ -36,8 +36,8 @@ gcloud auth application-default
 [gcloud auth application-default login" V.S "gcloud auth login](https://stackoverflow.com/questions/53306131/difference-between-gcloud-auth-application-default-login-and-gcloud-auth-logi)
 {{< /alert >}}
 
-## 取得 access token…
-在Cloud Shell中，由於內建所安裝的Cloud SDK已經載入了使用者的權限，因此可以方便的呼叫相關的SDK與取得Token...
+## 取得 access token
+在Cloud Shell中，由於內建所安裝的Cloud SDK已經載入了使用者的權限，因此可以方便的呼叫相關的SDK與取得Token
 
 
 ```terminal

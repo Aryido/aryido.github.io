@@ -1,5 +1,5 @@
 ---
-title: "Java Skill 3"
+title: "Java Skill"
 
 author: Aryido
 
@@ -39,9 +39,13 @@ if(!map.containsKey(key)){
     map.get(key).add(val);
 }
 
-//優雅寫法
+//進階寫法
 map.computeIfAbsent(key, k -> new ArrayList<>());
 map.get(key).add(val);
+
+//優雅寫法
+//因為ArrayList是reference引用，故 computeIfAbsent 回傳值和 map.get(key) 是指地址完全相同的 ArrayList
+map.computeIfAbsent(key, k -> new ArrayList<>()).add(val);
 
 //Guava library 的 Multimap 也不錯，但是刷題時不支援
 Multimap<K,V> multimap = ArrayListMultimap.create();

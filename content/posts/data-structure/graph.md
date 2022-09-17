@@ -15,7 +15,7 @@ tags:
 - DFS
 - BFS
 - tree
-- linkedlist
+- list
 
 comment: false
 

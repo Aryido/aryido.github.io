@@ -1,5 +1,5 @@
 ---
-title: "Java Skill 2"
+title: Stack、Deque、ArrayDeque、LinkedList 簡單介紹
 
 author: Aryido
 
@@ -19,7 +19,7 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> Java中的 Stack、Deque、ArrayDeque、LinkedList 簡單介紹。
+> Java中的 Stack、Deque、ArrayDeque、LinkedList 簡單介紹和比較。
 
 <!--more-->
 # Stack
