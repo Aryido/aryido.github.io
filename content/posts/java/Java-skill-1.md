@@ -36,7 +36,7 @@ List<Integer> list1 = List.of( 1, 2, 3, 55, 78, 465, 354131, 12, 6 );
 
 //int[] integers = list1.toArray( new int[list1.size()] ); 編譯錯誤
 
-Integer[] integers = list1.toArray( new Integer[list1.size()] );
+Integer[] integers = list1.toArray( new Integer[list1.size()] ); // 正常運行，但會是Integer array
 
 ```
 
