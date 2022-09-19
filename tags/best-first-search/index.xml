@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>best first search on Aryido Tech Note</title><link>https://aryido.github.io/tags/best-first-search/</link><description>Recent content in best first search on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 19 Sep 2022 21:09:18 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/best-first-search/index.xml" rel="self" type="application/rss+xml"/><item><title>743. Network Delay Time</title><link>https://aryido.github.io/posts/leetcode/leetcode743/</link><pubDate>Mon, 19 Sep 2022 21:09:18 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode743/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>可以抽象成，計算從&lt;strong>初始節點&lt;/strong>到&lt;strong>最遠節點&lt;/strong>的最優路徑，很標準的 &lt;em>best first search&lt;/em>。 題目常用在水管滲透，或是網路流通，求出初始節點到每一個點到最短時間，然後取其中最大的一個就是需要的時間了。&lt;/p>
+&lt;/blockquote></description></item><item><title>Graph 介紹</title><link>https://aryido.github.io/posts/data-structure/graph/</link><pubDate>Tue, 13 Sep 2022 21:37:08 +0800</pubDate><guid>https://aryido.github.io/posts/data-structure/graph/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Graph 是廣義化的 LinkedList，是內存中不一定連續的資料，每個節點會一個或多個 Reference 指向其他節點&lt;/p>
+&lt;ul>
+&lt;li>可能有環&lt;/li>
+&lt;li>分無向圖和有向圖&lt;/li>
+&lt;li>沒有固定入口&lt;/li>
+&lt;li>可能有多個入口&lt;/li>
+&lt;/ul>
+&lt;/blockquote></description></item></channel></rss>
