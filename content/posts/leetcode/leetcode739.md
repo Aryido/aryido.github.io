@@ -12,7 +12,7 @@ categories:
 
 tags:
 - java
-- LeetCode
+- leetCode
 - stack
 
 comment: false

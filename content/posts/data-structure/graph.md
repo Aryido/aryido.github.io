@@ -16,6 +16,7 @@ tags:
 - BFS
 - tree
 - list
+- best first search
 
 comment: false
 
@@ -53,8 +54,7 @@ DFS會選一 Reference ，一口氣到遞歸到最下層再沿途回去，沿途
 {{< /alert >}}
 
 ## BFS(Best-First Search)
-雖然也稱 BFS，但實際名稱不一樣。
-如何每次快速計算最優路徑呢 ? 可以使用 Heap 這資料結構來幫忙。
+雖然也稱 BFS，但實際名稱不一樣，是Best-First Search。  BFS 是針對 Non-uniform cost graph 的一種算法，核心思想是優先展開最'優'的點。如何每次快速計算最優路徑呢 ? 可以使用 Heap 這資料結構來幫忙。
 最有名找最短路徑的算法是 Dijsktra's Algorithm。時間複雜度:
 {{< alert info >}}
 **O((V + E) * logV)**
