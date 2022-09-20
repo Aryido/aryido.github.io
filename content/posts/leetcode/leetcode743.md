@@ -20,7 +20,7 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> 可以抽象成，計算從**初始節點**到**最遠節點**的最優路徑，很標準的 *best first search*。 題目常用在水管滲透，或是網路流通，求出初始節點到每一個點到最短時間，然後取其中最大的一個就是需要的時間了。
+> 可以抽象成，計算從**初始節點**到**最遠節點**的最優路徑，很標準的 *best first search*。 題目常用在水管滲透，或是網路流通，求出初始節點到每一個點到最短時間，然後取其中最大的一個就是需要的時間了。這題就是要你=實作 Dijkstra’s algorithm。
 
 <!--more-->
 
@@ -32,9 +32,43 @@ reward: false
 - 為了防止重複比較，需要使用 visited 數組來記錄已訪問過的結點
 
 ## 解題步驟
-1. 建一個**Adjacency List Map**，其中為了直觀點，可以建造一個Cell class，記得要 override compareTo 方法，因為會需要 Heap 排序。
+1. 建一個**Adjacency List Map**，其中為了直觀點，可以建造一個Cell class
+2. 呈上 Cell class，可以 implements Comparable<Cell> 介面，override compareTo 方法;或者記得要 Heap 要傳入 comparator 排序 Cell
+```java
+// comparator
+Queue<Cell> heap = new PriorityQueue<>((c1,c2) -> c1.costTime - c2.costTime);
+class Cell{
+    int dest;
+    int costTime;
 
-(未完待續)
+    public Cell(int dest, int costTime){
+        this.dest = dest;
+        this.costTime = costTime;
+    }
+}
+
+// implements Comparable
+Queue<Cell> heap = new PriorityQueue<>();
+
+class Cell implements Comparable<Cell>{
+    int dest;
+    int costTime;
+
+    public Cell(int dest, int costTime){
+        this.dest = dest;
+        this.costTime = costTime;
+    }
+
+    @Override
+    public int compareTo(Cell cell){
+        return this.dest - cell.dest;
+    }
+}
+
+```
+
+3. 要有一個紀錄查重複的表，這邊可以簡單用  boolean[]， 因為點不重複。或者用 Set 也行
+4. 我的寫法用了 n- - ，直接判斷是不是每個點都有遍歷到; 另外還有直接紀錄 ans 答案，有點trick。 正常想法應該是做一個map，map裡面紀錄每個點到達所需要的最小時間。 若 map 數量不到 n 返回 -1，否則選出 map 的 value 對大的時間。
 
 # 解答
 ```java
