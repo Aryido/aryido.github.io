@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/others/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 24 Sep 2022 18:07:17 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/others/index.xml" rel="self" type="application/rss+xml"/><item><title>Program、Process、Thread 差異</title><link>https://aryido.github.io/posts/others/os/</link><pubDate>Sat, 24 Sep 2022 18:07:17 +0800</pubDate><guid>https://aryido.github.io/posts/others/os/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Program/Process/Thread 是面試時經常會被問到的題目，就來筆記一下吧。&lt;/p>
+&lt;/blockquote></description></item></channel></rss>
