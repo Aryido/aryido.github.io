@@ -11,4 +11,5 @@
 &lt;li>沒有固定入口&lt;/li>
 &lt;li>可能有多個入口&lt;/li>
 &lt;/ul>
-&lt;/blockquote></description></item></channel></rss>
+&lt;/blockquote></description></item><item><title>200. Number of Islands</title><link>https://aryido.github.io/posts/leetcode/leetcode200/</link><pubDate>Wed, 07 Sep 2022 20:55:05 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode200/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;p>剛開始刷題時就覺得這題很有趣，有 game 的感覺。可以用來複習DFS、BFS。&lt;/p></description></item></channel></rss>
