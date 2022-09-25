@@ -19,7 +19,6 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-不定時練習LeetCode紀錄...
 
 <!--more-->
 ## 思路

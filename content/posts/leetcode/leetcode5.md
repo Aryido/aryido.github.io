@@ -20,7 +20,7 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> 這是一道常考題，也因為是 DP，難度也比較高。 看過令人膜拜的神解Manacher's Algorithm，時間複雜度提升到了 O(n) ，但一般人還是熟悉一般 DP 解就好了...
+> 這是一道常考題，也因為是 DP，難度也比較高。 看過令人膜拜的神解 Manacher's Algorithm，時間複雜度提升到了 O(n) ，但一般人還是熟悉一般 DP 解就好了...
 
 <!--more-->
 ## 思路
