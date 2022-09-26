@@ -21,10 +21,10 @@ reward: false
 ---
 <!--BODY-->
 > 這題使用深度優先 Depth First Traversal 來遍歷，並使用 Pre-Order 方式記錄樹的節點值；Deserialize 時有用到 queue 來儲存節點 value 值。
-> 之前自己文章也分享過，在想要 Copy Tree 時適合使用Pre-Order。剛好符合這題情境。
+> 之前文章也分享過，在想要 Copy Tree 時適合使用Pre-Order。這題有點符合 Copy Tree 的情境，但是是把 value 存下來。
 
 <!--more-->
-# Serialize & Deserialize
+# Serialize & Deserialize 介紹
 - Serialize 序列化就是將一個程式中的 object 轉化為一個可以存進一個文件或者內存緩衝器中的格式，通常是 byte array 或 string。
 - Deserialize 反序列化，就是把反過來把 byte array 或 string 還原成程式中的 object。
 
@@ -33,14 +33,14 @@ reward: false
 {{< alert info >}}
 1. 用 StringBuilder() 來建造字串
 2. StringBuilder()其中用空白隔開每個節點值
-3. 若遇到無法往下遍歷的 null 節點部分，我用井字號"#"代替
+3. 若遇到無法往下遍歷的 null 節點部分，我用井字號 `#` 代替
 4.  使用 **pre-order**
 {{< /alert >}}
 
 再來做 Deserialize 部分:
 {{< alert info >}}
-1. 出入的 data 使用 split 切開空格" "
-2. 小技巧是使用 Collections.addAll 方法把切割資料放入 queue 中
+1. 輸入的 data 先使用 split 切開分隔符號，我 Serialize 時是用空白隔開每個節點值，故使用``split(" ")``
+2. 小技巧: 使用 Collections.addAll 方法把切割資料放入 queue 中
 3. 注意! 因為 Serialize 使用 pre-order，故 Deserialize 也要使用 **pre-order** 造出 TreeNode
 {{< /alert >}}
 

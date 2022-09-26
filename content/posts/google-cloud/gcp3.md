@@ -1,5 +1,5 @@
 ---
-title: AWS 與 GCP reliability 截然不同
+title: AWS 與 GCP reliability 不同的地方比較
 
 author: Aryido
 
@@ -20,15 +20,13 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> 近期有機會來比較一下 AWS 和  GCP 的一些差別，也看了一些文章(~~練英文QQ~~)。 GCP 和 AWS 都有 auto scaling 的功能，當我們在某些時候需要比較多的資源處理事情時，可以自動增加機器來維持高 reliability。
->
-> GCP 和 AWS 有甚麼區別呢? 以下做了一些測試...
+> 近期有機會來比較一下 AWS 和  GCP 的一些差別，也看了一些文章(~~練英文QQ~~)。 GCP 和 AWS 都有 auto scaling 的功能，當我們在某些時候，需要比較多的資源處理事情時，可以自動增加機器來維持高 reliability。 那這部分 GCP 和 AWS 有甚麼區別呢 ?
 
 <!--more-->
 # 簡介
-Cloud compute 通常被視為一種 ethereal resource ，即可以自由啟動並關閉，然後按秒計費。 概念上資源看起來是無限的，這也是與 on-prem 相比的優勢和賣點之一。可以根據 loading 進行 scale，且不需要的時候可以移除。
+Cloud compute 通常被視為一種 ethereal resource ，即可以自由啟動並關閉，然後按秒計費。 概念上資源看起來是無限的，這也是與 on-prem 相比的優勢和賣點之一。 **可以根據 loading 進行 scale，且不需要的時候可以移除。**
 
-但實際上資源並不是無限的。 Cloud compute 還是一個在真實世界的機房，故機房內的 CPU 和 GPU 還是有其上限數量。因此 **當我們需要spin up VM 時，還是可能會有 resource availability issues**。還是可能在需要時，機器不夠用...
+但實際上資源並不是無限的。 Cloud 還是一個在真實世界的機房，故機房內的 CPU 和 GPU 還是有其上限數量。因此 **當我們需要spin up VM 時，還是可能會有 resource availability issues**。還是可能在需要時，機器不夠用...
 
 # Benchmarking Harness
 在 gcp 和 aws 上配置需要的 GPU 資源，然後在一天中的隨機時間啟動 GPU，更進一步設計一天中有不同時段 loading 來模擬真實世界狀況。
@@ -49,10 +47,14 @@ Cloud compute 通常被視為一種 ethereal resource ，即可以自由啟動�
 - AWS 只能預設已附加 GPU 的 VM
 
 先不考慮那些超時200秒的部分(下次再討論)，看起來 GCP 無法快速的創建 VM。故:
+
+# 結論
 {{< alert warning >}}
-- 如果需要按需 VM 快速啟用 AWS 似乎是比較好的選擇
-- 如果願意等待比較久的時間，那 Google 的可客製 hardware accelerator 是可以考慮的選擇
+####  - 如果需要按需 VM 快速啟用 AWS 似乎是比較好的選擇
+####  - 如果願意等待比較久的時間，那 Google 的可客製 hardware accelerator 是可以考慮的選擇
 {{< /alert >}}
+
+---
 
 # Vocabulary
 {{< alert info >}}

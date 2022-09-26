@@ -20,18 +20,18 @@ reward: false
 <!--more-->
 
 # Program (程式、程序)
-我們在 IDE 內所寫的 code，還尚未 load 入記憶體的 code，我們稱之為Program。
+我們在 IDE 內所寫的，還尚未 load 入記憶體的 code，我們稱之為 Program。
 {{<alert warning>}}
 - 相同 Program 的 Process 可以多個同時存在
 {{</alert>}}
 
 # Process ( 程序、進程 )
-Process 是已經執行並且 load 到記憶體中的 Program 實例。在實際生活中，點開應用程式就是將 Program 活化成 Process ，因此我們可以在 monitor 中看到PID。
+Process 是已經執行並且 load 到記憶體中的 Program 實例。在實際生活中，點開應用程式就是將 Program 活化成 Process ，因此我們可以在 monitor 中看到 PID。
 {{<alert warning>}}
 - Process 是電腦中已執行 Program 的實例
 - 每一個 Process 是互相獨立的
 - Process 本身不是基本執行單位，而是 Thread 的容器
-- Process之間可通過 TCP/IP 端口實現交互
+- Process之間一般來說要能直接溝通，要通過如 TCP/IP 端口、或者 socket 實現交互
 - 一個 CPU 一次只能執行一個 Process，因此如何排程(Scheduling) 、如何管理記憶體是 OS 所關注的事
 {{</alert>}}
 
