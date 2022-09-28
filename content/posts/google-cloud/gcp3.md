@@ -50,8 +50,8 @@ Cloud compute 通常被視為一種 ethereal resource ，即可以自由啟動�
 
 # 結論
 {{< alert warning >}}
-####  - 如果需要按需 VM 快速啟用 AWS 似乎是比較好的選擇
-####  - 如果願意等待比較久的時間，那 Google 的可客製 hardware accelerator 是可以考慮的選擇
+####  - 如果要求是，在需要時，要快速啟用 VM 的情境的話，AWS 似乎是比較好的選擇。
+####  - 如果願意等待比較久的時間，那 Google 因為可客製 hardware accelerator 服務，彈性比較高，是可以考慮的。
 {{< /alert >}}
 
 ---

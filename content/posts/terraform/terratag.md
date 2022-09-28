@@ -16,9 +16,11 @@ reward: false
 ---
 <!--BODY-->
 
-> Terratag 是個 CLI 工具，可簡化 resource tag 的方式，允許將標籤應用於整個 Terraform 或 Terragrunt，對於 Terraform 社群來說，他們希望**集中化**來標註 resource 而不是分別寫在每個resource內，以更方便的追蹤和管理。
+> Terratag 是個 CLI 工具，可簡化 resource tag 的方式，允許將標籤應用於整個 Terraform 或 Terragrunt，對於 Terraform 社群來說，他們希望**集中化**來標註 resource 而不是分別寫在每個resource內，以更方便的追蹤和管理...
 
 <!--more-->
+
+---
 Terratag 可將標籤或標籤應用於任何 AWS、GCP 和 Azure 資源。
 {{< alert info >}}
 補充一下，在 aws & azure ，我們會說標註是 tags 。但 gcp 因為已經有一個名為 network tag 用於連接網路防火牆的配置，故 gcp 中標註稱為 labels
@@ -26,11 +28,14 @@ Terratag 可將標籤或標籤應用於任何 AWS、GCP 和 Azure 資源。
 以下文章統稱 tags
 {{< /alert >}}
 
+---
+
 # 功能
 ### Terratag 可以統一把要部署的 resources **全部**一次性都加上 tags
 
 不是每個 resource 都能被標註，但 Terratag 可以自動分辨，把可以標注的資源，加上標注。
 
+---
 
 ### Terratag 能針對 .tf 內的 resource type 進行標注？
 
@@ -49,6 +54,8 @@ Terratag 可將標籤或標籤應用於任何 AWS、GCP 和 Azure 資源。
 
 -tags="flag=vm1, author=henrylee" （Ｘ 不會報錯但沒辦法寫入tag）
 {{< /alert >}}
+
+---
 
 ### Terratag 針對整個 .tf 檔， 使用 Terratag 會不會override？ 還是可以繼續加上去？
 
