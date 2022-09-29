@@ -74,6 +74,10 @@ remote_state {
 
 使用 remote_state {} code block 設定 remote backend state
 
+{{< /alert  >}}
+
+{{< alert info >}}
+
 使用 generate，會在 terraform 的內產生 backend.tf
 
 {{< /alert  >}}
