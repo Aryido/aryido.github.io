@@ -8,11 +8,10 @@ date: 2022-09-17T10:03:29+08:00
 thumbnailImage: /images/leetcode/logo.jpg
 
 categories:
-- java
+- LeetCode
 
 tags:
 - java
-- LeetCode
 - graph
 - dfs
 - english

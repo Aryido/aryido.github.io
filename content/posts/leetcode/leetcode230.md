@@ -8,11 +8,10 @@ date: 2022-09-11T16:12:22+08:00
 thumbnailImage: /images/leetcode/logo.jpg
 
 categories:
-- java
+- LeetCode
 
 tags:
 - java
-- LeetCode
 - binary-search-tree
 - DFS
 
