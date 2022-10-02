@@ -10,24 +10,21 @@ thumbnailImage: "/images/java/java-bean-logo1.jpg"
 categories:
 - java
 
-tags:
-- LeetCode
-
 comment: false
 
 reward: false
 ---
 <!--BODY-->
-> Java 8 因為引入了 lambda 這樣的functional programming，故也有了 map.merge() 方法，感覺還是很好用的，簡單做一些相關介紹 ...
+> Java 8 因為引入了 lambda 這樣的 functional programming，故Map 系列有了許多新增方法，感覺還是很好用的，簡單做一些相關介紹 ...
 
 <!--more-->
 
 ---
 
 # compute
-compute 可以指定 key ，用指定的 Lambda 運算來決定 key 的對應 value ，這是它之所以命名為 compute 的原因。
+compute 方法可以指定 key ，用指定的 Lambda 運算，來決定 key 的對應 value ，這是它之所以命名為 compute 的原因。
 
-compute 是返回新值。當 key 不存在時，執行 value 計算方法，計算 value。 更詳細的說
+compute 是返回新的值。 更詳細的說:
 - key 有對應的 value 時
    1. Lambda 的傳回值若**不為** null，以新值取代舊值
    2. Lambda 的傳回值若**為** null，將 key -  value 移除
@@ -54,19 +51,19 @@ merge 方法的 Lambda 比 compute **多了一個參數**，可以指定 value�
 ```java
 HashMap<String, Integer> map = new HashMap<>();
 
-		map.put("Shoes", 200);
-		map.put("Bag", 300);
-		map.put("Pant", 150);
-		// HashMap: {Pant=150, Bag=300, Shoes=200}
+map.put("Shoes", 200);
+map.put("Bag", 300);
+map.put("Pant", 150);
+// HashMap: {Pant=150, Bag=300, Shoes=200}
 
-		int value1 = map.merge("Shirt", 100, (oldValue, newValue) -> oldValue + newValue);
-		// value1 = 100
-		// map =  {Pant=150, Shirt=100, Bag=300, Shoes=200}
-		// // reduce int returnedValue = map.merge("Shirt", 100, Integer::sum );
+int value1 = map.merge("Shirt", 100, (oldValue, newValue) -> oldValue + newValue);
+// value1 = 100
+// map =  {Pant=150, Shirt=100, Bag=300, Shoes=200}
+// reduce: int returnedValue = map.merge("Shirt", 100, Integer::sum );
 
-		int value2 = map.merge("Shoes", 12, (oldValue, v) -> oldValue - v);
-		// value2 = 188
-		// map = {Pant=150, Shirt=100, Bag=300, Shoes=188}
+int value2 = map.merge("Shoes", 12, (oldValue, v) -> oldValue - v);
+// value2 = 188
+// map = {Pant=150, Shirt=100, Bag=300, Shoes=188}
 ```
 
 {{< alert info >}}
@@ -109,12 +106,12 @@ list.forEach(array -> studentScoreMap.merge(
 // list.forEach(array -> studentScoreMap.merge(array[0], array[1], Integer::sum ));
 
 
-// 用 computeIfAbsent 比較多行...
+// 用 computeIfAbsent 比較多行
 Map<Integer, Integer> studentScoreMap2 = new HashMap<>();
 list.forEach(array -> {
     Integer integer = studentScoreMap2.computeIfAbsent( array[0], k -> 0 );
     int newValue = integer + array[1];
-    studentScoreMap2.put( array[0], newValue);
+    studentScoreMap2.put(array[0], newValue);
 });
 // studentScoreMap2 = {1=215, 2=228, 3=235}
 
