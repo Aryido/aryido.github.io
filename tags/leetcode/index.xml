@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>LeetCode on Aryido Tech Note</title><link>https://aryido.github.io/tags/leetcode/</link><description>Recent content in LeetCode on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 01 Oct 2022 16:36:17 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/leetcode/index.xml" rel="self" type="application/rss+xml"/><item><title>JAVA Map方法： merge &amp; compute 比對</title><link>https://aryido.github.io/posts/java/java-skill-8/</link><pubDate>Sat, 01 Oct 2022 16:36:17 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-8/</guid><description>&lt;!-- raw HTML omitted -->
-&lt;blockquote>
-&lt;p>Java 8 因為引入了 lambda 這樣的functional programming，故也有了 map.merge() 方法，感覺還是很好用的，簡單做一些相關介紹 &amp;hellip;&lt;/p>
-&lt;/blockquote></description></item></channel></rss>
