@@ -11,7 +11,6 @@ categories:
 - java
 
 tags:
-- java
 - map
 
 comment: false
@@ -27,7 +26,12 @@ reward: false
 
 <!--more-->
 
+---
+
+{{< alert warning >}}
 **computeIfAbsent** 務必熟悉此方法，可幫助簡化code。
+{{< /alert >}}
+
 
 ```java
 HashMap<String, Integer> map = new HashMap<>();

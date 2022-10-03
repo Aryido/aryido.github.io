@@ -11,7 +11,6 @@ categories:
 - java
 
 tags:
-- java
 - stack
 
 comment: false
@@ -22,6 +21,9 @@ reward: false
 > Java中的 Stack、Deque、ArrayDeque、LinkedList 簡單介紹和比較。
 
 <!--more-->
+
+---
+
 # Stack
 Stack 是一種後進先出 (LIFO) 的容器，常用的操作 push / pop / peek。 現在 Java **建議使用**雙端隊列接口 Deque，並用實現類 ArrayDeque / LinkedList 來進行 Stack 的初始化。
 
@@ -37,10 +39,16 @@ List<Integer> list2 = deque.stream().collect(Collectors.toList()); //[2,1]
 
 ```
 ## 該用 ArrayDeque 還是 LinkedList？
+
+{{< alert info >}}
 其實都行，但官方建議使用ArrayDeque
+{{< /alert >}}
+
 
 - ArrayDeque: 底層是 array，容量不夠時需要擴容和數組拷貝，通常容量不會填滿，會有空間浪費。
 - LinkedList: 底層用 Node 串聯，每次 push 都需要 new Node 節點，並且 node 節點裡面有 prev 和 next 成員，也會有額外的空間佔用。
+
+---
 
 # 整理:
 - Stack: 此類已經不建議使用，因為從Vector類繼承(底層是用 array 實現且線程安全)。

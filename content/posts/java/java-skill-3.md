@@ -1,5 +1,5 @@
 ---
-title: "Java Skill"
+title: "Java 技巧 - 處理Map<K, Collection<T>>"
 
 author: Aryido
 
@@ -11,7 +11,6 @@ categories:
 - java
 
 tags:
-- java
 - map
 
 comment: false
@@ -23,6 +22,8 @@ reward: false
 > 優雅處理 ```Map<K, Collection<T>>``` 類型的方式。
 
 <!--more-->
+
+---
 
 在寫code時，其實蠻常遇到 Map<K, List<V>> 這樣的集合。 當我們想在對應key的集合裡面添加element時:
 

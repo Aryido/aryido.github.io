@@ -11,7 +11,6 @@ categories:
 - java
 
 tags:
-- java
 - array
 
 comment: false
@@ -29,6 +28,9 @@ T result[][] = list.toArray(new T[list.size()][]);
 ```
 
 <!--more-->
+
+---
+
 這邊想補充一下，同理我想把 List<Integer> 轉成 int[]，卻遇到一些問題。 看source code 知道 java.util.List<E> 有用到泛型，故無法用 int 代替 Integer。
 因為泛型在編譯時，會進行類型擦除，最後只保留原始類型。而原始類型只能是Object類及其子類，故不能使用基本數據類型。
 ```java
@@ -39,6 +41,8 @@ List<Integer> list1 = List.of( 1, 2, 3, 55, 78, 465, 354131, 12, 6 );
 Integer[] integers = list1.toArray( new Integer[list1.size()] ); // 正常運行，但會是Integer array
 
 ```
+
+---
 
 # Exercise
 ## [LeetCode57. Insert Interval](https://leetcode.com/problems/insert-interval/)

@@ -11,7 +11,6 @@ categories:
 - java
 
 tags:
-- java
 - list
 
 comment: false
@@ -21,6 +20,8 @@ reward: false
 <!--BODY-->
 > 在 **leetcode 332. Reconstruct Itinerary** ，答案須回傳 **List**。因為題目是 **Post-order traversal on Edges** ，所以添加答案要往第一個元素插入。 這裡就是一個可以使用 **LinkedList** 而非 **ArrayList** 的好情境!
 <!--more-->
+
+---
 
 ## Interface List<E> 方法
 ### set(int index, E element)
@@ -57,6 +58,8 @@ list.add( 1, 1 ); // void
 
 使用 **LinkedList** 的 add 效率會比 ArrayList 的 add 還要好。 因為 ArrayList 的 add 底層實作，首先考慮擴容，故可能要複製一個新的 array ，且指定位置之後的元素要往後一個位置。
 而 **LinkedList** 直接把 node 的 reference 更改就達成插入了。
+
+---
 
 # Exercise
 ## [Leetcode332. Reconstruct Itinerary](https://leetcode.com/problems/reconstruct-itinerary/description/)

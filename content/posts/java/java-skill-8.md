@@ -10,6 +10,9 @@ thumbnailImage: "/images/java/java-bean-logo1.jpg"
 categories:
 - java
 
+tags:
+- map
+
 comment: false
 
 reward: false

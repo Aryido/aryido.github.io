@@ -8,11 +8,10 @@ date: {{ .Date }}
 thumbnailImage: /images/leetcode/logo.jpg
 
 categories:
-- java
+- LeetCode
 
 tags:
 - java
-- LeetCode
 
 comment: false
 

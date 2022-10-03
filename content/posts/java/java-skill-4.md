@@ -11,7 +11,6 @@ categories:
 - java
 
 tags:
-- java
 - array
 
 comment: false
@@ -22,6 +21,9 @@ reward: false
 > 刷題時很常出現 Array 的結構如 `int[]、char[]` 等等...，故在這邊條列一些常用的 Arrays 方法
 
 <!--more-->
+
+---
+
 主要介紹 java.lang.Object 的 java.util.Arrays 類。
 
 #  Arrays.copyOf()
@@ -32,6 +34,8 @@ int[] nums = {1, 4, 3, 2, 6, 9, 8};
 int[] newNums = Arrays.copyOf(nums, nums.length);
 ```
 
+---
+
 # Arrays.toString()
 可以快速 print array。因為直接使用 nums.toString()，會得到一個 reference 地址 EX: [I@564fabc8
 ```java
@@ -39,12 +43,18 @@ Arrays.toString(nums);
 System.out.println(Arrays.toString(nums));
 ```
 
+---
+
+
 # Arrays.sort
 默認升序
 
 ```java
 Arrays.sort(nums)
 ```
+
+---
+
 
 # 獲取 array 中最大值、最小值
 最後需要 getAsInt() 方法是因為 stream 出來會是 optional 類型
@@ -54,6 +64,9 @@ int minNum = Arrays.stream(nums).min().getAsInt();
 int minNum = Arrays.stream(nums).max().getAsInt();
 ```
 
+---
+
+
 # Arrays.fill()
 此方法可填充 value 至指定 index 範圍，若沒寫 index 範圍則代表全部置換
 
@@ -62,6 +75,9 @@ int minNum = Arrays.stream(nums).max().getAsInt();
 // Arrays.fill(arrayname ,starting index ,ending index ,value)
 Arrays.fill(nums, 100);
 ```
+
+---
+
 
 # Arrays.deepToString()
 打印多維array
