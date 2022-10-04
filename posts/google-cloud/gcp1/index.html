@@ -25,16 +25,15 @@ Must start with a letter.</li><li>Cannot end with a hyphen.</li><li>Cannot be in
 # 以下輸出範例
 NAME     IS_ACTIVE  ACCOUNT              PROJECT                DEFAULT_ZONE  DEFAULT_REGION
 default  True       xxxxx@gmail.com      test-project-235152    asia-east1-a  asia-east1
-</code></pre><hr><h2 id=切換-configurations-的方式>切換 configurations 的方式</h2><pre tabindex=0><code># activate 後面接 configurations 的 name 就可以切換設定擋了
-gcloud  config  configurations activate default
+</code></pre><hr><h2 id=切換-configurations-的方式>切換 configurations 的方式</h2><pre tabindex=0><code># activate 後面接 configurations 的 name 就可以切換帳號了
+gcloud  config  configurations activate &lt;project name&gt;
 </code></pre><h2 id=列出projects>列出projects</h2><pre tabindex=0><code>gcloud projects list --format=&#34;json&#34;
 
 gcloud projects list --sort-by=projectId --limit=5
-</code></pre><hr><h2 id=常用命令>常用命令</h2><pre tabindex=0><code># Display version and installed components.
-gcloud version
-
-# Set a default Google Cloud project to work on.
+</code></pre><h2 id=帳號切換-project>帳號切換 project</h2><pre tabindex=0><code># change project in active account.
 gcloud config set project
+</code></pre><hr><h2 id=其他常用命令>其他常用命令</h2><pre tabindex=0><code># Display version and installed components.
+gcloud version
 
 # Display current gcloud CLI environment details.
 gcloud info
