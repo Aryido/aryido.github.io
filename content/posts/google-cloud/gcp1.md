@@ -56,8 +56,8 @@ default  True       xxxxx@gmail.com      test-project-235152    asia-east1-a  as
 
 ## 切換 configurations 的方式
 ```
-# activate 後面接 configurations 的 name 就可以切換設定擋了
-gcloud  config  configurations activate default
+# activate 後面接 configurations 的 name 就可以切換帳號了
+gcloud  config  configurations activate <project name>
 ```
 
 ## 列出projects
@@ -67,15 +67,18 @@ gcloud projects list --format="json"
 gcloud projects list --sort-by=projectId --limit=5
 ```
 
+## 帳號切換 project
+```
+# change project in active account.
+gcloud config set project
+```
+
 ---
 
-## 常用命令
+## 其他常用命令
 ```
 # Display version and installed components.
 gcloud version
-
-# Set a default Google Cloud project to work on.
-gcloud config set project
 
 # Display current gcloud CLI environment details.
 gcloud info

@@ -1,5 +1,5 @@
 ---
-title: AWS 與 GCP reliability 不同的地方比較
+title: AWS 與 GCP reliability 不同的地方比較 - 1
 
 author: Aryido
 
