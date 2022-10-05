@@ -10,6 +10,9 @@ thumbnailImage: "/images/terraform/terragrunt.jpg"
 categories:
 - terraform
 
+tags:
+- terragrunt
+
 comment: false
 
 reward: false
@@ -20,7 +23,6 @@ reward: false
 <!--more-->
 
 ---
-### 問題 Scenario
 ### Scenario
 ```
 ├── dev
