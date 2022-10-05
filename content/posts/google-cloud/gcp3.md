@@ -37,16 +37,18 @@ Cloud compute 通常被視為一種 ethereal resource ，即可以自由啟動�
 
 {{< image classes="fancybox fig-100" src="/images/google-cloud/aws-vs-gcp-reliability-1.jpg" >}}
 
-# Result
+## 測試結果
 **The results are pretty staggering !!**  AWS 很平均的約 11.4 秒生成一個新的 GPU。 但 GCP 平均卻要 42.6 秒...
 
-#### AWS 在啟動時間上比 GCP 快 66%
+#### AWS 在啟動時間上比 GCP 快 3.73 倍 !
 
 進一步考慮一下兩家 cloud vendors 的差異:
 - GCP 可根據需要，配置 CPU 的數量，且可附加 GPU 到任意 VM 作為hardware accelerator 來加速。
 - AWS 只能預設已附加 GPU 的 VM
 
 先不考慮那些超時200秒的部分(下次再討論)，看起來 GCP 無法快速的創建 VM。故:
+
+---
 
 # 結論
 {{< alert warning >}}
