@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/google-cloud/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 04 Oct 2022 22:23:28 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/google-cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>AWS 與 GCP reliability 不同的地方比較 - 2</title><link>https://aryido.github.io/posts/google-cloud/gcp4/</link><pubDate>Tue, 04 Oct 2022 22:23:28 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp4/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>前段時間社群上有人 po 出 GCP 和 AWS 的比較，然後測出 GCP 慘烈的 VM 生成時間和一堆 409 錯誤，聽說有驚動google高層。那現在我們來針對該作者開源的測試程式，來看看吧!&lt;/p>
+&lt;p>前段時間社群上有人 po 出 GCP 和 AWS 的比較，然後測出 GCP 慘烈的 VM 生成時間和一堆 409 錯誤，聽說有驚動 Google 高層(&lt;del>怕.jpg&lt;/del>)。那現在我們來針對該作者開源的測試程式來看看吧!&lt;/p>
 &lt;/blockquote></description></item><item><title>AWS 與 GCP reliability 不同的地方比較 - 1</title><link>https://aryido.github.io/posts/google-cloud/gcp3/</link><pubDate>Sat, 24 Sep 2022 19:31:37 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp3/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>近期有機會來比較一下 AWS 和 GCP 的一些差別，也看了一些文章(&lt;del>練英文QQ&lt;/del>)。 GCP 和 AWS 都有 auto scaling 的功能，當我們在某些時候，需要比較多的資源處理事情時，可以自動增加機器來維持高 reliability。 那這部分 GCP 和 AWS 有甚麼區別呢 ?&lt;/p>

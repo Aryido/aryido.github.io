@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 04 Oct 2022 22:23:28 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>AWS 與 GCP reliability 不同的地方比較 - 2</title><link>https://aryido.github.io/posts/google-cloud/gcp4/</link><pubDate>Tue, 04 Oct 2022 22:23:28 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp4/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>前段時間社群上有人 po 出 GCP 和 AWS 的比較，然後測出 GCP 慘烈的 VM 生成時間和一堆 409 錯誤，聽說有驚動google高層。那現在我們來針對該作者開源的測試程式，來看看吧!&lt;/p>
+&lt;p>前段時間社群上有人 po 出 GCP 和 AWS 的比較，然後測出 GCP 慘烈的 VM 生成時間和一堆 409 錯誤，聽說有驚動 Google 高層(&lt;del>怕.jpg&lt;/del>)。那現在我們來針對該作者開源的測試程式來看看吧!&lt;/p>
 &lt;/blockquote></description></item><item><title>23. Merge k Sorted Lists</title><link>https://aryido.github.io/posts/leetcode/leetcode23/</link><pubDate>Mon, 03 Oct 2022 21:54:34 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode23/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>這題是合併 k 個 linked-list，且每個linked-list 都是有序的，最終要合併成一個大的 linked-list ，且也必須是有序的。用 heap 解題還蠻巧妙的，故紀錄一下&amp;hellip;&lt;/p>
