@@ -19,7 +19,7 @@ reward: false
 ---
 <!--BODY-->
 
-> 變數管理也是一個讓 code 更加 DRY 的一步， terragrunt 有蠻多傳遞變數的方式，例如inputs
+> 變數管理也是一個讓 code 更加 DRY 的方式之一， terragrunt 有蠻多傳遞變數的方式，這邊舉例 inputs
 <!--more-->
 
 ---
@@ -53,7 +53,7 @@ region=us-east1
 想說怎麼樣共同管理重複的變數呢?
 
 ---
-# 解決：Terragrunt inputs ={}
+# 解決：使用 Terragrunt inputs 從外部統一傳入變數
 
 在不同環境的資料夾外層，配置一個 terragrunt.hcl ，並把不同環境的資料夾內的 provider.tf 刪掉，然後每個環境的資料夾內，加入 terragrunt.hcl。
 
@@ -104,7 +104,7 @@ include "root" {
 
 #### 小提醒
 
-{{< alert info >}}
+{{< alert warning >}}
 變量按以下順序加載：
 
 - 環境變量。
@@ -128,7 +128,6 @@ $ terragrunt apply
 
 # Roughly equivalent to:
 
-TF_VAR_project_id="cloudterraform-362403" \
 TF_VAR_region="us-west1" \
 
 terraform apply
