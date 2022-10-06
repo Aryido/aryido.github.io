@@ -1,6 +1,13 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/terraform/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 05 Oct 2022 23:27:20 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/terraform/index.xml" rel="self" type="application/rss+xml"/><item><title>Terragrunt - variables 精簡</title><link>https://aryido.github.io/posts/terraform/terragrunt-4/</link><pubDate>Wed, 05 Oct 2022 23:27:20 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/terragrunt-4/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/terraform/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 06 Oct 2022 22:31:20 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/terraform/index.xml" rel="self" type="application/rss+xml"/><item><title>Terragrunt - 整理</title><link>https://aryido.github.io/posts/terraform/terragrunt-5/</link><pubDate>Thu, 06 Oct 2022 22:31:20 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/terragrunt-5/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>變數管理也是一個讓 code 更加 DRY 的一步， terragrunt 有蠻多傳遞變數的方式，例如inputs&lt;/p>
+&lt;p>基本上 terragrunt 的使用和 terraform 都一樣，所以才說 terragrunt 是一層 wrapper。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>terragrunt init
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>terragrunt plan
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>terragrunt apply
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>和 terraform 都一樣對吧 !&lt;/p>
+&lt;/blockquote></description></item><item><title>Terragrunt - variables 精簡</title><link>https://aryido.github.io/posts/terraform/terragrunt-4/</link><pubDate>Wed, 05 Oct 2022 23:27:20 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/terragrunt-4/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>變數管理也是一個讓 code 更加 DRY 的方式之一， terragrunt 有蠻多傳遞變數的方式，這邊舉例 inputs&lt;/p>
 &lt;/blockquote></description></item><item><title>Terragrunt - provider 精簡</title><link>https://aryido.github.io/posts/terraform/terragrunt-3/</link><pubDate>Thu, 29 Sep 2022 22:40:07 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/terragrunt-3/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Provide 是整個 terraform 最重要的元件，是決定要對哪一個平台操作 (e.g. AWS, Azure, gcp)，負責和雲端 API 的接口交互，可以在不了解 API 細節的情況下，通過 terraform 來編排資源。&lt;/p>

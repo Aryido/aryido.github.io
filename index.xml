@@ -1,6 +1,13 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 05 Oct 2022 23:27:20 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Terragrunt - variables 精簡</title><link>https://aryido.github.io/posts/terraform/terragrunt-4/</link><pubDate>Wed, 05 Oct 2022 23:27:20 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/terragrunt-4/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 06 Oct 2022 22:31:20 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Terragrunt - 整理</title><link>https://aryido.github.io/posts/terraform/terragrunt-5/</link><pubDate>Thu, 06 Oct 2022 22:31:20 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/terragrunt-5/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>變數管理也是一個讓 code 更加 DRY 的一步， terragrunt 有蠻多傳遞變數的方式，例如inputs&lt;/p>
+&lt;p>基本上 terragrunt 的使用和 terraform 都一樣，所以才說 terragrunt 是一層 wrapper。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>terragrunt init
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>terragrunt plan
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>terragrunt apply
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>和 terraform 都一樣對吧 !&lt;/p>
+&lt;/blockquote></description></item><item><title>Terragrunt - variables 精簡</title><link>https://aryido.github.io/posts/terraform/terragrunt-4/</link><pubDate>Wed, 05 Oct 2022 23:27:20 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/terragrunt-4/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>變數管理也是一個讓 code 更加 DRY 的方式之一， terragrunt 有蠻多傳遞變數的方式，這邊舉例 inputs&lt;/p>
 &lt;/blockquote></description></item><item><title>AWS 與 GCP reliability 不同的地方比較 - 2</title><link>https://aryido.github.io/posts/google-cloud/gcp4/</link><pubDate>Tue, 04 Oct 2022 22:23:28 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp4/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>前段時間社群上有人 po 出 GCP 和 AWS 的比較，然後測出 GCP 慘烈的 VM 生成時間和一堆 409 錯誤，聽說有驚動 Google 高層(&lt;del>怕.jpg&lt;/del>)。那現在我們來針對該作者開源的測試程式來看看吧!&lt;/p>
