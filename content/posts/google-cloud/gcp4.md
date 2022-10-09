@@ -57,6 +57,10 @@ reward: false
 ---
 
 # 結論
+
+測試結果:
+{{< image classes="fancybox fig-100" src="/images/google-cloud/aws-vs-gcp-reliability-2.jpg" >}}
+
 {{< alert warning >}}
 前面的 machine types 和 Zone 的差別，其實沒有太大。 **GCP 是真的比較慢!!!**
 {{< /alert >}}
