@@ -1,5 +1,5 @@
 ---
-title: Stack、Deque、ArrayDeque、LinkedList 簡單介紹
+title: Stack 的實作 ArrayDeque、LinkedList 介紹
 
 author: Aryido
 
@@ -38,7 +38,7 @@ List<Integer> list1 = new ArrayList<>(deque); //[2, 1]
 List<Integer> list2 = deque.stream().collect(Collectors.toList()); //[2,1]
 
 ```
-## 該用 ArrayDeque 還是 LinkedList？
+## Stack 實作該用 ArrayDeque 還是 LinkedList？
 
 {{< alert info >}}
 其實都行，但官方建議使用ArrayDeque
