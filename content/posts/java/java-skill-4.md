@@ -27,7 +27,10 @@ reward: false
 主要介紹 java.lang.Object 的 java.util.Arrays 類。
 
 #  Arrays.copyOf()
-array 是 reference 傳遞的，想要實現 value 傳遞，則使用 copy
+array 是 reference 傳遞的，想要實現 value 傳遞，則使用 **copyOf()**
+{{< alert warning >}}
+特別注意 **copyOf()** ，參數要傳 array 的 length 喔 !
+{{< /alert >}}
 
 ```java
 int[] nums = {1, 4, 3, 2, 6, 9, 8};
