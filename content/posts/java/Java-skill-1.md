@@ -31,7 +31,8 @@ T result[][] = list.toArray(new T[list.size()][]);
 
 ---
 
-這邊想補充一下，同理我想把 List<Integer> 轉成 int[]，卻遇到一些問題。 看source code 知道 java.util.List<E> 有用到泛型，故無法用 int 代替 Integer。
+補充一下，同理我想把 List<Integer> 轉成 int[]，卻遇到一些問題。 看 source code 知道 java.util.List<E> 有用到**泛型**，故無法用 int ，要使用其 wrapper class ，也就是 Integer 才行。
+
 因為泛型在編譯時，會進行類型擦除，最後只保留原始類型。而原始類型只能是Object類及其子類，故不能使用基本數據類型。
 ```java
 List<Integer> list1 = List.of( 1, 2, 3, 55, 78, 465, 354131, 12, 6 );
