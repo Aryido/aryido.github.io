@@ -119,9 +119,15 @@ JDK8 的 Map API 有不少便利的預設方法，以下可以介紹一下。&lt
 &lt;/blockquote></description></item><item><title>735. Asteroid Collision</title><link>https://aryido.github.io/posts/leetcode/leetcode735/</link><pubDate>Mon, 05 Sep 2022 20:42:24 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode735/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;p>不定時練習LeetCode紀錄&amp;hellip;&lt;/p>
 &lt;p>這題雖然好玩但我寫起來真的BUG滿天飛，小行星碰撞 Asteroid Collision。&lt;/p></description></item><item><title>739. Daily Temperatures by Java</title><link>https://aryido.github.io/posts/leetcode/leetcode739/</link><pubDate>Mon, 05 Sep 2022 10:59:38 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode739/</guid><description>&lt;!-- raw HTML omitted -->
-&lt;p>不定時練習LeetCode紀錄&amp;hellip;&lt;/p></description></item><item><title>Stack 的實作 ArrayDeque、LinkedList 介紹</title><link>https://aryido.github.io/posts/java/java-skill-2/</link><pubDate>Mon, 05 Sep 2022 00:54:48 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-2/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;p>不定時練習LeetCode紀錄&amp;hellip;&lt;/p></description></item><item><title>Stack、Deque、ArrayDeque、LinkedList 介紹</title><link>https://aryido.github.io/posts/java/java-skill-2/</link><pubDate>Mon, 05 Sep 2022 00:54:48 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-2/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>Java中的 Stack、Deque、ArrayDeque、LinkedList 簡單介紹和比較。&lt;/p>
+&lt;p>Java 現在 Stack 類已經不建議使用。現在推薦的是使用雙端隊列接口 Deque 取代 Stack。&lt;/p>
+&lt;p>Deque 是 interface，有兩個常用的 implement :&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>ArrayDeque&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>LinkedList&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>簡單來介紹和比較一下。&lt;/p>
 &lt;/blockquote></description></item><item><title>建立自己的 grafana dashboard plugin - 2</title><link>https://aryido.github.io/posts/grafana/%E5%BB%BA%E7%AB%8B%E8%87%AA%E5%B7%B1%E7%9A%84-grafana-dashboard-plugin-2/</link><pubDate>Sun, 04 Sep 2022 11:17:52 +0800</pubDate><guid>https://aryido.github.io/posts/grafana/%E5%BB%BA%E7%AB%8B%E8%87%AA%E5%B7%B1%E7%9A%84-grafana-dashboard-plugin-2/</guid><description>&lt;blockquote>
 &lt;p>參考&lt;a href="https://grafana.com/tutorials/build-a-panel-plugin/">官方教學&lt;/a>遇到的一些小問題&amp;hellip;&lt;/p>
 &lt;/blockquote></description></item><item><title>建立自己的 grafana dashboard plugin - 1</title><link>https://aryido.github.io/posts/grafana/%E5%BB%BA%E7%AB%8B%E8%87%AA%E5%B7%B1%E7%9A%84-grafana-dashboard-plugin-1/</link><pubDate>Sun, 04 Sep 2022 11:17:02 +0800</pubDate><guid>https://aryido.github.io/posts/grafana/%E5%BB%BA%E7%AB%8B%E8%87%AA%E5%B7%B1%E7%9A%84-grafana-dashboard-plugin-1/</guid><description>&lt;blockquote>
