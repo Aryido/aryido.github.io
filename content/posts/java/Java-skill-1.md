@@ -1,5 +1,5 @@
 ---
-title: 把 List of array 轉成 2D-array
+title: Java 技巧 - 把 List of array 轉成 2D-array
 
 author: Aryido
 
