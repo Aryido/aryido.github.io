@@ -1,5 +1,5 @@
 ---
-title: computeIfAbsent() 用法詳解
+title: Java 技巧 - computeIfAbsent() 用法詳解
 
 author: Aryido
 
@@ -18,20 +18,27 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> 使用 HashMap 的方法 **computeIfAbsent(K key, Function remappingFunction)** ，其中 *remappingFunction* 是一個 input 為 **key**，output 為 **value** 的一個 **Functional interface**。
->
->使用時有兩種情況；
-> - 1. 若 key **不在** map 裡，則會把這個 **key** 和 **remappingFunction 的 output** 添加到 hashMap 裡。 返回值為 **remappingFunction 的 output**
-> - 2. 若 key **在** map 裡，則不會重新計算 value。 返回值為 key 對應的 value
+> 使用 HashMap 的方法 :
+> ```jav
+> computeIfAbsent(K key, Function remappingFunction)
+>```
+> 其中 *remappingFunction* 是一個 **Functional interface**
+> - input 為 map 的 **key**
+> - output 會成為 map 的 **value**
 
 <!--more-->
 
 ---
+使用時有兩種情況
 
-{{< alert warning >}}
-**computeIfAbsent** 務必熟悉此方法，可幫助簡化code。
+{{< alert info >}}
+若 key **不在** map 裡，則會把這個 **key** 和 **remappingFunction 的 output** 添加到 hashMap 裡。 返回值為 **remappingFunction 的 output**
+{{< /alert >}}
+{{< alert info >}}
+若 key **在** map 裡，則不會重新計算 value。 返回值為 現在 map 的 key 對應的 value
 {{< /alert >}}
 
+---
 
 ```java
 HashMap<String, Integer> map = new HashMap<>();
@@ -58,5 +65,9 @@ int ShoesPrice = map.computeIfAbsent("Shoes", key -> 280); // ShoesPrice = 200
 // 返回值為 key 對應的 value
 
 ```
+
+{{< alert warning >}}
+**computeIfAbsent** 務必熟悉此方法，可幫助簡化code。
+{{< /alert >}}
 
 ---
