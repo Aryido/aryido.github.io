@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>algorithm on Aryido Tech Note</title><link>https://aryido.github.io/categories/algorithm/</link><description>Recent content in algorithm on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 15 Oct 2022 17:47:39 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/algorithm/index.xml" rel="self" type="application/rss+xml"/><item><title>Binary Search - 2 各式模板</title><link>https://aryido.github.io/posts/algorithm/binary-search2/</link><pubDate>Sat, 15 Oct 2022 17:47:39 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/binary-search2/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>前面有介紹了 Binary Search 的通用模板，但通用模板還是有缺點，就是要找的目標須在一個 array 內，這樣才能定義 index ，才能定義 &lt;em>l = -1&lt;/em> 和 &lt;em>r = N&lt;/em> 兩個在 array 區間外的 index。 但很多時候題目並不會有一個準確的 array 定義出來，還是需要了解各個模板才能比較好的去解答各式題目的邊界。&lt;/p>
+&lt;/blockquote></description></item><item><title>Binary Search - 1 觀念介紹</title><link>https://aryido.github.io/posts/algorithm/binary-search1/</link><pubDate>Sat, 15 Oct 2022 16:27:29 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/binary-search1/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Binary-Search，二分搜尋法是一種針對&lt;strong>已經排好序&lt;/strong>的區間內的 &lt;strong>O(logN)&lt;/strong> 的搜索方式。
+Binary-Search 會發現處理邊界時很容易出錯。 基本上都是沒注意到兩大原則 :&lt;/p>
+&lt;ul>
+&lt;li>每次都一定要縮減收所區域&lt;/li>
+&lt;li>每次縮減不能排除潛在答案
+雖然真的淺顯易見，但實踐在寫的時候還是常常會寫出bug。&lt;/li>
+&lt;/ul>
+&lt;/blockquote></description></item></channel></rss>
