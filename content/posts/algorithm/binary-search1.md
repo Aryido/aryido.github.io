@@ -1,11 +1,11 @@
 ---
-title: Binary Search 介紹
+title: Binary Search - 1 觀念介紹
 
 author: Aryido
 
 date: 2022-10-15T16:27:29+08:00
 
-thumbnailImage: /images/leetcode/logo.jpg
+thumbnailImage: /images/algorithm/binary-search-logo.jpg
 
 categories:
 - algorithm
@@ -113,12 +113,5 @@ public init binarySearch(int[] arr, int k){
 故以上分析，其實最後都會回到*l + 1 = r* 然後退出 loop， 不用擔心死循環的。
 
 ---
-# 練習
-
-例如給定一個 ```arr={1, 2, 3, 5, 5, 5, 8, 9}```
-- 找到第一個 **>=5** 的元素 : index 3
-- 找到最後一個 **<5** 的元素 : index 2
-- 找到第一個 **>5** 的元素 : index 6
-- 找到最後一個 **<=5** 的元素 : index 5
 
 ---
