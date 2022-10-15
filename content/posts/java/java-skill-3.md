@@ -1,5 +1,5 @@
 ---
-title: "Java 技巧 - 處理Map<K, Collection<T>>"
+title: Java 技巧 - 處理Map<K, Collection<T>>
 
 author: Aryido
 
@@ -43,31 +43,45 @@ if(!map.containsKey(key)){
 // 進階寫法
 map.computeIfAbsent(key, k -> new ArrayList<>());
 map.get(key).add(val);
+```
 
+---
+
+接下來是個人比較推薦的寫法。這樣寫也能展現自己對與語言的基礎掌握。
+
+```
 // 優雅寫法
-// 因為 ArrayLis t是 reference 引用
-// 故 computeIfAbsent 回傳值和 map.get(key) 是指向地址完全相同的 ArrayList
-// 所以直接 add 是會加到
 map.computeIfAbsent(key, k -> new ArrayList<>()).add(val);
 
-//Guava library 的 Multimap 也不錯，但是需要另外安裝
-Multimap<K,V> multimap = ArrayListMultimap.create();
-multimap.put(key, val);
+
 
 ```
 
+{{< alert warning >}}
+因為 ArrayLis t是 reference 引用，故 computeIfAbsent 回傳值和 map.get(key) 是指向地址完全相同的 ArrayList。所以直接 add 是會加到 map 對應的集合裡面的
+{{< /alert >}}
+
+---
+
+Guava library 的 Multimap 也不錯，但是需要另外安裝
+```java
+Multimap<K,V> multimap = ArrayListMultimap.create();
+multimap.put(key, val);
+```
 {{< alert info >}}
 Guava 是一個 Goolge 開源的 Java 通用library，核心庫有例如：集合、字串處理、I/O 等工具。
 {{< /alert >}}
 
-{{< alert info >}}
+---
+
+# 整理
+
 不論是開發還是刷題都很常用到
 ```java
 map.computeIfAbsent(key, k -> new ArrayList<>()).add(val);
 ```
 使用時有兩種情況；
- - 1. 若 key **不在** map 裡，則會把這個 **key** 和 **remappingFunction 的 output** 添加到 hashMap 裡。 返回值為 **remappingFunction 的 output**
- - 2. 若 key **在** map 裡，則直接返回 key 對應的 value
-{{< /alert >}}
+- 1. 若 key **不在** map 裡，則會把這個 **key** 和 **remappingFunction 的 output** 添加到 hashMap 裡。 返回值為 **remappingFunction 的 output**
+- 2. 若 key **在** map 裡，則直接返回 key 對應的 value
 
 ---
