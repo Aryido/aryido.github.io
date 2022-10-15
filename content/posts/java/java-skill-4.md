@@ -1,5 +1,5 @@
 ---
-title: "Java Arrays 方法"
+title: Java 技巧 - Java Arrays 方法
 
 author: Aryido
 
@@ -18,7 +18,8 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> 刷題時很常出現 Array 的結構如 `int[]、char[]` 等等...，故在這邊條列一些常用的 Arrays 方法
+> 刷題時很常出現 Array 的結構如 `int[]、char[]` 等等...，故在這邊條列一些常用的 Arrays 方法。
+> 在使用過程也可以複習 java 提供的工具類，還有一些泛型的坑...
 
 <!--more-->
 
@@ -35,29 +36,51 @@ array 是 reference 傳遞的，想要實現 value 傳遞，則使用 **copyOf()
 ```java
 int[] nums = {1, 4, 3, 2, 6, 9, 8};
 int[] newNums = Arrays.copyOf(nums, nums.length);
+
+System.out.println(nums); // [I@6379eb
+System.out.println(newNums); // [I@294425a7 ， 深拷貝，地址不一樣了
+
 ```
+{{< alert warning >}}
+特別注意， array 使用 toString() 方法，依然是列出地址 !
+```java
+System.out.println(nums.toString()); // [I@564fabc8
+System.out.println(newNums.toString()); // [I@294425a7
+```
+{{< /alert >}}
 
 ---
 
 # Arrays.toString()
-可以快速 print array。因為直接使用 nums.toString()，會得到一個 reference 地址 EX: [I@564fabc8
+前例知道直接使用 nums.toString()，會得到一個 reference 地址。故 Arrays.toString() 可以幫助我們快速列出內容。
+
+Arrays.toString() 方法可以把 array 內容 print 出來。
 ```java
-Arrays.toString(nums);
-System.out.println(Arrays.toString(nums));
+// 承前範例 nums = {1, 4, 3, 2, 6, 9, 8}
+System.out.println(nums); // [I@564fabc8
+System.out.println(Arrays.toString(nums)); // [1, 4, 3, 2, 6, 9, 8]
 ```
 
 ---
-
 
 # Arrays.sort
 默認升序
 
 ```java
 Arrays.sort(nums)
+
+// 以下會出錯，要用 Integer[] 才行
+// Arrays.sort(ints, Collections.reverseOrder() );
 ```
+{{< alert warning >}}
+這就是坑...， Collections.reverseOrder() 有用到泛型，故要使用 Integer[] 才可以通過編譯。
+```
+Integer[] ints = {1, 4, 3, 2, 6, 9, 8};
+Arrays.sort(ints, Collections.reverseOrder() ); //[9, 8, 6, 4, 3, 2, 1]
+```
+{{< /alert >}}
 
 ---
-
 
 # 獲取 array 中最大值、最小值
 最後需要 getAsInt() 方法是因為 stream 出來會是 optional 類型
