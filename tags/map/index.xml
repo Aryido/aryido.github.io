@@ -3,21 +3,14 @@
 &lt;p>Java 8 因為引入了 lambda 這樣的 functional programming，故Map 系列有了許多新增方法，感覺還是很好用的，簡單做一些相關介紹 &amp;hellip;&lt;/p>
 &lt;/blockquote></description></item><item><title>JAVA Map方法：compute、computeIfAbsent、put、putIfAbsent</title><link>https://aryido.github.io/posts/java/java-skill-7/</link><pubDate>Thu, 22 Sep 2022 21:58:05 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-7/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;p>Map 是 Java 的其中一類interface，不是collection，也不會繼承 Collection interface。
-JDK8 的 Map API 有不少便利的預設方法，以下可以介紹一下。&lt;/p></description></item><item><title>computeIfAbsent() 用法詳解</title><link>https://aryido.github.io/posts/java/java-skill-5/</link><pubDate>Sat, 17 Sep 2022 12:44:22 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-5/</guid><description>&lt;!-- raw HTML omitted -->
+JDK8 的 Map API 有不少便利的預設方法，以下可以介紹一下。&lt;/p></description></item><item><title>Java 技巧 - computeIfAbsent() 用法詳解</title><link>https://aryido.github.io/posts/java/java-skill-5/</link><pubDate>Sat, 17 Sep 2022 12:44:22 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-5/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>使用 HashMap 的方法 &lt;strong>computeIfAbsent(K key, Function remappingFunction)&lt;/strong> ，其中 &lt;em>remappingFunction&lt;/em> 是一個 input 為 &lt;strong>key&lt;/strong>，output 為 &lt;strong>value&lt;/strong> 的一個 &lt;strong>Functional interface&lt;/strong>。&lt;/p>
-&lt;p>使用時有兩種情況；&lt;/p>
+&lt;p>使用 HashMap 的方法 :&lt;/p>
+&lt;pre tabindex="0">&lt;code class="language-jav" data-lang="jav">computeIfAbsent(K key, Function remappingFunction)
+&lt;/code>&lt;/pre>&lt;p>其中 &lt;em>remappingFunction&lt;/em> 是一個 &lt;strong>Functional interface&lt;/strong>&lt;/p>
 &lt;ul>
-&lt;li>
-&lt;ol>
-&lt;li>若 key &lt;strong>不在&lt;/strong> map 裡，則會把這個 &lt;strong>key&lt;/strong> 和 &lt;strong>remappingFunction 的 output&lt;/strong> 添加到 hashMap 裡。 返回值為 &lt;strong>remappingFunction 的 output&lt;/strong>&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>
-&lt;ol start="2">
-&lt;li>若 key &lt;strong>在&lt;/strong> map 裡，則不會重新計算 value。 返回值為 key 對應的 value&lt;/li>
-&lt;/ol>
-&lt;/li>
+&lt;li>input 為 map 的 &lt;strong>key&lt;/strong>&lt;/li>
+&lt;li>output 會成為 map 的 &lt;strong>value&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;/blockquote></description></item><item><title>Java 技巧 - 處理Map&lt;K, Collection&lt;T>></title><link>https://aryido.github.io/posts/java/java-skill-3/</link><pubDate>Tue, 06 Sep 2022 23:28:59 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-3/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
