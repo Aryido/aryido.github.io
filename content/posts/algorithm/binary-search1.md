@@ -18,17 +18,18 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> Binary-Search，二分搜尋法是一種針對**已經排好序**的區間內的 **O(logN)** 的搜索方式。
+> Binary-Search，二分搜尋法是一種針對**已經排好序區間**內的 **O(logN)** 的搜索方式。
 > Binary-Search 會發現處理邊界時很容易出錯。 基本上都是沒注意到兩大原則 :
 > - 每次都一定要縮減收所區域
 > - 每次縮減不能排除潛在答案
+>
 >雖然真的淺顯易見，但實踐在寫的時候還是常常會寫出bug。
 
 <!--more-->
 
 ---
 
-**Although the basic idea if binary search is comparatively straightforward. the details can be surprisingly tricky. --Donald Knuth**
+**Although the basic idea if binary search is comparatively straightforward. the details can be surprisingly tricky.   -Donald Knuth**
 
 Binary-Search 最簡單的形式如下，找精確值的模板
 ```java
@@ -53,13 +54,13 @@ public init binarySearch(int[] arr, int k){
 - int[] arr = {1, 2, 2, 5, 5, 6, 7}，找最接近4的數
 - int[] arr = {1, 2, 3, 5, 5, 6, 7}，找比4大最小的數
 
-就不能套用了
+就不能套用了。故接下來思考一下一個比較 general 模板，並深入分析下。
 
 ---
 # Binary-Search 本質
 {{< image classes="fancybox fig-100" src="/images/algorithm/binary-search.jpg" >}}
 
-可以想成是要找**藍紅邊界K**，這邊 Binary-Search 高效快速的原因就是當它**找到某個位置為藍色，則它前面的位置一定皆為藍色**，故可以直接把左指針拓展到元素所在位置。同理紅色位置。
+可以想成是要找**藍紅邊界K**，這邊 Binary-Search 高效快速的原因就是當它**找到某個位置為藍色，則它前面的位置一定皆為藍色**，故可以直接把左指針拓展到元素所在位置。同理紅色也是一樣思考方式。
 
 ---
 # 分析驗證
@@ -68,7 +69,9 @@ public init binarySearch(int[] arr, int k){
 {{< image classes="fancybox fig-100" src="/images/algorithm/binary-search2.jpg" >}}
 
 ## 為什麼初始  *l* = -1 , *r* = N ?
-試想一下，假如 *l* = 0，但整個 arr 都是紅色，那就和 *l* 代表的意義矛盾了；同理整個 arr 都是藍色，若讓 *r* = N-1，也和 *r* 代表的意義矛盾了。
+試想一下，假如 *l* = 0，但整個 arr 都是紅色，那就和 *l* 代表的意義矛盾了，因為 *l* 的意義是在它當下位置，以及之前的位置，全部都是藍色。
+
+同理若整個 arr 都是藍色，若讓 *r* = *N-1*，也和 *r* 代表的意義矛盾了。
 
 ## 中間點 **m**，是否一直都會在 [0, N-1] 內呢?
 看一下 *m* 的下界，由於 *m = (l + r) / 2* ，所以要讓 *m* 最小，我們要找 *l* 最小和 *r* 最小。
@@ -113,5 +116,10 @@ public init binarySearch(int[] arr, int k){
 故以上分析，其實最後都會回到*l + 1 = r* 然後退出 loop， 不用擔心死循環的。
 
 ---
+
+{{< alert success >}}
+以上把模板的觀念全部都整理證明完畢，以後要套通用模板就可以直接使用不用害怕
+{{< /alert >}}
+
 
 ---
