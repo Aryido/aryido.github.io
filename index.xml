@@ -68,7 +68,7 @@ Binary-Search 會發現處理邊界時很容易出錯。 基本上都是沒注�
 &lt;blockquote>
 &lt;p>Program/Process/Thread 是面試時經常會被問到的題目，就來筆記一下吧。&lt;/p>
 &lt;/blockquote></description></item><item><title>JAVA Map方法：compute、computeIfAbsent、put、putIfAbsent</title><link>https://aryido.github.io/posts/java/java-skill-7/</link><pubDate>Thu, 22 Sep 2022 21:58:05 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-7/</guid><description>&lt;!-- raw HTML omitted -->
-&lt;p>Map 是 Java 的其中一類interface，不是collection，也不會繼承 Collection interface。
+&lt;p>Map 是 Java 的其中一 interface，不是collection，也不會繼承 Collection interface。
 JDK8 的 Map API 有不少便利的預設方法，以下可以介紹一下。&lt;/p></description></item><item><title>Terratag</title><link>https://aryido.github.io/posts/terraform/terratag/</link><pubDate>Wed, 21 Sep 2022 23:11:25 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/terratag/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Terratag 是個 CLI 工具，可簡化 resource tag 的方式，允許將標籤應用於整個 Terraform 或 Terragrunt，對於 Terraform 社群來說，他們希望&lt;strong>集中化&lt;/strong>來標註 resource 而不是分別寫在每個resource內，以更方便的追蹤和管理&amp;hellip;&lt;/p>

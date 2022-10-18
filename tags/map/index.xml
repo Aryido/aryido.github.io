@@ -2,7 +2,7 @@
 &lt;blockquote>
 &lt;p>Java 8 因為引入了 lambda 這樣的 functional programming，故Map 系列有了許多新增方法，感覺還是很好用的，簡單做一些相關介紹 &amp;hellip;&lt;/p>
 &lt;/blockquote></description></item><item><title>JAVA Map方法：compute、computeIfAbsent、put、putIfAbsent</title><link>https://aryido.github.io/posts/java/java-skill-7/</link><pubDate>Thu, 22 Sep 2022 21:58:05 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-7/</guid><description>&lt;!-- raw HTML omitted -->
-&lt;p>Map 是 Java 的其中一類interface，不是collection，也不會繼承 Collection interface。
+&lt;p>Map 是 Java 的其中一 interface，不是collection，也不會繼承 Collection interface。
 JDK8 的 Map API 有不少便利的預設方法，以下可以介紹一下。&lt;/p></description></item><item><title>Java 技巧 - computeIfAbsent() 用法詳解</title><link>https://aryido.github.io/posts/java/java-skill-5/</link><pubDate>Sat, 17 Sep 2022 12:44:22 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-5/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>使用 HashMap 的方法 :&lt;/p>
