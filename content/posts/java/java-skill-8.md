@@ -18,14 +18,14 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> Java 8 因為引入了 lambda 這樣的 functional programming，故Map 系列有了許多新增方法，感覺還是很好用的，簡單做一些相關介紹 ...
+> Java 8 因為引入了 lambda 這樣的 functional 函數，所以 Map 系列增加了一些方法，感覺還是很好用的，簡單做一些相關介紹 ...
 
 <!--more-->
 
 ---
 
 # compute
-compute 方法可以指定 key ，用指定的 Lambda 運算，來決定 key 的對應 value ，這是它之所以命名為 compute 的原因。
+compute 方法可以指定 key ，然後用指定的 Lambda 來運算，決定 key 的對應 value ，這是它之所以命名為 compute 的原因。
 
 compute 是返回新的值。 更詳細的說:
 - key 有對應的 value 時
