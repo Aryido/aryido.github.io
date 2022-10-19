@@ -44,7 +44,7 @@ Binary-Search 會發現處理邊界時很容易出錯。 基本上都是沒注�
 &lt;p>這題是合併 k 個 linked-list，且每個linked-list 都是有序的，最終要合併成一個大的 linked-list ，且也必須是有序的。用 heap 解題還蠻巧妙的，故紀錄一下&amp;hellip;&lt;/p>
 &lt;/blockquote></description></item><item><title>JAVA Map方法： merge &amp; compute 比對</title><link>https://aryido.github.io/posts/java/java-skill-8/</link><pubDate>Sat, 01 Oct 2022 16:36:17 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-8/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>Java 8 因為引入了 lambda 這樣的 functional programming，故Map 系列有了許多新增方法，感覺還是很好用的，簡單做一些相關介紹 &amp;hellip;&lt;/p>
+&lt;p>Java 8 因為引入了 lambda 這樣的 functional 函數，所以 Map 系列增加了一些方法，感覺還是很好用的，簡單做一些相關介紹 &amp;hellip;&lt;/p>
 &lt;/blockquote></description></item><item><title>Terragrunt - provider 精簡</title><link>https://aryido.github.io/posts/terraform/terragrunt-3/</link><pubDate>Thu, 29 Sep 2022 22:40:07 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/terragrunt-3/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Provide 是整個 terraform 最重要的元件，是決定要對哪一個平台操作 (e.g. AWS, Azure, gcp)，負責和雲端 API 的接口交互，可以在不了解 API 細節的情況下，通過 terraform 來編排資源。&lt;/p>
