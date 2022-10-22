@@ -1,27 +1,27 @@
-<!doctype html><html lang=en-us><head><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Google Cloud CLI - 2","image":"https://aryido.github.io/images/google-cloud/logo.jpg","datePublished":"2022-09-17T00:23:55+08:00","dateModified":"2022-09-17T00:23:55+08:00","author":{"@type":"Person","name":"李昀陽 YunYang Lee","image":"https://aryido.github.io/images/aboutme/head-shot.jpg"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aryido.github.io\/posts\/google-cloud\/gcp2\/"},"publisher":{"@type":"Organization","name":"Aryido Tech Note","logo":{"@type":"ImageObject","url":"https://aryido.github.io/images/aboutme/head-shot.jpg"}},"description":" 使用 gcloud CLI 時，第一步都是要登入雲端才能獲得授權。 gcloud CLI 提供了兩個選項：\nUser account authorization Service account authorization ","keywords":[]}</script><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Hugo 0.104.3 with theme Tranquilpeak 0.5.3-BETA"><meta name=author content="李昀陽 YunYang Lee"><meta name=keywords content><meta name=description content="
+<!doctype html><html lang=en-us><head><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Google Cloud CLI - 2","image":"https://aryido.github.io/images/google-cloud/logo.jpg","datePublished":"2022-09-17T00:23:55+08:00","dateModified":"2022-09-17T00:23:55+08:00","author":{"@type":"Person","name":"李昀陽 YunYang Lee","image":"https://aryido.github.io/images/aboutme/head-shot.jpg"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aryido.github.io\/posts\/google-cloud\/gcp2\/"},"publisher":{"@type":"Organization","name":"Aryido Tech Note","logo":{"@type":"ImageObject","url":"https://aryido.github.io/images/aboutme/head-shot.jpg"}},"description":" 使用 GCP 時，都要登入雲端才能獲得授權。 gcloud CLI 提供了兩個方式：\nUser account authorization Service account authorization ","keywords":[]}</script><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Hugo 0.104.3 with theme Tranquilpeak 0.5.3-BETA"><meta name=author content="李昀陽 YunYang Lee"><meta name=keywords content><meta name=description content="
 
-使用 gcloud CLI 時，第一步都是要登入雲端才能獲得授權。 gcloud CLI 提供了兩個選項：
+使用 GCP 時，都要登入雲端才能獲得授權。 gcloud CLI 提供了兩個方式：
 
 User account authorization
 Service account authorization
 
 "><meta property="og:description" content="
 
-使用 gcloud CLI 時，第一步都是要登入雲端才能獲得授權。 gcloud CLI 提供了兩個選項：
+使用 GCP 時，都要登入雲端才能獲得授權。 gcloud CLI 提供了兩個方式：
 
 User account authorization
 Service account authorization
 
 "><meta property="og:type" content="article"><meta property="og:title" content="Google Cloud CLI - 2"><meta name=twitter:title content="Google Cloud CLI - 2"><meta property="og:url" content="https://aryido.github.io/posts/google-cloud/gcp2/"><meta property="twitter:url" content="https://aryido.github.io/posts/google-cloud/gcp2/"><meta property="og:site_name" content="Aryido Tech Note"><meta property="og:description" content="
 
-使用 gcloud CLI 時，第一步都是要登入雲端才能獲得授權。 gcloud CLI 提供了兩個選項：
+使用 GCP 時，都要登入雲端才能獲得授權。 gcloud CLI 提供了兩個方式：
 
 User account authorization
 Service account authorization
 
 "><meta name=twitter:description content="
 
-使用 gcloud CLI 時，第一步都是要登入雲端才能獲得授權。 gcloud CLI 提供了兩個選項：
+使用 GCP 時，都要登入雲端才能獲得授權。 gcloud CLI 提供了兩個方式：
 
 User account authorization
 Service account authorization
@@ -33,10 +33,10 @@ Service account authorization
 <span class=sidebar-button-desc>GitHub</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/index.xml title=RSS><i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden=true></i>
 <span class=sidebar-button-desc>RSS</span></a></li></ul><ul class=sidebar-buttons></ul><ul class=sidebar-buttons></ul></div></nav><div id=main data-behavior=4 class=hasCoverMetaIn><article class=post id=top><div class="post-header main-content-wrap text-left"><h1 class=post-title>Google Cloud CLI - 2</h1><div class="postShorten-meta post-meta"><time datetime=2022-09-17T00:23:55+08:00>September 17, 2022</time>
 <span>in</span>
-<a class=category-link href=https://aryido.github.io/categories/cloud>cloud</a></div></div><div class="post-content markdown"><div class=main-content-wrap><blockquote><p>使用 gcloud CLI 時，第一步都是要登入雲端才能獲得授權。 gcloud CLI 提供了兩個選項：</p><ul><li>User account authorization</li><li>Service account authorization</li></ul></blockquote><hr><p>這邊 User account authorization 使用:</p><pre tabindex=0><code>gcloud auth application-default
+<a class=category-link href=https://aryido.github.io/categories/cloud>cloud</a></div></div><div class="post-content markdown"><div class=main-content-wrap><blockquote><p>使用 GCP 時，都要登入雲端才能獲得授權。 gcloud CLI 提供了兩個方式：</p><ul><li>User account authorization</li><li>Service account authorization</li></ul></blockquote><hr><p>這邊 User account authorization 使用:</p><pre tabindex=0><code>gcloud auth application-default login
 
 # Credentials saved to file: [~/.config/gcloud/application_default_credentials.json]
-</code></pre><p>來產生 credential 在本地端</p><div class="alert info"><p><a href=https://stackoverflow.com/questions/53306131/difference-between-gcloud-auth-application-default-login-and-gcloud-auth-logi>gcloud auth application-default login" V.S &ldquo;gcloud auth login</a></p></div><hr><h2 id=取得-access-token>取得 access token</h2><p>在Cloud Shell中，由於內建所安裝的 Cloud SDK 已經載入了使用者的權限，因此可以方便的呼叫相關的SDK與取得Token</p><pre tabindex=0><code class=language-terminal data-lang=terminal>gcloud auth application-default print-access-token
+</code></pre><p>來產生 credential 在本地端，application-default 是一個專門給應用程式用的 credential，簡化使用 Service account 繁瑣的步驟。</p><p>官網上的簡介:</p><div class="alert info"><p><h3 id=gcloud-auth-application-default-login>gcloud auth application-default login</h3><p>獲取新的 user credential，預設是用於應用程式的 credential。</p></div><div class="alert info"><p><h3 id=gcloud-auth-login->gcloud auth login :</h3><p>認證 Cloud SDK ，只授權 gcloud 這個 CLI 工具權限，讓它可以使用 user credential 訪問 GCP。</p></div><hr><h2 id=取得-access-token>取得 access token</h2><p>在Cloud Shell中，由於內建所安裝的 Cloud SDK 已經載入了使用者的權限，因此可以方便的呼叫相關的SDK與取得Token</p><pre tabindex=0><code class=language-terminal data-lang=terminal>gcloud auth application-default print-access-token
 </code></pre><p>我們可以選定一個所要呼叫的Google API進行呼叫，需要在 Header 處加上 Authorization 的 Bearer token ，即是上面取得的 access token</p><pre tabindex=0><code class=language-terminal data-lang=terminal># 例如使用Big Query
 curl -H &#34;Authorization:Bearer xxxxxxxxxxxx https://www.googleapis.com/bigquery/v2/projects/.....
 </code></pre><p>以上，如果要測試Google的API，透過這個方式還滿方便。</p><hr></div></div><div id=post-footer class="post-footer main-content-wrap"><div class=post-footer-tags><span class="text-color-light text-small">TAGGED IN</span><br><a class="tag tag--primary tag--small" href=https://aryido.github.io/tags/gcp/>gcp</a></div><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/google-cloud/gcp3/ data-tooltip="AWS 與 GCP reliability 不同的地方比較 - 1" aria-label="NEXT: AWS 與 GCP reliability 不同的地方比較 - 1"><i class="fa fa-angle-left"></i>
