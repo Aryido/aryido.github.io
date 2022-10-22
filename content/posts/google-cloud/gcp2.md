@@ -18,7 +18,7 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> 使用 gcloud CLI 時，第一步都是要登入雲端才能獲得授權。 gcloud CLI 提供了兩個選項：
+> 使用 GCP 時，都要登入雲端才能獲得授權。 gcloud CLI 提供了兩個方式：
 > - User account authorization
 > - Service account authorization
 
@@ -28,14 +28,24 @@ reward: false
 
 這邊 User account authorization 使用:
 ```
-gcloud auth application-default
+gcloud auth application-default login
 
 # Credentials saved to file: [~/.config/gcloud/application_default_credentials.json]
 ```
-來產生 credential 在本地端
+來產生 credential 在本地端，application-default 是一個專門給應用程式用的 credential，簡化使用 Service account 繁瑣的步驟。
+
+官網上的簡介:
 
 {{< alert info >}}
-[gcloud auth application-default login" V.S "gcloud auth login](https://stackoverflow.com/questions/53306131/difference-between-gcloud-auth-application-default-login-and-gcloud-auth-logi)
+### gcloud auth application-default login
+
+獲取新的 user credential，預設是用於應用程式的 credential。
+{{< /alert >}}
+
+{{< alert info >}}
+### gcloud auth login :
+
+認證 Cloud SDK ，只授權 gcloud 這個 CLI 工具權限，讓它可以使用 user credential 訪問 GCP。
 {{< /alert >}}
 
 ---
