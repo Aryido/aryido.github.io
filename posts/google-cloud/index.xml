@@ -1,4 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/google-cloud/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 22 Oct 2022 16:13:45 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/google-cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>Google Cloud CLI - 3</title><link>https://aryido.github.io/posts/google-cloud/gcp6/</link><pubDate>Sat, 22 Oct 2022 16:13:45 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp6/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/google-cloud/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 23 Oct 2022 15:10:00 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/google-cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP load-balancer 基礎介紹</title><link>https://aryido.github.io/posts/google-cloud/gcp7/</link><pubDate>Sun, 23 Oct 2022 15:10:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp7/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>GCP 目前也有多種 Load Balancer，console上是大概分成了三個 :&lt;/p>
+&lt;ul>
+&lt;li>HTTP(S) load balancing&lt;/li>
+&lt;li>TCP load balancing&lt;/li>
+&lt;li>UPD load balancing&lt;/li>
+&lt;/ul>
+&lt;p>但實際上依照細部功能，其實有蠻細緻的設定的
+&lt;div class="figure fig-100" >
+&lt;a class="fancybox" href="https://aryido.github.io/images/google-cloud/load-balancer-options.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/google-cloud/load-balancer-options.jpg" >
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/blockquote></description></item><item><title>Google Cloud CLI - 3</title><link>https://aryido.github.io/posts/google-cloud/gcp6/</link><pubDate>Sat, 22 Oct 2022 16:13:45 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp6/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>最近使用 gcloud CLI 時，有遇到自己錯誤理解的部分，是關於 gcloud 管理的兩組 credentials :&lt;/p>
 &lt;ul>
