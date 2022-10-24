@@ -9,5 +9,36 @@
 &lt;/ul>
 &lt;/blockquote></description></item><item><title>Binary Search Tree</title><link>https://aryido.github.io/posts/data-structure/binary-search-tree/</link><pubDate>Sun, 11 Sep 2022 14:53:52 +0800</pubDate><guid>https://aryido.github.io/posts/data-structure/binary-search-tree/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>二元搜尋樹（英語：Binary Search Tree），也稱為有序二元樹（ordered binary tree）或排序二元樹（sorted binary tree）&lt;/p>
+&lt;p>二元搜尋樹（英語：Binary Search Tree），也稱為有序二元樹（ordered binary tree）或排序二元樹（sorted binary tree）。 從 wiki 上得到的時間與空間複雜度 :&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align:center">演算法&lt;/th>
+&lt;th style="text-align:center">平均&lt;/th>
+&lt;th style="text-align:center">最差&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td style="text-align:center">空間&lt;/td>
+&lt;td style="text-align:center">O(n)&lt;/td>
+&lt;td style="text-align:center">O(n)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">搜尋&lt;/td>
+&lt;td style="text-align:center">O(log n)&lt;/td>
+&lt;td style="text-align:center">O(n)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">插入&lt;/td>
+&lt;td style="text-align:center">O(log n)&lt;/td>
+&lt;td style="text-align:center">O(n)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:center">刪除&lt;/td>
+&lt;td style="text-align:center">O(log n)&lt;/td>
+&lt;td style="text-align:center">O(n)&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
 &lt;/blockquote></description></item></channel></rss>
