@@ -20,18 +20,17 @@ reward: false
 ---
 <!--BODY-->
 
-> 二元搜尋樹（英語：Binary Search Tree），也稱為有序二元樹（ordered binary tree）或排序二元樹（sorted binary tree）
+> 二元搜尋樹（英語：Binary Search Tree），也稱為有序二元樹（ordered binary tree）或排序二元樹（sorted binary tree）。 從 wiki 上得到的時間與空間複雜度 :
+>|  演算法  |  平均  |  最差  |
+>|:---:|:---:|:---:|
+>| 空間 | O(n) | O(n) |
+>| 搜尋 | O(log n) | O(n) |
+>| 插入 | O(log n) | O(n) |
+>| 刪除 | O(log n) | O(n) |
 
 <!--more-->
 
-從 wiki 上得到的時間與空間複雜度
-
-|  演算法  |  平均  |  最差  |
-|:---:|:---:|:---:|
-| 空間 | O(n) | O(n) |
-| 搜尋 | O(log n) | O(n) |
-| 插入 | O(log n) | O(n) |
-| 刪除 | O(log n) | O(n) |
+---
 
 # 定義
 - 以左邊節點 ( left node ) 作為根的子樹 ( sub-tree ) 的所有值都小於根節點 ( root )
@@ -39,12 +38,15 @@ reward: false
 - 任意節點 ( node ) 的左、右子樹也分別符合 BST 的定義
 
 {{< alert warning >}}
-不存在任何鍵值 ( key/value ) 相等的節點。因為如果有相等值的節點就會違反第一點或第二點。
+承上定義也可以知道，不存在任何鍵值 ( key/value ) 相等的節點。因為如果有相等值的節點就會違反第一點或第二點。
 {{< /alert >}}
 
+---
+
 # 特性
-BST 是基於 binary search 而建立的資料結構，所以搜尋的時間複雜度要能達成 O(log n)。但不是說使用了 BST 做搜尋就一定可以穩定 O(log n)，搜尋的最差情況是在 O(n) ，關鍵就在平衡，也就是所謂樹高。
-因為二元搜尋樹的查詢複雜度取決於深度。為了實現更高效的查詢，產生了平衡樹。
+Binary Search Tree 是基於 binary search 而建立的資料結構，所以搜尋的時間複雜度能達成 O(log n)。但不是說使用了 BST 做搜尋就一定可以穩定 O(log n)，搜尋的最差情況是在 O(n) ，關鍵就**平衡**，也就是所謂樹高。因為二元搜尋樹的查詢複雜度取決於深度。為了實現更高效的查詢，產生了平衡樹。
+
+---
 
 ## Depth First Traversal
 ### Pre-Order：適合使用在想要 Copy Tree 時使用
