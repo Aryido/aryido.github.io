@@ -30,7 +30,7 @@
 &lt;li>Network Load Balancer&lt;/li>
 &lt;li>Classic Load Balancer&lt;/li>
 &lt;/ul>
-&lt;p>對於 Classic Load Balancer ，除非還有 ec2 運行在 ec2-classic 網路的場景，要不然已經不建議在使用了，建議使用 Application Load Balancer 、 Network Load Balancer 取代。&lt;/p>
+&lt;p>對於 Classic Load Balancer ，除非還有 ec2 運行在 ec2-classic 網路的場景，要不然已經&lt;strong>不建議&lt;/strong>使用了，建議使用 Application Load Balancer 、 Network Load Balancer 取代。&lt;/p>
 &lt;/blockquote></description></item><item><title>1011. Capacity To Ship Packages Within D Days</title><link>https://aryido.github.io/posts/leetcode/leetcode1011/</link><pubDate>Sat, 15 Oct 2022 19:18:43 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode1011/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;p>這題是 Google 面試題，在 Hide Hint 中表示可以使用 binary-search 解決，剛開始覺得蠻 tricky 的，但仔細思考會覺得 binary-search 很符合這題目。&lt;/p></description></item><item><title>Binary Search - 2 各式模板</title><link>https://aryido.github.io/posts/algorithm/binary-search2/</link><pubDate>Sat, 15 Oct 2022 17:47:39 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/binary-search2/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>

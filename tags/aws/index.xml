@@ -21,7 +21,7 @@
 &lt;li>Network Load Balancer&lt;/li>
 &lt;li>Classic Load Balancer&lt;/li>
 &lt;/ul>
-&lt;p>對於 Classic Load Balancer ，除非還有 ec2 運行在 ec2-classic 網路的場景，要不然已經不建議在使用了，建議使用 Application Load Balancer 、 Network Load Balancer 取代。&lt;/p>
+&lt;p>對於 Classic Load Balancer ，除非還有 ec2 運行在 ec2-classic 網路的場景，要不然已經&lt;strong>不建議&lt;/strong>使用了，建議使用 Application Load Balancer 、 Network Load Balancer 取代。&lt;/p>
 &lt;/blockquote></description></item><item><title>GCP Filestore vs AWS EFS 收費標準</title><link>https://aryido.github.io/posts/google-cloud/gcp5/</link><pubDate>Fri, 07 Oct 2022 22:03:14 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp5/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>對於初學者，雲端資源在使用的時候，要特別注意收費的部分。 例如 GCP Filestore 和 AWS EFS 的計費方式很不一樣，養成沒事看看雲端 billing 可以幫助止血&amp;hellip;，踩完坑之後就來看看付費公式吧 !&lt;/p>
