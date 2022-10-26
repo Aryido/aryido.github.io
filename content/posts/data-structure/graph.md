@@ -24,21 +24,36 @@ reward: false
 ---
 <!--BODY-->
 
-> Graph 是廣義化的 LinkedList，是內存中不一定連續的資料，每個節點會一個或多個 Reference 指向其他節點
+> Graph 用於表示物體與物體之間存在某種關係的結構，是內存中不一定連續的資料，每個節點會一個或多個 Reference 指向其他節點
 > - 可能有環
 > - 分無向圖和有向圖
 > - 沒有固定入口
 > - 可能有多個入口
 
 <!--more-->
+
+---
+
+## 簡介
+Graph 常見的表示方法會使用**矩陣**和 **linked-list** 來表示。
+- Adjacency Matrix(相鄰矩陣): 使用二維陣列，有關聯的點之間為 1
+
+{{< image classes="fancybox fig-100" src="/images/data-structure/adjacency-matrix.jpg" >}}
+
+- Adjacency List(相鄰串列): 使用 Linked-List，鏈結的點順序不重要
+
+{{< image classes="fancybox fig-100" src="/images/data-structure/adjacency-list.jpg" >}}
+
+---
+
 ## Tree
-Graph 也是廣義化的 Tree，抽象程度 Graph >> Tree >> LinkedList。是內存中不一定連續的資料，每個節點會一個或多個 Reference 指向其他節點
+Graph 是廣義化的 LinkedList，也是廣義化的 Tree，抽象程度 Graph >> Tree >> LinkedList。是內存中不一定連續的資料，每個節點會一個或多個 Reference 指向其他節點
 - 節點分成 Parent、Child
 - 可看作是無環圖
 - 只有一個入口
 
 
-## DFS(Depth-First Search)
+## DFS (Depth-First Search)
 DFS會選一 Reference ，一口氣到遞歸到最下層再沿途回去，沿途若還有其他條路可以走，也會一口氣到遞歸到最下層，最後回到原點。回到原點之後再選另一 Reference，如此往復。基本上不會允許訪問一節點多次，故需要檢查重複。
 時間複雜度:
 {{< alert info >}}
@@ -46,7 +61,7 @@ DFS會選一 Reference ，一口氣到遞歸到最下層再沿途回去，沿途
 {{< /alert >}}
 
 
-## BFS(Breadth-First Search)
+## BFS (Breadth-First Search)
 因為是先找該節點所有的 Reference，故適合尋找最短路徑，但要注意找最短路徑只適用於 Uniform Cost(每條 edge 的 Weight 一樣)。基本上也不會允許訪問一節點多次，故也需要檢查重複。
 時間複雜度:
 {{< alert info >}}
