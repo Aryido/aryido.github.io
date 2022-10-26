@@ -1,6 +1,6 @@
-<!doctype html><html lang=en-us><head><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Graph 介紹","image":"https://aryido.github.io/images/data-structure/graph.jpg","datePublished":"2022-09-13T21:37:08+08:00","dateModified":"2022-09-13T21:37:08+08:00","author":{"@type":"Person","name":"李昀陽 YunYang Lee","image":"https://aryido.github.io/images/aboutme/head-shot.jpg"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aryido.github.io\/posts\/data-structure\/graph\/"},"publisher":{"@type":"Organization","name":"Aryido Tech Note","logo":{"@type":"ImageObject","url":"https://aryido.github.io/images/aboutme/head-shot.jpg"}},"description":" Graph 是廣義化的 LinkedList，是內存中不一定連續的資料，每個節點會一個或多個 Reference 指向其他節點\n可能有環 分無向圖和有向圖 沒有固定入口 可能有多個入口 ","keywords":[]}</script><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Hugo 0.104.3 with theme Tranquilpeak 0.5.3-BETA"><meta name=author content="李昀陽 YunYang Lee"><meta name=keywords content><meta name=description content="
+<!doctype html><html lang=en-us><head><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Graph 介紹","image":"https://aryido.github.io/images/data-structure/graph.jpg","datePublished":"2022-09-13T21:37:08+08:00","dateModified":"2022-09-13T21:37:08+08:00","author":{"@type":"Person","name":"李昀陽 YunYang Lee","image":"https://aryido.github.io/images/aboutme/head-shot.jpg"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aryido.github.io\/posts\/data-structure\/graph\/"},"publisher":{"@type":"Organization","name":"Aryido Tech Note","logo":{"@type":"ImageObject","url":"https://aryido.github.io/images/aboutme/head-shot.jpg"}},"description":" Graph 用於表示物體與物體之間存在某種關係的結構，是內存中不一定連續的資料，每個節點會一個或多個 Reference 指向其他節點\n可能有環 分無向圖和有向圖 沒有固定入口 可能有多個入口 ","keywords":[]}</script><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Hugo 0.104.3 with theme Tranquilpeak 0.5.3-BETA"><meta name=author content="李昀陽 YunYang Lee"><meta name=keywords content><meta name=description content="
 
-Graph 是廣義化的 LinkedList，是內存中不一定連續的資料，每個節點會一個或多個 Reference 指向其他節點
+Graph 用於表示物體與物體之間存在某種關係的結構，是內存中不一定連續的資料，每個節點會一個或多個 Reference 指向其他節點
 
 可能有環
 分無向圖和有向圖
@@ -9,7 +9,7 @@ Graph 是廣義化的 LinkedList，是內存中不一定連續的資料，每個
 
 "><meta property="og:description" content="
 
-Graph 是廣義化的 LinkedList，是內存中不一定連續的資料，每個節點會一個或多個 Reference 指向其他節點
+Graph 用於表示物體與物體之間存在某種關係的結構，是內存中不一定連續的資料，每個節點會一個或多個 Reference 指向其他節點
 
 可能有環
 分無向圖和有向圖
@@ -18,7 +18,7 @@ Graph 是廣義化的 LinkedList，是內存中不一定連續的資料，每個
 
 "><meta property="og:type" content="article"><meta property="og:title" content="Graph 介紹"><meta name=twitter:title content="Graph 介紹"><meta property="og:url" content="https://aryido.github.io/posts/data-structure/graph/"><meta property="twitter:url" content="https://aryido.github.io/posts/data-structure/graph/"><meta property="og:site_name" content="Aryido Tech Note"><meta property="og:description" content="
 
-Graph 是廣義化的 LinkedList，是內存中不一定連續的資料，每個節點會一個或多個 Reference 指向其他節點
+Graph 用於表示物體與物體之間存在某種關係的結構，是內存中不一定連續的資料，每個節點會一個或多個 Reference 指向其他節點
 
 可能有環
 分無向圖和有向圖
@@ -27,7 +27,7 @@ Graph 是廣義化的 LinkedList，是內存中不一定連續的資料，每個
 
 "><meta name=twitter:description content="
 
-Graph 是廣義化的 LinkedList，是內存中不一定連續的資料，每個節點會一個或多個 Reference 指向其他節點
+Graph 用於表示物體與物體之間存在某種關係的結構，是內存中不一定連續的資料，每個節點會一個或多個 Reference 指向其他節點
 
 可能有環
 分無向圖和有向圖
@@ -41,8 +41,8 @@ Graph 是廣義化的 LinkedList，是內存中不一定連續的資料，每個
 <span class=sidebar-button-desc>GitHub</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/index.xml title=RSS><i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden=true></i>
 <span class=sidebar-button-desc>RSS</span></a></li></ul><ul class=sidebar-buttons></ul><ul class=sidebar-buttons></ul></div></nav><div id=main data-behavior=4 class=hasCoverMetaIn><article class=post id=top><div class="post-header main-content-wrap text-left"><h1 class=post-title>Graph 介紹</h1><div class="postShorten-meta post-meta"><time datetime=2022-09-13T21:37:08+08:00>September 13, 2022</time>
 <span>in</span>
-<a class=category-link href=https://aryido.github.io/categories/data-structure>data-structure</a></div></div><div class="post-content markdown"><div class=main-content-wrap><blockquote><p>Graph 是廣義化的 LinkedList，是內存中不一定連續的資料，每個節點會一個或多個 Reference 指向其他節點</p><ul><li>可能有環</li><li>分無向圖和有向圖</li><li>沒有固定入口</li><li>可能有多個入口</li></ul></blockquote><h2 id=tree>Tree</h2><p>Graph 也是廣義化的 Tree，抽象程度 Graph &#187; Tree &#187; LinkedList。是內存中不一定連續的資料，每個節點會一個或多個 Reference 指向其他節點</p><ul><li>節點分成 Parent、Child</li><li>可看作是無環圖</li><li>只有一個入口</li></ul><h2 id=dfsdepth-first-search>DFS(Depth-First Search)</h2><p>DFS會選一 Reference ，一口氣到遞歸到最下層再沿途回去，沿途若還有其他條路可以走，也會一口氣到遞歸到最下層，最後回到原點。回到原點之後再選另一 Reference，如此往復。基本上不會允許訪問一節點多次，故需要檢查重複。
-時間複雜度:<div class="alert info"><p><strong>O(N * k), k = max(pre-order-time, post-order-time)</strong></p></div></p><h2 id=bfsbreadth-first-search>BFS(Breadth-First Search)</h2><p>因為是先找該節點所有的 Reference，故適合尋找最短路徑，但要注意找最短路徑只適用於 Uniform Cost(每條 edge 的 Weight 一樣)。基本上也不會允許訪問一節點多次，故也需要檢查重複。
+<a class=category-link href=https://aryido.github.io/categories/data-structure>data-structure</a></div></div><div class="post-content markdown"><div class=main-content-wrap><blockquote><p>Graph 用於表示物體與物體之間存在某種關係的結構，是內存中不一定連續的資料，每個節點會一個或多個 Reference 指向其他節點</p><ul><li>可能有環</li><li>分無向圖和有向圖</li><li>沒有固定入口</li><li>可能有多個入口</li></ul></blockquote><hr><h2 id=簡介>簡介</h2><p>Graph 常見的表示方法會使用<strong>矩陣</strong>和 <strong>linked-list</strong> 來表示。</p><ul><li>Adjacency Matrix(相鄰矩陣): 使用二維陣列，有關聯的點之間為 1</li></ul><div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/data-structure/adjacency-matrix.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/data-structure/adjacency-matrix.jpg></a></div><ul><li>Adjacency List(相鄰串列): 使用 Linked-List，鏈結的點順序不重要</li></ul><div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/data-structure/adjacency-list.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/data-structure/adjacency-list.jpg></a></div><hr><h2 id=tree>Tree</h2><p>Graph 是廣義化的 LinkedList，也是廣義化的 Tree，抽象程度 Graph &#187; Tree &#187; LinkedList。是內存中不一定連續的資料，每個節點會一個或多個 Reference 指向其他節點</p><ul><li>節點分成 Parent、Child</li><li>可看作是無環圖</li><li>只有一個入口</li></ul><h2 id=dfs-depth-first-search>DFS (Depth-First Search)</h2><p>DFS會選一 Reference ，一口氣到遞歸到最下層再沿途回去，沿途若還有其他條路可以走，也會一口氣到遞歸到最下層，最後回到原點。回到原點之後再選另一 Reference，如此往復。基本上不會允許訪問一節點多次，故需要檢查重複。
+時間複雜度:<div class="alert info"><p><strong>O(N * k), k = max(pre-order-time, post-order-time)</strong></p></div></p><h2 id=bfs-breadth-first-search>BFS (Breadth-First Search)</h2><p>因為是先找該節點所有的 Reference，故適合尋找最短路徑，但要注意找最短路徑只適用於 Uniform Cost(每條 edge 的 Weight 一樣)。基本上也不會允許訪問一節點多次，故也需要檢查重複。
 時間複雜度:<div class="alert info"><p><strong>O(V + E)</strong></p></div></p><h2 id=bfsbest-first-search>BFS(Best-First Search)</h2><p>雖然也稱 BFS，但實際名稱不一樣，是Best-First Search。 BFS 是針對 Non-uniform cost graph 的一種算法，核心思想是優先展開最&rsquo;優&rsquo;的點。如何每次快速計算最優路徑呢 ? 可以使用 Heap 這資料結構來幫忙。
 最有名找最短路徑的算法是 Dijsktra&rsquo;s Algorithm。時間複雜度:<div class="alert info"><p><strong>O((V + E) * logV)</strong></p></div></p><hr></div></div><div id=post-footer class="post-footer main-content-wrap"><div class=post-footer-tags><span class="text-color-light text-small">TAGGED IN</span><br><a class="tag tag--primary tag--small" href=https://aryido.github.io/tags/graph/>graph</a>
 <a class="tag tag--primary tag--small" href=https://aryido.github.io/tags/dfs/>DFS</a>
