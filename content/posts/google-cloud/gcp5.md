@@ -19,7 +19,7 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> 雲端資源在使用的時候，可以特別注意收費的部分。 例如 GCP Filestore 和 AWS EFS 都是關於 file share 的功能，但計費方式卻很不一樣。養成沒事看看雲端 billing 可以幫助止血...，踩完坑之後就來看看付費公式吧 !
+> 雲端資源在使用的時候，可以特別注意收費的部分。 例如 GCP Filestore 和 AWS EFS 都是有關於 file share 的功能，但計費方式卻很不一樣。養成沒事看看雲端 billing 可以幫助止血...，踩完坑之後就來看看付費公式吧 !
 
 <!--more-->
 
