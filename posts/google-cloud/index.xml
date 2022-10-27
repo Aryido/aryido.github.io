@@ -23,7 +23,7 @@
 &lt;p>這兩個到底有甚麼不同呢 ? 來記錄一下吧~&lt;/p>
 &lt;/blockquote></description></item><item><title>GCP Filestore vs AWS EFS 收費標準</title><link>https://aryido.github.io/posts/google-cloud/gcp5/</link><pubDate>Fri, 07 Oct 2022 22:03:14 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp5/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>雲端資源在使用的時候，可以特別注意收費的部分。 例如 GCP Filestore 和 AWS EFS 都是關於 file share 的功能，但計費方式卻很不一樣。養成沒事看看雲端 billing 可以幫助止血&amp;hellip;，踩完坑之後就來看看付費公式吧 !&lt;/p>
+&lt;p>雲端資源在使用的時候，可以特別注意收費的部分。 例如 GCP Filestore 和 AWS EFS 都是有關於 file share 的功能，但計費方式卻很不一樣。養成沒事看看雲端 billing 可以幫助止血&amp;hellip;，踩完坑之後就來看看付費公式吧 !&lt;/p>
 &lt;/blockquote></description></item><item><title>AWS 與 GCP reliability 不同的地方比較 - 2</title><link>https://aryido.github.io/posts/google-cloud/gcp4/</link><pubDate>Tue, 04 Oct 2022 22:23:28 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp4/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>前段時間社群上有人 po 出 GCP 和 AWS 的比較，然後測出 GCP 慘烈的 VM 生成時間和一堆 409 錯誤，聽說有驚動 Google 高層(&lt;del>怕.jpg&lt;/del>)。那現在我們來針對該作者開源的測試程式來看看吧!&lt;/p>

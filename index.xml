@@ -49,7 +49,7 @@ Binary-Search 會發現處理邊界時很容易出錯。 基本上都是沒注�
 &lt;p>這題第一眼其實看不太出來是 graph 題，但仔細分析會發現是一個單詞，然後能 reach 到的是換一個字母的單詞，就是鄰居；然後要找最短路徑。 難就是難在一開始要把問題轉化成一個 graph!&lt;/p>
 &lt;/blockquote></description></item><item><title>GCP Filestore vs AWS EFS 收費標準</title><link>https://aryido.github.io/posts/google-cloud/gcp5/</link><pubDate>Fri, 07 Oct 2022 22:03:14 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp5/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>雲端資源在使用的時候，可以特別注意收費的部分。 例如 GCP Filestore 和 AWS EFS 都是關於 file share 的功能，但計費方式卻很不一樣。養成沒事看看雲端 billing 可以幫助止血&amp;hellip;，踩完坑之後就來看看付費公式吧 !&lt;/p>
+&lt;p>雲端資源在使用的時候，可以特別注意收費的部分。 例如 GCP Filestore 和 AWS EFS 都是有關於 file share 的功能，但計費方式卻很不一樣。養成沒事看看雲端 billing 可以幫助止血&amp;hellip;，踩完坑之後就來看看付費公式吧 !&lt;/p>
 &lt;/blockquote></description></item><item><title>Terragrunt - 整理</title><link>https://aryido.github.io/posts/terraform/terragrunt-5/</link><pubDate>Thu, 06 Oct 2022 22:31:20 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/terragrunt-5/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>基本上 terragrunt 的使用和 terraform 都一樣，所以才說 terragrunt 是一層 wrapper。&lt;/p>
