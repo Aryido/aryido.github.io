@@ -16,5 +16,5 @@
 &lt;p>Terraform Backend 可將 Terraform State 存儲在雲端位置，例如 S3 bucket, azure blob storage, gcp cloud storage，並提供 lock 以防止 race conditions 。 Terragrunt 還進一步讓流程更簡便&amp;hellip;&lt;/p>
 &lt;/blockquote></description></item><item><title>Terragrunt - Introduce</title><link>https://aryido.github.io/posts/terraform/terragrunt-1/</link><pubDate>Tue, 27 Sep 2022 20:45:15 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/terragrunt-1/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>Terragrunt 是 gruntwork 推出的一個 Terraform thin wrapper，在執行 Terraform 前可以先&lt;strong>調整&lt;/strong> root module 內的 .tf 檔案，保持程式碼的精簡，並提供許多額外的工具和框架幫助開發&amp;hellip;&lt;/p>
+&lt;p>Terragrunt 是 gruntwork 推出的一個 Terraform thin wrapper，在執行 Terraform 前可以先&lt;strong>調整&lt;/strong> root module 內的 .tf 檔案，保持程式碼的精簡，並提供許多額外的工具和框架幫助開發，藉此可以讓你的 IaC code 更貼近 DRY 原則。&lt;/p>
 &lt;/blockquote></description></item></channel></rss>
