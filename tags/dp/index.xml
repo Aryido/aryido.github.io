@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dp on Aryido Tech Note</title><link>https://aryido.github.io/tags/dp/</link><description>Recent content in dp on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 02 Nov 2022 21:52:00 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/dp/index.xml" rel="self" type="application/rss+xml"/><item><title>Dynamic Programming 基礎介紹</title><link>https://aryido.github.io/posts/algorithm/dynamic-programming1/</link><pubDate>Wed, 02 Nov 2022 21:52:00 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/dynamic-programming1/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>Dynamic Programming 大概算是 leetcode 裡面平均難度最高的章節了，還蠻需要練習的。但在講 DP 之前，我們可以先講 Search，因為 Dynamic Programming 其實就是 Search + Memoization。(未完成)&lt;/p>
+&lt;p>Dynamic Programming 大概算是 leetcode 裡面平均難度最高的章節了，還蠻需要練習的。但在講 DP 之前，我們可以先講 Search，因為 Dynamic Programming 其實就是 Search + Memoization。&lt;/p>
 &lt;/blockquote></description></item></channel></rss>
