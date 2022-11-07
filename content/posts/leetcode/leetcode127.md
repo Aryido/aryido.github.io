@@ -1,5 +1,5 @@
 ---
-title: Leetcode127
+title: 127. Word Ladder
 
 author: Aryido
 
