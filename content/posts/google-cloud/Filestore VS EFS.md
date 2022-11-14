@@ -44,14 +44,22 @@ EFS 提供四種類別：
     - Amazon EFS One Zone
     - Amazon EFS One Zone-Infrequent Access(EFS One Zone-IA).
 
-明顯可知存在單一區域一定比較便宜，多 zone 的話資料保存更加安全，但費用就會需要高一些。
+明顯可知存在單一區域一定比較便宜，但多 zone 的話，資料保存更加安全，但費用就會需要高一些。
 
-| 區域	| 有效儲存架構 (每月每GB USD) – 單區域* | 有效儲存架構 (每月每GB USD) – 標準*
+| 區域	| 有效儲存架構 (每月每GB USD) – one-Zone  | 有效儲存架構 (每月每GB USD) – 標準
 |-------------|:------------:|:------------:|
 | 美國東部 (維吉尼亞北部)	| 0.043 USD  |	0.08 USD
 
 ---
-AWS有研究，平均而言，經常使用 20％ 的檔案，80％ 的檔案則不常存取。故以下根據US East (N. Virginia) 的 One Zone pricing)。
+# 費用計算
+1. 有效儲存架構 (每月每GB USD) – one-Zone *0.043 USD*
+2. 有效儲存架構 (每月每GB USD) – 標準 0.08 USD
+
+是怎麼算出來的呢 ? 現在來算一次給你看 ! 首先參考以下表格:
+
+{{< image classes="fancybox fig-100" src="/images/aws/efs-price.jpg" >}}
+
+加上 AWS 有研究，平均而言，經常使用 20％ 的檔案，80％ 的檔案則不常存取。故以下根據US East (N. Virginia) 的 One Zone pricing)。
 
 {{< alert info >}}
 AWS 計算費用：
@@ -64,17 +72,25 @@ AWS 計算費用：
 
 Effective storage cost = (Storage cost for frequently accessed data + Storage cost for infrequently accessed data)/Total storage
 
-**[(1024 * 20%) * ($0.16)] + [(1024 * 80%)] * ($0.0133) = $43.663**
+```
+[(1024 * 20%) * ($0.16)] + [(1024 * 80%)] * ($0.0133) = $43.663
 
+$43.663 / 1024 = 0.04263964843 ~= $0.043/GB
+```
+這就是**one-Zone**價錢的算法。
+
+若是**標準儲存**，則同樣使用80/20 法則:
+```
+[(1024 * 20%) * ($0.3)] + [(1024 * 80%)] * ($0.025) = $81.92
+
+$81.92 / 1024 = $0.08/GB
+```
 {{< alert warning >}}
+要注意若沒有 80/20 法則，都沒用不常存取的概念的話:
 
-若是標準儲存，則:
+標準儲存 : **1024 * $0.3 = $307.2**
 
-**[(1024 * 20%) * ($0.3)] + [(1024 * 80%)] * ($0.025) = $81.92**
-
-要注意若沒有 80/20 法則，且是標準儲存，則:
-
-**1024 * $0.3 = $307.2**
+one-Zone儲存 : **1024 * $0.16 = $163.84**
 
 {{< /alert >}}
 
@@ -83,7 +99,7 @@ Effective storage cost = (Storage cost for frequently accessed data + Storage co
 #  GCP Filestore
 Filestore 是一檔案儲存服務。為需要高吞吐量、低延遲和高 IOPS 的應用程式提供非常高的效能。 GCP 沒有 20% 常用 80% 不常用的概念，是 100% 常用再算費用的。
 
-**GCP 會在建立時就開始產生 Filestore 費用**，這個和 AWS EFS 放在那邊，有用才算費用的計費方式很不一樣。 Filestore 依據容量 (以 GiB 為單位)收取費用，此費用是以秒為單位累計，刪除時就會停止 Filestore 的費用 (無條件進位至最接近的秒數)。
+**GCP 會在建立時就開始產生 Filestore 費用**，這個和 AWS EFS 放在那邊，有用才算費用的計費方式很不一樣。 Filestore 依據容量 (以 GiB 為單位)收取費用，此費用是以秒為單位累計，刪除時就會停止。 Filestore 的費用 (無條件進位至最接近的秒數)。
 
 {{< alert info >}}
 GCP 計算費用：
@@ -102,7 +118,7 @@ GCP 計算費用：
 
 {{< /alert >}}
 
-另外如果流量輸入輸出 Filestore 與 VM 位於**相同**可用區，則不會產生費用。若可用區不同，從 Filestore 輸出的流量就會產生費用。
+另外如果流量輸入輸出 Filestore 與 VM 位於**相同** region ，則不會產生費用。若 region 不同，從 Filestore 輸出的流量就會產生費用。
 
 us-west1-b 的 1 TiB 基本硬碟級費用:
 
@@ -113,28 +129,25 @@ us-west1-b 的 1 TiB 基本硬碟級費用:
 ---
 # 結論
 
-簡單看起來若都是 1TB，且均為經常存取，多區域的話:
-- AWS : **$307.2**
+簡單看起來若都是 1TB 的話:
+- AWS 標準儲存 : **$307.2**
+- AWS one-Zone儲存 : **$163.84**
 - GCP : **$208.32**
 
-但細部分析:
 {{< alert danger >}}
-
 **AWS 是使用多少算多少。**
 
 **GCP 是規劃一塊空間給你，然後每秒算錢。**
 
-所以在測試上，AWS會比較安全和方便，GCP容易忘記關資源而導致多付費。
+所以在測試上，AWS會比較安全和方便，GCP容易忘記關資源而導致多付費。用多少算多少比較符合我們對雲端資源的想像，這邊感覺 GCP 做得不好。
 {{< /alert >}}
 
 {{< alert warning >}}
-
 GCP 有點強迫，最小硬碟都要選 **1T**
-
 {{< /alert >}}
 
 {{< alert warning >}}
-AWS 有 80/20 法則，規劃起來比 GCP 靈活很多。 但如果業務上都是經常取用，且要使用一定的量的話，GCP會便宜一些。
+AWS 有 80/20 法則，規劃起來比 GCP 靈活很多。 但如果業務上都是經常取用且會跨region的話，GCP會便宜一些。
 {{< /alert >}}
 
 ---
