@@ -1,4 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>network on Aryido Tech Note</title><link>https://aryido.github.io/categories/network/</link><description>Recent content in network on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 07 Nov 2022 22:55:14 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/network/index.xml" rel="self" type="application/rss+xml"/><item><title>IP and Subnet Mask 介紹</title><link>https://aryido.github.io/posts/others/ip-and-subnetmask/</link><pubDate>Mon, 07 Nov 2022 22:55:14 +0800</pubDate><guid>https://aryido.github.io/posts/others/ip-and-subnetmask/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>network on Aryido Tech Note</title><link>https://aryido.github.io/categories/network/</link><description>Recent content in network on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 13 Nov 2022 17:37:27 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/network/index.xml" rel="self" type="application/rss+xml"/><item><title>CIDR 介紹</title><link>https://aryido.github.io/posts/others/cidr/</link><pubDate>Sun, 13 Nov 2022 17:37:27 +0800</pubDate><guid>https://aryido.github.io/posts/others/cidr/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>無類別域間路由（ Classless Inter-Domain Routing ，簡稱 CIDR ）是為了避免造成 IP 位址的大量浪費，於是出現的一種技術。CIDR重點有：&lt;/p>
+&lt;ol>
+&lt;li>多變長度子網路遮罩 (Variable-Length Subnet Mask，VLSM)&lt;/li>
+&lt;li>路由匯總 （Route Summarization）(暫不介紹)&lt;/li>
+&lt;/ol>
+&lt;/blockquote></description></item><item><title>IP and Subnet Mask 介紹</title><link>https://aryido.github.io/posts/others/ip-and-subnetmask/</link><pubDate>Mon, 07 Nov 2022 22:55:14 +0800</pubDate><guid>https://aryido.github.io/posts/others/ip-and-subnetmask/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>IP (Internet Protocol) 是電腦的地址。IP 位址在系統中是一個 32 位元的數字，但為了方便人類讀寫，每一個位元組會被轉換成一個十進位的數字。&lt;/p>
 &lt;p>IP 位址可以分為 Network ID 和 Host ID，為了讓電腦可以判斷出 IP 位址的 Network ID 及 Host ID，必須靠子網路遮罩 (Subnet Mask) 的幫忙。&lt;/p>
