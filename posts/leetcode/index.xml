@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/leetcode/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 13 Nov 2022 15:22:47 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/leetcode/index.xml" rel="self" type="application/rss+xml"/><item><title>63. Unique Paths II</title><link>https://aryido.github.io/posts/leetcode/leetcode63/</link><pubDate>Sun, 13 Nov 2022 15:22:47 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode63/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/leetcode/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 22 Nov 2022 22:46:42 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/leetcode/index.xml" rel="self" type="application/rss+xml"/><item><title>1143. Longest Common Subsequence</title><link>https://aryido.github.io/posts/leetcode/leetcode1143/</link><pubDate>Tue, 22 Nov 2022 22:46:42 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode1143/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>這題是求最長相同的&lt;strong>子序列&lt;/strong>，可用 Dynamic Programing 來做，最難的還是想出狀態函數。這裡使用 2D-dp ，其中 dp[i][j] 表示 :&lt;/p>
+&lt;ul>
+&lt;li>text1 的前 i 個字符&lt;/li>
+&lt;li>text2 的前 j 個字符&lt;/li>
+&lt;/ul>
+&lt;p>的最長相同的子序列的字符個數&lt;/p>
+&lt;/blockquote></description></item><item><title>63. Unique Paths II</title><link>https://aryido.github.io/posts/leetcode/leetcode63/</link><pubDate>Sun, 13 Nov 2022 15:22:47 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode63/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>這題是 62. Unique Paths 的延伸，在路徑中加了一些 obstacle ，用 Dynamic Programming 二維的 dp 數組來解題&lt;/p>
 &lt;/blockquote></description></item><item><title>139. Word Break</title><link>https://aryido.github.io/posts/leetcode/leetcode139/</link><pubDate>Sat, 12 Nov 2022 22:10:19 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode139/</guid><description>&lt;!-- raw HTML omitted -->

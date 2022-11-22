@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dp on Aryido Tech Note</title><link>https://aryido.github.io/tags/dp/</link><description>Recent content in dp on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 12 Nov 2022 22:10:19 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/dp/index.xml" rel="self" type="application/rss+xml"/><item><title>139. Word Break</title><link>https://aryido.github.io/posts/leetcode/leetcode139/</link><pubDate>Sat, 12 Nov 2022 22:10:19 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode139/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dp on Aryido Tech Note</title><link>https://aryido.github.io/tags/dp/</link><description>Recent content in dp on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 22 Nov 2022 22:46:42 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/dp/index.xml" rel="self" type="application/rss+xml"/><item><title>1143. Longest Common Subsequence</title><link>https://aryido.github.io/posts/leetcode/leetcode1143/</link><pubDate>Tue, 22 Nov 2022 22:46:42 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode1143/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>這題是求最長相同的&lt;strong>子序列&lt;/strong>，可用 Dynamic Programing 來做，最難的還是想出狀態函數。這裡使用 2D-dp ，其中 dp[i][j] 表示 :&lt;/p>
+&lt;ul>
+&lt;li>text1 的前 i 個字符&lt;/li>
+&lt;li>text2 的前 j 個字符&lt;/li>
+&lt;/ul>
+&lt;p>的最長相同的子序列的字符個數&lt;/p>
+&lt;/blockquote></description></item><item><title>139. Word Break</title><link>https://aryido.github.io/posts/leetcode/leetcode139/</link><pubDate>Sat, 12 Nov 2022 22:10:19 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode139/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>一道很經典的題目，是給定一 string ，能不能分被拆分成 wordDict 裡面的單詞。注意這題，wordDict 裡面的單詞可以重複使用，即單詞使用沒有次數限制，所以 string 可以分成任意段，這就增加了題目的難度。解法蠻多種的，可先從 brute force 下手，再加上暫存優化後，就是蠻標準的 dp 解了，來解一下吧。&lt;/p>
 &lt;/blockquote></description></item><item><title>78. Subsets</title><link>https://aryido.github.io/posts/leetcode/leetcode78/</link><pubDate>Sun, 06 Nov 2022 22:54:12 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode78/</guid><description>&lt;!-- raw HTML omitted -->
