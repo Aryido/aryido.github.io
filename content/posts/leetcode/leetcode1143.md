@@ -43,7 +43,7 @@ State(i,j) :
 Longest Common Subsequence of [0,i] for text1 and [0,j] text2
 {{< /alert >}}
 
-從兩字串最後面開始，若二者最後面對應位置的字符相同，表示當前的 LCS 長度 + 1，所以可以用 dp[i-1][j-1] + 1。否則錯位比較，可以分別從 text1 或者 text2 去掉一個當前字符，那麼 LCS 長度就是 dp[i-1][j] 和 dp[i][j-1]，取二者中的較大值來更新。
+從兩字串最後面開始，若二者最後面對應位置的字符相同，表示當前的 LCS 長度 + 1，所以可以用 dp[i-1][j-1] + 1 表示。否則錯位比較，可以分別從 text1 或者 text2 去掉一個當前字符，那麼 LCS 長度就是 dp[i-1][j] 和 dp[i][j-1]，取二者中的較大值來更新。
 
 # 解答
 ```java
@@ -75,19 +75,19 @@ class Solution {
 }
 ```
 {{< alert warning >}}
-DP 題的 memo 常用技巧，就是 Integer[][]，這樣可以用位置是否為 null 來判斷是否有算過。int[][]會再全部位置上初始0
+DP 題的 memo 常用技巧，就是 Integer[][]，這樣可以用位置是否為 null 來判斷是否有算過。如果用 int[][] ，會再全部位置上初始化值，其值為 0
 {{< /alert >}}
 
 
 {{< alert warning >}}
-為什麼 *i < 0* 或 *j < 0* 要 return 0 了?
+為什麼 *i < 0* 或 *j < 0* 要 return 0 了 ?
 
 可以想成是如果和一個空 string 比較，LCS長度自然是 0 ，會比較好理解
 {{< /alert >}}
 
 
 {{< alert danger >}}
-return 室友返回值的，用上```memo[i][j] = res``` 簡化 Code
+return 是有返回值的，用上```memo[i][j] = res``` 簡化 Code
 {{< /alert >}}
 
 
