@@ -15,7 +15,7 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> 最近很常寫 Terraform ，知道一些 terraform cli 指令可以幫助自己寫的更好，在學習 Terraform 的過程中，把覺得值得記錄的一些注意事項 & 小技巧留在這裡。
+> 最近很常寫 Terraform ，知道一些 terraform cli 指令可以幫助自己寫的更好，也在學習 Terraform 的過程中，把覺得值得記錄的一些注意事項 & 小技巧留在這裡。
 
 <!--more-->
 
@@ -63,13 +63,13 @@ echo $(terraform output public_ip) # ex: 18.118.18.111 ， 沒有刮號
 ---
 
 # [Terraform log](https://support.hashicorp.com/hc/en-us/articles/360001113727-Enabling-trace-level-logs-in-Terraform-CLI-Cloud-or-Enterprise)
-若要 Terraform 顯示log，要設置環境變數為:
+若要 Terraform 顯示 log ，要設置環境變數為:
 ```shell
 export TF_LOG="TRACE"
 terraform apply -no-color 2>&1 | tee apply.txt
 ```
 
-也可以環境變數預設 log 文件位置
+也可以使用環境變數預設 log 文件位置
 ```shell
 export TF_LOG_PATH="./terraform.log"
 ```
