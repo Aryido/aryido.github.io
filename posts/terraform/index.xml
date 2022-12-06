@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/terraform/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 04 Dec 2022 19:31:26 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/terraform/index.xml" rel="self" type="application/rss+xml"/><item><title>Terraform Move</title><link>https://aryido.github.io/posts/terraform/terraform-move/</link><pubDate>Sun, 04 Dec 2022 19:31:26 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/terraform-move/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>隨著系統的擴充， Terraform 配置也會變得越來越複雜，這時可能會需要 Refactor，例如 :&lt;/p>
+&lt;p>隨著系統的擴充， Terraform 配置也會變得越來越複雜，這時可能會需要做一些 Refactor，例如 :&lt;/p>
 &lt;ul>
 &lt;li>將某些 terraform resource 移動到其他 module&lt;/li>
 &lt;li>change resource ID&lt;/li>
 &lt;/ul>
-&lt;p>這時候用 terraform plan 看一下，會發現 terraform 打算把原本的 resource 移除，然後重新建立一個新的 resource。但 resource 中間被刪掉，之後再造回來是會影響服務的。我們必須讓 Terraform 知道我只是重新命名，這就是 Terraform move 想做的事情。&lt;/p>
+&lt;p>這時候用 terraform plan 檢查一下，會發現 terraform 打算把原本的 resource 移除，然後重新建立一個新的 resource。但 resource 中間被刪掉，之後再造回來是會影響服務的。我們必須讓 Terraform 知道我只是重新命名，這就是 Terraform move 想做的事情。&lt;/p>
 &lt;/blockquote></description></item><item><title>Terraform 實用技巧</title><link>https://aryido.github.io/posts/terraform/terraform-skill/</link><pubDate>Thu, 24 Nov 2022 23:07:42 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/terraform-skill/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>最近很常寫 Terraform ，知道一些 terraform cli 指令可以幫助自己寫的更好，也在學習 Terraform 的過程中，把覺得值得記錄的一些注意事項 &amp;amp; 小技巧留在這裡。&lt;/p>

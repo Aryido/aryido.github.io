@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 04 Dec 2022 19:31:26 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Terraform Move</title><link>https://aryido.github.io/posts/terraform/terraform-move/</link><pubDate>Sun, 04 Dec 2022 19:31:26 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/terraform-move/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>隨著系統的擴充， Terraform 配置也會變得越來越複雜，這時可能會需要 Refactor，例如 :&lt;/p>
+&lt;p>隨著系統的擴充， Terraform 配置也會變得越來越複雜，這時可能會需要做一些 Refactor，例如 :&lt;/p>
 &lt;ul>
 &lt;li>將某些 terraform resource 移動到其他 module&lt;/li>
 &lt;li>change resource ID&lt;/li>
 &lt;/ul>
-&lt;p>這時候用 terraform plan 看一下，會發現 terraform 打算把原本的 resource 移除，然後重新建立一個新的 resource。但 resource 中間被刪掉，之後再造回來是會影響服務的。我們必須讓 Terraform 知道我只是重新命名，這就是 Terraform move 想做的事情。&lt;/p>
+&lt;p>這時候用 terraform plan 檢查一下，會發現 terraform 打算把原本的 resource 移除，然後重新建立一個新的 resource。但 resource 中間被刪掉，之後再造回來是會影響服務的。我們必須讓 Terraform 知道我只是重新命名，這就是 Terraform move 想做的事情。&lt;/p>
 &lt;/blockquote></description></item><item><title>47. Permutations II</title><link>https://aryido.github.io/posts/leetcode/leetcode47/</link><pubDate>Sun, 04 Dec 2022 18:41:26 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode47/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>是經典的 46. Permutations 的進階，現在有 duplicate 數字，一樣使用 backtrack 來求解。從數學上來說，&lt;em>n&lt;/em> 個 element ，且將相同的事物歸為一組, 可歸成&lt;em>k&lt;/em>組, 且每組有&lt;em>m_i&lt;/em>個，其 Permutation 一共有 &lt;em>n!/(m_1!m_2!&amp;hellip;m_k!)&lt;/em> 種排序，高中數學題需要思考下的基礎題，要用程式模擬這個過程也有點難度，被歸類在 Medium 等級。&lt;/p>
