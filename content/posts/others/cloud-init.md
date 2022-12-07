@@ -79,4 +79,4 @@ cloud-init 對系統的配置分為四個階段， 稱 stage。分別是
 
 ---
 # Reference
-[cloud init 介紹](https://hackmd.io/@txLtb1_dT1eziDq4utYbqA/ryUSQD_wu#%E4%B8%80%E5%88%87%E8%B3%87%E6%96%99%E7%9A%84%E8%B5%B7%E9%BB%9E--metadata-)
+- [cloud init 介紹](https://hackmd.io/@txLtb1_dT1eziDq4utYbqA/ryUSQD_wu#%E4%B8%80%E5%88%87%E8%B3%87%E6%96%99%E7%9A%84%E8%B5%B7%E9%BB%9E--metadata-)
