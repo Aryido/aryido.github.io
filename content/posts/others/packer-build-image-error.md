@@ -100,10 +100,10 @@ cloud-init status –wait
 
 ---
 # Reference
-[How to Fix the “No Installation Candidate” Problem in Ubuntu](https://www.maketecheasier.com/fix-no-installation-candidate-problem-ubuntu/)
+- [How to Fix the “No Installation Candidate” Problem in Ubuntu](https://www.maketecheasier.com/fix-no-installation-candidate-problem-ubuntu/)
 
-[Random failings of apt installing packages during packer build](https://github.com/dsaidgovsg/terraform-modules/issues/169)
+- [Random failings of apt installing packages during packer build](https://github.com/dsaidgovsg/terraform-modules/issues/169)
 
-[Option for builder to wait on cloud-init to complete](https://github.com/hashicorp/packer/issues/2639)
+- [Option for builder to wait on cloud-init to complete](https://github.com/hashicorp/packer/issues/2639)
 
-[Packer build EC2 AMI 時等待 cloud-init 先完成](https://shazi.info/packer-build-ec2-ami-%E6%99%82%E7%AD%89%E5%BE%85-cloud-init-%E5%85%88%E5%AE%8C%E6%88%90/)
+- [Packer build EC2 AMI 時等待 cloud-init 先完成](https://shazi.info/packer-build-ec2-ami-%E6%99%82%E7%AD%89%E5%BE%85-cloud-init-%E5%85%88%E5%AE%8C%E6%88%90/)
