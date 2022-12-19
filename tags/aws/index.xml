@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>aws on Aryido Tech Note</title><link>https://aryido.github.io/tags/aws/</link><description>Recent content in aws on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 17 Dec 2022 16:30:30 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/aws/index.xml" rel="self" type="application/rss+xml"/><item><title>Overview Fargate</title><link>https://aryido.github.io/posts/aws/fargate/</link><pubDate>Sat, 17 Dec 2022 16:30:30 +0800</pubDate><guid>https://aryido.github.io/posts/aws/fargate/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>aws on Aryido Tech Note</title><link>https://aryido.github.io/tags/aws/</link><description>Recent content in aws on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 17 Dec 2022 16:30:30 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/aws/index.xml" rel="self" type="application/rss+xml"/><item><title>AWS ECS</title><link>https://aryido.github.io/posts/aws/ecs-fargate/</link><pubDate>Sat, 17 Dec 2022 16:30:30 +0800</pubDate><guid>https://aryido.github.io/posts/aws/ecs-fargate/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Amazon Elastic Container Service（ECS）標誌著 AWS 進入 CaaS 市場。在 Kubernetes 還沒有出現時，各家雲端大廠對於&lt;strong>容器化的管理工具&lt;/strong>都有自己實作。對應在 AWS 上的容器編排平台，是在 2014 年宣佈的 ECS 服務。後續進一步改進，發布 ECS with Fargate，可讓我們運行 container，而&lt;strong>無需管理伺服器或集群&lt;/strong>。 故 Amazon ECS 具有兩個常用模式：&lt;/p>
+&lt;ul>
+&lt;li>EC2 啟動類型&lt;/li>
+&lt;li>Fargate 啟動類型&lt;/li>
+&lt;/ul>
+&lt;p>以下分別進行介紹。&lt;/p>
+&lt;/blockquote></description></item><item><title>Overview Fargate</title><link>https://aryido.github.io/posts/aws/fargate/</link><pubDate>Sat, 17 Dec 2022 16:30:30 +0800</pubDate><guid>https://aryido.github.io/posts/aws/fargate/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>2017年，AWS 推出了 Fargate，這是一個用於部署和管理容器的&lt;strong>模式&lt;/strong>，代表用戶無需管理 EC2 基礎設施。 Fargate 的核心理念就是 &lt;strong>Serverless&lt;/strong> ，讓 ECS 用戶專注於任務和服務定義，而不是管理集群基礎設施，Fargate 可配合用於 &lt;em>ECS&lt;/em> 和 &lt;em>EKS&lt;/em>。&lt;/p>
 &lt;/blockquote></description></item><item><title>AWS Overview: ECS | EKS</title><link>https://aryido.github.io/posts/aws/aws-ecs-eks/</link><pubDate>Tue, 13 Dec 2022 21:28:20 +0800</pubDate><guid>https://aryido.github.io/posts/aws/aws-ecs-eks/</guid><description>&lt;!-- raw HTML omitted -->
