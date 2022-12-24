@@ -70,7 +70,7 @@ echo ECS_CLUSTER=your_cluster_name >> /etc/ecs/ecs.config
 ---
 
 # ECS with Fargate
-因為集群配置的繁瑣，故在 2017 年，AWS 推出了 Fargate，它更封裝了 infra 底層的設定， Fargate 也成為在 AWS ECS 上啟動容器化工作負載推薦選項。
+承上我們知道集群配置的繁瑣，故在 2017 年，AWS 推出了 Fargate，它更封裝了 infra 底層的設定， Fargate 也成為在 AWS ECS 上啟動容器化工作負載推薦選項。
 
 {{< image classes="fancybox fig-100" src="/images/aws/ecs-fargate.jpg" >}}
 
