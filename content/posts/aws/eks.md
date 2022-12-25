@@ -23,7 +23,7 @@ reward: false
 
 ---
 
- 傳統 Kubernetes Cluster 主要有兩部分:
+Kubernetes Cluster 主要有兩部分:
  - 安排容器調度的 Control Plane
  - 容器運行的機器稱 Worker Node。
 
