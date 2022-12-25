@@ -1,4 +1,13 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>kubernetes on Aryido Tech Note</title><link>https://aryido.github.io/categories/kubernetes/</link><description>Recent content in kubernetes on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 19 Dec 2022 23:38:06 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/kubernetes/index.xml" rel="self" type="application/rss+xml"/><item><title>Kubernetes 基礎介紹</title><link>https://aryido.github.io/posts/kubernetes/overview/</link><pubDate>Mon, 19 Dec 2022 23:38:06 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/overview/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>kubernetes on Aryido Tech Note</title><link>https://aryido.github.io/categories/kubernetes/</link><description>Recent content in kubernetes on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 24 Dec 2022 12:30:06 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/kubernetes/index.xml" rel="self" type="application/rss+xml"/><item><title>Kubernetes 基礎介紹 - 2</title><link>https://aryido.github.io/posts/kubernetes/overview-2/</link><pubDate>Sat, 24 Dec 2022 12:30:06 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/overview-2/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>在上一篇文章中，簡單介紹了 Kubernetes 的架構，接下來簡介 Kubernetes 在部屬 app 時的單位 Pod 。 Pod 對多容器的支持是 K8 最基礎的設計理念，但 Pod 應該怎麼被管理呢 ? 怎麼和外網連線呢 ? 這些部分由如下元件提供功能解決 :&lt;/p>
+&lt;ul>
+&lt;li>Deployment&lt;/li>
+&lt;li>Service&lt;/li>
+&lt;li>Ingress&lt;/li>
+&lt;/ul>
+&lt;p>像在實現進階的操作如:負載均衡、滾動更新、安全與監控等概念，都會跟這些元件有關係。&lt;/p>
+&lt;/blockquote></description></item><item><title>Kubernetes 基礎介紹</title><link>https://aryido.github.io/posts/kubernetes/overview/</link><pubDate>Mon, 19 Dec 2022 23:38:06 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/overview/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>從第一次聽到 Kubernetes 以來，已經有一年多了，永遠都記得 k8s 名稱的由來只是保留「開頭 K」及「結尾 S」，然後中間的英文字母數量剛好是 8 個英文字就這樣命名了&amp;hellip;。全球三大雲服務商，AWS、Azure 和 GCP 都有提供託管 Kubernetes 集群服務( EKS、AKS、GKE )，可見其有名火熱程度。現在終於有機會在工作上碰到這項技術，就來寫些簡單筆記吧 !&lt;/p>
 &lt;/blockquote></description></item></channel></rss>
