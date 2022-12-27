@@ -3,7 +3,7 @@ languageCode = "en-us"
 defaultContentLanguage = "en-us"
 title = 'Aryido Tech Note'
 theme = "hugo-tranquilpeak-theme"
-paginate = 5
+paginate = 6
 canonifyurls = true
 
 [taxonomies]

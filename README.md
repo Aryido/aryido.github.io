@@ -1,4 +1,4 @@
-## 網站位置
+## Domain Name
 https://aryido.github.io/
 
 ## local mod
