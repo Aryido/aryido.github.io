@@ -1,5 +1,5 @@
 ---
-title: {{ replace .TranslationBaseName "-" " " | title }}
+title: "{{ replace .TranslationBaseName "-" " " | title }}"
 
 author: Aryido
 
@@ -18,7 +18,7 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-
+>
 <!--more-->
 
 ---
@@ -29,6 +29,12 @@ reward: false
 ```java
 
 ```
+
+{{< alert info >}}
+example
+{{< /alert >}}
+
+{{< image classes="fancybox fig-100" src="/images/leetcode/logo.jpg" >}}
 
 # Vocabulary
 

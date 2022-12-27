@@ -26,3 +26,10 @@ reward: false
 
 
 ---
+
+
+{{< alert info >}}
+example
+{{< /alert >}}
+
+{{< image classes="fancybox fig-100" src="/images/leetcode/logo.jpg" >}}
