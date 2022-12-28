@@ -8,9 +8,6 @@ date: 2022-10-22T16:13:45+08:00
 thumbnailImage: "/images/google-cloud/logo.jpg"
 
 categories:
-- cloud
-
-tags:
 - gcp
 
 comment: false
