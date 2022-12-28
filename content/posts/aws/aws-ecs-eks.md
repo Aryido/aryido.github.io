@@ -8,10 +8,10 @@ date: 2022-12-13T21:28:20+08:00
 thumbnailImage: "/images/aws/logo.jpg"
 
 categories:
-- cloud
+- aws
 
 tags:
-- aws
+- kubernetes
 
 comment: false
 
