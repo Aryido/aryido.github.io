@@ -8,10 +8,7 @@ date: 2022-10-23T15:10:00+08:00
 thumbnailImage: "/images/google-cloud/logo.jpg"
 
 categories:
-- cloud
-
-tags:
-- aws
+- gcp
 
 comment: false
 
