@@ -8,9 +8,6 @@ date: 2022-12-17T16:30:30+08:00
 thumbnailImage: "/images/aws/fargate.jpg"
 
 categories:
-- cloud
-
-tags:
 - aws
 
 comment: false
