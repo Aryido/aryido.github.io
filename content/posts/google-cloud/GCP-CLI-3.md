@@ -20,33 +20,33 @@ reward: false
 > - gcloud auth application-default login
 > - gcloud auth login
 >
-> 這兩個到底有甚麼不同呢 ? 來記錄一下吧~
+> 這兩個到底有甚麼不同呢 ? 來記錄一下吧 ~
 
 <!--more-->
 
 ---
 
 # 緣起
-我一開始的是在一台 linux 主機上建了 jenkins ，想用它來啟動 terraform 實現自動化部屬。我有一個 gcp 帳號是專門給 jenkins 的，並且我已經在linux主機上執行 ```gcloud auth login``` 登錄成功，就是最後在跑 job 執行 terraform 時，卻跑出 403 錯誤。
+有遇到一個問題，是在一台 linux 主機上建了 jenkins ，想用它來啟動 terraform 實現自動化部屬，並且已經有一個 gcp 帳號是專門給 jenkins 的。然後已經在 linux 主機上執行 ```gcloud auth login``` 登錄成功，但最後在跑 job 執行 terraform 時，卻跑出 403 錯誤。
 
-一開始不知道原因，直到我執行```gcloud auth application-default login```之後，terraform 才可以順利啟動。
+一開始不知道原因，直到執行```gcloud auth application-default login```之後，terraform 就順利啟動了。
 
-原本我的想法是，我使用 ```gcloud auth login``` 之後，其他應用程式如 terraform ，它應該會取得 gcloud credentials (可能是從 credentials.db 或 adc.json 取得)，但卻發生錯誤了。從這邊發覺```gcloud auth login```產生的 **gcloud credentials** 和```gcloud auth application-default login```產生的**application default credentials** 應該是**不一樣**的東西。
+原本我的想法是，我使用 ```gcloud auth login``` 之後，其他應用程式如 terraform ，它應該會取得 gcloud credentials (可能是從 credentials.db 或 adc.json 取得)。但卻發生了錯誤 ! 從這邊發覺```gcloud auth login```產生的 **gcloud credentials** 和```gcloud auth application-default login```產生的**application default credentials** 應該是**不一樣**的東西。
 
 以下詳細分析...
 
 ---
 
 ## Personal gcloud credentials
-在使用 gcloud cli 之前，必須透過 ```gcloud auth login``` 登錄，來授權認證 Cloud SDK gcloud 該工具，這樣才能讓 gcloud cli 工作。
+在使用 gcloud cli 之前，必須透過 ```gcloud auth login``` 登錄，來授權認證 gcloud 該工具，這樣才能讓 gcloud cli 工作。
 
-然後認證完 login 之後，自動就會在本機建立一個 folder : 例如我的 MAC 筆電，在 ```~/.config/gcloud``` 下有建立一些 credential 相關的檔案，如圖:
+在 login 認證完之後，自動就會在本機建立一個 folder : 例如我的 MAC 筆電，在 ```~/.config/gcloud``` 下有建立一些 credential 相關的檔案，如圖:
 
 {{< image classes="fancybox fig-100" src="/images/google-cloud/gcp-creds-folder.jpg" >}}
 - credentials.db : 是 SQLite database ，它就是 gcloud 儲存和取得 OAuth tokens 的方式。另外這個 database 毫無疑問應該是要 private ，除了 gcloud 以外，其它程式都不應該讀取或修改它。
 - legacy_credentials : 也是一個 folder ，內主要有一個 adc.json ，這就是就是我們使用```gcloud auth login```登錄，得到的一個 cached user credential。
 
-一旦使用 ```gcloud auth login``` 登錄， gcloud 就會使用儲存的認證，來進行所有後續操作。想停止的話，可以執行 ```gcloud auth revoke```。 **```gcloud auth login``` 產生的 credential 只給 gcloud 用，並沒有給其他應用程式使用。**
+一旦使用 ```gcloud auth login``` 登錄， gcloud 就會使用儲存的認證，來進行所有後續操作。想移除的話，可以執行 ```gcloud auth revoke```。 **```gcloud auth login``` 產生的 credential 只給 gcloud cli 用，並沒有給其他應用程式使用。**
 
 {{< alert warning >}}
 window 系統， folder 路徑是```~/AppData/XXX/gcloud/application_default_credentials.json```
@@ -56,7 +56,7 @@ window 系統， folder 路徑是```~/AppData/XXX/gcloud/application_default_cre
 
 ## Application default credentials
 
-如同 application default credentials 這個名稱一樣，它完全是給其他應用程式權限用的credential，其他應用程式怎麼取得這個 credential 呢 ? 有下列幾種方式:
+如同 application default credentials 這個名稱一樣，它完全是給其他應用程式權限用的 credential ，其他應用程式怎麼取得這個 credential 呢 ? 有下列幾種方式:
 
 - environment variable: ```GOOGLE_APPLICATION_CREDENTIALS``` 有沒有被設置
 
@@ -74,7 +74,7 @@ window 系統， folder 路徑是```~/AppData/XXX/gcloud/application_default_cre
 眼尖的話，其實也會發現認證同意的畫面其實不一樣。
 {{< image classes="fancybox fig-100" src="/images/google-cloud/gcp-approve.jpg" >}}
 
-application_default_credential 是其他應用程式 library 和 Google API 溝通的一種策略， client 端的應用程式例如 terraform 、 java SDk 都是使用 application_default_credential ，它和個人 gcloud credential 無關。當 client 端的應用程式嘗試載入 credential 時，會在多個位置查找，便於開發。
+application_default_credential 是其他應用程式的 library 和 Google API 溝通的一種策略， client 端的應用程式例如 terraform 、 java SDk 都可以使用 application_default_credential ，它和個人 gcloud credential 無關。當 client 端的應用程式嘗試載入 credential 時，會去查找，便於開發。
 
 application default credentials 只是來方便其他應用程式取用而已，因為在應用程式的概念上，其實應該是要設置 service account 給應用程式，但每個不同應用程式都設置的話，會有點繁瑣，但好處是可以精細的定義 IAM 許可權。
 
