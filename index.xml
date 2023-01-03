@@ -133,7 +133,7 @@
 &lt;li>gcloud auth application-default login&lt;/li>
 &lt;li>gcloud auth login&lt;/li>
 &lt;/ul>
-&lt;p>這兩個到底有甚麼不同呢 ? 來記錄一下吧~&lt;/p>
+&lt;p>這兩個到底有甚麼不同呢 ? 來記錄一下吧 ~&lt;/p>
 &lt;/blockquote></description></item><item><title>AWS load-balancer 基礎介紹</title><link>https://aryido.github.io/posts/aws/aws-load-balancer/</link><pubDate>Mon, 17 Oct 2022 22:00:06 +0800</pubDate><guid>https://aryido.github.io/posts/aws/aws-load-balancer/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>AWS 目前有多種 Load Balancing&lt;/p>

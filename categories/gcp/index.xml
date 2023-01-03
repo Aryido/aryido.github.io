@@ -20,7 +20,7 @@
 &lt;li>gcloud auth application-default login&lt;/li>
 &lt;li>gcloud auth login&lt;/li>
 &lt;/ul>
-&lt;p>這兩個到底有甚麼不同呢 ? 來記錄一下吧~&lt;/p>
+&lt;p>這兩個到底有甚麼不同呢 ? 來記錄一下吧 ~&lt;/p>
 &lt;/blockquote></description></item><item><title>Google Cloud CLI - 2</title><link>https://aryido.github.io/posts/google-cloud/gcp-cli-2/</link><pubDate>Sat, 17 Sep 2022 00:23:55 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp-cli-2/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>使用 GCP 時，都要登入雲端才能獲得授權。 gcloud CLI 提供了兩個方式：&lt;/p>
