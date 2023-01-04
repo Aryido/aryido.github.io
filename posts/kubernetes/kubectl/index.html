@@ -18,29 +18,28 @@ kubectl 是針對 k8s cluster 的 API Server 發送命令的工具，有些下�
 <span class=sidebar-button-desc>RSS</span></a></li></ul><ul class=sidebar-buttons></ul><ul class=sidebar-buttons></ul></div></nav><div id=main data-behavior=4 class=hasCoverMetaIn><article class=post id=top><div class="post-header main-content-wrap text-left"><h1 class=post-title>kubectl 簡單筆記</h1><div class="postShorten-meta post-meta"><time datetime=2022-12-25T21:38:20+08:00>December 25, 2022</time>
 <span>in</span>
 <a class=category-link href=https://aryido.github.io/categories/kubernetes>kubernetes</a></div></div><div class="post-content markdown"><div class=main-content-wrap><blockquote><p>kubectl 是針對 k8s cluster 的 API Server 發送命令的工具，有些下達的指令會改變 K8s cluster 的 state 和任何對應到的環境變量。默認情況下，kubectl 在 $HOME/.kube 目錄下查找名為 config 的文件，kubectl 使用該 config 文件來查找要通訊的 K8s cluster 資料。</p></blockquote><hr><p>安裝任何 CLI 後都有個起手式 :</p><pre tabindex=0><code>kubectl version
-</code></pre><p>檢查安裝是否成功。</p><p>工作上會有多個 k8s cluster 要管理，例如有 GKE 和 EKS，會有切換 k8s cluster 的需求，故可使用 kubeconfig 文件，便在集群之間快速輕鬆地切換。若要看整個 kubeconfig 配置 :</p><pre tabindex=0><code># 取得設定檔
+</code></pre><p>檢查安裝是否成功。</p><p>工作上會有多個 k8s cluster 要管理，例如有 GKE 和 EKS，會有切換 k8s cluster 的需求，故可使用 kubeconfig 文件，便在集群之間快速輕鬆地切換。若要看整個 kubeconfig 配置 :</p><pre tabindex=0><code># 取得設定檔內容
 kubectl config view
-</code></pre><h1 id=context>Context</h1><p>若有<strong>新建</strong> k8s cluster 在對應雲端上，可使用以下指令，連結到對應新建雲端 k8s cluster 資訊且<strong>自動更新 kubectl 配置</strong>:</p><pre tabindex=0><code># GKE
+</code></pre><div class="alert warning"><p>設定檔會放置在 ~/.kube/config</p></div><hr><h1 id=context>Context</h1><p>若有<strong>新建</strong> k8s cluster 在對應雲端上，可使用以下指令，連結到對應新建雲端 k8s cluster 資訊且<strong>自動更新 kubectl 配置</strong>:</p><pre tabindex=0><code># GKE
 gcloud container clusters get-credentials &lt;CLUSTER_NAME&gt; --zone &lt;ZONE_NAME&gt;
 
 # EKS
 aws eks update-kubeconfig --region &lt;REGION-CODE&gt; --name &lt;CLUSTER_NAME&gt;
-</code></pre><div class="alert warning"><p>使用 CLI 來連接 GKE 中的集群時，會需要安裝 <a href=https://stackoverflow.com/questions/74233349/how-do-i-install-gke-gcloud-auth-plugin-on-a-mac-m1-with-zsh>gke-gcloud-auth-plugin</a>，可能會遇到一些問題，這邊附上連結。</p></div><p>要看 Context 配置，輸入以下命令</p><pre tabindex=0><code>kubectl config get-contexts
+</code></pre><div class="alert warning"><p>使用 CLI 來連接 GKE 中的集群時，會需要安裝 <a href=https://stackoverflow.com/questions/74233349/how-do-i-install-gke-gcloud-auth-plugin-on-a-mac-m1-with-zsh>gke-gcloud-auth-plugin</a>，可能會遇到一些問題，這邊附上連結。</p></div><p>要看 Context 配置，輸入以下命令</p><pre tabindex=0><code># 查詢有哪些 context 可以切換
+kubectl config get-contexts
 
 # 查看當前 context
 kubectl config current-context
 
-# 切換 k8s cluster
+# 切換 context
 kubectl config use-context &lt;CONTEXT_NAME&gt;
 
-# 刪除指定 context
-kubectl config delete-context &lt;CONTEXT_NAME&gt;
-
-# 刪除 contexts and users
+# 刪除 contexts, users,  clusters
 kubectl config unset contexts
 kubectl config unset users
-</code></pre><p>對 Pod 中的容器执行命令</p><pre tabindex=0><code>kubectl exec -it [pod-name] bash
-</code></pre><hr><h1 id=其他-tool-推薦>其他 Tool 推薦</h1><h2 id=k9s>k9s</h2><p>在使用 k8s 時，要查看 pod 和 service 狀態，都要打一長串指令，初學時建議熟悉下，但也在這邊介紹一個工具叫 k9s。它提供一個 terminal 介面，來跟 k8s cluster互動。<div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/kubernetes/k9s.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/kubernetes/k9s.jpg></a></div></p><h2 id=zsh-auto-completionhttpskubernetesiozh-cndocstaskstoolsincludedoptional-kubectl-configs-zsh><a href=https://kubernetes.io/zh-cn/docs/tasks/tools/included/optional-kubectl-configs-zsh/>zsh auto-completion</a></h2><p>指令打久了也會希望能快速 auto-completion ，故 kubectl 也有提供相關腳本。</p><hr></div></div><div id=post-footer class="post-footer main-content-wrap"><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--disabled"><i class="fa fa-angle-left"></i>
+kubectl config unset clusters
+</code></pre><p>對 Pod 中的容器执行命令</p><pre tabindex=0><code>kubectl exec -it &lt;POD_NAME&gt; bash
+</code></pre><hr><h1 id=其他-tool-推薦>其他 Tool 推薦</h1><h2 id=k9s>k9s</h2><p>在使用 k8s 時，要查看 pod 和 service 狀態，都要打一長串指令，初學時建議熟悉下，但也在這邊介紹一個工具叫 k9s。它提供一個 terminal 介面，來跟 k8s cluster 互動。<div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/kubernetes/k9s.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/kubernetes/k9s.jpg></a></div></p><div class="alert info"><p>當然還是會建議熟悉 kubectl 操作後，在使用 K9S</p></div><h2 id=zsh-auto-completionhttpskubernetesiozh-cndocstaskstoolsincludedoptional-kubectl-configs-zsh><a href=https://kubernetes.io/zh-cn/docs/tasks/tools/included/optional-kubectl-configs-zsh/>zsh auto-completion</a></h2><p>指令打久了也會希望能快速 auto-completion ， kubectl 也有提供相關腳本。</p><hr></div></div><div id=post-footer class="post-footer main-content-wrap"><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--disabled"><i class="fa fa-angle-left"></i>
 <span class="hide-xs hide-sm text-small icon-ml">NEXT</span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/kubernetes/overview-2/ data-tooltip="Kubernetes 基礎介紹 - 2" aria-label="PREVIOUS: Kubernetes 基礎介紹 - 2"><span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
 <i class="fa fa-angle-right"></i></a></li></ul></nav><ul class="post-actions post-action-share"><li class="post-action hide-lg hide-md hide-sm"><a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post"><i class="fa fa-share-alt" aria-hidden=true></i></a></li><li class=post-action><a class="post-action-btn btn btn--default" href=#top aria-label="Back to top"><i class="fa fa-arrow-up" aria-hidden=true></i></a></li></ul></div></div></article><footer id=footer class=main-content-wrap><span class=copyrights>&copy; 2023 李昀陽 YunYang Lee. All Rights Reserved</span></footer></div><div id=bottom-bar class=post-bottom-bar data-behavior=4><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--disabled"><i class="fa fa-angle-left"></i>
 <span class="hide-xs hide-sm text-small icon-ml">NEXT</span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/kubernetes/overview-2/ data-tooltip="Kubernetes 基礎介紹 - 2" aria-label="PREVIOUS: Kubernetes 基礎介紹 - 2"><span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
