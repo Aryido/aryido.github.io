@@ -28,9 +28,17 @@ kubectl version
 
 工作上會有多個 k8s cluster 要管理，例如有 GKE 和 EKS，會有切換 k8s cluster 的需求，故可使用 kubeconfig 文件，便在集群之間快速輕鬆地切換。若要看整個 kubeconfig 配置 :
 ```
-# 取得設定檔
+# 取得設定檔內容
 kubectl config view
 ```
+
+{{< alert warning >}}
+設定檔會放置在 ~/.kube/config
+{{< /alert >}}
+
+
+---
+
 # Context
 若有**新建** k8s cluster 在對應雲端上，可使用以下指令，連結到對應新建雲端 k8s cluster 資訊且**自動更新 kubectl 配置**:
 
@@ -49,35 +57,38 @@ aws eks update-kubeconfig --region <REGION-CODE> --name <CLUSTER_NAME>
 
 要看 Context 配置，輸入以下命令
 ```
+# 查詢有哪些 context 可以切換
 kubectl config get-contexts
 
 # 查看當前 context
 kubectl config current-context
 
-# 切換 k8s cluster
+# 切換 context
 kubectl config use-context <CONTEXT_NAME>
 
-# 刪除指定 context
-kubectl config delete-context <CONTEXT_NAME>
-
-# 刪除 contexts and users
+# 刪除 contexts, users,  clusters
 kubectl config unset contexts
 kubectl config unset users
+kubectl config unset clusters
 ```
 對 Pod 中的容器执行命令
 
 ```
-kubectl exec -it [pod-name] bash
+kubectl exec -it <POD_NAME> bash
 ```
 
 ---
 # 其他 Tool 推薦
 
 ## k9s
-在使用 k8s 時，要查看 pod 和 service 狀態，都要打一長串指令，初學時建議熟悉下，但也在這邊介紹一個工具叫 k9s。它提供一個 terminal 介面，來跟 k8s cluster互動。
+在使用 k8s 時，要查看 pod 和 service 狀態，都要打一長串指令，初學時建議熟悉下，但也在這邊介紹一個工具叫 k9s。它提供一個 terminal 介面，來跟 k8s cluster 互動。
 {{< image classes="fancybox fig-100" src="/images/kubernetes/k9s.jpg" >}}
 
+{{< alert info >}}
+當然還是會建議熟悉 kubectl 操作後，在使用 K9S
+{{< /alert >}}
+
 ## [zsh auto-completion](https://kubernetes.io/zh-cn/docs/tasks/tools/included/optional-kubectl-configs-zsh/)
-指令打久了也會希望能快速 auto-completion ，故 kubectl 也有提供相關腳本。
+指令打久了也會希望能快速 auto-completion ， kubectl 也有提供相關腳本。
 
 ---
