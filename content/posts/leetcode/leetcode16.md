@@ -140,3 +140,15 @@ class Solution {
 }
 ```
 
+{{< alert danger >}}
+在移動指針的時候，多加 *while* 迴圈判斷，但看起來時間反而花更多了...
+```
+else if(sum < target){
+    while(j < k && nums[j] == nums[j+1]) j++;
+    j++;
+}else{
+    while(j < k && nums[k] == nums[k-1]) k--;
+    k--;
+}
+```
+{{< /alert >}}

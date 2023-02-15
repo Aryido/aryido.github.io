@@ -96,7 +96,6 @@ class Solution {
         for(int i = 0 ; i < nums.length -2 ; i++){
             int j = i + 1;
             int k = nums.length - 1;
-
             while(j < k){
                 if(nums[i] + nums[j] + nums[k] == 0){
                     List<Integer> list = List.of(nums[i] , nums[j] ,nums[k]);
@@ -111,8 +110,10 @@ class Solution {
                     k--;
 
                 } else if( nums[i] + nums[j] + nums[k] > 0){
+                    while (j < k && nums[k] == nums[k - 1]) k--;
                     k--;
                 } else {
+                    while (j < k && nums[j] == nums[j + 1]) j++;
                     j++;
                 }
             }
@@ -122,5 +123,19 @@ class Solution {
     }
 }
 ```
+
+{{< alert danger >}}
+
+在移動指針的時候，多加 *while* 迴圈判斷，但看起來時間反而花更多了...
+```
+ } else if( nums[i] + nums[j] + nums[k] > 0){
+    while (j < k && nums[k] == nums[k - 1]) k--;
+    k--;
+} else {
+    while (j < k && nums[j] == nums[j + 1]) j++;
+    j++;
+}
+```
+{{< /alert >}}
 
 ---
