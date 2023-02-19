@@ -5,7 +5,7 @@
 &lt;li>排序 array&lt;/li>
 &lt;li>避免的重複項&lt;/li>
 &lt;/ol>
-&lt;p>這邊只是 3Sum 以此基礎上，再加了一個循環而已。&lt;/p>
+&lt;p>這邊只是 3Sum 以此基礎上，再加了一個循環而已。 這連續幾題 sum 算是給了一個不錯的練習呢 !&lt;/p>
 &lt;/blockquote></description></item><item><title>15. 3Sum</title><link>https://aryido.github.io/posts/leetcode/leetcode15/</link><pubDate>Thu, 09 Feb 2023 22:56:05 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode15/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>算是 Two Sum 的一種另類進階，從 &lt;em>nums&lt;/em> 中找出和為 0 的三個 element ，並組成 &lt;em>List of list&lt;/em> 。特別注意，不能有兩個內容一樣的 list。因為整個題目並沒有對 &lt;em>nums&lt;/em> 的 &lt;em>index&lt;/em> 有任何要求，故可以&lt;em>把 nums 排序&lt;/em>，為解題拓開另一種思路。&lt;/p>
