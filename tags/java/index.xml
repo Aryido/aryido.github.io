@@ -1,4 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>java on Aryido Tech Note</title><link>https://aryido.github.io/tags/java/</link><description>Recent content in java on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 15 Feb 2023 22:17:40 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/java/index.xml" rel="self" type="application/rss+xml"/><item><title>18. 4Sum</title><link>https://aryido.github.io/posts/leetcode/leetcode18/</link><pubDate>Wed, 15 Feb 2023 22:17:40 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode18/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>java on Aryido Tech Note</title><link>https://aryido.github.io/tags/java/</link><description>Recent content in java on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 05 Mar 2023 22:48:40 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/java/index.xml" rel="self" type="application/rss+xml"/><item><title>763. Partition Labels</title><link>https://aryido.github.io/posts/leetcode/leetcode763/</link><pubDate>Sun, 05 Mar 2023 22:48:40 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode763/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>這道題給了一個 string，然後要盡可能將 string 切割越多塊 sub-string 越好( as many parts as possible)，其中條件是&lt;strong>每個 char，最多只能出現在自己的 sub-string 中&lt;/strong>。 即 :&lt;/p>
+&lt;ul>
+&lt;li>分割字串使字串中的每個字母在該分割段落中出現達到最多次。&lt;/li>
+&lt;/ul>
+&lt;p>題目理解是和自己想解法是比較花時間的，看過解答後都可以很快寫出來。&lt;/p>
+&lt;/blockquote></description></item><item><title>18. 4Sum</title><link>https://aryido.github.io/posts/leetcode/leetcode18/</link><pubDate>Wed, 15 Feb 2023 22:17:40 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode18/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>leetcode 幾個數字題，15、16、18，基本上套路都是一樣的(&lt;del>甚至可以預期可能還會出 5 Sum&amp;hellip;&lt;/del>)，整體的解法都差不多可以一起看，重點仍然是 :&lt;/p>
 &lt;ol>
