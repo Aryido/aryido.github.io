@@ -23,13 +23,16 @@ reward: false
 
 ---
 
-這邊 User account authorization 使用:
+這邊使用 User account authorization :
 ```
+gcloud auth login
+
 gcloud auth application-default login
 
-# Credentials saved to file: [~/.config/gcloud/application_default_credentials.json]
+gcloud init
+
 ```
-來產生 credential 在本地端，application-default 是一個專門給應用程式用的 credential，簡化使用 Service account 繁瑣的步驟。
+以上三步，來產生 credential 在本地端。
 
 官網上的簡介:
 
@@ -52,13 +55,24 @@ gcloud auth application-default login
 
 
 ```terminal
+gcloud auth print-access-token
+
 gcloud auth application-default print-access-token
 ```
-我們可以選定一個所要呼叫的Google API進行呼叫，需要在 Header 處加上 Authorization 的 Bearer token ，即是上面取得的 access token
+我們可以選定一個所要呼叫的 Google API 進行呼叫，需要在 Header 處加上 Authorization 的 Bearer token ，即是上面取得的 access token
 ```terminal
 # 例如使用Big Query
-curl -H "Authorization:Bearer xxxxxxxxxxxx https://www.googleapis.com/bigquery/v2/projects/.....
+curl -H "Authorization:Bearer xxxxxxxxxxxx" https://www.googleapis.com/bigquery/v2/projects/.....
 ```
-以上，如果要測試Google的API，透過這個方式還滿方便。
+以上，如果要測試 Google 的 API ，透過這個方式還滿方便。
+
+{{< alert warning >}}
+gcloud auth print-access-token 和 gcloud auth application-default print-access-token 都是用來列印出使用者的授權 Token，但是兩者的用途略有不同。
+
+簡單來說:
+- ```gcloud auth print-access-token``` 是用來執行 gcloud CLI 相關的操作
+-  ```gcloud auth application-default print-access-token``` 則是用來調用 Google Cloud APIs。
+
+{{< /alert >}}
 
 ---
