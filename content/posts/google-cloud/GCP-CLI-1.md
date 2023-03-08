@@ -1,5 +1,5 @@
 ---
-title: Google Cloud CLI - 1
+title: "Google Cloud CLI : Initialization GCP Project"
 
 author: Aryido
 

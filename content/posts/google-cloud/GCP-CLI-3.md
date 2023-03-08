@@ -1,5 +1,5 @@
 ---
-title: Google Cloud CLI - 3
+title: "Google Cloud CLI : Auth Credentials "
 
 author: Aryido
 
@@ -72,6 +72,8 @@ window 系統， folder 路徑是```~/AppData/XXX/gcloud/application_default_cre
 # 結論
 
 眼尖的話，其實也會發現認證同意的畫面其實不一樣。
+- 左邊:  ```gcloud auth login```
+- 右邊:  ```gcloud auth application-default login```
 {{< image classes="fancybox fig-100" src="/images/google-cloud/gcp-approve.jpg" >}}
 
 application_default_credential 是其他應用程式的 library 和 Google API 溝通的一種策略， client 端的應用程式例如 terraform 、 java SDk 都可以使用 application_default_credential ，它和個人 gcloud credential 無關。當 client 端的應用程式嘗試載入 credential 時，會去查找，便於開發。
