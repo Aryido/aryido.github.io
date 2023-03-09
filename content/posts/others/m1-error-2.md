@@ -56,7 +56,7 @@ Serverless 是一種 NoOps 的解決方式，可以讓只有 developer 的公司
 
 ---
 
-# cloud run 出現錯誤
+# Cloud Run 出現錯誤
 自己在本地電腦 build docker image 後，推到 contianer registry ， 但是部屬至 cloud run 時出現錯誤資訊 :
 ```
 Cloud Run error: Container failed to start.
