@@ -59,10 +59,10 @@ spec:
         command: [
           "sh",
           "-c",
-          "echo my hostname is $(hostname); sleep 5"]
+          "echo Hello; sleep 5"]
       restartPolicy: Never
 ```
-{{< alert info >}}
+{{< alert success >}}
 其實可以把 Kubernetes Job 看成一個特殊的 deployment， 寫法上並沒有差太多。Job 最終的追求目的是為了結束而運行的，跟 Deployment 追求的是持續運行有著很大的不同。
 {{< /alert >}}
 
