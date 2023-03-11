@@ -76,12 +76,12 @@ Guava 是一個 Goolge 開源的 Java 通用library，核心庫有例如：集�
 
 # 整理
 
-不論是開發還是刷題都很常用到
-```java
-map.computeIfAbsent(key, k -> new ArrayList<>()).add(val);
-```
-使用時有兩種情況；
-- 1. 若 key **不在** map 裡，則會把這個 **key** 和 **remappingFunction 的 output** 添加到 hashMap 裡。 返回值為 **remappingFunction 的 output**
-- 2. 若 key **在** map 裡，則直接返回 key 對應的 value
+- 不論是開發還是刷題都很常用到
+    ```java
+    map.computeIfAbsent(key, k -> new ArrayList<>()).add(val);
+    ```
+- ```computeIfAbsent``` 使用時有兩種情況；
+  - 1. 若 key **不在** map 裡，則會把這個 **key** 和 **remappingFunction 的 output** 添加到 hashMap 裡。 返回值為 **remappingFunction 的 output**
+  - 2. 若 key **在** map 裡，則直接返回 key 對應的 value
 
 ---
