@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/leetcode/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 05 Mar 2023 22:48:40 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/leetcode/index.xml" rel="self" type="application/rss+xml"/><item><title>763. Partition Labels</title><link>https://aryido.github.io/posts/leetcode/leetcode763/</link><pubDate>Sun, 05 Mar 2023 22:48:40 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode763/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/leetcode/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 11 Mar 2023 12:13:17 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/leetcode/index.xml" rel="self" type="application/rss+xml"/><item><title>76. Minimum Window Substring</title><link>https://aryido.github.io/posts/leetcode/leetcode76/</link><pubDate>Sat, 11 Mar 2023 12:13:17 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode76/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>題目給了我們一個字符 &lt;em>s&lt;/em>，還有一個目標字符 &lt;em>t&lt;/em>，要在 &lt;em>s&lt;/em> 中找到一個 &lt;strong>minimum window substring&lt;/strong> 使得其包含了 &lt;em>t&lt;/em> 中的所有的字母。整體看起來題目難在 :&lt;/p>
+&lt;ul>
+&lt;li>限制了時間複雜度為 &lt;em>O(n + m)&lt;/em>&lt;/li>
+&lt;li>第一次要寫出 bug free 有點困難&lt;/li>
+&lt;/ul>
+&lt;p>故備標註為 &lt;strong>hard&lt;/strong> ，但整體思路上並不算太難，值得品味一下 !&lt;/p>
+&lt;/blockquote></description></item><item><title>763. Partition Labels</title><link>https://aryido.github.io/posts/leetcode/leetcode763/</link><pubDate>Sun, 05 Mar 2023 22:48:40 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode763/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>這道題給了一個 string，然後要盡可能將 string 切割越多塊 sub-string 越好( as many parts as possible)，其中條件是&lt;strong>每個 char，最多只能出現在自己的 sub-string 中&lt;/strong>。 即 :&lt;/p>
 &lt;ul>

@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 06 Mar 2023 22:56:28 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>linux 指令範例: sed</title><link>https://aryido.github.io/posts/linux/sed-example/</link><pubDate>Mon, 06 Mar 2023 22:56:28 +0800</pubDate><guid>https://aryido.github.io/posts/linux/sed-example/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 11 Mar 2023 12:13:17 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>76. Minimum Window Substring</title><link>https://aryido.github.io/posts/leetcode/leetcode76/</link><pubDate>Sat, 11 Mar 2023 12:13:17 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode76/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>題目給了我們一個字符 &lt;em>s&lt;/em>，還有一個目標字符 &lt;em>t&lt;/em>，要在 &lt;em>s&lt;/em> 中找到一個 &lt;strong>minimum window substring&lt;/strong> 使得其包含了 &lt;em>t&lt;/em> 中的所有的字母。整體看起來題目難在 :&lt;/p>
+&lt;ul>
+&lt;li>限制了時間複雜度為 &lt;em>O(n + m)&lt;/em>&lt;/li>
+&lt;li>第一次要寫出 bug free 有點困難&lt;/li>
+&lt;/ul>
+&lt;p>故備標註為 &lt;strong>hard&lt;/strong> ，但整體思路上並不算太難，值得品味一下 !&lt;/p>
+&lt;/blockquote></description></item><item><title>linux 指令範例: sed</title><link>https://aryido.github.io/posts/linux/sed-example/</link><pubDate>Mon, 06 Mar 2023 22:56:28 +0800</pubDate><guid>https://aryido.github.io/posts/linux/sed-example/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>&lt;em>sed&lt;/em> 全名為 &lt;em>Stream EDitor&lt;/em> ，取了前面的 &lt;em>S&lt;/em> 和後面的 &lt;em>ED&lt;/em> 來命名。&lt;em>sed&lt;/em> 對正規表示法有良好的支援，主要功能為自動化的修改文字檔，是在 Linux 和 Unix 系統中使用的文本處理工具，可在 pipe 中間進行文字的取代、刪除、插入等等。&lt;/p>
 &lt;/blockquote></description></item><item><title>763. Partition Labels</title><link>https://aryido.github.io/posts/leetcode/leetcode763/</link><pubDate>Sun, 05 Mar 2023 22:48:40 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode763/</guid><description>&lt;!-- raw HTML omitted -->
