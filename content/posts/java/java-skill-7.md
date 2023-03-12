@@ -65,7 +65,8 @@ String value3 = map.compute( "c", (k,v) -> null ); // value3 = null ; {b=wwww}
 List<String> list = Arrays.asList("a", "b", "b", "c", "c", "c", "d", "d", "d", "f", "f", "g");
 
 HashMap<String, Integer> map = new HashMap<>();
-list.forEach(str -> map.compute(str, (k, v) -> v == null ? 1 : v + 1)); // 此時：新值 = 舊值 + 1
+list.forEach(str -> map.compute(str, (k, v) -> v == null ? 1 : v + 1));
+// 此時：新值 = 舊值 + 1
 // map = {a=1, b=2, c=3, d=3, f=2, g=1}
 ```
 {{< /alert >}}
