@@ -15,12 +15,12 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> kubectl 是針對 k8s cluster 的 API Server 發送命令的工具，有些下達的指令會改變 K8s cluster 的 state 和任何對應到的環境變量。默認情況下，kubectl 在 $HOME/.kube 目錄下查找名為 config 的文件，kubectl 使用該 config 文件來查找要通訊的 K8s cluster 資料。
+> kubectl 是針對 k8s cluster 的 API Server 發送命令的工具，有些指令會改變 K8s cluster 的 state 和任何對應到的環境變量。默認情況下，kubectl 在 **$HOME/.kube** 目錄下查找名為 config 的文件，kubectl 使用該 config 文件來查找要通訊的 K8s cluster 資料。
 
 <!--more-->
 
 ---
-安裝任何 CLI 後都有個起手式 :
+安裝任何 CLI 之後，都有個起手式 :
 ```
 kubectl version
 ```
