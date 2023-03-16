@@ -85,7 +85,9 @@ String value2 = map.putIfAbsent( "c", "test" ); // value2 = null ; {b=B, c=test}
 ```
 
 ## computeIfAbsent
-computeIfAbsent : **注意 ! key 存在時是返回舊值**， key 不存在時會存入 kvp 並返回新值
+computeIfAbsent : 特別注意一下 !
+-  **key 存在時是返回舊值**
+-  key 不存在時，會把 kvp 存入 map 內，並返回新值
 ```java
 HashMap<String, String> map = new HashMap<>();
 map.put("b","B");
