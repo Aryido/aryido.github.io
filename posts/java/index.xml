@@ -34,7 +34,7 @@ JDK8 的 Map API 有不少便利的預設方法，以下可以介紹一下。&lt
 &lt;li>&lt;strong>LinkedList&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;p>簡單來介紹和比較一下。&lt;/p>
-&lt;/blockquote></description></item><item><title>Java 技巧 - 把 List of array 轉成 2D-array</title><link>https://aryido.github.io/posts/java/java-skill-1/</link><pubDate>Thu, 01 Sep 2022 08:11:32 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-1/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Java 泛型注意事項 - List of array 轉成 2D-array</title><link>https://aryido.github.io/posts/java/2d-array/</link><pubDate>Thu, 01 Sep 2022 08:11:32 +0800</pubDate><guid>https://aryido.github.io/posts/java/2d-array/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>把 List of array 轉成 2D-array&lt;/p>
 &lt;/blockquote>
