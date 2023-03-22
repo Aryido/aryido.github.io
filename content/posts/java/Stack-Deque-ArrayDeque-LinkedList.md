@@ -18,9 +18,7 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> Java 現在 Stack 類已經不建議使用。現在推薦的是使用雙端隊列接口 Deque 取代 Stack。
->
-> Deque 是 interface，有兩個常用的 implement :
+> Java 現在 Stack 類已經**不建議**使用。現在推薦的是，使用雙端隊列接口 Deque 取代 Stack。 Deque 是 interface，有兩個常用的 implement :
 > - **ArrayDeque**
 > - **LinkedList**
 >
@@ -31,9 +29,11 @@ reward: false
 ---
 
 # Stack
-Stack 是一種後進先出 (LIFO) 的容器，常用的操作 push / pop / peek。 現在 Java **建議使用**雙端隊列接口 Deque，並用實現類 ArrayDeque / LinkedList 來進行 Stack 的初始化。
+{{< image classes="fancybox fig-100" src="/images/java/stack.jpg" >}}
+Stack 是一種後進先出 (LIFO) 的容器，常用的操作為 push / pop / peek。 現在 Java **建議使用**雙端隊列接口 Deque，並用其實現類 ArrayDeque / LinkedList 來進行 Stack 的初始化。
 
 ```java
+//以下兩個都可以
 
 Deque<Integer> stack1 = new LinkedList<>();
 
@@ -48,7 +48,7 @@ Deque<Integer> deque = new ArrayDeque<>();
 deque.push(1);
 deque.push(2);
 
-List<Integer> list1 = new ArrayList<>(deque); //[2, 1] (推建使用這個)
+List<Integer> list1 = new ArrayList<>(deque); //[2, 1]
 List<Integer> list2 = deque.stream().collect(Collectors.toList()); //[2,1]
 
 ```
