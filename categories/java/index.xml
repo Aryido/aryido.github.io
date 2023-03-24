@@ -22,7 +22,7 @@ JDK8 的 Map API 有不少便利的預設方法，以下可以介紹一下。&lt
 &lt;blockquote>
 &lt;p>刷題時很常出現 Array 的結構如 &lt;code>int[]、char[]&lt;/code> 等等&amp;hellip;，故在這邊條列一些常用的 Arrays 方法。
 在使用過程也可以複習 java 提供的工具類，還有一些泛型的坑&amp;hellip;&lt;/p>
-&lt;/blockquote></description></item><item><title>Java 技巧 - 處理Map&lt;K, Collection&lt;T>></title><link>https://aryido.github.io/posts/java/java-skill-3/</link><pubDate>Tue, 06 Sep 2022 23:28:59 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-3/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Java 技巧 - 處理Map&lt;K, Collection&lt;T>></title><link>https://aryido.github.io/posts/java/map-of-collection/</link><pubDate>Tue, 06 Sep 2022 23:28:59 +0800</pubDate><guid>https://aryido.github.io/posts/java/map-of-collection/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>經常有一些業務邏輯要用 Map 來解決，如果再多懂得一些 Map 的方法，是可以寫出精簡的 code 的。這裡展示一些優雅處理 &lt;code>Map&amp;lt;K, Collection&amp;lt;T&amp;gt;&amp;gt;&lt;/code> 類型的方式。&lt;/p>
 &lt;/blockquote></description></item><item><title>Stack、Deque、ArrayDeque、LinkedList 介紹</title><link>https://aryido.github.io/posts/java/stack-deque-arraydeque-linkedlist/</link><pubDate>Mon, 05 Sep 2022 00:54:48 +0800</pubDate><guid>https://aryido.github.io/posts/java/stack-deque-arraydeque-linkedlist/</guid><description>&lt;!-- raw HTML omitted -->
