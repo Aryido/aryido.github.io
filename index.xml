@@ -358,10 +358,9 @@ JDK8 的 Map API 有不少便利的預設方法，以下可以介紹一下。&lt
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;/blockquote></description></item><item><title>Java 技巧 - Java Arrays 方法</title><link>https://aryido.github.io/posts/java/java-skill-4/</link><pubDate>Fri, 09 Sep 2022 19:59:56 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-4/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Java 技巧 - Java Arrays 方法</title><link>https://aryido.github.io/posts/java/java-arrays/</link><pubDate>Fri, 09 Sep 2022 19:59:56 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-arrays/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>刷題時很常出現 Array 的結構如 &lt;code>int[]、char[]&lt;/code> 等等&amp;hellip;，故在這邊條列一些常用的 Arrays 方法。
-在使用過程也可以複習 java 提供的工具類，還有一些泛型的坑&amp;hellip;&lt;/p>
+&lt;p>刷題時很常出現 Array 的結構如 &lt;code>int[]、char[]&lt;/code> 等等&amp;hellip;，故在這邊條列一些常用的 Arrays 方法。這次主要整理下 Java 中 Arrays 類的常用方法，在使用過程也可以複習 java 提供的工具類，還有一些泛型的坑&amp;hellip;&lt;/p>
 &lt;/blockquote></description></item><item><title>Grafana: panel之間共享查詢結果以減少loading時間</title><link>https://aryido.github.io/posts/grafana/panel-loading-enhancement/</link><pubDate>Thu, 08 Sep 2022 22:18:02 +0800</pubDate><guid>https://aryido.github.io/posts/grafana/panel-loading-enhancement/</guid><description>&lt;blockquote>
 &lt;p>Grafana 的 panel 會連接 datasource 並發出請求。 故當我們向 dashboard 中添加多個 panel 時，會發出更多的請求，這可能會導致需要更長的時間來loading資料。&lt;/p>
 &lt;/blockquote></description></item><item><title>200. Number of Islands</title><link>https://aryido.github.io/posts/leetcode/leetcode200/</link><pubDate>Wed, 07 Sep 2022 20:55:05 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode200/</guid><description>&lt;!-- raw HTML omitted -->
