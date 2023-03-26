@@ -25,16 +25,18 @@ reward: false
 > 其中 *remappingFunction* 是一個 **Functional interface**
 > - input 為 map 的 **key**
 > - output 會成為 map 的 **value**
-
+>
+> HashMap 的 computeIfAbsent 方法，在 key 不存在時，會做 remappingFunction 的操作，所以再也不會因為漏寫 ```if x == null``` 而出現空指針的 bug 了。
 <!--more-->
 
 ---
-使用時有兩種情況
+computeIfAbsent 是 java.util.Map 的默認方法，已在 Java 8 中引入。 computeIfAbsent 方法在與 **key 對應的value 不可用或為空時起作用**，在這種情況下，computeIfAbsent 方法會由給定 remappingFunction 計算的新值。
 
-{{< alert info >}}
+整理如下，使用時有兩種情況:
+- {{< alert info >}}
 若 key **不在** map 裡，則會把這個 **key** 和 **remappingFunction 的 output** 添加到 hashMap 裡。 返回值為 **remappingFunction 的 output**
 {{< /alert >}}
-{{< alert info >}}
+- {{< alert info >}}
 若 key **在** map 裡，則不會重新計算 value。 返回值為 現在 map 的 key 對應的 value
 {{< /alert >}}
 
