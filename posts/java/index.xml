@@ -9,7 +9,7 @@
 JDK8 的 Map API 有不少便利的預設方法，以下可以介紹一下。&lt;/p></description></item><item><title>ArrayList &amp; LinkedList 選擇場景</title><link>https://aryido.github.io/posts/java/java-skill-6/</link><pubDate>Sat, 17 Sep 2022 12:49:55 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-6/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>在 &lt;a href="https://leetcode.com/problems/reconstruct-itinerary/">&lt;strong>leetcode 332. Reconstruct Itinerary&lt;/strong>&lt;/a> ，答案須回傳 &lt;strong>List&lt;/strong>。因為題目是 &lt;strong>Post-order traversal on Edges&lt;/strong> ，所以添加答案要往第一個元素插入。 這裡就是一個可以使用 &lt;strong>LinkedList&lt;/strong> 而非 &lt;strong>ArrayList&lt;/strong> 的好情境!&lt;/p>
-&lt;/blockquote></description></item><item><title>Java 技巧 - computeIfAbsent() 用法詳解</title><link>https://aryido.github.io/posts/java/java-skill-5/</link><pubDate>Sat, 17 Sep 2022 12:44:22 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-5/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Java 技巧 - computeIfAbsent() 用法詳解</title><link>https://aryido.github.io/posts/java/computeifabsent/</link><pubDate>Sat, 17 Sep 2022 12:44:22 +0800</pubDate><guid>https://aryido.github.io/posts/java/computeifabsent/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>使用 HashMap 的方法 :&lt;/p>
 &lt;pre tabindex="0">&lt;code class="language-jav" data-lang="jav">computeIfAbsent(K key, Function remappingFunction)
@@ -18,6 +18,7 @@ JDK8 的 Map API 有不少便利的預設方法，以下可以介紹一下。&lt
 &lt;li>input 為 map 的 &lt;strong>key&lt;/strong>&lt;/li>
 &lt;li>output 會成為 map 的 &lt;strong>value&lt;/strong>&lt;/li>
 &lt;/ul>
+&lt;p>HashMap 的 computeIfAbsent 方法，在 key 不存在時，會做 remappingFunction 的操作，所以再也不會因為漏寫 &lt;code>if x == null&lt;/code> 而出現空指針的 bug 了。&lt;/p>
 &lt;/blockquote></description></item><item><title>Java 技巧 - Java Arrays 方法</title><link>https://aryido.github.io/posts/java/java-arrays/</link><pubDate>Fri, 09 Sep 2022 19:59:56 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-arrays/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>刷題時很常出現 Array 的結構如 &lt;code>int[]、char[]&lt;/code> 等等&amp;hellip;，故在這邊條列一些常用的 Arrays 方法。這次主要整理下 Java 中 Arrays 類的常用方法，在使用過程也可以複習 java 提供的工具類，還有一些泛型的坑&amp;hellip;&lt;/p>

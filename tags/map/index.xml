@@ -4,7 +4,7 @@
 &lt;p>Java 8 因為引入了 lambda 這樣的 functional 函數，所以 Map 系列增加了一些方法，感覺還是很好用的，簡單做一些相關介紹 &amp;hellip;&lt;/p>
 &lt;/blockquote></description></item><item><title>JAVA Map方法：compute、computeIfAbsent、put、putIfAbsent</title><link>https://aryido.github.io/posts/java/java-skill-7/</link><pubDate>Thu, 22 Sep 2022 21:58:05 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-7/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;p>Map 是 Java 的其中一 interface，不是collection，也不會繼承 Collection interface。
-JDK8 的 Map API 有不少便利的預設方法，以下可以介紹一下。&lt;/p></description></item><item><title>Java 技巧 - computeIfAbsent() 用法詳解</title><link>https://aryido.github.io/posts/java/java-skill-5/</link><pubDate>Sat, 17 Sep 2022 12:44:22 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-5/</guid><description>&lt;!-- raw HTML omitted -->
+JDK8 的 Map API 有不少便利的預設方法，以下可以介紹一下。&lt;/p></description></item><item><title>Java 技巧 - computeIfAbsent() 用法詳解</title><link>https://aryido.github.io/posts/java/computeifabsent/</link><pubDate>Sat, 17 Sep 2022 12:44:22 +0800</pubDate><guid>https://aryido.github.io/posts/java/computeifabsent/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>使用 HashMap 的方法 :&lt;/p>
 &lt;pre tabindex="0">&lt;code class="language-jav" data-lang="jav">computeIfAbsent(K key, Function remappingFunction)
@@ -13,6 +13,7 @@ JDK8 的 Map API 有不少便利的預設方法，以下可以介紹一下。&lt
 &lt;li>input 為 map 的 &lt;strong>key&lt;/strong>&lt;/li>
 &lt;li>output 會成為 map 的 &lt;strong>value&lt;/strong>&lt;/li>
 &lt;/ul>
+&lt;p>HashMap 的 computeIfAbsent 方法，在 key 不存在時，會做 remappingFunction 的操作，所以再也不會因為漏寫 &lt;code>if x == null&lt;/code> 而出現空指針的 bug 了。&lt;/p>
 &lt;/blockquote></description></item><item><title>Java 技巧 - 處理Map&lt;K, Collection&lt;T>></title><link>https://aryido.github.io/posts/java/map-of-collection/</link><pubDate>Tue, 06 Sep 2022 23:28:59 +0800</pubDate><guid>https://aryido.github.io/posts/java/map-of-collection/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>經常有一些業務邏輯要用 Map 來解決，如果再多懂得一些 Map 的方法，是可以寫出精簡的 code 的。這裡展示一些優雅處理 &lt;code>Map&amp;lt;K, Collection&amp;lt;T&amp;gt;&amp;gt;&lt;/code> 類型的方式。&lt;/p>
