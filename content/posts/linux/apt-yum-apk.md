@@ -15,7 +15,7 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> Linux 有多種流通版，例如常見的 Ubuntu、Fedora、CentOS、Debian、Red Hat 等等，其中裡面預設的**包管理系統**也不太一樣。包管理系統可以**安裝 package** 、**更新 package** 、確保使用的 **package 是經過審查的**。 接下來淺淺的分析**包管理系統** apt 、 yum 、 apk 之間的差別。
+> Linux 有多種流通版，例如常見的 Ubuntu、Debian、CentOS、Fedora、Red Hat 等等，其中裡面預設的**包管理系統**也不太一樣。包管理系統可以**安裝 package** 、**更新 package** 、確保使用的 **package 是經過審查的**。 接下來淺淺的分析**包管理系統** apt 、 yum 、 apk 之間的差別。
 >
 <!--more-->
 
