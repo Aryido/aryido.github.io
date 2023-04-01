@@ -9,6 +9,8 @@ thumbnailImage: "/images/terraform/logo.jpg"
 
 categories:
 - terraform
+
+tag:
 - gcp
 
 comment: false
