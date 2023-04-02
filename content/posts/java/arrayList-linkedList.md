@@ -18,9 +18,14 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> 在 [**leetcode 332. Reconstruct Itinerary**](https://leetcode.com/problems/reconstruct-itinerary/) ，答案須回傳 **List**。因為題目是 **Post-order traversal on Edges** ，所以添加答案要往第一個元素插入。 這裡就是一個可以使用 **LinkedList** 而非 **ArrayList** 的好情境!
-
+> ArrayList 和 LinkedList 是 Java 中的集合框架，它們都實現了 List 接口。
+> - ArrayList 是適用於需要快速訪問集合中的元素的場景。
+> - LinkedList 適用於頻繁插入和刪除元素的場景。
+>
+> 需要查找集合中的元素，可以選擇 ArrayList；如果需要頻繁地插入和刪除元素，可以選擇 LinkedList。同時，如果需要實現隊列或棧等數據結構，也可以選擇 LinkedList。
 <!--more-->
+
+在 [**leetcode 332. Reconstruct Itinerary**](https://leetcode.com/problems/reconstruct-itinerary/) ，答案須回傳的類型是 **List**。題目的解題架構，歸類到圖論題的 **Post-order traversal on Edges** ，所以添加答案要往第一個元素插入。 這裡就是一個可以使用 **LinkedList** 而非 **ArrayList** 的好情境 !
 
 ---
 
