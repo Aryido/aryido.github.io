@@ -6,9 +6,14 @@
 &lt;p>Java 8 因為引入了 lambda 這樣的 functional 函數，所以 Map 系列增加了一些方法，感覺還是很好用的，簡單做一些相關介紹 &amp;hellip;&lt;/p>
 &lt;/blockquote></description></item><item><title>JAVA Map方法：compute、computeIfAbsent、put、putIfAbsent</title><link>https://aryido.github.io/posts/java/java-skill-7/</link><pubDate>Thu, 22 Sep 2022 21:58:05 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-7/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;p>Map 是 Java 的其中一 interface，不是collection，也不會繼承 Collection interface。
-JDK8 的 Map API 有不少便利的預設方法，以下可以介紹一下。&lt;/p></description></item><item><title>ArrayList &amp; LinkedList 選擇場景</title><link>https://aryido.github.io/posts/java/java-skill-6/</link><pubDate>Sat, 17 Sep 2022 12:49:55 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-6/</guid><description>&lt;!-- raw HTML omitted -->
+JDK8 的 Map API 有不少便利的預設方法，以下可以介紹一下。&lt;/p></description></item><item><title>ArrayList &amp; LinkedList 選擇場景</title><link>https://aryido.github.io/posts/java/arraylist-linkedlist/</link><pubDate>Sat, 17 Sep 2022 12:49:55 +0800</pubDate><guid>https://aryido.github.io/posts/java/arraylist-linkedlist/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>在 &lt;a href="https://leetcode.com/problems/reconstruct-itinerary/">&lt;strong>leetcode 332. Reconstruct Itinerary&lt;/strong>&lt;/a> ，答案須回傳 &lt;strong>List&lt;/strong>。因為題目是 &lt;strong>Post-order traversal on Edges&lt;/strong> ，所以添加答案要往第一個元素插入。 這裡就是一個可以使用 &lt;strong>LinkedList&lt;/strong> 而非 &lt;strong>ArrayList&lt;/strong> 的好情境!&lt;/p>
+&lt;p>ArrayList 和 LinkedList 是 Java 中的集合框架，它們都實現了 List 接口。&lt;/p>
+&lt;ul>
+&lt;li>ArrayList 是適用於需要快速訪問集合中的元素的場景。&lt;/li>
+&lt;li>LinkedList 適用於頻繁插入和刪除元素的場景。&lt;/li>
+&lt;/ul>
+&lt;p>需要查找集合中的元素，可以選擇 ArrayList；如果需要頻繁地插入和刪除元素，可以選擇 LinkedList。同時，如果需要實現隊列或棧等數據結構，也可以選擇 LinkedList。&lt;/p>
 &lt;/blockquote></description></item><item><title>Java 技巧 - computeIfAbsent() 用法詳解</title><link>https://aryido.github.io/posts/java/computeifabsent/</link><pubDate>Sat, 17 Sep 2022 12:44:22 +0800</pubDate><guid>https://aryido.github.io/posts/java/computeifabsent/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>使用 HashMap 的方法 :&lt;/p>

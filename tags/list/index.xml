@@ -1,6 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>list on Aryido Tech Note</title><link>https://aryido.github.io/tags/list/</link><description>Recent content in list on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 17 Sep 2022 12:49:55 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/list/index.xml" rel="self" type="application/rss+xml"/><item><title>ArrayList &amp; LinkedList 選擇場景</title><link>https://aryido.github.io/posts/java/java-skill-6/</link><pubDate>Sat, 17 Sep 2022 12:49:55 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-6/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>list on Aryido Tech Note</title><link>https://aryido.github.io/tags/list/</link><description>Recent content in list on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 17 Sep 2022 12:49:55 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/list/index.xml" rel="self" type="application/rss+xml"/><item><title>ArrayList &amp; LinkedList 選擇場景</title><link>https://aryido.github.io/posts/java/arraylist-linkedlist/</link><pubDate>Sat, 17 Sep 2022 12:49:55 +0800</pubDate><guid>https://aryido.github.io/posts/java/arraylist-linkedlist/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>在 &lt;a href="https://leetcode.com/problems/reconstruct-itinerary/">&lt;strong>leetcode 332. Reconstruct Itinerary&lt;/strong>&lt;/a> ，答案須回傳 &lt;strong>List&lt;/strong>。因為題目是 &lt;strong>Post-order traversal on Edges&lt;/strong> ，所以添加答案要往第一個元素插入。 這裡就是一個可以使用 &lt;strong>LinkedList&lt;/strong> 而非 &lt;strong>ArrayList&lt;/strong> 的好情境!&lt;/p>
+&lt;p>ArrayList 和 LinkedList 是 Java 中的集合框架，它們都實現了 List 接口。&lt;/p>
+&lt;ul>
+&lt;li>ArrayList 是適用於需要快速訪問集合中的元素的場景。&lt;/li>
+&lt;li>LinkedList 適用於頻繁插入和刪除元素的場景。&lt;/li>
+&lt;/ul>
+&lt;p>需要查找集合中的元素，可以選擇 ArrayList；如果需要頻繁地插入和刪除元素，可以選擇 LinkedList。同時，如果需要實現隊列或棧等數據結構，也可以選擇 LinkedList。&lt;/p>
 &lt;/blockquote></description></item><item><title>Graph 介紹</title><link>https://aryido.github.io/posts/data-structure/graph/</link><pubDate>Tue, 13 Sep 2022 21:37:08 +0800</pubDate><guid>https://aryido.github.io/posts/data-structure/graph/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Graph 用於表示物體與物體之間存在某種關係的結構，是內存中不一定連續的資料，每個節點會一個或多個 Reference 指向其他節點&lt;/p>
