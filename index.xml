@@ -153,9 +153,9 @@
 &lt;li>text2 的前 j 個字符&lt;/li>
 &lt;/ul>
 &lt;p>的最長相同的子序列的字符個數&lt;/p>
-&lt;/blockquote></description></item><item><title>Java賦值語句的返回值</title><link>https://aryido.github.io/posts/java/java-skill-9/</link><pubDate>Sun, 13 Nov 2022 23:32:56 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-9/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Java 賦值語句的返回值</title><link>https://aryido.github.io/posts/java/java-assignment-statement/</link><pubDate>Sun, 13 Nov 2022 23:32:56 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-assignment-statement/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>Java賦值語句，是有返回值的，而且還並不是想像中的 bool 類型 ！ 想想其實一直都有看到一些類似的用法，但因自己平時開發並沒有特別使用過，也沒有很深入去探討了解。今天在這邊就舉例一些出來，來說明 Java 賦值語句的返回值。&lt;/p>
+&lt;p>Java 賦值語句，是有返回值的，而且還並不是想像中的 bool 類型 ！ 想想其實一直都有看到一些類似的用法，但因自己平時開發並沒有特別使用過，也沒有很深入去探討了解。今天在這邊就舉例一些出來，來說明 Java 賦值語句的返回值。&lt;/p>
 &lt;/blockquote></description></item><item><title>CIDR 介紹</title><link>https://aryido.github.io/posts/others/cidr/</link><pubDate>Sun, 13 Nov 2022 17:37:27 +0800</pubDate><guid>https://aryido.github.io/posts/others/cidr/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>無類別域間路由（ Classless Inter-Domain Routing ，簡稱 CIDR ）是為了避免造成 IP 位址的大量浪費，於是出現的一種技術。CIDR重點有：&lt;/p>
