@@ -1,5 +1,5 @@
 ---
-title: Java賦值語句的返回值
+title: Java 賦值語句的返回值
 
 author: Aryido
 
@@ -15,7 +15,7 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> Java賦值語句，是有返回值的，而且還並不是想像中的 bool 類型 ！ 想想其實一直都有看到一些類似的用法，但因自己平時開發並沒有特別使用過，也沒有很深入去探討了解。今天在這邊就舉例一些出來，來說明 Java 賦值語句的返回值。
+> Java 賦值語句，是有返回值的，而且還並不是想像中的 bool 類型 ！ 想想其實一直都有看到一些類似的用法，但因自己平時開發並沒有特別使用過，也沒有很深入去探討了解。今天在這邊就舉例一些出來，來說明 Java 賦值語句的返回值。
 
 <!--more-->
 
@@ -37,7 +37,7 @@ reward: false
 }
 
 ```
-注意最後一行 ```return (E) elementData[lastRet = i]``` ，明顯可以知道 *lastRest=i* 是有返回值的。
+注意最後一行 ```return (E) elementData[lastRet = i]``` ，明顯可以知道 ```lastRest = i``` 是有返回值的。
 
 # HashMap put 方法
 ```java
