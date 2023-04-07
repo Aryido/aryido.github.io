@@ -34,6 +34,9 @@
 &lt;li>set -euo pipefail&lt;/li>
 &lt;/ul>
 &lt;p>這篇文章簡單解釋並記錄一下，可以參考使用。&lt;/p>
+&lt;/blockquote></description></item><item><title>Kubernetes - DaemonSet</title><link>https://aryido.github.io/posts/kubernetes/daemonset/</link><pubDate>Tue, 14 Mar 2023 22:35:58 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/daemonset/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>k8s Cluster 並不直接與 Pod 做互動，而是透過一些管理元件來處理 Pod ，這些管理元件總體被稱為 Workload，這裏介紹 DaemonSet 控制器。DaemonSet 用於提供 Node 基本設施的 Pod，會確保在&lt;strong>所有(或是特定)節點&lt;/strong>上，一定運行著指定的一個 Pod。若想只運行在特定節點運行 DaemonSet Pod，可藉由給定的&lt;strong>標籤&lt;/strong>，讓 Pod 可以只在特定節點上運行。&lt;/p>
 &lt;/blockquote></description></item><item><title>Kubernetes - Deployment</title><link>https://aryido.github.io/posts/kubernetes/deployment/</link><pubDate>Mon, 13 Mar 2023 23:52:05 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/deployment/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>在 Kubernetes 中，Pod 是最小的管理單元，但是 Pod 並不能保證總是可用的，因此 Kubernetes 實現了一系列控制器來管理 Pod，我們稱為&lt;strong>工作負載 workloads&lt;/strong>。故 workloads 基本可以解釋成管理一個或多個 &lt;strong>Pod&lt;/strong> 的方式，主要簡單舉例以下幾種：&lt;/p>
