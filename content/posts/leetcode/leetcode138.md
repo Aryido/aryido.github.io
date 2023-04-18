@@ -87,9 +87,3 @@ map.get(cur2).random = map.get(cur2.random);
 {{< /alert >}}
 
 ---
-
-## 遞迴解法
-
-```java
-
-```
