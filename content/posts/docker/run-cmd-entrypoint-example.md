@@ -81,6 +81,6 @@ docker run --name=test --hostname=my-test -it test-image ls
 
 ##  使用 RUN 注意事項
 
-- apt-get update 和 apt-get install 被放在一個 RUN 指令中執行
+- apt-get update 和 apt-get install 建議放在一個 RUN 指令中執行
 
-因為 RUN 室友換存機制的，放在一起能夠保證每次安裝的是最新的包。如果 apt-get install 在單獨的 RUN 中執行，則可能會使用 apt-get update 創建的鏡像層，而這一層可能是很久以前緩存的
+因為 RUN 有緩存機制。如果 apt-get install 在單獨的 RUN 中執行，則可能會使用 apt-get update 創建的鏡像層，而這一層可能是很久以前緩存的，放在一起能夠保證每次安裝的是最新的包。
