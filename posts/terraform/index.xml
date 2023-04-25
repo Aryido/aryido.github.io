@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/terraform/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 21 Apr 2023 22:48:00 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/terraform/index.xml" rel="self" type="application/rss+xml"/><item><title>Terraform-provider-archive</title><link>https://aryido.github.io/posts/terraform/archive/</link><pubDate>Fri, 21 Apr 2023 22:48:00 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/archive/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/terraform/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 23 Apr 2023 17:45:12 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/terraform/index.xml" rel="self" type="application/rss+xml"/><item><title>Terraform: templatefile 範例</title><link>https://aryido.github.io/posts/terraform/templatefile/</link><pubDate>Sun, 23 Apr 2023 17:45:12 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/templatefile/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>templatefile 是 Terraform 的一個&lt;strong>內置函數&lt;/strong>，可讓 Terraform 在運行時，根據變量動態生成文件內容 。 templatefile 函數的基本用法是：&lt;/p>
+&lt;ul>
+&lt;li>定義一個模板文件，其中包含要插入變量的佔位符。&lt;/li>
+&lt;li>在 Terraform code 中，您可以使用 templatefile 函數來讀取模板文件，並提供要插入的變量。&lt;/li>
+&lt;/ul>
+&lt;p>最後 Terraform 會動態生成文件內容，並將其輸出。&lt;/p>
+&lt;/blockquote></description></item><item><title>Terraform-provider-archive</title><link>https://aryido.github.io/posts/terraform/archive/</link><pubDate>Fri, 21 Apr 2023 22:48:00 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/archive/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>terraform archive 是一個 HashiCorp 公司提供的一個 Provider，可以讓使用者在 Terraform 中，將指定的目錄或檔案打包(例如 zip )。&lt;/p>
 &lt;p>雲端上運行的無伺服器計算服務非常熱門，著名的如 AWS Lambda 、 Azure Functions、GCP Cloud Functions，也常使用 terraform 工具來進行部屬。這時再使用 terraform archive ，方便地把例如 python code 打包成 zip，簡便地部署到服務上。&lt;/p>
