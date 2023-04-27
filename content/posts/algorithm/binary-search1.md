@@ -18,20 +18,26 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> Binary-Search，二分搜尋法是一種針對**已經排好序區間**內的 **O(logN)** 的搜索方式。
-> Binary-Search 會發現處理邊界時很容易出錯。 基本上都是沒注意到兩大原則 :
+> Binary-Search (二分搜尋法)，是一種針對**已經排好序**的區間內， **O(logN)** 的搜索方式。
+> Binary-Search 在處理邊界時很容易出錯。 基本上都是沒注意到兩大原則 :
 > - 每次都一定要縮減收所區域
 > - 每次縮減不能排除潛在答案
 >
->雖然真的淺顯易見，但實踐在寫的時候還是常常會寫出bug。
+>雖然淺顯易見，但實踐在寫的時候還是常常會寫出 bug 。
 
 <!--more-->
 
 ---
 
-**Although the basic idea if binary search is comparatively straightforward. the details can be surprisingly tricky.   -Donald Knuth**
 
-Binary-Search 最簡單的形式如下，找精確值的模板
+{{< alert success >}}
+**Although the basic idea if binary search is comparatively straightforward. the details can be surprisingly tricky.**
+
+**-Donald Knuth**
+{{< /alert >}}
+
+
+Binary-Search 最簡單的形式如下，是一個找精確值的模板
 ```java
 // int[] arr = {1, 2, 3, 4, 5, 6, 7}
 // k = 3
@@ -60,16 +66,16 @@ public init binarySearch(int[] arr, int k){
 # Binary-Search 本質
 {{< image classes="fancybox fig-100" src="/images/algorithm/binary-search.jpg" >}}
 
-可以想成是要找**藍紅邊界K**，這邊 Binary-Search 高效快速的原因就是當它**找到某個位置為藍色，則它前面的位置一定皆為藍色**，故可以直接把左指針拓展到元素所在位置。同理紅色也是一樣思考方式。
+使用 Binary-Search 找所謂的解答，可以想成是要找**藍紅邊界K**，這邊可以由圖像了解 Binary-Search 高效快速的原因，就是當 Binary-Search **找到某個位置為藍色，則它前面的位置一定皆為藍色**，故可以直接把左指針拓展到元素所在位置。同理紅色也是一樣思考方式。
 
 ---
 # 分析驗證
-接下來整理並分析一個 Binary-Search 通用的模板:
+接下來使用圖像說明，整理並分析一個 Binary-Search 通用的模板:
 
 {{< image classes="fancybox fig-100" src="/images/algorithm/binary-search2.jpg" >}}
 
 ## 為什麼初始  *l* = -1 , *r* = N ?
-試想一下，假如 *l* = 0，但整個 arr 都是紅色，那就和 *l* 代表的意義矛盾了，因為 *l* 的意義是在它當下位置，以及之前的位置，全部都是藍色。
+試想一下，假如 *l* = 0，但整個 arr 都是紅色，那就和 *l* 代表的意義矛盾了，因為 *l* 的意義是**在它當下位置，以及之前的位置，全部都是藍色**。
 
 同理若整個 arr 都是藍色，若讓 *r* = *N-1*，也和 *r* 代表的意義矛盾了。
 
@@ -113,7 +119,7 @@ public init binarySearch(int[] arr, int k){
 - *l + 3 = r*
 會回歸到 *l + 1 = r* case 或者 *l + 2 = r* 這個 case
 
-故以上分析，其實最後都會回到*l + 1 = r* 然後退出 loop， 不用擔心死循環的。
+故以上分析，其實最後都會回到 *l + 1 = r* ，然後退出 loop， 不用擔心死循環的。
 
 ---
 
