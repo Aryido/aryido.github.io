@@ -3,7 +3,7 @@
 &lt;p>Dynamic Programming 大概算是 leetcode 裡面平均難度最高的章節了，還蠻需要練習的。但在講 DP 之前，我們可以先講 Search，因為 Dynamic Programming 其實就是 Search + Memoization。&lt;/p>
 &lt;/blockquote></description></item><item><title>Binary Search - 2 各式模板</title><link>https://aryido.github.io/posts/algorithm/binary-search2/</link><pubDate>Sat, 15 Oct 2022 17:47:39 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/binary-search2/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>前面有介紹了 Binary Search 的通用模板，但通用模板還是有缺點，就是要找的目標須在一個 array 內，這樣才能定義 index ，才能定義 &lt;em>l = -1&lt;/em> 和 &lt;em>r = N&lt;/em> 兩個在 array 區間外的 index。 但很多時候題目並不會有一個準確的 array 定義出來，還是需要了解各個模板才能比較好的去解答各式題目的邊界。&lt;/p>
+&lt;p>前面有介紹了 Binary Search 的通用模板，但通用模板還是有缺點，就是要找的目標須在 array 範圍內，這樣才能定義 index。但很多時候題目並不會有一個準確的 array 被定義，還是需要了解各個模板才能比較好的去解答各式題目。&lt;/p>
 &lt;/blockquote></description></item><item><title>Binary Search - 1 觀念介紹</title><link>https://aryido.github.io/posts/algorithm/binary-search1/</link><pubDate>Sat, 15 Oct 2022 16:27:29 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/binary-search1/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Binary-Search (二分搜尋法)，是一種針對&lt;strong>已經排好序&lt;/strong>的區間內， &lt;strong>O(logN)&lt;/strong> 的搜索方式。
