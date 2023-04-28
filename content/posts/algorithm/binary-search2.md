@@ -18,7 +18,7 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> 前面有介紹了 Binary Search 的通用模板，但通用模板還是有缺點，就是要找的目標須在一個 array 內，這樣才能定義 index ，才能定義 *l = -1* 和 *r = N* 兩個在 array 區間外的 index。 但很多時候題目並不會有一個準確的 array 定義出來，還是需要了解各個模板才能比較好的去解答各式題目的邊界。
+> 前面有介紹了 Binary Search 的通用模板，但通用模板還是有缺點，就是要找的目標須在 array 範圍內，這樣才能定義 index。但很多時候題目並不會有一個準確的 array 被定義，還是需要了解各個模板才能比較好的去解答各式題目。
 
 <!--more-->
 
@@ -40,9 +40,8 @@ reward: false
 
 ---
 
-# 例如給定一個 arr={1, 2, 3, 5, 5, 5, 8, 9}，找到第一個 **5** index
+# 例如給定一個 arr = {1, 2, 3, 5, 5, 5, 8, 9} ，找到第一個 **5** 的 index
 
-ans : 3
 ```java
 // 通用型解法
 int[] nums = {1, 2, 3, 5, 5, 5, 8, 9};
@@ -85,7 +84,7 @@ System.out.println("find first 5 index: " +  r); //find first 5 index: 3
 
 ---
 
-# 給定一個 arr={1, 2, 3, 5, 5, 5, 8, 9} 找到最後一個 **5** index
+# 給定一個 arr = {1, 2, 3, 5, 5, 5, 8, 9} 找到最後一個 **5** 的 index
 ans : 5
 ```java
 // 通用型解法
