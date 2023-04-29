@@ -6,7 +6,7 @@
 &lt;li>在 Terraform code 中，您可以使用 templatefile 函數來讀取模板文件，並提供要插入的變量。&lt;/li>
 &lt;/ul>
 &lt;p>最後 Terraform 會動態生成文件內容，並將其輸出。&lt;/p>
-&lt;/blockquote></description></item><item><title>Avro 介紹</title><link>https://aryido.github.io/posts/data-structure/avro/</link><pubDate>Sun, 23 Apr 2023 15:27:54 +0800</pubDate><guid>https://aryido.github.io/posts/data-structure/avro/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Avro</title><link>https://aryido.github.io/posts/data-structure/avro/</link><pubDate>Sun, 23 Apr 2023 15:27:54 +0800</pubDate><guid>https://aryido.github.io/posts/data-structure/avro/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Avro 是一個 data serialization system ，是 Apache Hadoop 下的一個子項目，為跨多種程式語言和平台的&lt;strong>傳輸資料格式&lt;/strong>。Avro 可使用 JSON 格式來描述 data structure，並且支持&lt;strong>架構演進&lt;/strong>，保持向後、向前的相容性。
 Avro 也提供了編解碼和二進制格式，使得在高吞吐量的應用場僅中非常有用且高效。&lt;/p>
