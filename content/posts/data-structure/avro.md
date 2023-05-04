@@ -64,7 +64,7 @@ Avro 序列化首先要先定義 avsc file ，通過 Schema 來定義 data struc
 
 ---
 
-## Avro Schema 演變
+## Avro Schema Revision
 
 Avro 提供了高效、跨語言、使用 schema 的序列化機制，但如果 schema 發生變化會怎樣? 他們如何解決情況呢 ?
 
@@ -74,7 +74,7 @@ Avro 提供了高效、跨語言、使用 schema 的序列化機制，但如果 
 {{< image classes="fancybox fig-100" src="/images/data-structure/avro-readwrite.jpg" >}}
 這裡可以發現， Avro 不會因為 2 邊欄位的順序不同造成問題，故 Avro 中重新排列 field 是沒有問題的。因為解析器是**按照名字**來匹配讀 field ，這就是爲什麼在 Avro 中不需要標籤號。但因爲 field 是按名稱匹配的，所以**改變 field 的名稱是個很大的問題**。
 
-為了保持**演變前或後的一致性**，規則只能是: **新增**或**刪除**帶有**預設值**的 field
+為了保持 **revision 前或後的一致性**，規則只能是: **新增**或**刪除**帶有**預設值**的 field
 
 ---
 
