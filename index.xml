@@ -1,4 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 28 Apr 2023 22:49:35 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Protobuf</title><link>https://aryido.github.io/posts/data-structure/protobuf/</link><pubDate>Fri, 28 Apr 2023 22:49:35 +0800</pubDate><guid>https://aryido.github.io/posts/data-structure/protobuf/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 02 May 2023 23:10:23 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Protobuf 序列化詳解</title><link>https://aryido.github.io/posts/data-structure/protobuf-serialization/</link><pubDate>Tue, 02 May 2023 23:10:23 +0800</pubDate><guid>https://aryido.github.io/posts/data-structure/protobuf-serialization/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>要了解 Protobuf 的編碼和序列化知識，首先需要了解一些儲備知識點。&lt;/p>
+&lt;ul>
+&lt;li>Varint 編碼&lt;/li>
+&lt;li>Zigzag 編碼&lt;/li>
+&lt;li>Wire Type 類型&lt;/li>
+&lt;li>T-L-V 儲存方式&lt;/li>
+&lt;/ul>
+&lt;p>可以更加理解 protobuf。&lt;/p>
+&lt;/blockquote></description></item><item><title>Protobuf</title><link>https://aryido.github.io/posts/data-structure/protobuf/</link><pubDate>Fri, 28 Apr 2023 22:49:35 +0800</pubDate><guid>https://aryido.github.io/posts/data-structure/protobuf/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Protobuf ，全稱 Protocol Buffers ，是一種輕量級的資料交換格式，適合高性能，對響應速度有要求的 data 傳輸場景。最初由 Google 開發，現在已成為一個開源項目。Protobuf 的核心思想是定義資料格式，然後使用&lt;strong>生成的 code&lt;/strong> ，在不同的平台上編碼和解碼。缺點是 profobuf 為二進制格式，data 本身不具有可讀性，需要解碼後才能看得懂資料內容。&lt;/p>
 &lt;/blockquote></description></item><item><title>Terraform: templatefile 範例</title><link>https://aryido.github.io/posts/terraform/templatefile/</link><pubDate>Sun, 23 Apr 2023 17:45:12 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/templatefile/</guid><description>&lt;!-- raw HTML omitted -->
