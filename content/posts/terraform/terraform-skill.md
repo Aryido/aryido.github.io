@@ -74,3 +74,16 @@ terraform apply -no-color 2>&1 | tee apply.txt
 export TF_LOG_PATH="./terraform.log"
 ```
 ---
+
+# Terraform state rm
+可以從 Terraform 管理的狀態中移除指定的資源，使其不再由 Terraform 管理。這個命令可以在 Terraform 設定中刪除資源，而不會刪除實際的基礎設施資源。
+
+```shell
+terraform state rm aws_instance.example
+```
+
+這個命令會從狀態檔案中移除 aws_instance.example 資源，並將其從 Terraform 的管理範圍中移除。
+
+{{< alert success >}}
+這個命令可以在需要刪除不需要的資源，或者修復狀態檔案中的錯誤時使用。
+{{< /alert >}}
