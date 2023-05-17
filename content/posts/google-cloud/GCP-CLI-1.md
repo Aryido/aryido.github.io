@@ -92,6 +92,15 @@ gcloud version
 
 # Display current gcloud CLI environment details.
 gcloud info
+
+gcloud auth list
+
+gcloud auth revoke <ACCOUNT_ID>
+
+gcloud auth activate-service-account <SERVICE_ACCOUNT_ID> --key-file=<KEY_FILE_PATH> --project=<PROJECT_ID>
+
 ```
+
+
 
 ---
