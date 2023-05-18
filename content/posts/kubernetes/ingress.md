@@ -52,28 +52,55 @@ kind: Ingress
 metadata:
   name: demo-ingress
 spec:
+  defaultBackend:
+    service:
+      name: default-backend
+      port:
+        number: 80
   rules:
     http:
       paths:
       - path: /svc1
+        pathType: ImplementationSpecific
         backend:
-          serviceName: svc-1
-          servicePort: 80
+          service:
+            Name: svc-1
+            Port:
+              number: 80
       - path: /svc2
+        pathType: ImplementationSpecific
         backend:
-          serviceName: svc-2
-          servicePort: 80
+          service:
+            Name: svc-2
+            Port:
+              number: 80
 ```
-上面這個 Ingress 資源的定義，配置了 :
+在 Kubernetes 1.19 及更高版本中，Ingress API 版本已升級為正式版 ```networking.k8s.io/v1```，並且 Ingress/v1beta1 標記為**已棄用**。更進一步在 Kubernetes 1.22 中，```networking.k8s.io/v1``` **已被移除**。
+
+這其中 yaml 有重大更新，故不要用到舊的版本:
+- ```spec.backend``` 變成 ```spec.defaultBackend```
+- ```serviceName``` 變成 ```service.name```
+- ```servicePort``` 分成兩種:
+  - ```service.port.number```
+  - ```service.port.name```
+
+- ```pathType``` 現在對於每個指定的路徑都是**必需的**。值可以是：
+  - Prefix
+  - Exact
+  - ImplementationSpecific
+
+上面這個 yaml Ingress 資源的定義，配置了 :
 - 路徑爲 ```/svc1``` 和  ```/svc2``` 的路由
 - 所有 ```/svc1``` 和  ```/svc2``` 的請求，都會被 Ingress **個別轉發**至名爲 ```svc-1``` 和  ```svc-2``` 的服務的 80 端口的 / 路徑下。
+
+
 
 {{< alert info >}}
 可以將 Ingress 狹義的類比爲 Nginx 中的配置文件 nginx.conf。
 {{< /alert >}}
 
 {{< alert success >}}
-所謂 Ingress，就是 Service 的 Service。
+Ingress 會用來管理 Service 。故可以說  Ingress ，就是 Service 的 Service ~
 {{< /alert >}}
 
 ###  Ingress Controller
