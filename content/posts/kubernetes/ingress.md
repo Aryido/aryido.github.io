@@ -93,8 +93,6 @@ spec:
 - 路徑爲 ```/svc1``` 和  ```/svc2``` 的路由
 - 所有 ```/svc1``` 和  ```/svc2``` 的請求，都會被 Ingress **個別轉發**至名爲 ```svc-1``` 和  ```svc-2``` 的服務的 80 端口的 / 路徑下。
 
-
-
 {{< alert info >}}
 可以將 Ingress 狹義的類比爲 Nginx 中的配置文件 nginx.conf。
 {{< /alert >}}
@@ -118,16 +116,16 @@ Ingress Controller 通過不斷地監聽 kube-apiserver，當得知到 Service�
 
   定義訪問路徑的 list ，每個路徑都有一個backend.service 定義
 
-- http.backend :
+- http.paths.backend :
 
   定義後端的 Service 服務，此外一般情況下在 Ingress 控制器中會配置一個 defaultBackend 默認後端，**但不是定義在 IngressRule 中。**
 
 
-另外當我們想要在 Kubernetes 內，爲應用進行 TLS 配置等 HTTP 相關的操作時，都必須通過Ingress 來進行。
+另外當我們想要在 Kubernetes 內，爲應用進行 TLS 配置等 HTTP 相關的操作時，都必須通過 k8s Ingress 來進行，k8s service 無法做到。
 
 {{< alert warning >}}
 Kubernetes 的 Service 只有四層代理，只支持 IP:Port 格式訪問。
-而 Ingress api 支持實現七層代理。
+而 Ingress api **支持實現七層代理**。
 {{< /alert >}}
 
 
