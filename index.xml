@@ -6,7 +6,7 @@
 &lt;p>當我們在編寫 Kubernetes Pod 相關的 yaml spec 時，有時會針對 spec.containers ，設置啟動時要執行的命令及其參數，而 Kubernetes 提供 &lt;code>command &lt;/code> 和 &lt;code>args&lt;/code>，兩種方式可以選擇。但這時候就會出現一些疑問 :&lt;/p>
 &lt;ul>
 &lt;li>這兩個差異是甚麼 ?&lt;/li>
-&lt;li>Docker Image 中如果自帶 Entrypoint 和 CMD ，若 Kubernetes 再設置 command 和 args 會發生甚麼事情呢 ?&lt;/li>
+&lt;li>Docker Image 中如果自帶 ENTRYPOINT 和 CMD ，若 Kubernetes 再設置 &lt;code>command&lt;/code> 和 &lt;code>args&lt;/code> 會發生甚麼事情呢 ?&lt;/li>
 &lt;/ul>
 &lt;p>以下就來簡單說明一下。&lt;/p>
 &lt;/blockquote></description></item><item><title>Protobuf 序列化詳解</title><link>https://aryido.github.io/posts/data-structure/protobuf-serialization/</link><pubDate>Tue, 02 May 2023 23:10:23 +0800</pubDate><guid>https://aryido.github.io/posts/data-structure/protobuf-serialization/</guid><description>&lt;!-- raw HTML omitted -->
