@@ -15,7 +15,7 @@ comment: false
 reward: false
 ---
 <!--BODY-->
->  Kubernetes **cluster 內部**使用 kube-dns 實現服務發現的功能；至於要暴露應用於 Kubernetes **cluster 外部** ，已知可以使用 **NodePort** 和 **LoadBlancer** 類型的 Service，除此之外，還可以使用 Kubernetes Ingress 服務。Ingress 可用來代理不同 Kubernetes Service ，將外部的請求轉發到 **cluster 內不同的 Service** 上，來實現負載均衡。
+>  Kubernetes **cluster 內部**使用 kube-dns 實現服務發現的功能；若要把應用暴露於 Kubernetes **cluster 外部** ，已知可以使用 **NodePort** 和 **LoadBlancer** 類型的 Service，除此之外，還可以使用 Kubernetes Ingress 服務。Ingress 可用來代理不同 Kubernetes Service ，將外部的請求轉發到 **cluster 內不同的 Service** 上，來實現負載均衡。
 <!--more-->
 
 ## 緣起
@@ -28,7 +28,7 @@ Ingress 資源對象，是一個可讓**請求從外部訪問 cluster 的一個�
 - 每次有新服務 pod 加入時，都會需要**改 Nginx 配置**
 - 改完配置還要**重新啟動**或**重新部屬** Nginx 服務
 
-若不想自己還要去手動更改 Nginx 設定，或者還要滾動更新 Nginx Pod ，則可能會需要再加上**服務發現 server** 比如 Zookeeper、Eureka 之類的來自動註冊... 這個想法是沒有錯的 ! 但自己去設定這些 infra 功能有些麻煩，所以 **Ingress 幫我們實現了上述所有的操作需求了** !
+若不想自己還要去手動更改 Nginx 設定，還要滾動更新 Nginx Pod ，則可能會需要再加上**服務發現 server** 比如 Zookeeper、Eureka 之類的來實現自動註冊... 這個想法本身是沒有錯的 ! 但自己去設定這些 infra 功能有些麻煩，這邊 Ingress 已經幫我們把上述問題統整起來，並**實現了上述所有的操作需求了** !
 
 {{< alert success >}}
 服務發現的功能 Ingress 自己已經實現了，不需要使用第三方的服務了；再加上域名規則定義，路由資訊的刷新依靠 Ingress Controller
@@ -42,7 +42,7 @@ Ingress 帶來的靈活度和自由度，對於使用容器時代來說，其實
 
 ---
 
-## Ingress
+## [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 
 下面給一個簡單的範例 yaml ，IngressRule 的定義依賴於 path ，每一個 path 都對應一個後端 Service :
 
@@ -101,24 +101,26 @@ spec:
 Ingress 會用來管理 Service 。故可以說  Ingress ，就是 Service 的 Service ~
 {{< /alert >}}
 
-###  Ingress Controller
+---
+
+##  Ingress Controller
 
 Ingress Controller 通過不斷地監聽 kube-apiserver，當得知到 Service、Pod 有變化後，Ingress Controller 會結合 Ingress 的配置，更新反向代理負載均衡器。  常用的各種反向代理項目，比如 Nginx 等，都已經爲 Kubernetes 專門維護了對應的 Ingress Controller。例如 ingress-nginx，它以 pod 形式運行。
 
-###  IngressRule
+##  IngressRule
 以 yaml 聲明 ingress-controller 會按照策略生成配置文件
 
-- host：
+- ```host```：
 
   **可選字段**，沒有特別指定 host 屬性的話，通過指定 IP 地址的所有入站 HTTP 通信都會被 ingress 代理。
 
-- http.paths :
+- ```http.paths``` :
 
-  定義訪問路徑的 list ，每個路徑都有一個backend.service 定義
+  定義訪問路徑的 list ，每個路徑都有一個```backend.service``` 定義
 
-- http.paths.backend :
+- ```http.paths.backend``` :
 
-  定義後端的 Service 服務，此外一般情況下在 Ingress 控制器中會配置一個 defaultBackend 默認後端，**但不是定義在 IngressRule 中。**
+  定義後端的 Service 服務，此外一般情況下在 Ingress 控制器中會配置一個 ```defaultBackend``` 默認後端，**但不是定義在 IngressRule 中。**
 
 
 另外當我們想要在 Kubernetes 內，爲應用進行 TLS 配置等 HTTP 相關的操作時，都必須通過 k8s Ingress 來進行，k8s service 無法做到。
