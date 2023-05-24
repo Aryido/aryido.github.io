@@ -4,5 +4,11 @@
 &lt;p>ENTRYPOINT 和 CMD 的區別在於使用 ENTRYPOINT 時， CMD 指令會被作為其&lt;strong>默認參數&lt;/strong>，也可以在啟動容器時通過覆蓋 CMD 指令來輸入參數。&lt;/p>
 &lt;/blockquote></description></item><item><title>Dockerfile - RUN、CMD、ENTRYPOINT 介紹</title><link>https://aryido.github.io/posts/docker/run-cmd-entrypoint/</link><pubDate>Sat, 08 Apr 2023 12:50:16 +0800</pubDate><guid>https://aryido.github.io/posts/docker/run-cmd-entrypoint/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>Dockerfile 讓我們可以透過設定&lt;strong>指令&lt;/strong>，快速地更新或建構 Container 。由於 Dockerfile 中可以清楚的知道映像檔的組成，因此在安全性上會有所提升；也因為是純文字檔，所以檔案很小、很容易分享。但裡面有一些指定蠻容易混淆的，這次重點介紹 RUN、 CMD 以及 ENTRYPOINT，這三個指令都可以用來執行具體的命令，&lt;strong>但其中又有些差異&lt;/strong>，以下做一些說明和整理。&lt;/p>
+&lt;p>Dockerfile 讓我們可以透過設定&lt;strong>指令&lt;/strong>的方式，快速地更新和建構 Image 。由於 Dockerfile 中可以清楚的知道 Image 建構的過程和引用的 package 組成，因此在安全性上會有所提升；也因為是純文字檔，所以 size 很小、易於分享。Dockerfile 裡面有一些指令蠻容易混淆的，這次重點介紹:&lt;/p>
+&lt;ul>
+&lt;li>RUN&lt;/li>
+&lt;li>CMD&lt;/li>
+&lt;li>ENTRYPOINT&lt;/li>
+&lt;/ul>
+&lt;p>這三個指令都可以用來執行具體的命令，&lt;strong>但其中又有些差異&lt;/strong>，以下做一些說明和整理。&lt;/p>
 &lt;/blockquote></description></item></channel></rss>
