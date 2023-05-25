@@ -23,7 +23,7 @@ reward: false
 
 ---
 
-CMD 指令最特別的是**可以作為 ENTRYPOINT 的參數**，以下用一些範例來敘述整個 RUN、CMD 和 ENTRYPOINT 的觀念。
+CMD 指令最特別的是，**可以作為 ENTRYPOINT 的參數**，以下用一些範例來敘述整個 RUN、CMD 和 ENTRYPOINT 的觀念。
 
 ## scenario
 
@@ -40,24 +40,26 @@ docker run --name=test --hostname=my-test -it test-image
 
 # 運行後看到我們設的 hostname ，也就是 my-test
 ```
-運行容器時自動執行了 hostname 指令，為甚麼呢 ? 之前有提過，**Docker 在啟動容器時會先使用預設的 ENTRYPOINT 指令，而其預設的指令就是 ```/bin/sh -c```** ! 所以其實我們的 Dockerfile 實際內容可以看成是 :
+運行容器時自動執行了 ```hostname``` 指令，為甚麼呢 ? 之前有提過，**Docker 在啟動容器時，會先使用預設的 ENTRYPOINT 指令，而 linux 其預設的指令就是 ```/bin/sh -c```** ! 所以其實我們的 Dockerfile 實際內容可以看成是 :
 ```docker
 FROM ubuntu
 ENTRYPOINT ["/bin/sh", "-c"]
 CMD ["hostnmae"]
 ```
-這裡 CMD **就作為 ENTRYPOINT 的參數**，相當於在 linux 環境，下一個 hostname 指令。 接下來把 container 刪掉，再使用 :
+這裡 CMD **就作為 ENTRYPOINT 的參數**，相當於在 linux 環境，下一個 hostname 指令，故理所當然會印出本機名稱。
+
+接下來把 container 刪掉，再使用 :
 
 ```
 docker run --name=test --hostname=my-test -it test-image ls
 
 # 運行後可以看到 ls 命令的輸出
 ```
-{{< alert info >}}
-特別注意一下多加了個 ls 參數
+{{< alert warning >}}
+特別注意一下，上述 cli ，多加了個 ls 參數
 {{< /alert >}}
 
-因為 CMD 指令可以蠻容易的被 ```docker run [OPTIONS] IMAGE [COMMAND] [ARG...]``` 的 [COMMAND]覆蓋，上述範例 Dockerfile 中 CMD 指令指定的 hostname 命令便被 ls 覆蓋了，所以運行後顯示 ls 命令的輸出。
+因為 CMD 指令可以可以被 ```docker run [OPTIONS] IMAGE [COMMAND] [ARG...]``` 的 ```[COMMAND]``` 覆蓋，上述範例 Dockerfile 中， CMD 指令指定的 hostname 命令便被 ls 覆蓋了，所以運行後顯示 ls 命令的輸出。
 
 ---
 
