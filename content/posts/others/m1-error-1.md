@@ -23,7 +23,7 @@ reward: false
 
 隨著 Apple 推出最新的 ARM 架構晶片，那 **ARM架構** 和 **x86架構** 有什麼不同呢 ? 以下簡單介紹兩者之間的差異。
 
-# x86架構 (基於 Intel 8086 且向下相容的 CPU 指令集架構)
+## x86架構 (基於 Intel 8086 且向下相容的 CPU 指令集架構)
 x86 屬於 **複雜指令集計算機(CISC)** 架構。(Complex Instruction Set Computer)
 - **Pros :**
 
@@ -39,9 +39,7 @@ x86 屬於 **複雜指令集計算機(CISC)** 架構。(Complex Instruction Set 
 x86-64 或 x64 或 AMD64 其實都是差不多一樣的東西，稱呼不同是政治的原因...
 {{< /alert >}}
 
----
-
-# ARM架構 ( Advanced RISC Machine )
+## ARM架構 ( Advanced RISC Machine )
 ARM 屬於 **精簡指令集計算機(RISC)** 架構。(Reduced Instruction Set Computing)
 - **Pros :**
 
@@ -56,3 +54,8 @@ ARM 屬於 **精簡指令集計算機(RISC)** 架構。(Reduced Instruction Set 
 {{< /alert >}}
 
 ---
+
+## 筆記
+
+- MAC M1 是 ```ARM 架構```
+- 其他筆電常用 ```x86 、 AMD64```
