@@ -1,5 +1,5 @@
 ---
-title: "Deployments: Rolling vs Canary vs Blue-Green"
+title: "Rolling vs Canary vs Blue-Green"
 
 author: Aryido
 
