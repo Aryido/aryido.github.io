@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 04 Jun 2023 13:53:53 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>49. Group Anagrams</title><link>https://aryido.github.io/posts/leetcode/leetcode49/</link><pubDate>Sun, 04 Jun 2023 13:53:53 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode49/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>所謂的兩次串互為 Anagrams ，意思就是兩個字串中，&lt;strong>字母出現的次數都一樣，只是位置不同&lt;/strong>，比如題目說的 ate 、 eat 、 tea 它們就都互為 Anagrams 。如何判斷是否為 Anagrams 是關鍵解題點，這題雖然歸為 Medium ，但我認為是 easy 偏難而已，主要是要熟悉一些 java 內建常用的字串處理 function ，寫起來會比較簡潔。&lt;/p>
+&lt;p>所謂的兩字串互為 Anagrams ，意思就是兩個字串中，&lt;strong>字母出現的次數都一樣，只是位置不同&lt;/strong>，比如題目說的 ate 、 eat 、 tea 它們就都互為 Anagrams 。如何判斷兩字串是否互為 Anagrams 是關鍵解題點，這題雖然歸為 Medium ，但我認為是 easy 而已，主要是要:&lt;/p>
+&lt;ul>
+&lt;li>熟悉一些 java 內建常用的字串處理 function ，寫起來會比較簡潔。&lt;/li>
+&lt;li>想到使用 map 結構來儲存分組資料。&lt;/li>
+&lt;/ul>
 &lt;/blockquote></description></item><item><title>Kubernetes - DNS Service Discovery</title><link>https://aryido.github.io/posts/kubernetes/dns-service-discovery/</link><pubDate>Wed, 31 May 2023 22:58:42 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/dns-service-discovery/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>在 Kubernetes 中，Service Discovery 一般常用的 DNS 提供商是使用 kube-dns 或 CoreDNS ，而 CoreDNS 從 v1.13 開始成為 Kubernetes 默認 DNS 服務。Service Discovery 是一種機制，通過該機制，服務可以動態地發現彼此，而無需 hardcode 硬寫 IP 或 endpoint 配置，可以讓我們不需要知道 Service 的 Cluster IP ，只透過 Service 的名稱，就能找到相對應 Pod ，而非使用 IP 地址訪問。&lt;/p>
