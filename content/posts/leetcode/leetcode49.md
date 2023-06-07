@@ -19,14 +19,16 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> 所謂的兩次串互為 Anagrams ，意思就是兩個字串中，**字母出現的次數都一樣，只是位置不同**，比如題目說的 ate 、 eat 、 tea 它們就都互為 Anagrams 。如何判斷是否為 Anagrams 是關鍵解題點，這題雖然歸為 Medium ，但我認為是 easy 偏難而已，主要是要熟悉一些 java 內建常用的字串處理 function ，寫起來會比較簡潔。
+> 所謂的兩字串互為 Anagrams ，意思就是兩個字串中，**字母出現的次數都一樣，只是位置不同**，比如題目說的 ate 、 eat 、 tea 它們就都互為 Anagrams 。如何判斷兩字串是否互為 Anagrams 是關鍵解題點，這題雖然歸為 Medium ，但我認為是 easy 而已，主要是要:
+> - 熟悉一些 java 內建常用的字串處理 function ，寫起來會比較簡潔。
+> - 想到使用 map 結構來儲存分組資料。
 <!--more-->
 
 ---
 
 ## 思路
 
-可以發現如果把**兩個 string 個別分割成 char array 後排列，若會得到相同的結果，則互為 Anagrams** 。由於同一組 Anagrams 詞重新排序後都會得到相同的結果，以此作為 key，將所有相同的 Anagrams 詞都保存到一 list 中，就可一建立 map 把 Anagrams 組建立完成。
+可以發現如果把**兩個 string 個別分割成 char array 後，並用同一種方式，個別排序 array 內元素，若會得到相同的結果，則互為 Anagrams** 。由於同一組 Anagrams 詞重新排序後都會得到相同的結果，以此作為 key，將所有相同的 Anagrams 詞都保存到一 list 中，就可一建立 map ，該 map 就是把 Anagrams 組建立完成的解答了。
 
 {{< alert info >}}
 特別注意下，題目中有一個條件，```strs[i] consists of lowercase English letters.```，解題時可以特別詢問下這點。
