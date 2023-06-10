@@ -24,11 +24,11 @@ reward: false
 
 透過 Kubernetes DNS 可以讓**同一個 Cluster 中的所有 Pods ，都能透過 Service 的名稱找到彼此**。k8s 提供了兩種方式進行 Service Discovery：
 
-### 環境變量 (不推薦使用)
-當 Pod 創建時， kubelet 會在該 Pod 中**注入有標籤關聯的 Service 相關環境變量**。
+### 環境變數 (不推薦使用)
+當 Pod 創建時， kubelet 會在該 Pod 中**注入同一個 namespace 中有標籤關聯的 Service 的相關環境變量**。
 
 {{< alert danger >}}
-需要注意的是，要想一個 Pod 中注入某個 Service 的環境變量，則必須 Service 要先比該 Pod 創建。這一點，使得這種方式進行 Service Discovery，不太好用...
+使用環境變數來取得 IP有一個限制，**pods 須在一個 namespace 中**，同一個 namespace 中的 pod 才會共享環境變量，如果不在同一個 namespace 就無法使用這個方法。
 {{< /alert >}}
 
 比如一個 ServiceName 爲```redis-master``` 的 Service，對應的 ```ClusterIP:Port``` 爲 ```10.0.0.11:6379```，則對應的環境變量爲：
@@ -46,9 +46,9 @@ Kubernetes 會在 kube-system 命名空間中用 Pod 的形式運行一個 DNS �
 
 - Service 得到一個 ClusterIP，並保存到 etcd
 
-- DNS 服務會以某種方式得知有 Service 的創建，據此創建必要的 **DNS A 記錄**。
+- DNS 服務會以**某種方式**得知有 Service 的創建，據此創建必要的記錄。
 
-例如 CoreDNS 會對 API Server 進行監聽，一旦發現有新建的 Service 對象，就創建一個從 Service 名稱映射到 ClusterIP 的域名記錄。
+某種方式是甚麼呢 ? 舉例 CoreDNS ，它會對 API Server 進行監聽，一旦發現有新建的 Service 對象，就創建一個從 Service 名稱映射到 ClusterIP 的域名記錄。
 
 {{< alert info >}}
 CoreDNS 控制器會關注新創建的 Service ，Service 就不必自行向 DNS 進行註冊。
@@ -71,7 +71,7 @@ k8s Domain Name 解析規則，會因為 Pod 所在的 namespace 而返回不同
 
 ---
 
-## DNS 查詢範例
+## DNS 查詢範例 (重要)
 假定有:
 - namespace 為 ```np1```
   - service 為 ```svc1```
