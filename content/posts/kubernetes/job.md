@@ -56,22 +56,44 @@ spec:
       containers:
       - name: my-container
         image: busybox
-        command: [
-          "sh",
-          "-c",
-          "echo Hello; sleep 5"]
+        command: ['sh','-c','echo Hello']
       restartPolicy: Never
 ```
 {{< alert success >}}
 其實可以把 Kubernetes Job 看成一個特殊的 deployment， 寫法上並沒有差太多。Job 最終的追求目的是為了結束而運行的，跟 Deployment 追求的是持續運行有著很大的不同。
 {{< /alert >}}
 
-{{< alert warning >}}
-因為 Job 也是會把 Pod 創建出來，故 Job 的 .metadata.name 的命名合法的，即 :
-- 不能超過 253 個字符
-- 只能包含小寫字母、數字，以及 - 和 .
-- 必須以字母數字開頭
-- 必須以字母數字結尾
-{{< /alert >}}
-
 ---
+
+# Job workflow
+
+Kubernetes 中，**並沒有自然的支持 Job workflow**，會需要其他 CICD 工具輔助。Job 的默認是 **parallel 執行 Job** ，會同時啟動多個 Pod 來處理 Job 。
+
+如果有**按順序執行的任務**的需求，有一個不是很正規技巧實現，是使用 **Init Containers** 來實現任務的**順序執行**。以下範例：
+
+```
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sequential-job
+spec:
+  template:
+    spec:
+      initContainers:
+      - name: task-1
+        image: busybox
+        command: ['sh', '-c', 'echo job-1']
+      - name: task-2
+        image: busybox
+         command: ['sh', '-c', 'echo job-2']
+      containers:
+      - name: job-done
+        image: busybox
+        command: ['sh', '-c', 'echo "job-1 and job-2 completed"']
+```
+
+Init Containers 會依次執行，如果某個步驟 Init Container 失敗，整個 Job 就會被終止並且顯示失敗。
+
+{{< alert warning >}}
+使用 **Init Containers**來實現任務順序執行，我覺得有點不太正規的...
+{{< /alert >}}
