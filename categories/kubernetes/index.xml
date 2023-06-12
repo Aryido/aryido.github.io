@@ -1,4 +1,13 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>kubernetes on Aryido Tech Note</title><link>https://aryido.github.io/categories/kubernetes/</link><description>Recent content in kubernetes on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 31 May 2023 22:58:42 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/kubernetes/index.xml" rel="self" type="application/rss+xml"/><item><title>Kubernetes - DNS Service Discovery</title><link>https://aryido.github.io/posts/kubernetes/dns-service-discovery/</link><pubDate>Wed, 31 May 2023 22:58:42 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/dns-service-discovery/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>kubernetes on Aryido Tech Note</title><link>https://aryido.github.io/categories/kubernetes/</link><description>Recent content in kubernetes on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 11 Jun 2023 00:29:32 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/kubernetes/index.xml" rel="self" type="application/rss+xml"/><item><title>Kubernetes - 應用之間的如何通訊</title><link>https://aryido.github.io/posts/kubernetes/app-communication/</link><pubDate>Sun, 11 Jun 2023 00:29:32 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/app-communication/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>kubernetes 可以創建多個 Pods，Pod 內有一個或多個 Container，那麼 Container 之間是怎麼溝通的的呢 ? 這裡歸類出一些 case :&lt;/p>
+&lt;ul>
+&lt;li>同一個 pod 中，不同的 container 的通訊&lt;/li>
+&lt;li>同一網路下，不同 pod 間的通訊&lt;/li>
+&lt;li>不同網路下，不同 pod 間的通訊&lt;/li>
+&lt;/ul>
+&lt;p>以下來對這些 case 進行說明。&lt;/p>
+&lt;/blockquote></description></item><item><title>Kubernetes - DNS Service Discovery</title><link>https://aryido.github.io/posts/kubernetes/dns-service-discovery/</link><pubDate>Wed, 31 May 2023 22:58:42 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/dns-service-discovery/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>在 Kubernetes 中，Service Discovery 一般常用的 DNS 提供商是使用 kube-dns 或 CoreDNS ，而 CoreDNS 從 v1.13 開始成為 Kubernetes 默認 DNS 服務。Service Discovery 是一種機制，通過該機制，服務可以動態地發現彼此，而無需 hardcode 硬寫 IP 或 endpoint 配置，可以讓我們不需要知道 Service 的 Cluster IP ，只透過 Service 的名稱，就能找到相對應 Pod ，而非使用 IP 地址訪問。&lt;/p>
 &lt;/blockquote></description></item><item><title>Kubernetes - Service</title><link>https://aryido.github.io/posts/kubernetes/service/</link><pubDate>Sat, 27 May 2023 10:07:23 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/service/</guid><description>&lt;!-- raw HTML omitted -->
