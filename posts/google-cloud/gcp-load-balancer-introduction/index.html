@@ -1,139 +1,39 @@
-<!doctype html><html lang=en-us><head><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"GCP load-balancer 架構簡介","image":"https://aryido.github.io/images/google-cloud/logo.jpg","datePublished":"2023-06-26T23:47:00+08:00","dateModified":"2023-06-26T23:47:00+08:00","author":{"@type":"Person","name":"李昀陽 YunYang Lee","image":"https://aryido.github.io/images/aboutme/head-shot.jpg"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aryido.github.io\/posts\/google-cloud\/gcp-load-balancer-introduction\/"},"publisher":{"@type":"Organization","name":"Aryido Tech Note","logo":{"@type":"ImageObject","url":"https://aryido.github.io/images/aboutme/head-shot.jpg"}},"description":" GCP 負載平衡的設置主要分為 Frontend（前端）與 Backends（後端），目前也有多種 Load Balancer，console上是從流量類型大概分成了三個 :\nHTTP(S) load balancing TCP load balancing UPD load balancing 但實際上依照細部功能，還有分 Global 或 Regional ，總體設定蠻細緻的，可參考下圖 : ","keywords":[]}</script><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Hugo 0.114.1 with theme Tranquilpeak 0.5.3-BETA"><meta name=author content="李昀陽 YunYang Lee"><meta name=keywords content><meta name=description content="
+<!doctype html><html lang=en-us><head><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"GCP load-balancer 架構簡介","image":"https://aryido.github.io/images/google-cloud/logo.jpg","datePublished":"2023-06-26T23:47:00+08:00","dateModified":"2023-06-26T23:47:00+08:00","author":{"@type":"Person","name":"李昀陽 YunYang Lee","image":"https://aryido.github.io/images/aboutme/head-shot.jpg"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aryido.github.io\/posts\/google-cloud\/gcp-load-balancer-introduction\/"},"publisher":{"@type":"Organization","name":"Aryido Tech Note","logo":{"@type":"ImageObject","url":"https://aryido.github.io/images/aboutme/head-shot.jpg"}},"description":" GCP 負載平衡透過平均分發網絡流量到多個 server ，可以防止單一伺服器的過載，從而減少系統故障的風險；也可以達到降低對外 IP 地址和憑證費用的目的，以降低維運成本，因為只需透過配置一個負載平衡器對外 IP 地址和憑證，而不需要為背後的多個伺服器分別配置對外 IP 地址和憑證。目前有多種 Load Balancer，console上是從流量類型大概分成了三個 :\nHTTP(S) load balancing TCP load balancing UPD load balancing 但實際上依照細部功能，還有分 Global 或 Regional 等地域性分類，總體設定蠻細緻的。\n","keywords":[]}</script><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Hugo 0.115.2 with theme Tranquilpeak 0.5.3-BETA"><meta name=author content="李昀陽 YunYang Lee"><meta name=keywords content><meta name=description content="
 
-GCP 負載平衡的設置主要分為 Frontend（前端）與 Backends（後端），目前也有多種 Load Balancer，console上是從流量類型大概分成了三個 :
+GCP 負載平衡透過平均分發網絡流量到多個 server ，可以防止單一伺服器的過載，從而減少系統故障的風險；也可以達到降低對外 IP 地址和憑證費用的目的，以降低維運成本，因為只需透過配置一個負載平衡器對外 IP 地址和憑證，而不需要為背後的多個伺服器分別配置對外 IP 地址和憑證。目前有多種 Load Balancer，console上是從流量類型大概分成了三個 :
 
 HTTP(S) load balancing
 TCP load balancing
 UPD load balancing
 
-但實際上依照細部功能，還有分 Global 或 Regional ，總體設定蠻細緻的，可參考下圖 :
-
-
- 
-  
-  
-  
-  
-    
-  
-    
-      
-    
-  
-
-
-  
-    
-  
-    
-  
-    
-  
-  
-
-
+但實際上依照細部功能，還有分 Global 或 Regional 等地域性分類，總體設定蠻細緻的。
 "><meta property="og:description" content="
 
-GCP 負載平衡的設置主要分為 Frontend（前端）與 Backends（後端），目前也有多種 Load Balancer，console上是從流量類型大概分成了三個 :
+GCP 負載平衡透過平均分發網絡流量到多個 server ，可以防止單一伺服器的過載，從而減少系統故障的風險；也可以達到降低對外 IP 地址和憑證費用的目的，以降低維運成本，因為只需透過配置一個負載平衡器對外 IP 地址和憑證，而不需要為背後的多個伺服器分別配置對外 IP 地址和憑證。目前有多種 Load Balancer，console上是從流量類型大概分成了三個 :
 
 HTTP(S) load balancing
 TCP load balancing
 UPD load balancing
 
-但實際上依照細部功能，還有分 Global 或 Regional ，總體設定蠻細緻的，可參考下圖 :
-
-
- 
-  
-  
-  
-  
-    
-  
-    
-      
-    
-  
-
-
-  
-    
-  
-    
-  
-    
-  
-  
-
-
+但實際上依照細部功能，還有分 Global 或 Regional 等地域性分類，總體設定蠻細緻的。
 "><meta property="og:type" content="article"><meta property="og:title" content="GCP load-balancer 架構簡介"><meta name=twitter:title content="GCP load-balancer 架構簡介"><meta property="og:url" content="https://aryido.github.io/posts/google-cloud/gcp-load-balancer-introduction/"><meta property="twitter:url" content="https://aryido.github.io/posts/google-cloud/gcp-load-balancer-introduction/"><meta property="og:site_name" content="Aryido Tech Note"><meta property="og:description" content="
 
-GCP 負載平衡的設置主要分為 Frontend（前端）與 Backends（後端），目前也有多種 Load Balancer，console上是從流量類型大概分成了三個 :
+GCP 負載平衡透過平均分發網絡流量到多個 server ，可以防止單一伺服器的過載，從而減少系統故障的風險；也可以達到降低對外 IP 地址和憑證費用的目的，以降低維運成本，因為只需透過配置一個負載平衡器對外 IP 地址和憑證，而不需要為背後的多個伺服器分別配置對外 IP 地址和憑證。目前有多種 Load Balancer，console上是從流量類型大概分成了三個 :
 
 HTTP(S) load balancing
 TCP load balancing
 UPD load balancing
 
-但實際上依照細部功能，還有分 Global 或 Regional ，總體設定蠻細緻的，可參考下圖 :
-
-
- 
-  
-  
-  
-  
-    
-  
-    
-      
-    
-  
-
-
-  
-    
-  
-    
-  
-    
-  
-  
-
-
+但實際上依照細部功能，還有分 Global 或 Regional 等地域性分類，總體設定蠻細緻的。
 "><meta name=twitter:description content="
 
-GCP 負載平衡的設置主要分為 Frontend（前端）與 Backends（後端），目前也有多種 Load Balancer，console上是從流量類型大概分成了三個 :
+GCP 負載平衡透過平均分發網絡流量到多個 server ，可以防止單一伺服器的過載，從而減少系統故障的風險；也可以達到降低對外 IP 地址和憑證費用的目的，以降低維運成本，因為只需透過配置一個負載平衡器對外 IP 地址和憑證，而不需要為背後的多個伺服器分別配置對外 IP 地址和憑證。目前有多種 Load Balancer，console上是從流量類型大概分成了三個 :
 
 HTTP(S) load balancing
 TCP load balancing
 UPD load balancing
 
-但實際上依照細部功能，還有分 Global 或 Regional ，總體設定蠻細緻的，可參考下圖 :
-
-
- 
-  
-  
-  
-  
-    
-  
-    
-      
-    
-  
-
-
-  
-    
-  
-    
-  
-    
-  
-  
-
-
+但實際上依照細部功能，還有分 Global 或 Regional 等地域性分類，總體設定蠻細緻的。
 "><meta property="og:locale" content="en-us"><meta property="article:published_time" content="2023-06-26T23:47:00"><meta property="article:modified_time" content="2023-06-26T23:47:00"><meta property="article:section" content="gcp"><meta name=twitter:card content="summary"><meta property="og:image" content="https://aryido.github.io/images/aboutme/head-shot.jpg"><meta property="twitter:image" content="https://aryido.github.io/images/aboutme/head-shot.jpg"><meta property="og:image" content="https://aryido.github.io/images/google-cloud/logo.jpg"><meta property="twitter:image" content="https://aryido.github.io/images/google-cloud/logo.jpg"><title>GCP load-balancer 架構簡介</title><link rel=icon href=https://aryido.github.io/favicon.png><link rel=canonical href=https://aryido.github.io/posts/google-cloud/gcp-load-balancer-introduction/><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://aryido.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css></head><body><div id=blog><header id=header data-behavior=4><i id=btn-open-sidebar class="fa fa-lg fa-bars"></i><div class=header-title><a class=header-title-link href=https://aryido.github.io/ aria-label="Go to homepage">Aryido Tech Note</a></div><a class=header-right-picture href=https://aryido.github.io/#about aria-label="Open the link: /#about"><img class=header-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"></a></header><nav id=sidebar data-behavior=4><div class=sidebar-container><div class=sidebar-profile><a href=https://aryido.github.io/#about aria-label="Read more about the author"><img class=sidebar-profile-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"></a><h4 class=sidebar-profile-name>李昀陽 YunYang Lee</h4><h5 class=sidebar-profile-bio>Welcome to my Tech Note. You can read some of the chapters below.</h5></div><ul class=sidebar-buttons><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/ title=Home><i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden=true></i>
 <span class=sidebar-button-desc>Home</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/categories title=Categories><i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden=true></i>
 <span class=sidebar-button-desc>Categories</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/tags title=Tags><i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden=true></i>
@@ -141,7 +41,7 @@ UPD load balancing
 <span class=sidebar-button-desc>GitHub</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/index.xml title=RSS><i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden=true></i>
 <span class=sidebar-button-desc>RSS</span></a></li></ul><ul class=sidebar-buttons></ul><ul class=sidebar-buttons></ul></div></nav><div id=main data-behavior=4 class=hasCoverMetaIn><article class=post id=top><div class="post-header main-content-wrap text-left"><h1 class=post-title>GCP load-balancer 架構簡介</h1><div class="postShorten-meta post-meta"><time datetime=2023-06-26T23:47:00+08:00>June 26, 2023</time>
 <span>in</span>
-<a class=category-link href=https://aryido.github.io/categories/gcp>gcp</a></div></div><div class="post-content markdown"><div class=main-content-wrap><blockquote><p>GCP 負載平衡的設置主要分為 Frontend（前端）與 Backends（後端），目前也有多種 Load Balancer，console上是從<strong>流量類型</strong>大概分成了三個 :</p><ul><li>HTTP(S) load balancing</li><li>TCP load balancing</li><li>UPD load balancing</li></ul><p>但實際上依照細部功能，還有分 Global 或 Regional ，總體設定蠻細緻的，可參考下圖 :<div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/google-cloud/load-balancer-options.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/google-cloud/load-balancer-options.jpg></a></div></p></blockquote><hr><h2 id=gcp-load-balancer-架構>GCP load-balancer 架構</h2><p>雲端服務最大的優勢 Load Balancer 與 Autoscaling 就是雲端彈性展現的代表。 GCP 負載平衡的設置主要分為</p><ul><li>Frontend</li><li>Backend Service</li><li>Backends</li></ul><div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/google-cloud/lb.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/google-cloud/lb.jpg></a></div><hr><h3 id=frontend>Frontend</h3><p>訪問 GCP 資源的流量，都會先傳入 Frontend ，再依據<strong>連線方式</strong>與<strong>轉發規則</strong>被送往不同的 backend service 。主要有四個組件:</p><div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/google-cloud/frontend.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/google-cloud/frontend.jpg></a></div><ul><li><p>Forwarding rule：透過設置 IP 讓傳入流量進入負載平衡器，並運用對應的 Protocol 與 Port 將流量轉至 Proxy</p></li><li><p>Target proxy：作為 Client 與 Server 間的橋梁，可設置 SSL 憑證安全連線</p></li><li><p>SSL certificate：設定加密協議，這個憑證可以是 Google 幫我們管理，或由我們自行管理</p></li><li><p>URL map：依照使用者訪問的 URL ，將請求導向對應的 backend service</p></li></ul><hr><h3 id=backend-service--backends>Backend service & Backends</h3><p>GCP 在負載平衡中我們需要了解的重要概念是 Backend service 與 Backends 的不同</p><h4 id=backend-service>Backend service</h4><p>Backend service 主要是定義負載平衡器如何分配流量到我們設置的 Backends 資源，會藉由 health check 指定的頻率向指定的 port 探測並取得回應，確保資源健康之後， Backend service 才將流量導向 Backends；如果回應的速度低於 health check 設立的門檻，那麼該 instance 就會被判定為不健康， request 不會導向已被判定為不健康的 instance<div class="alert warning"><p><p>這邊提醒，要對後端資源進行健康檢查就必須設置Firewall rule ，允許來自 Health check 的流量</p><ul><li>130.211.0.0/22</li><li>35.191.0.0/16</li></ul></p></div></p><h4 id=backends>Backends</h4><p>Backends 的內容關聯可以分成以下幾個 :</p><ul><li><p>Instance group：多個 vm 放在一個群組以集中管理，可以有 Auto Scaling 功能，分為</p><ul><li>Google 代管的 managed instance group</li><li>我們自行管理的 unmanaged instance group</li></ul></li><li><p>Cloud Storage：針對 html、css、js、圖片和影片等靜態內容，直接存在 Cloud Storage 可有效節省資源</p></li><li><p>Network Endpoint Group（NEG）: 對於 cloud run 、 k8s Pods 等等 container 群組都是屬於此類</p></li></ul><hr><h2 id=external-https-load-balancer>External HTTP(S) Load Balancer</h2><p>這算是我們最常使用的負載平衡器，是給 HTTP / HTTPS 使用的，那如何分流的步驟如下 :</p><ul><li>Forwarding rule 指定一個外部 IP 和 Port，讓 User 知道，並讓流量透過單一 IP 進入負載平衡器，接下來會把 request 轉發到 Target proxy</li><li>Target proxy 會依 URL Map ，將流量導向對應的 Backend service 。若使用 HTTPS 負載平衡器，則 SSL 憑證也是由 Target proxy 關聯的</li><li>Backend service 是會對後端資源進行 health check ，確保流量送至健康的Backends，</li></ul><hr><h3 id=參考資料>參考資料</h3><ul><li><a href=https://blog.cloud-ace.tw/networking-website/load-balance/gcp-load-balancer-introduction/>什麼是負載平衡？原理、6大 GCP Load Balancer 完整介紹</a></li></ul></div></div><div id=post-footer class="post-footer main-content-wrap"><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--disabled"><i class="fa fa-angle-left"></i>
+<a class=category-link href=https://aryido.github.io/categories/gcp>gcp</a></div></div><div class="post-content markdown"><div class=main-content-wrap><blockquote><p>GCP 負載平衡透過平均分發網絡流量到多個 server ，可以防止單一伺服器的過載，從而減少系統故障的風險；也可以達到降低對外 IP 地址和憑證費用的目的，以降低維運成本，因為只需透過配置一個負載平衡器對外 IP 地址和憑證，而不需要為背後的多個伺服器分別配置對外 IP 地址和憑證。目前有多種 Load Balancer，console上是從<strong>流量類型</strong>大概分成了三個 :</p><ul><li>HTTP(S) load balancing</li><li>TCP load balancing</li><li>UPD load balancing</li></ul><p>但實際上依照細部功能，還有分 Global 或 Regional 等地域性分類，總體設定蠻細緻的。</p></blockquote><hr><div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/google-cloud/load-balancer-options.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/google-cloud/load-balancer-options.jpg></a></div><h2 id=gcp-load-balancer-架構>GCP load-balancer 架構</h2><p>雲端服務最大的優勢 Load Balancer 與 Autoscaling 就是雲端彈性展現的代表。 GCP 負載平衡的設置主要分為 :</p><ul><li>Frontend</li><li>Backend Service</li><li>Backends</li></ul><div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/google-cloud/lb.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/google-cloud/lb.jpg></a></div><p>這邊特別注意，在 GCP load-balancer 架構中，我們常提到 Frontend、Backend 這些關鍵字，<strong>記住這些跟我們常聽到網頁前端、後端是不一樣的東西 !</strong></p><hr><h3 id=frontend>Frontend</h3><p>訪問 GCP 資源的流量，都會先傳入 Frontend ，再依據<strong>連線方式</strong>與<strong>轉發規則</strong>被送往不同的 backend service 。主要有四個組件:</p><div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/google-cloud/frontend.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/google-cloud/frontend.jpg></a></div><ul><li><p>Forwarding rule：透過設置 IP 讓傳入流量進入負載平衡器，並運用對應的 Protocol 與 Port 將流量轉至 Proxy</p></li><li><p>Target proxy：作為 Client 與 Server 間的橋梁，可設置 SSL 憑證安全連線</p></li><li><p>SSL certificate：設定加密協議，這個憑證可以是 Google 幫我們管理，或由我們自行管理</p></li><li><p>URL map：依照使用者訪問的 URL ，將請求導向對應的 backend service</p></li></ul><hr><h3 id=backend-service--backends>Backend service & Backends</h3><p>GCP 在負載平衡中我們需要了解的重要概念是 Backend service 與 Backends 的不同</p><h4 id=backend-service>Backend service</h4><p>Backend service 主要是定義負載平衡器如何分配流量到我們設置的 Backends 資源，會藉由 health check 指定的頻率向指定的 port 探測並取得回應，確保資源健康之後， Backend service 才將流量導向 Backends；如果回應的速度低於 health check 設立的門檻，那麼該 instance 就會被判定為不健康， request 不會導向已被判定為不健康的 instance<div class="alert warning"><p><p>這邊提醒，要對後端資源進行健康檢查就必須設置Firewall rule ，允許來自 Health check 的流量</p><ul><li>130.211.0.0/22</li><li>35.191.0.0/16</li></ul></p></div></p><p>也可以在這裡設定 Cloud CDN ，提供快取服務。</p><h4 id=backends>Backends</h4><p>Backends 的內容關聯可以分成以下幾個 :</p><ul><li><p>Instance group：多個 vm 放在一個群組以集中管理，可以有 Auto Scaling 功能，分為</p><ul><li>Google 代管的 managed instance group</li><li>我們自行管理的 unmanaged instance group</li></ul></li><li><p>Cloud Storage：針對 html、css、js、圖片和影片等靜態內容，直接存在 Cloud Storage 可有效節省資源</p></li><li><p>Network Endpoint Group（NEG）: 對於 cloud run 、 k8s Pods 等等 container 群組都是屬於此類</p></li></ul><hr><h2 id=external-https-load-balancer>External HTTP(S) Load Balancer</h2><p>這算是我們最常使用的負載平衡器，是給 HTTP / HTTPS 使用的，分流的步驟如下 :</p><ul><li>Forwarding rule 指定一個外部 IP 和 Port，讓 User 知道，並讓流量透過單一 IP 進入負載平衡器，接下來會把 request 轉發到 Target proxy</li><li>Target proxy 會依 URL Map ，將流量導向對應的 Backend service 。若使用 HTTPS 負載平衡器，則 SSL 憑證也是由 Target proxy 關聯的</li><li>Backend service 是會對後端資源進行 health check ，確保流量送至健康的Backends，</li></ul><div class="alert danger"><p>HTTP(S) Load Balancer 為全球性的 GCP 資源，新建立完 Load Balancer 之後，更新時間約為 5 分鐘，在啟動之前完成使用 curl 開啟該 Load Balancer 的 IP 會出現 502 的錯誤訊息</p></div><hr><h3 id=參考資料>參考資料</h3><ul><li><p><a href=https://blog.cloud-ace.tw/networking-website/load-balance/gcp-load-balancer-introduction/>什麼是負載平衡？原理、6大 GCP Load Balancer 完整介紹</a></p></li><li><p><a href="https://cloud.google.com/load-balancing/docs/load-balancing-overview?hl=zh-cn">Cloud Load Balancing 概覽</a></p></li><li><p><a href=https://ithelp.ithome.com.tw/m/articles/10296010>IT邦-twmjavacoe-Load Balancer</a></p></li></ul></div></div><div id=post-footer class="post-footer main-content-wrap"><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--disabled"><i class="fa fa-angle-left"></i>
 <span class="hide-xs hide-sm text-small icon-ml">NEXT</span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/google-cloud/firestore/ data-tooltip="Google Cloud Firestore 簡介" aria-label="PREVIOUS: Google Cloud Firestore 簡介"><span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
 <i class="fa fa-angle-right"></i></a></li></ul></nav><ul class="post-actions post-action-share"><li class="post-action hide-lg hide-md hide-sm"><a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post"><i class="fa fa-share-alt" aria-hidden=true></i></a></li><li class=post-action><a class="post-action-btn btn btn--default" href=#top aria-label="Back to top"><i class="fa fa-arrow-up" aria-hidden=true></i></a></li></ul></div></div></article><footer id=footer class=main-content-wrap><span class=copyrights>&copy; 2023 李昀陽 YunYang Lee. All Rights Reserved</span></footer></div><div id=bottom-bar class=post-bottom-bar data-behavior=4><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--disabled"><i class="fa fa-angle-left"></i>
 <span class="hide-xs hide-sm text-small icon-ml">NEXT</span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/google-cloud/firestore/ data-tooltip="Google Cloud Firestore 簡介" aria-label="PREVIOUS: Google Cloud Firestore 簡介"><span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
