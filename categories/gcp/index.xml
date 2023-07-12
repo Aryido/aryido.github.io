@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gcp on Aryido Tech Note</title><link>https://aryido.github.io/categories/gcp/</link><description>Recent content in gcp on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 26 Jun 2023 23:47:00 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/gcp/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP load-balancer 架構簡介</title><link>https://aryido.github.io/posts/google-cloud/gcp-load-balancer-introduction/</link><pubDate>Mon, 26 Jun 2023 23:47:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp-load-balancer-introduction/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>GCP 負載平衡透過平均分發網絡流量到多個 server ，可以防止單一伺服器的過載，從而減少系統故障的風險；也可以達到降低對外 IP 地址和憑證費用的目的，以降低維運成本，因為只需透過配置一個負載平衡器對外 IP 地址和憑證，而不需要為背後的多個伺服器分別配置對外 IP 地址和憑證。目前有多種 Load Balancer，console上是從&lt;strong>流量類型&lt;/strong>大概分成了三個 :&lt;/p>
+&lt;p>GCP 負載平衡，透過平均分發流量到多個 server ，可以防止單一伺服器的過載，從而減少系統故障的風險；也可以達到降低對外 IP 地址和憑證費用的目的，來降低維運成本，因為只需透過配置一個負載平衡器對外 IP 地址和憑證，而不需要為背後的多個 server 個別分配對外 IP 地址和憑證。目前有多種 Load Balancer 類型，若從 console 上是由&lt;strong>流量類型&lt;/strong>大概分成了三個 :&lt;/p>
 &lt;ul>
 &lt;li>HTTP(S) load balancing&lt;/li>
 &lt;li>TCP load balancing&lt;/li>
 &lt;li>UPD load balancing&lt;/li>
 &lt;/ul>
-&lt;p>但實際上依照細部功能，還有分 Global 或 Regional 等地域性分類，總體設定蠻細緻的。&lt;/p>
+&lt;p>但實際上依照細部功能，還有分 Global 或 Regional 等地域性分類，總體設定蠻細緻的 :&lt;/p>
+&lt;div class="figure fig-100" >
+&lt;a class="fancybox" href="https://aryido.github.io/images/google-cloud/load-balancer-options.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/google-cloud/load-balancer-options.jpg" >
+&lt;/a>
+&lt;/div>
 &lt;/blockquote></description></item><item><title>Google Cloud Firestore 簡介</title><link>https://aryido.github.io/posts/google-cloud/firestore/</link><pubDate>Mon, 27 Mar 2023 22:18:10 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/firestore/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Cloud Firestore 是 Google 提供的一款雲端 NoSQL 資料庫。資料模型上簡單分成了 collection 、 document 結構，本質上也是 JSON 格式，但使用起來更直觀。Firestore 還具有即時同步資料的功能，也就是說一旦資料庫有異動，資料便會自動同步到相關的用戶端上（如手機 App）&lt;/p>

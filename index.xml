@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 26 Jun 2023 23:47:00 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP load-balancer 架構簡介</title><link>https://aryido.github.io/posts/google-cloud/gcp-load-balancer-introduction/</link><pubDate>Mon, 26 Jun 2023 23:47:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp-load-balancer-introduction/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>GCP 負載平衡透過平均分發網絡流量到多個 server ，可以防止單一伺服器的過載，從而減少系統故障的風險；也可以達到降低對外 IP 地址和憑證費用的目的，以降低維運成本，因為只需透過配置一個負載平衡器對外 IP 地址和憑證，而不需要為背後的多個伺服器分別配置對外 IP 地址和憑證。目前有多種 Load Balancer，console上是從&lt;strong>流量類型&lt;/strong>大概分成了三個 :&lt;/p>
+&lt;p>GCP 負載平衡，透過平均分發流量到多個 server ，可以防止單一伺服器的過載，從而減少系統故障的風險；也可以達到降低對外 IP 地址和憑證費用的目的，來降低維運成本，因為只需透過配置一個負載平衡器對外 IP 地址和憑證，而不需要為背後的多個 server 個別分配對外 IP 地址和憑證。目前有多種 Load Balancer 類型，若從 console 上是由&lt;strong>流量類型&lt;/strong>大概分成了三個 :&lt;/p>
 &lt;ul>
 &lt;li>HTTP(S) load balancing&lt;/li>
 &lt;li>TCP load balancing&lt;/li>
 &lt;li>UPD load balancing&lt;/li>
 &lt;/ul>
-&lt;p>但實際上依照細部功能，還有分 Global 或 Regional 等地域性分類，總體設定蠻細緻的。&lt;/p>
+&lt;p>但實際上依照細部功能，還有分 Global 或 Regional 等地域性分類，總體設定蠻細緻的 :&lt;/p>
+&lt;div class="figure fig-100" >
+&lt;a class="fancybox" href="https://aryido.github.io/images/google-cloud/load-balancer-options.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/google-cloud/load-balancer-options.jpg" >
+&lt;/a>
+&lt;/div>
 &lt;/blockquote></description></item><item><title>Kubernetes - 應用之間是如何溝通</title><link>https://aryido.github.io/posts/kubernetes/app-communication/</link><pubDate>Sun, 11 Jun 2023 00:29:32 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/app-communication/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>kubernetes 可以創建多個 Pods，Pod 內有一個或多個 Container，那麼 Container 之間是怎麼溝通的的呢 ? 這裡歸類出一些 case :&lt;/p>
