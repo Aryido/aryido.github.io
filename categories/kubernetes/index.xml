@@ -25,7 +25,7 @@
 &lt;p>對於應該使用哪種 Deployment Strategy 、它們的工作原理、優缺點等等，以下會做些基本介紹。&lt;/p>
 &lt;/blockquote></description></item><item><title>Kubernetes - Ingress</title><link>https://aryido.github.io/posts/kubernetes/ingress/</link><pubDate>Fri, 12 May 2023 23:11:25 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/ingress/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>Kubernetes &lt;strong>cluster 內部&lt;/strong>使用 kube-dns 實現服務發現的功能；若要把應用暴露於 Kubernetes &lt;strong>cluster 外部&lt;/strong> ，已知可以使用 &lt;strong>NodePort&lt;/strong> 和 &lt;strong>LoadBlancer&lt;/strong> 類型的 Service，除此之外，還可以使用 Kubernetes Ingress 服務。Ingress 可用來代理不同 Kubernetes Service ，將外部的請求轉發到 &lt;strong>cluster 內不同的 Service&lt;/strong> 上，來實現負載均衡。&lt;/p>
+&lt;p>Kubernetes 若要把應用暴露於 &lt;strong>Cluster 外部&lt;/strong> ，已知可以使用 &lt;strong>NodePort&lt;/strong> 和 &lt;strong>LoadBlancer&lt;/strong> 類型的 Service，但當 Service 越來越多時，我們就需要管理更多的 Port Number，也會使得維運上更加複雜。這時就可以考慮使用 Kubernetes Ingress ，它可用來代理不同 Kubernetes Service，能使 Node 對外開放統一的 port ，也可將外部的請求轉發到 &lt;strong>Cluster 內不同的 Service&lt;/strong> 上，來實現負載均衡。 Ingress 專注於 Cluster 對外的暴露、負載均衡、L7轉發、 Virtual Hosting 等功能。&lt;/p>
 &lt;/blockquote></description></item><item><title>Kubernetes: command &amp; arguments</title><link>https://aryido.github.io/posts/kubernetes/command-arguments/</link><pubDate>Sun, 07 May 2023 20:22:59 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/command-arguments/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>當我們在編寫 Kubernetes Pod 相關的 yaml spec 時，有時會針對 spec.containers ，設置啟動時要執行的命令及其參數，而 Kubernetes 提供 &lt;code>command &lt;/code> 和 &lt;code>args&lt;/code>，兩種方式可以選擇。但這時候就會出現一些疑問 :&lt;/p>
