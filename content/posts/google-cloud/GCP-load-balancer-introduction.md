@@ -15,7 +15,7 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> GCP 負載平衡，透過平均分發流量到多個 server ，可以防止單一伺服器的過載，從而減少系統故障的風險；也可以達到降低對外 IP 地址和憑證費用的目的，來降低維運成本，因為只需透過配置一個負載平衡器對外 IP 地址和憑證，而不需要為背後的多個 server 個別分配對外 IP 地址和憑證。目前有多種 Load Balancer 類型，若從 console 上是由**流量類型**大概分成了三個 :
+> GCP load-balancer 透過平均分發流量到多個 server ，可以防止單一伺服器的過載，從而減少系統故障的風險；也因為只需透過配置單個負載平衡器對外 IP 地址和憑證，故可以達到降低維運成本的目的。目前有多種 Load Balancer 類型，若從 console 上，有由**流量類型**大概分成了三個 :
 > - HTTP(S) load balancing
 > - TCP load balancing
 > - UPD load balancing
@@ -46,7 +46,7 @@ load-balancer 訪問的流量，都會先傳入 Frontend ，再依據**連線方
 
 - Forwarding rule：
 
-  {{< alert info >}}
+  {{< alert success >}}
   透過設置 IP 讓傳入流量進入負載平衡器，並運用對應的 Protocol 與 Port 將流量轉至 Proxy
   {{< /alert >}}
 - Target proxy：
@@ -60,7 +60,7 @@ load-balancer 訪問的流量，都會先傳入 Frontend ，再依據**連線方
   {{< /alert >}}
 
 - URL map：
-  {{< alert info >}}
+  {{< alert success >}}
   依照使用者訪問的 URL ，將請求導向對應的 backend service
   {{< /alert >}}
 
@@ -70,7 +70,7 @@ load-balancer 訪問的流量，都會先傳入 Frontend ，再依據**連線方
 GCP 在負載平衡中我們需要了解的重要概念是 Backend service 與 Backends 的不同，簡單我們可以先理解成 Backend service 管理 Backends。
 
 #### Backend service
-Backend service 主要是定義負載平衡器如何分配流量到我們設置的 Backends 資源，會藉由 health check 指定的頻率向指定的 port 探測並取得回應，確保資源健康之後， Backend service 才將流量導向 Backends；如果回應的速度低於 health check 設立的門檻，那麼該 instance 就會被判定為不健康， request 不會導向已被判定為不健康的 instance
+Backend service 主要是定義負載平衡器如何分配流量到我們設置的 Backends 資源，會藉由 health check 指定的頻率向指定的 port 探測並取得回應，確保資源健康之後， Backend service 才將流量導向 Backends。
 {{< alert danger >}}
 這邊提醒，要對後端資源進行健康檢查就必須設置 Firewall rule ，允許來自 Health check 的流量
 
@@ -80,22 +80,25 @@ Backend service 主要是定義負載平衡器如何分配流量到我們設置�
 這邊初次使用，超級容易忽略的 ~
 {{< /alert >}}
 
-也可以在 Backend service 這裡設定 Cloud CDN ，提供快取服務。
+也可以在 Backend service 這裡設定 :
+- Cloud CDN 提供快取服務
+- 根據均衡模式（這是每個後端的設置）分配流量
+- 指定「會話親和性」
 #### Backends
 Backends 的內容關聯可以分成以下幾個 :
 - Instance group：
-  {{< alert info >}}
+  {{< alert success >}}
   多個 vm 放在一個群組以集中管理，可以有 Auto Scaling 功能，分為
   - Google 代管的 managed instance group
   - 我們自行管理的 unmanaged instance group
   {{< /alert >}}
 - Cloud Storage：
-  {{< alert info >}}
+  {{< alert success >}}
   針對 html、css、js、圖片和影片等靜態內容，直接存在 Cloud Storage 可有效節省資源
   {{< /alert >}}
 
 - Network Endpoint Group（NEG）:
-  {{< alert info >}}
+  {{< alert success >}}
   對於 cloud run 、 k8s Pods 等等 container 群組都是屬於此類
   {{< /alert >}}
 
