@@ -66,11 +66,10 @@ load-balancer 訪問的流量，都會先傳入 Frontend ，再依據**連線方
 
 ---
 
-### Backend service & Backends
-GCP 在負載平衡中我們需要了解的重要概念是 Backend service 與 Backends 的不同，簡單我們可以先理解成 Backend service 管理 Backends。
+### Backend service
+Backend service 主要是定義負載平衡器如何分配流量到我們設置的 Backends 資源，可以先理解成 Backend service 管理 Backends。
 
-#### Backend service
-Backend service 主要是定義負載平衡器如何分配流量到我們設置的 Backends 資源，會藉由 health check 指定的頻率向指定的 port 探測並取得回應，確保資源健康之後， Backend service 才將流量導向 Backends。
+Backend service 會藉由 health check 設定的頻率，向指定的 port 探測並取得回應，確保資源健康之後， Backend service 才將流量導向 Backends。
 {{< alert danger >}}
 這邊提醒，要對後端資源進行健康檢查就必須設置 Firewall rule ，允許來自 Health check 的流量
 
@@ -84,7 +83,10 @@ Backend service 主要是定義負載平衡器如何分配流量到我們設置�
 - Cloud CDN 提供快取服務
 - 根據均衡模式（這是每個後端的設置）分配流量
 - 指定「會話親和性」
-#### Backends
+
+---
+
+### Backends
 Backends 的內容關聯可以分成以下幾個 :
 - Instance group：
   {{< alert success >}}
