@@ -49,7 +49,12 @@ docker run -d --name nginx --ipc="shareable" nginx
 ```shell
 docker run -d --name busybox --net=container:nginx --ipc=container:nginx --pid=container:nginx  yauritux/busybox-curl /bin/sh -c 'while true; do sleep 1h; done;'
 ```
-上述為啓動 busybox 容器，並且把 busybox 容器加入到 nginx 容器內，其中 NET、IPC、PID 全部共享 NameSpace 。兩個容器都啓動後，可以使用
+Docker 在 run container 的時候，會創建一個 docker 模式的網路架構，再來通過 ```container：NAME_or_ID```來把新創建的 container ，使它共用 ```NAME_or_ID`` 容器的
+- 網路命名空間
+- 同一個網路棧
+- 對外使用同一個 IP 位址或者 MAC 位址進行通信
+
+故上述為啓動 busybox 容器，並且把 busybox 容器加入到 nginx 容器內，其中 NET、IPC、PID 全部共享 NameSpace 。兩個容器都啓動後，可以使用
 ```shell
 docker exec -it busybox ps
 ```
@@ -66,6 +71,8 @@ docker exec -it busybox ps
 ### Pause container
 Pause container ，又稱 Infra container 。其功用就是在 Pod 創建時首先啓動，並創建**基礎 Namespace**。 等 Pause 容器啓動完成後，其它容器才接着啓動，並加入以 Pause 容器為基礎的 Namespace。這樣每個 container 就都在同一個 Namespace 下，可以訪問同一 Pod 中其他容器的資源了。
 
+pause 容器的創建用的是 **docker 的 none 網路模式**。 CRI 只負責給 pause 容器生成一個 network namespace ， CNI 會完成 pause 容器的網路配置。
+
 {{< alert success >}}
 因此 Pause container 的生命週期就相當於是整個 Pod 的生命週期。
 {{< /alert >}}
@@ -79,3 +86,12 @@ Pause container ，又稱 Infra container 。其功用就是在 Pod 創建時首
 {{< alert info >}}
 pause container 啟動後，就永遠處於暫停狀態，這也是稱為 pause container 的原因。
 {{< /alert >}}
+
+---
+
+### 參考資料
+
+- [K8s network之四：Kubernetes集群通信的實現原理](https://marcuseddie.github.io/2021/K8s-Network-Architecture-section-four.html)
+
+
+- [Kubernetes Pod 實現原理](https://www.readfog.com/a/1697874061307252736)
