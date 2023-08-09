@@ -107,7 +107,7 @@
 &lt;p>進一步抽象，可說這題是屬於 &lt;strong>Post-order traversal on Edges&lt;/strong> 問題。 從入口做 &lt;strong>post-order&lt;/strong> ，會是出口先被紀錄，然後再往回 &lt;strong>backtracking&lt;/strong> 回入口，把路上的所有 node 都記下來。 老實說技巧性有點太強，且還是高頻&amp;hellip;。 另外注意英文閱讀，有些單字很重要例如 &lt;em>lexical order&lt;/em>，沒注意到可能會出現錯誤。&lt;/p>
 &lt;/blockquote></description></item><item><title>5. Longest Palindromic Substring</title><link>https://aryido.github.io/posts/leetcode/leetcode5/</link><pubDate>Wed, 14 Sep 2022 22:30:14 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode5/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>這是一道常考題，也因為是 DP，難度也比較高。 看過令人膜拜的神解 Manacher&amp;rsquo;s Algorithm，時間複雜度提升到了 O(n) ，但一般人還是熟悉一般 DP 解就好了&amp;hellip;&lt;/p>
+&lt;p>&lt;strong>最長回文子串 (Longest Palindromic Substring) 是常考題&lt;/strong>。Palindrome 就是正讀反讀都一樣的詞語，比如範例給的 &amp;ldquo;bab&amp;rdquo;、 &amp;ldquo;bb&amp;rdquo; ，實際單字如 &amp;ldquo;level&amp;rdquo; 等等都屬於它。因為較好的解法是 DP 類型，初見就能想到，難度也比較高。一般人能熟悉 DP 解就好了。(看過令人膜拜的神解 Manacher&amp;rsquo;s Algorithm，時間複雜度提升到了 O(n) &amp;hellip;)&lt;/p>
 &lt;/blockquote></description></item><item><title>973. K Closest Points to Origin</title><link>https://aryido.github.io/posts/leetcode/leetcode973/</link><pubDate>Mon, 12 Sep 2022 20:12:28 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode973/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>類似這種 top k 問題且非樹結構，都可以直接用 Heap 來解題。&lt;/p>
