@@ -8,7 +8,7 @@ date: {{ .Date }}
 thumbnailImage: /images/leetcode/logo.jpg
 
 categories:
-- LeetCode
+- leetCode
 
 tags:
 - java
@@ -23,18 +23,34 @@ reward: false
 
 ---
 
-## 思路
+# 思路
+
+---
 
 # 解答
 ```java
 
 ```
 
+---
+
+# 時間空間複雜度
+
+### 時間複雜度 : ```O(N^2)```
+兩層迴圈
+
+### 空間複雜度 : ```O(N^2)```
+2-D陣列
+
+---
+
 {{< alert info >}}
 example
 {{< /alert >}}
 
 {{< image classes="fancybox fig-100" src="/images/leetcode/logo.jpg" >}}
+
+---
 
 # Vocabulary
 
