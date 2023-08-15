@@ -1,5 +1,5 @@
 ---
-title: 5. Longest Palindromic Substring
+title: "5. Longest Palindromic Substring"
 
 author: Aryido
 
@@ -28,11 +28,11 @@ reward: false
 # 思路
 {{< image classes="fancybox fig-100" src="/images/leetcode/leetcode5-1.jpg" >}}
 
-我們維護一個2D-Matrix dp，其中 ```dp[i][j]``` 表示字符串區間 ```[i, j]``` 是否為回文串。明顯地，當 ```i = j``` 時，表示只有一個字符，肯定是 Palindrome ，故先把對角線表填完 T(如上圖) 。
+我們維護一個 2D-Matrix 動態紀錄子問題狀態，其中 ```dp[i][j]``` 表示字符串區間 ```[i, j]``` 是否為回文串。明顯地，當 ```i = j``` 時，表示只有一個字符，肯定是 Palindrome ，故先把對角線表填完 T (如上圖) 。
 
 {{< image classes="fancybox fig-100" src="/images/leetcode/leetcode5-2.jpg" >}}
 
-再來是 Palindromic 的特性，若字串最兩端一樣，且 ```dp[i+1][j-1]```表示內縮一層的單字，若它也是 Palindromic ，則得到整個字串 Palindromic。注意，在 for loop 時候，必須:
+再來是 Palindromic 的特性，若字串最兩端一樣，且 ```dp[i+1][j-1]```表示**內縮一層的單字**，若它也是 Palindromic ，則得到整個字串 Palindromic。注意，在 for loop 時候，必須:
 ```java
 // 特別注意 i,j 順序!!
 
@@ -49,8 +49,7 @@ for(int i = length - 1 ; i >= 0 ; i--){
 }
 
 ```
-因為在判斷 ```dp[i][j]``` 時，需要先有 ```dp[i+1][j-1]``` 的資訊，要不然會出錯，
-**如下圖箭頭處**。
+因為在判斷 ```dp[i][j]``` 時，需要先有 ```dp[i+1][j-1]``` 的資訊，要不然會出錯，所以 loop 的方式有所限制，**如下圖箭頭處**。
 {{< image classes="fancybox fig-100" src="/images/leetcode/leetcode5-3.jpg" >}}
 
 ---
@@ -84,7 +83,6 @@ class Solution {
                         dp[i][j] = dp[i+1][j-1];
                     }
                 }
-
                 if(dp[i][j] && j - i + 1 > maxLength){
                     maxLength = j - i + 1;
                     ansBeginIndex = i;
@@ -100,11 +98,13 @@ class Solution {
 
 ---
 
-# 時間空間複雜度分析
+# 時間空間複雜度
 
-- 時間複雜度 : O(N^2) 兩層迴圈
+### 時間複雜度 : ```O(N^2)```
+兩層迴圈
 
-- 空間複雜度 : O(N^2) 2-D陣列
+### 空間複雜度 : ```O(N^2)```
+2-D矩陣，為了紀錄某步驟執行結果(動態規劃)
 
 ---
 # Vocabulary
