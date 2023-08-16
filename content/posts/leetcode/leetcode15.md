@@ -93,6 +93,10 @@ class Solution {
 雖然排序的時間複雜度為 ```O(NlogN)```，但因為過程中還有 for loop 遍歷 nums，且內部有一個 while loop 再遍歷 nums，故還是算 ```O(N^2)```
 
 ### 空間複雜度：```O(1)```
-依照我的寫法，演算法過程只需要存儲 ```i, j, k``` 而已，理所當然花費```O(1)```空間而已。
+依照我的寫法，演算法過程只需要存儲 ```i, j, k, closeTarget``` ，理所當然花費```O(1)```空間而已。
 
 ---
+
+### 參考資料
+
+- [[LeetCode]15. 3Sum 中文](https://www.youtube.com/watch?v=2tbi1W7ce1c&t=378s)
