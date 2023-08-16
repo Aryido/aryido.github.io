@@ -1,73 +1,142 @@
-<!doctype html><html lang=en-us><head><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"16. 3Sum Closest","image":"https://aryido.github.io/images/leetcode/logo.jpg","datePublished":"2023-02-08T21:56:12+08:00","dateModified":"2023-02-08T21:56:12+08:00","author":{"@type":"Person","name":"李昀陽 YunYang Lee","image":"https://aryido.github.io/images/aboutme/head-shot.jpg"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aryido.github.io\/posts\/leetcode\/leetcode16\/"},"publisher":{"@type":"Organization","name":"Aryido Tech Note","logo":{"@type":"ImageObject","url":"https://aryido.github.io/images/aboutme/head-shot.jpg"}},"description":" 這題跟 15 題非常相似，又增加了些許難度。題目敘述一樣也簡單，求 nums 內最接近 target 值的三數和。優化關鍵點一樣是，把 nums 排序，這樣就可以確定指針滑動方向。\n","keywords":[]}</script><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Hugo 0.117.0 with theme Tranquilpeak 0.5.3-BETA"><meta name=author content="李昀陽 YunYang Lee"><meta name=keywords content><meta name=description content="
+<!doctype html><html lang=en-us><head><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"16. 3Sum Closest","image":"https://aryido.github.io/images/leetcode/logo.jpg","datePublished":"2023-02-08T21:56:12+08:00","dateModified":"2023-02-08T21:56:12+08:00","author":{"@type":"Person","name":"李昀陽 YunYang Lee","image":"https://aryido.github.io/images/aboutme/head-shot.jpg"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aryido.github.io\/posts\/leetcode\/leetcode16\/"},"publisher":{"@type":"Organization","name":"Aryido Tech Note","logo":{"@type":"ImageObject","url":"https://aryido.github.io/images/aboutme/head-shot.jpg"}},"description":" 這題跟 15 題相似，又增加了些許難度。題目敘述一樣也很簡單 : 求 nums 內最接近 target 值的三數和。優化關鍵點一樣是，把 nums 排序，這樣就可以確定指針滑動方向。 ","keywords":[]}</script><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Hugo 0.117.0 with theme Tranquilpeak 0.5.3-BETA"><meta name=author content="李昀陽 YunYang Lee"><meta name=keywords content><meta name=description content="
 
-這題跟 15 題非常相似，又增加了些許難度。題目敘述一樣也簡單，求 nums 內最接近 target 值的三數和。優化關鍵點一樣是，把 nums 排序，這樣就可以確定指針滑動方向。
+這題跟 15 題相似，又增加了些許難度。題目敘述一樣也很簡單 : 求 nums 內最接近 target 值的三數和。優化關鍵點一樣是，把 nums 排序，這樣就可以確定指針滑動方向。
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
 "><meta property="og:description" content="
 
-這題跟 15 題非常相似，又增加了些許難度。題目敘述一樣也簡單，求 nums 內最接近 target 值的三數和。優化關鍵點一樣是，把 nums 排序，這樣就可以確定指針滑動方向。
+這題跟 15 題相似，又增加了些許難度。題目敘述一樣也很簡單 : 求 nums 內最接近 target 值的三數和。優化關鍵點一樣是，把 nums 排序，這樣就可以確定指針滑動方向。
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
 "><meta property="og:type" content="article"><meta property="og:title" content="16. 3Sum Closest"><meta name=twitter:title content="16. 3Sum Closest"><meta property="og:url" content="https://aryido.github.io/posts/leetcode/leetcode16/"><meta property="twitter:url" content="https://aryido.github.io/posts/leetcode/leetcode16/"><meta property="og:site_name" content="Aryido Tech Note"><meta property="og:description" content="
 
-這題跟 15 題非常相似，又增加了些許難度。題目敘述一樣也簡單，求 nums 內最接近 target 值的三數和。優化關鍵點一樣是，把 nums 排序，這樣就可以確定指針滑動方向。
+這題跟 15 題相似，又增加了些許難度。題目敘述一樣也很簡單 : 求 nums 內最接近 target 值的三數和。優化關鍵點一樣是，把 nums 排序，這樣就可以確定指針滑動方向。
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
 "><meta name=twitter:description content="
 
-這題跟 15 題非常相似，又增加了些許難度。題目敘述一樣也簡單，求 nums 內最接近 target 值的三數和。優化關鍵點一樣是，把 nums 排序，這樣就可以確定指針滑動方向。
-"><meta property="og:locale" content="en-us"><meta property="article:published_time" content="2023-02-08T21:56:12"><meta property="article:modified_time" content="2023-02-08T21:56:12"><meta property="article:section" content="LeetCode"><meta property="article:tag" content="java"><meta name=twitter:card content="summary"><meta property="og:image" content="https://aryido.github.io/images/aboutme/head-shot.jpg"><meta property="twitter:image" content="https://aryido.github.io/images/aboutme/head-shot.jpg"><meta property="og:image" content="https://aryido.github.io/images/leetcode/logo.jpg"><meta property="twitter:image" content="https://aryido.github.io/images/leetcode/logo.jpg"><title>16. 3Sum Closest</title><link rel=icon href=https://aryido.github.io/favicon.png><link rel=canonical href=https://aryido.github.io/posts/leetcode/leetcode16/><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://aryido.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css></head><body><div id=blog><header id=header data-behavior=4><i id=btn-open-sidebar class="fa fa-lg fa-bars"></i><div class=header-title><a class=header-title-link href=https://aryido.github.io/ aria-label="Go to homepage">Aryido Tech Note</a></div><a class=header-right-picture href=https://aryido.github.io/#about aria-label="Open the link: /#about"><img class=header-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"></a></header><nav id=sidebar data-behavior=4><div class=sidebar-container><div class=sidebar-profile><a href=https://aryido.github.io/#about aria-label="Read more about the author"><img class=sidebar-profile-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"></a><h4 class=sidebar-profile-name>李昀陽 YunYang Lee</h4><h5 class=sidebar-profile-bio>Welcome to my Tech Note. You can read some of the chapters below.</h5></div><ul class=sidebar-buttons><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/ title=Home><i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden=true></i>
+這題跟 15 題相似，又增加了些許難度。題目敘述一樣也很簡單 : 求 nums 內最接近 target 值的三數和。優化關鍵點一樣是，把 nums 排序，這樣就可以確定指針滑動方向。
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
+"><meta property="og:locale" content="en-us"><meta property="article:published_time" content="2023-02-08T21:56:12"><meta property="article:modified_time" content="2023-02-08T21:56:12"><meta property="article:section" content="leetCode"><meta property="article:tag" content="java"><meta property="article:tag" content="multiple-pointers"><meta name=twitter:card content="summary"><meta property="og:image" content="https://aryido.github.io/images/aboutme/head-shot.jpg"><meta property="twitter:image" content="https://aryido.github.io/images/aboutme/head-shot.jpg"><meta property="og:image" content="https://aryido.github.io/images/leetcode/logo.jpg"><meta property="twitter:image" content="https://aryido.github.io/images/leetcode/logo.jpg"><title>16. 3Sum Closest</title><link rel=icon href=https://aryido.github.io/favicon.png><link rel=canonical href=https://aryido.github.io/posts/leetcode/leetcode16/><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://aryido.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css></head><body><div id=blog><header id=header data-behavior=4><i id=btn-open-sidebar class="fa fa-lg fa-bars"></i><div class=header-title><a class=header-title-link href=https://aryido.github.io/ aria-label="Go to homepage">Aryido Tech Note</a></div><a class=header-right-picture href=https://aryido.github.io/#about aria-label="Open the link: /#about"><img class=header-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"></a></header><nav id=sidebar data-behavior=4><div class=sidebar-container><div class=sidebar-profile><a href=https://aryido.github.io/#about aria-label="Read more about the author"><img class=sidebar-profile-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"></a><h4 class=sidebar-profile-name>李昀陽 YunYang Lee</h4><h5 class=sidebar-profile-bio>Welcome to my Tech Note. You can read some of the chapters below.</h5></div><ul class=sidebar-buttons><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/ title=Home><i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden=true></i>
 <span class=sidebar-button-desc>Home</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/categories title=Categories><i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden=true></i>
 <span class=sidebar-button-desc>Categories</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/tags title=Tags><i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden=true></i>
 <span class=sidebar-button-desc>Tags</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://github.com/Aryido target=_blank rel=noopener title=GitHub><i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden=true></i>
 <span class=sidebar-button-desc>GitHub</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/index.xml title=RSS><i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden=true></i>
 <span class=sidebar-button-desc>RSS</span></a></li></ul><ul class=sidebar-buttons></ul><ul class=sidebar-buttons></ul></div></nav><div id=main data-behavior=4 class=hasCoverMetaIn><article class=post id=top><div class="post-header main-content-wrap text-left"><h1 class=post-title>16. 3Sum Closest</h1><div class="postShorten-meta post-meta"><time datetime=2023-02-08T21:56:12+08:00>February 8, 2023</time>
 <span>in</span>
-<a class=category-link href=https://aryido.github.io/categories/leetcode>LeetCode</a></div></div><div class="post-content markdown"><div class=main-content-wrap><blockquote><p>這題跟 15 題非常相似，又增加了些許難度。題目敘述一樣也簡單，求 nums 內最接近 <em>target</em> 值的三數和。優化關鍵點一樣是，<em>把 nums 排序</em>，這樣就可以確定指針滑動方向。</p></blockquote><hr><div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/leetcode/16.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/leetcode/16.jpg></a></div><h2 id=思路>思路</h2><p>因為是求最接近 <em>target</em> 值的三數和，而沒有管其 <em>index</em>，故可以考慮將 <em>nums</em> 排序。排序有甚麼好處呢 ? 計算第 <em>i</em> 值、第 <em>j</em> 值、第 <em>k</em> 值加總後，會有三種情況 :</p><ul><li>等於 target：直接返回 target 值即可</li><li>小於 target：代表加總值不夠大，<strong>因為排序</strong>，固可將 <em>j</em> 點往右移動，尋更大的值</li><li>大於 target：代表加總值太大，<strong>因為排序</strong>，固可將 <em>k</em> 點往左移動，尋找更小的值</li></ul><hr><h1 id=解答>解答</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span> <span style=color:#f92672>{</span>
+<a class=category-link href=https://aryido.github.io/categories/leetcode>leetCode</a></div></div><div class="post-content markdown"><div class=main-content-wrap><blockquote><p>這題跟 15 題相似，又增加了些許難度。題目敘述一樣也很簡單 : 求 nums 內最接近 <em>target</em> 值的三數和。優化關鍵點一樣是，<em>把 nums 排序</em>，這樣就可以確定指針滑動方向。<div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/leetcode/16.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/leetcode/16.jpg></a></div></p></blockquote><hr><h1 id=思路>思路</h1><p>因為是求最接近 <em>target</em> 值的三數和，而沒有要關注其 <em>index</em>，故可以考慮將 <strong>nums 排序</strong>。排序之後可以有甚麼好處呢 ? 好處是在計算第 <em>i</em> 值、第 <em>j</em> 值、第 <em>k</em> 值加總後，<strong>指針移動情況可以掌握</strong> :</p><ul><li>加總後等於 target：直接返回 target 值即可</li><li>加總後小於 target：代表加總值不夠大，<strong>因為排序，固可將 <em>j</em> 點往右移動，尋更大的值</strong></li><li>加總後大於 target：代表加總值太大，<strong>因為排序，固可將 <em>k</em> 點往左移動，尋找更小的值</strong></li></ul><p>另外可以再稍稍優化的部分是，當<code>nums[i]*3 > target</code> 的時候，在 <code>nums</code>已經排過序的情況下，後面的數字只會越來越大，故距離 target 一定會比 <code>nums[i] + nums[i+1] + nums[i+2]</code> 還要更大，所以不必再往後看了。只要判斷<code>nums[i] + nums[i+1] + nums[i+2]</code> 和當前答案，返回較小的就可以了。</p><hr><h1 id=解答>解答</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span> <span style=color:#f92672>{</span>
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>threeSumClosest</span><span style=color:#f92672>(</span><span style=color:#66d9ef>int</span><span style=color:#f92672>[]</span> nums<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> target<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
 </span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span><span style=color:#f92672>(</span>nums<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span> <span style=color:#f92672>==</span> 3<span style=color:#f92672>){</span>
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>int</span> sum <span style=color:#f92672>=</span> 0<span style=color:#f92672>;</span>
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>for</span><span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> num <span style=color:#f92672>:</span> nums<span style=color:#f92672>){</span>
-</span></span><span style=display:flex><span>                sum <span style=color:#f92672>=</span> sum <span style=color:#f92672>+</span> num<span style=color:#f92672>;</span>
-</span></span><span style=display:flex><span>            <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> sum<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> nums<span style=color:#f92672>[</span>0<span style=color:#f92672>]+</span> nums<span style=color:#f92672>[</span>1<span style=color:#f92672>]+</span> nums<span style=color:#f92672>[</span>2<span style=color:#f92672>];</span>
 </span></span><span style=display:flex><span>        <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>        Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>sort</span><span style=color:#f92672>(</span>nums<span style=color:#f92672>);</span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> result <span style=color:#f92672>=</span> 0<span style=color:#f92672>;</span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> closeTarget <span style=color:#f92672>=</span> 100000<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> result <span style=color:#f92672>=</span> nums<span style=color:#f92672>[</span>0<span style=color:#f92672>]+</span> nums<span style=color:#f92672>[</span>1<span style=color:#f92672>]+</span> nums<span style=color:#f92672>[</span>2<span style=color:#f92672>];</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> closeTarget <span style=color:#f92672>=</span> Integer<span style=color:#f92672>.</span><span style=color:#a6e22e>MAX_VALUE</span><span style=color:#f92672>;</span>
 </span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span><span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> 0 <span style=color:#f92672>;</span> i <span style=color:#f92672>&lt;</span> nums<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span> <span style=color:#f92672>-</span> 2 <span style=color:#f92672>;</span> i<span style=color:#f92672>++){</span>
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> i <span style=color:#f92672>+</span> 1<span style=color:#f92672>;</span>
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>int</span> k <span style=color:#f92672>=</span> nums<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span> <span style=color:#f92672>-</span> 1<span style=color:#f92672>;</span>
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>while</span><span style=color:#f92672>(</span>j <span style=color:#f92672>&lt;</span> k<span style=color:#f92672>){</span>
-</span></span><span style=display:flex><span>                <span style=color:#66d9ef>int</span> sum <span style=color:#f92672>=</span> nums<span style=color:#f92672>[</span>i<span style=color:#f92672>]</span> <span style=color:#f92672>+</span> nums<span style=color:#f92672>[</span>j<span style=color:#f92672>]</span> <span style=color:#f92672>+</span> nums<span style=color:#f92672>[</span>k<span style=color:#f92672>];</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>nums<span style=color:#f92672>[</span>i<span style=color:#f92672>]</span> <span style=color:#f92672>*</span> 3 <span style=color:#f92672>&gt;</span> target<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>int</span> sum <span style=color:#f92672>=</span> nums<span style=color:#f92672>[</span>i<span style=color:#f92672>]</span> <span style=color:#f92672>+</span> nums<span style=color:#f92672>[</span>i<span style=color:#f92672>+</span>1<span style=color:#f92672>]</span> <span style=color:#f92672>+</span> nums<span style=color:#f92672>[</span>i<span style=color:#f92672>+</span>2<span style=color:#f92672>];</span>
 </span></span><span style=display:flex><span>                <span style=color:#66d9ef>int</span> diff <span style=color:#f92672>=</span> Math<span style=color:#f92672>.</span><span style=color:#a6e22e>abs</span><span style=color:#f92672>(</span>sum <span style=color:#f92672>-</span> target<span style=color:#f92672>);</span>
 </span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span><span style=color:#f92672>(</span>diff <span style=color:#f92672>&lt;</span> closeTarget<span style=color:#f92672>){</span>
 </span></span><span style=display:flex><span>                    result <span style=color:#f92672>=</span> sum<span style=color:#f92672>;</span>
 </span></span><span style=display:flex><span>                    closeTarget <span style=color:#f92672>=</span> diff<span style=color:#f92672>;</span>
 </span></span><span style=display:flex><span>                <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span><span style=color:#f92672>(</span>sum <span style=color:#f92672>==</span> target<span style=color:#f92672>){</span>
-</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>return</span> target<span style=color:#f92672>;</span>
-</span></span><span style=display:flex><span>                <span style=color:#f92672>}</span><span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span><span style=color:#f92672>(</span>sum <span style=color:#f92672>&lt;</span> target<span style=color:#f92672>){</span>
-</span></span><span style=display:flex><span>                    j<span style=color:#f92672>++;</span>
-</span></span><span style=display:flex><span>                <span style=color:#f92672>}</span><span style=color:#66d9ef>else</span><span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>                    k<span style=color:#f92672>--;</span>
-</span></span><span style=display:flex><span>                <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>break</span><span style=color:#f92672>;</span>
 </span></span><span style=display:flex><span>            <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> result<span style=color:#f92672>;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
-</span></span></code></pre></div><div class="alert info"><p><p><strong>Java</strong> 有些常用的<strong>lib</strong>或語法，記得的話其實都可以幫助寫出簡潔的 code。</p><pre tabindex=0><code>## array 的 Stream api 求和
-Arrays.stream(nums).sum();
-
-## array 的 sort
-Arrays.sort(nums);
-
-## int java最大值
-int closeTarget = Integer.MAX_VALUE;
-</code></pre></p></div><div class="alert info"><p>會寫 <strong>int closeTarget = 100000;</strong> ，其實是因為看到題目的 <em>target</em> 條件 <code>-10^4 &lt;= target &lt;= 10^4</code>，所以就寫了個 <strong>10^5</strong>，保證比 <strong>10^4 * 3</strong> 還要大。但還是推薦記下<code>Integer.MAX_VALUE</code>是最好的</p></div><div class="alert warning"><p><p>特別思考下 <em>for loop</em> 的終止條件，原本我是寫 <code>nums.length - 1</code>，但其實可以使用 <code>nums.length - 2</code>。</p><p>從程式方面去想，如果 <em>i</em> 終止條件是<code>nums.length - 1</code>，則在 <em>i</em> = <code>nums.length - 1</code>時，會發現 <em>while loop</em> 根本進不去，其實不需要這一步。</p><p>從圖像上去思考的話，在 <em>j</em>、 <em>k</em> 到達最尾端時，剛剛好佔了兩格。所以 <em>i</em> 最多只需要到<em>倒數第三格</em>，也就是不超過 <code>nums.length - 2</code> !</p></p></div><hr><h2 id=refactor>Refactor</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span> <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>threeSumClosest</span><span style=color:#f92672>(</span><span style=color:#66d9ef>int</span><span style=color:#f92672>[]</span> nums<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> target<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span><span style=color:#f92672>(</span>nums<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span> <span style=color:#f92672>==</span> 3<span style=color:#f92672>){</span>
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>stream</span><span style=color:#f92672>(</span>nums<span style=color:#f92672>).</span><span style=color:#a6e22e>sum</span><span style=color:#f92672>();</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>        Arrays<span style=color:#f92672>.</span><span style=color:#a6e22e>sort</span><span style=color:#f92672>(</span>nums<span style=color:#f92672>);</span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> result <span style=color:#f92672>=</span> 0<span style=color:#f92672>;</span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>int</span> closeTarget <span style=color:#f92672>=</span> Integer<span style=color:#f92672>.</span><span style=color:#a6e22e>MAX_VALUE</span><span style=color:#f92672>;</span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span><span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> 0 <span style=color:#f92672>;</span> i <span style=color:#f92672>&lt;</span> nums<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span> <span style=color:#f92672>-</span> 2 <span style=color:#f92672>;</span> i<span style=color:#f92672>++){</span>
+</span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>            <span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> i <span style=color:#f92672>+</span> 1<span style=color:#f92672>;</span>
 </span></span><span style=display:flex><span>            <span style=color:#66d9ef>int</span> k <span style=color:#f92672>=</span> nums<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span> <span style=color:#f92672>-</span> 1<span style=color:#f92672>;</span>
 </span></span><span style=display:flex><span>            <span style=color:#66d9ef>while</span><span style=color:#f92672>(</span>j <span style=color:#f92672>&lt;</span> k<span style=color:#f92672>){</span>
@@ -81,10 +150,8 @@ int closeTarget = Integer.MAX_VALUE;
 </span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span><span style=color:#f92672>(</span>sum <span style=color:#f92672>==</span> target<span style=color:#f92672>){</span>
 </span></span><span style=display:flex><span>                    <span style=color:#66d9ef>return</span> target<span style=color:#f92672>;</span>
 </span></span><span style=display:flex><span>                <span style=color:#f92672>}</span><span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span><span style=color:#f92672>(</span>sum <span style=color:#f92672>&lt;</span> target<span style=color:#f92672>){</span>
-</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>while</span><span style=color:#f92672>(</span>j <span style=color:#f92672>&lt;</span> k <span style=color:#f92672>&amp;&amp;</span> nums<span style=color:#f92672>[</span>j<span style=color:#f92672>]</span> <span style=color:#f92672>==</span> nums<span style=color:#f92672>[</span>j<span style=color:#f92672>+</span>1<span style=color:#f92672>])</span> j<span style=color:#f92672>++;</span>
 </span></span><span style=display:flex><span>                    j<span style=color:#f92672>++;</span>
 </span></span><span style=display:flex><span>                <span style=color:#f92672>}</span><span style=color:#66d9ef>else</span><span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>while</span><span style=color:#f92672>(</span>j <span style=color:#f92672>&lt;</span> k <span style=color:#f92672>&amp;&amp;</span> nums<span style=color:#f92672>[</span>k<span style=color:#f92672>]</span> <span style=color:#f92672>==</span> nums<span style=color:#f92672>[</span>k<span style=color:#f92672>-</span>1<span style=color:#f92672>])</span> k<span style=color:#f92672>--;</span>
 </span></span><span style=display:flex><span>                    k<span style=color:#f92672>--;</span>
 </span></span><span style=display:flex><span>                <span style=color:#f92672>}</span>
 </span></span><span style=display:flex><span>            <span style=color:#f92672>}</span>
@@ -92,14 +159,13 @@ int closeTarget = Integer.MAX_VALUE;
 </span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> result<span style=color:#f92672>;</span>
 </span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
 </span></span><span style=display:flex><span><span style=color:#f92672>}</span>
-</span></span></code></pre></div><div class="alert danger"><p><p>在移動指針的時候，多加 <em>while</em> 迴圈判斷，但看起來時間反而花更多了&mldr;</p><pre tabindex=0><code>else if(sum &lt; target){
-    while(j &lt; k &amp;&amp; nums[j] == nums[j+1]) j++;
-    j++;
-}else{
-    while(j &lt; k &amp;&amp; nums[k] == nums[k-1]) k--;
-    k--;
-}
-</code></pre></p></div></div></div><div id=post-footer class="post-footer main-content-wrap"><div class=post-footer-tags><span class="text-color-light text-small">TAGGED IN</span><br><a class="tag tag--primary tag--small" href=https://aryido.github.io/tags/java/>java</a></div><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/leetcode/leetcode15/ data-tooltip="15. 3Sum" aria-label="NEXT: 15. 3Sum"><i class="fa fa-angle-left"></i>
+</span></span></code></pre></div><p>特別思考下 <em>for loop</em> 的終止條件，是 <code>nums.length - 2</code>。從圖像上去思考的話，在 <em>j</em>、 <em>k</em> 到達最尾端時，剛剛好佔了兩格。所以 <em>i</em> 最多只需要到<em>倒數第三格</em>，也就是不超過 <code>nums.length - 2</code> !</p><div class="alert info"><p><p><strong>Java</strong> 有些常用的<strong>lib</strong>或語法，要記得 !</p><pre tabindex=0><code># array 的 sort
+Arrays.sort(nums);
+
+# int在java最大值
+int closeTarget = Integer.MAX_VALUE;
+</code></pre><p>寫 <strong>int closeTarget = 100000</strong> 也是可以 ，因為題目的 target 條件 <code>-10^4 &lt;= target &lt;= 10^4</code>，所以就寫了個 <code>10^5</code>，保證比 <strong>10^4 * 3</strong> 還要大。但還是推薦記下<code>Integer.MAX_VALUE</code>是最好的。</p></p></div><hr><h1 id=時間空間複雜度>時間空間複雜度</h1><h3 id=時間複雜度-on2>時間複雜度: <code>O(N^2)</code></h3><p>雖然排序的時間複雜度為 <code>O(NlogN)</code>，但因為過程中還有 for loop 遍歷 nums，且內部有一個 while loop 再遍歷 nums，故還是算 <code>O(N^2)</code></p><h3 id=空間複雜度o1>空間複雜度：<code>O(1)</code></h3><p>依照我的寫法，演算法過程只需要存儲 <code>i, j, k</code> 而已，理所當然花費<code>O(1)</code>空間而已。</p><hr><h3 id=參考資料>參考資料</h3><ul><li><p><a href="https://www.youtube.com/watch?v=vDrUqaPCVyk&amp;t=152s">[LeetCode]16. 3Sum Closest 中文</a></p></li><li><p><a href=https://www.cnblogs.com/grandyang/p/4510984.html>Grandyang 16. 3Sum Closest</a></p></li></ul></div></div><div id=post-footer class="post-footer main-content-wrap"><div class=post-footer-tags><span class="text-color-light text-small">TAGGED IN</span><br><a class="tag tag--primary tag--small" href=https://aryido.github.io/tags/java/>java</a>
+<a class="tag tag--primary tag--small" href=https://aryido.github.io/tags/multiple-pointers/>multiple-pointers</a></div><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/leetcode/leetcode15/ data-tooltip="15. 3Sum" aria-label="NEXT: 15. 3Sum"><i class="fa fa-angle-left"></i>
 <span class="hide-xs hide-sm text-small icon-ml">NEXT</span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/leetcode/leetcode26/ data-tooltip="26. Remove Duplicates from Sorted Array" aria-label="PREVIOUS: 26. Remove Duplicates from Sorted Array"><span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
 <i class="fa fa-angle-right"></i></a></li></ul></nav><ul class="post-actions post-action-share"><li class="post-action hide-lg hide-md hide-sm"><a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post"><i class="fa fa-share-alt" aria-hidden=true></i></a></li><li class=post-action><a class="post-action-btn btn btn--default" href=#top aria-label="Back to top"><i class="fa fa-arrow-up" aria-hidden=true></i></a></li></ul></div></div></article><footer id=footer class=main-content-wrap><span class=copyrights>&copy; 2023 李昀陽 YunYang Lee. All Rights Reserved</span></footer></div><div id=bottom-bar class=post-bottom-bar data-behavior=4><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/leetcode/leetcode15/ data-tooltip="15. 3Sum" aria-label="NEXT: 15. 3Sum"><i class="fa fa-angle-left"></i>
 <span class="hide-xs hide-sm text-small icon-ml">NEXT</span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/leetcode/leetcode26/ data-tooltip="26. Remove Duplicates from Sorted Array" aria-label="PREVIOUS: 26. Remove Duplicates from Sorted Array"><span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
