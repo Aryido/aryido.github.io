@@ -8,28 +8,31 @@ date: 2023-02-08T21:56:12+08:00
 thumbnailImage: /images/leetcode/logo.jpg
 
 categories:
-- LeetCode
+- leetCode
 
 tags:
 - java
+- multiple-pointers
 
 comment: false
 
 reward: false
 ---
 <!--BODY-->
-> 這題跟 15 題非常相似，又增加了些許難度。題目敘述一樣也簡單，求 nums 內最接近 *target* 值的三數和。優化關鍵點一樣是，*把 nums 排序*，這樣就可以確定指針滑動方向。
+> 這題跟 15 題相似，又增加了些許難度。題目敘述一樣也很簡單 : 求 nums 內最接近 *target* 值的三數和。優化關鍵點一樣是，*把 nums 排序*，這樣就可以確定指針滑動方向。
+> {{< image classes="fancybox fig-100" src="/images/leetcode/16.jpg" >}}
+>
 <!--more-->
 
 ---
 
-{{< image classes="fancybox fig-100" src="/images/leetcode/16.jpg" >}}
+# 思路
+因為是求最接近 *target* 值的三數和，而沒有要關注其 *index*，故可以考慮將 **nums 排序**。排序之後可以有甚麼好處呢 ? 好處是在計算第 *i* 值、第 *j* 值、第 *k* 值加總後，**指針移動情況可以掌握** :
+- 加總後等於 target：直接返回 target 值即可
+- 加總後小於 target：代表加總值不夠大，**因為排序，固可將 *j* 點往右移動，尋更大的值**
+- 加總後大於 target：代表加總值太大，**因為排序，固可將 *k* 點往左移動，尋找更小的值**
 
-## 思路
-因為是求最接近 *target* 值的三數和，而沒有管其 *index*，故可以考慮將 *nums* 排序。排序有甚麼好處呢 ? 計算第 *i* 值、第 *j* 值、第 *k* 值加總後，會有三種情況 :
-- 等於 target：直接返回 target 值即可
-- 小於 target：代表加總值不夠大，**因為排序**，固可將 *j* 點往右移動，尋更大的值
-- 大於 target：代表加總值太大，**因為排序**，固可將 *k* 點往左移動，尋找更小的值
+另外可以再稍稍優化的部分是，當```nums[i]*3 > target``` 的時候，在 ```nums```已經排過序的情況下，後面的數字只會越來越大，故距離 target 一定會比 ```nums[i] + nums[i+1] + nums[i+2]``` 還要更大，所以不必再往後看了。只要判斷```nums[i] + nums[i+1] + nums[i+2]``` 和當前答案，返回較小的就可以了。
 
 ---
 
@@ -38,16 +41,23 @@ reward: false
 class Solution {
     public int threeSumClosest(int[] nums, int target) {
         if(nums.length == 3){
-            int sum = 0;
-            for(int num : nums){
-                sum = sum + num;
-            }
-            return sum;
+            return nums[0]+ nums[1]+ nums[2];
         }
+
         Arrays.sort(nums);
-        int result = 0;
-        int closeTarget = 100000;
+        int result = nums[0]+ nums[1]+ nums[2];
+        int closeTarget = Integer.MAX_VALUE;
         for(int i = 0 ; i < nums.length - 2 ; i++){
+            if (nums[i] * 3 > target) {
+                int sum = nums[i] + nums[i+1] + nums[i+2];
+                int diff = Math.abs(sum - target);
+                if(diff < closeTarget){
+                    result = sum;
+                    closeTarget = diff;
+                }
+                break;
+            }
+
             int j = i + 1;
             int k = nums.length - 1;
             while(j < k){
@@ -57,6 +67,7 @@ class Solution {
                     result = sum;
                     closeTarget = diff;
                 }
+
                 if(sum == target){
                     return target;
                 }else if(sum < target){
@@ -71,84 +82,37 @@ class Solution {
 }
 ```
 
-{{< alert info >}}
-**Java** 有些常用的**lib**或語法，記得的話其實都可以幫助寫出簡潔的 code。
-```
-## array 的 Stream api 求和
-Arrays.stream(nums).sum();
 
-## array 的 sort
+特別思考下 *for loop* 的終止條件，是 ```nums.length - 2```。從圖像上去思考的話，在 *j*、 *k* 到達最尾端時，剛剛好佔了兩格。所以 *i* 最多只需要到*倒數第三格*，也就是不超過 ```nums.length - 2``` !
+
+
+{{< alert info >}}
+**Java** 有些常用的**lib**或語法，要記得 !
+```
+# array 的 sort
 Arrays.sort(nums);
 
-## int java最大值
+# int在java最大值
 int closeTarget = Integer.MAX_VALUE;
 
 ```
-{{< /alert >}}
-
-
-{{< alert info >}}
-會寫 **int closeTarget = 100000;** ，其實是因為看到題目的 *target* 條件 ```-10^4 <= target <= 10^4```，所以就寫了個 **10^5**，保證比 **10^4 * 3** 還要大。但還是推薦記下```Integer.MAX_VALUE```是最好的
-{{< /alert >}}
-
-{{< alert warning >}}
-特別思考下 *for loop* 的終止條件，原本我是寫 ```nums.length - 1```，但其實可以使用 ```nums.length - 2```。
-
-
-從程式方面去想，如果 *i* 終止條件是```nums.length - 1```，則在 *i* = ```nums.length - 1```時，會發現 *while loop* 根本進不去，其實不需要這一步。
-
-從圖像上去思考的話，在 *j*、 *k* 到達最尾端時，剛剛好佔了兩格。所以 *i* 最多只需要到*倒數第三格*，也就是不超過 ```nums.length - 2``` !
-
+寫 **int closeTarget = 100000** 也是可以 ，因為題目的 target 條件 ```-10^4 <= target <= 10^4```，所以就寫了個 ```10^5```，保證比 **10^4 * 3** 還要大。但還是推薦記下```Integer.MAX_VALUE```是最好的。
 {{< /alert >}}
 
 ---
 
-## Refactor
-```java
-class Solution {
-    public int threeSumClosest(int[] nums, int target) {
-        if(nums.length == 3){
-            return Arrays.stream(nums).sum();
-        }
-        Arrays.sort(nums);
-        int result = 0;
-        int closeTarget = Integer.MAX_VALUE;
-        for(int i = 0 ; i < nums.length - 2 ; i++){
-            int j = i + 1;
-            int k = nums.length - 1;
-            while(j < k){
-                int sum = nums[i] + nums[j] + nums[k];
-                int diff = Math.abs(sum - target);
-                if(diff < closeTarget){
-                    result = sum;
-                    closeTarget = diff;
-                }
+# 時間空間複雜度
 
-                if(sum == target){
-                    return target;
-                }else if(sum < target){
-                    while(j < k && nums[j] == nums[j+1]) j++;
-                    j++;
-                }else{
-                    while(j < k && nums[k] == nums[k-1]) k--;
-                    k--;
-                }
-            }
-        }
-        return result;
-    }
-}
-```
+### 時間複雜度: ```O(N^2)```
 
-{{< alert danger >}}
-在移動指針的時候，多加 *while* 迴圈判斷，但看起來時間反而花更多了...
-```
-else if(sum < target){
-    while(j < k && nums[j] == nums[j+1]) j++;
-    j++;
-}else{
-    while(j < k && nums[k] == nums[k-1]) k--;
-    k--;
-}
-```
-{{< /alert >}}
+雖然排序的時間複雜度為 ```O(NlogN)```，但因為過程中還有 for loop 遍歷 nums，且內部有一個 while loop 再遍歷 nums，故還是算 ```O(N^2)```
+
+### 空間複雜度：```O(1)```
+依照我的寫法，演算法過程只需要存儲 ```i, j, k``` 而已，理所當然花費```O(1)```空間而已。
+
+---
+### 參考資料
+
+- [[LeetCode]16. 3Sum Closest 中文](https://www.youtube.com/watch?v=vDrUqaPCVyk&t=152s)
+
+- [Grandyang 16. 3Sum Closest](https://www.cnblogs.com/grandyang/p/4510984.html)
