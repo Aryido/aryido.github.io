@@ -22,37 +22,78 @@ reward: false
 
 ## 緣起
 
-Ingress 資源對象，是一個可讓**請求從外部訪問 cluster 的一個入口資源對象**，其實就相當類似於 Nginx 等等這類代理服務器。
+Ingress 是一個可讓**請求從外部訪問 Kubernetes cluster** 的一個入口資源對象，其實就相當類似於 Nginx 等等這類代理服務器。
 
 {{< image classes="fancybox fig-100" src="/images/kubernetes/ingress-2.jpg" >}}
 
 那既然都有了 Nginx 等等這類負載均衡代理服務器，那為什麼還需要 Ingress 呢 ? 因為在 Kubernetes 使用中還會遇到一些問題，例如舉個實際例子，若我們使用 Nginx 來做反向代理 :
-- 每次有新服務 pod 加入時，都會需要**改 Nginx 配置**
+- 每次有新服務 Pod 加入時，都會需要改 Nginx config ，把新的 Pod 資訊寫到 Nginx config 內
 - 改完配置還要**重新啟動**或**重新部屬** Nginx 服務
 
-若不想自己還要去手動更改 Nginx 設定，還要設定滾動更新 Nginx Pod ，則可能會需要再加上**service-discovery 服務器** 比如 Zookeeper、Eureka 之類的來實現自動註冊... 這個想法本身是沒有錯的 ! 但自己去設定這些 Infra 功能有些麻煩，在這邊 Ingress 已經幫我們把上述問題統整起來，並**實現了上述所有的操作需求了** !
-
-{{< alert success >}}
-服務發現的功能 Ingress 自己已經實現了，不需要使用第三方的服務了；再加上域名規則定義，路由資訊的刷新依靠 Ingress Controller
-{{< /alert >}}
+若不想自己還要去手動更改 Nginx 設定，會要設定滾動更新 Nginx Pod ，則可能會需要自己來實做自動註冊。去設定或製作這些 Infra 功能有些麻煩，但在這邊 Ingress 已經幫我們把上述問題統整起來，並**實現了上述所有的操作需求了** !
 
 {{< alert info >}}
-有了 Ingress 這個抽象，各家廠商可以依照這個 interface 去做各種不同的實現，比如說就有 Nginx Ingress Controller；我們可以根據自己的需求來自由選擇 Ingress Controller。Ingress 帶來的靈活度和自由度，對於使用容器時代來說，其實是非常有意義的 !
+有了 Ingress 這個抽象，各家廠商可以依照這個 interface 去做各種不同的實現，比如說就 Kubernetes 這個 open source，目前[官方支持和維護 AWS、 GCE 和 Nginx Ingress Controller](https://kubernetes.io/zh-cn/docs/concepts/services-networking/ingress-controllers/)；我們可以根據自己的需求來自由選擇 Ingress Controller。Ingress 帶來的靈活度和自由度，對於使用容器時代來說，其實是非常有意義的 !
 {{< /alert >}}
 
-由架構圖中可以知道，Ingress 只需要:
-- 負責檢查網址是否有在規則中
-- 是否有需要進行 SSL 驗證
+Ingress 會做的事情有:
+- 檢查網址是否有在規則中，並進行分配
+- 可設定是否有需要進行 SSL、TLS 驗證
 
-好處是**只需要對外開放一個 Port** ，控制使用者送來的請求應該被導向哪個 Service 服務
+很大的好處是**只需要對外開放一個 Port** ，再來才控制送來的請求應該被導向哪個 Service 服務
 
-{{< alert info >}}
-可以將 Ingress 狹義的類比爲 Nginx 中的配置文件 nginx.conf。
+{{< alert warning >}}
+進行 SSL、TLS 配置等 HTTP 相關的操作時，都必須通過 k8s Ingress 來進行，k8s service 無法做到。
+Kubernetes 的 Service 只有四層代理，只支持 IP:Port 格式訪問。
+而 Ingress **支持實現七層代理**。
 {{< /alert >}}
 
 ---
 
-## [Ingress Example](https://kubernetes.io/docs/concepts/services-networking/ingress/)
+##  Ingress、Ingress Rule、Ingress Controller 綜合講解
+這三個名詞常常被提及，最混淆的是單單說 Ingress 這個詞的時候，但 Ingress Rule和Ingress Controller 這兩個還蠻具體可以解釋的，以下是它們的基本區別介紹：
+### Ingress Rule
+當我們在寫 Kubernetes Ingress Yaml 的時候，其中 ```spec.rules``` 這個部分，我們就稱呼 Ingress rule，非常具體的表示是指路由規則，簡單介紹如下
+- ```host```：
+
+  是 **optional**，沒有特別指定 host 屬性的話，指定 IP 的所有入站 HTTP 通信都會被 ingress 代理。
+
+- ```http.paths``` :
+
+  定義訪問路徑的 list ，每個路徑都有一個```backend.service``` 定義
+
+- ```http.paths.backend``` :
+
+  定義後端的 Service 服務，此外一般情況下在 Ingress 控制器中會配置一個 ```defaultBackend``` 默認後端，**但不是定義在 IngressRule 中。**
+
+{{< alert success >}}
+defaultBackend 設定是在 ```.spec.defaultBackend```，和 Ingress Rule 同個層級。
+{{< /alert >}}
+###  Ingress Controller
+整個於 Ingress 的概念，就只是一組規則而已，它並不負責具體功能的執行。要真正完成對應的功能的具體實現，我們稱為 Ingress Controller。因為要有 Ingress Controller ，才能滿足 Ingress 的要求，故會需要一個啟動中的實現 :
+- 可能需在 k8s 上先部署 Ingress 控制器，例如 ingress-nginx，它其實就是一個 pod 並有著負載均衡功能的服務
+- 或者我們當用 Google Kubernetes Engine (GKE) ，它自動提供了一個名為 GKE Ingress 的內置 Ingress Controller，其實現就是我們用的 Google Cloud Load-balancer
+
+{{< alert success >}}
+Ingress Controller 會不斷地監聽 kube-API Server，當得知到 Service、Pod 有變化後，會更新配置。服務發現的功能 Ingress 自己已經實現了，為 Ingress Controller 的基本功能。
+{{< /alert >}}
+
+### Ingress
+這是最容易產生歧異的名詞，首先 Ingress 概念一定包含 Ingress Rule 。 從 Ingress Yaml 來說，需要指定 ```apiVersion```、```kind```、 ```metadata``` 和 ```spec```，明顯可知道 Ingress Rule 是 Ingress 的詳細子設定罷了，但有蠻多文章就直接把 Ingress Rule 簡稱為 Ingress。
+
+再來當我們說 Ingress 時，其實有時候是在介紹整個 Kubernetes Ingress 的功能和架構，因為 Ingress 以 yaml 聲明， Ingress Controller 按照其 yaml 產生功能，這就包含抽象的資源定義以及默認的實現，故
+Ingress 也有可能是指 Ingress Controller + Ingress Rule。
+
+
+### 總結
+
+- Ingress rule 類比爲: Nginx 中的配置文件 nginx.conf
+- Ingress Controller 類比爲: Nginx 這個軟體
+- Ingress 類比爲: 依照 nginx.conf 設定執行對應功能的 Nginx 服務
+
+---
+
+## Ingress Example
 
 下面給一個簡單的範例 yaml ，Ingress 的定義依賴於 path ，每一個 path 都對應一個後端 Service :
 
@@ -114,50 +155,11 @@ Ingress 會用來管理 Service 。故可以說  Ingress ，就是 Service 的 S
 
 ---
 
-##  Ingress & Ingress Controller
-
-Ingress 資源對象，僅僅是轉發規則的集合，並不負責具體功能的執行，要想真正完成對應的功能，需要 Ingress Controller 的加入。當使用 Ingress 進行負載分發時，Ingress Controller 基於 IngressRule 會跳過 Kube-Proxy 直接將用戶端請求直接轉發到 Service 所屬的某個 Pod 上。
-
-{{< alert info >}}
-Kube-Proxy 會失去作用，實際是因為 Ingress Controller 會直接從 Service 所屬的 EndPoints 集合中選擇一個 Pod，只是藉助 Service 所掌握的 endpoints ，選擇一個 Pod 並將請求直接發送到當前被選中的 Pod 上。
-
-但是如果使用 Ingress 以應用負載器的身份作用於 Node Port 上時，還是需要 Kube-Proxy ，由該節點的 Kube-Proxy 將 HTTP 請求轉發到某個Pod上。
-{{< /alert >}}
-
-###  Ingress Controller
-
-Ingress Controller 通過不斷地監聽 kube-API Server，當得知到 Service、Pod 有變化後，會更新配置。常用的各種反向代理項目，比如 Nginx 、AKS Application Gateway Ingress Controller 等，都已經爲 Kubernetes 專門維護了對應的 Ingress Controller。
-
-###  Ingress
-以 yaml 聲明， Ingress Controller 會按照策略生成配置文件
-
-- ```host```：
-
-  **可選字段**，沒有特別指定 host 屬性的話，通過指定 IP 地址的所有入站 HTTP 通信都會被 ingress 代理。
-
-- ```http.paths``` :
-
-  定義訪問路徑的 list ，每個路徑都有一個```backend.service``` 定義
-
-- ```http.paths.backend``` :
-
-  定義後端的 Service 服務，此外一般情況下在 Ingress 控制器中會配置一個 ```defaultBackend``` 默認後端，**但不是定義在 IngressRule 中。**
-
-
-另外當我們想要在 Kubernetes 內，爲應用進行 TLS 配置等 HTTP 相關的操作時，都必須通過 k8s Ingress 來進行，k8s service 無法做到。
-
-{{< alert warning >}}
-Kubernetes 的 Service 只有四層代理，只支持 IP:Port 格式訪問。
-而 Ingress api **支持實現七層代理**。
-{{< /alert >}}
-
----
-
 ### 參考資料
 
 - [K8s network之二：Kubernetes的域名解析、服務發現和外部訪問](https://marcuseddie.github.io/2021/K8s-Network-Architecture-section-two.html)
 - [[Day 19] 在 Kubernetes 中實現負載平衡 - Ingress Controller](https://ithelp.ithome.com.tw/articles/10196261)
 - [Day24 了解 K8S 的 Ingress](https://ithelp.ithome.com.tw/articles/10224065)
 
-
+- [Ingress Doc](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 
