@@ -58,40 +58,36 @@ for(int i = length - 1 ; i >= 0 ; i--){
 ```java
 class Solution {
     public String longestPalindrome(String s) {
-        if(s.length() == 1){
-            return s;
-        }
+        if ( s.length() == 1 ) {
+			return s;
+		}
+		String ans = s.substring( 0, 1 );
+		int maxLength = 1;
+		int length = s.length();
+		boolean[][] dp = new boolean[length][length];
 
-        // init
-        int length = s.length();
-        int maxLength = 1;
-        int ansBeginIndex = 0;
-        boolean[][] dp = new boolean[length][length];
-        // dp's diagonal elements are always true
-        for(int j = 0 ; j < length ; j++){
-            dp[j][j] = true;
-        }
+		for ( int i = 0; i < length; i++ ) {
+			dp[i][i] = true;
+		}
 
-        for(int j = 1 ; j < length ; j++){
-            for(int i = 0; i < j ; i++){
-                if(s.charAt(i) != s.charAt(j)){
-                    dp[i][j] = false;
-                }else{
-                    if( j-i <= 2){
-                        dp[i][j] = true;
-                    }else{
-                        dp[i][j] = dp[i+1][j-1];
-                    }
-                }
-                if(dp[i][j] && j - i + 1 > maxLength){
-                    maxLength = j - i + 1;
-                    ansBeginIndex = i;
-                }
-            }
-        }
+		for ( int j = 1; j < length; j++ ) {
+			for ( int i = 0; i < j; i++ ) {
+				if ( s.charAt( i ) == s.charAt( j ) ) {
+					if ( j - i < 2 ) {
+						dp[i][j] = true;
+					} else {
+						dp[i][j] = dp[i + 1][j - 1];
+					}
+				}
 
-        return s.substring(ansBeginIndex, ansBeginIndex + maxLength);
-    }
+				if ( dp[i][j] && j - i + 1 > maxLength ) {
+					maxLength = j - i;
+					ans = s.substring( i, j + 1 );
+				}
+			}
+		}
+
+		return ans;
 }
 ```
 ```j-i <= 2``` 的理由是因為前面判斷了 ```s.charAt(i) != s.charAt(j)```，故子字串只要長度小於等於 2 ，就一定是回文。再來只要 ```dp[i][j] == true```，就表示 ```s.substring(i, length)``` 是回文。其中長度是 *j-i+1* 。

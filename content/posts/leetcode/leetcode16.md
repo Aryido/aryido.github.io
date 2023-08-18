@@ -39,47 +39,44 @@ reward: false
 # 解答
 ```java
 class Solution {
-    public int threeSumClosest(int[] nums, int target) {
-        if(nums.length == 3){
-            return nums[0]+ nums[1]+ nums[2];
-        }
+		public int threeSumClosest( int[] nums, int target ) {
+			if ( nums.length == 3 ) {
+				return nums[0] + nums[1] + nums[2];
+			}
 
-        Arrays.sort(nums);
-        int result = nums[0]+ nums[1]+ nums[2];
-        int closeTarget = Integer.MAX_VALUE;
-        for(int i = 0 ; i < nums.length - 2 ; i++){
-            if (nums[i] * 3 > target) {
-                int sum = nums[i] + nums[i+1] + nums[i+2];
-                int diff = Math.abs(sum - target);
-                if(diff < closeTarget){
-                    result = sum;
-                    closeTarget = diff;
-                }
-                break;
-            }
+			Arrays.sort( nums );
+			int result = nums[0] + nums[1] + nums[2];
+			int closest = Math.abs( result - target );
+			for ( int i = 0; i < nums.length - 2; i++ ) {
+				if ( nums[i] * 3 > target ) {
+					int sum = nums[i] + nums[i + 1] + nums[i + 2];
+					if ( Math.abs( sum - target ) < closest ) {
+						return sum;
+					}
+				}
 
-            int j = i + 1;
-            int k = nums.length - 1;
-            while(j < k){
-                int sum = nums[i] + nums[j] + nums[k];
-                int diff = Math.abs(sum - target);
-                if(diff < closeTarget){
-                    result = sum;
-                    closeTarget = diff;
-                }
+				int j = i + 1;
+				int k = nums.length - 1;
+				while (j < k) {
+					int sum = nums[i] + nums[j] + nums[k];
+					int diff = Math.abs( sum - target );
+					if ( diff < closest ) {
+						result = sum;
+						closest = diff;
+					}
 
-                if(sum == target){
-                    return target;
-                }else if(sum < target){
-                    j++;
-                }else{
-                    k--;
-                }
-            }
-        }
-        return result;
-    }
-}
+					if ( sum == target ) {
+						return target;
+					} else if ( sum < target ) {
+						j++;
+					} else {
+						k--;
+					}
+				}
+			}
+			return result;
+		}
+	}
 ```
 
 
