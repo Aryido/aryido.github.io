@@ -15,24 +15,24 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> Pod 的生命週期是動態的，因為 Deployment 可以動態地創建和銷毀 Pod，自然也伴隨着 IP 地址的更動。 Kubernetes Service 在 pod 的前方提供了一個抽象層，創建一個穩定的網路端點，讓外部的服務可以用 domain name 的方式存取 pod，並爲這些 Pod 進行負載分配。 Kubernetes Service 不只可以**建立外部服務與 Pod 的溝通管道，對內部也可以建立 Pod 之間的通信**，為 Pod 提供統一的代理接口。
+> Pod 的生命週期是動態的，因為 cluster 會根據需求動態地創建或銷毀 Pod ，這自然也伴隨着 Pod IP 地址的更動。 Kubernetes Service 在 pod 的前方提供了一個抽象層，創建一個穩定的網路端點，不只可以**對內部建立 Pod 之間的通信，另外也可以建立外部服務與 Pod 的溝通管道**，為 Pod 提供統一的代理接口。讓服務間可以用 domain name 的方式存取 pod，並爲這些 Pod 進行負載分配。
 
 <!--more-->
 
 ---
-Kubernetes 中運行著 Pod 時，可以通過 ssh 登錄到 cluster 中的**任何一個節點**上，並使用 ```kubectl get pods``` 拿出 Pod 的 IP 地址，並使用諸如 curl 之類的工具，向這 IP 地址發出查詢請求，都是可以通的 !
+Kubernetes 中有運行著 Pod 時，可以通過 ssh 登錄到 cluster 中的**任何一個節點**上，並使用 ```kubectl get pods``` 拿出 Pod 的 IP 地址，並使用諸如 curl 之類的工具，向這 IP 地址發出查詢請求，都是可以做到的 !
 
 {{< image classes="fancybox fig-100" src="/images/kubernetes/service-2.jpg" >}}
 
-Kubernetes 集群內部溝通，預設是通過 Service 。每個節點上都會運行一個 kube-proxy，會監控 Service 的新增與刪除，並對 iptables 進行修改。**iptables 就是攔截前往 Service (ClusterIP:port) 的網路流量，並重新導向到 Service 所代理的其中一個 endpoint (Pod)。**
+Kubernetes 集群內部 Pod 溝通，預設是通過 Service 。每個節點上都會運行一個 kube-proxy，會監控 Service 的新增與刪除，並對 iptables 進行修改。**iptables 就是攔截前往 Service (ClusterIP:port) 的網路流量，並重新導向到 Service 所代理的其中一個 endpoint (Pod)。**
 
 **Service 的 IP 也稱為 ClusterIP** ，是 Sevice 創建時，會被分配一個唯一的 IP 地址，這個 IP 地址與 Service 的生命週期是綁定在一起。
 
 - Port Proxy
 
-  Service Port 用於接收 client 請求，再轉發至 Pod 上面對應的端口，它運作在 TCP/IP protocol 的**四層傳輸層**。
+  Service Port 用於接收請求，之後會再轉發至 Pod 上面對應的端口，它運作在 TCP/IP protocol 的四層傳輸層上。
 
-- LabelSelector
+- **LabelSelector**(重要)
 
   Service 透過 **LabelSelector** 來關聯 Pod ，每個 Node 上的 kube-proxy 會透過 API Server watch 隨時監控 Service 或 LabelSelector 匹配的 Pod 對象是否有變動。
 
@@ -46,7 +46,7 @@ Pod 會因爲伸縮、更新、故障等情況發生變化，而 Service 會對�
 
 ## [Service](https://kubernetes.io/docs/concepts/services-networking/service/)
 
-假定已經有一組 Pod，每個 Pod 都在偵聽 TCP port 80，同時還被打上 ```app=my-app``` 標籤。接下來定義一個 Service 來發布 TCP 偵聽器。
+假定已經有一組 Pod，每個 Pod 都在偵聽 TCP port 9376 ，同時還被打上 ```app=my-app``` 標籤。接下來定義一個 Service :
 
 ```
 apiVersion: v1
@@ -66,14 +66,14 @@ spec:
     targetPort: 9376
 ```
 
-透過標籤選擇器，關聯到標籤為 ```my-app``` 的 Pod，control-plane 會自動為設置了 ```LabelSelector``` 的 Kubernetes Service 創建 EndpointSlice。透過以上的定義，會產生出以下的 network topology：
+透過標籤選擇器 LabelSelector，關聯到有標籤為 ```my-app``` 的 Pod，control-plane 會自動為設置了 ```LabelSelector``` 的 Kubernetes Service 創建 EndpointSlice。透過以上的定義，會產生出以下的 network topology：
 
-```Pod  <--->  Endpoint(tcp:9376)  <---> Service(tcp:80, with VIP)```
+```Pod  <--->  EndpointSlice(tcp:9376)  <---> Service(tcp:80, with VIP)```
 
-該 Service 會將所有具有標籤 ```my-app``` 的 Pod 的 TCP 80 端口，暴露到 Service 端口上
+該 Service 會將所有具有標籤 ```my-app``` 的 Pod 的 TCP 9376 端口，暴露到 Service 80 端口上
 - targetPort：
 
-  容器接收流量的端口，例如我們在 Pod 中運行一個 port 80 的 web container，所以我們指定 my-service 的 targetPort 為 9376
+  容器接收流量的端口，例如我們在 Pod 中運行一個 port 9376 的 web container，所以我們指定 my-service 的 targetPort 為 9376
 - port：
 
   創建的 Service 的 Cluster IP，是哪個 port 去對應到 targetPort
@@ -98,10 +98,10 @@ Service 預設是 ClusterIP ，透過內部 IP 地址暴露服務，此 IP 只�
 {{< /alert >}}
 
 ### NodePort
-在工作節點的 IP 地址上，選擇一個 port 來將外部請求，轉發到目標 Service 的 clusterIP 和 Port ，所以這個類型的 Service 可以向收到內部也可以收到外部 Client 的請求。
+在工作節點的 IP 地址上，選擇一個 port 來將外部請求，轉發到目標 Service 的 clusterIP 和 Port ，所以這個類型的 Service 可以收到內部也可以收到外部 Client 的請求。
 
 {{< alert info >}}
-根據不同狀況可為 Public or Private IP
+根據不同狀況可為 Public 或者 Private IP
 {{< /alert >}}
 
 
@@ -110,7 +110,7 @@ K8s部署時，預留的 NodePort 端口範圍是  ```30000~32767```
 {{< /alert >}}
 
 ### LoadBalancer
-LoadBalancer 類型的 Service 會指向 **k8s cluster外部**的一個實際存在的負載均衡設置，通常結合雲端平台如 GCP、AWS、AZURE 等等，我們可以透過這些 cloud provider 提供的 LoadBalancer ，幫我們分配流量到每個 Node 。
+LoadBalancer 類型的 Service ，會指向 k8s cluster 對應一個實際存在的負載均衡設置。通常會結合雲端平台如 GCP、AWS、AZURE 等等，我們可以透過這些 cloud provider 提供的 LoadBalancer ，幫我們分配流量到每個 Node 。
 
 {{< alert info >}}
 為 Public IP ，雲端商會給該服務的對外 IP
