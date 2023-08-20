@@ -196,12 +196,12 @@ Avro 也提供了編解碼和二進制格式，使得在高吞吐量的應用場
 &lt;p>我們知道 kubernetes 的 deployment 可以生成並管理 Pod ，且盡量維持其狀態為 Running 。但有的時候我們會有&lt;strong>只運行一次性任務的需求&lt;/strong>，這時候就可以使用 &lt;a href="https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/job/">kubernetes Job&lt;/a>。 Kubernetes Job 用於處理一次性工作，會創建一個或多個 Pod，並在該工作完成後終止這些 Pod。&lt;/p>
 &lt;/blockquote></description></item><item><title>18. 4Sum</title><link>https://aryido.github.io/posts/leetcode/leetcode18/</link><pubDate>Wed, 15 Feb 2023 22:17:40 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode18/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>leetcode 幾個數字題，15、16、18，基本上套路都是一樣的(&lt;del>甚至可以預期可能還會出 5 Sum&amp;hellip;&lt;/del>)，整體的解法都差不多可以一起看，重點仍然是 :&lt;/p>
+&lt;p>Leetcode 幾個數字題，15、16、18，基本上套路都是一樣的(&lt;del>甚至可以預期可能還會出 5 Sum&amp;hellip;&lt;/del>)，整體的解法都差不多，可以一起複習，重點仍然是 :&lt;/p>
 &lt;ol>
 &lt;li>排序 array&lt;/li>
 &lt;li>避免的重複項&lt;/li>
 &lt;/ol>
-&lt;p>這邊只是 3Sum 以此基礎上，再加了一個循環而已。 這連續幾題 sum 算是給了一個不錯的練習呢 !&lt;/p>
+&lt;p>以 3Sum 此基礎上，再加了一個循環而已。&lt;/p>
 &lt;/blockquote></description></item><item><title>15. 3Sum</title><link>https://aryido.github.io/posts/leetcode/leetcode15/</link><pubDate>Thu, 09 Feb 2023 22:56:05 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode15/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>是 Two Sum 的一種另類進階，從 nums 中找出和為 &lt;code>0&lt;/code> 的三個 element ，並組成 &lt;strong>List of list&lt;/strong> 。特別注意，不能有兩個內容一樣的 list。因為整個題目並沒有對 &lt;em>nums&lt;/em> 的 &lt;em>index&lt;/em> 有任何要求，故可以&lt;strong>把 nums 排序&lt;/strong>，為解題拓開另一種思路。&lt;/p>
@@ -384,7 +384,7 @@ Binary-Search 在處理邊界時很容易出錯。 基本上都是沒注意到�
 &lt;p>前段時間社群上有人 po 出 GCP 和 AWS 的比較，然後測出 GCP 慘烈的 VM 生成時間和一堆 409 錯誤，聽說有驚動 Google 高層(&lt;del>怕.jpg&lt;/del>)。那現在我們來針對該作者開源的測試程式來看看吧!&lt;/p>
 &lt;/blockquote></description></item><item><title>23. Merge k Sorted Lists</title><link>https://aryido.github.io/posts/leetcode/leetcode23/</link><pubDate>Mon, 03 Oct 2022 21:54:34 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode23/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>這題是合併 k 個 linked-list，且每個linked-list 都是有序的，最終要合併成一個大的 linked-list ，且也必須是有序的。用 heap 解題還蠻巧妙的，故紀錄一下&amp;hellip;&lt;/p>
+&lt;p>這題需求是要合併 k 個 linked-list 成一個大的 linked-list，&lt;strong>每個 linked-list 都是有序的&lt;/strong>，且大的 linked-list 也必須是有序的，是 LeetCode21. Merge Two Sorted Lists 的進階題，但本題可用 min heap 解題，還蠻巧妙的，故紀錄一下。&lt;/p>
 &lt;/blockquote></description></item><item><title>JAVA Map方法： merge &amp; compute 比對</title><link>https://aryido.github.io/posts/java/java-skill-8/</link><pubDate>Sat, 01 Oct 2022 16:36:17 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-8/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Java 8 因為引入了 lambda 這樣的 functional 函數，所以 Map 系列增加了一些方法，感覺還是很好用的，簡單做一些相關介紹 &amp;hellip;&lt;/p>

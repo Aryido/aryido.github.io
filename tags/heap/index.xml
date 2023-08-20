@@ -3,7 +3,7 @@
 &lt;p>這題為一個設計題，給了一個 Data Stream，希望設計一個 class 能夠支援連續的 operation，並找出該 Stream 目前的中位數。注意 Data Stream 中的 Data 是無序的且可以為負數，所以我們要做的第一件事是讓&lt;strong>每一次 data 輸入進來，都要讓其有序&lt;/strong>。這裡介紹的解法十分巧妙，&lt;strong>使用 maxHeap 和 minHeap 來解決問題&lt;/strong>，這樣中位數的計算便只要看 maxHeap 的最大值和 minHeap 的最小值來判斷。&lt;/p>
 &lt;/blockquote></description></item><item><title>23. Merge k Sorted Lists</title><link>https://aryido.github.io/posts/leetcode/leetcode23/</link><pubDate>Mon, 03 Oct 2022 21:54:34 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode23/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>這題是合併 k 個 linked-list，且每個linked-list 都是有序的，最終要合併成一個大的 linked-list ，且也必須是有序的。用 heap 解題還蠻巧妙的，故紀錄一下&amp;hellip;&lt;/p>
+&lt;p>這題需求是要合併 k 個 linked-list 成一個大的 linked-list，&lt;strong>每個 linked-list 都是有序的&lt;/strong>，且大的 linked-list 也必須是有序的，是 LeetCode21. Merge Two Sorted Lists 的進階題，但本題可用 min heap 解題，還蠻巧妙的，故紀錄一下。&lt;/p>
 &lt;/blockquote></description></item><item><title>973. K Closest Points to Origin</title><link>https://aryido.github.io/posts/leetcode/leetcode973/</link><pubDate>Mon, 12 Sep 2022 20:12:28 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode973/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>類似這種 top k 問題且非樹結構，都可以直接用 Heap 來解題。&lt;/p>
