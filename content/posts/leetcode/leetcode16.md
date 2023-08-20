@@ -39,44 +39,44 @@ reward: false
 # 解答
 ```java
 class Solution {
-		public int threeSumClosest( int[] nums, int target ) {
-			if ( nums.length == 3 ) {
-				return nums[0] + nums[1] + nums[2];
-			}
-
-			Arrays.sort( nums );
-			int result = nums[0] + nums[1] + nums[2];
-			int closest = Math.abs( result - target );
-			for ( int i = 0; i < nums.length - 2; i++ ) {
-				if ( nums[i] * 3 > target ) {
-					int sum = nums[i] + nums[i + 1] + nums[i + 2];
-					if ( Math.abs( sum - target ) < closest ) {
-						return sum;
-					}
-				}
-
-				int j = i + 1;
-				int k = nums.length - 1;
-				while (j < k) {
-					int sum = nums[i] + nums[j] + nums[k];
-					int diff = Math.abs( sum - target );
-					if ( diff < closest ) {
-						result = sum;
-						closest = diff;
-					}
-
-					if ( sum == target ) {
-						return target;
-					} else if ( sum < target ) {
-						j++;
-					} else {
-						k--;
-					}
-				}
-			}
-			return result;
+	public int threeSumClosest( int[] nums, int target ) {
+		if ( nums.length == 3 ) {
+			return nums[0] + nums[1] + nums[2];
 		}
+
+		Arrays.sort( nums );
+		int result = nums[0] + nums[1] + nums[2];
+		int closest = Math.abs( result - target );
+		for ( int i = 0; i < nums.length - 2; i++ ) {
+			if ( nums[i] * 3 > target ) {
+				int sum = nums[i] + nums[i + 1] + nums[i + 2];
+				if ( Math.abs( sum - target ) < closest ) {
+					return sum;
+				}
+			}
+
+			int j = i + 1;
+			int k = nums.length - 1;
+			while (j < k) {
+				int sum = nums[i] + nums[j] + nums[k];
+				int diff = Math.abs( sum - target );
+				if ( diff < closest ) {
+					result = sum;
+					closest = diff;
+				}
+
+				if ( sum == target ) {
+					return target;
+				} else if ( sum < target ) {
+					j++;
+				} else {
+					k--;
+				}
+			}
+		}
+		return result;
 	}
+}
 ```
 
 
@@ -89,11 +89,7 @@ class Solution {
 # array 的 sort
 Arrays.sort(nums);
 
-# int在java最大值
-int closeTarget = Integer.MAX_VALUE;
-
 ```
-寫 **int closeTarget = 100000** 也是可以 ，因為題目的 target 條件 ```-10^4 <= target <= 10^4```，所以就寫了個 ```10^5```，保證比 **10^4 * 3** 還要大。但還是推薦記下```Integer.MAX_VALUE```是最好的。
 {{< /alert >}}
 
 ---
@@ -105,7 +101,7 @@ int closeTarget = Integer.MAX_VALUE;
 雖然排序的時間複雜度為 ```O(NlogN)```，但因為過程中還有 for loop 遍歷 nums，且內部有一個 while loop 再遍歷 nums，故還是算 ```O(N^2)```
 
 ### 空間複雜度：```O(1)```
-依照我的寫法，演算法過程只需要存儲 ```i, j, k``` 而已，理所當然花費```O(1)```空間而已。
+本題的解法，演算法過程只需要存儲 ```i, j, k, closest``` 而已，故花費```O(1)```空間而已。
 
 ---
 ### 參考資料
