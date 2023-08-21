@@ -98,7 +98,8 @@ Arrays.sort(nums);
 
 ### 時間複雜度: ```O(N^2)```
 
-雖然排序的時間複雜度為 ```O(NlogN)```，但因為過程中還有 for loop 遍歷 nums，且內部有一個 while loop 再遍歷 nums，故還是算 ```O(N^2)```
+- 排序的時間複雜度為 ```O(NlogN)```
+- 過程中有 for loop 遍歷 nums，且內部有一個 while loop 再遍歷 nums，是算 ```O(N^2)```
 
 ### 空間複雜度：```O(1)```
 本題的解法，演算法過程只需要存儲 ```i, j, k, closest``` 而已，故花費```O(1)```空間而已。

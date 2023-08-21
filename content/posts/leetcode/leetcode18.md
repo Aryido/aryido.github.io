@@ -100,7 +100,8 @@ class Solution {
 
 ### 時間複雜度: ```O(N^3)```
 
-nums 排序的時間複雜度為 ```O(NlogN)```。再來是過程中有 2 層 for loop 遍歷 nums且內部還有一個 while loop 故算 ```O(N^3)```
+- nums 排序的時間複雜度為 ```O(NlogN)```。
+- 過程中有 2 層 for loop 遍歷 nums且內部還有一個 while loop 故算 ```O(N^3)```
 
 ### 空間複雜度：```O(1)```
 演算法過程主要只需要存儲 ```i, j, k, l```，故為 ```O(1)```

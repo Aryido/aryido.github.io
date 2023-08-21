@@ -102,7 +102,12 @@ class Solution {
 {{< /alert >}}
 
 {{< alert warning >}}
-for-loop 把各個 linked-lists 加入時，要注意有些首節點是 null，不要加入 heap
+for-loop 把各個 linked-lists 加入時，要注意有些首節點是 null，不要加入 heap。因此有
+```java
+if ( listNode == null ) {
+	continue;
+}
+```
 {{< /alert >}}
 
 ---
@@ -110,7 +115,11 @@ for-loop 把各個 linked-lists 加入時，要注意有些首節點是 null，�
 # 時間空間複雜度
 假設 k linked-lists 中，總共有 N 個資料元素
 ### 時間複雜度: ```O(Nlogk)```
-遍歷所有資料需 ```O(N)```，每次插入資料到 heap 中，因為會排序所以花費 ```O(Logk)``` 時間排序，從 heap Pop 出資料 ```O(1)```，故總共 ```O(Nlogk)```
+- 遍歷所有資料需 ```O(N)```
+  - 每次插入資料到 heap 中，因為有 k 個要排序，所以花費 ```O(logk)``` 時間
+  - 同時從 heap Pop 出資料 ```O(1)```
+
+故總共 ```O(Nlogk)```
 
 ### 空間複雜度：```O(k)```
 針對 heap 的空間配置，會放入 K 個 Node
