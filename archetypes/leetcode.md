@@ -60,4 +60,9 @@ example
 **xxxx** [KK] : (注意事項)
 
 {{< /alert >}}
+
 ---
+
+### 參考資料
+
+- [[LeetCode]5. Longest Palindromic Substring 中文](https://www.youtube.com/watch?v=ZnzvU03HtYk)
