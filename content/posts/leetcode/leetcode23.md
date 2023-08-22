@@ -136,7 +136,7 @@ adj.上升的；ascend的動詞現在分詞、動名詞
 {{< alert info >}}
 **descending** [dɪˋsɛndɪŋ]
 
-adj.下降的；descend的動詞現在分詞、動名
+adj.下降的；descend的動詞現在分詞、動名詞
 {{< /alert >}}
 
 
