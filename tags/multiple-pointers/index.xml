@@ -18,4 +18,12 @@
 &lt;/a>
 &lt;/div>
 &lt;/p>
+&lt;/blockquote></description></item><item><title>26. Remove Duplicates from Sorted Array</title><link>https://aryido.github.io/posts/leetcode/leetcode26/</link><pubDate>Sun, 25 Dec 2022 15:05:58 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode26/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>這道題要我們從&lt;strong>有序數組&lt;/strong>中去除重複項，題目難度雖然被歸為 easy 等級，但在&lt;strong>條件限制&lt;/strong>上的討論，蠻多東西可以釐清討論的。 英文方面寫得蠻長，記得要看到最後因為有寫一些限制如 :&lt;/p>
+&lt;ul>
+&lt;li>&lt;em>O(1)&lt;/em> extra memory&lt;/li>
+&lt;li>The relative order of the elements should be kept the same.&lt;/li>
+&lt;/ul>
+&lt;p>所以&lt;strong>不能用 Set 或另開 array 去寫&lt;/strong>。另外也花了些篇幅去說明，只要原 array 前面長度部分內，有把所有不重複數字列出來就好，不需要在意後面 array 的元素和 array 的長度。&lt;/p>
 &lt;/blockquote></description></item></channel></rss>
