@@ -1,5 +1,5 @@
 ---
-title: 26. Remove Duplicates from Sorted Array
+title: "26. Remove Duplicates from Sorted Array"
 
 author: Aryido
 
@@ -8,21 +8,22 @@ date: 2022-12-25T15:05:58+08:00
 thumbnailImage: /images/leetcode/logo.jpg
 
 categories:
-- LeetCode
+- leetCode
 
 tags:
 - java
+- multiple-pointers
 
 comment: false
 
 reward: false
 ---
 <!--BODY-->
-> 這道題要我們從**有序數組**中去除重複項，題目難度雖然被歸為 easy 等級，但在**條件限制**上的討論，蠻多東西可以釐清討論的。 英文方面寫得蠻長，記得看到最後，有些限制如 :
+> 這道題要我們從**有序數組**中去除重複項，題目難度雖然被歸為 easy 等級，但在**條件限制**上的討論，蠻多東西可以釐清討論的。 英文方面寫得蠻長，記得要看到最後因為有寫一些限制如 :
 > - *O(1)* extra memory
 > - The relative order of the elements should be kept the same.
 >
-> 所以**不要用 Set 或另外 array 去寫**。
+> 所以**不能用 Set 或另開 array 去寫**。另外也花了些篇幅去說明，只要原 array 前面長度部分內，有把所有不重複數字列出來就好，不需要在意後面 array 的元素和 array 的長度。
 
 
 <!--more-->
@@ -33,9 +34,9 @@ reward: false
 
 - The relative order of the elements should be kept the same.
 
-以下都使用我比較不符合我思考的方式來解題，當作練習。
+以下使用各種方式來解題，當作練習
 
-## 思路
+# 思路
 使用**快慢指針**來遍歷 array :
 - **lower** 和 **faster** 都從 index 0 開始
 - **lower**之前的 index 都是處理好的數字
@@ -59,18 +60,18 @@ reward: false
 # 解答
 ```java
 class Solution {
-    public int removeDuplicates(int[] nums) {
-        int faster = 0;
-        int lower = 0;
-        while( faster < nums.length){
-            if(faster == 0 || nums[lower - 1] != nums[faster]){
-                nums[lower++] = nums[faster++];
-            }else{
-                faster++;
-            }
-        }
-        return lower;
-    }
+	public int removeDuplicates( int[] nums ) {
+		int faster = 0;
+		int lower = 0;
+		while (faster < nums.length) {
+			if ( faster == 0 || nums[lower - 1] != nums[faster] ) {
+				nums[lower++] = nums[faster++];
+			} else {
+				faster++;
+			}
+		}
+		return lower;
+	}
 }
 ```
 {{< alert success >}}
@@ -86,44 +87,70 @@ class Solution {
 
 ---
 
-## 其它思路
+# 其它思路
 一樣是使用**快慢指針**來遍歷 array ，最開始時兩個指針都指向第一個數字，但
 - 兩個指針指的數字相同，則快指針向前走一步
 - 如果不同，則慢指針先向前一步，把慢指針對應 index 數字換成快指針對應 index 數字，再來快指針前進
 
-兩個指針都會向前走一步，這樣當快指針走完整個數組後，慢指針當前的**坐標加 1** 就是數組中不同數字的個數。
+可以發現這樣的邏輯下，慢指針的位置，就代表**目前置換過的 index** 。當快指針走完整個數組時，慢指針當前位置，就代表**最後更新的位置**，故 ```lower + 1``` 就是數組中不同數字的個數。
 
 # 解答
 ```java
 class Solution {
-    public int removeDuplicates(int[] nums) {
-        int faster = 0;
-        int lower = 0;
-        while( faster < nums.length ){
-            if (nums[lower] == nums[faster]){
-                ++faster;
-            }else{
-                nums[++lower] = nums[faster++];
-            }
-        }
-        return lower + 1;
-    }
+	public int removeDuplicates( int[] nums ) {
+		int faster = 0;
+		int lower = 0;
+		while (faster < nums.length) {
+			if ( nums[lower] == nums[faster] ) {
+				++faster;
+			} else {
+				nums[++lower] = nums[faster++];
+			}
+		}
+		return lower + 1;
+	}
 }
 ```
 
-用 for loop 也可以解 !
+上面邏輯也可以換成 for loop 也可以解 !
 
 ```java
 class Solution {
-    public int removeDuplicates(int[] nums) {
-        int j = 0;
-        for(int i = 0 ; i < nums.length ; i++){
-            if(nums[i] != nums[j]){
-                nums[++j] = nums[i];
-            }
-        }
+	public int removeDuplicates( int[] nums ) {
+		int lower = 0;
+		for ( int faster = 0; faster < nums.length; faster++ ) {
+			if ( nums[faster] != nums[lower] ) {
+				nums[++lower] = nums[faster];
+			}
+		}
 
-        return j + 1 ;
-    }
+		return lower + 1;
+	}
 }
 ```
+---
+
+# 時間空間複雜度
+### 時間複雜度: ```O(N)```
+遍歷 nums 需 ```O(N)```
+
+### 空間複雜度：```O(1)```
+因為禁止開額外空間，此題強制 ```O(1)```
+
+---
+# Vocabulary
+
+{{< alert info >}}
+[**In-place**](https://en.wikipedia.org/wiki/In-place_algorithm)
+
+特殊片語，代表直接對輸入的 data-structure 進行操作，不能另開額外空間。
+
+in-place algorithm 會應用在一些不希望大量增加記憶體使用量，是拿時間換取空間的概念。
+{{< /alert >}}
+
+
+---
+
+### 參考資料
+
+- [Grandyang](https://www.cnblogs.com/grandyang/p/4329128.html)
