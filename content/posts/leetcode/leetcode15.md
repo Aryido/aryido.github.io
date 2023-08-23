@@ -13,6 +13,7 @@ categories:
 tags:
 - java
 - multiple-pointers
+- array
 
 comment: false
 
