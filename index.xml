@@ -1,4 +1,22 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 27 Jul 2023 23:26:32 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP Cloud CDN</title><link>https://aryido.github.io/posts/google-cloud/gcp-cloud-cdn/</link><pubDate>Thu, 27 Jul 2023 23:26:32 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp-cloud-cdn/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 23 Aug 2023 22:50:25 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Multiple points 題型簡單介紹</title><link>https://aryido.github.io/posts/algorithm/multiple-points/</link><pubDate>Wed, 23 Aug 2023 22:50:25 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/multiple-points/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Multiple points 的操作，經常用在 array 或 linkedList 上，有幾點事情可以在刷題時特別注意:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>指標會把 list 切成幾個部分，特別注意每一部份的定義&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>list 是否有排序或可以排序&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>指標移動是使用&lt;strong>快慢指標&lt;/strong>還是&lt;strong>左右指標&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>會不會改變原本的 list&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>其中第一點，&lt;strong>把 array 切成幾個部分&lt;/strong>，每個部份的&lt;strong>定義&lt;/strong>是最重要的思想，可以多思考。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP Cloud CDN</title><link>https://aryido.github.io/posts/google-cloud/gcp-cloud-cdn/</link><pubDate>Thu, 27 Jul 2023 23:26:32 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp-cloud-cdn/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>CDN 全名為 Content Delivery Network，是一種透過分散在不同地區的 server，用離使用者&lt;strong>最近的伺服器&lt;/strong>來傳送快取內容。而 Cloud CDN，就是借助 Google 分佈在全球各地的網路節點，內容將會以快取(Cache)形式預先儲存在 CDN 節點，以達到最快速的內容交付。 &lt;strong>Cloud CDN 會需要與 GCP-Load-Balancer 搭配使用&lt;/strong>，故建議可以先熟習 GCP 負載平衡器的基本用法和觀念。&lt;/p>
 &lt;/blockquote></description></item><item><title>GCP load-balancer 架構簡介</title><link>https://aryido.github.io/posts/google-cloud/gcp-load-balancer-introduction/</link><pubDate>Mon, 26 Jun 2023 23:47:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp-load-balancer-introduction/</guid><description>&lt;!-- raw HTML omitted -->

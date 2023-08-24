@@ -1,0 +1,100 @@
+<!doctype html><html lang=en-us><head><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Multiple points 題型簡單介紹","image":"https://aryido.github.io/images/leetcode/logo.jpg","datePublished":"2023-08-23T22:50:25+08:00","dateModified":"2023-08-23T22:50:25+08:00","author":{"@type":"Person","name":"李昀陽 YunYang Lee","image":"https://aryido.github.io/images/aboutme/head-shot.jpg"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aryido.github.io\/posts\/algorithm\/multiple-points\/"},"publisher":{"@type":"Organization","name":"Aryido Tech Note","logo":{"@type":"ImageObject","url":"https://aryido.github.io/images/aboutme/head-shot.jpg"}},"description":" Multiple points 的操作，經常用在 array 或 linkedList 上，有幾點事情可以在刷題時特別注意:\n指標會把 list 切成幾個部分，特別注意每一部份的定義\nlist 是否有排序或可以排序\n指標移動是使用快慢指標還是左右指標\n會不會改變原本的 list\n其中第一點，把 array 切成幾個部分，每個部份的定義是最重要的思想，可以多思考。\n","keywords":[]}</script><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Hugo 0.117.0 with theme Tranquilpeak 0.5.3-BETA"><meta name=author content="李昀陽 YunYang Lee"><meta name=keywords content><meta name=description content="
+
+Multiple points 的操作，經常用在 array 或 linkedList 上，有幾點事情可以在刷題時特別注意:
+
+
+指標會把 list 切成幾個部分，特別注意每一部份的定義
+
+
+list 是否有排序或可以排序
+
+
+指標移動是使用快慢指標還是左右指標
+
+
+會不會改變原本的 list
+
+
+其中第一點，把 array 切成幾個部分，每個部份的定義是最重要的思想，可以多思考。
+"><meta property="og:description" content="
+
+Multiple points 的操作，經常用在 array 或 linkedList 上，有幾點事情可以在刷題時特別注意:
+
+
+指標會把 list 切成幾個部分，特別注意每一部份的定義
+
+
+list 是否有排序或可以排序
+
+
+指標移動是使用快慢指標還是左右指標
+
+
+會不會改變原本的 list
+
+
+其中第一點，把 array 切成幾個部分，每個部份的定義是最重要的思想，可以多思考。
+"><meta property="og:type" content="article"><meta property="og:title" content="Multiple points 題型簡單介紹"><meta name=twitter:title content="Multiple points 題型簡單介紹"><meta property="og:url" content="https://aryido.github.io/posts/algorithm/multiple-points/"><meta property="twitter:url" content="https://aryido.github.io/posts/algorithm/multiple-points/"><meta property="og:site_name" content="Aryido Tech Note"><meta property="og:description" content="
+
+Multiple points 的操作，經常用在 array 或 linkedList 上，有幾點事情可以在刷題時特別注意:
+
+
+指標會把 list 切成幾個部分，特別注意每一部份的定義
+
+
+list 是否有排序或可以排序
+
+
+指標移動是使用快慢指標還是左右指標
+
+
+會不會改變原本的 list
+
+
+其中第一點，把 array 切成幾個部分，每個部份的定義是最重要的思想，可以多思考。
+"><meta name=twitter:description content="
+
+Multiple points 的操作，經常用在 array 或 linkedList 上，有幾點事情可以在刷題時特別注意:
+
+
+指標會把 list 切成幾個部分，特別注意每一部份的定義
+
+
+list 是否有排序或可以排序
+
+
+指標移動是使用快慢指標還是左右指標
+
+
+會不會改變原本的 list
+
+
+其中第一點，把 array 切成幾個部分，每個部份的定義是最重要的思想，可以多思考。
+"><meta property="og:locale" content="en-us"><meta property="article:published_time" content="2023-08-23T22:50:25"><meta property="article:modified_time" content="2023-08-23T22:50:25"><meta property="article:section" content="algorithm"><meta property="article:tag" content="multiple-pointers"><meta property="article:tag" content="array"><meta property="article:tag" content="linked-list"><meta name=twitter:card content="summary"><meta property="og:image" content="https://aryido.github.io/images/aboutme/head-shot.jpg"><meta property="twitter:image" content="https://aryido.github.io/images/aboutme/head-shot.jpg"><meta property="og:image" content="https://aryido.github.io/images/leetcode/logo.jpg"><meta property="twitter:image" content="https://aryido.github.io/images/leetcode/logo.jpg"><title>Multiple points 題型簡單介紹</title><link rel=icon href=https://aryido.github.io/favicon.png><link rel=canonical href=https://aryido.github.io/posts/algorithm/multiple-points/><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://aryido.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css></head><body><div id=blog><header id=header data-behavior=4><i id=btn-open-sidebar class="fa fa-lg fa-bars"></i><div class=header-title><a class=header-title-link href=https://aryido.github.io/ aria-label="Go to homepage">Aryido Tech Note</a></div><a class=header-right-picture href=https://aryido.github.io/#about aria-label="Open the link: /#about"><img class=header-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"></a></header><nav id=sidebar data-behavior=4><div class=sidebar-container><div class=sidebar-profile><a href=https://aryido.github.io/#about aria-label="Read more about the author"><img class=sidebar-profile-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"></a><h4 class=sidebar-profile-name>李昀陽 YunYang Lee</h4><h5 class=sidebar-profile-bio>Welcome to my Tech Note. You can read some of the chapters below.</h5></div><ul class=sidebar-buttons><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/ title=Home><i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden=true></i>
+<span class=sidebar-button-desc>Home</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/categories title=Categories><i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden=true></i>
+<span class=sidebar-button-desc>Categories</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/tags title=Tags><i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden=true></i>
+<span class=sidebar-button-desc>Tags</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://github.com/Aryido target=_blank rel=noopener title=GitHub><i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden=true></i>
+<span class=sidebar-button-desc>GitHub</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/index.xml title=RSS><i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden=true></i>
+<span class=sidebar-button-desc>RSS</span></a></li></ul><ul class=sidebar-buttons></ul><ul class=sidebar-buttons></ul></div></nav><div id=main data-behavior=4 class=hasCoverMetaIn><article class=post id=top><div class="post-header main-content-wrap text-left"><h1 class=post-title>Multiple points 題型簡單介紹</h1><div class="postShorten-meta post-meta"><time datetime=2023-08-23T22:50:25+08:00>August 23, 2023</time>
+<span>in</span>
+<a class=category-link href=https://aryido.github.io/categories/algorithm>algorithm</a></div></div><div class="post-content markdown"><div class=main-content-wrap><blockquote><p>Multiple points 的操作，經常用在 array 或 linkedList 上，有幾點事情可以在刷題時特別注意:</p><ol><li><p>指標會把 list 切成幾個部分，特別注意每一部份的定義</p></li><li><p>list 是否有排序或可以排序</p></li><li><p>指標移動是使用<strong>快慢指標</strong>還是<strong>左右指標</strong></p></li><li><p>會不會改變原本的 list</p></li></ol><p>其中第一點，<strong>把 array 切成幾個部分</strong>，每個部份的<strong>定義</strong>是最重要的思想，可以多思考。</p></blockquote><hr><h2 id=區間定義>區間定義</h2><p>針對 Two points 的操作，會把目標切成幾個部分，可以由下圖知道，這裡舉例 <em>i</em> , <em>j</em> :<div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/algorithm/two-points.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/algorithm/two-points.jpg></a></div>可以知道會分成三個部分，再來由指標<strong>前進方向</strong>來分類，分成的三個部分會有一些定義差別 :</p><ul><li>同向<ul><li><em>[0,i)</em> : <strong>處理好</strong></li><li><em>[i,j)</em> : <strong>不需要</strong></li><li><em>[j,length)</em> : <strong>還沒處理過的</strong></li></ul></li><li>反向<ul><li><em>[0,i)</em> : <strong>處理好</strong></li><li><em>(j,length)</em> : <strong>處理好</strong></li><li><em>[i,j]</em> : <strong>還沒處理過的</strong></li></ul></li></ul><div class="alert warning"><p>區間的<strong>開閉</strong>，會需要依照題目要求定義，但注意 ! 每個區間連接處(如 <em>i</em> 點位置)，<strong>不能有兩種意思</strong> !</p></div><h2 id=快慢指標>快慢指標</h2><p>多用於 Linked-List 的問題 :</p><ul><li>找到 Linked-List 中心點；慢指標一次走一步，快指標一次走兩步，當 fast pointer 抵達尾端的時候， slow pointer 就會是在中間的位置。</li><li>找到 Linked-List 倒數第 K 個節點；先讓 fast pointer 先走 K 步，然後 Slow and Fast 兩個指標再使用一樣的速率前進，當 fast pointer 抵達尾端的時候， slow pointer 就會是在倒數第 K 個節點的位置</li><li>可以判斷 linked list 是否有環，若是兩個指標相遇，代表有環</li></ul><div class="alert success"><p><p>該如何理解兩指標相遇就代表環存在？</p><p>想成在操場上跑步，跑的快的人最終都會超過跑的慢的人，兩個指標如果都進入到環中，最終跑的快的人會追上跑的慢的人。</p></p></div><h2 id=左右指標>左右指標</h2><p>主要處理對稱相關的題目，例如 :</p><ul><li>反轉 array</li><li>檢查 <strong>palindrome 回文</strong></li></ul><hr><h3 id=參考資料>參考資料</h3><ul><li><p><a href="https://www.youtube.com/watch?v=ZnzvU03HtYk">[LeetCode]5. Longest Palindromic Substring 中文</a></p></li><li><p><a href=https://www.cnblogs.com/grandyang/p/4464476.html>Manacher&rsquo;s Algorithm</a></p></li><li><p><a href=https://blog.techbridge.cc/2019/08/30/leetcode-pattern-two-pointer/>Leetcode 刷題 pattern - Two Pointer</a></p></li><li><p><a href=https://ithelp.ithome.com.tw/articles/10262277>super_baba 第十天 - Two-pointer</a></p></li></ul></div></div><div id=post-footer class="post-footer main-content-wrap"><div class=post-footer-tags><span class="text-color-light text-small">TAGGED IN</span><br><a class="tag tag--primary tag--small" href=https://aryido.github.io/tags/multiple-pointers/>multiple-pointers</a>
+<a class="tag tag--primary tag--small" href=https://aryido.github.io/tags/array/>array</a>
+<a class="tag tag--primary tag--small" href=https://aryido.github.io/tags/linked-list/>linked-list</a></div><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--disabled"><i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/algorithm/dynamic-programming1/ data-tooltip="Dynamic Programming 基礎介紹" aria-label="PREVIOUS: Dynamic Programming 基礎介紹"><span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i></a></li></ul></nav><ul class="post-actions post-action-share"><li class="post-action hide-lg hide-md hide-sm"><a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post"><i class="fa fa-share-alt" aria-hidden=true></i></a></li><li class=post-action><a class="post-action-btn btn btn--default" href=#top aria-label="Back to top"><i class="fa fa-arrow-up" aria-hidden=true></i></a></li></ul></div></div></article><footer id=footer class=main-content-wrap><span class=copyrights>&copy; 2023 李昀陽 YunYang Lee. All Rights Reserved</span></footer></div><div id=bottom-bar class=post-bottom-bar data-behavior=4><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--disabled"><i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/algorithm/dynamic-programming1/ data-tooltip="Dynamic Programming 基礎介紹" aria-label="PREVIOUS: Dynamic Programming 基礎介紹"><span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i></a></li></ul></nav><ul class="post-actions post-action-share"><li class="post-action hide-lg hide-md hide-sm"><a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post"><i class="fa fa-share-alt" aria-hidden=true></i></a></li><li class=post-action><a class="post-action-btn btn btn--default" href=#top aria-label="Back to top"><i class="fa fa-arrow-up" aria-hidden=true></i></a></li></ul></div></div></div><div id=about><div id=about-card><div id=about-btn-close><i class="fa fa-times"></i></div><img id=about-card-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"><h4 id=about-card-name>李昀陽 YunYang Lee</h4><div id=about-card-bio>Welcome to my Tech Note. You can read some of the chapters below.</div><div id=about-card-job><i class="fa fa-briefcase"></i><br>Software Engineer</div><div id=about-card-location><i class="fa fa-map-marker-alt"></i><br>Taiwan</div></div></div><div id=cover style=background-image:url(https://aryido.github.io/images/background.jpg)></div><script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://aryido.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js></script>
+<script>$(document).ready(function(){hljs.configure({classPrefix:"",useBR:!1}),$("pre.code-highlight > code, pre > code").each(function(e,t){$(this).hasClass("codeblock")||$(this).addClass("codeblock"),hljs.highlightBlock(t)})})</script></body></html>
