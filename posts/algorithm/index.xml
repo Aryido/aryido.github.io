@@ -15,7 +15,7 @@
 &lt;p>會不會改變原本的 list&lt;/p>
 &lt;/li>
 &lt;/ol>
-&lt;p>其中第一點，&lt;strong>把 array 切成幾個部分&lt;/strong>，每個部份的&lt;strong>定義&lt;/strong>是最重要的思想，可以多思考。&lt;/p>
+&lt;p>其中第一點，&lt;strong>把 array 切成幾個部分&lt;/strong>，每個部份的&lt;strong>定義&lt;/strong>，是最重要的思想，可以多思考。&lt;/p>
 &lt;/blockquote></description></item><item><title>Dynamic Programming 基礎介紹</title><link>https://aryido.github.io/posts/algorithm/dynamic-programming1/</link><pubDate>Wed, 02 Nov 2022 21:52:00 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/dynamic-programming1/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Dynamic Programming 大概算是 leetcode 裡面平均難度最高的章節了，還蠻需要練習的。但在講 DP 之前，我們可以先講 Search，因為 Dynamic Programming 其實就是 Search + Memoization。&lt;/p>
