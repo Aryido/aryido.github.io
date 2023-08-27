@@ -5,7 +5,7 @@ author: Aryido
 
 date: 2023-08-23T22:50:25+08:00
 
-thumbnailImage: /images/leetcode/logo.jpg
+thumbnailImage: /images/data-structure/pointer.jpg
 
 categories:
 - algorithm
