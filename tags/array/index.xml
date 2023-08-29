@@ -36,6 +36,15 @@
 &lt;/a>
 &lt;/div>
 &lt;/p>
+&lt;/blockquote></description></item><item><title>Array &amp; ArrayList &amp; LinkedList 選擇場景</title><link>https://aryido.github.io/posts/java/array-arraylist-linkedlist/</link><pubDate>Sat, 17 Sep 2022 12:49:55 +0800</pubDate><guid>https://aryido.github.io/posts/java/array-arraylist-linkedlist/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Array 是 Java 中的基本功能，而 ArrayList 是 Collection 的一部分； ArrayList 和 LinkedList 都是 Java 中的集合類型，它們都實現了 List 接口。基本特徵簡單如下 :&lt;/p>
+&lt;ul>
+&lt;li>Array 是一個有固定大小的，每次創建都需要設定，而且在創建後，是不能再更改大小&lt;/li>
+&lt;li>ArrayList ，是一個有浮動大小的Array，且適用於需要快速訪問集合中的元素的場景。&lt;/li>
+&lt;li>LinkedList 適用於頻繁插入和刪除元素的場景。&lt;/li>
+&lt;/ul>
+&lt;p>如果需要實現隊列或棧等數據結構，也可以選擇 LinkedList。&lt;/p>
 &lt;/blockquote></description></item><item><title>Java 技巧 - Java Arrays 方法</title><link>https://aryido.github.io/posts/java/java-arrays/</link><pubDate>Fri, 09 Sep 2022 19:59:56 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-arrays/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>刷題時很常出現 Array 的結構如 &lt;code>int[]、char[]&lt;/code> 等等&amp;hellip;，故在這邊條列一些常用的 Arrays 方法。這次主要整理下 Java 中 Arrays 類的常用方法，在使用過程也可以複習 java 提供的工具類，還有一些泛型的坑&amp;hellip;&lt;/p>

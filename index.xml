@@ -444,14 +444,15 @@ JDK8 的 Map API 有不少便利的預設方法，以下可以介紹一下。&lt
 &lt;/blockquote></description></item><item><title>743. Network Delay Time</title><link>https://aryido.github.io/posts/leetcode/leetcode743/</link><pubDate>Mon, 19 Sep 2022 21:09:18 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode743/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>可以抽象成，計算從&lt;strong>初始節點&lt;/strong>到&lt;strong>最遠節點&lt;/strong>的最優路徑，很標準的 &lt;em>best first search&lt;/em>。 題目常用在水管滲透，或是網路流通，求出初始節點到每一個點到最短時間，然後取其中最大的一個就是需要的時間了。這題就是要你=實作 Dijkstra’s algorithm。&lt;/p>
-&lt;/blockquote></description></item><item><title>ArrayList &amp; LinkedList 選擇場景</title><link>https://aryido.github.io/posts/java/arraylist-linkedlist/</link><pubDate>Sat, 17 Sep 2022 12:49:55 +0800</pubDate><guid>https://aryido.github.io/posts/java/arraylist-linkedlist/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Array &amp; ArrayList &amp; LinkedList 選擇場景</title><link>https://aryido.github.io/posts/java/array-arraylist-linkedlist/</link><pubDate>Sat, 17 Sep 2022 12:49:55 +0800</pubDate><guid>https://aryido.github.io/posts/java/array-arraylist-linkedlist/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>ArrayList 和 LinkedList 是 Java 中的集合框架，它們都實現了 List 接口。&lt;/p>
+&lt;p>Array 是 Java 中的基本功能，而 ArrayList 是 Collection 的一部分； ArrayList 和 LinkedList 都是 Java 中的集合類型，它們都實現了 List 接口。基本特徵簡單如下 :&lt;/p>
 &lt;ul>
-&lt;li>ArrayList 是適用於需要快速訪問集合中的元素的場景。&lt;/li>
+&lt;li>Array 是一個有固定大小的，每次創建都需要設定，而且在創建後，是不能再更改大小&lt;/li>
+&lt;li>ArrayList ，是一個有浮動大小的Array，且適用於需要快速訪問集合中的元素的場景。&lt;/li>
 &lt;li>LinkedList 適用於頻繁插入和刪除元素的場景。&lt;/li>
 &lt;/ul>
-&lt;p>需要查找集合中的元素，可以選擇 ArrayList；如果需要頻繁地插入和刪除元素，可以選擇 LinkedList。同時，如果需要實現隊列或棧等數據結構，也可以選擇 LinkedList。&lt;/p>
+&lt;p>如果需要實現隊列或棧等數據結構，也可以選擇 LinkedList。&lt;/p>
 &lt;/blockquote></description></item><item><title>Java 技巧 - computeIfAbsent() 用法詳解</title><link>https://aryido.github.io/posts/java/computeifabsent/</link><pubDate>Sat, 17 Sep 2022 12:44:22 +0800</pubDate><guid>https://aryido.github.io/posts/java/computeifabsent/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>使用 HashMap 的方法 :&lt;/p>
