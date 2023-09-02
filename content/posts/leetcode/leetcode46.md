@@ -1,5 +1,5 @@
 ---
-title: 46. Permutations
+title: "46. Permutations"
 
 author: Aryido
 
@@ -8,10 +8,11 @@ date: 2022-11-30T23:38:55+08:00
 thumbnailImage: /images/leetcode/logo.jpg
 
 categories:
-- LeetCode
+- leetCode
 
 tags:
 - java
+- dfs
 - backtrack
 
 comment: false
@@ -19,22 +20,21 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> 是一道經典的全排列問題，這邊使用 backtrack 來求解。從數學上來說，*n* 個 element 的 Permutation 一共有 *n!* 種排序，思考起來算蠻簡單的，但要用程式模擬這個過程，是有點難度的，被歸類在 Medium 等級。
+> 是一道經典  distinct integers 的全排列問題，這邊使用 DFS 加上 Backtrack 來求解。從數學上來說，*n* 個 element 的 Permutation 一共有 *n!* 種排序，思考起來算蠻簡單的，但要用程式模擬這個過程，是有點難度的，因此被歸類在 Medium 等級。
 
 <!--more-->
 
 ---
 
 ## 思路
-backtrack 類型的題目，都算是**Search**類型的題目，都類似 Top Down DFS 的寫法，故蠻推薦把 Recursion Search Tree 畫出來幫助思考。
-
+推薦把 recursion Tree 畫出來幫助思考。
 {{< image classes="fancybox fig-100" src="/images/leetcode/permutation.jpg" >}}
 
 這邊使用一個比較巧妙的方法，**用交換 num 裡面的兩個數字**的方式，來做 DFS ，經過遞迴可以產出所有的排列情況。
 
 最高層的問題就是我們的原始 input，而 State 設計，用位置 index 做為參數。第一層做完就會確定第一個位置的數字，有 ```nums.length``` 種可能性；第二層做完就會確定第二個位置的數字，有 ```nums.length - 1``` 種可能性，以此類推...
 
-{{< alert info >}}
+{{< alert success >}}
 這種**交換 num 裡面的兩個數字**的方式也給他的下個進階題 *47. Permutations II* 做了巧妙鋪墊。
 {{< /alert >}}
 
@@ -47,8 +47,8 @@ class Solution {
         return ans;
     }
 
-    private void dfs(int[] nums, int index){
-        if(index >= nums.length){
+    private void dfs(int[] nums, int depth){
+        if(depth >= nums.length){
             List<Integer> res = new ArrayList<>();
             for(int num : nums){
                 res.add(num);
@@ -57,10 +57,10 @@ class Solution {
             return;
         }
 
-        for(int i = index ; i < nums.length ; i++){
-            swap(nums, index, i);
-            dfs(nums, index + 1);
-            swap(nums, i, index);
+        for(int i = depth ; i < nums.length ; i++){
+            swap(nums, depth, i);
+            dfs(nums, depth + 1);
+            swap(nums, i, depth);
         }
     }
 
@@ -75,7 +75,7 @@ class Solution {
 一般這種 Top Down DFS 問題都是 return void 的；botton up DFS 才會有 return 具體的 type。
 {{< /alert >}}
 
-{{< alert warning >}}
+{{< alert danger >}}
 因為 java object 是存地址，故要把當前答案做一個 copy
 ```java
 List<Integer> res = new ArrayList<>();
@@ -97,3 +97,39 @@ swap(nums, i, index);
 {{< /alert >}}
 
 ---
+
+# 時間空間複雜度
+{{< image classes="fancybox fig-100" src="/images/leetcode/permutation-complex.jpg" >}}
+由上圖幫助思考，假設 nums 有 N 個元素 ，深度 depth 代表的節點狀態是，**該位置的元素要和其 index 大於等於自己的位置的元素 swap** :
+{{< alert info >}}
+所以自己和自己 swap 也是可以的
+{{< /alert >}}
+
+### 時間複雜度 : ```O((N*N!)```
+Backtrack 時間複雜度，會由 recursion tree 的 **Node 個數**和 **Node 行為**決定。因為演算法在葉子節點和非葉子節點的行為不一樣，所以分開計算比較 :
+
+- 非葉子節點
+  - 在 depth 深度為 ```0``` 時，代表 ```index = 0```的元素要和  ```index = 0 到 `index = N```，這代表有 N 個節點。
+  - 在 depth 深度為 ```1``` 時，代表 ```index = 1```的元素要和  ```index = 1 到 `index = N```，這代表有 N - 1 個節點。
+
+一直推理可發現**非葉子節點**個數總共有，```N + (N-1) + ... + 1 = (1+N)N/2```，且每次 swap 的時間複雜度為常數，故**非葉子節點**時間複雜度為 ```O(N^2)```
+
+
+- 葉子節點
+真的葉子節點，我們用高中數學知道其數量就是 N!，然後因為要拷貝成一個新的 array 需要的時間複雜度是```O(N)```，故**葉子節點**時間複雜度為
+```O(N*N!)```
+
+最後總體看一下，影響最大的是葉子節點，故總體時間複雜度是```O(N*N!)```。實際上速度會比 ```O(N*N!)``` 還要好一點，因為非葉子節點速度比較快。
+
+### 空間複雜度 : ```O(N)```
+
+recursion tree 深度優先搜索（DFS）會產生一個 recursion stack ，深度為 N，所以空間複雜度為```O(N)```
+
+---
+
+### 參考資料
+
+- [Backtracking回溯解题](https://www.youtube.com/watch?v=xqidNhvwKzI&list=PLV5qT67glKSErHD66rKTfqerMYz9OaTOs&index=18)
+
+- [46. Permutations 全排列 【LeetCode 力扣题解】](loud.google.com/config-connector/docs/reference/overview)
+
