@@ -15,13 +15,13 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> Pod 的生命週期是動態的，因為 cluster 會根據需求，動態地創建或銷毀 Pod ，這自然也伴隨着 Pod IP 地址的更動。 Kubernetes Service 在 pod 的前方提供了一個抽象層，創建一個穩定的網路端點，不只可以**對內部建立 Pod 之間的通信，另外也可以建立外部服務與 Pod 的溝通管道**，為 Pod 提供統一的代理接口。同時 Service 讓服務間可以用 domain name 的方式存取 pod，並爲這些 Pod 進行負載分配。
+> Pod 的生命週期是動態的，因為 cluster 會根據需求，動態地創建或銷毀 Pod ，重啟的 Pod 自然也伴隨着 IP 地址的更動。為了解決這問題， Kubernetes 提供 Service 組件，在 pod 的前方提供了一個抽象層，創建一個穩定的網路端點。**不只可以建立內部 Pod 之間的通信，另外也可以建立外部服務與 Pod 的溝通管道**，為 Pod 提供統一的代理接口。 Service 還可以讓服務間可以用 domain name 的方式相互通信，還可以爲這些 Pod 進行負載分配。
 
 <!--more-->
 
 ---
 
-Kubernetes 集群內部 Pod 之間的溝通，預設是通過 Service。Kubernetes 系統在每個節點上都會運行一個 kube-proxy，會監控 Service 和 Pod ，Pod 會因爲伸縮、更新、故障等情況發生變化，而 iptables 進行相應修改。
+Kubernetes Cluster 內部 Pod 之間的溝通，預設是通過 Service。Kubernetes 系統在每個節點上都會運行一個 kube-proxy，會監控 Service 和 Pod ，當 Pod 因爲伸縮、更新、故障等情況發生變化，這是 Service 會自動對 iptables 進行相應修改。
 
 {{< image classes="fancybox fig-100" src="/images/kubernetes/service-2.jpg" >}}
 前往 Service (ClusterIP:port) 的網路流量，會由 iptables 重新導向到 Service 所代理的其中一個 Pod，進行負載平衡。
@@ -33,16 +33,48 @@ Kubernetes 集群內部 Pod 之間的溝通，預設是通過 Service。Kubernet
 
   **Service 透過 LabelSelector 來關聯 Pod** ，每個 Node 上的 kube-proxy 會透過 API Server watch 隨時監控 Service 或 LabelSelector 匹配的 Pod 對象是否有變動。
 
-{{< alert warning >}}
+{{< alert success >}}
 LabelSelector 代表著**鬆耦合**，Service 和 Pod 建立順序並沒有強制誰先誰後， Service 也可以比 Pod 早建立。
 {{< /alert >}}
 
 
 ---
 
-## [Service](https://kubernetes.io/docs/concepts/services-networking/service/)
+# [Service](https://kubernetes.io/docs/concepts/services-networking/service/)
 
-假定已經有一組 Pod，每個 Pod 都在偵聽 TCP port 9376 ，同時還被打上 ```app=my-app``` 標籤。接下來定義一個 Service :
+假定有一組 Pod，每個 Pod 都在偵聽 TCP port 9376 ，同時還被打上 ```app=my-app``` 標籤，簡單範例如下 :
+```YAML
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app-deployment
+  labels:
+    app: my-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app  # 標示 Service 要找的標籤名
+    spec:
+      containers:
+      - name: my-app
+        image: my-app:1.0.0
+        ports:
+        - containerPort: 9376 # Pod 對外開放的 port number
+```
+特別注意最重要的部分，我們在```spec.template.metadata.labels```
+打上標籤```app: my-app```，這代表設定由這個 Deployment 創建的每個 Pod 的 labels，**當一個新的 Pod 被 Deployment 創建時，這個 labels 會被附加到新創建的 Pod 上。**
+{{< alert warning >}}
+通常 ```selector.matchLabels``` 的設置應該和 ```template.metadata.labels``` 一致。這樣 Deployment 才能正確識別和管理它自己創建的 Pod。
+{{< /alert >}}
+
+
+
+接下來定義一個 Service，為 Pod 提供穩定的通訊服務 :
 
 ```
 apiVersion: v1
@@ -51,15 +83,12 @@ metadata:
   name: my-service
 spec:
   selector:
-    app: my-app
-  # type 一共有四種(ClusterIP, NodePort, LoadBalancer, ExternalName)
-  # 預設是 ClusterIP
+    app: my-app  # 連結 Deployment 生成的，有同標籤名的 Pod
   type: ClusterIP
   ports:
   - protocol: TCP
     port: 80
-    # 此為 Pod 對外開放的 port number
-    targetPort: 9376
+    targetPort: 9376  # 對應 Pod 對外開放的 port number
 ```
 
 透過標籤選擇器 LabelSelector，關聯到有標籤為 ```my-app``` 的 Pod，該 Service 會將所有具有標籤 ```my-app``` 的 Pod 的 TCP 9376 端口，暴露到 Service 80 端口上
@@ -70,22 +99,22 @@ spec:
 
   創建的 Service 的 Cluster IP，是哪個 port 去對應到 targetPort
 
-{{< alert info >}}
+{{< alert success >}}
 Service 能夠將一個接收 ```port``` 映射到 ```targetPort```。若是 targetPort 不設定，默認情況 targetPort 會為與 port 相同。
 {{< /alert >}}
 
 ---
 
-## Service 類型
-
-### ClusterIP
+# Service 類型
+Service type 一共有以下四種類型，**預設是 ClusterIP**
+## - ClusterIP
 Service 預設是 ClusterIP ，透過內部 IP 地址暴露服務，此 IP 只有內部可以使用，無法被 cluster 外部的 client 訪問。
 
 {{< alert info >}}
 為 Private IP ，是 Service 在 cluster 內的專屬地址，僅可在 cluster 內使用
 {{< /alert >}}
 
-### NodePort
+### - NodePort
 在工作節點的 IP 地址上，選擇一個 port 來將外部請求，轉發到目標 Service 的 clusterIP 和 Port ，所以這個類型的 Service 可以收到內部也可以收到外部 Client 的請求。
 
 {{< alert info >}}
@@ -97,7 +126,7 @@ Service 預設是 ClusterIP ，透過內部 IP 地址暴露服務，此 IP 只�
 K8s部署時，預留的 NodePort 端口範圍是  ```30000~32767```
 {{< /alert >}}
 
-### LoadBalancer
+## - LoadBalancer
 LoadBalancer 類型的 Service ，會指向 k8s cluster 對應一個實際存在的負載均衡設置。通常會結合雲端平台如 GCP、AWS、AZURE 等等，我們可以透過這些 cloud provider 提供的 LoadBalancer ，幫我們分配流量到每個 Node 。
 
 {{< alert info >}}
@@ -112,7 +141,7 @@ Kubernetes 提供兩種內建的雲端負載均衡機制 :
 
 ---
 
-### 參考資料
+# 參考資料
 
 - [K8s network之五：Kubernetes集群Pod和Service之間通信的實現原理](https://marcuseddie.github.io/2021/K8s-Network-Architecture-section-five.html)
 
