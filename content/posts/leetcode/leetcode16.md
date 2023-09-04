@@ -106,7 +106,7 @@ Arrays.sort(nums);
 本題的解法，演算法過程只需要存儲 ```i, j, k, closest``` 而已，故花費```O(1)```空間而已。
 
 ---
-### 參考資料
+# 參考資料
 
 - [[LeetCode]16. 3Sum Closest 中文](https://www.youtube.com/watch?v=vDrUqaPCVyk&t=152s)
 
