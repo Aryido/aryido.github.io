@@ -1,5 +1,5 @@
 ---
-title: Kubernetes - Service
+title: "Kubernetes - Service"
 
 author: Aryido
 
@@ -66,8 +66,8 @@ spec:
         ports:
         - containerPort: 9376 # Pod 對外開放的 port number
 ```
-特別注意最重要的部分，我們在```spec.template.metadata.labels```
-打上標籤```app: my-app```，這代表設定由這個 Deployment 創建的每個 Pod 的 labels，**當一個新的 Pod 被 Deployment 創建時，這個 labels 會被附加到新創建的 Pod 上。**
+特別注意，我們在```spec.template.metadata.labels```
+打上標籤```app: my-app```，這代表設定由這個 Deployment 創建的每個 Pod 的 labels，即**當一個新的 Pod 被 Deployment 創建時，這個 labels 會被附加到新創建的 Pod 上。**
 {{< alert warning >}}
 通常 ```selector.matchLabels``` 的設置應該和 ```template.metadata.labels``` 一致。這樣 Deployment 才能正確識別和管理它自己創建的 Pod。
 {{< /alert >}}
@@ -94,10 +94,10 @@ spec:
 透過標籤選擇器 LabelSelector，關聯到有標籤為 ```my-app``` 的 Pod，該 Service 會將所有具有標籤 ```my-app``` 的 Pod 的 TCP 9376 端口，暴露到 Service 80 端口上
 - **targetPort**：
 
-  容器接收流量的端口，例如我們在 Pod 中運行一個 port 9376 的 web container，所以我們指定 my-service 的 targetPort 為 9376
+  容器接收流量的端口，例如我們在 Pod 中運行一個 port 9376 的 web container，所以我們要指定 Service 的 targetPort 為 9376，才能和 Pod 內的應用通信。
 - **port**：
 
-  創建的 Service 的 Cluster IP，是哪個 port 去對應到 targetPort
+  創建的  Cluster IP 的 port ，會去對應到 targetPort
 
 {{< alert success >}}
 Service 能夠將一個接收 ```port``` 映射到 ```targetPort```。若是 targetPort 不設定，默認情況 targetPort 會為與 port 相同。
