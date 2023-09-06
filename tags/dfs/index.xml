@@ -6,7 +6,7 @@
 &lt;p>題目給定一個 board 以及 一個 word ，我們要判斷的 board 上是否可以連線出 word。這題是蠻典型的 graph 類題目，用 BFS 或 DFS 解題都行，但用深度優先 DFS 來解題會比較好一些(可以先思考一下為什麼)。解題流程還蠻制式化的，是熟練 graph 類型的練習好題目 XD。&lt;/p>
 &lt;/blockquote></description></item><item><title>46. Permutations</title><link>https://aryido.github.io/posts/leetcode/leetcode46/</link><pubDate>Wed, 30 Nov 2022 23:38:55 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode46/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>是一道經典 distinct integers 的全排列問題，這邊使用 DFS 加上 Backtrack 來求解。從數學上來說，&lt;em>n&lt;/em> 個 element 的 Permutation 一共有 &lt;em>n!&lt;/em> 種排序，思考起來算蠻簡單的，但要用程式模擬這個過程，是有點難度的，因此被歸類在 Medium 等級。&lt;/p>
+&lt;p>是一道經典 distinct integers 的全排列問題，這邊使用 DFS 加上 Backtrack 來求解。從數學上來說，n 個 element 的 Permutation 一共有 n! 種排序，思考起來算蠻簡單的，但要用程式模擬這個推導過程，卻是有點難度的，因此被歸類在 Medium 等級。&lt;/p>
 &lt;/blockquote></description></item><item><title>332. Reconstruct Itinerary</title><link>https://aryido.github.io/posts/leetcode/leetcode332/</link><pubDate>Sat, 17 Sep 2022 10:03:29 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode332/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>這種飛航問題基本上都是屬於 Graph 題，題目敘述也很生活化(&lt;del>根本旅行必備知識&lt;/del>)。 因為所有的路徑有且只會被用一次，故是一個 &lt;strong>Euler Circuit&lt;/strong>。&lt;/p>
