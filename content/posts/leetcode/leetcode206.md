@@ -140,9 +140,18 @@ class Solution {
 要使 linked list 反向，假設有 N 個 node，不論是 iterative 或 recursive 的方法都需走訪每個 node 並改變他們所指向下一個 node 的指標，所以時間複雜度為
  ```O(N)```。
 
-### 空間複雜度 :
+### 空間複雜度 : 兩種解法不太一樣
 - 對於指標 iteratively 的方法，由於整個演算法只需要存指標空間，故為 ```O(1)```
-- 對於 recursive 的方法，**每一次 recursive 都會宣告一個 tmp 指標，倘若有 N 個 node 則會 recursive N 次**，所以 recursive 的空間複雜度為 ```O(N)```
+
+- 對於 recursive 的方法:
+
+    在這題遞迴的情境下，recursion tree 中每一個 Node 都對應一個未解決的遞迴呼叫，這些呼叫會一直留在 Stack 中直到它們被解決。而這題 recursion stack 的最大大小剛好等於 recursion tree 中 Node 的數量，這也就是```N```。並且解法中， 每個 Node 內並沒有使用額外空間儲存資料，所以其複雜度為常數。
+
+    綜合上述， recursive 的空間複雜度為 ```O(N*1) = O(N)```
+
+{{< alert info >}}
+一般來說，在分析遞迴的空間複雜度時，常關注的是遞迴呼叫所使用的 Stack 空間，這通常是主要的空間消耗原因之一。在這種簡單的遞迴情境下，直接說空間複雜度是由於遞迴呼叫的數量決定的，所以是```O(N)```，通常會更簡單和直觀。
+{{< /alert >}}
 
 ---
 
