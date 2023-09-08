@@ -15,23 +15,50 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> Pod 的生命週期是動態的，因為 cluster 會根據需求，動態地創建或銷毀 Pod ，重啟的 Pod 自然也伴隨着 IP 地址的更動。為了解決這問題， Kubernetes 提供 Service 組件，在 pod 的前方提供了一個抽象層，創建一個穩定的網路端點。**不只可以建立內部 Pod 之間的通信，另外也可以建立外部服務與 Pod 的溝通管道**，為 Pod 提供統一的代理接口。 Service 還可以讓服務間可以用 domain name 的方式相互通信，還可以爲這些 Pod 進行負載分配。
-
+> Pod 的生命週期是動態的，因為 cluster 會根據需求，動態地創建或銷毀 Pod ，重啟的 Pod 自然也伴隨着 IP 地址的更動。為了解決這問題，kubernetes 在 客戶端和 Pod 間，引入了一個名為 Service 的組件，它會在 pod 的前方提供了一個穩定的網路端點。**不只可以建立內部 Pod 之間的通信，讓 Pod 間可以用 domain name 的方式相互溝通；另外也可以建立外部與 Pod 的溝通管道**。 最後 Service 也有能力爲這些 Pod 進行負載分配，平均每個 Pod 的使用率。
 <!--more-->
 
 ---
 
-Kubernetes Cluster 內部 Pod 之間的溝通，預設是通過 Service。Kubernetes 系統在每個節點上都會運行一個 kube-proxy，會監控 Service 和 Pod ，當 Pod 因爲伸縮、更新、故障等情況發生變化，這是 Service 會自動對 iptables 進行相應修改。
-
+# 簡介
 {{< image classes="fancybox fig-100" src="/images/kubernetes/service-2.jpg" >}}
-前往 Service (ClusterIP:port) 的網路流量，會由 iptables 重新導向到 Service 所代理的其中一個 Pod，進行負載平衡。
-- **Service 的 IP 也稱為 ClusterIP**
+當 kubernetes 創建一個 Service 時， 若 Service 有 labelSelector 關聯到 Pod，則 :
+  - Control Plane 會使用 kube-controller-manager 中的 EndpointSlice controller 組件，**自動創建 endpointsSlice (舊版稱 endpoints)。**
 
-  是 Sevice 創建時，會被分配一個唯一的 IP 地址，這個 IP 地址與 Service 的生命週期是綁定在一起，故 Service 重新佈署時可能會導致 ClusterIP 改變。
+  - endpointsSlice 包含該 Service 通過 labelSelector 關聯的所有 Pod IP 資訊。
 
-- **LabelSelector**
+  - EndpointSlice controller  會監聽 Pod 的狀態，若發現 Pod 有更動，會自動修正 endpointsSlice 中的 Pod IP 資訊。
 
-  **Service 透過 LabelSelector 來關聯 Pod** ，每個 Node 上的 kube-proxy 會透過 API Server watch 隨時監控 Service 或 LabelSelector 匹配的 Pod 對象是否有變動。
+**Service 的 IP 也稱為 ClusterIP**，是 Sevice 創建時，會被分配一個唯一的 IP 地址，這個 IP 地址與 Service 的生命週期是綁定在一起，故 Service 重新佈署時可能會導致 ClusterIP 改變。
+{{< alert success >}}
+其實這也說明了 Service 是依靠 EndpointSlice 才找到 Pod 的
+{{< /alert >}}
+
+再來 Kubernetes 在啟動後，會在每個 Node 上都會運行一個 kube-proxy，而 kube-proxy 也是一個 Pod ，更確切的說，就是以 daemonSet 形式啟動的 Pod。kube-proxy 會監聽 service 和 endpointsSlice 的變化，並自動對 iptables 進行相應修改。
+
+而前往 Service (ClusterIP:port) 的網路流量，會由 iptables 重新導向到 Service 所代理的其中一個 Pod，進行負載平衡。以上解釋了為甚麼 Pod 無論 IP 怎麼變動，Service 都可以正確把流量倒到 Pod 得原因了。
+
+```
+                            +--------------------------+
+                            | EndpointSlice-controller | ---------------+
+                            +--------------------------+                |
+                                         |                              |
+                                      modifies                     monitored by
+                                         v                              v
+  +----------+   labelSelector   +---------------+   labelSelector   +------+
+  | Service  | <---------------> | EndpointSlice | <---------------> | Pods |
+  +----------+                   +---------------+                   +------+
+       ^                                 ^
+       |                                 |
+       +----------monitored by-----------+
+                       |
+                       |
+                  +------------+   modifies    +---------+
+                  | kube-proxy | ------------> | iptables|
+                  +------------+               +---------+
+
+```
+
 
 {{< alert success >}}
 LabelSelector 代表著**鬆耦合**，Service 和 Pod 建立順序並沒有強制誰先誰後， Service 也可以比 Pod 早建立。
@@ -40,7 +67,7 @@ LabelSelector 代表著**鬆耦合**，Service 和 Pod 建立順序並沒有強�
 
 ---
 
-# [Service](https://kubernetes.io/docs/concepts/services-networking/service/)
+# [Service YAML](https://kubernetes.io/docs/concepts/services-networking/service/)
 
 假定有一組 Pod，每個 Pod 都在偵聽 TCP port 9376 ，同時還被打上 ```app=my-app``` 標籤，簡單範例如下 :
 ```YAML
@@ -107,14 +134,16 @@ Service 能夠將一個接收 ```port``` 映射到 ```targetPort```。若是 tar
 
 # Service 類型
 Service type 一共有以下四種類型，**預設是 ClusterIP**
-## - ClusterIP
+###  ClusterIP
+
 Service 預設是 ClusterIP ，透過內部 IP 地址暴露服務，此 IP 只有內部可以使用，無法被 cluster 外部的 client 訪問。
 
 {{< alert info >}}
 為 Private IP ，是 Service 在 cluster 內的專屬地址，僅可在 cluster 內使用
 {{< /alert >}}
 
-### - NodePort
+### NodePort
+
 在工作節點的 IP 地址上，選擇一個 port 來將外部請求，轉發到目標 Service 的 clusterIP 和 Port ，所以這個類型的 Service 可以收到內部也可以收到外部 Client 的請求。
 
 {{< alert info >}}
@@ -126,7 +155,8 @@ Service 預設是 ClusterIP ，透過內部 IP 地址暴露服務，此 IP 只�
 K8s部署時，預留的 NodePort 端口範圍是  ```30000~32767```
 {{< /alert >}}
 
-## - LoadBalancer
+### LoadBalancer
+
 LoadBalancer 類型的 Service ，會指向 k8s cluster 對應一個實際存在的負載均衡設置。通常會結合雲端平台如 GCP、AWS、AZURE 等等，我們可以透過這些 cloud provider 提供的 LoadBalancer ，幫我們分配流量到每個 Node 。
 
 {{< alert info >}}
@@ -134,7 +164,7 @@ LoadBalancer 類型的 Service ，會指向 k8s cluster 對應一個實際存在
 {{< /alert >}}
 
 {{< alert warning >}}
-Kubernetes 提供兩種內建的雲端負載均衡機制 :
+Kubernetes 提供兩種內建的負載均衡機制 :
 - TCP負載均衡器 : Service
 - HTTP(S)負載均衡器 : Ingress。
 {{< /alert >}}
@@ -148,4 +178,6 @@ Kubernetes 提供兩種內建的雲端負載均衡機制 :
 - [小信豬: [Kubernetes] Service Overview](https://godleon.github.io/blog/Kubernetes/k8s-Service-Overview/)
 
 - [[Day 9] 建立外部服務與Pods的溝通管道 - Services](https://ithelp.ithome.com.tw/articles/10194344)
+
+- [容器技术 K8s kube-proxy iptables 再谈](https://juejin.cn/post/7134143215380201479)
 
