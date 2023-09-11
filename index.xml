@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 04 Sep 2023 20:03:48 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Merge Sort</title><link>https://aryido.github.io/posts/algorithm/merge-sort/</link><pubDate>Mon, 04 Sep 2023 20:03:48 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/merge-sort/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>&lt;strong>歸併排序 (Merge Sort)&lt;/strong> 算是比較優秀的排序算法，因為時間複雜度是 &lt;code>O(N log N)&lt;/code>；而選擇排序、冒泡排序、和插入排序時間複雜度則是&lt;code>O(N^2)&lt;/code>。 Merge Sort 的基本思想是&lt;strong>分治法 (Divide and conquer)&lt;/strong>，是將原問題分解為規模較小的子問題，然後逐一解決這些子問題之後，&lt;strong>合併這些子問題的答案&lt;/strong>，並建立原問題的答案。&lt;/p>
+&lt;/blockquote></description></item><item><title>Recursion</title><link>https://aryido.github.io/posts/algorithm/recursion/</link><pubDate>Mon, 04 Sep 2023 20:03:48 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/recursion/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>&lt;strong>遞迴 (Recursion)&lt;/strong>，通過調用自身函數，有時可以將某個複雜的問題，分解為規模較小的子問題。而 Recursion 也經常和以下演算法配合使用 :&lt;/p>
+&lt;ul>
+&lt;li>分治法 divide and conquer&lt;/li>
+&lt;li>回溯法 backtrack&lt;/li>
+&lt;li>動態規劃 dynamic programming&lt;/li>
+&lt;/ul>
+&lt;p>在實際狀況中，遞迴函數的設計常常很難想像，因為遞迴設計屬於&lt;strong>逆向思維&lt;/strong>，在設計遞迴函數的時候，非常容易被這種層層嵌套搞暈，在這裡簡單給個模板範例講解。&lt;/p>
 &lt;/blockquote></description></item><item><title>206. Reverse Linked List</title><link>https://aryido.github.io/posts/leetcode/leetcode206/</link><pubDate>Sun, 27 Aug 2023 19:47:15 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode206/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>反轉 Linked List 是一道經典的題目，可以用分別用 :&lt;/p>
