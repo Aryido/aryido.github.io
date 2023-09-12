@@ -80,7 +80,7 @@ defaultBackend 設定是在 ```.spec.defaultBackend```，和 Ingress Rule 同個
 Ingress Controller 會不斷地監聽 kube-API Server，當得知到 Ingress yaml、Service、Pod 有變化，會自動更新配置。服務發現的功能 Ingress 自己已經實現了，為 Ingress Controller 的基本功能。
 {{< /alert >}}
 
-### Ingress
+### [Ingress YAML](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 這是最容易產生歧異的名詞，首先 Ingress 概念一定包含 Ingress Rule 。 從 Ingress 整個 Yaml 來說，還需要指定 ```apiVersion```、```kind```、 ```metadata``` 和 ```spec``` ，Ingress Rule 只是在 ```spec``` 下的詳細子設定罷了，但有蠻多文章就直接把 Ingress Rule 簡稱為 Ingress。
 
 再來當我們說 Ingress 時，有時候是在介紹整個 Kubernetes Ingress 的功能和架構，因為 Ingress 以 yaml 聲明， Ingress Controller 按照其 yaml 產生功能，這就包含抽象的資源定義以及默認的實現，故
@@ -161,6 +161,3 @@ Ingress 會用來管理 Service 。故可以說  Ingress ，就是 Service 的 S
 - [K8s network之二：Kubernetes的域名解析、服務發現和外部訪問](https://marcuseddie.github.io/2021/K8s-Network-Architecture-section-two.html)
 - [[Day 19] 在 Kubernetes 中實現負載平衡 - Ingress Controller](https://ithelp.ithome.com.tw/articles/10196261)
 - [Day24 了解 K8S 的 Ingress](https://ithelp.ithome.com.tw/articles/10224065)
-
-- [Ingress Doc](https://kubernetes.io/docs/concepts/services-networking/ingress/)
-
