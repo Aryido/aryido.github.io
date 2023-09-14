@@ -3,7 +3,7 @@ title: "Merge Sort"
 
 author: Aryido
 
-date: 2023-09-04T20:03:48+08:00
+date: 2023-09-04T21:03:48+08:00
 
 thumbnailImage: /images/algorithm/merge-sort.jpg
 
