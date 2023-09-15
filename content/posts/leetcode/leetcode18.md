@@ -108,7 +108,6 @@ class Solution {
 演算法過程主要只需要存儲 ```i, j, k, l```，故為 ```O(1)```
 
 ---
-
-# 參考資料
+### 參考資料
 
 - [[LeetCode]18. 4Sum 中文](https://www.youtube.com/watch?v=kUW2_6xOiZs&t=152s)

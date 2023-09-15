@@ -150,7 +150,6 @@ in-place algorithm 會應用在一些不希望大量增加記憶體使用量，�
 
 
 ---
-
-# 參考資料
+### 參考資料
 
 - [Grandyang](https://www.cnblogs.com/grandyang/p/4329128.html)

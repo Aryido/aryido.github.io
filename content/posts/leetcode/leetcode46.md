@@ -35,7 +35,7 @@ reward: false
 最高層的問題就是我們的原始 input，而 State 設計，用位置 index 做為參數。第一層做完就會確定第一個位置的數字，有 ```nums.length``` 種可能性；第二層做完就會確定第二個位置的數字，有 ```nums.length - 1``` 種可能性，以此類推...
 
 {{< alert success >}}
-這種**交換 num 裡面的兩個數字**的方式也給他的下個進階題 *47. Permutations II* 做了巧妙鋪墊。
+這種**交換 num 裡面的兩個數字**的方式也給他的下個進階題 **47. Permutations II** 做了巧妙鋪墊。
 {{< /alert >}}
 
 ---
@@ -74,7 +74,7 @@ class Solution {
 }
 ```
 {{< alert info >}}
-一般這種 Top Down DFS 問題都是 return void 的；botton up DFS 才會有 return 具體的 type。
+一般這種 Top Down DFS 問題都是 return void 的； bottom up DFS 才會有 return 具體的 type。
 {{< /alert >}}
 
 {{< alert danger >}}
@@ -104,7 +104,7 @@ swap(nums, i, index);
 {{< image classes="fancybox fig-100" src="/images/leetcode/permutation-complex.jpg" >}}
 由上圖幫助思考，假設 nums 有 N 個元素 ，深度 depth 代表的節點狀態的定義是 : **該位置的元素要和其 index 大於等於自己的位置的元素 swap** :
 {{< alert info >}}
-這裡再次強調，自己和自己 swap 也是可以的
+index 等於自己的位置的 swap，代表沒有交換的狀態，這也是一種情形。
 {{< /alert >}}
 
 ### 時間複雜度 : ```O((N*N!)```
@@ -126,13 +126,10 @@ Backtrack 時間複雜度，會由 recursion tree 的 **Node 個數**和 **Node 
 
 ### 空間複雜度 : ```O(N)```
 
-recursion tree 深度優先搜索（DFS）會產生一個 recursion stack ，其深度剛好就是節點數量 N 。再來 code 有一個 for 迴圈作用是遍歷 index 然後 swap 數字和觸發遞迴呼叫，這些都只是 in-place 操作，沒有創建額外的存儲空間，故每個 Node 還是常數空間複雜度。
-
-總結以上，故空間複雜度為(節點數量 * 常數空間): ```O(N*1)=O(N)```
+recursion tree 深度優先搜索（DFS）會產生一個 recursion stack ，其深度剛好就是節點數量 N 。再來 code 有一個 for 迴圈作用是遍歷 index 然後 swap 數字和觸發遞迴呼叫，這些都只是 in-place 操作，沒有創建額外的存儲空間，故每個 Node 還是常數空間複雜度。總結以上，故空間複雜度為(節點數量 * 常數空間): ```O(N*1)=O(N)```
 
 ---
-
-# 參考資料
+### 參考資料
 
 - [Backtracking回溯解题](https://www.youtube.com/watch?v=xqidNhvwKzI&list=PLV5qT67glKSErHD66rKTfqerMYz9OaTOs&index=18)
 

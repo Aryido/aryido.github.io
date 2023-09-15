@@ -94,7 +94,6 @@ class Solution {
 依照本題寫法，演算法過程只需要存儲 ```i, j, k``` ，理所當然花費```O(1)```空間而已。
 
 ---
-
-# 參考資料
+### 參考資料
 
 - [[LeetCode]15. 3Sum 中文](https://www.youtube.com/watch?v=2tbi1W7ce1c&t=378s)

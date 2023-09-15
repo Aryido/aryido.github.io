@@ -141,8 +141,7 @@ adj.下降的；descend的動詞現在分詞、動名詞
 
 
 ---
-
-# 參考資料
+### 參考資料
 
 - [Heap堆解题套路【LeetCode刷题套路教程6】](https://www.youtube.com/watch?v=vIXf2M37e0k&list=PLV5qT67glKSErHD66rKTfqerMYz9OaTOs&index=6)
 
