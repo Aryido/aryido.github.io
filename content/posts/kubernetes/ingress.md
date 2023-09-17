@@ -155,8 +155,8 @@ Ingress 會用來管理 Service 。故可以說  Ingress ，就是 Service 的 S
 {{< /alert >}}
 
 ---
-
-# 參考資料
+---
+### 參考資料
 
 - [K8s network之二：Kubernetes的域名解析、服務發現和外部訪問](https://marcuseddie.github.io/2021/K8s-Network-Architecture-section-two.html)
 - [[Day 19] 在 Kubernetes 中實現負載平衡 - Ingress Controller](https://ithelp.ithome.com.tw/articles/10196261)
