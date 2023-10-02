@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>kubernetes on Aryido Tech Note</title><link>https://aryido.github.io/categories/kubernetes/</link><description>Recent content in kubernetes on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 11 Jun 2023 00:29:32 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/kubernetes/index.xml" rel="self" type="application/rss+xml"/><item><title>Kubernetes - 應用之間是如何溝通呢 ?</title><link>https://aryido.github.io/posts/kubernetes/app-communication/</link><pubDate>Sun, 11 Jun 2023 00:29:32 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/app-communication/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>kubernetes on Aryido Tech Note</title><link>https://aryido.github.io/categories/kubernetes/</link><description>Recent content in kubernetes on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 01 Oct 2023 18:28:05 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/kubernetes/index.xml" rel="self" type="application/rss+xml"/><item><title>Kubernetes - Deployment</title><link>https://aryido.github.io/posts/kubernetes/deployment/</link><pubDate>Sun, 01 Oct 2023 18:28:05 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/deployment/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Deployment 是 Kubernetes 最經常使用的的一種工作負載(Workloads)，以 YAML 格式描述狀態，提供聲明式(declarative)的設定。基本用法為 :&lt;/p>
+&lt;ul>
+&lt;li>管理 Pod 的 replica 數量&lt;/li>
+&lt;li>管理升級回滾的策略&lt;/li>
+&lt;/ul>
+&lt;p>Deployment 是用來&lt;strong>編排無狀態 pod 的一種控制器資源&lt;/strong>，官方也建議應該透過 Deployment 來佈署 Pod &amp;amp; Replicaset。&lt;/p>
+&lt;/blockquote></description></item><item><title>Kubernetes - 應用之間是如何溝通呢 ?</title><link>https://aryido.github.io/posts/kubernetes/app-communication/</link><pubDate>Sun, 11 Jun 2023 00:29:32 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/app-communication/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>kubernetes 可以創建多個 Pods，Pod 內有一個或多個 Container，那麼 Container 之間是怎麼溝通的的呢 ? 這裡歸類出一些 case :&lt;/p>
 &lt;ul>
@@ -50,16 +58,6 @@
 &lt;/blockquote></description></item><item><title>Kubernetes - DaemonSet</title><link>https://aryido.github.io/posts/kubernetes/daemonset/</link><pubDate>Tue, 14 Mar 2023 22:35:58 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/daemonset/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>k8s Cluster 並不直接與 Pod 做互動，而是透過一些管理元件來處理 Pod ，這些管理元件總體被稱為 Workload，這裏介紹 DaemonSet 控制器。DaemonSet 用於提供 Node 基本設施的 Pod，會確保在&lt;strong>所有(或是特定)節點&lt;/strong>上，一定運行著指定的一個 Pod。若想只運行在特定節點運行 DaemonSet Pod，可藉由給定的&lt;strong>標籤&lt;/strong>，讓 Pod 可以只在特定節點上運行。&lt;/p>
-&lt;/blockquote></description></item><item><title>Kubernetes - Deployment</title><link>https://aryido.github.io/posts/kubernetes/deployment/</link><pubDate>Mon, 13 Mar 2023 23:52:05 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/deployment/</guid><description>&lt;!-- raw HTML omitted -->
-&lt;blockquote>
-&lt;p>在 Kubernetes 中，Pod 是最小的管理單元，但是 Pod 並不能保證總是可用的，因此 Kubernetes 實現了一系列控制器來管理 Pod，我們稱為&lt;strong>工作負載 workloads&lt;/strong>。故 workloads 基本可以解釋成管理一個或多個 &lt;strong>Pod&lt;/strong> 的方式，主要簡單舉例以下幾種：&lt;/p>
-&lt;ul>
-&lt;li>Deployment&lt;/li>
-&lt;li>DaemonSet&lt;/li>
-&lt;li>Job &amp;amp; CronJob&lt;/li>
-&lt;li>StatefulSet&lt;/li>
-&lt;/ul>
-&lt;p>這些稱為控制器，會使 Pod 的期望狀態和設定狀態盡量保持一致。這裏先介紹 Deployment 控制器。&lt;/p>
 &lt;/blockquote></description></item><item><title>Kubernetes Job 簡介</title><link>https://aryido.github.io/posts/kubernetes/job/</link><pubDate>Thu, 02 Mar 2023 23:10:15 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/job/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>我們知道 kubernetes 的 deployment 可以生成並管理 Pod ，且盡量維持其狀態為 Running 。但有的時候我們會有&lt;strong>只運行一次性任務的需求&lt;/strong>，這時候就可以使用 &lt;a href="https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/job/">kubernetes Job&lt;/a>。 Kubernetes Job 用於處理一次性工作，會創建一個或多個 Pod，並在該工作完成後終止這些 Pod。&lt;/p>
