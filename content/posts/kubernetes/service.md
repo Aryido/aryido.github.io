@@ -163,7 +163,6 @@ Kubernetes 提供兩種內建的負載均衡機制 :
 {{< /alert >}}
 
 ---
----
 ### 參考資料
 
 - [K8s network之五：Kubernetes集群Pod和Service之間通信的實現原理](https://marcuseddie.github.io/2021/K8s-Network-Architecture-section-five.html)
