@@ -3,7 +3,9 @@ title: "46. Permutations"
 
 author: Aryido
 
-date: 2022-11-30T23:38:55+08:00
+first draft: 2022-11-30T23:38:55+08:00
+
+date: 2023-10-04T20:10:05+08:00
 
 thumbnailImage: /images/leetcode/logo.jpg
 
@@ -26,10 +28,9 @@ reward: false
 
 ---
 
-## 思路
+# 思路
 推薦把 recursion Tree 畫出來幫助思考。另外這邊使用一個比較巧妙的方法，**用交換 num 裡面的兩個數字**的方式，之後做 DFS ，經過遞迴可以產出所有的排列情況。
 {{< image classes="fancybox fig-100" src="/images/leetcode/permutation.jpg" >}}
-
 
 
 最高層的問題就是我們的原始 input，而 State 設計，用位置 index 做為參數。第一層做完就會確定第一個位置的數字，有 ```nums.length``` 種可能性；第二層做完就會確定第二個位置的數字，有 ```nums.length - 1``` 種可能性，以此類推...
@@ -108,25 +109,32 @@ index 等於自己的位置的 swap，代表沒有交換的狀態，這也是一
 {{< /alert >}}
 
 ### 時間複雜度 : ```O((N*N!)```
-Backtrack 時間複雜度，會由 recursion tree 的 **Node 個數**和 **Node 行為**決定。因為演算法在葉子節點和非葉子節點的行為不一樣，所以分開計算比較 :
+Backtrack 時間複雜度，會由 recursion tree 的 **Node 個數**和 **Node 行為**決定。因為演算法在葉子節點和非葉子節點的行為不一樣，所以分開計算 :
 
-- 非葉子節點
--
-  - 在 depth 深度為 ```0``` 時，代表 ```index = 0```的元素要和  ```index = 0 到 `index = N```，這代表有 N 個節點。
-  - 在 depth 深度為 ```1``` 時，代表 ```index = 1```的元素要和  ```index = 1 到 `index = N```，這代表有 N - 1 個節點。
+##### {{< hl-text blue >}}
+非葉子節點
+{{< /hl-text >}}
+  - 在 depth 深度為 ```0``` 時，代表 ```index = 0```的元素要和  ```index = 0 到 index = N``` 個元素交換，這代表 recursion tree 這層會有 N 個節點。
+  - 在 depth 深度為 ```1``` 時，代表 ```index = 1```的元素要和  ```index = 1 到 index = N``` 個元素交換，這代表 recursion tree 這層會有 N - 1 個節點。
+  - ...
 
-一直推理可發現**非葉子節點**個數總共有，```N + (N-1) + ... + 1 = (1+N)N/2```，且每次 swap 的時間複雜度為常數，故**非葉子節點**時間複雜度為 ```O(N^2)```
+推理一下，可發現  recursion tree 的**非葉子節點**個數總共有，```N + (N-1) + ... + 1 = (1+N)N/2```，且每次 swap 的時間複雜度為常數，故**非葉子節點**時間複雜度為 ```O(N^2)```。
 
+##### {{< hl-text blue >}}
+葉子節點
+{{< /hl-text >}}
 
-- 葉子節點
--
 關於葉子節點，我們用高中數學知道其數量就是 ```N!```，然後因為要拷貝成一個新的 array 需要的時間複雜度是```O(N)```，故**葉子節點**總共時間複雜度為```O(N*N!)```
+
 
 最後總體看一下，影響最大的是葉子節點，故總體時間複雜度是```O(N*N!)```。但實際上速度會比 ```O(N*N!)``` 還要好一點，因為非葉子節點速度比 ```O(N*N!)``` 還要快。
 
 ### 空間複雜度 : ```O(N)```
 
-recursion tree 深度優先搜索（DFS）會產生一個 recursion stack ，其深度剛好就是節點數量 N 。再來 code 有一個 for 迴圈作用是遍歷 index 然後 swap 數字和觸發遞迴呼叫，這些都只是 in-place 操作，沒有創建額外的存儲空間，故每個 Node 還是常數空間複雜度。總結以上，故空間複雜度為(節點數量 * 常數空間): ```O(N*1)=O(N)```
+recursion tree 深度優先搜索（DFS）會產生一個 recursion stack ，其深度剛好就是 N 。再來 code 有一個 for 迴圈作用是遍歷 index 然後 swap 數字和觸發遞迴呼叫，這些都只是 in-place 操作，沒有創建額外的存儲空間，故每個 Node 還是常數空間複雜度。
+
+
+總結以上，故空間複雜度為(深度 * 常數空間): ```O(N*1)=O(N)```
 
 ---
 ### 參考資料
