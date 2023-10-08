@@ -35,10 +35,6 @@ reward: false
 
 最高層的問題就是我們的原始 input，而 State 設計，用位置 index 做為參數。第一層做完就會確定第一個位置的數字，有 ```nums.length``` 種可能性；第二層做完就會確定第二個位置的數字，有 ```nums.length - 1``` 種可能性，以此類推...
 
-{{< alert success >}}
-這種**交換 num 裡面的兩個數字**的方式也給他的下個進階題 **47. Permutations II** 做了巧妙鋪墊。
-{{< /alert >}}
-
 ---
 
 # 解答
