@@ -104,7 +104,7 @@ swap(nums, i, index);
 index 等於自己的位置的 swap，代表沒有交換的狀態，這也是一種情形。
 {{< /alert >}}
 
-### 時間複雜度 : ```O((N*N!)```
+### 時間複雜度 : ```O(N*N!)```
 Backtrack 時間複雜度，會由 recursion tree 的 **Node 個數**和 **Node 行為**決定。因為演算法在葉子節點和非葉子節點的行為不一樣，所以分開計算 :
 
 ##### {{< hl-text blue >}}
