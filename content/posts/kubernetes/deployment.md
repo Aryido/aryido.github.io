@@ -7,7 +7,7 @@ first draft: 2023-03-13T23:52:05+08:00
 
 date: 2023-10-01T18:28:05+08:00
 
-thumbnailImage: "/images/kubernetes/logo.jpg"
+thumbnailImage: "/images/kubernetes/deployment-logo.jpg"
 
 categories:
 - kubernetes
