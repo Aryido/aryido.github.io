@@ -7,6 +7,9 @@
 &lt;/blockquote></description></item><item><title>46. Permutations</title><link>https://aryido.github.io/posts/leetcode/leetcode46/</link><pubDate>Wed, 04 Oct 2023 20:10:05 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode46/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>是一道經典 distinct integers 的全排列問題，這邊使用 DFS 加上 Backtrack 來求解。從數學上來說，n 個 element 的 Permutation 一共有 n! 種排序，思考起來算蠻簡單的，但要用程式模擬這個推導過程，卻是有點難度的，因此被歸類在 Medium 等級。&lt;/p>
+&lt;/blockquote></description></item><item><title>Backtrack 基礎介紹</title><link>https://aryido.github.io/posts/algorithm/backtrack/</link><pubDate>Wed, 04 Oct 2023 20:10:05 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/backtrack/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Backtrack 是 DFS 的一種形式，基本寫法類似於 TOP DOWN DFS，處理方式就是所謂的窮舉法，將所有可能的結果都找出來；每一個結果都實際看看這樣。換個角度來說，其實這個過程就如同在樹上遍歷 (Tree Traversal) ，而普通的 DFS 是不需要回溯狀態的。 Backtrack 強調了狀態回溯。&lt;/p>
 &lt;/blockquote></description></item><item><title>797. All Paths From Source to Target</title><link>https://aryido.github.io/posts/leetcode/leetcode797/</link><pubDate>Wed, 05 Apr 2023 17:00:37 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode797/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>這題給了我們一個無環有向圖 (directed acyclic graph)(DAG) 。有 N 個 node ，要找出所有可能的從 &lt;code>node 0&lt;/code> 到 &lt;code>node N-1&lt;/code> 的路徑。像這種需要走到終點，且在每一次新的遞迴時，都要把當前路徑記錄下來，其本質都是&lt;strong>深度遍歷 graph&lt;/strong> ，再加上 &lt;strong>backtrack 回溯狀態&lt;/strong>。是經典的 dfs 的題目。&lt;/p>

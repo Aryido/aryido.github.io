@@ -7,6 +7,9 @@
 &lt;/blockquote></description></item><item><title>46. Permutations</title><link>https://aryido.github.io/posts/leetcode/leetcode46/</link><pubDate>Wed, 04 Oct 2023 20:10:05 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode46/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>是一道經典 distinct integers 的全排列問題，這邊使用 DFS 加上 Backtrack 來求解。從數學上來說，n 個 element 的 Permutation 一共有 n! 種排序，思考起來算蠻簡單的，但要用程式模擬這個推導過程，卻是有點難度的，因此被歸類在 Medium 等級。&lt;/p>
+&lt;/blockquote></description></item><item><title>Backtrack 基礎介紹</title><link>https://aryido.github.io/posts/algorithm/backtrack/</link><pubDate>Wed, 04 Oct 2023 20:10:05 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/backtrack/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Backtrack 是 DFS 的一種形式，基本寫法類似於 TOP DOWN DFS，處理方式就是所謂的窮舉法，將所有可能的結果都找出來；每一個結果都實際看看這樣。換個角度來說，其實這個過程就如同在樹上遍歷 (Tree Traversal) ，而普通的 DFS 是不需要回溯狀態的。 Backtrack 強調了狀態回溯。&lt;/p>
 &lt;/blockquote></description></item><item><title>Kubernetes - Workloads &amp; Workload Resources</title><link>https://aryido.github.io/posts/kubernetes/workloads/</link><pubDate>Wed, 04 Oct 2023 00:00:30 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/workloads/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>&lt;strong>Workload 是指在 Kubernetes Pod 內運行的應用程式&lt;/strong>。但是 Pod 並不能保證總是可用的，所以需要管理它們。但若直接管理 Pod 的話，工作量將會非常大且繁瑣，為了減輕負擔，Kubernetes 提供 Workload Resources 來管理一組 Pods。即 &lt;strong>Workload Resource 是 Kubernetes 中，定義和管理 Workload 的特定 API 物件&lt;/strong>，例如 Deployment、StatefulSet 等等都是屬於 Workload Resource。&lt;/p>
