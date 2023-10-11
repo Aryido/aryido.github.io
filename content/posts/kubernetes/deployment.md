@@ -18,41 +18,38 @@ reward: false
 
 ---
 <!--BODY-->
-> Deployment 是 Kubernetes 最經常使用的的一種工作負載(Workloads)，以 YAML 格式描述狀態，提供聲明式(declarative)的設定。基本用法為 :
-> - 管理 Pod 的 replica 數量
-> - 管理升級回滾的策略
+> Deployment 是 Kubernetes 中，最常使用的的一種工作負載(Workloads)，它以 YAML 格式描述 Pod ，提供聲明式(declarative)的設定。除了定義 Pod 的狀態，更進一步可以管理 :
+> - Pod 的 replica 數量
+> - 升級回滾的策略
 >
-> Deployment 是用來**編排無狀態 pod 的一種控制器資源**，官方也建議應該透過 Deployment 來佈署 Pod & Replicaset。
+> Deployment 是用來**編排無狀態 pod 的一種控制器資源**，官方也建議應該透過 Deployment 來佈署 Pod & Replicaset，而非直接對  Pod & Replicaset 進行管理。
 >
 <!--more-->
 
 ---
 # 緣起
 
-在說 Deployment 之前，先來了解一下發展的歷史。在 Kubernetes 初期，是使用 Replication Controller 來控制 Pod，**但後面淘汰了 Replication Controller，轉而使用 ReplicaSet** 來控制 Pod。 那 Deployment 和 ReplicaSet 是甚麼關係呢?
+在說 Deployment 之前，先來了解一下發展的歷史。
+
+在 Kubernetes 初期，是使用 [ReplicationController](https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/replicationcontroller/#responsibilities-of-the-replicationcontroller) 來控制 Pod，但後面淘汰了 它。因為剛開始定義的 ReplicationController  職責太過狹隘，僅確保【所需的 Pod 數量】和 【定義 label selector】，但並沒有負責 LivenessProbe、StartupProbe、Auto-Scale 等等功能，都由外部控制器負責。為了建立更高層級的 API ，故產生了 **ReplicaSet** 。
+
+那 Deployment 和 ReplicaSet 是甚麼關係呢?
 
 {{< image classes="fancybox fig-100" src="/images/kubernetes/deployment.jpg" >}}
 
-ReplicaSet 功能是維護一組 Pod ，讓它們在任何時候都處於運作狀態，用來保證給定數量的 Pod 的可用性。而 Deployment 是比 ReplicaSet 更高層的 controller，通常建議用 Deployment 來管理 Pod。而現在實際中，不建議也很少去直接使用 ReplicaSet 來部屬 Pod。
+Deployment 是比 ReplicaSet 更高層的抽象，通常建議用 Deployment 來管理 Pod。而現在實際中，不建議也很少去直接使用 ReplicaSet 來部屬 Pod。
 
 {{< alert success >}}
-Deployment 可以擁有多個 ReplicaSet，一個 ReplicaSet 可以擁有多個 Pod。
+Deployment 可以產生多個 ReplicaSet；一個 ReplicaSet 可以產生多個 Pod。
 {{< /alert >}}
 
 ---
-# 簡介
-Deployment 會生成一個新的 ReplicaSet。透過 Deployment 會建立 ReplicaSet ；而接下來 ReplicaSet 會建立 Pod 的。其分別的名稱形式會是 :
+# Deployment
+Deployment 會生成 ReplicaSet，而接下來 ReplicaSet 會建立 Pod 。其分別的名稱形式會是 :
 - **ReplicaSet**: ```[DEPLOYMENT-NAME]-[POD-TEMPLATE-HASH-VALUE]```
 - **Pod**: ```[DEPLOYMENT-NAME]-[POD-TEMPLATE-HASH-VALUE]-[UNIQUE-ID] ```
 
-同時 Deployment 會把 pod-template-hash 標籤，加入至建立或管理的每個 ReplicaSet ；而 ReplicaSet 也同時和會把 pod-template-hash 標籤加入到每個 Pods 中。
-
-更具體的說， pod-template-hash 標籤的值，是**透過 PodTemplate 進行雜湊得到的**，且會被加到以下標籤中 :
-  - ReplicaSet: label selector
-  - Pod: template label
-
-
-
+同時 Deployment 會把 pod-template-hash 標籤，加入至每個建立並管理的 ReplicaSet ；而 ReplicaSet 也同時和會把 pod-template-hash 標籤，加入到每個 Pods 中。更具體的說， pod-template-hash 標籤的值，是**透過 PodTemplate 進行雜湊得到的**，且會被加到的標籤位置，如下範例 :
 ```
 # kubectl get deployment
 NAME               DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
@@ -76,6 +73,9 @@ nginx-deployment-67594d6bf6-22nrx   1/1       Running   0          12s       app
 nginx-deployment-67594d6bf6-ccx87   1/1       Running   0          12s       app=nginx,pod-template-hash=2315082692
 nginx-deployment-67594d6bf6-rkztl   1/1       Running   0          12s       app=nginx,pod-template-hash=2315082692
 ```
+承上說明，我們可以看到標籤位置:
+- ReplicaSet 是在 **label selector**
+- Pod 是在 **template label**
 
 {{< alert warning >}}
 注意，```POD-TEMPLATE-HASH-VALUE```  的值，和 ```pod-template-hash``` 的值，是不一樣喔 ! 而不一樣的原因，應該是因為不同的 hash 方法所導致，因為透過相同的 YAML 重新建立 deployment 也還是會得到相同的結果。
@@ -89,7 +89,7 @@ nginx-deployment-67594d6bf6-rkztl   1/1       Running   0          12s       app
 
 - 可確保 Deployment 管理的子 ReplicaSets 不重複。
 
-- 利用此 pod-template-hash 就可以確認哪些 Pod 是屬於同一組的
+- 利用 Pod 的 label 標上的 pod-template-hash 值，就可以確認哪些 Pod 是屬於同一組的
 
 
 ReplicaSet 的主要功能是會確保 Pod 數量符合 YAML 指定的數字。然後會依據一些**策略**，新 ReplicaSet 會逐步更新成新的 Pod，而舊 ReplicaSet 會逐步減少 Pod ，直到 Pod 數量穩定。注意，這時候**並不會刪除老的 ReplicaSet**，系統會將其保存下來，以備**回滾**使用。
