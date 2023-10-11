@@ -3,12 +3,12 @@
 &lt;p>&lt;strong>Workload 是指在 Kubernetes Pod 內運行的應用程式&lt;/strong>。但是 Pod 並不能保證總是可用的，所以需要管理它們。但若直接管理 Pod 的話，工作量將會非常大且繁瑣，為了減輕負擔，Kubernetes 提供 Workload Resources 來管理一組 Pods。即 &lt;strong>Workload Resource 是 Kubernetes 中，定義和管理 Workload 的特定 API 物件&lt;/strong>，例如 Deployment、StatefulSet 等等都是屬於 Workload Resource。&lt;/p>
 &lt;/blockquote></description></item><item><title>Kubernetes - Deployment</title><link>https://aryido.github.io/posts/kubernetes/deployment/</link><pubDate>Sun, 01 Oct 2023 18:28:05 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/deployment/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>Deployment 是 Kubernetes 最經常使用的的一種工作負載(Workloads)，以 YAML 格式描述狀態，提供聲明式(declarative)的設定。基本用法為 :&lt;/p>
+&lt;p>Deployment 是 Kubernetes 中，最常使用的的一種工作負載(Workloads)，它以 YAML 格式描述 Pod ，提供聲明式(declarative)的設定。除了定義 Pod 的狀態，更進一步可以管理 :&lt;/p>
 &lt;ul>
-&lt;li>管理 Pod 的 replica 數量&lt;/li>
-&lt;li>管理升級回滾的策略&lt;/li>
+&lt;li>Pod 的 replica 數量&lt;/li>
+&lt;li>升級回滾的策略&lt;/li>
 &lt;/ul>
-&lt;p>Deployment 是用來&lt;strong>編排無狀態 pod 的一種控制器資源&lt;/strong>，官方也建議應該透過 Deployment 來佈署 Pod &amp;amp; Replicaset。&lt;/p>
+&lt;p>Deployment 是用來&lt;strong>編排無狀態 pod 的一種控制器資源&lt;/strong>，官方也建議應該透過 Deployment 來佈署 Pod &amp;amp; Replicaset，而非直接對 Pod &amp;amp; Replicaset 進行管理。&lt;/p>
 &lt;/blockquote></description></item><item><title>Kubernetes - 應用之間是如何溝通呢 ?</title><link>https://aryido.github.io/posts/kubernetes/app-communication/</link><pubDate>Sun, 11 Jun 2023 00:29:32 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/app-communication/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>kubernetes 可以創建多個 Pods，Pod 內有一個或多個 Container，那麼 Container 之間是怎麼溝通的的呢 ? 這裡歸類出一些 case :&lt;/p>
