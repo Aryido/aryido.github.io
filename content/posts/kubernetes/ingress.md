@@ -3,9 +3,11 @@ title: "Kubernetes - Ingress"
 
 author: Aryido
 
-date: 2023-05-12T23:11:25+08:00
+first draft: 2023-05-12T23:11:25+08:00
 
-thumbnailImage: "/images/kubernetes/logo.jpg"
+date: 2023-10-12T20:11:25+08:00
+
+thumbnailImage: "/images/kubernetes/ingress-logo.jpg"
 
 categories:
 - kubernetes

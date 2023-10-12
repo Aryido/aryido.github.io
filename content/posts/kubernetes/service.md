@@ -3,9 +3,11 @@ title: "Kubernetes - Service"
 
 author: Aryido
 
-date: 2023-05-27T10:07:23+08:00
+first draft: 2023-05-27T10:07:23+08:00
 
-thumbnailImage: "/images/kubernetes/logo.jpg"
+date: 2023-10-12T20:07:23+08:00
+
+thumbnailImage: "/images/kubernetes/service-logo.jpg"
 
 categories:
 - kubernetes
@@ -21,24 +23,6 @@ reward: false
 ---
 
 # 簡介
-{{< image classes="fancybox fig-100" src="/images/kubernetes/service-2.jpg" >}}
-當 kubernetes 創建一個 Service 時， 若 Service 有 labelSelector 關聯到 Pod，則 :
-  - Control Plane 會使用 kube-controller-manager 中的 EndpointSlice controller 組件，**自動創建 endpointsSlice (舊版稱 endpoints)。**
-
-  - endpointsSlice 包含該 Service 通過 labelSelector 關聯的所有 Pod IP 資訊。
-
-  - EndpointSlice controller  會監聽 Pod 的狀態，若發現 Pod 有更動，會自動修正 endpointsSlice 中的 Pod IP 資訊。
-
-{{< alert success >}}
-以上流程其實這也說明了 Service 是依靠 EndpointSlice 才找到 Pod 的
-{{< /alert >}}
-
-
-**Service 的 IP 也稱為 ClusterIP**，是 Sevice 創建時，會被分配一個唯一的 IP 地址，這個 IP 地址與 Service 的生命週期是綁定在一起，故 Service 重新佈署時可能會導致 ClusterIP 改變。
-
-再來 Kubernetes 在啟動後，會在每個 Node 上都會運行一個 kube-proxy，而 kube-proxy 也是一個 Pod ，更確切的說，就是以 daemonSet 形式啟動的 Pod。kube-proxy 會監聽 service 和 endpointsSlice 的變化，並自動對 iptables 進行相應修改。
-
-而前往 Service (ClusterIP:port) 的網路流量，會由 iptables 重新導向到 Service 所代理的其中一個 Pod，進行負載平衡。以上解釋了為甚麼 Pod 無論 IP 怎麼變動，Service 都可以正確把流量倒到 Pod 得原因了。
 
 ```
                             +--------------------------+
@@ -60,6 +44,22 @@ reward: false
                   +------------+               +---------+
 
 ```
+
+當 kubernetes 創建一個 Service 時， 若 Service 有 labelSelector 關聯到 Pod，Control Plane 會使用 kube-controller-manager 中的 EndpointSlice controller 組件 :
+- **自動創建 endpointsSlice (舊版稱 endpoints)**，而 endpointsSlice 包含該 Service 通過 labelSelector 關聯的所有 Pod IP 資訊。
+- EndpointSlice controller  會監聽 Pod 的狀態，若發現 Pod 有更動，會自動修正 endpointsSlice 中的 Pod IP 資訊。
+
+{{< alert info >}}
+Service 其實是依靠 EndpointSlice 才找到 Pod 的
+{{< /alert >}}
+
+**Service 的 IP 也稱為 ClusterIP**，是 Sevice 創建時，會被分配一個唯一的 IP 地址，這個 IP 地址與 Service 的生命週期是綁定在一起，故 Service 重新佈署時可能會導致 ClusterIP 改變。
+
+再來 Kubernetes 在啟動後，會在每個 Node 上都會運行一個 kube-proxy，而 kube-proxy 也是一個 Pod ，更確切的說，就是以 daemonSet 形式啟動的 Pod。kube-proxy 會監聽 service 和 endpointsSlice 的變化，並自動對 iptables 進行相應修改。
+
+而前往 Service (ClusterIP:port) 的網路流量，會由 iptables 重新導向到 Service 所代理的其中一個 Pod，進行負載平衡。以上解釋了為甚麼 Pod 無論 IP 怎麼變動，Service 都可以正確把流量倒到 Pod 得原因了。
+
+{{< image classes="fancybox fig-100" src="/images/kubernetes/service-2.jpg" >}}
 
 
 {{< alert success >}}
@@ -97,11 +97,6 @@ spec:
 ```
 特別注意，我們在```spec.template.metadata.labels```
 打上標籤```app: my-app```，這代表設定由這個 Deployment 創建的每個 Pod 的 labels，即**當一個新的 Pod 被 Deployment 創建時，這個 labels 會被附加到新創建的 Pod 上。**
-{{< alert warning >}}
-通常 ```selector.matchLabels``` 的設置應該和 ```template.metadata.labels``` 一致。這樣 Deployment 才能管理它自己創建的 Pod。如果不一樣，會由於 label 不匹配， Deployment 不會視這些 Pod 為其所管理，就不會執行 Deployment 內設定的如 auto scale policy 等策略設定。
-{{< /alert >}}
-
-
 
 接下來定義一個 Service，為 Pod 提供穩定的通訊服務 :
 
