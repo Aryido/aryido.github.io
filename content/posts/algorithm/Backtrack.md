@@ -60,40 +60,39 @@ Backtrack 時間複雜度，會由 recursion tree 的 Node 個數和 Node 行為
 
 - acktracking 的流程就是 : **不停地做選擇，再撤回選擇，並回到選擇前的狀態，之後再換其他選擇**。這範例撤回選擇，並回到選擇前的狀態的作法，是把 inner list 最後的數字拿掉，並且 visited 要改成回 false。
 
-詳細看圖說故事步驟如下，舉例其中一條 branch 的詳細過程: initial 時，什麼選擇都還沒開始時，這時 ```inner list: []```
+詳細看圖說故事步驟如下，舉例其中一條 branch 的詳細過程:
 
+initial 時，什麼選擇都還沒開始時，這時 ```inner list: []```
 
-- for loop 來做第一層選擇: 選了 ```10```，紀錄在 visited 中並放到 inner list 內，這時 ```inner list: [10]```
+for loop 來做第一層選擇: 選了 ```10```，紀錄在 visited 中並放到 inner list 內， ```inner list: [10]```
   - for loop 來做第二層選擇 :
-     - 無法選 ```10```，因為 visited 中有紀錄了，故路徑上打 **X**
-     - ```20``` 選擇沒有問題，紀錄在 visited 中並放到 inner list 內，這時 ```inner list: [10, 20]```
 
+      - 無法選 ```10```，因為 visited 中有紀錄了，故路徑上打 **X**
+      - ```20``` 選擇沒有問題，紀錄在 visited 中並放到 inner list 內，這時 ```inner list: [10, 20]```
         - for loop 來做第三層選擇:
-           - 無法選 ```10```，因為 visited 中有紀錄了，故路徑上打 **X**
-           - 也無法選 ```20```，因為 visited 中有紀錄了，故路徑上打 **X**
-           - ```30``` 選擇沒有問題，紀錄在 visited 中並放到 inner list 內，這時 ```inner list: [10, 20, 30]```
-
-              - 發現 inner list 的長度是滿的，故把   ```inner list: [10, 20, 30]``` 複製一份新的並存到 ans 列表中，返回上一層
-
-            - 因為返回了，所以需要 backtrack，方式是把 inner list 最尾端數字移除並把 visited 改成 false。這時 ```inner list: [10, 20]```
-            - for loop 跑完了第三層選擇，結束這層，故返回上一層
+           > - 無法選 ```10```，因為 visited 中有紀錄了，故路徑上打 **X**
+           > - 也無法選 ```20```，因為 visited 中有紀錄了，故路徑上打 **X**
+           > - ```30``` 選擇沒有問題，紀錄在 visited 中並放到 inner list 內，這時 ```inner list: [10, 20, 30]```
+           >
+           >   - > 發現 inner list 的長度是滿的，故把   ```inner list: [10, 20, 30]``` 複製一份新的並存到 ans 列表中，返回上一層
+           > - 因為返回了，所以需要 backtrack，方式是把 inner list 最尾端數字移除並把 visited 改成 false。這時 ```inner list: [10, 20]```
+           > - for loop 跑完了第三層選擇，結束這層，故返回上一層
 
         - 因為返回了，所以需要 backtrack，方式是把 inner list 最尾端數字移除並把 visited 改成 false。這時 ```inner list: [10]```
-    - 只剩下```30```，且選擇沒有問題，故紀錄在 visited 中並放到 inner list 內，這時 ```inner list: [10, 30]```
+      - 只剩下```30```，且選擇沒有問題，故紀錄在 visited 中並放到 inner list 內，這時 ```inner list: [10, 30]```
 
         - for loop 來做第三層選擇:
-          - 無法選 ```10```，因為 visited 中有紀錄了，故路徑上打 **X**
-          - ```20``` 選擇沒有問題，故紀錄在 visited 中並放到 inner list 內，這時 ```inner list: [10, 30, 20]```
-
-              - 發現 inner list 的長度是滿的，故把  ```inner list: [10, 30, 20]``` 複製一份新的並存到 ans 列表中，返回上一層
-           - 因為返回了，所以需要 backtrack，方式是把 inner list 最尾端數字移除並把 visited 改成 false。這時 ```inner list: [10, 30]```
-          - 無法選 ```30```，因為 visited 中有紀錄了，故路徑上打 **X**
-          - for loop 跑完了第三層選擇，結束這層，故返回上一層
+          > - 無法選 ```10```，因為 visited 中有紀錄了，故路徑上打 **X**
+          > - ```20``` 選擇沒有問題，故紀錄在 visited 中並放到 inner list 內，這時 ```inner list: [10, 30, 20]```
+          >    - > 發現 inner list 的長度是滿的，故把  ```inner list: [10, 30, 20]``` 複製一份新的並存到 ans 列表中，返回上一層
+          > - 因為返回了，所以需要 backtrack，方式是把 inner list 最尾端數字移除並把 visited 改成 false。這時 ```inner list: [10, 30]```
+          > - 無法選 ```30```，因為 visited 中有紀錄了，故路徑上打 **X**
+          > - for loop 跑完了第三層選擇，結束這層，故返回上一層
         - 因為返回了，所以需要 backtrack，方式是把 inner list 最尾端數字移除並把 visited 改成 false。這時 ```inner list: [10]```
      - for loop 跑完了第二層選擇，結束這層，故返回上一層
   - 因為返回了，所以需要 backtrack，方式是把 inner list 最尾端數字移除並把 visited 改成 false。這時 ```inner list: []```
 
-接下來的過程都類似...
+接下來的過程都類似，就不再贅述了。
 
 ---
 
