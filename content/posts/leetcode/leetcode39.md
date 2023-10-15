@@ -148,7 +148,7 @@ Recursion tree 深度優先搜索（DFS）會產生一個 recursion stack ，而
 
 - ``` int[] new_candidates ={2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6}```，再加上每個元素只能用一次
 
-這樣就可以使用 **leetcode 40.** 方式來分析時間複雜度: ```O(M*M!); M = length(new_candidates)```
+這樣就可以使用 **leetcode 40.** 方式來分析時間複雜度: ```O(N*N!); N = length(new_candidates)```。特別注意 N 是代表延長過後的 array 長度。
 
 
 ---
