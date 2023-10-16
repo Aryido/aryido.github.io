@@ -1,11 +1,13 @@
 ---
-title: "Kubernetes -  應用之間是如何溝通呢 ? "
+title: "Kubernetes - Service : 應用之間是如何溝通"
 
 author: Aryido
 
-date: 2023-06-11T00:29:32+08:00
+first draft: 2023-06-11T00:29:32+08:00
 
-thumbnailImage: "/images/kubernetes/logo.jpg"
+date: 2023-10-12T20:09:23+08:00
+
+thumbnailImage: "/images/kubernetes/service-logo.jpg"
 
 categories:
 - kubernetes
@@ -77,40 +79,49 @@ Deployment 會根據 replicas 創建對應數量的 Pods，此時如果某個 Po
 
 - ### 使用 DNS 來解析服務位址
 
-在創建 k8s-Service 時， k8s 會創建一個相應的 DNS 紀錄，可以使用一致的 DNS 名稱而非 IP 存取 Service。形式是 :
+在創建 k8s-Service 時， Kubernetes 會創建一個內部相應的 DNS 紀錄，這個名稱是根據 **k8s-Service 名稱**和 **Namespace** 生成的，可以使用一致的 DNS 名稱而非 IP 存取 Service。形式是 :
 
 ```<service-name>.<namespace>.svc.cluster.local```
-
+{{< alert warning >}}
+特別注意，中間有個 ```svc```
+{{< /alert >}}
 {{< alert success >}}
-重要常用設定 ! 其中 DNS 查詢會因為  Pod 所在的 namespace ，而返回不同的結果。不指定 namespace 的 DNS 查詢會被限制在本身 Pod 所在的 namespace 內。 要訪問其他名字空間中的 Service，需要在 DNS 查詢中指定名字空間。
+重要常用設定 ! DNS 查詢會因為  Pod 所在的 namespace ，而返回不同的結果。不指定 namespace 的 DNS 查詢會被限制在本身 Pod 所在的 namespace 內。 要訪問其他名字空間中的 Service，需要在 DNS 查詢中指定名字空間。
 {{< /alert >}}
 
----
+假定有:
+- namespace 為 ```np1```；service 為 ```svc1```；內有一個 ```Pod1```
+- namespace 為 ```np2```；service ，為 ```svc2```
+
+在```Pod1``` 查詢 ```svc2```
+會找不到，因為會是在是  ```Pod1``` 的 namespace  ```np1``` 找```svc2```，這當然會找不到。若在```Pod1``` 查詢 ```svc2.np2``` 或者 ```svc2.np2.svc.cluster.local``` 時，則會返回預期的結果，因為查詢中指定了 namespace。在本範例中```np1``` namespace 中的 Pod 可以成功地解析:
+- ```my-svc.np2```
+- ```my-svc.np2.svc.cluster.local```
+
+
+
 
 ## 同一網路下，不同 pod 間的通訊
+這種情況有兩種方式可以使用: DNS 、 環境變數
 
-- ### 使用 DNS 來解析服務位址 (比較推薦)
+#### 使用 DNS 來解析服務位址 (比較推薦)
 
-承前範例， 如果 Deployment 和 Service 都沒有指定 namespace 的話，預設是創建在了 **default** 的 namespace。故在創建 k8s-Service 時， k8s 會創建一個相應的 DNS 紀錄，形式邊來說是 :
+> 承前範例， 如果 Deployment 和 Service 都沒有指定 namespace 的話，預設是創建在了 **default** 的 namespace。故在創建 k8s-Service 時， k8s 會創建一個相應的 DNS 紀錄，形式邊來說是 :
+>
+> ```<service-name>.default.svc.cluster.local```。
 
-```<service-name>.default.svc.cluster.local```。
+#### 使用環境變數來訪問 Service
 
-- ### 使用環境變數來訪問 Service
-
-承前範例，使用 ```kubectl exec -it <deployment-name> /bin/bash``` 命令進入到 Pod 內部，接著使用 ```env``` 命令查看系統的環境變數，會發現可以看到和 Service 有關的環境變數如下:
-
-```< backend-service-name 轉成全大寫且"中橫線- " 變成"下底線_ " >_HOST=10.99.100.101```
-
-```< backend-service-name 轉成全大寫且"中橫線- " 變成"下底線_ " >_PORT=8080```
-
-可以發現 ```10.99.100.101``` 和 ```8080``` 剛好是前面提過的 backend Service IP 和對應的 Port 。有了這**環境變數**，我們就可以動態獲取 backend Service IP ， 藉由 Service IP 當然就可以連接到 deployment 的某個 Pod ，便可完成通信 !
+> 承前範例，使用 ```kubectl exec -it <deployment-name> /bin/bash``` 命令進入到 Pod 內部，接著使用 ```env``` 命令查看系統的環境變數，會發現可以看到和 Service 有關的環境變數如下:
+>
+> ```< backend-service-name 轉成全大寫且"中橫線- " 變成"下底線_ " >_HOST=10.99.100.101```
+>
+> ```< backend-service-name 轉成全大寫且"中橫線- " 變成"下底線_ " >_PORT=8080```
+>
+> 可以發現 ```10.99.100.101``` 和 ```8080``` 剛好是前面提過的 backend Service IP 和對應的 Port 。有了這**環境變數**，我們就可以動態獲取 backend Service IP ， 藉由 Service IP 當然就可以連接到 deployment 的某個 Pod ，便可完成通信 !
 
 {{< alert danger >}}
 可以使用環境變數來解析 Service IP ，但有一個限制，Pod 和 Service 須在**同一個 namespace 中**。
-{{< /alert >}}
-
-{{< alert info >}}
-可以使用環境變數來解析 Service IP ，但用的更多的應該是使用 DNS。
 {{< /alert >}}
 
 ---
@@ -119,7 +130,7 @@ Deployment 會根據 replicas 創建對應數量的 Pods，此時如果某個 Po
 
 - ### 解答: 用 localhost 來互相通訊
 
-在 kubernetes 集群中，每個 Pod 會被分配一個 IP 位址。 同一個 Pod 內的多個容器會共用這個 IP 位址對外通信，同時，這些容器之間也可以直接通過 ```localhost：Port``` 的方式進行通信。因為 container 是共用一個網路 namespace 的，所以**可以通過 localhost 來互相通訊**，也因此流量並不會經過 eth0 介面。
+在 kubernetes 集群中，每個 Pod 會被分配一個 IP 位址。 同一個 Pod 內的多個容器會共用這個 IP 位址對外通信，同時，這些容器之間也可以直接通過 ```localhost：Port``` 的方式進行通信。因為 container 是共用一個網路 namespace 的，所以**可以通過 localhost 來互相通訊**，也因此流量並不會經過 eth0 介面。 localhost 不依賴 **data link layer** 和 **physical layer** 協議，一旦 transport layer 偵測到目的是 localhost ，資料封包離開 network layer 時，就會被傳回本機的連接埠應用。 這種模式傳輸效率較高，非常適合容器間進程的頻繁通訊。
 
 對 container 來說， **hostname 就是 Pod 的名稱**。因為 **Pod 中的所有 container 共用同一個 IP 和 port 空間**，因此需要為每個容器分配不同的 port 。
 
@@ -131,9 +142,7 @@ Pod 中的應用需要自己協調管理 port 的使用。
 k8s Pod 在啟動其他 container 的時候會先啟動一個叫 pause container，新創建的 container 和 pause container 共用同一個網路 namespace，而不是和宿主機共用。
 {{< /alert >}}
 
-
 ---
-
 ### 參考資料
 
 - [K8s network之四：Kubernetes集群通信的實現原理](https://marcuseddie.github.io/2021/K8s-Network-Architecture-section-four.html)
