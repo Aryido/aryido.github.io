@@ -66,6 +66,11 @@ Service 其實是依靠 EndpointSlice 才找到 Pod 的
 LabelSelector 代表著**鬆耦合**，Service 和 Pod 建立順序並沒有強制誰先誰後， Service 也可以比 Pod 早建立。
 {{< /alert >}}
 
+{{< alert info >}}
+Kubernetes 提供兩種內建的負載均衡機制 :
+- TCP 負載均衡器 : Service
+- HTTP(S) 負載均衡器 : Ingress
+{{< /alert >}}
 
 ---
 
@@ -145,17 +150,18 @@ K8s部署時，預留的 NodePort 端口範圍是  ```30000~32767```
 
 ### LoadBalancer
 
-LoadBalancer 類型的 Service ，會指向 k8s cluster 對應一個實際存在的負載均衡設置。通常會結合雲端平台如 GCP、AWS、AZURE 等等，我們可以透過這些 cloud 提供的 LoadBalancer ，來實現 Pod 對外的通訊及負載平衡。
+LoadBalancer 類型的 Service ，會指向 k8s cluster 對應的一個實際存在的負載均衡設置。通常會結合雲端平台如 :
+- Google Kubernetes Engine (GKE)
+- Amazon Elastic Kubernetes Service (EKS)
+-  Azure Kubernetes Service (AKS)
+
+自行架設 on-premise 的 Kubernetes 基本上不會有動作，除非有另外做一些設定。我們可以透過這些 cloud 提供的 LoadBalancer ，來實現 Pod 對外的通訊及負載平衡。
 
 {{< alert info >}}
 是 Public IP ，雲端商會給該服務對外的 IP
 {{< /alert >}}
 
-{{< alert warning >}}
-Kubernetes 提供兩種內建的負載均衡機制 :
-- TCP 負載均衡器 : Service
-- HTTP(S) 負載均衡器 : Ingress
-{{< /alert >}}
+
 
 ---
 ### 參考資料
