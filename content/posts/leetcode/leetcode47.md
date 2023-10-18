@@ -95,6 +95,8 @@ swap(nums, index, i);
 ### 時間複雜度: ```O(N*N!)```
 承前面　[46. Permutations](https://aryido.github.io/posts/leetcode/leetcode46/) 分析，知道時間複雜度是```O(N*N!)```。但實際上速度還會更好，因為有去除重複，故 recursion tree 基本不會需要整個遍歷完全。
 
+雖然有 array 排序的演算法複雜度 ```O(NlogN)```，但不影響整個時間複雜度分析。
+
 ### 空間複雜度：```O(N^2)```
 recursion tree 深度優先搜索（DFS）會產生一個 recursion stack ，其深度剛好就是 N 。再來每一層中，都會有一個 set ，而這個 set 最多可以存 N 個元素，故空間複雜度為(深度 * set空間): ```O(N*N)=O(N^2)```
 
