@@ -25,7 +25,7 @@
 求用此 array 來組成目標數字的所有組合。像這種要求返回所有符合要求解的題目，基本都是要利用到遞迴，類似的題目有 Subset 、 Permutation 、 Combination 等等，解題套路都是使用 DFS 和 Backtrack 來求得答案。&lt;/p>
 &lt;/blockquote></description></item><item><title>Permutations 另解</title><link>https://aryido.github.io/posts/leetcode/leetcode4647/</link><pubDate>Wed, 04 Oct 2023 21:28:05 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode4647/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>之前解題利用了&lt;strong>交換 nums 裡面的兩個數字&lt;/strong>的方式，這次換另一種寫法，可單純使用 backtracking 來解題。故把 leetcode46 和 leetcode47 重新解答一遍。&lt;/p>
+&lt;p>之前解題利用了&lt;strong>交換 nums 裡面的兩個數字&lt;/strong>的方式，這次換另一種寫法，&lt;strong>做出一個 inner list 收集可能的結果&lt;/strong>。基本解題思想都還是 Backtracking ，故把 leetcode46 和 leetcode47 重新解答一遍。&lt;/p>
 &lt;/blockquote></description></item><item><title>47. Permutations II</title><link>https://aryido.github.io/posts/leetcode/leetcode47/</link><pubDate>Wed, 04 Oct 2023 20:28:05 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode47/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>是經典的 46. Permutations 的進階版，現在數字會有重複(duplicate) 。這邊一樣使用 DFS 加上 Backtrack 來求解。從數學上來說，&lt;code>n&lt;/code> 個 element ，且將相同的事物歸為一組, 可歸成 &lt;em>k&lt;/em> 組, 且每組有 &lt;code>m_i&lt;/code> 個，其 Permutation 一共有 &lt;code>n!/(m_1!m_2!...m_k!)&lt;/code> 種排序，為高中數學題中，需要思考下的題目；用程式模擬這個過程也有難度，故被歸類在 Medium 等級。&lt;/p>
