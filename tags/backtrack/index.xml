@@ -16,10 +16,10 @@
 &lt;p>之前解題利用了&lt;strong>交換 nums 裡面的兩個數字&lt;/strong>的方式，這次換另一種寫法，&lt;strong>做出一個 inner list 收集可能的結果&lt;/strong>。基本解題思想都還是 Backtracking ，故把 leetcode46 和 leetcode47 重新解答一遍。&lt;/p>
 &lt;/blockquote></description></item><item><title>47. Permutations II</title><link>https://aryido.github.io/posts/leetcode/leetcode47/</link><pubDate>Wed, 04 Oct 2023 20:28:05 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode47/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>是經典的 46. Permutations 的進階版，現在數字會有重複(duplicate) 。這邊一樣使用 DFS 加上 Backtrack 來求解。從數學上來說，&lt;code>n&lt;/code> 個 element ，且將相同的事物歸為一組, 可歸成 &lt;em>k&lt;/em> 組, 且每組有 &lt;code>m_i&lt;/code> 個，其 Permutation 一共有 &lt;code>n!/(m_1!m_2!...m_k!)&lt;/code> 種排序，為高中數學題中，需要思考下的題目；用程式模擬這個過程也有難度，故被歸類在 Medium 等級。&lt;/p>
+&lt;p>是經典的 46. Permutations 的進階版，現在數字會有重複(duplicate) 。這邊一樣使用 Backtrack 來求解。從數學上來說，&lt;code>n&lt;/code> 個 element ，且將相同的事物歸為一組, 可歸成 &lt;em>k&lt;/em> 組, 且每組有 &lt;code>m_i&lt;/code> 個，其 Permutation 一共有 &lt;code>n!/(m_1!m_2!...m_k!)&lt;/code> 種排序，為高中數學題中，需要思考下的題目；用程式模擬這個過程也有難度，故被歸類在 Medium 等級。&lt;/p>
 &lt;/blockquote></description></item><item><title>46. Permutations</title><link>https://aryido.github.io/posts/leetcode/leetcode46/</link><pubDate>Wed, 04 Oct 2023 20:10:05 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode46/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>是一道經典 distinct integers 的全排列問題，這邊使用 DFS 加上 Backtrack 來求解。從數學上來說，n 個 element 的 Permutation 一共有 n! 種排序，思考起來算蠻簡單的，但要用程式模擬這個推導過程，卻是有點難度的，因此被歸類在 Medium 等級。&lt;/p>
+&lt;p>是一道經典 distinct integers 的全排列問題，這邊使用 Backtrack 來求解。從數學上來說，n 個 element 的 Permutation 一共有 n! 種排序，思考起來算蠻簡單的，但要用程式模擬這個推導過程，卻是有點難度的，因此被歸類在 Medium 等級。&lt;/p>
 &lt;/blockquote></description></item><item><title>Backtrack 基礎介紹</title><link>https://aryido.github.io/posts/algorithm/backtrack/</link><pubDate>Wed, 04 Oct 2023 20:10:05 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/backtrack/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Backtrack 是 DFS 的一種形式，基本寫法類似於 TOP DOWN DFS，處理方式就是所謂的窮舉法，將所有可能的結果都找出來；每一個結果都實際看看這樣。換個角度來說，其實這個過程就如同在樹上遍歷 (Tree Traversal) ，而普通的 DFS 是不需要回溯狀態的。 Backtrack 強調了狀態回溯。&lt;/p>
