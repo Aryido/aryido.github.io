@@ -22,7 +22,7 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> 是一道經典  distinct integers 的全排列問題，這邊使用 DFS 加上 Backtrack 來求解。從數學上來說，n 個 element 的 Permutation 一共有 n! 種排序，思考起來算蠻簡單的，但要用程式模擬這個推導過程，卻是有點難度的，因此被歸類在 Medium 等級。
+> 是一道經典  distinct integers 的全排列問題，這邊使用 Backtrack 來求解。從數學上來說，n 個 element 的 Permutation 一共有 n! 種排序，思考起來算蠻簡單的，但要用程式模擬這個推導過程，卻是有點難度的，因此被歸類在 Medium 等級。
 
 <!--more-->
 

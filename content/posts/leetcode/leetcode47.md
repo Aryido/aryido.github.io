@@ -1,5 +1,5 @@
 ---
-title: 47. Permutations II
+title: "47. Permutations II"
 
 author: Aryido
 
@@ -22,7 +22,7 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> 是經典的 46. Permutations 的進階版，現在數字會有重複(duplicate) 。這邊一樣使用  DFS 加上 Backtrack 來求解。從數學上來說，```n``` 個 element ，且將相同的事物歸為一組, 可歸成 *k* 組, 且每組有 ```m_i``` 個，其 Permutation 一共有 ```n!/(m_1!m_2!...m_k!)``` 種排序，為高中數學題中，需要思考下的題目；用程式模擬這個過程也有難度，故被歸類在 Medium 等級。
+> 是經典的 46. Permutations 的進階版，現在數字會有重複(duplicate) 。這邊一樣使用 Backtrack 來求解。從數學上來說，```n``` 個 element ，且將相同的事物歸為一組, 可歸成 *k* 組, 且每組有 ```m_i``` 個，其 Permutation 一共有 ```n!/(m_1!m_2!...m_k!)``` 種排序，為高中數學題中，需要思考下的題目；用程式模擬這個過程也有難度，故被歸類在 Medium 等級。
 <!--more-->
 
 ---
