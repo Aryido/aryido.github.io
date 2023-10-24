@@ -1,0 +1,109 @@
+<!doctype html><html lang=en-us><head><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Reservoir sampling","image":"https://aryido.github.io/images/algorithm/reservoir-logo.jpg","datePublished":"2023-10-21T18:33:30+08:00","dateModified":"2023-10-21T18:33:30+08:00","author":{"@type":"Person","name":"李昀陽 YunYang Lee","image":"https://aryido.github.io/images/aboutme/head-shot.jpg"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aryido.github.io\/posts\/algorithm\/reservoir-sampling\/"},"publisher":{"@type":"Organization","name":"Aryido Tech Note","logo":{"@type":"ImageObject","url":"https://aryido.github.io/images/aboutme/head-shot.jpg"}},"description":" Reservoir sampling 是一個隨機演算法，其目的是在只遍歷一遍的情況下，從大數據 N 的資料流中，隨機選取出 k 個元素，且每筆資料選中的機率都要一樣。這個場景強調了幾件事：\n集合 N 很大且不可知，所以不能一次存入記憶體 時間複雜度為 O(N) 隨機選取 k 個數，每個數被選中的機率為k/N 本來面對這種問題，比較直接的想法是利用隨機數演算法，求 random(N) 得到隨機數，但是因資料流極大，無法一次都讀到記憶體內，這就表示不能像數組一樣根據 index 獲取元素；而且題目強調只能遍歷一遍O(N)，代表也不能再採用分塊方式儲存資料，之後再隨機遍歷。為了解決這個問題，可以使用 Reservoir sampling ，非常的巧妙。\n","keywords":[]}</script><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Hugo 0.119.0 with theme Tranquilpeak 0.5.3-BETA"><meta name=author content="李昀陽 YunYang Lee"><meta name=keywords content><meta name=description content="
+
+Reservoir sampling 是一個隨機演算法，其目的是在只遍歷一遍的情況下，從大數據 N 的資料流中，隨機選取出 k 個元素，且每筆資料選中的機率都要一樣。這個場景強調了幾件事：
+
+集合 N 很大且不可知，所以不能一次存入記憶體
+時間複雜度為 O(N)
+隨機選取 k 個數，每個數被選中的機率為k/N
+
+本來面對這種問題，比較直接的想法是利用隨機數演算法，求 random(N) 得到隨機數，但是因資料流極大，無法一次都讀到記憶體內，這就表示不能像數組一樣根據 index 獲取元素；而且題目強調只能遍歷一遍O(N)，代表也不能再採用分塊方式儲存資料，之後再隨機遍歷。為了解決這個問題，可以使用 Reservoir sampling ，非常的巧妙。
+"><meta property="og:description" content="
+
+Reservoir sampling 是一個隨機演算法，其目的是在只遍歷一遍的情況下，從大數據 N 的資料流中，隨機選取出 k 個元素，且每筆資料選中的機率都要一樣。這個場景強調了幾件事：
+
+集合 N 很大且不可知，所以不能一次存入記憶體
+時間複雜度為 O(N)
+隨機選取 k 個數，每個數被選中的機率為k/N
+
+本來面對這種問題，比較直接的想法是利用隨機數演算法，求 random(N) 得到隨機數，但是因資料流極大，無法一次都讀到記憶體內，這就表示不能像數組一樣根據 index 獲取元素；而且題目強調只能遍歷一遍O(N)，代表也不能再採用分塊方式儲存資料，之後再隨機遍歷。為了解決這個問題，可以使用 Reservoir sampling ，非常的巧妙。
+"><meta property="og:type" content="article"><meta property="og:title" content="Reservoir sampling"><meta name=twitter:title content="Reservoir sampling"><meta property="og:url" content="https://aryido.github.io/posts/algorithm/reservoir-sampling/"><meta property="twitter:url" content="https://aryido.github.io/posts/algorithm/reservoir-sampling/"><meta property="og:site_name" content="Aryido Tech Note"><meta property="og:description" content="
+
+Reservoir sampling 是一個隨機演算法，其目的是在只遍歷一遍的情況下，從大數據 N 的資料流中，隨機選取出 k 個元素，且每筆資料選中的機率都要一樣。這個場景強調了幾件事：
+
+集合 N 很大且不可知，所以不能一次存入記憶體
+時間複雜度為 O(N)
+隨機選取 k 個數，每個數被選中的機率為k/N
+
+本來面對這種問題，比較直接的想法是利用隨機數演算法，求 random(N) 得到隨機數，但是因資料流極大，無法一次都讀到記憶體內，這就表示不能像數組一樣根據 index 獲取元素；而且題目強調只能遍歷一遍O(N)，代表也不能再採用分塊方式儲存資料，之後再隨機遍歷。為了解決這個問題，可以使用 Reservoir sampling ，非常的巧妙。
+"><meta name=twitter:description content="
+
+Reservoir sampling 是一個隨機演算法，其目的是在只遍歷一遍的情況下，從大數據 N 的資料流中，隨機選取出 k 個元素，且每筆資料選中的機率都要一樣。這個場景強調了幾件事：
+
+集合 N 很大且不可知，所以不能一次存入記憶體
+時間複雜度為 O(N)
+隨機選取 k 個數，每個數被選中的機率為k/N
+
+本來面對這種問題，比較直接的想法是利用隨機數演算法，求 random(N) 得到隨機數，但是因資料流極大，無法一次都讀到記憶體內，這就表示不能像數組一樣根據 index 獲取元素；而且題目強調只能遍歷一遍O(N)，代表也不能再採用分塊方式儲存資料，之後再隨機遍歷。為了解決這個問題，可以使用 Reservoir sampling ，非常的巧妙。
+"><meta property="og:locale" content="en-us"><meta property="article:published_time" content="2023-10-21T18:33:30"><meta property="article:modified_time" content="2023-10-21T18:33:30"><meta property="article:section" content="algorithm"><meta name=twitter:card content="summary"><meta property="og:image" content="https://aryido.github.io/images/aboutme/head-shot.jpg"><meta property="twitter:image" content="https://aryido.github.io/images/aboutme/head-shot.jpg"><meta property="og:image" content="https://aryido.github.io/images/algorithm/reservoir-logo.jpg"><meta property="twitter:image" content="https://aryido.github.io/images/algorithm/reservoir-logo.jpg"><title>Reservoir sampling</title><link rel=icon href=https://aryido.github.io/favicon.png><link rel=canonical href=https://aryido.github.io/posts/algorithm/reservoir-sampling/><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://aryido.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css></head><body><div id=blog><header id=header data-behavior=4><i id=btn-open-sidebar class="fa fa-lg fa-bars"></i><div class=header-title><a class=header-title-link href=https://aryido.github.io/ aria-label="Go to homepage">Aryido Tech Note</a></div><a class=header-right-picture href=https://aryido.github.io/#about aria-label="Open the link: /#about"><img class=header-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"></a></header><nav id=sidebar data-behavior=4><div class=sidebar-container><div class=sidebar-profile><a href=https://aryido.github.io/#about aria-label="Read more about the author"><img class=sidebar-profile-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"></a><h4 class=sidebar-profile-name>李昀陽 YunYang Lee</h4><h5 class=sidebar-profile-bio>Welcome to my Tech Note. You can read some of the chapters below.</h5></div><ul class=sidebar-buttons><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/ title=Home><i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden=true></i>
+<span class=sidebar-button-desc>Home</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/categories title=Categories><i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden=true></i>
+<span class=sidebar-button-desc>Categories</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/tags title=Tags><i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden=true></i>
+<span class=sidebar-button-desc>Tags</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://github.com/Aryido target=_blank rel=noopener title=GitHub><i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden=true></i>
+<span class=sidebar-button-desc>GitHub</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/index.xml title=RSS><i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden=true></i>
+<span class=sidebar-button-desc>RSS</span></a></li></ul><ul class=sidebar-buttons></ul><ul class=sidebar-buttons></ul></div></nav><div id=main data-behavior=4 class=hasCoverMetaIn><article class=post id=top><div class="post-header main-content-wrap text-left"><h1 class=post-title>Reservoir sampling</h1><div class="postShorten-meta post-meta"><time datetime=2023-10-21T18:33:30+08:00>October 21, 2023</time>
+<span>in</span>
+<a class=category-link href=https://aryido.github.io/categories/algorithm>algorithm</a></div></div><div class="post-content markdown"><div class=main-content-wrap><blockquote><p>Reservoir sampling 是一個隨機演算法，其目的是在只遍歷一遍的情況下，從大數據 N 的資料流中，隨機選取出 k 個元素，且每筆資料選中的機率都要一樣。這個場景強調了幾件事：</p><ul><li>集合 N 很大且不可知，所以<strong>不能一次存入記憶體</strong></li><li>時間複雜度為 <code>O(N)</code></li><li>隨機選取 k 個數，每個數被選中的機率為<code>k/N</code></li></ul><p>本來面對這種問題，比較直接的想法是利用隨機數演算法，求 random(N) 得到隨機數，但是因<strong>資料流極大</strong>，無法一次都讀到記憶體內，這就表示不能像數組一樣根據 index 獲取元素；而且題目強調<strong>只能遍歷一遍<code>O(N)</code></strong>，代表也不能再採用分塊方式儲存資料，之後再隨機遍歷。為了解決這個問題，可以使用 Reservoir sampling ，非常的巧妙。</p></blockquote><hr><h1 id=reservoir-sampling-simple-case>Reservoir Sampling Simple Case</h1><p>以下 Code 為簡化版範例，當 for loop 跑完整個大數 N 時，result 將以 <code>1/N</code>的機率，指向 <code>[1，N]</code> 內的任一個數字，是不是感覺很神奇呢 !</p><pre tabindex=0><code>public class ReservoirSamplingSimpleTest {
+
+	private final int N = 100000;
+	private final Random random = new Random();
+
+	public int reservoirSimpleSampling() {
+		int result = 0;
+		for ( int i = 0; i &lt; N; i++ ) {
+			int r = random.nextInt( i + 1 );
+			if ( r &lt; 1 ) {
+				result = i + 1;
+			}
+		}
+		return result;
+	}
+}
+</code></pre><h3 id=分析>分析</h3><p>假定 N 是一個大於 0 的大數字 :</p><blockquote><p>假定大數字 <code>N = 1</code> 時，result 是 1 的機率是多少呢 ? 因為 for loop 只會循環一次，而其內的亂數 r 是在 <code>[0，1)</code>間，故 <code>r &lt;= 1</code> 的機率會是 100%，故 result 一定為 1</p></blockquote><p>也就是說 <code>result = 1</code> 的機率為 <code>1</code>。</p><blockquote><p>假定大數字 <code>N = 2</code> 時 :</p><ul><li>先反過來看，思考 result 是 2 的機率是多少呢 ? 因為要選到 2， for loop 一定要在最後，而亂數 r 那時是在 <code>[0，2)</code>間，故 <code>r &lt;= 1</code>的機率為 <code>1/2</code>，也就是說<code>result = 2</code>的機率為 <code>1/2</code></li><li>再來看選到 1 的機率是多少呢 ? 結果會是 <strong>1 第一次被選到而且不能替換掉</strong>；所以在 <code>N = 2</code> 情況下是 :</li></ul><pre tabindex=0><code>(1 被選到機率)*(不能被 2 替換掉的機率) =
+1 * (1-(1/2)) = 1/2
+</code></pre></blockquote><p>承上知道數字 <code>result = {1, 2}</code> 每個被選到的機率都是 <code>1/2</code></p><blockquote><p>假定大數字 <code>N = 3</code> 時 :</p><ul><li>先反過來看， result 是 3 的機率是多少呢 ? 因為要選到 3， 一定要在最後 for loop ，而其亂數 r 那時是在 <code>[0，3)</code>間，而 <code>r &lt;= 1</code>的機率為 <code>1/3</code>，也就是說<code>result = 3</code>的機率為 <code>1/3</code></li><li>再來看選到 2 的機率是多少呢 ? 結果會是 <strong>2 第一次被選到而且不能被替換掉</strong>；所以在<code>N = 3</code>情況下是 :</li></ul><pre tabindex=0><code>(2被選到機率)*(不能被 3 替換機率) =
+1/2 * (1-(1/3)) = 1/3
+</code></pre><ul><li>再來看選到 1 的機率是多少呢 ? 在<code>N = 3</code>情況下是:</li></ul><pre tabindex=0><code>( 1 被選到機率)*(不能被 2 替換機率)*(不能被 3 替換機率) =
+1 * (1-(1/2))*(1-(1/3)) =
+1* (1/2) * (2/3) = 1/3
+</code></pre></blockquote><p>承上知道數字 <code>{1, 2, 3}</code> 每個被選到的機率都是 <code>1/3</code>。</p><p>再繼續分析下去，機率圖表如下 :<div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/algorithm/reservoir-sampling.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/algorithm/reservoir-sampling.jpg></a></div></p><p>呈上類推，使用<strong>數學歸納法</strong>可分析證明，知道若數字有 N 個，可以得知 <code>result = {1, 2, 3, ... , N}</code> 每個被選到的機率都是 <code>1/N</code>。</p><hr><h1 id=reservoir-sampling-general-case>Reservoir Sampling General Case</h1><p>再來看一下進階版 General Case ，上面簡單範例是選一個數字而已，如果現在要選 K 個數字，每個數字被選擇的機率為 <code>K/N</code> 該怎麼表示呢 ?</p><pre tabindex=0><code>public class ReservoirSamplingTest {
+	private final int N = 10;
+	private final Random random = new Random();
+
+	private int[] sampling( int K ) {
+		int[] result = new int[K];
+		for ( int i = 0; i &lt; K; i++ ) {
+			result[i] = i + 1;
+		}
+
+		for ( int i = K; i &lt; N; i++ ) {
+			int r = random.nextInt( i + 1 );
+			if ( r &lt; K ) {
+				result[r] = i + 1;
+			}
+		}
+
+		return result;
+	}
+}
+</code></pre><blockquote><ul><li><p>對於第 i 的數 <code>（i ≤ K)</code>，在第 K 的數之前，被選中的機率為 1 。</p></li><li><p>當到第 K+1 的數時，第 i 的數被第 K+1 的數替換的機率 = 第 K+1 的數被選中的機率 * i 被選中替換的機率 : <code>[K/(K+1)]*(1/K) = 1/(K+1)</code>；
+故第 i 的數被保留的機率為 <code>1 - 1/(K+1) = K/(K+1)</code>。</p></li><li><p>同理可以推得，第 i 的數不被第 K+2 個數替換的機率為 <code>1 - [K/(K+2)]*(1/K) = (K+1)/(K+2)</code>。</p></li></ul></blockquote><p>以此類推，運行到第 N 個數時，被保留的機率 = 被選中的機率 * 不被替換的機率，即：
+<code>1 * [K/(K+1)]*[(K+1)/(K+2)]*[(K+2)/(K+3)]*....*[(N-1)/(N)] = K/N</code></p><blockquote><ul><li>對於第 j 的數 <code>（j > K)</code>，第 j 的數被選中的機率為 <code>k/j</code>。</li><li>不被 j+1 的數替換的機率為 <code>1 - [k/(j+1)]*[1/k]</code></li></ul></blockquote><p>以此類推，運行到第 N 個數時，被保留的機率 = 被選中的機率 * 不被替換的機率，即：
+<code>K/j * [j/(j+1)]*[(j+1)/(j+2)]*[(j+2)/(j+3)]*....*[(N-1)/(N)] = K/N</code></p><p>承上類推，使用數學歸納法來分析證明，可以知道若數字有 N 個，隨機選 K 個，
+每個元素被選到的機率都為 <code>K/N</code></p><hr><h1 id=時間空間複雜度>時間空間複雜度</h1><h3 id=時間複雜度--on>時間複雜度 : <code>O(N)</code></h3><p>在 Code 過程中，result 是一個一個的看機率換數字的，沒有複雜的過程；而且只有一層 for loop，所以很明顯時間複雜度為<code>O(N)</code></p><h3 id=空間複雜度---o1>空間複雜度 : <code>O(1)</code></h3><p>無論我們 N 是多少，記憶體中始終只儲存了 result ，所以它的空間複雜度為<code>O(1)</code></p><hr><h3 id=參考資料>參考資料</h3><ul><li><p><a href="https://www.youtube.com/watch?v=aMhe_Riny5E&amp;t=12sY">【经典算法题】蓄水池抽样算法</a></p></li><li><p><a href=https://www.jianshu.com/p/7a9ea6ece2af>蓄水池抽样算法（Reservoir Sampling）</a></p></li><li><p><a href=https://www.cnblogs.com/snowInPluto/p/5996269.html>蓄水池采样算法</a></p></li></ul></div></div><div id=post-footer class="post-footer main-content-wrap"><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--disabled"><i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/algorithm/backtrack/ data-tooltip="Backtrack 基礎介紹" aria-label="PREVIOUS: Backtrack 基礎介紹"><span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i></a></li></ul></nav><ul class="post-actions post-action-share"><li class="post-action hide-lg hide-md hide-sm"><a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post"><i class="fa fa-share-alt" aria-hidden=true></i></a></li><li class=post-action><a class="post-action-btn btn btn--default" href=#top aria-label="Back to top"><i class="fa fa-arrow-up" aria-hidden=true></i></a></li></ul></div></div></article><footer id=footer class=main-content-wrap><span class=copyrights>&copy; 2023 李昀陽 YunYang Lee. All Rights Reserved</span></footer></div><div id=bottom-bar class=post-bottom-bar data-behavior=4><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--disabled"><i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/algorithm/backtrack/ data-tooltip="Backtrack 基礎介紹" aria-label="PREVIOUS: Backtrack 基礎介紹"><span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i></a></li></ul></nav><ul class="post-actions post-action-share"><li class="post-action hide-lg hide-md hide-sm"><a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post"><i class="fa fa-share-alt" aria-hidden=true></i></a></li><li class=post-action><a class="post-action-btn btn btn--default" href=#top aria-label="Back to top"><i class="fa fa-arrow-up" aria-hidden=true></i></a></li></ul></div></div></div><div id=about><div id=about-card><div id=about-btn-close><i class="fa fa-times"></i></div><img id=about-card-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"><h4 id=about-card-name>李昀陽 YunYang Lee</h4><div id=about-card-bio>Welcome to my Tech Note. You can read some of the chapters below.</div><div id=about-card-job><i class="fa fa-briefcase"></i><br>Software Engineer</div><div id=about-card-location><i class="fa fa-map-marker-alt"></i><br>Taiwan</div></div></div><div id=cover style=background-image:url(https://aryido.github.io/images/background.jpg)></div><script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://aryido.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js></script>
+<script>$(document).ready(function(){hljs.configure({classPrefix:"",useBR:!1}),$("pre.code-highlight > code, pre > code").each(function(e,t){$(this).hasClass("codeblock")||$(this).addClass("codeblock"),hljs.highlightBlock(t)})})</script></body></html>

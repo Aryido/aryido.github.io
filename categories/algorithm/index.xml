@@ -1,4 +1,13 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>algorithm on Aryido Tech Note</title><link>https://aryido.github.io/categories/algorithm/</link><description>Recent content in algorithm on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 04 Oct 2023 20:10:05 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/algorithm/index.xml" rel="self" type="application/rss+xml"/><item><title>Backtrack 基礎介紹</title><link>https://aryido.github.io/posts/algorithm/backtrack/</link><pubDate>Wed, 04 Oct 2023 20:10:05 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/backtrack/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>algorithm on Aryido Tech Note</title><link>https://aryido.github.io/categories/algorithm/</link><description>Recent content in algorithm on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 21 Oct 2023 18:33:30 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/algorithm/index.xml" rel="self" type="application/rss+xml"/><item><title>Reservoir sampling</title><link>https://aryido.github.io/posts/algorithm/reservoir-sampling/</link><pubDate>Sat, 21 Oct 2023 18:33:30 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/reservoir-sampling/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Reservoir sampling 是一個隨機演算法，其目的是在只遍歷一遍的情況下，從大數據 N 的資料流中，隨機選取出 k 個元素，且每筆資料選中的機率都要一樣。這個場景強調了幾件事：&lt;/p>
+&lt;ul>
+&lt;li>集合 N 很大且不可知，所以&lt;strong>不能一次存入記憶體&lt;/strong>&lt;/li>
+&lt;li>時間複雜度為 &lt;code>O(N)&lt;/code>&lt;/li>
+&lt;li>隨機選取 k 個數，每個數被選中的機率為&lt;code>k/N&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>本來面對這種問題，比較直接的想法是利用隨機數演算法，求 random(N) 得到隨機數，但是因&lt;strong>資料流極大&lt;/strong>，無法一次都讀到記憶體內，這就表示不能像數組一樣根據 index 獲取元素；而且題目強調&lt;strong>只能遍歷一遍&lt;code>O(N)&lt;/code>&lt;/strong>，代表也不能再採用分塊方式儲存資料，之後再隨機遍歷。為了解決這個問題，可以使用 Reservoir sampling ，非常的巧妙。&lt;/p>
+&lt;/blockquote></description></item><item><title>Backtrack 基礎介紹</title><link>https://aryido.github.io/posts/algorithm/backtrack/</link><pubDate>Wed, 04 Oct 2023 20:10:05 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/backtrack/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Backtrack 是 DFS 的一種形式，基本寫法類似於 TOP DOWN DFS，處理方式就是所謂的窮舉法，將所有可能的結果都找出來；每一個結果都實際看看這樣。換個角度來說，其實這個過程就如同在樹上遍歷 (Tree Traversal) ，而普通的 DFS 是不需要回溯狀態的。 Backtrack 強調了狀態回溯。&lt;/p>
 &lt;/blockquote></description></item><item><title>Merge Sort</title><link>https://aryido.github.io/posts/algorithm/merge-sort/</link><pubDate>Mon, 04 Sep 2023 21:03:48 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/merge-sort/</guid><description>&lt;!-- raw HTML omitted -->
