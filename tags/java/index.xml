@@ -30,7 +30,7 @@
 &lt;p>兩種截然不同的風格來解答。個人認為是蠻好的題目，可以多寫幾次，並從各種不同的解答方式來說明思考，故在此筆記。要說簡單也不算，對於 recursive 解法一開始我覺得有點難理解 ! 雖然被歸類在 Easy，但我私心覺得蠻容易打擊第一次做的人的&amp;hellip;&lt;/p>
 &lt;/blockquote></description></item><item><title>49. Group Anagrams</title><link>https://aryido.github.io/posts/leetcode/leetcode49/</link><pubDate>Sun, 04 Jun 2023 13:53:53 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode49/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>所謂的兩字串互為 Anagrams ，意思就是兩個字串中，&lt;strong>字母出現的次數都一樣，只是位置不同&lt;/strong>，比如題目說的 ate 、 eat 、 tea 它們就都互為 Anagrams 。如何判斷兩字串是否互為 Anagrams 是關鍵解題點，這題雖然歸為 Medium ，但我認為是 easy 而已，主要是要:&lt;/p>
+&lt;p>所謂的兩字串互為 Anagrams ，意思就是兩個字串中，&lt;strong>字母出現的次數都一樣，只是位置不同&lt;/strong>，比如題目說的 ate 、 eat 、 tea 它們就都互為 Anagrams 。如何判斷兩字串是否互為 Anagrams 是關鍵解題點，這題雖然歸為 Medium ，但是偏向 easy 的，需要注意的點是:&lt;/p>
 &lt;ul>
 &lt;li>熟悉一些 java 內建常用的字串處理 function ，寫起來會比較簡潔。&lt;/li>
 &lt;li>想到使用 map 結構來儲存分組資料。&lt;/li>
