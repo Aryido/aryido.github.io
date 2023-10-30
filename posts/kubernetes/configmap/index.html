@@ -1,0 +1,104 @@
+<!doctype html><html lang=en-us><head><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Kubernetes - ConfigMap","image":"https://aryido.github.io/images/kubernetes/configmap-logo.jpg","datePublished":"2023-10-30T22:42:57+08:00","dateModified":"2023-10-30T22:42:57+08:00","author":{"@type":"Person","name":"李昀陽 YunYang Lee","image":"https://aryido.github.io/images/aboutme/head-shot.jpg"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aryido.github.io\/posts\/kubernetes\/configmap\/"},"publisher":{"@type":"Organization","name":"Aryido Tech Note","logo":{"@type":"ImageObject","url":"https://aryido.github.io/images/aboutme/head-shot.jpg"}},"description":" ConfigMap 是一種資源配置管理的抽象，可讓不同的微服務間共享配置，提供了一種將配置設置與應用分離的方法，讓我們可以只更新 Config 設定檔 ，而無需修改應用的 Code 或其 Image ，解決服務間配置的冗余與維護問題。基礎的 ConfigMap 用法，通常用於存儲鍵值對，來作爲容器化應用中的環境變量。\n","keywords":[]}</script><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Hugo 0.119.0 with theme Tranquilpeak 0.5.3-BETA"><meta name=author content="李昀陽 YunYang Lee"><meta name=keywords content><meta name=description content="
+
+ConfigMap 是一種資源配置管理的抽象，可讓不同的微服務間共享配置，提供了一種將配置設置與應用分離的方法，讓我們可以只更新 Config 設定檔 ，而無需修改應用的 Code 或其 Image ，解決服務間配置的冗余與維護問題。基礎的 ConfigMap 用法，通常用於存儲鍵值對，來作爲容器化應用中的環境變量。
+"><meta property="og:description" content="
+
+ConfigMap 是一種資源配置管理的抽象，可讓不同的微服務間共享配置，提供了一種將配置設置與應用分離的方法，讓我們可以只更新 Config 設定檔 ，而無需修改應用的 Code 或其 Image ，解決服務間配置的冗余與維護問題。基礎的 ConfigMap 用法，通常用於存儲鍵值對，來作爲容器化應用中的環境變量。
+"><meta property="og:type" content="article"><meta property="og:title" content="Kubernetes - ConfigMap"><meta name=twitter:title content="Kubernetes - ConfigMap"><meta property="og:url" content="https://aryido.github.io/posts/kubernetes/configmap/"><meta property="twitter:url" content="https://aryido.github.io/posts/kubernetes/configmap/"><meta property="og:site_name" content="Aryido Tech Note"><meta property="og:description" content="
+
+ConfigMap 是一種資源配置管理的抽象，可讓不同的微服務間共享配置，提供了一種將配置設置與應用分離的方法，讓我們可以只更新 Config 設定檔 ，而無需修改應用的 Code 或其 Image ，解決服務間配置的冗余與維護問題。基礎的 ConfigMap 用法，通常用於存儲鍵值對，來作爲容器化應用中的環境變量。
+"><meta name=twitter:description content="
+
+ConfigMap 是一種資源配置管理的抽象，可讓不同的微服務間共享配置，提供了一種將配置設置與應用分離的方法，讓我們可以只更新 Config 設定檔 ，而無需修改應用的 Code 或其 Image ，解決服務間配置的冗余與維護問題。基礎的 ConfigMap 用法，通常用於存儲鍵值對，來作爲容器化應用中的環境變量。
+"><meta property="og:locale" content="en-us"><meta property="article:published_time" content="2023-10-30T22:42:57"><meta property="article:modified_time" content="2023-10-30T22:42:57"><meta property="article:section" content="kubernetes"><meta name=twitter:card content="summary"><meta property="og:image" content="https://aryido.github.io/images/aboutme/head-shot.jpg"><meta property="twitter:image" content="https://aryido.github.io/images/aboutme/head-shot.jpg"><meta property="og:image" content="https://aryido.github.io/images/kubernetes/configmap-logo.jpg"><meta property="twitter:image" content="https://aryido.github.io/images/kubernetes/configmap-logo.jpg"><title>Kubernetes - ConfigMap</title><link rel=icon href=https://aryido.github.io/favicon.png><link rel=canonical href=https://aryido.github.io/posts/kubernetes/configmap/><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://aryido.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css></head><body><div id=blog><header id=header data-behavior=4><i id=btn-open-sidebar class="fa fa-lg fa-bars"></i><div class=header-title><a class=header-title-link href=https://aryido.github.io/ aria-label="Go to homepage">Aryido Tech Note</a></div><a class=header-right-picture href=https://aryido.github.io/#about aria-label="Open the link: /#about"><img class=header-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"></a></header><nav id=sidebar data-behavior=4><div class=sidebar-container><div class=sidebar-profile><a href=https://aryido.github.io/#about aria-label="Read more about the author"><img class=sidebar-profile-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"></a><h4 class=sidebar-profile-name>李昀陽 YunYang Lee</h4><h5 class=sidebar-profile-bio>Welcome to my Tech Note. You can read some of the chapters below.</h5></div><ul class=sidebar-buttons><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/ title=Home><i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden=true></i>
+<span class=sidebar-button-desc>Home</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/categories title=Categories><i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden=true></i>
+<span class=sidebar-button-desc>Categories</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/tags title=Tags><i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden=true></i>
+<span class=sidebar-button-desc>Tags</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://github.com/Aryido target=_blank rel=noopener title=GitHub><i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden=true></i>
+<span class=sidebar-button-desc>GitHub</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/index.xml title=RSS><i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden=true></i>
+<span class=sidebar-button-desc>RSS</span></a></li></ul><ul class=sidebar-buttons></ul><ul class=sidebar-buttons></ul></div></nav><div id=main data-behavior=4 class=hasCoverMetaIn><article class=post id=top><div class="post-header main-content-wrap text-left"><h1 class=post-title>Kubernetes - ConfigMap</h1><div class="postShorten-meta post-meta"><time datetime=2023-10-30T22:42:57+08:00>October 30, 2023</time>
+<span>in</span>
+<a class=category-link href=https://aryido.github.io/categories/kubernetes>kubernetes</a></div></div><div class="post-content markdown"><div class=main-content-wrap><blockquote><p>ConfigMap 是一種<strong>資源配置管理</strong>的抽象，可讓不同的微服務間共享配置，提供了一種將<strong>配置設置與應用分離的方法</strong>，讓我們可以只更新 Config 設定檔 ，而無需修改應用的 Code 或其 Image ，解決服務間配置的冗余與維護問題。基礎的 ConfigMap 用法，通常用於存儲<strong>鍵值對</strong>，來作爲容器化應用中的<strong>環境變量</strong>。</p></blockquote><hr><div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/kubernetes/configmap-secret.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/kubernetes/configmap-secret.jpg></a></div><h1 id=簡介>簡介</h1><p>ConfigMap 是一種 Kubernetes API 對象，用來將<span class="highlight-text red">非機密性的資料
+</span>，保存到鍵值對中，且資料大小必須小於 <code>1MB</code>。 使用 ConfigMap 是希望讓<strong>應用程式</strong>與<strong>設定</strong>解耦 (Decoupled)。舉一個實際會遇到問題，例如:</p><blockquote><p>Question: 當我們有多個不同服務用 Deployment 配置，且不同服務都需要跟 Database 連接。這樣然到要在每個 Deployment YAML 內，重複寫上同樣配置連接的設定嗎 ?</p></blockquote><p>在每個 Deployment 文件中，若都寫上相同 Database 連接設定，就會造成冗余。想像後續如果要更改 Database 連接設定，就會需要對多個 Deployment 都做修改，這會造成維護問題，而通過使用 ConfigMap ，可以集中配置方便管理。除了 Database 連接地址之外，API 端點 URL、應用的環境變數等等，都可以設定在 ConfigMap 內。</p><div class="alert success"><p><p>ConfigMap 可以單獨存在於 Kubernetes 中。當 Pod 需要使用 ConfigMap 時，才將 ConfigMap 給 Pod 使用。 Pod 可以將其用作</p><ul><li>環境變數 Env</li><li>命令列參數 CLI</li><li>在 readonly Volume內，新增一個文件，讓應用程式來讀取</li><li>編寫程式在 Pod 運行，使用 Kubernetes API 來讀取 ConfigMap</li></ul></p></div><hr><h1 id=configmap-yamlhttpskubernetesiozh-cndocsconceptsconfigurationconfigmap><a href=https://kubernetes.io/zh-cn/docs/concepts/configuration/configmap/>ConfigMap YAML</a></h1><pre tabindex=0><code>apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: game-demo
+data:
+  # 簡單型
+  player_initial_lives: &#34;3&#34;
+  ui_properties_file_name: &#34;user-interface.properties&#34;
+
+  # 複雜型
+  game.properties: |
+    enemy.types=aliens,monsters
+    player.maximum-lives=5
+  user-interface.properties: |
+    color.good=purple
+    color.bad=yellow
+    allow.textmode=true
+</code></pre><p>下面是一個簡單 Pod 的範例，會使用 上述 ConfigMap，設定給 Pod：</p><pre tabindex=0><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-demo-pod
+spec:
+  containers:
+    - name: demo
+      image: alpine
+      command: [ &#34;/bin/sh&#34;, &#34;-c&#34;, &#34;echo $(PLAYER_INITIAL_LIVES)&#34; ] # 可以透過 $(VAR_NAME) 使用參數
+      env:
+        - name: PLAYER_INITIAL_LIVES # 注意，這裡的名稱是環境變數的 KEY 名稱
+          valueFrom:
+            configMapKeyRef:
+              name: game-demo           # 指定對應的 指定對應的 ConfigMap，要用 metadata 名稱
+              key: player_initial_lives # ConfigMap 中對應的 KEY，故名稱要完全一樣
+        - name: UI_PROPERTIES_FILE_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: game-demo
+              key: ui_properties_file_name
+      volumeMounts:
+      - name: config
+        mountPath: &#34;/config&#34;
+        readOnly: true
+  volumes:
+  # 可以在 Pod 設定 volume，然後將 configMap 掛載到 Pod 內的容器中
+  - name: config
+    configMap:
+      # 指定對應的 指定對應的 ConfigMap，要用 metadata 名稱
+      name: game-demo
+      # 來自 ConfigMap 的鍵，將會建立為文件
+      items:
+      - key: &#34;game.properties&#34;
+        path: &#34;game.properties&#34;
+      - key: &#34;user-interface.properties&#34;
+        path: &#34;user-interface.properties&#34;
+</code></pre><p>上面的範例定義了一個 volume ，將它作為 <code>/config</code> 資料夾掛載到 demo 容器內， 並建立兩個文件 <code>/config/game.properties</code> 和 <code>/config/user-interface.properties</code>。</p><h2 id=envfromhttpskubernetesiozh-cndocstasksconfigure-pod-containerconfigure-pod-configmapconfigure-all-key-value-pairs-in-a-configmap-as-container-environment-variables><a href=https://kubernetes.io/zh-cn/docs/tasks/configure-pod-container/configure-pod-configmap/#configure-all-key-value-pairs-in-a-configmap-as-container-environment-variables>envFrom</a></h2><p>使用 envFrom 可將所有 ConfigMap 的資料，定義為容器環境變量，ConfigMap 中的 Key 會直接成為 Pod 中的環境變數名稱。</p><pre tabindex=0><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: dapi-test-pod
+spec:
+  containers:
+    - name: test-container
+      image: registry.k8s.io/busybox
+      command: [ &#34;/bin/sh&#34;, &#34;-c&#34;, &#34;env&#34; ]
+      envFrom:
+      - configMapRef:
+          name: game-demo
+</code></pre><div class="alert danger"><p>以環境變數方式使用的 ConfigMap 資料不會被自動更新。 需要重新啟動 Pod，才會讀到最新的 ConfigMap 資料。</p></div><div class="alert warning"><p>可使用<strong>更新 configMap 的 name</strong> ，方式，來啟動 Pod 更新機制。</p></div><hr><h3 id=參考資料>參考資料</h3><ul><li><p><a href=https://www.readfog.com/a/1705835985067151360>ConfigMap：動態更新應用程序配置</a></p></li><li><p><a href=https://medium.com/k8s%E7%AD%86%E8%A8%98/kubernetes-k8s-configmap-%E7%94%A8%E6%96%BC%E8%AE%93%E4%B8%8D%E5%90%8C%E7%9A%84%E5%BE%AE%E6%9C%8D%E5%8B%99%E5%85%B1%E4%BA%AB%E9%85%8D%E7%BD%AE-configure-a-pod-to-use-a-configmap-b2570b58fd07>[Kubernetes / K8s] ConfigMap 用於讓不同的微服務共享配置| Configure a Pod to Use a ConfigMap</a></p></li><li><p><a href=https://ithelp.ithome.com.tw/articles/10193935>Day 16 - 系統設定就交給它吧：ConfigMap</a></p></li><li><p><a href=https://www.readfog.com/a/1653238144516067328>Kubernetes 應用配置管理</a></p></li><li><p><a href=https://izsk.me/2020/05/10/Kubernetes-deploy-hot-reload-when-configmap-update/>Kubernetes学习(configmap及secret更新后自动重启POD)</a></p></li><li><p><a href=https://www.cnblogs.com/breezey/p/6582082.html>Kubernetes的ConfigMap说明</a></p></li></ul></div></div><div id=post-footer class="post-footer main-content-wrap"><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--disabled"><i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/kubernetes/ingress/ data-tooltip="Kubernetes - Ingress" aria-label="PREVIOUS: Kubernetes - Ingress"><span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i></a></li></ul></nav><ul class="post-actions post-action-share"><li class="post-action hide-lg hide-md hide-sm"><a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post"><i class="fa fa-share-alt" aria-hidden=true></i></a></li><li class=post-action><a class="post-action-btn btn btn--default" href=#top aria-label="Back to top"><i class="fa fa-arrow-up" aria-hidden=true></i></a></li></ul></div></div></article><footer id=footer class=main-content-wrap><span class=copyrights>&copy; 2023 李昀陽 YunYang Lee. All Rights Reserved</span></footer></div><div id=bottom-bar class=post-bottom-bar data-behavior=4><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--disabled"><i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/kubernetes/ingress/ data-tooltip="Kubernetes - Ingress" aria-label="PREVIOUS: Kubernetes - Ingress"><span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i></a></li></ul></nav><ul class="post-actions post-action-share"><li class="post-action hide-lg hide-md hide-sm"><a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post"><i class="fa fa-share-alt" aria-hidden=true></i></a></li><li class=post-action><a class="post-action-btn btn btn--default" href=#top aria-label="Back to top"><i class="fa fa-arrow-up" aria-hidden=true></i></a></li></ul></div></div></div><div id=about><div id=about-card><div id=about-btn-close><i class="fa fa-times"></i></div><img id=about-card-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"><h4 id=about-card-name>李昀陽 YunYang Lee</h4><div id=about-card-bio>Welcome to my Tech Note. You can read some of the chapters below.</div><div id=about-card-job><i class="fa fa-briefcase"></i><br>Software Engineer</div><div id=about-card-location><i class="fa fa-map-marker-alt"></i><br>Taiwan</div></div></div><div id=cover style=background-image:url(https://aryido.github.io/images/background.jpg)></div><script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://aryido.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js></script>
+<script>$(document).ready(function(){hljs.configure({classPrefix:"",useBR:!1}),$("pre.code-highlight > code, pre > code").each(function(e,t){$(this).hasClass("codeblock")||$(this).addClass("codeblock"),hljs.highlightBlock(t)})})</script></body></html>
