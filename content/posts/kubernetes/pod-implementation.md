@@ -3,7 +3,9 @@ title: Kubernetes Pod 實現解析
 
 author: Aryido
 
-date: 2023-04-01T17:34:53+08:00
+first draft: 2023-04-01T17:34:53+08:00
+
+date: 2023-11-07T23:10:05+08:00
 
 thumbnailImage: "/images/kubernetes/logo.jpg"
 
@@ -73,6 +75,10 @@ Pause container ，又稱 Infra container 。其功用就是在 Pod 創建時首
 
 pause 容器的創建用的是 **docker 的 none 網路模式**。 CRI 只負責給 pause 容器生成一個 network namespace ， CNI 會完成 pause 容器的網路配置。
 
+{{< image classes="fancybox fig-100" src="/images/kubernetes/pause.jpg" >}}
+
+Pause 容器的本質就是一個獨立的 Process ，作用是 保證即使 Pod 中沒有任何其他 Container 運行也不會被刪除，因爲這時候還有 Pause 容器在運行。
+
 {{< alert success >}}
 因此 Pause container 的生命週期就相當於是整個 Pod 的生命週期。
 {{< /alert >}}
@@ -88,10 +94,10 @@ pause container 啟動後，就永遠處於暫停狀態，這也是稱為 pause 
 {{< /alert >}}
 
 ---
-
 ### 參考資料
-
 - [K8s network之四：Kubernetes集群通信的實現原理](https://marcuseddie.github.io/2021/K8s-Network-Architecture-section-four.html)
 
 
 - [Kubernetes Pod 實現原理](https://www.readfog.com/a/1697874061307252736)
+
+- [Kubernetes Pod 設計與實現 - Pause 容器](https://www.readfog.com/a/1716907231840145408)
