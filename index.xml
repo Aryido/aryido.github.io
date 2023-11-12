@@ -1,4 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 31 Oct 2023 21:14:57 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Kubernetes - Secret</title><link>https://aryido.github.io/posts/kubernetes/secret/</link><pubDate>Tue, 31 Oct 2023 21:14:57 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/secret/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 07 Nov 2023 23:10:05 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Kubernetes Pod 實現解析</title><link>https://aryido.github.io/posts/kubernetes/pod-implementation/</link><pubDate>Tue, 07 Nov 2023 23:10:05 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/pod-implementation/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Pod 是 Kubernetes 中最小的運行單位，它可以包含一個或多個 container。Pod 的實現原理主要涉及以下幾個方面：&lt;/p>
+&lt;ul>
+&lt;li>容器技術 : 實現隔離和獨立運行&lt;/li>
+&lt;li>共享網絡和存儲 : Pod 中的所有容器共享相同的網絡和存儲空間&lt;/li>
+&lt;li>Pod 調度 : 調度器會監測節點的資源利用率，將 Pod 調度到適合的節點上運行。&lt;/li>
+&lt;li>生命週期管理 : 當 Pod 發生故障或需要擴展時，控制器會自動創建、刪除或調整 Pod 的數量。&lt;/li>
+&lt;/ul>
+&lt;p>在 Kubernetes 中，Pod 是容器組的概念，爲應用程序提供了一個更加靈活的運行環境，負責管理容器的生命周期和資源。&lt;/p>
+&lt;/blockquote></description></item><item><title>Kubernetes - Secret</title><link>https://aryido.github.io/posts/kubernetes/secret/</link><pubDate>Tue, 31 Oct 2023 21:14:57 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/secret/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Kubernetes Secret 是一種將&lt;strong>配置設置與應用分離的抽象&lt;/strong>，解決服務間配置的冗余與維護問題。主要可以用來保存敏感訊息，例如密碼、OAuth 令牌和ssh key等等，將這些 data 放在 Secret 中，比放在 Pod 的定義中或者 Docker Image中，來說更加安全和靈活。&lt;/p>
 &lt;/blockquote></description></item><item><title>Kubernetes - ConfigMap</title><link>https://aryido.github.io/posts/kubernetes/configmap/</link><pubDate>Mon, 30 Oct 2023 22:42:57 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/configmap/</guid><description>&lt;!-- raw HTML omitted -->
@@ -216,16 +226,6 @@ Avro 也提供了編解碼和二進制格式，使得在高吞吐量的應用場
 &lt;/blockquote></description></item><item><title>797. All Paths From Source to Target</title><link>https://aryido.github.io/posts/leetcode/leetcode797/</link><pubDate>Wed, 05 Apr 2023 17:00:37 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode797/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>這題給了我們一個無環有向圖 (directed acyclic graph)(DAG) 。有 N 個 node ，要找出所有可能的從 &lt;code>node 0&lt;/code> 到 &lt;code>node N-1&lt;/code> 的路徑。像這種需要走到終點，且在每一次新的遞迴時，都要把當前路徑記錄下來，其本質都是&lt;strong>深度遍歷 graph&lt;/strong> ，再加上 &lt;strong>backtrack 回溯狀態&lt;/strong>。是經典的 dfs 的題目。&lt;/p>
-&lt;/blockquote></description></item><item><title>Kubernetes Pod 實現解析</title><link>https://aryido.github.io/posts/kubernetes/pod-implementation/</link><pubDate>Sat, 01 Apr 2023 17:34:53 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/pod-implementation/</guid><description>&lt;!-- raw HTML omitted -->
-&lt;blockquote>
-&lt;p>Pod 是 Kubernetes 中最小的運行單位，它可以包含一個或多個 container。Pod 的實現原理主要涉及以下幾個方面：&lt;/p>
-&lt;ul>
-&lt;li>容器技術 : 實現隔離和獨立運行&lt;/li>
-&lt;li>共享網絡和存儲 : Pod 中的所有容器共享相同的網絡和存儲空間&lt;/li>
-&lt;li>Pod 調度 : 調度器會監測節點的資源利用率，將 Pod 調度到適合的節點上運行。&lt;/li>
-&lt;li>生命週期管理 : 當 Pod 發生故障或需要擴展時，控制器會自動創建、刪除或調整 Pod 的數量。&lt;/li>
-&lt;/ul>
-&lt;p>在 Kubernetes 中，Pod 是容器組的概念，爲應用程序提供了一個更加靈活的運行環境，負責管理容器的生命周期和資源。&lt;/p>
 &lt;/blockquote></description></item><item><title>Terraform : google_firestore_document 範例</title><link>https://aryido.github.io/posts/terraform/firestore-document/</link><pubDate>Tue, 28 Mar 2023 22:22:08 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/firestore-document/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>在 Cloud Firestore 中，存儲單位是 document 。document 是一個 lightweight record ，可包含 data 欄位 (稱: fields)，也可以嵌套另一個 collection。
