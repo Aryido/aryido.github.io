@@ -15,7 +15,9 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> Program/Process/Thread 是面試時經常會被問到的題目，中文部分翻譯有很多種，也來筆記一下吧。
+> Program/Process/Thread 是面試時經常會被問到的題目，中文部分翻譯有很多種，也來筆記一下吧。首先默念一下教科書上 Process 和 Thread 定義：
+- Process：資源分配的最小單位。
+- Thread：執行的最小單位。
 
 <!--more-->
 
@@ -73,7 +75,19 @@ Process 是 Thread 的容器，在同一個 Process 中可以有很多個 Thread
 
 ---
 
+# Process V.S Thread
+- 同一個 Process 內的 Thread 之間可以直接交流；但兩個 Process 想通訊，必須通過一中間代理來實現。
+-  Process 擁有資源的一個獨立單位；Thread 不擁有系統資源，但是可以訪問隸屬於 Process 的系統資源。
+- 一個 Thread 可以控制和操作同一 Process 裏的其他 Thread ；但是 Process 只能操作子 Process。
+
+---
+
 # 場景
 例如打開 word ，這就是開啓一個 Process，當我們使用鍵盤在某一行打了一些文字，我們需要一個 thread 來接受鍵盤的按下事件; 接下來需要一個 thread 來幫你把文檔排序把畫面顯示出來; 再來是可能需要儲存到硬碟中，故也需要一個 thread 來完成操作。以上就是常見的多執行續場景。
 
 ---
+### 參考資料
+
+- [徹底理解進程、線程、多進程與多線程及其優缺](https://www.readfog.com/a/1717973144104439808)
+
+- [进程和线程的区别](https://www.youtube.com/watch?v=e3JQOgKw9BA&t=4s)
