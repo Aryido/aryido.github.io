@@ -9,5 +9,9 @@
 &lt;p>前面介紹了 Program、Process、Thread 差異。再來淺談Parallel、Concurrent 吧! 其實主要是要注意中英文對照&amp;hellip;&lt;/p>
 &lt;/blockquote></description></item><item><title>Program、Process、Thread 差異</title><link>https://aryido.github.io/posts/others/os-1/</link><pubDate>Sat, 24 Sep 2022 18:07:17 +0800</pubDate><guid>https://aryido.github.io/posts/others/os-1/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>Program/Process/Thread 是面試時經常會被問到的題目，中文部分翻譯有很多種，也來筆記一下吧。&lt;/p>
-&lt;/blockquote></description></item></channel></rss>
+&lt;p>Program/Process/Thread 是面試時經常會被問到的題目，中文部分翻譯有很多種，也來筆記一下吧。首先默念一下教科書上 Process 和 Thread 定義：&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>Process：資源分配的最小單位。&lt;/li>
+&lt;li>Thread：執行的最小單位。&lt;/li>
+&lt;/ul></description></item></channel></rss>
