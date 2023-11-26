@@ -26,7 +26,7 @@ reward: false
 
 ---
 
-## 思路
+# 思路
 
 可以發現如果把**兩個 string 個別分割成 char array 後，並用同一種方式，個別排序 array 內元素，若會得到相同的結果，則互為 Anagrams** 。由於同一組 Anagrams 詞重新排序後都會得到相同的結果，以此作為 key，將所有相同的 Anagrams 詞都保存到一 list 中，就可一建立 map ，該 map 就是把 Anagrams 組建立完成的解答了。
 
