@@ -10,11 +10,31 @@
 &lt;li>UPD load balancing&lt;/li>
 &lt;/ul>
 &lt;p>但實際上依照細部功能，還有分 Global 或 Regional 等地域性分類，總體設定蠻細緻的 :&lt;/p>
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
 &lt;div class="figure fig-100" >
-&lt;a class="fancybox" href="https://aryido.github.io/images/google-cloud/load-balancer-options.jpg" data-fancybox="">
-&lt;img class="fig-img" src="https://aryido.github.io/images/google-cloud/load-balancer-options.jpg" >
-&lt;/a>
+ 
+ &lt;a class="fancybox" href="https://aryido.github.io/images/google-cloud/load-balancer-options.jpg" data-fancybox="">
+ 
+ &lt;img class="fig-img" src="https://aryido.github.io/images/google-cloud/load-balancer-options.jpg" >
+ 
+ &lt;/a>
+ 
+ 
 &lt;/div>
+
 &lt;/blockquote></description></item><item><title>Google Cloud Firestore 簡介</title><link>https://aryido.github.io/posts/google-cloud/firestore/</link><pubDate>Mon, 27 Mar 2023 22:18:10 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/firestore/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Cloud Firestore 是 Google 提供的一款雲端 NoSQL 資料庫。資料模型上簡單分成了 collection 、 document 結構，本質上也是 JSON 格式，但使用起來更直觀。Firestore 還具有即時同步資料的功能，也就是說一旦資料庫有異動，資料便會自動同步到相關的用戶端上（如手機 App）&lt;/p>
