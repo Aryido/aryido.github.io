@@ -24,6 +24,15 @@
 &lt;/blockquote></description></item><item><title>46. Permutations</title><link>https://aryido.github.io/posts/leetcode/leetcode46/</link><pubDate>Wed, 04 Oct 2023 20:10:05 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode46/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>是一道經典 distinct integers 的全排列問題，這邊使用 Backtrack 來求解。從數學上來說，n 個 element 的 Permutation 一共有 n! 種排序，思考起來算蠻簡單的，但要用程式模擬這個推導過程，卻是有點難度的，因此被歸類在 Medium 等級。&lt;/p>
+&lt;/blockquote></description></item><item><title>509. Fibonacci Numbers</title><link>https://aryido.github.io/posts/leetcode/leetcode509/</link><pubDate>Mon, 04 Sep 2023 20:03:48 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode509/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>這題是非常有名的 Fibonacci 數列，其特徵是除了前兩個數字之外，每個數字等於前兩個數字之和。解法可以帶出一些經典觀念和想法，例如 :&lt;/p>
+&lt;ul>
+&lt;li>Dynamic Programming&lt;/li>
+&lt;li>迭帶 for-loop&lt;/li>
+&lt;li>recursion 遞迴&lt;/li>
+&lt;/ul>
+&lt;p>由於 Fibonacci 數列的時間空間複雜度計算比較特別，加上可以很初步引入很多的思考方式，故雖然這題是 easy ，我還是做個紀錄。&lt;/p>
 &lt;/blockquote></description></item><item><title>206. Reverse Linked List</title><link>https://aryido.github.io/posts/leetcode/leetcode206/</link><pubDate>Sun, 27 Aug 2023 19:47:15 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode206/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>反轉 Linked List 是一道經典的題目，可以用分別用 :&lt;/p>
