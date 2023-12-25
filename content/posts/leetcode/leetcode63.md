@@ -12,7 +12,7 @@ categories:
 
 tags:
 - java
-- dp
+- dynamic-programming
 
 comment: false
 
@@ -20,7 +20,7 @@ reward: false
 
 ---
 <!--BODY-->
-> 這題是 62. Unique Paths 的延伸，能選擇往下或往右走直至終點為止，要求出有多少種可能走法，但多了一個限制，會在路徑中加了一些 obstacle 擋住了某些路徑。是一道典型的 Dynamic Programming - 2D dp matrix 類型的題目。和爬樓梯等都屬於動態規劃中常見題目，因此也經常會被用於面試之中。
+> 這題是 62. Unique Paths 的延伸，能選擇往下或往右走直至終點為止，要求出有多少種可能走法，但多了一個限制，會在路徑中加了一些 obstacle 擋住了某些路徑。是一道典型的 Dynamic Programming - 2D matrix 類型的題目。和爬樓梯等都屬於動態規劃中常見題目，因此也經常會被用於面試之中。
 <!--more-->
 
 ---
@@ -204,3 +204,5 @@ n.障礙（物）；妨礙[C][（+to）]
 - [63.unique-paths-ii.md](https://github.com/azl397985856/leetcode/blob/master/problems/63.unique-paths-ii.md)
 
 - [[LeetCode] 63. Unique Paths II 不同的路径之二](https://www.cnblogs.com/grandyang/p/4353680.html)
+
+- [Day 2: 按照規律的方式填表可以解決大部分的問題！](https://ithelp.ithome.com.tw/articles/10215365)

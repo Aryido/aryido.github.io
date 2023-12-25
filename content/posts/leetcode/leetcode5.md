@@ -19,7 +19,7 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> **最長回文子串 (Longest Palindromic Substring) 是常考題**。Palindrome 就是正讀反讀都一樣的詞語，比如範例給的 "bab"、 "bb" ，實際單字如 "level" 等等都屬於它。因為較好的解法是 DP 類型，初見就能想到，難度也比較高。一般人能熟悉 DP 解就好了。(看過令人膜拜的神解 Manacher's Algorithm，時間複雜度提升到了 O(n) ...)
+> **最長回文子串 (Longest Palindromic Substring) 是常考題**。Palindrome 就是正讀反讀都一樣的詞語，比如範例給的 "bab"、 "bb" ，實際單字如 "level" 等等都屬於它。因為較好的解法是 DP 類型，初見就能想到，難度也比較高。一般人能熟悉 Dynamic Programming - 2D matrix 解就好了。(看過令人膜拜的神解 Manacher's Algorithm，時間複雜度提升到了 O(n) ...)
 
 <!--more-->
 
@@ -32,9 +32,11 @@ reward: false
 
 {{< image classes="fancybox fig-100" src="/images/leetcode/5-2.jpg" >}}
 
-再來是 Palindromic 的特性，若字串最兩端一樣，且 ```dp[i+1][j-1]```表示**內縮一層的單字**，若它也是 Palindromic ，則得到整個字串 Palindromic。注意，在 for loop 時候，必須:
+再來是 Palindromic 字串的特性，若字串最兩端點一樣，則 ```dp[i+1][j-1]```表示**內縮一層的單字**，{{< image classes="fancybox fig-100" src="/images/leetcode/5-4.jpg" >}} 也必定是 Palindromic 字串。可利用這個特性寫出狀態方程式 ```dp[i][j] = dp[i + 1][j - 1];```
+
+再來特別注意 **Palindromic 字串在 DP 表格之間的依賴關係很特別**，故for loop 時候必須:
 ```java
-// 特別注意 i,j 順序!!
+// 特別注意 i,j 寫法及順序!!
 
 for(int j = 1 ; j < length ; j++){
     for(int i = 0; i < j ; i++){
@@ -49,8 +51,12 @@ for(int i = length - 1 ; i >= 0 ; i--){
 }
 
 ```
-因為在判斷 ```dp[i][j]``` 時，需要先有 ```dp[i+1][j-1]``` 的資訊，要不然會出錯，所以 loop 的方式有所限制，**如下圖箭頭處**。
+因為在判斷 ```dp[i][j]``` 時，需要先有 ```dp[i+1][j-1]``` 的資訊，要不然會出錯 ! 錯誤的原因**如下圖箭頭處所表示**。
 {{< image classes="fancybox fig-100" src="/images/leetcode/5-3.jpg" >}}
+所以 loop 的方式有所限制 :
+-  {{< hl-text red >}}順序逐 row 計算會出錯{{< /hl-text >}}
+{{< image classes="fancybox fig-100" src="/images/leetcode/5-5.jpg" >}}
+
 
 ---
 
@@ -118,3 +124,5 @@ n.[C] 回文字
 - [[LeetCode]5. Longest Palindromic Substring 中文](https://www.youtube.com/watch?v=ZnzvU03HtYk)
 
 - [Manacher's Algorithm](https://www.cnblogs.com/grandyang/p/4464476.html)
+
+- [Day 2: 按照規律的方式填表可以解決大部分的問題！](https://ithelp.ithome.com.tw/articles/10215365)
