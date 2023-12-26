@@ -449,7 +449,7 @@ Avro 也提供了編解碼和二進制格式，使得在高吞吐量的應用場
 &lt;/blockquote></description></item><item><title>Dynamic Programming 基礎介紹</title><link>https://aryido.github.io/posts/algorithm/dynamic-programming1/</link><pubDate>Wed, 02 Nov 2022 21:52:00 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/dynamic-programming1/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Dynamic Programming 大概算是 leetcode 裡面平均難度最高的章節了，還蠻需要練習的。但在講 DP 之前，我們可以先講 Search，因為 Dynamic Programming 其實就是 Search + Memoization。&lt;/p>
-&lt;/blockquote></description></item><item><title>Datadog V.S Grafana</title><link>https://aryido.github.io/posts/grafana/datadog/</link><pubDate>Mon, 31 Oct 2022 23:35:14 +0800</pubDate><guid>https://aryido.github.io/posts/grafana/datadog/</guid><description>&lt;blockquote>
+&lt;/blockquote></description></item><item><title>Datadog V.S Grafana</title><link>https://aryido.github.io/posts/monitoring/datadog/</link><pubDate>Mon, 31 Oct 2022 23:35:14 +0800</pubDate><guid>https://aryido.github.io/posts/monitoring/datadog/</guid><description>&lt;blockquote>
 &lt;p>Datadog 是 2010 年成立，以 infrastructure monitoring 起家。主要是整合多個雲平台如 GCP, AWS, Azure，讓工程師方便監測以進行 debug 。另外可用機器學習方式，將預先對可能發生異常狀況發出警示，是企業級的解決方案。&lt;/p>
 &lt;/blockquote></description></item><item><title>GCP load-balancer 的 terraform Module</title><link>https://aryido.github.io/posts/terraform/gcp-aws-terraform-module/</link><pubDate>Sat, 29 Oct 2022 23:17:25 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/gcp-aws-terraform-module/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
@@ -637,7 +637,7 @@ JDK8 的 Map API 有不少便利的預設方法，以下可以介紹一下。&lt
 &lt;/blockquote></description></item><item><title>Java 技巧 - Java Arrays 方法</title><link>https://aryido.github.io/posts/java/java-arrays/</link><pubDate>Fri, 09 Sep 2022 19:59:56 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-arrays/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>刷題時很常出現 Array 的結構如 &lt;code>int[]、char[]&lt;/code> 等等&amp;hellip;，故在這邊條列一些常用的 Arrays 方法。這次主要整理下 Java 中 Arrays 類的常用方法，在使用過程也可以複習 java 提供的工具類，還有一些泛型的坑&amp;hellip;&lt;/p>
-&lt;/blockquote></description></item><item><title>Grafana: panel之間共享查詢結果以減少loading時間</title><link>https://aryido.github.io/posts/grafana/panel-loading-enhancement/</link><pubDate>Thu, 08 Sep 2022 22:18:02 +0800</pubDate><guid>https://aryido.github.io/posts/grafana/panel-loading-enhancement/</guid><description>&lt;blockquote>
+&lt;/blockquote></description></item><item><title>Grafana: panel之間共享查詢結果以減少loading時間</title><link>https://aryido.github.io/posts/monitoring/panel-loading-enhancement/</link><pubDate>Thu, 08 Sep 2022 22:18:02 +0800</pubDate><guid>https://aryido.github.io/posts/monitoring/panel-loading-enhancement/</guid><description>&lt;blockquote>
 &lt;p>Grafana 的 panel 會連接 datasource 並發出請求。 故當我們向 dashboard 中添加多個 panel 時，會發出更多的請求，這可能會導致需要更長的時間來loading資料。&lt;/p>
 &lt;/blockquote></description></item><item><title>200. Number of Islands</title><link>https://aryido.github.io/posts/leetcode/leetcode200/</link><pubDate>Wed, 07 Sep 2022 20:55:05 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode200/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;p>剛開始刷題時就覺得這題很有趣，有 game 的感覺。可以用來複習DFS、BFS。&lt;/p></description></item><item><title>Java 技巧 - 處理Map&lt;K, Collection&lt;T>></title><link>https://aryido.github.io/posts/java/map-of-collection/</link><pubDate>Tue, 06 Sep 2022 23:28:59 +0800</pubDate><guid>https://aryido.github.io/posts/java/map-of-collection/</guid><description>&lt;!-- raw HTML omitted -->
@@ -654,9 +654,9 @@ JDK8 的 Map API 有不少便利的預設方法，以下可以介紹一下。&lt
 &lt;li>&lt;strong>LinkedList&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;p>簡單來介紹和比較一下。&lt;/p>
-&lt;/blockquote></description></item><item><title>建立自己的 grafana dashboard plugin - 2</title><link>https://aryido.github.io/posts/grafana/grafana-dashboard-plugin-2/</link><pubDate>Sun, 04 Sep 2022 11:17:52 +0800</pubDate><guid>https://aryido.github.io/posts/grafana/grafana-dashboard-plugin-2/</guid><description>&lt;blockquote>
+&lt;/blockquote></description></item><item><title>建立自己的 grafana dashboard plugin - 2</title><link>https://aryido.github.io/posts/monitoring/grafana-dashboard-plugin-2/</link><pubDate>Sun, 04 Sep 2022 11:17:52 +0800</pubDate><guid>https://aryido.github.io/posts/monitoring/grafana-dashboard-plugin-2/</guid><description>&lt;blockquote>
 &lt;p>參考&lt;a href="https://grafana.com/tutorials/build-a-panel-plugin/">官方教學&lt;/a>遇到的一些小問題&amp;hellip;&lt;/p>
-&lt;/blockquote></description></item><item><title>建立自己的 grafana dashboard plugin - 1</title><link>https://aryido.github.io/posts/grafana/grafana-dashboard-plugin-1/</link><pubDate>Sun, 04 Sep 2022 11:17:02 +0800</pubDate><guid>https://aryido.github.io/posts/grafana/grafana-dashboard-plugin-1/</guid><description>&lt;blockquote>
+&lt;/blockquote></description></item><item><title>建立自己的 grafana dashboard plugin - 1</title><link>https://aryido.github.io/posts/monitoring/grafana-dashboard-plugin-1/</link><pubDate>Sun, 04 Sep 2022 11:17:02 +0800</pubDate><guid>https://aryido.github.io/posts/monitoring/grafana-dashboard-plugin-1/</guid><description>&lt;blockquote>
 &lt;p>雖然 Grafana 已經內置了多種類型的dashboard，但有時候可能會覺得官方或其他免費開源plugin，提供的功能不太夠。這時就需要建立自己的dashboard。&lt;/p>
 &lt;/blockquote></description></item><item><title>Java 泛型注意事項 - List of array 轉成 2D-array</title><link>https://aryido.github.io/posts/java/2d-array/</link><pubDate>Thu, 01 Sep 2022 08:11:32 +0800</pubDate><guid>https://aryido.github.io/posts/java/2d-array/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
