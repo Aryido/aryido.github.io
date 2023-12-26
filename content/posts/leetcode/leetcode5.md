@@ -12,7 +12,7 @@ categories:
 
 tags:
 - java
-- dynamic-programming
+- dp
 
 comment: false
 

@@ -7,9 +7,6 @@ date: 2022-09-21T23:11:25+08:00
 
 thumbnailImage: "/images/terraform/logo.jpg"
 
-categories:
-- terraform
-
 comment: false
 
 reward: false

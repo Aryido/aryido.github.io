@@ -8,13 +8,12 @@ date: 2022-09-08T22:18:02+08:00
 thumbnailImage: "/images/grafana/grafana-icon.jpg"
 
 categories:
-- Grafana
-
-tags:
-- Grafana
+- Monitoring
 
 comment: false
+
 reward: false
+
 ---
 > Grafana 的 panel 會連接 datasource 並發出請求。 故當我們向 dashboard 中添加多個 panel 時，會發出更多的請求，這可能會導致需要更長的時間來loading資料。
 

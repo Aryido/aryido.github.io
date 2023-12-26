@@ -11,7 +11,7 @@ categories:
 - data-structure
 
 tags:
-- binary-search-tree
+- binary-tree
 - DFS
 
 comment: false

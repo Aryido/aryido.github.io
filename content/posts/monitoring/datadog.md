@@ -8,13 +8,12 @@ date: 2022-10-31T23:35:14+08:00
 thumbnailImage: "/images/grafana/datadog.jpg"
 
 categories:
-- Grafana
-
-tags:
-- datadog
+- Monitoring
 
 comment: false
+
 reward: false
+
 ---
 > Datadog 是 2010 年成立，以 infrastructure monitoring 起家。主要是整合多個雲平台如 GCP, AWS, Azure，讓工程師方便監測以進行 debug 。另外可用機器學習方式，將預先對可能發生異常狀況發出警示，是企業級的解決方案。
 

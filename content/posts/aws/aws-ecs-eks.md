@@ -10,9 +10,6 @@ thumbnailImage: "/images/aws/logo.jpg"
 categories:
 - aws
 
-tags:
-- kubernetes
-
 comment: false
 
 reward: false

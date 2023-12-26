@@ -12,7 +12,7 @@ categories:
 
 tags:
 - java
-- binary-search-tree
+- binary-tree
 
 comment: false
 

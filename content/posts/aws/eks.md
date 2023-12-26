@@ -10,9 +10,6 @@ thumbnailImage: "/images/aws/eks-logo.jpg"
 categories:
 - aws
 
-tags:
-- kubernetes
-
 comment: false
 
 reward: false

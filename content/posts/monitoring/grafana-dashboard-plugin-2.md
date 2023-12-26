@@ -10,12 +10,12 @@ date: 2022-09-04T11:17:52+08:00
 thumbnailImage: "/images/grafana/grafana-icon.jpg"
 
 categories:
-- Grafana
-tags:
-- Grafana
+- Monitoring
 
 comment: false
+
 reward: false
+
 ---
 
 > 參考[官方教學](https://grafana.com/tutorials/build-a-panel-plugin/)遇到的一些小問題...
