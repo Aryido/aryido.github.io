@@ -1,4 +1,32 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/monitoring/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 31 Oct 2022 23:35:14 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/monitoring/index.xml" rel="self" type="application/rss+xml"/><item><title>Datadog V.S Grafana</title><link>https://aryido.github.io/posts/monitoring/datadog/</link><pubDate>Mon, 31 Oct 2022 23:35:14 +0800</pubDate><guid>https://aryido.github.io/posts/monitoring/datadog/</guid><description>&lt;blockquote>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/monitoring/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 24 Jan 2024 20:40:16 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/monitoring/index.xml" rel="self" type="application/rss+xml"/><item><title>Fluent Bit 基礎介紹</title><link>https://aryido.github.io/posts/monitoring/fluent-bit-intro/</link><pubDate>Wed, 24 Jan 2024 20:40:16 +0800</pubDate><guid>https://aryido.github.io/posts/monitoring/fluent-bit-intro/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Fluent Bit 是一款使用 C 語言編寫的開源的資料收集器，為 Fluentd 的輕量化版本，也是 Cloud Native Computing Foundation(雲原生運算基金會) 下的一個子項目。可以從&lt;strong>多種不同來源&lt;/strong>【如 Log file、kafka 等等】，收集 Logs、Metrics、 Traces 資料，然後輸出至&lt;strong>多種不同的服務&lt;/strong> 【如 Loki、Fluentd、Elasticsearch、DataDog、Kafka 以及各式雲端服務】。
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+&lt;div class="figure fig-100" >
+ 
+ &lt;a class="fancybox" href="https://aryido.github.io/images/monitoring/fluent-bit-2.jpg" data-fancybox="">
+ 
+ &lt;img class="fig-img" src="https://aryido.github.io/images/monitoring/fluent-bit-2.jpg" >
+ 
+ &lt;/a>
+ 
+ 
+&lt;/div>
+&lt;/p>
+&lt;/blockquote></description></item><item><title>Datadog V.S Grafana</title><link>https://aryido.github.io/posts/monitoring/datadog/</link><pubDate>Mon, 31 Oct 2022 23:35:14 +0800</pubDate><guid>https://aryido.github.io/posts/monitoring/datadog/</guid><description>&lt;blockquote>
 &lt;p>Datadog 是 2010 年成立，以 infrastructure monitoring 起家。主要是整合多個雲平台如 GCP, AWS, Azure，讓工程師方便監測以進行 debug 。另外可用機器學習方式，將預先對可能發生異常狀況發出警示，是企業級的解決方案。&lt;/p>
 &lt;/blockquote></description></item><item><title>Grafana: panel之間共享查詢結果以減少loading時間</title><link>https://aryido.github.io/posts/monitoring/panel-loading-enhancement/</link><pubDate>Thu, 08 Sep 2022 22:18:02 +0800</pubDate><guid>https://aryido.github.io/posts/monitoring/panel-loading-enhancement/</guid><description>&lt;blockquote>
 &lt;p>Grafana 的 panel 會連接 datasource 並發出請求。 故當我們向 dashboard 中添加多個 panel 時，會發出更多的請求，這可能會導致需要更長的時間來loading資料。&lt;/p>
