@@ -24,8 +24,6 @@ reward: false
 
 # 前言
 Fluent Bit 設計的最初目的是為了收集 IoT 設備的 Log，這些設備大多使用 Embedded Linux 且硬體資源很少，因此資料收集器必須要盡可能的輕量化，使其能夠在資源有限的設備上運行，也經常用在 Kubernetes 環境中。
-{{< image classes="fancybox fig-100" src="/images/monitoring/fluent-bit-4.jpg" >}}
-
 
 # Key Concepts
 fluent-bit 目標是收集、解析、過濾、最終把資料發到目標位置儲存。以下介紹一些術語 :
@@ -77,6 +75,8 @@ Jan 18 12:52:16 flb gsd-media-keys[2640]: # watch_fast: "/org/gnome/terminal/leg
 緩存 data 不是原始 data，而是 Fluent Bit 的內部二進位表示形式。
 {{< /alert >}}
 
+{{< image classes="fancybox fig-100" src="/images/monitoring/fluent-bit-4.jpg" >}}
+
 ### Routing & Output
 從 Filter 拿到的 Record 後，可以傳送到一個或多個目的地。規則是
 
@@ -84,8 +84,6 @@ Jan 18 12:52:16 flb gsd-media-keys[2640]: # watch_fast: "/org/gnome/terminal/leg
 - Output 的 Match
 
 由以上兩個對應詞的連接，決定 Record 要送往哪個 Output 。而Output 代表資料的目的地，可以是輸出成另一個 file、elasticsearch、Loki 等。
-
-{{< image classes="fancybox fig-100" src="/images/monitoring/fluent-bit-5.jpg" >}}
 
 ---
 ### 參考資料
