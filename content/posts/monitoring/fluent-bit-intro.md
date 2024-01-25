@@ -45,7 +45,7 @@ Jan 18 12:52:16 flb gsd-media-keys[2640]: # watch_fast: "/org/gnome/terminal/leg
 - MESSAGE：資料內容
 
 ## Pipeline
-{{< image classes="fancybox fig-100" src="/images/monitoring/fluent-bit-3.jpg" >}}
+{{< image classes="fancybox fig-100" src="/images/monitoring/fluent-bit-architecture.jpg" >}}
 在 Fluent Bit，資料會經過一連串的處理流程，稱為 Pipeline。主要元件包括：
 
 ### Input
@@ -75,8 +75,6 @@ Jan 18 12:52:16 flb gsd-media-keys[2640]: # watch_fast: "/org/gnome/terminal/leg
 緩存 data 不是原始 data，而是 Fluent Bit 的內部二進位表示形式。
 {{< /alert >}}
 
-{{< image classes="fancybox fig-100" src="/images/monitoring/fluent-bit-4.jpg" >}}
-
 ### Routing & Output
 從 Filter 拿到的 Record 後，可以傳送到一個或多個目的地。規則是
 
@@ -84,6 +82,8 @@ Jan 18 12:52:16 flb gsd-media-keys[2640]: # watch_fast: "/org/gnome/terminal/leg
 - Output 的 Match
 
 由以上兩個對應詞的連接，決定 Record 要送往哪個 Output 。而Output 代表資料的目的地，可以是輸出成另一個 file、elasticsearch、Loki 等。
+
+{{< image classes="fancybox fig-100" src="/images/monitoring/fluent-bit-3.jpg" >}}
 
 ---
 ### 參考資料
