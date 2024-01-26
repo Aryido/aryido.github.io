@@ -23,10 +23,9 @@ reward: false
 ---
 
 # 前言
-Fluent Bit 設計的最初目的是為了收集 IoT 設備的 Log，這些設備大多使用 Embedded Linux 且硬體資源很少，因此資料收集器必須要盡可能的輕量化，使其能夠在資源有限的設備上運行，也經常用在 Kubernetes 環境中。
+Fluent Bit 設計的最初目的是為了收集 IoT 設備的 Log，這些設備大多使用 Embedded Linux 且硬體資源很少，因此資料收集器必須要盡可能的輕量化，使其能夠在資源有限的設備上運行，也經常用在 Kubernetes 環境中。 fluent-bit 目標是收集、解析、過濾、最終把資料發到目標位置儲存。以下介紹一些術語 :
 
-# Key Concepts
-fluent-bit 目標是收集、解析、過濾、最終把資料發到目標位置儲存。以下介紹一些術語 :
+---
 
 ## Event or Record
 可以簡化地認為 Fluent Bit 將收到的 Log 中的【一個 row entry】 ，轉成 【一個 Event】 或稱 【一個 Record】。我個人習慣稱為 Record，舉例來說 Syslog:
@@ -43,6 +42,8 @@ Jan 18 12:52:16 flb gsd-media-keys[2640]: # watch_fast: "/org/gnome/terminal/leg
 - TIMESTAMP：時間戳記
 - METADATA：從 2.1.0 版開始新增的資料，以 key/value 形式儲存
 - MESSAGE：資料內容
+
+---
 
 ## Pipeline
 {{< image classes="fancybox fig-100" src="/images/monitoring/fluent-bit-architecture.jpg" >}}
