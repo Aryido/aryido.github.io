@@ -53,13 +53,12 @@ Cloud CDN 不會執行任何網址重定向。 Cloud CDN  Cache 位於 GFE，故
 > - Cloud DNS (optional)
 > - Load-balancer (require)
 > - Cloud CDN  (require)
-> - **Backend  (require)**
 
-其中特別注意根據 GCP-Load-Balancer ， **Cloud CDN 也有各種類型的 Backend 可選取** :
+其中特別注意根據 Load-Balancer ， **Cloud CDN 也有各種類型的 Load-Balancer-Backend 可選取** :
 {{< image classes="fancybox fig-100" src="/images/google-cloud/cdn-sources.jpg" >}}
-這裡我們用 GCS 的 Bucket 來做為 CDN Cache 獲取來源的範例吧 ! 參考 [GoogleCloudPlatform-terraform-large-data-sharing-java-webapp](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-java-webapp)。 關鍵部分是 :
-- 通過在後端存儲桶上設置「enable_cdn=true」屬性來啟用CDN
-- 只啟用存儲桶可公開訪問權限，
+這裡我們用 GCS 的 Bucket 來做為 CDN Load-Balancer-Backend 的範例吧 ! 參考 [GoogleCloudPlatform-terraform-large-data-sharing-java-webapp](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-java-webapp)。 關鍵部分是 :
+- 通過在後端存儲桶上設置```enable_cdn=true```來啟用CDN
+- 需要公開 backend 存儲桶的**訪問權限**
 ```Terraform
 # ------------------------------------------------------------------------------
 # CREATE A STORAGE BUCKET
@@ -109,7 +108,6 @@ resource "google_compute_backend_bucket" "cdn" {
 ---
 
 # Cloud CDN 優點
-使用 CDN 的好處，簡單來說: **優化網頁速度與效能，提供了一種可靠的方式來向使用者提供內容，從而降低 I/O 成本和內容交付延遲。**
 
 - 減少延遲:
 
@@ -119,19 +117,19 @@ resource "google_compute_backend_bucket" "cdn" {
 
 - 提升負載量:
   {{< alert info >}}
-由多個 CDN 處理多位使用者的請求，能接收更多流量以提升負載量。
+由多個 CDN 能處理更多 request，故能接收更多流量以提升負載量。
 {{< /alert >}}
 
 - 減少頻寬成本:
   {{< alert info >}}
-CDN的快取(Cache)能有效降低主要服務所需提供的資料與流量，從而降低傳輸成本。
+CDN的快取(Cache)能有效降低主要 server 流量，從而降低傳輸成本。
 {{< /alert >}}
 
-接下來因為 Cloud CDN 與 Google Cloud 相互整合，所以
+因為 Google Cloud CDN 是 Google Cloud 提供的功能，故和其他雲端服務整合的也很不錯，所以
 
 - 指標分析方便
   {{< alert info >}}
-Cloud CDN 與 Cloud Monitoring 還有 Cloud Logging 緊密整合，提供立即可用的詳細延遲指標及原始 HTTP 請求記錄檔，使用戶能深入瞭解實際情況。另外用戶也可將記錄檔匯出至 Cloud Storage 或 BigQuery 進一步分析。
+Cloud CDN 與 Cloud Monitoring 還有 Cloud Logging 緊密整合，提供可用的詳細延遲指標及原始 HTTP 請求記錄檔。另外 user 也可將 monitoring data 匯出至 Cloud Storage 或 BigQuery 進一步分析。
 {{< /alert >}}
 
 ---
