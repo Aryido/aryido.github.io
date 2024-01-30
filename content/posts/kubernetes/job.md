@@ -15,12 +15,12 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> 我們知道 kubernetes 的 deployment 可以生成並管理 Pod ，且盡量維持其狀態為 Running 。但有的時候我們會有**只運行一次性任務的需求**，這時候就可以使用  [kubernetes Job](https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/job/)。 Kubernetes Job 用於處理一次性工作，會創建一個或多個 Pod，並在該工作完成後終止這些 Pod。
+> 我們知道 kubernetes 的 deployment 可以生成並管理 Pod ，且盡量維持其狀態為 Running 。但有的時候我們會有**只運行一次性任務的需求**，這時候就可以使用  [kubernetes Job](https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/job/)。 Kubernetes Job 主要是針對短時和批量的 workload ，用於處理一次性工作，會創建一個或多個 Pod，並在該工作完成後終止這些 Pod，而不是像 deployment、DaemonSets 那樣持續運行。
 <!--more-->
 
 Job 及 CronJob 是一組的概念 :
 - Job 會保證在它所定義的 Pod 運行一次性任務
-- CronJob 有排程的概念，我們可以透過 CronJob 把 Job 中所定義的工作放到排程中
+- CronJob 有**排程**的概念，我們可以透過 CronJob 把 Job 中所定義的工作放到排程中
 
 # Job 簡介
 
@@ -97,3 +97,10 @@ Init Containers 會依次執行，如果某個步驟 Init Container 失敗，整
 {{< alert warning >}}
 使用 **Init Containers**來實現任務順序執行，我覺得有點不太正規的...
 {{< /alert >}}
+
+---
+### 參考資料
+
+- [入門教程：5 步創建 K8S Job，搞定批處理](https://www.readfog.com/a/1631579911044042752)
+
+- [K8S Cron Job 記憶體不足](https://medium.com/@robhamk/k8s-cron-job-%E8%A8%98%E6%86%B6%E9%AB%94%E4%B8%8D%E8%B6%B3-b2cb8e222ab)
