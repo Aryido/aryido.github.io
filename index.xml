@@ -366,7 +366,7 @@ Avro 也提供了編解碼和二進制格式，使得在高吞吐量的應用場
 &lt;p>題目理解是和自己想解法是比較花時間的，看過解答後都可以很快寫出來。&lt;/p>
 &lt;/blockquote></description></item><item><title>Kubernetes Job 簡介</title><link>https://aryido.github.io/posts/kubernetes/job/</link><pubDate>Thu, 02 Mar 2023 23:10:15 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/job/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>我們知道 kubernetes 的 deployment 可以生成並管理 Pod ，且盡量維持其狀態為 Running 。但有的時候我們會有&lt;strong>只運行一次性任務的需求&lt;/strong>，這時候就可以使用 &lt;a href="https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/job/">kubernetes Job&lt;/a>。 Kubernetes Job 用於處理一次性工作，會創建一個或多個 Pod，並在該工作完成後終止這些 Pod。&lt;/p>
+&lt;p>我們知道 kubernetes 的 deployment 可以生成並管理 Pod ，且盡量維持其狀態為 Running 。但有的時候我們會有&lt;strong>只運行一次性任務的需求&lt;/strong>，這時候就可以使用 &lt;a href="https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/job/">kubernetes Job&lt;/a>。 Kubernetes Job 主要是針對短時和批量的 workload ，用於處理一次性工作，會創建一個或多個 Pod，並在該工作完成後終止這些 Pod，而不是像 deployment、DaemonSets 那樣持續運行。&lt;/p>
 &lt;/blockquote></description></item><item><title>18. 4Sum</title><link>https://aryido.github.io/posts/leetcode/leetcode18/</link><pubDate>Wed, 15 Feb 2023 22:17:40 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode18/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Leetcode 幾個數字題，15、16、18，基本上套路都是一樣的(&lt;del>甚至可以預期可能還會出 5 Sum&amp;hellip;&lt;/del>)，整體的解法都差不多，可以一起複習，重點仍然是 :&lt;/p>
