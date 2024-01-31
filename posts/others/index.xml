@@ -1,4 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/others/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 17 May 2023 00:26:34 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/others/index.xml" rel="self" type="application/rss+xml"/><item><title>Rolling vs Canary vs Blue-Green</title><link>https://aryido.github.io/posts/others/rolling-canary-bluegreen/</link><pubDate>Wed, 17 May 2023 00:26:34 +0800</pubDate><guid>https://aryido.github.io/posts/others/rolling-canary-bluegreen/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/others/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 26 Jan 2024 21:19:20 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/others/index.xml" rel="self" type="application/rss+xml"/><item><title>Regular Expression 簡介</title><link>https://aryido.github.io/posts/others/regular-expression-intro/</link><pubDate>Fri, 26 Jan 2024 21:19:20 +0800</pubDate><guid>https://aryido.github.io/posts/others/regular-expression-intro/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Regular Expression 是一種強大的&lt;strong>字串匹配&lt;/strong>、&lt;strong>字串查找&lt;/strong>等操作工具，常簡寫爲 regex 、regexp 或 RE。這概念最初由 Unix 的 sed、grep 操作而普及開，它定義一系列&lt;strong>符號&lt;/strong>來描述搜索的規則。
+但在不同的 coding language 或者是不同 OS 中， 常發現 regex 都會有些差異，主要原因是演進過程中，出現 &lt;strong>POSIX&lt;/strong> 與 &lt;strong>PCRE&lt;/strong> 兩種 :&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>POSIX : 可以說是原初版本，主要用於 UNIX 系統的文本處理，grep 、sed 、awk 等都屬之&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>PCRE : 現代 coding language如 Python、Ruby、 C、C++、Java 都屬於 PCRE 派系。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/blockquote></description></item><item><title>Rolling vs Canary vs Blue-Green</title><link>https://aryido.github.io/posts/others/rolling-canary-bluegreen/</link><pubDate>Wed, 17 May 2023 00:26:34 +0800</pubDate><guid>https://aryido.github.io/posts/others/rolling-canary-bluegreen/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>現今應用程式發展迅速， app 的更新也變得越來越頻繁，在微服務、DevOps、Cloud-native 的迭代過程中，最終都需要上線。上線就需要部署；需要部署就意味著有修改；修改則意味著有風險，要如何在&lt;strong>盡量不影響 user 的前提下，讓 app 升版呢&lt;/strong> ? 這時就有一些&lt;strong>部屬策略&lt;/strong>可以考慮。對於 Deployment Strategies 有一些基本的專有名詞和觀念，例如 :&lt;/p>
 &lt;ul>
