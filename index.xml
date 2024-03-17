@@ -142,7 +142,7 @@
 &lt;li>動態規劃 dynamic programming&lt;/li>
 &lt;/ul>
 &lt;p>在實際狀況中，遞迴函數的設計常常很難想像，因為遞迴設計屬於&lt;strong>逆向思維&lt;/strong>，在設計遞迴函數的時候，非常容易被這種層層嵌套搞暈，在這裡簡單給個模板範例講解。&lt;/p>
-&lt;/blockquote></description></item><item><title>Complexity Analysis</title><link>https://aryido.github.io/posts/algorithm/complexity-analysis/</link><pubDate>Wed, 30 Aug 2023 00:06:02 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/complexity-analysis/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Complexity Analysis</title><link>https://aryido.github.io/posts/algorithm/complexity--analysis/</link><pubDate>Wed, 30 Aug 2023 00:06:02 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/complexity--analysis/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>在刷 leetcode 時，都會需要分析和解釋一下自己寫的程式的演算法複雜度，基本上主要是解釋 :&lt;/p>
 &lt;ul>

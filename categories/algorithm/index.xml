@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>algorithm on Aryido Tech Note</title><link>https://aryido.github.io/categories/algorithm/</link><description>Recent content in algorithm on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 21 Oct 2023 18:33:30 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/algorithm/index.xml" rel="self" type="application/rss+xml"/><item><title>Reservoir sampling</title><link>https://aryido.github.io/posts/algorithm/reservoir-sampling/</link><pubDate>Sat, 21 Oct 2023 18:33:30 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/reservoir-sampling/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Algorithm on Aryido Tech Note</title><link>https://aryido.github.io/categories/algorithm/</link><description>Recent content in Algorithm on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 21 Oct 2023 18:33:30 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/algorithm/index.xml" rel="self" type="application/rss+xml"/><item><title>Reservoir sampling</title><link>https://aryido.github.io/posts/algorithm/reservoir-sampling/</link><pubDate>Sat, 21 Oct 2023 18:33:30 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/reservoir-sampling/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Reservoir sampling 是一個隨機演算法，其目的是在只遍歷一遍的情況下，從大數據 N 的資料流中，隨機選取出 k 個元素，且每筆資料選中的機率都要一樣。這個場景強調了幾件事：&lt;/p>
 &lt;ul>
@@ -22,7 +22,7 @@
 &lt;li>動態規劃 dynamic programming&lt;/li>
 &lt;/ul>
 &lt;p>在實際狀況中，遞迴函數的設計常常很難想像，因為遞迴設計屬於&lt;strong>逆向思維&lt;/strong>，在設計遞迴函數的時候，非常容易被這種層層嵌套搞暈，在這裡簡單給個模板範例講解。&lt;/p>
-&lt;/blockquote></description></item><item><title>Complexity Analysis</title><link>https://aryido.github.io/posts/algorithm/complexity-analysis/</link><pubDate>Wed, 30 Aug 2023 00:06:02 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/complexity-analysis/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Complexity Analysis</title><link>https://aryido.github.io/posts/algorithm/complexity--analysis/</link><pubDate>Wed, 30 Aug 2023 00:06:02 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/complexity--analysis/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>在刷 leetcode 時，都會需要分析和解釋一下自己寫的程式的演算法複雜度，基本上主要是解釋 :&lt;/p>
 &lt;ul>
