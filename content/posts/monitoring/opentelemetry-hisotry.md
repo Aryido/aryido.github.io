@@ -29,7 +29,7 @@ reward: false
 - 也需要對其他額外 component 例如 NGINX、Redis 等開源服務，進行分布式追蹤的支持
 - 可能須在服務內引入 gRPC 等額外功能來作通訊
 
-為了解決這些問題，相關產品也開始出現，比較早的如 : **google 內部自行研發的 Dapper**；再來是後續基於谷歌 Dapper 協議發展的開源產品如 : **Uber 的 Jaeger**、**Twitter 的 Zipkin**。 但每個產品都各自有一套資料擷取標準和 SDK，其**每一個實作都不太一樣**。 為了解決這個問題， OpenTracing 和 OpenCensus 等規範分別被提倡了出來。
+為了解決這些問題，相關產品也開始出現，比較早的如 : **google 內部自行研發的 Dapper**，來自 2010 年發佈的論文，為**分佈式鏈路追蹤**的開端；再來是後續基於谷歌 Dapper 協議發展的開源產品如 : **2015 Uber 的 Jaeger**、**Twitter 的 Zipkin**。 但每個產品都各自有一套資料擷取標準和 SDK，其**每一個實作都不太一樣**。 為了解決這個問題， OpenTracing 和 OpenCensus 等規範分別被提倡了出來。
 
 {{< image classes="fancybox fig-100" src="/images/monitoring/opentelemetry-history.jpg" >}}
 
@@ -50,7 +50,7 @@ OpenTracing 制定了一套無關廠商、平台的協議標準，使得開發�
 ---
 
 # OpenCensus
-OpenTracing 本身出現的更早且更流行，那爲什麼 google 還會再提出個 OpenCensus 呢？
+OpenTracing 本身出現的更早且更流行，那爲什麼 google 還會 2017 再提出個 OpenCensus 呢？
 
 > OpenCensus 的最初目標只是爲了把 Metrics collector ，和一些 GO 工具整合。但最後也想把其它各種語言的相關 collector 都統一完成，因此不僅做了 Metrics 基礎指標監控，也做了一些分佈式追蹤的實現。
 
@@ -90,6 +90,3 @@ OpenTelemetry 在 AWS、Google、Microsoft 等大廠的貢獻下得到了極大�
 - [從Opentracing、OpenCensus 到 OpenTelemetry，看可觀測資料標準演進史](https://www.cnblogs.com/alisystemsoftware/p/16143318.html)
 
 - [OpenTelemetry - 結束分佈式追蹤的江湖之亂](https://www.readfog.com/a/1642431511708930048)
-
-
-
