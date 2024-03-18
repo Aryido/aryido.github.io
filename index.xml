@@ -1,4 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 26 Jan 2024 21:19:20 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Regular Expression 簡介</title><link>https://aryido.github.io/posts/others/regular-expression-intro/</link><pubDate>Fri, 26 Jan 2024 21:19:20 +0800</pubDate><guid>https://aryido.github.io/posts/others/regular-expression-intro/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 17 Mar 2024 11:17:16 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Opentelemetry 緣起簡介</title><link>https://aryido.github.io/posts/monitoring/opentelemetry-hisotry/</link><pubDate>Sun, 17 Mar 2024 11:17:16 +0800</pubDate><guid>https://aryido.github.io/posts/monitoring/opentelemetry-hisotry/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>OpenTelemetry ，也稱為 OTel，是 Cloud Native Computing Foundation(CNCF) 下的一個開源專案，為一供應商中立(vendor-neutral)的&lt;strong>可觀測性框架&lt;/strong>，目的是提供一個&lt;strong>標準化&lt;/strong>Observability 的 pluggable 框架，解決 telemetry data 的模型定義、檢測、採集、處理、輸出等一致性問題。
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+&lt;div class="figure fig-100" >
+ 
+ &lt;a class="fancybox" href="https://aryido.github.io/images/monitoring/opentelemetry-architecture.jpg" data-fancybox="">
+ 
+ &lt;img class="fig-img" src="https://aryido.github.io/images/monitoring/opentelemetry-architecture.jpg" >
+ 
+ &lt;/a>
+ 
+ 
+&lt;/div>
+
+借助 OpenTelemetry ，可以從各種來源收集 telemetry data ，但對於資料的存儲和可視化是留給其他工具的，本身並不提供儲存，只能將其發送到其他的服務來存儲，如 Prometheus、或其他雲端廠商服務。&lt;/p>
+&lt;/blockquote></description></item><item><title>Regular Expression 簡介</title><link>https://aryido.github.io/posts/others/regular-expression-intro/</link><pubDate>Fri, 26 Jan 2024 21:19:20 +0800</pubDate><guid>https://aryido.github.io/posts/others/regular-expression-intro/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Regular Expression 是一種強大的&lt;strong>字串匹配&lt;/strong>、&lt;strong>字串查找&lt;/strong>等操作工具，常簡寫爲 regex 、regexp 或 RE。這概念最初由 Unix 的 sed、grep 操作而普及開，它定義一系列&lt;strong>符號&lt;/strong>來描述搜索的規則。
 但在不同的 coding language 或者是不同 OS 中， 常發現 regex 都會有些差異，主要原因是演進過程中，出現 &lt;strong>POSIX&lt;/strong> 與 &lt;strong>PCRE&lt;/strong> 兩種 :&lt;/p>
