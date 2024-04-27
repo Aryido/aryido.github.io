@@ -1,31 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Monitoring on Aryido Tech Note</title><link>https://aryido.github.io/categories/monitoring/</link><description>Recent content in Monitoring on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 17 Mar 2024 11:17:16 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/monitoring/index.xml" rel="self" type="application/rss+xml"/><item><title>Opentelemetry 緣起簡介</title><link>https://aryido.github.io/posts/monitoring/opentelemetry-hisotry/</link><pubDate>Sun, 17 Mar 2024 11:17:16 +0800</pubDate><guid>https://aryido.github.io/posts/monitoring/opentelemetry-hisotry/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>OpenTelemetry ，也稱為 OTel，是 Cloud Native Computing Foundation(CNCF) 下的一個開源專案，為一供應商中立(vendor-neutral)的&lt;strong>可觀測性框架&lt;/strong>，目的是提供一個&lt;strong>標準化&lt;/strong>Observability 的 pluggable 框架，解決 telemetry data 的模型定義、檢測、採集、處理、輸出等一致性問題。
-
-
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
 &lt;div class="figure fig-100" >
- 
- &lt;a class="fancybox" href="https://aryido.github.io/images/monitoring/opentelemetry-architecture.jpg" data-fancybox="">
- 
- &lt;img class="fig-img" src="https://aryido.github.io/images/monitoring/opentelemetry-architecture.jpg" >
- 
- &lt;/a>
- 
- 
+&lt;a class="fancybox" href="https://aryido.github.io/images/monitoring/opentelemetry-architecture.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/monitoring/opentelemetry-architecture.jpg" >
+&lt;/a>
 &lt;/div>
-
 借助 OpenTelemetry ，可以從各種來源收集 telemetry data ，但對於資料的存儲和可視化是留給其他工具的，本身並不提供儲存，只能將其發送到其他的服務來存儲，如 Prometheus、或其他雲端廠商服務。&lt;/p>
 &lt;/blockquote></description></item><item><title>Regular Expression 簡介</title><link>https://aryido.github.io/posts/others/regular-expression-intro/</link><pubDate>Fri, 26 Jan 2024 21:19:20 +0800</pubDate><guid>https://aryido.github.io/posts/others/regular-expression-intro/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
@@ -42,29 +22,10 @@
 &lt;/blockquote></description></item><item><title>Fluent Bit 基礎介紹</title><link>https://aryido.github.io/posts/monitoring/fluent-bit-intro/</link><pubDate>Wed, 24 Jan 2024 20:40:16 +0800</pubDate><guid>https://aryido.github.io/posts/monitoring/fluent-bit-intro/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Fluent Bit 是一款使用 C 語言編寫的開源的資料收集器，為 Fluentd 的輕量化版本，也是 Cloud Native Computing Foundation(雲原生運算基金會) 下的一個子項目。可以從&lt;strong>多種不同來源&lt;/strong>【如 Log file、kafka 等等】，收集 Logs、Metrics、 Traces 資料，然後輸出至&lt;strong>多種不同的服務&lt;/strong> 【如 Loki、Fluentd、Elasticsearch、DataDog、Kafka 以及各式雲端服務】。
-
-
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
 &lt;div class="figure fig-100" >
- 
- &lt;a class="fancybox" href="https://aryido.github.io/images/monitoring/fluent-bit-2.jpg" data-fancybox="">
- 
- &lt;img class="fig-img" src="https://aryido.github.io/images/monitoring/fluent-bit-2.jpg" >
- 
- &lt;/a>
- 
- 
+&lt;a class="fancybox" href="https://aryido.github.io/images/monitoring/fluent-bit-2.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/monitoring/fluent-bit-2.jpg" >
+&lt;/a>
 &lt;/div>
 &lt;/p>
 &lt;/blockquote></description></item><item><title>Datadog V.S Grafana</title><link>https://aryido.github.io/posts/monitoring/datadog/</link><pubDate>Mon, 31 Oct 2022 23:35:14 +0800</pubDate><guid>https://aryido.github.io/posts/monitoring/datadog/</guid><description>&lt;blockquote>

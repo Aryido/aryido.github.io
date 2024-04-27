@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Java on Aryido Tech Note</title><link>https://aryido.github.io/tags/java/</link><description>Recent content in Java on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 02 Dec 2023 17:28:05 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/java/index.xml" rel="self" type="application/rss+xml"/><item><title>57. Insert Interval</title><link>https://aryido.github.io/posts/leetcode/leetcode57/</link><pubDate>Sat, 02 Dec 2023 17:28:05 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode57/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>java on Aryido Tech Note</title><link>https://aryido.github.io/tags/java/</link><description>Recent content in java on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 02 Dec 2023 17:28:05 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/java/index.xml" rel="self" type="application/rss+xml"/><item><title>57. Insert Interval</title><link>https://aryido.github.io/posts/leetcode/leetcode57/</link><pubDate>Sat, 02 Dec 2023 17:28:05 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode57/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>此題給定一個沒有 overlapping 且按照起始座標排序的 interval 集合，然後再給一個 newInterval 放到該集合內，要合併 interval 使它們都不會重疊，最後返回新的 &lt;strong>non-overlapping intervals&lt;/strong>。
 本題的生活化的模擬，可以把題目想成自修室租借，然後插入自己的使用時段(&lt;del>亂入別人的使用時間&amp;hellip;&lt;/del>)，最後返回整個自修室被租借的時段。&lt;/p>
@@ -89,29 +89,10 @@
 &lt;/blockquote></description></item><item><title>16. 3Sum Closest</title><link>https://aryido.github.io/posts/leetcode/leetcode16/</link><pubDate>Wed, 08 Feb 2023 21:56:12 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode16/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>這題跟 15 題相似，又增加了些許難度。題目敘述一樣也很簡單 : 求 nums 內最接近 &lt;em>target&lt;/em> 值的三數和。優化關鍵點一樣是，&lt;em>把 nums 排序&lt;/em>，這樣就可以確定指針滑動方向。
-
-
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
 &lt;div class="figure fig-100" >
- 
- &lt;a class="fancybox" href="https://aryido.github.io/images/leetcode/16.jpg" data-fancybox="">
- 
- &lt;img class="fig-img" src="https://aryido.github.io/images/leetcode/16.jpg" >
- 
- &lt;/a>
- 
- 
+&lt;a class="fancybox" href="https://aryido.github.io/images/leetcode/16.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/leetcode/16.jpg" >
+&lt;/a>
 &lt;/div>
 &lt;/p>
 &lt;/blockquote></description></item><item><title>26. Remove Duplicates from Sorted Array</title><link>https://aryido.github.io/posts/leetcode/leetcode26/</link><pubDate>Sun, 25 Dec 2022 15:05:58 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode26/</guid><description>&lt;!-- raw HTML omitted -->

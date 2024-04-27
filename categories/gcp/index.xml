@@ -1,31 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Gcp on Aryido Tech Note</title><link>https://aryido.github.io/categories/gcp/</link><description>Recent content in Gcp on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 27 Jul 2023 23:26:32 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/gcp/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP Cloud CDN</title><link>https://aryido.github.io/posts/google-cloud/gcp-cloud-cdn/</link><pubDate>Thu, 27 Jul 2023 23:26:32 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp-cloud-cdn/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gcp on Aryido Tech Note</title><link>https://aryido.github.io/categories/gcp/</link><description>Recent content in gcp on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 27 Jul 2023 23:26:32 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/gcp/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP Cloud CDN</title><link>https://aryido.github.io/posts/google-cloud/gcp-cloud-cdn/</link><pubDate>Thu, 27 Jul 2023 23:26:32 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp-cloud-cdn/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>CDN 全名為 Content Delivery Network，是一種透過分散在不同地區的 server，用離使用者&lt;strong>最近的伺服器&lt;/strong>來傳送快取內容。而 Google Cloud CDN，就是借助 Google 分佈在&lt;strong>全球各地&lt;/strong>的網路節點，將內容以快取(Cache)形式預先儲存，以達到最快速的內容交付。以下是一個 CDN 的全球分布架構，如圖所示歐洲使用者可以從荷蘭的節點獲取資料，而不必透過跨大西洋電纜，到位於美國 host server 拿取資料。
-
-
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
 &lt;div class="figure fig-100" >
- 
- &lt;a class="fancybox" href="https://aryido.github.io/images/google-cloud/cdn-global.jpg" data-fancybox="">
- 
- &lt;img class="fig-img" src="https://aryido.github.io/images/google-cloud/cdn-global.jpg" >
- 
- &lt;/a>
- 
- 
+&lt;a class="fancybox" href="https://aryido.github.io/images/google-cloud/cdn-global.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/google-cloud/cdn-global.jpg" >
+&lt;/a>
 &lt;/div>
- &lt;strong>Cloud CDN 會需要與 GCP-Load-Balancer 搭配使用&lt;/strong>，故建議可以先熟習 GCP 負載平衡器的基本用法和觀念。&lt;/p>
+&lt;strong>Cloud CDN 會需要與 GCP-Load-Balancer 搭配使用&lt;/strong>，故建議可以先熟習 GCP 負載平衡器的基本用法和觀念。&lt;/p>
 &lt;/blockquote></description></item><item><title>GCP load-balancer 架構簡介</title><link>https://aryido.github.io/posts/google-cloud/gcp-load-balancer-introduction/</link><pubDate>Mon, 26 Jun 2023 23:47:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp-load-balancer-introduction/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>GCP load-balancer 透過平均分發流量到多個 server ，可以防止單一伺服器的過載，從而減少系統故障的風險；也因為只需透過配置單個負載平衡器對外 IP 地址和憑證，故可以達到降低維運成本的目的。目前有多種 Load Balancer 類型，若從 console 上，有由&lt;strong>流量類型&lt;/strong>大概分成了三個 :&lt;/p>
@@ -35,31 +16,11 @@
 &lt;li>UPD load balancing&lt;/li>
 &lt;/ul>
 &lt;p>但實際上依照細部功能，還有分 Global 或 Regional 等地域性分類，總體設定蠻細緻的 :&lt;/p>
-
-
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
 &lt;div class="figure fig-100" >
- 
- &lt;a class="fancybox" href="https://aryido.github.io/images/google-cloud/load-balancer-options.jpg" data-fancybox="">
- 
- &lt;img class="fig-img" src="https://aryido.github.io/images/google-cloud/load-balancer-options.jpg" >
- 
- &lt;/a>
- 
- 
+&lt;a class="fancybox" href="https://aryido.github.io/images/google-cloud/load-balancer-options.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/google-cloud/load-balancer-options.jpg" >
+&lt;/a>
 &lt;/div>
-
 &lt;/blockquote></description></item><item><title>Google Cloud Firestore 簡介</title><link>https://aryido.github.io/posts/google-cloud/firestore/</link><pubDate>Mon, 27 Mar 2023 22:18:10 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/firestore/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Cloud Firestore 是 Google 提供的一款雲端 NoSQL 資料庫。資料模型上簡單分成了 collection 、 document 結構，本質上也是 JSON 格式，但使用起來更直觀。Firestore 還具有即時同步資料的功能，也就是說一旦資料庫有異動，資料便會自動同步到相關的用戶端上（如手機 App）&lt;/p>
