@@ -20,9 +20,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: 'latest'
-          #hugo-version: '0.119.0'
-          # extended: true
+          hugo-version: '0.119.0' # do not use latest, no such template "_internal/google_analytics_async.html"
 
       - name: Build
         run: hugo --minify
