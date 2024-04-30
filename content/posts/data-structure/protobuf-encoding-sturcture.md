@@ -85,9 +85,11 @@ message Author {
 >       - 都是被**壓縮**的值
 >       - 包含 length 和其被**壓縮**的值
 >
->   所以只用比較中性的字眼 payload 來說明避免混淆。
+>     所以只用比較中性的字眼 payload 來說明避免混淆。
 
-以上這種結構被稱為 **Tag-Length-Value**，簡稱(TLV)。接下來針對 WireType 和 Tag-Length-Value 來說明。
+以上這種結構被稱為 **Tag-Length-Value**，簡稱(TLV)。接下來說明 :
+- WireType
+- Tag-Length-Value
 
 ---
 
@@ -124,21 +126,29 @@ WireType 的作用是告訴解析器 **payload 的格式**，表示這個編碼�
 
 {{< image classes="fancybox fig-100" src="/images/data-structure/protobuf-structure.jpg" >}}
 
-通過不同的 WireType 會使用不同的 payload 格式，來最大化的節省空間。基本上就分成 T-V 或 T-L-V 兩種。那接下來說一下剛剛一直提到 T-[L]-V 儲存格式吧~
+通過不同的 WireType 會使用不同的 payload 格式，來最大化的節省空間。基本上就分成:
+- T-V (`WireType = 0, 1, 5`)
+- T-L-V (`WireType = 2`)
 
-# Tag-Length-Value(TLV)
+那接下來說一下剛剛一直提到 T-[L]-V 儲存格式吧~
+
+# Tag-Length-Value (簡稱 T-L-V)
 ## Tag
 {{< image classes="fancybox fig-100" src="/images/data-structure/protobuf-tag-structure.jpg" >}}
 
-Tag 由 ```field number + WireType``` 組成，Tag 的最低三位表示 WireType。配合 WireType 表格，也可以知道為什麼 tag 的圖中，WireType 只需要用 3 個 bit，因為 WireType 目前只有 6 種，所以使用 3 個 bit 完全夠用。
+其中 T 就是代表 Tag ， 由 ```field number + WireType``` 組成， Tag 的最低三位表示 WireType。配合 WireType 章節中的表格，也可以知道為什麼這裡 Tag 的圖中，WireType 只需要用 3 個 bit，因為 WireType 目前只有 6 種，所以使用 3 個 bit 完全夠用。
 
-所有的 Tag 都是 Varint，其計算公式為
-`Tag = (field number << 3) | WireType number`
+所有的 Tag 都是 Varint 壓縮，而其值計算公式為 :
+
+```
+Tag = (field number << 3) | WireType number
+```
 
 ## Length
-Length 是可選的，只有 `WireType = 2` 時，才需要 Length。 而 Length 是可選的原因，是因為看 Tag 內的 WireType 訊息，就能知道 value 的編碼是甚麼。
+而 L 就是指 Length ，是可有可無的，同時也有使用 varint 壓縮。只有 `WireType = 2` 時，才需要 Length。 而 Length 是可選的原因，是因為看 Tag 內的 WireType 訊息，就能知道 value 的編碼是甚麼。像是 `WireType = 0, 1, 5` 時，payload 是使用 Varint 編碼，這種編碼方式是自帶 length 的資訊的，故不需要再另外多儲存一個 Length ，可以更加節省空間。
 
-像是 `WireType = 0, 1, 5` 時，payload 是使用 Varint 編碼，這種編碼方式是自帶 length 的資訊的，故不需要再另外多儲存一個 Length ，可以更加節省空間。
+## Value
+V 就是指 Value，這部分等到序列化-反序列化章節時，在詳細介紹。基本上對於數值部分，也是有使用 varint 來壓縮。
 
 ---
 
@@ -152,6 +162,12 @@ Length 是可選的，只有 `WireType = 2` 時，才需要 Length。 而 Length
 {{< /alert >}}
 
 另外從圖中也可發現這樣**一堆 T-L-V 緊湊串在一起**的結構，這種存儲方式還有個優點，就是**不需要分隔符就能分隔開字段**，減少了分隔符的使用。
+
+綜合上述，把 protobuf 有用到的壓縮方式統整一下 :
+- 不使用 txt 而使用 byte 來編碼
+- T-L-V 緊湊串在一起
+- 可選的 length 有機會減少 byte
+- 使用 varint 來壓縮數值的資料
 
 ---
 ### 參考資料
