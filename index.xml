@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 01 May 2024 22:10:30 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Protobuf - 序列化反序列化詳解</title><link>https://aryido.github.io/posts/data-structure/protobuf-serialization/</link><pubDate>Wed, 01 May 2024 22:10:30 +0800</pubDate><guid>https://aryido.github.io/posts/data-structure/protobuf-serialization/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>現在越來越多的服務應用使用 Protobuf ，它被廣泛應用於 RPC 調用和資料存儲。 Protobuf 語言中立、平臺中立，只要定義好一份 &lt;strong>.proto&lt;/strong> 檔案，就可以生成&lt;strong>不同的程式語言&lt;/strong>序列化和反序列化的功能來處理 data。要了解 Protobuf 序列化知識，首先需要了解一些知識點 :&lt;/p>
+&lt;p>現在越來越多的服務應用使用 Protobuf 來作為資料交換的格式，它被廣泛應用於 RPC 調用和資料存儲。 Protobuf 語言中立、平臺中立，只要定義好一份 &lt;strong>.proto&lt;/strong> 檔案，就可以生成&lt;strong>不同的程式語言&lt;/strong>序列化和反序列化的功能來處理 data。要了解 Protobuf 序列化知識，首先需要了解一些知識點 :&lt;/p>
 &lt;ul>
 &lt;li>Varint Encoding&lt;/li>
 &lt;li>Zigzag Encoding&lt;/li>
