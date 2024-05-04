@@ -1,132 +1,228 @@
 ---
-title: "Protobuf 序列化詳解"
+title: "Protobuf - 序列化反序列化詳解"
 
 author: Aryido
 
-date: 2023-05-02T23:10:23+08:00
+#date: 2023-05-02T23:10:23+08:00
+date: 2024-05-01T22:10:30+08:00
 
 thumbnailImage: "/images/data-structure/protobuf.jpg"
 
 categories:
 - data-structure
 
+tag:
+- data-exchange
+
 comment: false
 
 reward: false
 ---
 <!--BODY-->
-> 要了解 Protobuf 的編碼和序列化知識，首先需要了解一些儲備知識點。
-> - Varint 編碼
-> - Zigzag 編碼
+> 現在越來越多的服務應用使用 Protobuf ，它被廣泛應用於 RPC 調用和資料存儲。 Protobuf 語言中立、平臺中立，只要定義好一份 **.proto** 檔案，就可以生成**不同的程式語言**序列化和反序列化的功能來處理 data。要了解 Protobuf 序列化知識，首先需要了解一些知識點 :
+> - Varint Encoding
+> - Zigzag Encoding
 > - Wire Type 類型
 > - T-L-V 儲存方式
 >
-> 可以更加理解 protobuf。
->
+> 熟悉這些可以更加理解 protobuf，也能避免錯誤使用，以及更好的優化性能。本章節會實際把前面學到的知識點一次用上，用實際案例來了解 Protobuf - Serialization。
 <!--more-->
 
 ---
 
-Protobuf 是通過 Varint 和 Zigzag 編碼，大大減少了 field 值佔用 byte 。以下簡單說明介紹一下這兩種編碼 :
+Protocol Buffers 做為一種**資料交換格式**，主要有兩個面相：
 
-## Varint 壓縮編碼
+- 定義了一種介面描述語言 (Interface Description Language)，用來描述需要交換的資料結構
+- 定義了一種 serialization-deserialization 模式
 
-Varint 編碼原理是**用一個或多個 byte 序列化整數來表示數字**，例如值越小的數字，使用越少的 byte 數表示。因此，可以通過**減少表示數字的字節數**，來進行資料壓縮。 Varint 編碼後每個 byte 的**最高位**都有特殊含義：
--  1: 表示後續的 byte 也是數字的一部分
--  0: 表示本 byte 是最後一個字節，剩餘 7 位都用來表示數字。
+之前有對 [protobuf 做過基礎的介紹]()，此外也有寫了 [Varint & Zigzag Encoding 介紹]()。 Protobuf 是通過 Varint 和 Zigzag 來大幅減少了 field 佔用的儲存空間，可參考前面介紹，本篇介紹 Protobuf  的 serialization-deserialization。
 
-{{< alert info >}}
-每個字節的最高一位只是標識位，沒有具體數字含義。
+---
 
-在實際場景中小數字的使用率遠遠多於大數字，因此通過Varint編碼對於大部分場景都可以起到很好的壓縮效果。
-{{< /alert >}}
+Protobuf encode 後二進制表示法結構，就是**多個 field 組成**的:
 
-例如:
-- 數字 1，只需要一個 byte 就可以表示 : ```[0]000 0001```
-- 數字 300 ，會比較複雜，以下推導:
-    ```
-    300
-    = 256 + 32 + 8 + 4
-    = 0000 0001 0010 1100 (二進制)
-    =  0000010  0101100 （每7位代表一個字節）
-    =  0101100  0000010 （低位在前，故交換）
-    = `1`0101100 `0`0000010 （第8位按規則補 1 或 0）
-    ```
+# Serialization
+下面我們就針對不同的 WireType，來一個個分析，Protocol Buffers 不同 WireType 的序列化方式
 
-## Zigzag 編碼
+### WireType = 0, 1, 5
 
-Zigazg 編碼的出現，是為了解決 Varint 對**負數**編碼效率低的問題。由於負數的補碼表示法很大（最高位是符號位爲 1），直接使用 Varint 編碼，會佔用較多的 byte 。這種情況使用 ZigZag 編碼，先轉換成比較小的正數，再使用 Varint 編碼，這樣最終生成的 data 會佔用較少的 byte 。
+{{< image classes="fancybox fig-100" src="/images/data-structure/protobuf-wiretype-015.jpg" >}}
 
-簡單來說， Zigazg 編碼原理對於負數，是使用 :
-- 補碼的最高位，**移位**
-- 符號位保持不變，剩下位**取反**
+- int32: `WireType = 0`，其 Value 是數字，用 Varint 編碼，因此編碼自帶長度訊息，**最多會使用到 8 個 bytes**。
 
-這樣就能對負數更好地進行壓縮。詳細暫時略~
+- double: `WireType = 1`，其 Value 固定 8 bytes，是採用**雙精確度浮點數**的編碼方式 `IEEE 754`。
+
+- float: `WireType = 5`，其 Value 固定 4 bytes。
 
 {{< alert info >}}
-如果提前知道 field 值是可能取負數的時候，可採用 sint32/sint64 類型，不要使用 int32/int64。因為採用 sint32/sint64 數據類型表示負數時，會先採用 Zigzag 編碼再採用 Varint 編碼，從而更加有效壓縮數據。
+以上這幾種類型，都不需要一個 byte 來說明 Length，故更好的利用了空間。
 {{< /alert >}}
 
-## Wire Type
-Wire Type 是 google 爲 protobuf 專門定義的類型，用來生成 Tag，指定某個欄位的值在序列化時所使用的編碼方式，以下是 WireType 定義 :
+### WireType = 2
 
+這種會多了一個 Length，用於標識 Value 的長度，其中 Value 區分成幾種類型：
+
+- String 類型，是使用 UTF8 編碼
+{{< image classes="fancybox fig-100" src="/images/data-structure/protobuf-wiretype-2-string.jpg" >}}
+
+- 嵌套另一個 Protobuf Message 類型
+{{< image classes="fancybox fig-100" src="/images/data-structure/protobuf-wiretype-2-message.jpg" >}}
+
+- 有 repeat label
+{{< image classes="fancybox fig-100" src="/images/data-structure/protobuf-wiretype-2-repeat.jpg" >}}
+`proto2` 才會需要寫上 `packed=true`，但在 `proto3` 中，數字類如 int32、int64、enum，有標上 repeat 的field 默認使用 packed 編碼，**會專門針對數字類型做的一個編碼空間優化策略**，它會把 Tag 完全一樣的 value 打包在一起。
+  {{< alert success >}}
+沒有 packed 的 repeat 數字，標瑪模式都是 Tag-Value 接續 Tag-Value 持續下去，但其實它們有着一樣的 tag，所以可以巧妙的使用 T-L-V 存儲方式，Length 代表 Value 列表的**總字節長度**，不需要每個 Value 前面放個相同的 Tag，極大的節省了空間。
+{{< /alert >}}
+
+{{< alert warning >}}
+如果原始資料的某個 field 沒有被附加上值，那麼序列化後的 byte array 就會完全不存在相關資訊。相應 field 在解碼時會被設置爲**默認值**。
+{{< /alert >}}
+
+
+# Deserialization
+直接來練習一下吧! 首先 `.proto` 檔定義如下:
 ```
-enum WireType {
-    WIRETYPE_VARINT = 0,
-    WIRETYPE_FIXED64 = 1,
-    WIRETYPE_LENGTH_DELIMITED = 2,
-    WIRETYPE_START_GROUP = 3,   //deprecated
-    WIRETYPE_END_GROUP = 4,     //deprecated
-    WIRETYPE_FIXED32 = 5
-};
+message Award {
+  int64 id = 1;
+  string code_book = 4;
+
+  message Bonus {
+    repeated int32 indexes = 24;
+  }
+
+  Bonus bonus = 128;
+  double magic = 2048;
+}
 ```
 
-| WireType | 定義 | 編碼方式 |
-| -------- | ---- | -------- |
-| 0        | Varint | 值被編碼成可變長度的 byte array |
-| 1        | Fixed64 | 固定 64 位元的二進制 byte array |
-| 2        | Length-delimited | byte array 前綴加上其長度，用來序列化字符串、嵌套的 message 或二進制數據 |
-| 3        | Start group | 已廢棄|
-| 4        | End group | 已廢棄 |
-| 5        | Fixed32 | 固定 32 位元的二進制 byte array |
+有個資料已經被 protobuf 編碼為二進制 :
+```
+00000000: 00001000 10110111 01001010 00100010 00011110 01100001  ..J".a
+00000006: 01100010 01100011 01100100 01100101 01100110 01100111  bcdefg
+0000000c: 01101000 01101001 01101010 01101011 01101100 01101101  hijklm
+00000012: 01101110 01101111 01110000 01110001 01110010 01110011  nopqrs
+00000018: 01110100 01110101 01110110 01110111 01111000 01111001  tuvwxy
+0000001e: 01111010 00101100 00100001 00111111 00100000 10000010  z,!? .
+00000024: 00001000 00101011 01010010 00000100 00000101 00000000  .+R...
+0000002a: 00001010 00000100 11000010 00000001 00100010 00011000  ....".
+00000030: 00001110 00010100 00011101 00000000 00010001 00000100  ......
+00000036: 00011101 00000000 00010110 00000100 00010010 00001110  ......
+0000003c: 00001100 00000100 00011011 00011101 00010110 00000100  ......
+00000042: 00000010 00000111 00000000 00010011 00011101 00001100  ......
+00000048: 00000100 00011100 00011101 00011001 00000011 00000011  ......
+0000004e: 00000111 00010100 00000001 10000001 10000000 00000001  ......
+00000054: 00000000 00000000 00000000 00000000 00000000 10000000  ......
+0000005a: 00100100 01000000                                      $@
+```
+由於 Protobuf 編碼是依照 T-[L]-V 串聯而成，第一個 bype 一定是 tag。
+
+- 第 1 個 byte `00001000`，最高位元是 `0`，表示該 tag 僅以一個位元組表示。 `field number = 1`，`wiretype = 0` 代表 Varint ，故接下來是 value。
+- 第 2 個 byte `10110111`，最高位元為 `1`，表示該 value 超過一個 byte ，繼續看下一個。
+- 第 3 個 byte `01001010 `，此時最高位元為 `0`，該 value 以兩個 byte 表示，把順序反過來為，並去掉最高位標示 :  `1001010 0110111` 為一個 value 的表示。
+- 第 4 個 byte `00100010`，最高位元是 `0`，表示該 tag 僅以一個位元組表示。 field number 是 `00100`代表 `4`，`wiretype = 2` 代表 T-L-V ，故接下來是 length。
+- 第 5 個 byte `00011110`，代表長度為 30，故接下來 30 個，即第 6 ~ 35 個 byte都是 value
+  ```
+  01100001
+  01100010 01100011 01100100 01100101 01100110 01100111
+  01101000 01101001 01101010 01101011 01101100 01101101
+  01101110 01101111 01110000 01110001 01110010 01110011
+  01110100 01110101 01110110 01110111 01111000 01111001
+  01111010 00101100 00100001 00111111 00100000
+  ```
+  看起來是代表 `a~z,!? `
+- 第 36 個 byte `10000010`，為 tag，因最高位元為 `1`，表示該 tag 超過一個 byte ，繼續看下一個。
+- 第 37 個 byte `00001000 `，因最高位元為 `0`，表示該 tag 結束，以兩個 byte 表示，把順序反過來為，並去掉最高位標示 :  `0001000 0000010` 為一個 tag 的表示。其中 `wiretype = 2`，是 T-L-V ，故接下來是長度；而 field number = `10000000` = 128。
+- 第 38 個 byte `00101011` = 43，故接下來 43 個，即第 39 ~ 81 個 byte 都是 value :
+  ```
+  01010010 00000100 00000101 00000000
+  00001010 00000100 11000010 00000001 00100010 00011000
+  00001110 00010100 00011101 00000000 00010001 00000100
+  00011101 00000000 00010110 00000100 00010010 00001110
+  00001100 00000100 00011011 00011101 00010110 00000100
+  00000010 00000111 00000000 00010011 00011101 00001100
+  00000100 00011100 00011101 00011001 00000011 00000011
+  00000111 00010100 00000001
+  ```
+- 第 39 個 byte `01010010` 代表 tag，`wiretype=2`，知道下一個 byte 代表長度，且 `field number = 10`，但沒有在 `.proto`中定義，故等等之後 value 會省略不解析
+- 第 49 個 byte `00000100` = 4，承上接下來 4 個 byte 都捨棄不解析，所以 50~53 byte :
+  ```
+  00000101 00000000
+  00001010 00000100
+  ```
+  都不用解析，丟掉他們。
+  {{< alert info >}}
+Protobuf 在解析時，主要都是看 `field number`。如果看到 Protobuf byte array 內有一個資料 T-[L]-V ，但是 schema 中沒有定義，其實並不會怎樣。雖然沒有辦法知道這個 field 名稱叫什麼，但是可以知道是什麼 type，同時也可以算出需要跳過多少個 bytes，以便找到的下一個 T-[L]-V。
+{{< /alert >}}
+
+- 第 54 個 byte `11000010` 代表 tag，但因最高位元為 `1`，表示該 tag 超過一個 byte，繼續看下一個。
+- 第 55 個 byte `00000001`，也代表 tag，因最高位元為 `0`，表示該 tag 結束，故 tag 以兩個 byte 表示，把順序反過來為，並去掉最高位標示 : `0000001 1000010`，代表 `field number = 24`；`wiretype = 2`，然後又因為有 repeated ，故接下來代表長度，然後其後面 byte 都是指 value。
+
+- 第 56 個 byte `00100010` ，代表長度 34。
+
+- 接下來 34 個都是單字對應
+  ```
+  00011000
+  00001110 00010100 00011101 00000000 00010001 00000100
+  00011101 00000000 00010110 00000100 00010010 00001110
+  00001100 00000100 00011011 00011101 00010110 00000100
+  00000010 00000111 00000000 00010011 00011101 00001100
+  00000100 00011100 00011101 00011001 00000011 00000011
+  00000111 00010100 00000001
+  ```
+  [解析完之後，以數字表示如下，並加上空白](https://tools.yeecord.com/zh-tw/base-converter/bin/dec):
+  ```
+  (24 14 20) (0 17 4) (0 22 4 18 14 12 4 27) (22 4 2 7 0 19) (12 4 28) (25 3 3 7 20 1)
+  ```
+  對上數字翻譯為:
+  >  `you are awesome! wechas le? zddhub` (wechas 代表中文微信)
 
 
-每個 Wire Type 可以對應多個具體的 data 類型，例如一個使用 Varint 編碼的欄位可以是一個 int32、int64、uint32、uint64、bool、enum、sint32 或 sint64。在解析 Protobuf data時，序列化和反序列化都是基於 proto 檔的，所以可以明確知道 type ，故會根據欄位的 WireType 以及其定義的類型來進行解碼。
+- 第 82 個 byte 為 tag， `10000001`，因最高位元為 `1`，表示該 tag 超過一個 byte ，繼續看下一個。
+- 第 83 個 byte `10000000`，因最高位元為 `1`，繼續看下一個。
+- 第 84 個 byte `00000001  `，因最高位元為 `0`，tag 結束。去掉最高位標示並重新排列後 `0000001 0000000 0000001`，故 field number 為 `100000000000` = 2048
+ `wiretype = 1` ，下 8 個 bytes 表示為 double
+- 第 85 ~ 93 個 byte 都是 value:
+  ```
+  00000000 00000000 00000000 00000000 00000000 10000000
+  00100100 01000000
+  ```
+  為 [1.025E1 = 10.25](https://www.binaryconvert.com/result_double.html?)
+
+至此全部分析完，以上是整個反序列化的講解。
+
 {{< alert success >}}
-通過不同的Wire Type使用不同的儲存方式，來最大化的節省空間。
+在解析 Protobuf data 時，序列化和反序列化都是基於 `.proto` 檔的，所以可以明確知道 type ，故會根據欄位的 WireType 以及其定義的類型來進行解碼。
 {{< /alert >}}
 
-{{< alert info >}}
-因爲每個 field 的起始 byte array中，都會有一個 3 個 bit 位，這是代表 field 的 type。
+---
 
-為甚麼 3 個 bit 就足夠了呢 ? 因為 WireType 只有 6 種
-{{< /alert >}}
-
-
-## T-L-V 儲存方式
-為 Tag - Length - Value 的簡稱，其原理是以**標籤-長度-值**，來表示單個 data ，最終將所有 data 拼接成一個 byte array，從而實現資料存儲的功能。
-
-### Tag
-
-Tag 就是，```tag 號碼 + Wire Type``` 的 Varint 編碼格式。最少 1 字節。
-- 因爲 Wire Type 只有 6 個定義，所以使用 3bit 完全夠用，Tag 的最低三位表示 Wire Type
-- 高位表示 tag 號碼，佔用的長度，取決於號碼的大小。
-
-### Length
-Length 是可選的。只有 Wire Type = 2 時，才需要 Length。例如 Varint 編碼就不需要存儲 Length，此時簡化爲 T-V 存儲方式。
-
-### Value
-特別說明，有一些有嵌套的 data，T-L-V 表示，其實就是在 Value 內，放一個 T-L-V 形成嵌套模式。
-
-
-T-L-V 存儲方式的優點是:
-- 不需要分隔符就能隔開 field ，各個 field 存儲得非常緊湊，存儲空間利用率非常高。
-- 如果某個 field 沒有被設置值，那麼該 field 在序列化時的是完全不存在的，相應 field 在解碼時會被設置爲 default 值。
 
 
 ---
 
-##  proto3 和 proto2 差別
-主要差別是 proto3 通過 packed 來修飾 repeat 字段。 proto2在數字類型，例如 int32、int64 等等的 repeated field 沒有高效地編碼。
 
-沒有 packed 的 repeat 數字，標瑪模式都是 Tag-Value 接續 Tag-Value 持續下去，但其實它們有着一樣的 tag 號碼和 Wire Type，所以可以巧妙的使用 T-L-V 存儲方式，Length 代表 Value 列表的**總字節長度**，不需要每個 Value 前面放個相同的 Tag，極大的節省了空間。
+
+
+
+優化 protobuf 壓縮資料的方法
+
+
+
+---
+### 參考資料
+
+- [protobuf 是怎麼序列化的](https://www.readfog.com/a/1668729653630701568)
+
+- [Protocol Buffers](https://zddhub.com/note/2021/07/25/protobuf.html)
+
+
+- [android 序列化Image 序列化 protobuf](https://blog.51cto.com/u_16213700/7706668)
+
+https://www.cnblogs.com/niuben/p/14212711.html
+
+
+https://zhuanlan.zhihu.com/p/667573873
+
+
+
