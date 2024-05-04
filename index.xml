@@ -1,4 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 28 Apr 2024 17:56:27 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Protobuf - Encoding 結構</title><link>https://aryido.github.io/posts/data-structure/protobuf-encoding-sturcture/</link><pubDate>Sun, 28 Apr 2024 17:56:27 +0800</pubDate><guid>https://aryido.github.io/posts/data-structure/protobuf-encoding-sturcture/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 01 May 2024 22:10:30 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Protobuf - 序列化反序列化詳解</title><link>https://aryido.github.io/posts/data-structure/protobuf-serialization/</link><pubDate>Wed, 01 May 2024 22:10:30 +0800</pubDate><guid>https://aryido.github.io/posts/data-structure/protobuf-serialization/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>現在越來越多的服務應用使用 Protobuf ，它被廣泛應用於 RPC 調用和資料存儲。 Protobuf 語言中立、平臺中立，只要定義好一份 &lt;strong>.proto&lt;/strong> 檔案，就可以生成&lt;strong>不同的程式語言&lt;/strong>序列化和反序列化的功能來處理 data。要了解 Protobuf 序列化知識，首先需要了解一些知識點 :&lt;/p>
+&lt;ul>
+&lt;li>Varint Encoding&lt;/li>
+&lt;li>Zigzag Encoding&lt;/li>
+&lt;li>Wire Type 類型&lt;/li>
+&lt;li>T-L-V 儲存方式&lt;/li>
+&lt;/ul>
+&lt;p>熟悉這些可以更加理解 protobuf，也能避免錯誤使用，以及更好的優化性能。本章節會實際把前面學到的知識點一次用上，用實際案例來了解 Protobuf - Serialization。&lt;/p>
+&lt;/blockquote></description></item><item><title>Protobuf - Encoding 結構</title><link>https://aryido.github.io/posts/data-structure/protobuf-encoding-sturcture/</link><pubDate>Sun, 28 Apr 2024 17:56:27 +0800</pubDate><guid>https://aryido.github.io/posts/data-structure/protobuf-encoding-sturcture/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>隨者網路傳輸、頻寬與硬體的設備的改善和增強，能傳遞資料量也越來越大、越來越複雜，這時我們也不再只是追求能夠將資料傳遞完成，而是更加要求&lt;strong>短時內傳遞大量的資料&lt;/strong>，故勢必會需要強化&lt;strong>序列化&lt;/strong>和&lt;strong>壓縮&lt;/strong>的技術。本章節介紹 Protobuf 編碼後的 byte array 結構，當有了基本的認識後，就會明白 Protobuf 為何它可以比 JSON、XML 傳輸效率更高，更能壓縮資料，實現高效率。&lt;/p>
 &lt;/blockquote></description></item><item><title>Varint &amp; Zigzag Encoding</title><link>https://aryido.github.io/posts/algorithm/varint-zigzag-encoding/</link><pubDate>Sat, 27 Apr 2024 16:02:33 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/varint-zigzag-encoding/</guid><description>&lt;!-- raw HTML omitted -->
@@ -243,16 +253,6 @@
 &lt;li>Docker Image 中如果自帶 ENTRYPOINT 和 CMD ，若 Kubernetes 再設置 &lt;code>command&lt;/code> 和 &lt;code>args&lt;/code> 會發生甚麼事情呢 ?&lt;/li>
 &lt;/ul>
 &lt;p>以下就來簡單說明一下。&lt;/p>
-&lt;/blockquote></description></item><item><title>Protobuf 序列化詳解</title><link>https://aryido.github.io/posts/data-structure/protobuf-serialization/</link><pubDate>Tue, 02 May 2023 23:10:23 +0800</pubDate><guid>https://aryido.github.io/posts/data-structure/protobuf-serialization/</guid><description>&lt;!-- raw HTML omitted -->
-&lt;blockquote>
-&lt;p>要了解 Protobuf 的編碼和序列化知識，首先需要了解一些儲備知識點。&lt;/p>
-&lt;ul>
-&lt;li>Varint 編碼&lt;/li>
-&lt;li>Zigzag 編碼&lt;/li>
-&lt;li>Wire Type 類型&lt;/li>
-&lt;li>T-L-V 儲存方式&lt;/li>
-&lt;/ul>
-&lt;p>可以更加理解 protobuf。&lt;/p>
 &lt;/blockquote></description></item><item><title>Terraform: templatefile 範例</title><link>https://aryido.github.io/posts/terraform/templatefile/</link><pubDate>Sun, 23 Apr 2023 17:45:12 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/templatefile/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>templatefile 是 Terraform 的一個&lt;strong>內置函數&lt;/strong>，可讓 Terraform 在運行時，根據變量動態生成文件內容 。 templatefile 函數的基本用法是：&lt;/p>
