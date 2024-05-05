@@ -10,7 +10,7 @@ thumbnailImage: /images/algorithm/encoding.jpg
 categories:
 - algorithm
 
-tag:
+tags:
 - data-exchange
 
 comment: false
@@ -20,7 +20,9 @@ reward: false
 ---
 
 <!--BODY-->
-> 蠻多 coding 語言是使用 32 bits 的空間來儲存整數的，例如 Java 的 int，範圍大約是正負21億。但是現實世界中，較小的數字往往比較常出現，大約幾十幾百幾千到，如果只是要儲存或傳輸這樣的一個小數字，卻需要用到 32 bits 這樣的空間，其實有點浪費，但這是有機會優化的，而 Varint 和 Zigzag 演算法就是要處理這種問題，**讓值小的數字，可以用較少的 byte 數量表示，而達到資料壓縮目的**，著名的資料傳輸格式 **Protobuf** 也是通過 Varint 和 Zigzag ，來大幅減少了資料佔用的空間。
+> 蠻多 coding 語言在一般情況下是使用 `32 bits` 的空間來儲存整數的，例如 Java 的 int，範圍是 `-2147483648 ~ 2147483647`，大約正負21億。但是現實世界中，較小的數字往往比較常出現，大約幾十到幾十萬是最多最常出現的，如果只是要儲存或傳輸這樣的一個小數字，卻每次都需要用到 32 bits 的空間，其實有點浪費，這是有機會優化的 !
+>
+> Varint 和 Zigzag 演算法就是要處理這種問題，**讓值小的數字，可以用較少的 byte 數量表示，而達到資料壓縮目的**，著名的資料傳輸格式 **Protobuf** 也是通過 Varint 和 Zigzag ，來大幅減少了資料佔用的空間。
 
 <!--more-->
 ---
@@ -34,10 +36,10 @@ reward: false
 
 > **2’s Complement 為目前用來表達負數二進制的方法**
 
-原因是 *Signed Magnitude* 和 *1’s Complement* 都有極大的缺點:
+原因是 *Signed Magnitude* 和 *1’s Complement* 都有**極大的缺點**:
 
-- Signed Magnitude 加減等運算時的複雜較高
-- 1’s Complement 會發生不唯一的「0」，因為有 `+0` 和 `-0` 這樣的表示
+- **Signed Magnitude** 加減等運算時的複雜較高
+- **1’s Complement** 會發生不唯一的`「0」`，因為有 `+0` 和 `-0` 這樣的表示
 
 ---
 
@@ -111,14 +113,14 @@ ZigZag 的作法是把數字依照**絕對值**大小排序，觀察**數字**�
 ```
 +3 = 00000011
    = 0000011x（左移一位）
-   = 00000110（補上 signed bit，3 的順序是 6 ，6 signed bit 是 0，故補上 0）
+   = 00000110（補上 signed bit。因 3 的順序是 6 ，6 signed bit 是 0，故補上 0）
    = 6
 ```
 ```
 -3 = 11111101
    = 1111101x（左移一位）
    = 0000010x（因為是負數還要多取 Complement）
-   = 00000101（補上 signed bit，-3 的順序是 5 ，5 signed bit 是 1，故補上 1 ）
+   = 00000101（補上 signed bit。因 -3 的順序是 5 ，5 signed bit 是 1，故補上 1 ）
    = 5
 ```
 
@@ -132,7 +134,11 @@ func int32ToZigZag(n int32) int32 {
 ---
 
 # 心得
-會介紹 Varint & Zigzag 主要是因為 Protobuf 就是透過這些 encoding 來壓縮資料。資料傳輸中出於 IO 的考慮，我們會希望盡可能的資料壓縮， Varint 就是一種對數字進行壓縮編碼的方法；而 Varint 也是有所謂的缺點，故還有使用 ZigZag 編碼解決一些問題。
+會介紹 Varint & Zigzag 主要是因為 Protobuf 就是透過這些 encoding 來壓縮資料。資料傳輸中出於 IO 的考慮，我們會希望盡可能的資料壓縮， Varint 就是一種對數字進行壓縮編碼的方法；而 Varint 也是有所謂的缺點，就是對負數壓縮很差，故還要使用 ZigZag 編碼解決一些問題。
+
+{{< alert success >}}
+如果提前知道 field 值大部分是取負數的時候，可採用 sint32/sint64 類型，而不要使用 int32/int64。因為採用 sint32/sint64 數據類型表示負數時，會先採用 Zigzag 編碼再採用 Varint 編碼，從而更加有效壓縮數據。
+{{< /alert >}}
 
 ---
 

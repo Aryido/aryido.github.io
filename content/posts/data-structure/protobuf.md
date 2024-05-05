@@ -11,7 +11,7 @@ thumbnailImage: "/images/data-structure/protobuf.jpg"
 categories:
 - data-structure
 
-tag:
+tags:
 - data-exchange
 
 comment: false
@@ -49,16 +49,16 @@ message Author {
     reserved "foo", "bar";
 }
 ```
-- 一個 `.proto` 檔案中，可以定義一個或多個 message
-- `optional string name = 1;` 類似這樣的結構，稱為 **field**
-- **field** 內我們有看到 `optional`、 `repeated` 等等，這些稱為 **label**
-- **field** 內我們有看到 `string`、`int64` 等等，這些稱為 **type**。比較特別的是 Message 也可以是一個 **type**。Protobuf 也允許一個 Message 也可以是另一個 Message 內 field 的 type，使得其能夠表達更為**複雜**的資料結構
+- 一個 `.proto` 檔案中，可以定義一個或多個 message。
+- `optional string name = 1;` 類似這樣的結構，稱為 **field**。
+- **field** 內我們有看到 `optional`、 `repeated` 等等，這些稱為 **label**。
+- **field** 內我們有看到 `string`、`int64` 等等，這些稱為 **type**。比較特別的是 Message 也可以是一個 **type**。Protobuf 也允許一個 Message 也可以是另一個 Message 內 field 的 type，使得其能夠表達更為**複雜**的資料結構。
 
-- 再來我們看到每個 field 都有定義一個數字，我們稱 **field number**，它的作用是在二進制格式中，用來識別（identify）欄位，一定要 unique，最小值為 1
+- 再來我們看到每個 field 都有定義一個數字，我們稱 **field number**，它的作用是在二進制格式中，用來識別（identify）欄位，一定要 unique，最小值為 1。
 
 - **Reserved**:
 
-  當刪除或註解掉 message 中的一個 field 時，將來其他開發人員在更新 message 時，可能會不小心重複使用到先前的 field number，將會導致嚴重的問題如資料解析損壞。一種避免問題產生的方式就是使用 **Reserved**。它可以保留 field number 或 field name，如果將來有人用了，在編譯 proto 的時候，編譯器就會報錯
+  當刪除或註解掉 message 中的一個 field 時，將來其他開發人員在更新 message 時，可能會不小心重複使用到先前的 field number，將會導致嚴重的問題如資料解析損壞。一種避免問題產生的方式就是使用 **Reserved**。它可以保留 field number 或 field name，如果將來有人用了，在編譯 proto 的時候，編譯器就會報錯。
   {{< alert warning >}}
   注意不要在 reserved 中把 field number 和 field name 一起混用，要分開寫。
 {{< /alert >}}
@@ -109,19 +109,19 @@ enum FooBar {
 
 # 版本兼容性
 Protobuf 支援對 Message 進行向前向後兼容，可以在不破壞現有服務的情況下擴充 `.proto`，但是需要**注意一些事項**，這裡先不詳細解釋其原理，後續會再慢慢說明，如下:
-- **添加新的 field，其 field number 絕對不能重複**；只要是給一個新的 field number，就可以自由添加 field
-- 已存在 field number 不能變更，會造成**嚴重的解析錯誤**
-- Protobuf schema 可以簡單任意的**重新命名 field**，不會有任何問題
+- **添加新的 field，其 field number 絕對不能重複**；只要是給一個新的 field number，就可以自由添加 field。
+- 已存在 field number 不能變更，會造成**嚴重的解析錯誤**。
+- Protobuf schema 可以簡單任意的**重新命名 field**，不會有任何問題。
   {{< alert success >}}
   Protobuf 在解析時，主要都是看 field number 和 type，在序列化的二進制資料中，並不存在 field 名稱的標示，**在 Protobuf schema 中， field name 其實不太重要。**
   {{< /alert >}}
-- 雖然從 schema 中刪除 optional field 是安全的，但要注意絕對不能在未來，讓另一個 field 不小心使用到已刪除的 optional field 的 field number。因為可能有已經存儲的 byte array data，但它當初序列化的格式還是舊的，這時候若用新的解析器，會造成錯誤
+- 雖然從 schema 中刪除 optional field 是安全的，但要注意絕對不能在未來，讓另一個 field 不小心使用到已刪除的 optional field 的 field number。因為可能有已經存儲的 byte array data，但它當初序列化的格式還是舊的，這時候若用新的解析器，會造成錯誤。
 
 **上述幾點是最重要的觀念**，要特別注意，如果做錯了會造成資料解析很重大的錯誤。所以有個最常見 Protobuf 問題 :
 
 > 可不可以在某個 `.proto` 檔案的中間加一個 field ，然後把後面所有的 field number 數字都加 1。
 
-答案是不行，絕對不能使用任何以前使用過的 field number 或重複寫一樣的 field number! 會覺得可以這樣做的想法，大概是把 Protobuf 想成跟 json 類似，都是用 field name 來當 data 的 Key，所以順序和 field number 不重要。**但這是錯誤的**。 **Protobuf 主要是看 field number** ，爲了保持兼容性， **field number 定義好之後是不能修改的**。增加新的 field 只能用新的 number 數字。
+答案是不行，絕對不能使用任何以前使用過的 field number 或重複寫一樣的 field number! 會覺得可以這樣做的想法，大概是把 Protobuf 想成跟 json 類似，都是用 field name 來當 data 的 Key，所以順序和 field number 不重要。**但這是錯誤的! Protobuf 主要是看 field number** ，爲了保持兼容性， **field number 定義好之後是不能修改的**。增加新的 field 只能用新的 number 數字；隨便更動其他已存在的 field number 都會造成很大的問題。
 {{< alert danger >}}
 詳細可參考 [Protobuf - 序列化反序列化詳解](/posts/data-structure/protobuf-serialization/)，看完解析流程就可以很清楚知道為什麼不行這樣做了。
 {{< /alert >}}
@@ -130,13 +130,13 @@ Protobuf 支援對 Message 進行向前向後兼容，可以在不破壞現有�
 接來是一些小細節補充 :
 
 - `int32 >> int64` ([細品 Varints](/posts/algorithm/varint-zigzag-encoding/)，正數的前提下 int32 和 int64 天然兼容！)
-- `uint32 >> uint64` (無符號數，表正數)
+- `uint32 >> uint64` (無符號數，表一定是正數)
 
 - `sint32 >> sint64` (有符號數，特別表示會有負數)
 
   以上升版都是兼容的，不會因是舊版本二進制資料，使用新版本二進制解碼，而造成損壞。
 
--  Protobuf schema 中的 label， repeated 可以更改成 optional ，還是是可以解析成功，只是它就會**只會保留最後一個值**，其餘丟棄。
+-  Protobuf schema 中的 label， repeated 可以更改成 optional ，還是可以解析成功，只是它就會**只會保留最後一個值**，其餘丟棄。
 
 ---
 

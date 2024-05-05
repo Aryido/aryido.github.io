@@ -11,7 +11,7 @@ thumbnailImage: "/images/data-structure/protobuf.jpg"
 categories:
 - data-structure
 
-tag:
+tags:
 - data-exchange
 
 comment: false
@@ -25,6 +25,7 @@ reward: false
 
 ---
 
+# 前言
 
 來看看負十進制值 `-128` 不同的表示型態 :
 - 以 2’s Complemen 表示
@@ -45,7 +46,7 @@ reward: false
     = 每個字母至少需要 1 byte，故共 4 bytes
     ```
 
-由上述的舉例，不難發現本質上文字編碼，就會需要比較多的 bytes 來儲存，故 Protobuf 選擇回到**二進制**系統來優化，而不選擇文字編碼。
+> 由上述的舉例，不難發現本質上文字編碼，就會需要比較多的 bytes 來儲存，故 Protobuf 選擇回到**二進制**系統來優化，而不選擇文字編碼。
 
 對於 JSON、XML 資料傳輸時，會保留資料的**結構化資訊**，舉個 JSON 例子 :
 ```
@@ -59,14 +60,25 @@ reward: false
 ```
 其**結構化**資訊就是指 :
 - `{}`
-- name、age、interests 等等 key
+- name、age、interests 等等 `key name`
 - `:`
 - `,`
 - `]`
 
 人們一樣開始思考: **是否真的需要保留這麼多的結構化訊息? 應該可以再簡化一些吧?** 對於資料傳輸交換，本來發送方和接收方就會密切合作，對**資料的結構**都會有所共識，故真的有需要在每次資料傳輸時，每筆資料都要附上這麼多結構化資訊嗎? 應該是可以簡化一些的。
 
-因此 Protobuf 最終的結論，是它決定**刪除許多傳送資料時會附上的結構化資訊**，因此可以更加壓縮資料。而發送方和接收方，維護一份共同的\<**結構聲明檔**\>，雙方都參考此\<**結構聲明檔**\>來序列化反序列化資料，而這個\<**結構聲明檔**\>就是 **.proto**。
+> 因此 Protobuf 最終的結論，是它決定**刪除許多傳送資料時會附上的結構化資訊**，因此可以更加壓縮資料。而發送方和接收方，維護一份共同的\<**結構聲明檔**\>，雙方都參考此\<**結構聲明檔**\>來序列化反序列化資料，而這個\<**結構聲明檔**\>就是 **.proto**。
+
+{{< alert info >}}
+由於 Protobuf 是二進位資料格式，數
+據本身不具有可讀性，且雙方必須有共同的 `.proto`檔案才能有效編碼和解碼，故一定程度上保證了其安全性。
+{{< /alert >}}
+
+{{< alert info >}}
+也由於雙方必須有共同的 `.proto`檔案才能有效編碼和解碼，故也稱 protobuf 是**缺乏自描述性**的。
+{{< /alert >}}
+
+---
 
 # Encoding 結構
 首先定義一個 `.proto`
@@ -84,7 +96,7 @@ message Author {
 {{< image classes="fancybox fig-100" src="/images/data-structure/protobuf-encode-data.jpg" >}}
 
 
-呈上結構，我們必須要知道 Protobuf 已經做了一些事情和一些名詞意義 :
+承上結構，我們必須要知道 Protobuf 已經做了一些事情和一些名詞意義 :
 > 1. 編碼後 Type 會轉換成 WireType
 > 2. 承上`(field number, WireType)` 通常會被歸類為一組來聲明，被稱為 **Tag**
 > 3. 會使用 payload 這個名詞，是因為這部分的內容物，可能是 :
@@ -111,8 +123,8 @@ WireType 的作用是告訴解析器 **payload 的格式**，表示這個編碼�
 | 0        | Varint          | 值被編碼成可變長度的 byte array               | int32, int64, uint32, uint64, sint32, sint64, bool, enum |
 | 1        | Fixed64         | 固定 64 位元的二進制 byte array              | fixed64, sfixed64, double                    |
 | 2        | Length-delimited| byte array 前綴加上其長度，用來序列化 string、嵌套的 message 或  byte array | string, bytes, embedded messages, packed repeated fields |
-| 3        | Start group     | deprecated                                      | group start (deprecated)                     |
-| 4        | End group       | deprecated                                      | group end (deprecated)                       |
+| 3        | Start group     | deprecated                                      |                     |
+| 4        | End group       | deprecated                                      |                        |
 | 5        | Fixed32         | 固定 32 位元的二進制 byte array              | fixed32, sfixed32, float                     |
 
 對於不同 WireType ，**其 payload 格式也不一樣**，故根據 WireType 可以把 Protobuf 的 **payload** 格式分成以下幾類:
@@ -144,7 +156,12 @@ WireType 的作用是告訴解析器 **payload 的格式**，表示這個編碼�
 
 其中 T 就是代表 Tag ， 由 ```field number + WireType``` 組成， Tag 的最低三位表示 WireType。配合 WireType 章節中的表格，也可以知道為什麼這裡 Tag 的圖中，WireType 只需要用 3 個 bit，因為 WireType 目前只有 6 種，所以使用 3 個 bit 完全夠用。
 
-所有的 Tag 內 field number 的都有 Varint 壓縮，而 Tag 值計算公式為 :
+所有的 Tag 內 field number 的都有 Varint 壓縮，展示如下圖:
+{{< image classes="fancybox fig-100" src="/images/data-structure/protobuf-tag-field-number.jpg" >}}
+
+故 `[1, 15]` 編號範圍內的，只需要用一個 byte 編碼表示，所以將 15 以內的編號，留給頻繁出現的資料，可以進一步節省空間。
+
+Tag 值計算公式如下，代表 Tag 到底佔了幾個 bytes :
 
 ```
 Tag = (field number << 3) | WireType number
@@ -156,27 +173,27 @@ Tag = (field number << 3) | WireType number
 - `WireType = 1, 5`，後面會使用固定長度的 byte array ，故不需要再另外多儲存一個 Length。
 
 ## Value
-V 就是指 Value，這部分等到序列化-反序列化章節時，在詳細介紹。基本上對於數值部分，也是有使用 varint 來壓縮，甚至針對負數，會特別使用 zigzag + varint 來優化，可參考 [Varint & Zigzag Encoding](https://aryido.github.io/posts/algorithm/varint-zigzag-encoding/)。
+V 就是指 Value，這部分等到序列化-反序列化章節時，在詳細介紹。基本上對於數值部分，也是有使用 varint 來壓縮，甚至針對負數，會特別使用 zigzag + varint 來優化，可參考 [Varint & Zigzag Encoding](/posts/algorithm/varint-zigzag-encoding/)。
 
 ---
 
 # 補充整理
 
-從上述的介紹，應該有發現 .proto 中定義的 Message Author 內所有 **key名稱**，也就是 name、age、interests，**都不在 T-L-V 內**。protobuf 根本沒有把這些訊息編碼進去 byte array 內! 而是僅僅使用了 ```field number + WireType```，故序列化-反序列化時都需要參考 .proto 檔案。
+從上述的介紹，應該有發現 .proto 中定義的 Message Author 內所有 **key名稱**，也就是 name、age、interests，**都不在 T-L-V 內**，protobuf 其實根本沒有把這些訊息編碼進去 byte array 內，而是僅僅使用了 ```field number + WireType```來當主要參考，故序列化-反序列化時都需要參考 .proto 檔案。
 
 {{< alert warning >}}
 這一點相比我們熟悉的 json 很不一樣，因為 json 是會把 key 訊息傳送出去的。
-所以對於 protobuf 來說沒有 .proto 文件是無法序列化-反序列化成功的。但省略**key名稱**，加上緊湊，除了壓縮儲存空間，還可以讓編碼解碼速度更快。
+所以對於 protobuf 來說沒有 .proto 文件是無法序列化-反序列化成功的。但省略 **key名稱**，加上緊湊，除了壓縮儲存空間，還可以讓編碼解碼速度更快。
 {{< /alert >}}
 
 另外從圖中也可發現這樣**一堆 T-L-V 緊湊串在一起**的結構，這種存儲方式還有個優點，就是**不需要分隔符就能分隔開字段**，減少了分隔符的使用。
 
 綜合上述，把 protobuf 有用到的壓縮方式統整一下 :
-- 不使用 txt 系統編碼而使用 byte 來編碼
-- protobuf 編碼過的資料沒有 key 資訊
-- T-L-V 緊湊串在一起，不需要分隔符
-- 可選的 length 有機會減少 byte
-- 使用 varint + zigzag  來壓縮數值的資料
+- 不使用 txt 系統編碼而**使用 byte 來編碼**
+- protobuf 編碼過的資料**沒有 key 資訊**
+- T-L-V 緊湊串在一起，**不需要分隔符**
+- **可選的 length** 有機會減少 byte
+- 使用 **varint/zigzag**  來壓縮數值的資料
 
 ---
 ### 參考資料

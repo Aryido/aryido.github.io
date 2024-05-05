@@ -11,7 +11,7 @@ thumbnailImage: "/images/data-structure/protobuf.jpg"
 categories:
 - data-structure
 
-tag:
+tags:
 - data-exchange
 
 comment: false
@@ -30,7 +30,7 @@ reward: false
 
 ---
 
-之前有對 [protobuf 做過基礎的介紹]()，此外也有寫了 [Varint & Zigzag Encoding 介紹]()。 Protobuf 是通過 Varint 和 Zigzag 來大幅減少了 field 佔用的儲存空間，可參考前面介紹。Protocol Buffers 做為一種**資料交換格式**，主要有兩個面相：
+之前有對 [protobuf 做過基礎的介紹](/posts/data-structure/protobuf-encoding-sturcture/)，而  Protobuf 是通過 Varint 和 Zigzag 來大幅減少了 Value 佔用的儲存空間，可參考前面 [Varint & Zigzag Encoding 介紹](/posts/algorithm/varint-zigzag-encoding/)。Protocol Buffers 做為一種**資料交換格式**，主要有兩個面相：
 
 - 定義了一種介面描述語言 (Interface Description Language)，用來描述需要交換的資料結構
 - 定義了一種 serialization-deserialization 模式
@@ -113,7 +113,7 @@ message Award {
 00000000 00000000 00000000 00000000 00000000 10000000
 00100100 01000000
 ```
-由於 Protobuf 編碼是依照 T-[L]-V 串聯而成，第一個 bype 一定是 tag。
+由於 Protobuf 編碼是依照 T-[L]-V 串聯而成，第一個 byte 一定是 tag。
 
 - 第 1 個 byte `00001000`，最高位元是 `0`，表示該 tag 僅以一個位元組表示。 `field number = 1`，`wiretype = 0` 代表 Varint ，故接下來是 value。
 - 第 2 個 byte `10110111`，最高位元為 `1`，表示該 value 超過一個 byte ，繼續看下一個。
