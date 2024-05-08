@@ -19,7 +19,7 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> 隨者網路傳輸、頻寬與硬體的設備的改善和增強，能傳遞資料量也越來越大、越來越複雜，這時我們也不再只是追求能夠將資料傳遞完成，而是更加要求**短時內傳遞大量的資料**，故勢必會需要強化**序列化**和**壓縮**的技術。本章節介紹 Protobuf 編碼後的 byte array 結構，當有了基本的認識後，就會明白 Protobuf 為何它可以比 JSON、XML 傳輸效率更高，更能壓縮資料，實現高效率。
+> 隨者網路傳輸、頻寬與硬體的設備的改善和增強，能傳遞資料量也越來越大、越來越複雜，這時我們也不再只是追求能夠將資料傳遞完成，而是更加要求**短時內傳遞大量的資料**，故勢必會需要強化**序列化**和**壓縮**的技術。這篇會介紹 Protobuf 編碼後的 byte array 結構，以及會這樣設計的思路，當有了基本的認識後，就會明白 Protobuf 為何它可以比 JSON、XML 傳輸效率更高，更能壓縮資料，實現高效率。
 
 <!--more-->
 
@@ -96,7 +96,7 @@ message Author {
 {{< image classes="fancybox fig-100" src="/images/data-structure/protobuf-encode-data.jpg" >}}
 
 
-承上結構，我們必須要知道 Protobuf 已經做了一些事情和一些名詞意義 :
+承上結構，再來我們必須要知道 Protobuf 已經做了一些事情和一些名詞意義 :
 > 1. 編碼後 Type 會轉換成 WireType
 > 2. 承上`(field number, WireType)` 通常會被歸類為一組來聲明，被稱為 **Tag**
 > 3. 會使用 payload 這個名詞，是因為這部分的內容物，可能是 :
@@ -148,6 +148,15 @@ WireType 的作用是告訴解析器 **payload 的格式**，表示這個編碼�
 - T-V (`WireType = 0, 1, 5`)
 - T-L-V (`WireType = 2`)
 
+
+{{< alert warning >}}
+### 如果知道了 field number，那把它對應到 `.proto` 文件後就能知道 type 了，為什麼還要把 type 資訊轉成 wireType 編碼到 byte array 內呢 ?
+
+主要因為**擴展性**! Protobuf 是可以自由移除掉 optional field 而不會影響新舊格式資料的序列化/反序列化，那是如何實現這一點呢? 就是因為有把 type 資訊編碼到 byte array 內。
+
+試想當我們移除了一個 optional field，但有一個舊格式的序列化資料，要用新的格式來反序列化，如果全部資訊都參考 `.proto`，那就完全不知道 payload 的格式到底是 T-L-V 還是 T-V ，因為新的 `.proto` 已經把 field 刪掉了，完全找不到訊息。
+{{< /alert >}}
+
 那接下來說一下剛剛一直提到 T-[L]-V 儲存格式吧~
 
 # Tag-Length-Value (簡稱 T-L-V)
@@ -159,9 +168,7 @@ WireType 的作用是告訴解析器 **payload 的格式**，表示這個編碼�
 所有的 Tag 內 field number 的都有 Varint 壓縮，展示如下圖:
 {{< image classes="fancybox fig-100" src="/images/data-structure/protobuf-tag-field-number.jpg" >}}
 
-故 `[1, 15]` 編號範圍內的，只需要用一個 byte 編碼表示，所以將 15 以內的編號，留給頻繁出現的資料，可以進一步節省空間。
-
-Tag 值計算公式如下，代表 Tag 到底佔了幾個 bytes :
+故 `[1, 15]` 編號範圍內的，只需要用一個 byte 編碼表示，所以將 15 以內的編號，留給頻繁出現的資料，可以進一步節省空間。Tag 值計算公式如下，代表 Tag 到底佔了幾個 bytes :
 
 ```
 Tag = (field number << 3) | WireType number

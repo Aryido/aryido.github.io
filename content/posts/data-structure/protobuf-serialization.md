@@ -19,7 +19,7 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> 現在越來越多的服務應用使用 Protobuf 來作為資料交換的格式，它被廣泛應用於 RPC 調用和資料存儲。 Protobuf 語言中立、平臺中立，只要定義好一份 **.proto** 檔案，就可以生成**不同的程式語言**序列化和反序列化的功能來處理 data。要了解 Protobuf 序列化知識，首先需要了解一些知識點 :
+> 現在越來越多的服務應用使用 Protobuf 來作為資料交換的格式，它被廣泛應用於 RPC 調用和資料存儲。 Protobuf 語言中立、平臺中立，只要定義好一份 **.proto** 檔案，就可以生成**不同的程式語言**來處理資料的序列化或反序列化。要了解 Protobuf 序列化/反序列化，首先需要了解一些知識點 :
 > - Varint Encoding
 > - Zigzag Encoding
 > - Wire Type 類型
@@ -79,7 +79,7 @@ Protobuf encode 後二進制表示法結構，就是**多個 field 組成**的�
 
 
 # Deserialization
-直接來練習一下吧! 首先有一個新的 `.proto` 檔定義如下:
+直接來練習一下吧! 我是拿這個網站 [zddhub](https://zddhub.com/note/2021/07/25/protobuf.html) 內範例題目，首先有一個新的 `.proto` 檔定義如下:
 ```
 message Award {
   int64 id = 1;
@@ -113,7 +113,9 @@ message Award {
 00000000 00000000 00000000 00000000 00000000 10000000
 00100100 01000000
 ```
-由於 Protobuf 編碼是依照 T-[L]-V 串聯而成，第一個 byte 一定是 tag。
+由於 string 直接用 ASCII 碼存儲，直接查看二進制就解密了，所以做了一個 code_book ，透過下標對應到密碼本上。例如 `indexes = [7, 4, 11, 11, 14, 29, 22, 14, 17, 3, 27] = hello word`，那這邊例題密碼本稍微不太一樣，以下實際來解密它 :
+
+因為 Protobuf 編碼是依照 T-[L]-V 串聯而成，第一個 byte 一定是 tag。
 
 - 第 1 個 byte `00001000`，最高位元是 `0`，表示該 tag 僅以一個位元組表示。 `field number = 1`，`wiretype = 0` 代表 Varint ，故接下來是 value。
 - 第 2 個 byte `10110111`，最高位元為 `1`，表示該 value 超過一個 byte ，繼續看下一個。
