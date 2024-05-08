@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/data-structure/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 01 May 2024 22:10:30 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/data-structure/index.xml" rel="self" type="application/rss+xml"/><item><title>Protobuf - 序列化反序列化詳解</title><link>https://aryido.github.io/posts/data-structure/protobuf-serialization/</link><pubDate>Wed, 01 May 2024 22:10:30 +0800</pubDate><guid>https://aryido.github.io/posts/data-structure/protobuf-serialization/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>現在越來越多的服務應用使用 Protobuf 來作為資料交換的格式，它被廣泛應用於 RPC 調用和資料存儲。 Protobuf 語言中立、平臺中立，只要定義好一份 &lt;strong>.proto&lt;/strong> 檔案，就可以生成&lt;strong>不同的程式語言&lt;/strong>序列化和反序列化的功能來處理 data。要了解 Protobuf 序列化知識，首先需要了解一些知識點 :&lt;/p>
+&lt;p>現在越來越多的服務應用使用 Protobuf 來作為資料交換的格式，它被廣泛應用於 RPC 調用和資料存儲。 Protobuf 語言中立、平臺中立，只要定義好一份 &lt;strong>.proto&lt;/strong> 檔案，就可以生成&lt;strong>不同的程式語言&lt;/strong>來處理資料的序列化或反序列化。要了解 Protobuf 序列化/反序列化，首先需要了解一些知識點 :&lt;/p>
 &lt;ul>
 &lt;li>Varint Encoding&lt;/li>
 &lt;li>Zigzag Encoding&lt;/li>
@@ -10,10 +10,10 @@
 &lt;p>熟悉這些可以更加理解 protobuf，也能避免錯誤使用，以及更好的優化性能。本章節會實際把前面學到的知識點一次用上，用實際案例來了解 Protobuf - Serialization。&lt;/p>
 &lt;/blockquote></description></item><item><title>Protobuf - Encoding 結構</title><link>https://aryido.github.io/posts/data-structure/protobuf-encoding-sturcture/</link><pubDate>Sun, 28 Apr 2024 17:56:27 +0800</pubDate><guid>https://aryido.github.io/posts/data-structure/protobuf-encoding-sturcture/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>隨者網路傳輸、頻寬與硬體的設備的改善和增強，能傳遞資料量也越來越大、越來越複雜，這時我們也不再只是追求能夠將資料傳遞完成，而是更加要求&lt;strong>短時內傳遞大量的資料&lt;/strong>，故勢必會需要強化&lt;strong>序列化&lt;/strong>和&lt;strong>壓縮&lt;/strong>的技術。本章節介紹 Protobuf 編碼後的 byte array 結構，當有了基本的認識後，就會明白 Protobuf 為何它可以比 JSON、XML 傳輸效率更高，更能壓縮資料，實現高效率。&lt;/p>
+&lt;p>隨者網路傳輸、頻寬與硬體的設備的改善和增強，能傳遞資料量也越來越大、越來越複雜，這時我們也不再只是追求能夠將資料傳遞完成，而是更加要求&lt;strong>短時內傳遞大量的資料&lt;/strong>，故勢必會需要強化&lt;strong>序列化&lt;/strong>和&lt;strong>壓縮&lt;/strong>的技術。這篇會介紹 Protobuf 編碼後的 byte array 結構，以及會這樣設計的思路，當有了基本的認識後，就會明白 Protobuf 為何它可以比 JSON、XML 傳輸效率更高，更能壓縮資料，實現高效率。&lt;/p>
 &lt;/blockquote></description></item><item><title>Protobuf 簡介</title><link>https://aryido.github.io/posts/data-structure/protobuf/</link><pubDate>Fri, 26 Apr 2024 00:44:35 +0800</pubDate><guid>https://aryido.github.io/posts/data-structure/protobuf/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>Protobuf ，全稱 Protocol Buffers ，是一種輕量級的資料交換格式，最初由 Google 開發的「可擴展的序列化資料結構」，現在已成為一個開源項目，其語⾔中⽴且平台無關，適合高性能，對響應速度有要求的資料傳輸場景；也因為有&lt;strong>資料壓縮&lt;/strong>的能力，故也可用於資料儲存。Protobuf 的核心思想是&lt;strong>先定義好資料 schema&lt;/strong> ，然後可根據平台語言&lt;strong>生成對應的 code&lt;/strong>，使用生成的 code 就可以讀取或寫入各種資料流。&lt;/p>
+&lt;p>Protobuf ，全稱 Protocol Buffers ，是一種輕量級的資料交換格式，最初是由 Google 開發的「可擴展的序列化資料結構」，現已成為一個開源項目，其語⾔中⽴且平台無關，適合高性能，對響應速度有要求的資料傳輸場景；也因為有&lt;strong>資料壓縮&lt;/strong>的能力，故也可用於資料儲存。Protobuf 的核心思想是&lt;strong>先定義好資料 schema&lt;/strong> ，然後可根據所需的語言&lt;strong>生成對應的 code base&lt;/strong>，方便使用者操作: 序列化寫入、反序列化讀取。&lt;/p>
 &lt;p>Profobuf 需要注意的缺點是為&lt;strong>二進制格式&lt;/strong>，故 data 本身不具有可讀性，需要反序列化後才能看得懂資料內容。雖然是個好東西，但並非是個用來完全取代 JSON 的解決方案，JSON 仍有其可讀性高、易操作及通用性高等優點。在多數 API 設計的場景之下，JSON 仍然是最好的選擇。&lt;/p>
 &lt;/blockquote></description></item><item><title>Avro</title><link>https://aryido.github.io/posts/data-structure/avro/</link><pubDate>Sun, 23 Apr 2023 15:27:54 +0800</pubDate><guid>https://aryido.github.io/posts/data-structure/avro/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
