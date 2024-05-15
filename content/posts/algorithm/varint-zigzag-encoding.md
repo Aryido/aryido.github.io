@@ -60,7 +60,7 @@ reward: false
 -  `1`: 表示後續的 byte 也是數字的一部分
 -  `0`: 表示本 byte 是最後一個字節，剩餘 7 位都用來表示數字的值。
 
-而**最前面補 1 或 0**，其含義只是代表著一個標識位而已，由於是在每個 byte 的**最高位(most significant bit)，故也簡寫成 msb**。為了更好理解，這規則由下圖補充說明:
+**最前面補 1 或 0**，其含義只是代表著一個標識位而已，代表後面有沒有繼續接上數值。由於是在每個 byte 的**最高位的英文是 most significant bit，故也會簡寫成 msb**。為了更好理解，這規則由下圖補充說明:
 {{< image classes="fancybox fig-100" src="/images/algorithm/varint-order.jpg" >}}
 
 {{< alert info >}}
@@ -70,7 +70,7 @@ reward: false
 承上流程，可知這是一種**自帶分隔符號的編碼方式**，除了標識位，剩餘 7 bit 會存放真實資料的部分，而 `2^7 = 128 ` 剛好，所以才會使用 Base 128 Varints 這種命名。在實際場景中，小數字的使用率遠遠多於大數字，因此通過 Varint 編碼對於大部分場景都可以起到很好的壓縮效果。
 
 {{< alert info >}}
-由上述過程，我們也可以發現，若把 int32 升級到較大的整數類型 int64，也不影響 Varint Encoding 結果，這也表示有比較好的**兼容性**，可向後相容。
+由上述過程，我們也可以發現，若把 int32 升級到較大的整數類型 int64，也不影響 Varint Encoding 結果，這也表示有比較好的**兼容性**。
 {{< /alert >}}
 
 # Zigzag
@@ -124,7 +124,12 @@ ZigZag 的作法是把數字依照**絕對值**大小排序，觀察**數字**�
    = 5
 ```
 
-因此我們只要把**原數字二進位表示左移一位**，若是負數還要再多取 Complement，最後將 signed bit 補到最後一位，就是我們要的結果。這過程的**函數化**詳細說明請參考 reference，以下直接附上 `32bits` 轉換公式：
+因此我們只要
+- 把**原數字二進位表示左移一位**
+- 若是負數還要再多取 Complement
+- 最後將 signed bit 補到最後一位
+
+就是我們要的結果! 這過程的**函數化**詳細說明請參考 reference，以下直接附上 `32bits` 轉換公式：
 ```
 func int32ToZigZag(n int32) int32 {
 	return (n << 1) ^ (n >> 31)
@@ -134,10 +139,10 @@ func int32ToZigZag(n int32) int32 {
 ---
 
 # 心得
-會介紹 Varint & Zigzag 主要是因為 Protobuf 就是透過這些 encoding 來壓縮資料。資料傳輸中出於 IO 的考慮，我們會希望盡可能的資料壓縮， Varint 就是一種對數字進行壓縮編碼的方法；而 Varint 也是有所謂的缺點，就是對負數壓縮很差，故還要使用 ZigZag 編碼解決一些問題。
+會介紹 Varint & Zigzag 主要是因為 Protobuf 就是透過這些 encoding 來壓縮資料。資料傳輸的時候出於 IO 的考慮，我們會希望盡可能的資料壓縮，而 Varint 就是一種對數字進行壓縮編碼的方法。但 Varint 也是有缺點的，就是對負數壓縮很差，故還要使用 ZigZag 編碼解決負數的壓縮問題。
 
 {{< alert success >}}
-如果提前知道 field 值大部分是取負數的時候，可採用 sint32/sint64 類型，而不要使用 int32/int64。因為採用 sint32/sint64 數據類型表示負數時，會先採用 Zigzag 編碼再採用 Varint 編碼，從而更加有效壓縮數據。
+如果提前知道 Protobuf 該 field 的值，有部分會是取負數的時候，可採用 sint32/sint64 類型，而不要使用 int32/int64。因為採用 sint32/sint64 數據類型表示負數時，會先採用 Zigzag 編碼再採用 Varint 編碼，從而更加有效壓縮數據。
 {{< /alert >}}
 
 ---
