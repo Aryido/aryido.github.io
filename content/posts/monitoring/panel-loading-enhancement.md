@@ -8,7 +8,7 @@ date: 2022-09-08T22:18:02+08:00
 thumbnailImage: "/images/grafana/grafana-icon.jpg"
 
 categories:
-- Monitoring
+- monitoring
 
 comment: false
 

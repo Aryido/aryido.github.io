@@ -8,7 +8,7 @@ date: 2022-10-31T23:35:14+08:00
 thumbnailImage: "/images/grafana/datadog.jpg"
 
 categories:
-- Monitoring
+- monitoring
 
 comment: false
 

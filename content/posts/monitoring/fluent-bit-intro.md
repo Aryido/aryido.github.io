@@ -8,7 +8,7 @@ date: 2024-01-24T20:40:16+08:00
 thumbnailImage: "/images/monitoring/fluent-bit.jpg"
 
 categories:
-- Monitoring
+- monitoring
 
 comment: false
 

@@ -10,7 +10,7 @@ date: 2022-09-04T11:17:52+08:00
 thumbnailImage: "/images/grafana/grafana-icon.jpg"
 
 categories:
-- Monitoring
+- monitoring
 
 comment: false
 
