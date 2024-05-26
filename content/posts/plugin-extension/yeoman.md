@@ -3,12 +3,15 @@ title: "Yeoman - 專案模板產生器"
 
 author: Aryido
 
-date: 2024-04-22T23:21:38+08:00
+date: 2024-05-21T23:21:38+08:00
 
 thumbnailImage: "/images/others/yeoman-logo.jpg"
 
 categories:
-- Develop
+- develop
+
+tags:
+- vscode
 
 comment: false
 
@@ -33,17 +36,8 @@ Yeoman 是一個 Node.js 專案，雖然是用 Javascript 寫成的，但卻不�
 
 # 安裝
 
-#### 安装 nodejs
-這裡也附上 mac 在安裝 nodejs 時，可以選擇版本的方式:
-```
-brew install node
-node -v # newest version ex:v21.7.3
-brew install node@20
-brew unlink node
-brew link --overwrite node@20
-node -v # v20.12.2 LTS
-
-```
+#### [安装 nodejs](/posts/others/homebrew/)
+參考上述連結的**官方多版本 formula安裝**，有教學安裝 Nodejs 和版本更換。
 
 #### 安装 yo 和 Generator
 Generate 並不隨 yeoman 安裝的，需要我們依照不同的應用框架的需求，自行安裝。故要去 [Discovering Generators page](https://yeoman.io/generators/) 尋找所需要的範本，要安裝的 generator 名稱對應為 : **generator-{Name}**，其中 Name 為 yeoman generators 官網搜尋頁面中，列表顯示名稱。以下用 VSCode extension 來當安裝範例:
