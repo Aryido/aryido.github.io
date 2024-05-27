@@ -3,7 +3,7 @@ title: GCP Compute Engine 概述
 
 author: Aryido
 
-date: 2024-05-13T23:26:00+08:00
+date: 2024-05-23T23:26:00+08:00
 
 thumbnailImage: "/images/google-cloud/logo.jpg"
 
@@ -74,10 +74,10 @@ GCP 也提供先佔虛擬機器（preemptible VMs）。與一般 VM 相比，pre
 
 ### OS 系統
 使用 operating system (OS) images 為 VM 建立啟動磁碟，在 GCP 裡把 vm 啟動起來前的系統規格定義，簡單稱為 Image，有以下幾種 :
-- ***public OS images***
+#####  ***public OS images***
 
   由 Google、開源社群、第三方供應商提供和維護。預設情況下，所有 Google Cloud 專案都可以存取這些作業系統映像來啟動 Linux 或 Windows 操作系統；甚至授權版本 Redhat。
-- ***自己客製化的 private custom OS images***
+##### ***自己客製化的 private custom OS images***
 
   自訂映像常用在把特定 lib 或應用預先下載好，使用這個 image 建立 VM 後就可以直接使用所需工具了。以下列表都可以作為 source 來製作自己的 custom OS images :
    - 現存的 Disk
@@ -87,7 +87,7 @@ GCP 也提供先佔虛擬機器（preemptible VMs）。與一般 VM 相比，pre
    - Virtual disk (VMDK、VHD)
   {{< image classes="fancybox fig-100" src="/images/google-cloud/vm-os-image-custom.jpg" >}}
 
-- Container-Optimized OS (COS)
+##### Container-Optimized OS (COS)
 
   還有一個容器優化作業系統，針對容器進行了最佳化，由 Google 基於開源 Chromium OS 專案維護。可以部署 Docker 容器在 VM 上，設定 VM 啟動 Docker 容器。
 
