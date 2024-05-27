@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/others/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 20 May 2024 19:38:28 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/others/index.xml" rel="self" type="application/rss+xml"/><item><title>Homebrew 介紹和常用操作</title><link>https://aryido.github.io/posts/others/homebrew/</link><pubDate>Mon, 20 May 2024 19:38:28 +0800</pubDate><guid>https://aryido.github.io/posts/others/homebrew/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>Homebrew 是一個&lt;strong>軟體套件管理工具&lt;/strong>，廣泛使用在 MAC 上，可以安裝一些 Mac App Store 上沒有的套件軟體，操作十分方便，可以簡化 MAC OS 上其他軟體安裝的過程，是個很有名的&lt;strong>非官方工具&lt;/strong>，由 Max Howell 以 Git 和 Ruby 為基底寫成，並通過 GitHub 維護，為 2012 年 GitHub 上擁有最多新貢獻者的專案。其中也有很有趣的小軼事：Homebrew 的作者曾應聘過 Google 的職位，面試失敗之後在 Twitter 上發帖 :&lt;/p>
+&lt;p>Homebrew 是一個廣泛使用在 MAC 上的&lt;strong>套件管理工具&lt;/strong>，可以安裝一些 Mac App Store 上沒有的軟體，其操作十分方便，可以簡化軟體安裝的過程，是個很有名的&lt;strong>非官方工具&lt;/strong>，由 Max Howell 以 Git 和 Ruby 為基底寫成，並通過 GitHub 維護，為 2012 年 GitHub 上擁有最多新貢獻者的專案。對於其作者也有個有趣的軼事：Max Howell 曾應聘過 Google 的職位，面試失敗之後在 Twitter 上發文章 :&lt;/p>
 &lt;ul>
 &lt;li>Google: 90% of our engineers use the software you wrote (Homebrew), but you can&amp;rsquo;t invert a binary tree on a whiteboard so f*** off.&lt;/li>
 &lt;/ul>

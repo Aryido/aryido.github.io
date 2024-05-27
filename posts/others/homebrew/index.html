@@ -1,27 +1,27 @@
-<!doctype html><html lang=en-us><head><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Homebrew 介紹和常用操作","image":"https://aryido.github.io/images/others/homebrew-logo.jpg","datePublished":"2024-05-20T19:38:28+08:00","dateModified":"2024-05-20T19:38:28+08:00","author":{"@type":"Person","name":"李昀陽 YunYang Lee","image":"https://aryido.github.io/images/aboutme/head-shot.jpg"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aryido.github.io\/posts\/others\/homebrew\/"},"publisher":{"@type":"Organization","name":"Aryido Tech Note","logo":{"@type":"ImageObject","url":"https://aryido.github.io/images/aboutme/head-shot.jpg"}},"description":" Homebrew 是一個軟體套件管理工具，廣泛使用在 MAC 上，可以安裝一些 Mac App Store 上沒有的套件軟體，操作十分方便，可以簡化 MAC OS 上其他軟體安裝的過程，是個很有名的非官方工具，由 Max Howell 以 Git 和 Ruby 為基底寫成，並通過 GitHub 維護，為 2012 年 GitHub 上擁有最多新貢獻者的專案。其中也有很有趣的小軼事：Homebrew 的作者曾應聘過 Google 的職位，面試失敗之後在 Twitter 上發帖 :\nGoogle: 90% of our engineers use the software you wrote (Homebrew), but you can\u0026rsquo;t invert a binary tree on a whiteboard so f*** off. 因此在網上引發了面試白板題的討論。\n","keywords":[]}</script><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Hugo 0.119.0 with theme Tranquilpeak 0.5.3-BETA"><meta name=author content="李昀陽 YunYang Lee"><meta name=keywords content><meta name=description content="
+<!doctype html><html lang=en-us><head><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Homebrew 介紹和常用操作","image":"https://aryido.github.io/images/others/homebrew-logo.jpg","datePublished":"2024-05-20T19:38:28+08:00","dateModified":"2024-05-20T19:38:28+08:00","author":{"@type":"Person","name":"李昀陽 YunYang Lee","image":"https://aryido.github.io/images/aboutme/head-shot.jpg"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aryido.github.io\/posts\/others\/homebrew\/"},"publisher":{"@type":"Organization","name":"Aryido Tech Note","logo":{"@type":"ImageObject","url":"https://aryido.github.io/images/aboutme/head-shot.jpg"}},"description":" Homebrew 是一個廣泛使用在 MAC 上的套件管理工具，可以安裝一些 Mac App Store 上沒有的軟體，其操作十分方便，可以簡化軟體安裝的過程，是個很有名的非官方工具，由 Max Howell 以 Git 和 Ruby 為基底寫成，並通過 GitHub 維護，為 2012 年 GitHub 上擁有最多新貢獻者的專案。對於其作者也有個有趣的軼事：Max Howell 曾應聘過 Google 的職位，面試失敗之後在 Twitter 上發文章 :\nGoogle: 90% of our engineers use the software you wrote (Homebrew), but you can\u0026rsquo;t invert a binary tree on a whiteboard so f*** off. 因此在網上引發了面試白板題的討論。\n","keywords":[]}</script><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Hugo 0.119.0 with theme Tranquilpeak 0.5.3-BETA"><meta name=author content="李昀陽 YunYang Lee"><meta name=keywords content><meta name=description content="
 
-Homebrew 是一個軟體套件管理工具，廣泛使用在 MAC 上，可以安裝一些 Mac App Store 上沒有的套件軟體，操作十分方便，可以簡化 MAC OS 上其他軟體安裝的過程，是個很有名的非官方工具，由 Max Howell 以 Git 和 Ruby 為基底寫成，並通過 GitHub 維護，為 2012 年 GitHub 上擁有最多新貢獻者的專案。其中也有很有趣的小軼事：Homebrew 的作者曾應聘過 Google 的職位，面試失敗之後在 Twitter 上發帖 :
+Homebrew 是一個廣泛使用在 MAC 上的套件管理工具，可以安裝一些 Mac App Store 上沒有的軟體，其操作十分方便，可以簡化軟體安裝的過程，是個很有名的非官方工具，由 Max Howell 以 Git 和 Ruby 為基底寫成，並通過 GitHub 維護，為 2012 年 GitHub 上擁有最多新貢獻者的專案。對於其作者也有個有趣的軼事：Max Howell 曾應聘過 Google 的職位，面試失敗之後在 Twitter 上發文章 :
 
 Google: 90% of our engineers use the software you wrote (Homebrew), but you can&rsquo;t invert a binary tree on a whiteboard so f*** off.
 
 因此在網上引發了面試白板題的討論。
 "><meta property="og:description" content="
 
-Homebrew 是一個軟體套件管理工具，廣泛使用在 MAC 上，可以安裝一些 Mac App Store 上沒有的套件軟體，操作十分方便，可以簡化 MAC OS 上其他軟體安裝的過程，是個很有名的非官方工具，由 Max Howell 以 Git 和 Ruby 為基底寫成，並通過 GitHub 維護，為 2012 年 GitHub 上擁有最多新貢獻者的專案。其中也有很有趣的小軼事：Homebrew 的作者曾應聘過 Google 的職位，面試失敗之後在 Twitter 上發帖 :
+Homebrew 是一個廣泛使用在 MAC 上的套件管理工具，可以安裝一些 Mac App Store 上沒有的軟體，其操作十分方便，可以簡化軟體安裝的過程，是個很有名的非官方工具，由 Max Howell 以 Git 和 Ruby 為基底寫成，並通過 GitHub 維護，為 2012 年 GitHub 上擁有最多新貢獻者的專案。對於其作者也有個有趣的軼事：Max Howell 曾應聘過 Google 的職位，面試失敗之後在 Twitter 上發文章 :
 
 Google: 90% of our engineers use the software you wrote (Homebrew), but you can&rsquo;t invert a binary tree on a whiteboard so f*** off.
 
 因此在網上引發了面試白板題的討論。
 "><meta property="og:type" content="article"><meta property="og:title" content="Homebrew 介紹和常用操作"><meta name=twitter:title content="Homebrew 介紹和常用操作"><meta property="og:url" content="https://aryido.github.io/posts/others/homebrew/"><meta property="twitter:url" content="https://aryido.github.io/posts/others/homebrew/"><meta property="og:site_name" content="Aryido Tech Note"><meta property="og:description" content="
 
-Homebrew 是一個軟體套件管理工具，廣泛使用在 MAC 上，可以安裝一些 Mac App Store 上沒有的套件軟體，操作十分方便，可以簡化 MAC OS 上其他軟體安裝的過程，是個很有名的非官方工具，由 Max Howell 以 Git 和 Ruby 為基底寫成，並通過 GitHub 維護，為 2012 年 GitHub 上擁有最多新貢獻者的專案。其中也有很有趣的小軼事：Homebrew 的作者曾應聘過 Google 的職位，面試失敗之後在 Twitter 上發帖 :
+Homebrew 是一個廣泛使用在 MAC 上的套件管理工具，可以安裝一些 Mac App Store 上沒有的軟體，其操作十分方便，可以簡化軟體安裝的過程，是個很有名的非官方工具，由 Max Howell 以 Git 和 Ruby 為基底寫成，並通過 GitHub 維護，為 2012 年 GitHub 上擁有最多新貢獻者的專案。對於其作者也有個有趣的軼事：Max Howell 曾應聘過 Google 的職位，面試失敗之後在 Twitter 上發文章 :
 
 Google: 90% of our engineers use the software you wrote (Homebrew), but you can&rsquo;t invert a binary tree on a whiteboard so f*** off.
 
 因此在網上引發了面試白板題的討論。
 "><meta name=twitter:description content="
 
-Homebrew 是一個軟體套件管理工具，廣泛使用在 MAC 上，可以安裝一些 Mac App Store 上沒有的套件軟體，操作十分方便，可以簡化 MAC OS 上其他軟體安裝的過程，是個很有名的非官方工具，由 Max Howell 以 Git 和 Ruby 為基底寫成，並通過 GitHub 維護，為 2012 年 GitHub 上擁有最多新貢獻者的專案。其中也有很有趣的小軼事：Homebrew 的作者曾應聘過 Google 的職位，面試失敗之後在 Twitter 上發帖 :
+Homebrew 是一個廣泛使用在 MAC 上的套件管理工具，可以安裝一些 Mac App Store 上沒有的軟體，其操作十分方便，可以簡化軟體安裝的過程，是個很有名的非官方工具，由 Max Howell 以 Git 和 Ruby 為基底寫成，並通過 GitHub 維護，為 2012 年 GitHub 上擁有最多新貢獻者的專案。對於其作者也有個有趣的軼事：Max Howell 曾應聘過 Google 的職位，面試失敗之後在 Twitter 上發文章 :
 
 Google: 90% of our engineers use the software you wrote (Homebrew), but you can&rsquo;t invert a binary tree on a whiteboard so f*** off.
 
@@ -33,7 +33,7 @@ Google: 90% of our engineers use the software you wrote (Homebrew), but you can&
 <span class=sidebar-button-desc>GitHub</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/index.xml title=RSS><i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden=true></i>
 <span class=sidebar-button-desc>RSS</span></a></li></ul><ul class=sidebar-buttons></ul><ul class=sidebar-buttons></ul></div></nav><div id=main data-behavior=4 class=hasCoverMetaIn><article class=post id=top><div class="post-header main-content-wrap text-left"><h1 class=post-title>Homebrew 介紹和常用操作</h1><div class="postShorten-meta post-meta"><time datetime=2024-05-20T19:38:28+08:00>May 20, 2024</time>
 <span>in</span>
-<a class=category-link href=https://aryido.github.io/categories/develop>develop</a></div></div><div class="post-content markdown"><div class=main-content-wrap><blockquote><p>Homebrew 是一個<strong>軟體套件管理工具</strong>，廣泛使用在 MAC 上，可以安裝一些 Mac App Store 上沒有的套件軟體，操作十分方便，可以簡化 MAC OS 上其他軟體安裝的過程，是個很有名的<strong>非官方工具</strong>，由 Max Howell 以 Git 和 Ruby 為基底寫成，並通過 GitHub 維護，為 2012 年 GitHub 上擁有最多新貢獻者的專案。其中也有很有趣的小軼事：Homebrew 的作者曾應聘過 Google 的職位，面試失敗之後在 Twitter 上發帖 :</p><ul><li>Google: 90% of our engineers use the software you wrote (Homebrew), but you can&rsquo;t invert a binary tree on a whiteboard so f*** off.</li></ul><p>因此在網上引發了面試白板題的討論。</p></blockquote><hr><p>就如同 Homebrew 官網所說：<code>The Missing Package Manager for macOS</code>，一開始 macOS 並沒有很好的套件管理工具， App Store 經常讓人詬病， Apple 對於 Mac App Store 的經營似乎不如 iOS App Store 用心。比較一下 <a href=https://aryido.github.io/posts/linux/apt-yum-apk/>Linux 系統套件管理工具</a>例如： Ubuntu, Debian : <code>apt-get</code>；CentOS : <code>yum</code> 等等，故隨後就推出 Homebrew 補足 Mac 的不足 ，可在 Mac 上可以對套件做統一控管，以及利用指令做到批量管理和安裝。</p><h1 id=homebrew-名詞簡介httpsgithubcomhomebrewbrewblobmasterdocsformula-cookbookmdhomebrew-terminology><a href=https://github.com/Homebrew/brew/blob/master/docs/Formula-Cookbook.md#homebrew-terminology>Homebrew 名詞簡介</a></h1><p>homebrew 又大概把安裝的套件分為兩類：</p><ul><li>以 Command Line 方式操作，我們就單純稱為 Homebrew</li><li>對於一些圖形化介面的應用程式套件，我們就稱為 Homebrew-cask</li></ul><div class="alert warning"><p>以上只是大概分類的概念，像是 gcp 雲端的 gcloud，明明感覺是 CLI 工具，但還是歸類在 Homebrew-cask 內。</p></div><p>Homebrew 比喻起來就是在 Home 「家裡」 Brew「釀酒」，所以一個套件套件就相當等於是一個酒的配方，故 Homebrew 將套件稱為 formula ，而實際上 formula 是指從 source code 中構建的 Homebrew package 的定義，且 formula 都是 Ruby script。</p><p>當釀好酒後，需要 Keg「桶子」 來存放，實際上桶子就是標示了 formula 版本訊息 ; 而許多桶子就要有一個 rack「架子」來放各種 Keg「桶子」；再來 Cellar「地窖」內有許多的 racks「架子」。</p><p>最後要將 Keg 中的酒倒出來，會用到 Tap：</p><ul><li>Tap 當名詞時是指酒閥，是指由 formulae 所形成的 Git 版本庫</li><li>Tap 當動詞時是指在本機 clone 這個 Git 版本庫</li></ul><h1 id=操作指令>操作指令</h1><h3 id=管理-homebrew-本身的-cli>管理 Homebrew 本身的 CLI</h3><pre tabindex=0><code># 查看 homebrew 安裝路徑
+<a class=category-link href=https://aryido.github.io/categories/develop>develop</a></div></div><div class="post-content markdown"><div class=main-content-wrap><blockquote><p>Homebrew 是一個廣泛使用在 MAC 上的<strong>套件管理工具</strong>，可以安裝一些 Mac App Store 上沒有的軟體，其操作十分方便，可以簡化軟體安裝的過程，是個很有名的<strong>非官方工具</strong>，由 Max Howell 以 Git 和 Ruby 為基底寫成，並通過 GitHub 維護，為 2012 年 GitHub 上擁有最多新貢獻者的專案。對於其作者也有個有趣的軼事：Max Howell 曾應聘過 Google 的職位，面試失敗之後在 Twitter 上發文章 :</p><ul><li>Google: 90% of our engineers use the software you wrote (Homebrew), but you can&rsquo;t invert a binary tree on a whiteboard so f*** off.</li></ul><p>因此在網上引發了面試白板題的討論。</p></blockquote><hr><p>就如同 Homebrew 官網所說：<code>The Missing Package Manager for macOS</code>，一開始 macOS 並沒有很好的套件管理工具， 官方 App Store 經常讓人詬病！ Apple 對於 Mac App Store 的經營似乎不如 iOS App Store 用心。對比一下 <a href=https://aryido.github.io/posts/linux/apt-yum-apk/>Linux 系統套件管理工具</a>例如： Ubuntu, Debian : <code>apt-get</code>；CentOS : <code>yum</code> 等等，Mac 在軟體真的不太友善。故隨後就推出 Homebrew 補足了不足 ，可對套件做統一控管，以及利用指令做到批量管理和安裝。</p><h1 id=homebrew-名詞簡介httpsgithubcomhomebrewbrewblobmasterdocsformula-cookbookmdhomebrew-terminology><a href=https://github.com/Homebrew/brew/blob/master/docs/Formula-Cookbook.md#homebrew-terminology>Homebrew 名詞簡介</a></h1><p>homebrew 又大概把安裝的套件分為兩類：</p><ul><li>以 Command Line 方式操作，我們就單純稱為 Homebrew</li><li>對於一些圖形化介面的應用程式套件，我們就稱為 Homebrew-cask</li></ul><div class="alert warning"><p>以上只是大概分類的概念，像是 gcp 雲端的 gcloud，明明感覺是 CLI 工具，但還是歸類在 Homebrew-cask 內。</p></div><p>Homebrew 比喻起來就是在 Home 「家裡」 Brew「釀酒」，所以一個套件就相當於是一個酒的配方，故 Homebrew 將套件稱為 formula ，而實際上 formula 是指從 source code 中構建的 Homebrew package 的定義，且 formula 都是 Ruby script。</p><p>當釀好酒後，需要 Keg「桶子」 來存放，實際上桶子就是標示了 formula 版本訊息 ; 而許多桶子就要有一個 rack「架子」來放各種 Keg「桶子」；再來 Cellar「地窖」內有許多的 racks「架子」。</p><p>最後要將 Keg 中的酒倒出來，會用到 Tap：</p><ul><li>Tap 當名詞時是指酒閥，是指由 formulae 所形成的 Git 版本庫</li><li>Tap 當動詞時是指在本機 clone 這個 Git 版本庫</li></ul><h1 id=操作指令>操作指令</h1><h3 id=管理-homebrew-本身的-cli>管理 Homebrew 本身的 CLI</h3><pre tabindex=0><code># 查看 homebrew 安裝路徑
 brew --prefix
 
 # 查看brew配置
@@ -44,10 +44,9 @@ brew cleanup
 
 # 更新 Homebrew 本身，以及已經安裝的所有套件的資訊，會列出有異動的 formula
 brew update
-</code></pre><h3 id=管理套件-cli>管理套件 CLI</h3><pre tabindex=0><code># 安裝套件
-brew search &lt;formula&gt;          # 尋找有無某套件
-brew install &lt;formula&gt;         # 安裝套件
-brew uninstall &lt;formula&gt;       # 移除套件
+</code></pre><h3 id=管理套件-cli>管理套件 CLI</h3><pre tabindex=0><code>brew search &lt;formula&gt;      
+brew install &lt;formula&gt;     
+brew uninstall &lt;formula&gt;
 
 # 查詢指定套件的資訊，如果是已經安裝的，會連同安裝路徑與檔案大小等訊息也出現
 brew info &lt;formula&gt;
@@ -70,7 +69,7 @@ brew install node@20
 brew unlink node
 brew link --overwrite node@20
 node -v # v20.12.2 LTS
-</code></pre><h3 id=formula-git-歷史版本安裝>Formula Git 歷史版本安裝</h3><p>brew 也可以安裝第三方的庫，除了自己的來源還允許別人的來源添加進來，適用於安裝不在 homebrew 的第三方套件，會增加 homebrew 的 formula</p><pre tabindex=0><code>brew tap &lt;tap-name&gt; 
+</code></pre><h3 id=formula-git-歷史版本安裝>Formula Git 歷史版本安裝</h3><p>brew 也可以安裝第三方的庫，除了自己的來源庫，還允許別人的來源庫添加進來，適用於安裝不在 homebrew 的第三方套件，會增加 homebrew 的 formula</p><pre tabindex=0><code>brew tap &lt;tap-name&gt; 
 brew untap &lt;tap-name&gt;        
 
 # 查看 tap 詳細資訊
