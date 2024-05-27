@@ -17,7 +17,7 @@ reward: false
 ---
 
 <!--BODY-->
-> Homebrew 是一個**軟體套件管理工具**，廣泛使用在 MAC 上，可以安裝一些 Mac App Store 上沒有的套件軟體，操作十分方便，可以簡化 MAC OS 上其他軟體安裝的過程，是個很有名的**非官方工具**，由 Max Howell 以 Git 和 Ruby 為基底寫成，並通過 GitHub 維護，為 2012 年 GitHub 上擁有最多新貢獻者的專案。其中也有很有趣的小軼事：Homebrew 的作者曾應聘過 Google 的職位，面試失敗之後在 Twitter 上發帖 :
+> Homebrew 是一個廣泛使用在 MAC 上的**套件管理工具**，可以安裝一些 Mac App Store 上沒有的軟體，其操作十分方便，可以簡化軟體安裝的過程，是個很有名的**非官方工具**，由 Max Howell 以 Git 和 Ruby 為基底寫成，並通過 GitHub 維護，為 2012 年 GitHub 上擁有最多新貢獻者的專案。對於其作者也有個有趣的軼事：Max Howell 曾應聘過 Google 的職位，面試失敗之後在 Twitter 上發文章 :
 > - Google: 90% of our engineers use the software you wrote (Homebrew), but you can't invert a binary tree on a whiteboard so f*** off.
 > 
 > 因此在網上引發了面試白板題的討論。
@@ -26,7 +26,7 @@ reward: false
 ---
 
 
-就如同 Homebrew 官網所說：```The Missing Package Manager for macOS```，一開始 macOS 並沒有很好的套件管理工具， App Store 經常讓人詬病， Apple 對於 Mac App Store 的經營似乎不如 iOS App Store 用心。比較一下 [Linux 系統套件管理工具](/posts/linux/apt-yum-apk/)例如： Ubuntu, Debian : ```apt-get```；CentOS : ```yum``` 等等，故隨後就推出 Homebrew 補足 Mac 的不足 ，可在 Mac 上可以對套件做統一控管，以及利用指令做到批量管理和安裝。 
+就如同 Homebrew 官網所說：```The Missing Package Manager for macOS```，一開始 macOS 並沒有很好的套件管理工具， 官方 App Store 經常讓人詬病！ Apple 對於 Mac App Store 的經營似乎不如 iOS App Store 用心。對比一下 [Linux 系統套件管理工具](/posts/linux/apt-yum-apk/)例如： Ubuntu, Debian : ```apt-get```；CentOS : ```yum``` 等等，Mac 在軟體真的不太友善。故隨後就推出 Homebrew 補足了不足 ，可對套件做統一控管，以及利用指令做到批量管理和安裝。 
 
 # [Homebrew 名詞簡介](https://github.com/Homebrew/brew/blob/master/docs/Formula-Cookbook.md#homebrew-terminology)
 homebrew 又大概把安裝的套件分為兩類：
@@ -37,7 +37,7 @@ homebrew 又大概把安裝的套件分為兩類：
 以上只是大概分類的概念，像是 gcp 雲端的 gcloud，明明感覺是 CLI 工具，但還是歸類在 Homebrew-cask 內。
 {{< /alert >}}
 
-Homebrew 比喻起來就是在 Home 「家裡」 Brew「釀酒」，所以一個套件套件就相當等於是一個酒的配方，故 Homebrew 將套件稱為 formula ，而實際上 formula 是指從 source code 中構建的 Homebrew package 的定義，且 formula 都是 Ruby script。
+Homebrew 比喻起來就是在 Home 「家裡」 Brew「釀酒」，所以一個套件就相當於是一個酒的配方，故 Homebrew 將套件稱為 formula ，而實際上 formula 是指從 source code 中構建的 Homebrew package 的定義，且 formula 都是 Ruby script。
 
 當釀好酒後，需要 Keg「桶子」 來存放，實際上桶子就是標示了 formula 版本訊息 ; 而許多桶子就要有一個 rack「架子」來放各種 Keg「桶子」；再來 Cellar「地窖」內有許多的 racks「架子」。
 
@@ -65,10 +65,9 @@ brew update
 
 ### 管理套件 CLI
 ```
-# 安裝套件
-brew search <formula>          # 尋找有無某套件
-brew install <formula>         # 安裝套件
-brew uninstall <formula>       # 移除套件
+brew search <formula>      
+brew install <formula>     
+brew uninstall <formula>
 
 # 查詢指定套件的資訊，如果是已經安裝的，會連同安裝路徑與檔案大小等訊息也出現
 brew info <formula>
@@ -102,7 +101,7 @@ node -v # v20.12.2 LTS
 ```
 
 ### Formula Git 歷史版本安裝
-brew 也可以安裝第三方的庫，除了自己的來源還允許別人的來源添加進來，適用於安裝不在 homebrew 的第三方套件，會增加 homebrew 的 formula
+brew 也可以安裝第三方的庫，除了自己的來源庫，還允許別人的來源庫添加進來，適用於安裝不在 homebrew 的第三方套件，會增加 homebrew 的 formula
 ```
 brew tap <tap-name> 
 brew untap <tap-name>        
