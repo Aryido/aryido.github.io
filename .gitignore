@@ -1,6 +1,15 @@
+### macOS ###
+# General
+.DS_Store
+
+### Hugo ###
+# Generated files by hugo
 public/
 
-.hugo_build.lock
+
+# Temporary lock file while building
+/.hugo_build.lock
+
 
 # draft
 content/java
