@@ -77,9 +77,9 @@ API 設計上 Electron 是 multi-process 的:
 
 - ##### **多個 Renderer Process** :
 
-由於 electron 使用 Chromium 來顯示 UI ，故 Chromium 多進程架構也會被用到。主進程會通過 Chromium API 創建 Renderer Process，每一個 workbench 對應一個 Renderer Process，其主要功能是存取 Browser API 和一部分 Node API、Native API。
+由於 electron 使用 Chromium 來顯示 UI ，故 Chromium 多進程架構也會被用到。主進程會通過 Chromium API 創建 Renderer Process，而 workbench 內的每一個 UI 元件會對應一個 Renderer Process，其主要功能是存取 Browser API 和一部分 Node API、Native API。
 
-Renderer Process 一般只有負責 UI 相關的，如果想要在 UI 上執行 GUI 操作，相應的 Renderer Process 必須與 Main Process 進行通信，VSCode 內部提供了通訊機制如: IPC進程通訊模組、RPC、Shared Process
+Renderer Process 一般只有負責 UI 相關的，如果想要在 UI 上執行 GUI 操作，相應的 Renderer Process 必須與 Main Process 進行通信，VSCode 內部提供了通訊機制如: IPC進程通訊模組、RPC、Shared Process。
 
 {{< alert warning >}}
 Workbench 是指包含以下 UI 元件的整體 Visual Studio Code UI：Title Bar、Activity Bar、Side Bar、Panel、Editor Group、Status Bar
@@ -87,9 +87,9 @@ Workbench 是指包含以下 UI 元件的整體 Visual Studio Code UI：Title Ba
 
 - ##### **多個 Extension Host** : 
 
-Extension Host 也是獨立的進程，用於運行其它 extension，並暴露一些 VSCode 的 API 供 extension 去使用。 由於 vscode 考慮 Extension 可能會影響啓動性能和 IDE 自身的穩定性，所以通過進程隔離來解決這個問題，故每個 Extension 都運行在一個自己的 NodeJS 環境中，彼此間由 Shared Process 進行通信。
+Extension Host 也是獨立的 Process，用於運行其它 extension，並可以存取一些 VSCode 的 API 供 extension 去使用。 由於 vscode 考慮 Extension 可能會影響啓動性能和 IDE 自身的穩定性，所以通過**進程隔離**來解決這個問題，每個 Extension 都運行在一個自己的 NodeJS 環境中，彼此間由 Shared Process 進行通信。
 
-這樣設計最主要的目的就是避免複雜的 Extension 阻塞 UI 的回應，但是將 Extension Host 放在其他的 Process 也有很明顯的缺點: 因為不是 UI 進程，所以沒有辦法直接訪問 DOM tree，想要即時高效的改變 UI 會比較困難，也比較難客製化 VSCode 外觀。
+這樣設計最主要的目的就是避免複雜的 Extension 阻塞 UI 的回應，但是將 Extension Host 放在其他的 Process 也有很明顯的缺點: 因為不是直接屬於 UI Process，所以沒有辦法直接訪問 DOM tree，故想要即時高效的改變 UI 會比較困難，也比較難客製化 VSCode 外觀。
 
 {{< alert info >}}
 VSCode 開發團隊，也蠻常為了優化 VSCode 而頻繁更改 UI Dom，所以將 UI 定製能力限制起來也方便他們做事情。
