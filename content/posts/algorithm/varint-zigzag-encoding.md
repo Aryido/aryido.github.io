@@ -45,7 +45,7 @@ reward: false
 
 # Varint
 
-全名稱是 Base 128 Varints，接下來直接用範例展示 Varint Encoding 流程，已 int32 資料類型，數字 `300` 來當例子，推導如下:
+全名稱是 Base 128 Varints，接下來直接用範例展示 Varint Encoding 流程，我們以 int32 資料類型，數字 `300` 來當例子，直接展示 Varint 過程:
 ```
 300
 = 256 + 32 + 8 + 4
@@ -60,7 +60,7 @@ reward: false
 -  `1`: 表示後續的 byte 也是數字的一部分
 -  `0`: 表示本 byte 是最後一個字節，剩餘 7 位都用來表示數字的值。
 
-**最前面補 1 或 0**，其含義只是代表著一個標識位而已，代表後面有沒有繼續接上數值。由於是在每個 byte 的**最高位的英文是 most significant bit，故也會簡寫成 msb**。為了更好理解，這規則由下圖補充說明:
+**最前面補 1 或 0**，其含義只是代表著一個標識位而已，代表後面**有沒有繼續接上數值**。由於是在每個 byte 的**最高位的英文是 most significant bit，故也會簡寫成 msb**。為了更好理解，這規則由下圖補充展示:
 {{< image classes="fancybox fig-100" src="/images/algorithm/varint-order.jpg" >}}
 
 {{< alert info >}}
@@ -139,7 +139,7 @@ func int32ToZigZag(n int32) int32 {
 ---
 
 # 心得
-會介紹 Varint & Zigzag 主要是因為 Protobuf 就是透過這些 encoding 來壓縮資料。資料傳輸的時候出於 IO 的考慮，我們會希望盡可能的資料壓縮，而 Varint 就是一種對數字進行壓縮編碼的方法。但 Varint 也是有缺點的，就是對負數壓縮很差，故還要使用 ZigZag 編碼解決負數的壓縮問題。
+會介紹 Varint & Zigzag 主要是因為 Protobuf 就是透過這些演算法來壓縮資料。資料傳輸的時候出於 IO 的考慮，我們會希望盡可能的資料壓縮，而 Varint 就是一種對數字進行壓縮的方法，但 Varint 也是有缺點的，就是對負數壓縮很差，故還可進一步使用 ZigZag 編碼解決負數的壓縮問題。
 
 {{< alert success >}}
 如果提前知道 Protobuf 該 field 的值，有部分會是取負數的時候，可採用 sint32/sint64 類型，而不要使用 int32/int64。因為採用 sint32/sint64 數據類型表示負數時，會先採用 Zigzag 編碼再採用 Varint 編碼，從而更加有效壓縮數據。
