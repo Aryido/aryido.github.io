@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 23 May 2024 23:26:00 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP Compute Engine 概述</title><link>https://aryido.github.io/posts/google-cloud/compute-engine/</link><pubDate>Thu, 23 May 2024 23:26:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/compute-engine/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 30 May 2024 18:52:24 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP VPC 和 Subnet 概述</title><link>https://aryido.github.io/posts/google-cloud/vpc-networks/</link><pubDate>Thu, 30 May 2024 18:52:24 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/vpc-networks/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Virtual Private Cloud 虛擬私有雲網路，簡寫為 VPC、網路、VPC Network、Network 都可以，是 Google 使用 &lt;a href="https://01.me/2014/03/networking-at-google/">Andromeda&lt;/a>(/ænˈdrɑː.mə.də/) 網路虛擬化技術實現的一個 global 的雲端資源，提供 GCP-VM、GKE、serverless workloads 和 App Engine 等等雲端服務的網路功能，讓 User 可以高自由度地建立、管理和優化網路架構。對應其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) 中的 &lt;strong>Amazon VPC&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure 中的 &lt;strong>Azure Virtual Network&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>GCP-VPC 和 Amazon VPC/Azure Virtual Network 設計蠻不一樣的。GCP-VPC 是全球性的，只要在同一個 GCP-VPC 內，就算不同 region 也能使用 Internal IP ; 但如果是不同的 VPC ，就算在同一個地區 region 也不能互相通訊。而 Amazon VPC/Azure Virtual Network 是針對 Region 來設定的，只要跨 region 就不是內網的概念。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP Compute Engine 概述</title><link>https://aryido.github.io/posts/google-cloud/compute-engine/</link><pubDate>Thu, 23 May 2024 23:26:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/compute-engine/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Compute Engine 是託管在 Google 雲端上基礎架構即服務 (IaaS) 產品，對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
