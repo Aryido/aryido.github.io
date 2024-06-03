@@ -6,4 +6,15 @@
 &lt;li>Microsoft Azure 中的 &lt;strong>Azure Virtual Network&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;p>GCP-VPC 和 Amazon VPC/Azure Virtual Network 設計蠻不一樣的。GCP-VPC 是全球性的，只要在同一個 GCP-VPC 內，就算不同 region 也能使用 Internal IP ; 但如果是不同的 VPC ，就算在同一個地區 region 也不能互相通訊。而 Amazon VPC/Azure Virtual Network 是針對 Region 來設定的，只要跨 region 就不是內網的概念。&lt;/p>
+&lt;/blockquote></description></item><item><title>CIDR 介紹</title><link>https://aryido.github.io/posts/others/cidr/</link><pubDate>Sun, 13 Nov 2022 17:37:27 +0800</pubDate><guid>https://aryido.github.io/posts/others/cidr/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>無類別域間路由（ Classless Inter-Domain Routing ，簡稱 CIDR ）是為了避免造成 IP 位址的大量浪費，於是出現的一種技術。CIDR重點有：&lt;/p>
+&lt;ol>
+&lt;li>多變長度子網路遮罩 (Variable-Length Subnet Mask，VLSM)&lt;/li>
+&lt;li>路由匯總 （Route Summarization）(暫不介紹)&lt;/li>
+&lt;/ol>
+&lt;/blockquote></description></item><item><title>IP and Subnet Mask 介紹</title><link>https://aryido.github.io/posts/others/ip-and-subnetmask/</link><pubDate>Mon, 07 Nov 2022 22:55:14 +0800</pubDate><guid>https://aryido.github.io/posts/others/ip-and-subnetmask/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>IP (Internet Protocol) 是電腦的地址。IP 位址在系統中是一個 32 位元的數字，但為了方便人類讀寫，每一個位元組會被轉換成一個十進位的數字。&lt;/p>
+&lt;p>IP 位址可以分為 Network ID 和 Host ID，為了讓電腦可以判斷出 IP 位址的 Network ID 及 Host ID，必須靠子網路遮罩 (Subnet Mask) 的幫忙。&lt;/p>
 &lt;/blockquote></description></item></channel></rss>
