@@ -7,7 +7,7 @@ date: 2022-11-13T17:37:27+08:00
 
 thumbnailImage: "/images/others/cidr.jpg"
 
-categories:
+tags:
 - network
 
 comment: false

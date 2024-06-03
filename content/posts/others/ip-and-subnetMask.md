@@ -7,7 +7,7 @@ date: 2022-11-07T22:55:14+08:00
 
 thumbnailImage: "/images/others/ip-address-definition.jpg"
 
-categories:
+tags:
 - network
 
 comment: false
