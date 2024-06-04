@@ -458,7 +458,7 @@ Avro 也提供了編解碼和二進制格式，使得在高吞吐量的應用場
 &lt;li>change resource ID&lt;/li>
 &lt;/ul>
 &lt;p>這時候用 terraform plan 檢查一下，會發現 terraform 打算把原本的 resource 移除，然後重新建立一個新的 resource。但 resource 中間被刪掉，之後再造回來是會影響服務的。我們必須讓 Terraform 知道我只是重新命名，這就是 Terraform move 想做的事情。&lt;/p>
-&lt;/blockquote></description></item><item><title>cloud init 簡介</title><link>https://aryido.github.io/posts/others/cloud-init/</link><pubDate>Tue, 29 Nov 2022 20:23:44 +0800</pubDate><guid>https://aryido.github.io/posts/others/cloud-init/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>cloud init 簡介</title><link>https://aryido.github.io/posts/cloud/cloud-init/</link><pubDate>Tue, 29 Nov 2022 20:23:44 +0800</pubDate><guid>https://aryido.github.io/posts/cloud/cloud-init/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>cloud-init 是一個 package，可以藉由配置 cloud-init 來執行各種任務，自動初始化 cloud instance。在初次開機時就將想要的檔案或設定與系統一併弄好而不用手動處理。大部分雲平台都支持 cloud-init，目前是 &lt;strong>industry standard (行業標準)&lt;/strong>。&lt;/p>
 &lt;/blockquote></description></item><item><title>Packer build machine image 偶爾會出錯誤</title><link>https://aryido.github.io/posts/others/packer-build-image-error/</link><pubDate>Mon, 28 Nov 2022 22:04:39 +0800</pubDate><guid>https://aryido.github.io/posts/others/packer-build-image-error/</guid><description>&lt;!-- raw HTML omitted -->
