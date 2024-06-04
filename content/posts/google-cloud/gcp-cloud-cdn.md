@@ -8,7 +8,11 @@ date: 2023-07-27T23:26:32+08:00
 thumbnailImage: "/images/google-cloud/logo.jpg"
 
 categories:
+- cloud
 - gcp
+
+tags:
+- load-balancer
 
 comment: false
 

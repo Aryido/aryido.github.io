@@ -12,7 +12,7 @@ categories:
 - common
 
 tags:
-- virtual machine 
+- virtual-machine 
 
 
 comment: false

@@ -8,6 +8,7 @@ date: 2023-03-27T22:18:10+08:00
 thumbnailImage: "/images/google-cloud/logo.jpg"
 
 categories:
+- cloud
 - gcp
 
 comment: false
