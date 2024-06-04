@@ -8,7 +8,11 @@ date: 2023-10-30T22:42:57+08:00
 thumbnailImage: "/images/kubernetes/configmap-logo.jpg"
 
 categories:
+- containerization
 - kubernetes
+
+tags:
+- configuration
 
 comment: false
 

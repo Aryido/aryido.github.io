@@ -8,7 +8,8 @@ date: 2023-03-21T22:02:20+08:00
 thumbnailImage: "/images/kubernetes/helm.jpg"
 
 categories:
-- kubernetes
+- containerization
+- _common
 
 comment: false
 

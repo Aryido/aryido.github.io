@@ -8,6 +8,7 @@ date: 2022-12-25T21:38:20+08:00
 thumbnailImage: "/images/kubernetes/logo.jpg"
 
 categories:
+- containerization
 - kubernetes
 
 comment: false

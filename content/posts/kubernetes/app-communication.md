@@ -10,7 +10,12 @@ date: 2023-10-12T20:09:23+08:00
 thumbnailImage: "/images/kubernetes/service-logo.jpg"
 
 categories:
+- containerization
 - kubernetes
+
+tags:
+- network
+- kubernetes-service
 
 comment: false
 

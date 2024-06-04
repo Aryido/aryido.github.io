@@ -8,7 +8,11 @@ date: 2023-05-07T20:22:59+08:00
 thumbnailImage: "/images/kubernetes/logo.jpg"
 
 categories:
+- containerization
 - kubernetes
+
+tags:
+- docker-file
 
 comment: false
 

@@ -8,7 +8,11 @@ date: 2023-10-04T00:00:30+08:00
 thumbnailImage: "/images/kubernetes/logo.jpg"
 
 categories:
+- containerization
 - kubernetes
+
+tags:
+- pod
 
 comment: false
 

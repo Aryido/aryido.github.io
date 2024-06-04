@@ -10,7 +10,11 @@ date: 2023-10-12T20:11:25+08:00
 thumbnailImage: "/images/kubernetes/ingress-logo.jpg"
 
 categories:
+- containerization
 - kubernetes
+
+tags:
+- network
 
 comment: false
 

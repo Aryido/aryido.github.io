@@ -8,7 +8,11 @@ date: 2023-10-31T21:14:57+08:00
 thumbnailImage: "/images/kubernetes/secret-logo.jpg"
 
 categories:
+- containerization
 - kubernetes
+
+tags:
+- configuration
 
 comment: false
 
