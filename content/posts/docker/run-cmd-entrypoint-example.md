@@ -8,7 +8,11 @@ date: 2023-04-09T14:44:54+08:00
 thumbnailImage: "/images/docker/docker.jpg"
 
 categories:
+- containerization
 - docker
+
+tags:
+- docker-file
 
 comment: false
 

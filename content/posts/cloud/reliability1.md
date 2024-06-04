@@ -9,10 +9,10 @@ thumbnailImage: "/images/google-cloud/logo.jpg"
 
 categories:
 - cloud
-- _common
+- _cloud-base
 
 tags:
-- virtual machine 
+- virtual-machine 
 
 
 comment: false
