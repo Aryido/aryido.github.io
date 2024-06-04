@@ -11,7 +11,6 @@ categories:
 - leetCode
 
 tags:
-- java
 - stack
 
 comment: false

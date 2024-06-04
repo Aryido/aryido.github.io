@@ -12,7 +12,6 @@ categories:
 - leetCode
 
 tags:
-- java
 - linked-list
 - multiple-pointers
 - recursion

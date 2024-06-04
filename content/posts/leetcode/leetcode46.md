@@ -13,7 +13,6 @@ categories:
 - leetCode
 
 tags:
-- java
 - dfs
 - backtrack
 

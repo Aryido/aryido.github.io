@@ -8,7 +8,7 @@ date: 2022-10-15T19:18:43+08:00
 thumbnailImage: /images/leetcode/logo.jpg
 
 categories:
-- LeetCode
+- leetCode
 
 tags:
 - binary-search

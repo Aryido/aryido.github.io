@@ -8,11 +8,10 @@ date: 2022-09-19T21:09:18+08:00
 thumbnailImage: /images/leetcode/logo.jpg
 
 categories:
-- LeetCode
+- leetCode
 
 tags:
-- java
-- best first search
+- best-first-search
 
 comment: false
 

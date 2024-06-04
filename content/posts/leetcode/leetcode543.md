@@ -8,10 +8,9 @@ date: 2023-04-16T15:59:57+08:00
 thumbnailImage: /images/leetcode/logo.jpg
 
 categories:
-- LeetCode
+- leetCode
 
 tags:
-- java
 - dfs
 
 comment: false

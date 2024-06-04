@@ -8,13 +8,11 @@ date: 2022-10-09T23:23:53+08:00
 thumbnailImage: /images/leetcode/logo.jpg
 
 categories:
-- LeetCode
+- leetCode
 
 tags:
-- java
-- BFS
+- bfs
 - graph
-- english
 
 comment: false
 

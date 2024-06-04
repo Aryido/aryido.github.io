@@ -10,10 +10,9 @@ date: 2023-12-02T17:28:05+08:00
 thumbnailImage: /images/leetcode/logo.jpg
 
 categories:
-- LeetCode
+- leetCode
 
 tags:
-- java
 - array
 
 comment: false

@@ -10,10 +10,9 @@ date: 2023-10-17T22:11:25+08:00
 thumbnailImage: /images/leetcode/logo.jpg
 
 categories:
-- LeetCode
+- leetCode
 
 tags:
-- java
 - dfs
 - backtrack
 

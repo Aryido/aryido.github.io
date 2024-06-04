@@ -8,7 +8,7 @@ date: 2023-04-05T17:00:37+08:00
 thumbnailImage: /images/leetcode/logo.jpg
 
 categories:
-- LeetCode
+- leetCode
 
 tags:
 - backtrack

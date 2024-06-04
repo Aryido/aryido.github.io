@@ -8,10 +8,9 @@ date: 2022-09-25T14:57:06+08:00
 thumbnailImage: /images/leetcode/logo.jpg
 
 categories:
-- LeetCode
+- leetCode
 
 tags:
-- java
 - binary-tree
 
 comment: false
