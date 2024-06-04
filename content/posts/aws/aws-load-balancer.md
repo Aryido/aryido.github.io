@@ -8,7 +8,11 @@ date: 2022-10-17T22:00:06+08:00
 thumbnailImage: "/images/aws/logo.jpg"
 
 categories:
+- cloud
 - aws
+
+tags:
+- load-balancer
 
 comment: false
 

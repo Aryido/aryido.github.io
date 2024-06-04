@@ -8,6 +8,7 @@ date: 2022-12-17T18:45:30+08:00
 thumbnailImage: "/images/aws/eks-logo.jpg"
 
 categories:
+- cloud
 - aws
 
 comment: false
