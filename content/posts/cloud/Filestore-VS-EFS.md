@@ -9,10 +9,7 @@ thumbnailImage: "/images/google-cloud/logo.jpg"
 
 categories:
 - cloud
-
-tags:
-- gcp
-- aws
+- common
 
 comment: false
 

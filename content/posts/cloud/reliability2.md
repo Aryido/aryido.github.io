@@ -9,11 +9,11 @@ thumbnailImage: "/images/google-cloud/logo.jpg"
 
 categories:
 - cloud
+- common
 
 tags:
-- gcp
-- aws
-- english
+- virtual machine 
+
 
 comment: false
 

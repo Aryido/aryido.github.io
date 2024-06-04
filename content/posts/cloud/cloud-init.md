@@ -9,10 +9,10 @@ thumbnailImage: "/images/others/cloud-init.jpg"
 
 categories:
 - cloud
+- common
 
 tags:
-- aws
-- gcp
+- virtual machine 
 
 comment: false
 
