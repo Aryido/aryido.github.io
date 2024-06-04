@@ -9,7 +9,7 @@ thumbnailImage: "/images/others/cloud-init.jpg"
 
 categories:
 - cloud
-- common
+- _common
 
 tags:
 - virtual-machine 

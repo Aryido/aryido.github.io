@@ -9,7 +9,7 @@ thumbnailImage: "/images/google-cloud/logo.jpg"
 
 categories:
 - cloud
-- common
+- _common
 
 comment: false
 
