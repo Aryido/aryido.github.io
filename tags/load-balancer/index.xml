@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>load-balancer on Aryido Tech Note</title><link>https://aryido.github.io/tags/load-balancer/</link><description>Recent content in load-balancer on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 27 Jul 2023 23:26:32 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/load-balancer/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP Cloud CDN</title><link>https://aryido.github.io/posts/google-cloud/gcp-cloud-cdn/</link><pubDate>Thu, 27 Jul 2023 23:26:32 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp-cloud-cdn/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>CDN 全名為 Content Delivery Network，是一種透過分散在不同地區的 server，用離使用者&lt;strong>最近的伺服器&lt;/strong>來傳送快取內容。而 Google Cloud CDN，就是借助 Google 分佈在&lt;strong>全球各地&lt;/strong>的網路節點，將內容以快取(Cache)形式預先儲存，以達到最快速的內容交付。以下是一個 CDN 的全球分布架構，如圖所示歐洲使用者可以從荷蘭的節點獲取資料，而不必透過跨大西洋電纜，到位於美國 host server 拿取資料。
+&lt;div class="figure fig-100" >
+&lt;a class="fancybox" href="https://aryido.github.io/images/google-cloud/cdn-global.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/google-cloud/cdn-global.jpg" >
+&lt;/a>
+&lt;/div>
+&lt;strong>Cloud CDN 會需要與 GCP-Load-Balancer 搭配使用&lt;/strong>，故建議可以先熟習 GCP 負載平衡器的基本用法和觀念。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP load-balancer 架構簡介</title><link>https://aryido.github.io/posts/google-cloud/gcp-load-balancer-introduction/</link><pubDate>Mon, 26 Jun 2023 23:47:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp-load-balancer-introduction/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>GCP load-balancer 透過平均分發流量到多個 server ，可以防止單一伺服器的過載，從而減少系統故障的風險；也因為只需透過配置單個負載平衡器對外 IP 地址和憑證，故可以達到降低維運成本的目的。目前有多種 Load Balancer 類型，若從 console 上，有由&lt;strong>流量類型&lt;/strong>大概分成了三個 :&lt;/p>
+&lt;ul>
+&lt;li>HTTP(S) load balancing&lt;/li>
+&lt;li>TCP load balancing&lt;/li>
+&lt;li>UPD load balancing&lt;/li>
+&lt;/ul>
+&lt;p>但實際上依照細部功能，還有分 Global 或 Regional 等地域性分類，總體設定蠻細緻的 :&lt;/p>
+&lt;div class="figure fig-100" >
+&lt;a class="fancybox" href="https://aryido.github.io/images/google-cloud/load-balancer-options.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/google-cloud/load-balancer-options.jpg" >
+&lt;/a>
+&lt;/div>
+&lt;/blockquote></description></item><item><title>AWS load-balancer 基礎介紹</title><link>https://aryido.github.io/posts/aws/aws-load-balancer/</link><pubDate>Mon, 17 Oct 2022 22:00:06 +0800</pubDate><guid>https://aryido.github.io/posts/aws/aws-load-balancer/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>AWS 目前有多種 Load Balancing&lt;/p>
+&lt;ul>
+&lt;li>Application Load Balancer&lt;/li>
+&lt;li>Network Load Balancer&lt;/li>
+&lt;li>Classic Load Balancer&lt;/li>
+&lt;/ul>
+&lt;p>對於 Classic Load Balancer ，除非還有 ec2 運行在 ec2-classic 網路的場景，要不然已經&lt;strong>不建議&lt;/strong>使用了，建議使用 Application Load Balancer 、 Network Load Balancer 取代。&lt;/p>
+&lt;/blockquote></description></item></channel></rss>

@@ -6,6 +6,24 @@
 &lt;li>Microsoft Azure 中的 &lt;strong>Azure Virtual Network&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;p>GCP-VPC 和 Amazon VPC/Azure Virtual Network 設計蠻不一樣的。GCP-VPC 是全球性的，只要在同一個 GCP-VPC 內，就算不同 region 也能使用 Internal IP ; 但如果是不同的 VPC ，就算在同一個地區 region 也不能互相通訊。而 Amazon VPC/Azure Virtual Network 是針對 Region 來設定的，只要跨 region 就不是內網的概念。&lt;/p>
+&lt;/blockquote></description></item><item><title>Kubernetes - Ingress</title><link>https://aryido.github.io/posts/kubernetes/ingress/</link><pubDate>Thu, 12 Oct 2023 20:11:25 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/ingress/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Kubernetes 若要把應用暴露於 &lt;strong>Cluster 外部&lt;/strong> ，已知可以使用 &lt;strong>NodePort&lt;/strong> 和 &lt;strong>LoadBlancer&lt;/strong> 類型的 Service，但當每暴露一個 Service 給外部時，就會需要暴露一個對應的 Port ，隨著 Service 越來越多之後，我們就需要管理更多的 Port Number，也會使得維運上更加複雜。這時就可以考慮使用 Kubernetes Ingress ，它可用來代理不同 Kubernetes Service，能對外開放&lt;strong>統一的 Port&lt;/strong> ，並將外部的請求轉發到 &lt;strong>Cluster 內不同的 Service&lt;/strong> 上，來實現負載均衡。 Ingress 專注於 Cluster 對外的暴露、負載均衡、L7轉發、 Virtual Hosting 等功能。&lt;/p>
+&lt;/blockquote></description></item><item><title>Kubernetes - Service : 應用之間是如何溝通</title><link>https://aryido.github.io/posts/kubernetes/app-communication/</link><pubDate>Thu, 12 Oct 2023 20:09:23 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/app-communication/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>kubernetes 可以創建多個 Pods，Pod 內有一個或多個 Container，那麼 Container 之間是怎麼溝通的的呢 ? 這裡歸類出一些 case :&lt;/p>
+&lt;ul>
+&lt;li>不同網路下，不同 pod 間的 container 的通訊&lt;/li>
+&lt;li>同一網路下，不同 pod 間的 container 的通訊&lt;/li>
+&lt;li>同一個 pod 中，不同的 container 的通訊&lt;/li>
+&lt;/ul>
+&lt;p>以下來對這些 case 進行說明。&lt;/p>
+&lt;/blockquote></description></item><item><title>Kubernetes - Service : DNS Discovery</title><link>https://aryido.github.io/posts/kubernetes/dns-service-discovery/</link><pubDate>Thu, 12 Oct 2023 20:08:23 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/dns-service-discovery/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Kubernetes 是可以支援 &lt;code>ClusterIP:Port&lt;/code> 、&lt;code>PodIP:Port&lt;/code> 的形式，來完成相互溝通的，但是這樣會帶來些問題，因為 Kubernetes 內部 Pod 和 Service 都有機會重啟的，這會導致 Pod 和 Service 的 IP 發生變化；但 Service 名字等一些標識資訊是不會經常變動的，所以 &lt;strong>Kubernetes 更推薦通過 Service 的名字來訪問服務&lt;/strong>，這就是服務發現。Service Discovery 是一種機制，通過該機制，服務可以動態發現彼此，而無需 hardcode 硬寫 IP 或 endpoint 配置。可以讓我們只透過 Service 的名稱，就能找到相對應 Pod ，而非使用 IP 地址訪問。&lt;/p>
+&lt;/blockquote></description></item><item><title>Kubernetes - Service</title><link>https://aryido.github.io/posts/kubernetes/service/</link><pubDate>Thu, 12 Oct 2023 20:07:23 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/service/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Pod 的生命週期是動態的，因為 cluster 會根據需求，動態地創建或銷毀 Pod ，重啟的 Pod 自然也伴隨着 IP 地址的更動。為了解決這問題，kubernetes 在 客戶端和 Pod 間，引入了一個名為 Service 的組件，它會在 pod 的前方提供了一個穩定的網路端點。&lt;strong>不只可以建立內部 Pod 之間的通信，讓 Pod 間可以用 domain name 的方式相互溝通；另外也可以建立外部與 Pod 的溝通管道&lt;/strong>。 最後 Service 也有能力爲這些 Pod 進行負載分配，平均每個 Pod 的使用率。&lt;/p>
 &lt;/blockquote></description></item><item><title>CIDR 介紹</title><link>https://aryido.github.io/posts/others/cidr/</link><pubDate>Sun, 13 Nov 2022 17:37:27 +0800</pubDate><guid>https://aryido.github.io/posts/others/cidr/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>無類別域間路由（ Classless Inter-Domain Routing ，簡稱 CIDR ）是為了避免造成 IP 位址的大量浪費，於是出現的一種技術。CIDR重點有：&lt;/p>
