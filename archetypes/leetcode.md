@@ -10,8 +10,6 @@ thumbnailImage: /images/leetcode/logo.jpg
 categories:
 - leetCode
 
-tags:
-- java
 
 comment: false
 
