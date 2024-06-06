@@ -8,6 +8,7 @@ date: 2022-09-17T12:44:22+08:00
 thumbnailImage: "/images/java/java-bean-logo4.jpg"
 
 categories:
+- language
 - java
 
 tags:
