@@ -8,7 +8,7 @@ date: 2023-01-04T23:02:30+08:00
 thumbnailImage: "/images/others/m1.jpg"
 
 categories:
-- os
+- develop
 
 comment: false
 

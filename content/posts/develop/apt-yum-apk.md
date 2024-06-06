@@ -8,7 +8,7 @@ date: 2023-03-22T22:58:26+08:00
 thumbnailImage: "/images/linux/logo.jpg"
 
 categories:
-- linux
+- develop
 
 comment: false
 

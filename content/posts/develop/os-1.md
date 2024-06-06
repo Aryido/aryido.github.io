@@ -8,7 +8,7 @@ date: 2022-09-24T18:07:17+08:00
 thumbnailImage: "/images/others/os.jpg"
 
 categories:
-- os
+- develop
 
 comment: false
 

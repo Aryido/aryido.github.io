@@ -8,10 +8,10 @@ date: 2023-01-08T21:54:38+08:00
 thumbnailImage: "/images/google-cloud/cloud-run.jpg"
 
 categories:
-- os
+- develop
 
 tags:
-- gcp
+- cloud-run
 
 comment: false
 

@@ -8,7 +8,7 @@ date: 2024-01-26T21:19:20+08:00
 thumbnailImage: "/images/others/regular-exp.jpg"
 
 categories:
-- Monitoring
+- develop
 
 comment: false
 
