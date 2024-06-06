@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>language on Aryido Tech Note</title><link>https://aryido.github.io/categories/language/</link><description>Recent content in language on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 16 Apr 2023 16:44:04 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/language/index.xml" rel="self" type="application/rss+xml"/><item><title>linux 指令範例: tar &amp; gz</title><link>https://aryido.github.io/posts/shell-script/tar-example/</link><pubDate>Sun, 16 Apr 2023 16:44:04 +0800</pubDate><guid>https://aryido.github.io/posts/shell-script/tar-example/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>tar是 Unix 和類 Unix 系統上常用的壓縮工具，名字來自於 tape archive 的縮寫， tar 可以將多個文件或目錄打包成一個檔案。單純 .tar 檔案是沒有壓縮資料的，只是把好多目錄與資料夾打包起來變成一個大檔案而已；如果要有壓縮資料的功能，要使用 .tar.gz 壓縮檔案，是最常見的壓縮檔案格式。&lt;/p>
+&lt;/blockquote></description></item><item><title>linux 指令範例: set</title><link>https://aryido.github.io/posts/shell-script/set-example/</link><pubDate>Wed, 15 Mar 2023 22:25:50 +0800</pubDate><guid>https://aryido.github.io/posts/shell-script/set-example/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>set 是 shell 內建的命令，適當的使用可以增加腳本的安全性和可維護性，幫助腳本執行時可盡快發現錯誤，從而減少不必要的問題。因此很多 &lt;code>script.sh&lt;/code> 檔，第一行都會加&lt;/p>
+&lt;ul>
+&lt;li>set -euo pipefail&lt;/li>
+&lt;/ul>
+&lt;p>這篇文章簡單解釋並記錄一下，可以參考使用。&lt;/p>
+&lt;/blockquote></description></item><item><title>linux 指令範例: sed</title><link>https://aryido.github.io/posts/shell-script/sed-example/</link><pubDate>Mon, 06 Mar 2023 22:56:28 +0800</pubDate><guid>https://aryido.github.io/posts/shell-script/sed-example/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>&lt;em>sed&lt;/em> 全名為 &lt;em>Stream EDitor&lt;/em> ，取了前面的 &lt;em>S&lt;/em> 和後面的 &lt;em>ED&lt;/em> 來命名。&lt;em>sed&lt;/em> 對正規表示法有良好的支援，主要功能為自動化的修改文字檔，是在 Linux 和 Unix 系統中使用的文本處理工具，可在 pipe 中間進行文字的取代、刪除、插入等等。&lt;/p>
+&lt;/blockquote></description></item><item><title>Java 賦值語句的返回值</title><link>https://aryido.github.io/posts/java/java-assignment-statement/</link><pubDate>Sun, 13 Nov 2022 23:32:56 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-assignment-statement/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Java 賦值語句，是有返回值的，而且還並不是想像中的 bool 類型 ！ 想想其實一直都有看到一些類似的用法，但因自己平時開發並沒有特別使用過，也沒有很深入去探討了解。今天在這邊就舉例一些出來，來說明 Java 賦值語句的返回值。&lt;/p>
+&lt;/blockquote></description></item><item><title>JAVA Map方法： merge &amp; compute 比對</title><link>https://aryido.github.io/posts/java/java-skill-8/</link><pubDate>Sat, 01 Oct 2022 16:36:17 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-8/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Java 8 因為引入了 lambda 這樣的 functional 函數，所以 Map 系列增加了一些方法，感覺還是很好用的，簡單做一些相關介紹 &amp;hellip;&lt;/p>
+&lt;/blockquote></description></item><item><title>JAVA Map方法：compute、computeIfAbsent、put、putIfAbsent</title><link>https://aryido.github.io/posts/java/java-skill-7/</link><pubDate>Thu, 22 Sep 2022 21:58:05 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-7/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;p>Map 是 Java 的其中一 interface，不是collection，也不會繼承 Collection interface。
+JDK8 的 Map API 有不少便利的預設方法，以下可以介紹一下。&lt;/p></description></item><item><title>Array &amp; ArrayList &amp; LinkedList 選擇場景</title><link>https://aryido.github.io/posts/java/array-arraylist-linkedlist/</link><pubDate>Sat, 17 Sep 2022 12:49:55 +0800</pubDate><guid>https://aryido.github.io/posts/java/array-arraylist-linkedlist/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Array 是 Java 中的基本功能，而 ArrayList 是 Collection 的一部分； ArrayList 和 LinkedList 都是 Java 中的集合類型，它們都實現了 List 接口。基本特徵簡單如下 :&lt;/p>
+&lt;ul>
+&lt;li>Array 是一個有固定大小的，每次創建都需要設定，而且在創建後，是不能再更改大小&lt;/li>
+&lt;li>ArrayList ，是一個有浮動大小的Array，且適用於需要快速訪問集合中的元素的場景。&lt;/li>
+&lt;li>LinkedList 適用於頻繁插入和刪除元素的場景。&lt;/li>
+&lt;/ul>
+&lt;p>如果需要實現隊列或棧等數據結構，也可以選擇 LinkedList。&lt;/p>
+&lt;/blockquote></description></item><item><title>Java 技巧 - computeIfAbsent() 用法詳解</title><link>https://aryido.github.io/posts/java/computeifabsent/</link><pubDate>Sat, 17 Sep 2022 12:44:22 +0800</pubDate><guid>https://aryido.github.io/posts/java/computeifabsent/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>使用 HashMap 的方法 :&lt;/p>
+&lt;pre tabindex="0">&lt;code class="language-jav" data-lang="jav">computeIfAbsent(K key, Function remappingFunction)
+&lt;/code>&lt;/pre>&lt;p>其中 &lt;em>remappingFunction&lt;/em> 是一個 &lt;strong>Functional interface&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>input 為 map 的 &lt;strong>key&lt;/strong>&lt;/li>
+&lt;li>output 會成為 map 的 &lt;strong>value&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>HashMap 的 computeIfAbsent 方法，在 key 不存在時，會做 remappingFunction 的操作，所以再也不會因為漏寫 &lt;code>if x == null&lt;/code> 而出現空指針的 bug 了。&lt;/p>
+&lt;/blockquote></description></item><item><title>Java 技巧 - Java Arrays 方法</title><link>https://aryido.github.io/posts/java/java-arrays/</link><pubDate>Fri, 09 Sep 2022 19:59:56 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-arrays/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>刷題時很常出現 Array 的結構如 &lt;code>int[]、char[]&lt;/code> 等等&amp;hellip;，故在這邊條列一些常用的 Arrays 方法。這次主要整理下 Java 中 Arrays 類的常用方法，在使用過程也可以複習 java 提供的工具類，還有一些泛型的坑&amp;hellip;&lt;/p>
+&lt;/blockquote></description></item><item><title>Java 技巧 - 處理Map&lt;K, Collection&lt;T>></title><link>https://aryido.github.io/posts/java/map-of-collection/</link><pubDate>Tue, 06 Sep 2022 23:28:59 +0800</pubDate><guid>https://aryido.github.io/posts/java/map-of-collection/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>經常有一些業務邏輯要用 Map 來解決，如果再多懂得一些 Map 的方法，是可以寫出精簡的 code 的。這裡展示一些優雅處理 &lt;code>Map&amp;lt;K, Collection&amp;lt;T&amp;gt;&amp;gt;&lt;/code> 類型的方式。&lt;/p>
+&lt;/blockquote></description></item><item><title>Stack、Deque、ArrayDeque、LinkedList 介紹</title><link>https://aryido.github.io/posts/java/stack-deque-arraydeque-linkedlist/</link><pubDate>Mon, 05 Sep 2022 00:54:48 +0800</pubDate><guid>https://aryido.github.io/posts/java/stack-deque-arraydeque-linkedlist/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Java 現在 Stack 類已經&lt;strong>不建議&lt;/strong>使用。現在推薦的是，使用雙端隊列接口 Deque 取代 Stack。 Deque 是 interface，有兩個常用的 implement :&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>ArrayDeque&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>LinkedList&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>簡單來介紹和比較一下。&lt;/p>
+&lt;/blockquote></description></item><item><title>Java 泛型注意事項 - List of array 轉成 2D-array</title><link>https://aryido.github.io/posts/java/2d-array/</link><pubDate>Thu, 01 Sep 2022 08:11:32 +0800</pubDate><guid>https://aryido.github.io/posts/java/2d-array/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>把 List of array 轉成 2D-array&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>List&lt;span style="color:#f92672">&amp;lt;&lt;/span>T&lt;span style="color:#f92672">[]&amp;gt;&lt;/span> list &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> ArrayList&lt;span style="color:#f92672">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 記得 list.size()
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 後面還有個[]
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>T result&lt;span style="color:#f92672">[][]&lt;/span> &lt;span style="color:#f92672">=&lt;/span> list&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">toArray&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#66d9ef">new&lt;/span> T&lt;span style="color:#f92672">[&lt;/span>list&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">size&lt;/span>&lt;span style="color:#f92672">()][]);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 實際 example
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>List&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[]&amp;gt;&lt;/span> listOfIntegers &lt;span style="color:#f92672">=&lt;/span> List&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">of&lt;/span>&lt;span style="color:#f92672">(&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[]&lt;/span> &lt;span style="color:#f92672">{&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#f92672">,&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#f92672">},&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[]&lt;/span> &lt;span style="color:#f92672">{&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span>&lt;span style="color:#f92672">,&lt;/span> &lt;span style="color:#ae81ff">55&lt;/span>&lt;span style="color:#f92672">,&lt;/span> &lt;span style="color:#ae81ff">65&lt;/span> &lt;span style="color:#f92672">}&lt;/span> &lt;span style="color:#f92672">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[][]&lt;/span> array2D &lt;span style="color:#f92672">=&lt;/span> listOfIntegers&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">toArray&lt;/span>&lt;span style="color:#f92672">(&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[&lt;/span>listOfIntegers&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">size&lt;/span>&lt;span style="color:#f92672">()][]&lt;/span> &lt;span style="color:#f92672">);&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/blockquote></description></item></channel></rss>

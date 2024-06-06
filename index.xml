@@ -33,7 +33,7 @@
 &lt;li>CI/CD、IaC 設定或工具選擇&lt;/li>
 &lt;/ul>
 &lt;p>每次建立專案時都會參考之前的架構規劃，然後手動複製架構雛形，重新設定參數，其實不太方便&amp;hellip; 這時就可以引入 Scaffold 這樣的&lt;strong>模坂&lt;/strong>概念，來直接生成&lt;strong>專案的骨架&lt;/strong>。本質用意是把那些重複地創建專案基礎結構、專案規格流程取代掉，實現 &lt;strong>DRY (Don’t Repeat Yourself) 原則&lt;/strong>。而 &lt;strong>Yeoman&lt;/strong> 就是一個著名 scaffolding generator tool，微軟官方維護 Visual Studio Code extensions，就是裡面非常著名的例子。&lt;/p>
-&lt;/blockquote></description></item><item><title>Homebrew 介紹和常用操作</title><link>https://aryido.github.io/posts/others/homebrew/</link><pubDate>Mon, 20 May 2024 19:38:28 +0800</pubDate><guid>https://aryido.github.io/posts/others/homebrew/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Homebrew 介紹和常用操作</title><link>https://aryido.github.io/posts/develop/homebrew/</link><pubDate>Mon, 20 May 2024 19:38:28 +0800</pubDate><guid>https://aryido.github.io/posts/develop/homebrew/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Homebrew 是一個廣泛使用在 MAC 上的&lt;strong>套件管理工具&lt;/strong>，可以安裝一些 Mac App Store 上沒有的軟體，其操作十分方便，可以簡化軟體安裝的過程，是個很有名的&lt;strong>非官方工具&lt;/strong>，由 Max Howell 以 Git 和 Ruby 為基底寫成，並通過 GitHub 維護，為 2012 年 GitHub 上擁有最多新貢獻者的專案。對於其作者也有個有趣的軼事：Max Howell 曾應聘過 Google 的職位，面試失敗之後在 Twitter 上發文章 :&lt;/p>
 &lt;ul>
@@ -70,7 +70,7 @@
 &lt;/a>
 &lt;/div>
 借助 OpenTelemetry ，可以從各種來源收集 telemetry data ，但對於資料的存儲和可視化是留給其他工具的，本身並不提供儲存，只能將其發送到其他的服務來存儲，如 Prometheus、或其他雲端廠商服務。&lt;/p>
-&lt;/blockquote></description></item><item><title>Regular Expression 簡介</title><link>https://aryido.github.io/posts/others/regular-expression-intro/</link><pubDate>Fri, 26 Jan 2024 21:19:20 +0800</pubDate><guid>https://aryido.github.io/posts/others/regular-expression-intro/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Regular Expression 簡介</title><link>https://aryido.github.io/posts/develop/regular-expression-intro/</link><pubDate>Fri, 26 Jan 2024 21:19:20 +0800</pubDate><guid>https://aryido.github.io/posts/develop/regular-expression-intro/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Regular Expression 是一種強大的&lt;strong>字串匹配&lt;/strong>、&lt;strong>字串查找&lt;/strong>等操作工具，常簡寫爲 regex 、regexp 或 RE。這概念最初由 Unix 的 sed、grep 操作而普及開，它定義一系列&lt;strong>符號&lt;/strong>來描述搜索的規則。
 但在不同的 coding language 或者是不同 OS 中， 常發現 regex 都會有些差異，主要原因是演進過程中，出現 &lt;strong>POSIX&lt;/strong> 與 &lt;strong>PCRE&lt;/strong> 兩種 :&lt;/p>
@@ -268,7 +268,7 @@
 &lt;li>熟悉一些 java 內建常用的字串處理 function ，寫起來會比較簡潔。&lt;/li>
 &lt;li>想到使用 map 結構來儲存分組資料。&lt;/li>
 &lt;/ul>
-&lt;/blockquote></description></item><item><title>Rolling vs Canary vs Blue-Green</title><link>https://aryido.github.io/posts/others/rolling-canary-bluegreen/</link><pubDate>Wed, 17 May 2023 00:26:34 +0800</pubDate><guid>https://aryido.github.io/posts/others/rolling-canary-bluegreen/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Rolling vs Canary vs Blue-Green</title><link>https://aryido.github.io/posts/develop/rolling-canary-bluegreen/</link><pubDate>Wed, 17 May 2023 00:26:34 +0800</pubDate><guid>https://aryido.github.io/posts/develop/rolling-canary-bluegreen/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>現今應用程式發展迅速， app 的更新也變得越來越頻繁，在微服務、DevOps、Cloud-native 的迭代過程中，最終都需要上線。上線就需要部署；需要部署就意味著有修改；修改則意味著有風險，要如何在&lt;strong>盡量不影響 user 的前提下，讓 app 升版呢&lt;/strong> ? 這時就有一些&lt;strong>部屬策略&lt;/strong>可以考慮。對於 Deployment Strategies 有一些基本的專有名詞和觀念，例如 :&lt;/p>
 &lt;ul>
@@ -298,6 +298,9 @@
 &lt;blockquote>
 &lt;p>Avro 是一個 data serialization 框架 ，是 Apache Hadoop 下的一個子項目，是一個可跨多種程式語言和平台的&lt;strong>傳輸資料格式&lt;/strong>。Avro 可使用 JSON 格式來描述 data structure，並且支持&lt;strong>架構演進&lt;/strong>，保持向後、向前的相容性。
 Avro 也提供了編解碼和二進制格式，使得在高吞吐量的應用場景中非常有用且高效。&lt;/p>
+&lt;/blockquote></description></item><item><title>cloc: code line 統計工具</title><link>https://aryido.github.io/posts/develop/cloc/</link><pubDate>Sat, 22 Apr 2023 13:25:32 +0800</pubDate><guid>https://aryido.github.io/posts/develop/cloc/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>cloc 全名是 &lt;strong>Count Lines of Code&lt;/strong> ， 為一個計算 code 和設定檔&lt;strong>行數&lt;/strong>的 CLI 工具，是使用 Perl 語言開發的開源統計工具。cloc 支援非常多程式語言、平台、格式的統計，可以快速地計算一個 project 中所有文件的行數、空行、註釋行等等。有時候在寫一些報告會用到，可以幫助整理資料。&lt;/p>
 &lt;/blockquote></description></item><item><title>cloc: code line 統計工具</title><link>https://aryido.github.io/posts/linux/cloc/</link><pubDate>Sat, 22 Apr 2023 13:25:32 +0800</pubDate><guid>https://aryido.github.io/posts/linux/cloc/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>cloc 全名是 &lt;strong>Count Lines of Code&lt;/strong> ， 為一個計算 code 和設定檔&lt;strong>行數&lt;/strong>的 CLI 工具，是使用 Perl 語言開發的開源統計工具。cloc 支援非常多程式語言、平台、格式的統計，可以快速地計算一個 project 中所有文件的行數、空行、註釋行等等。有時候在寫一些報告會用到，可以幫助整理資料。&lt;/p>
@@ -305,7 +308,7 @@ Avro 也提供了編解碼和二進制格式，使得在高吞吐量的應用場
 &lt;blockquote>
 &lt;p>terraform archive 是一個 HashiCorp 公司提供的一個 Provider，可以讓使用者在 Terraform 中，將指定的目錄或檔案打包(例如 zip )。&lt;/p>
 &lt;p>雲端上運行的無伺服器計算服務非常熱門，著名的如 AWS Lambda 、 Azure Functions、GCP Cloud Functions，也常使用 terraform 工具來進行部屬。這時再使用 terraform archive ，方便地把例如 python code 打包成 zip，簡便地部署到服務上。&lt;/p>
-&lt;/blockquote></description></item><item><title>linux 指令範例: tar &amp; gz</title><link>https://aryido.github.io/posts/linux/tar-example/</link><pubDate>Sun, 16 Apr 2023 16:44:04 +0800</pubDate><guid>https://aryido.github.io/posts/linux/tar-example/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>linux 指令範例: tar &amp; gz</title><link>https://aryido.github.io/posts/shell-script/tar-example/</link><pubDate>Sun, 16 Apr 2023 16:44:04 +0800</pubDate><guid>https://aryido.github.io/posts/shell-script/tar-example/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>tar是 Unix 和類 Unix 系統上常用的壓縮工具，名字來自於 tape archive 的縮寫， tar 可以將多個文件或目錄打包成一個檔案。單純 .tar 檔案是沒有壓縮資料的，只是把好多目錄與資料夾打包起來變成一個大檔案而已；如果要有壓縮資料的功能，要使用 .tar.gz 壓縮檔案，是最常見的壓縮檔案格式。&lt;/p>
 &lt;/blockquote></description></item><item><title>543. Diameter of Binary Tree</title><link>https://aryido.github.io/posts/leetcode/leetcode543/</link><pubDate>Sun, 16 Apr 2023 15:59:57 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode543/</guid><description>&lt;!-- raw HTML omitted -->
@@ -340,7 +343,7 @@ Avro 也提供了編解碼和二進制格式，使得在高吞吐量的應用場
 &lt;/blockquote></description></item><item><title>Google Cloud Firestore 簡介</title><link>https://aryido.github.io/posts/google-cloud/firestore/</link><pubDate>Mon, 27 Mar 2023 22:18:10 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/firestore/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Cloud Firestore 是 Google 提供的一款雲端 NoSQL 資料庫。資料模型上簡單分成了 collection 、 document 結構，本質上也是 JSON 格式，但使用起來更直觀。Firestore 還具有即時同步資料的功能，也就是說一旦資料庫有異動，資料便會自動同步到相關的用戶端上（如手機 App）&lt;/p>
-&lt;/blockquote></description></item><item><title>apt、yum、apk 介绍</title><link>https://aryido.github.io/posts/linux/apt-yum-apk/</link><pubDate>Wed, 22 Mar 2023 22:58:26 +0800</pubDate><guid>https://aryido.github.io/posts/linux/apt-yum-apk/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>apt、yum、apk 介绍</title><link>https://aryido.github.io/posts/develop/apt-yum-apk/</link><pubDate>Wed, 22 Mar 2023 22:58:26 +0800</pubDate><guid>https://aryido.github.io/posts/develop/apt-yum-apk/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Linux 有多種流通版本，例如常見的 Ubuntu、Debian、CentOS、Fedora、Red Hat 等等，其中裡面預設的&lt;strong>包管理系統&lt;/strong>也不太一樣。包管理系統可以&lt;strong>安裝 package&lt;/strong> 、&lt;strong>更新 package&lt;/strong> 、確保使用的 &lt;strong>package 是經過審查的&lt;/strong>。 接下來淺淺的分析 apt 、 yum 、 apk 之間的差別。&lt;/p>
 &lt;/blockquote></description></item><item><title>Helm 簡介</title><link>https://aryido.github.io/posts/kubernetes/helm/</link><pubDate>Tue, 21 Mar 2023 22:02:20 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/helm/</guid><description>&lt;!-- raw HTML omitted -->
@@ -349,7 +352,7 @@ Avro 也提供了編解碼和二進制格式，使得在高吞吐量的應用場
 &lt;/blockquote></description></item><item><title>79. Word Search</title><link>https://aryido.github.io/posts/leetcode/leetcode79/</link><pubDate>Mon, 20 Mar 2023 22:45:06 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode79/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>題目給定一個 board 以及 一個 word ，我們要判斷的 board 上是否可以連線出 word。這題是蠻典型的 graph 類題目，用 BFS 或 DFS 解題都行，但用深度優先 DFS 來解題會比較好一些(可以先思考一下為什麼)。解題流程還蠻制式化的，是熟練 graph 類型的練習好題目 XD。&lt;/p>
-&lt;/blockquote></description></item><item><title>linux 指令範例: set</title><link>https://aryido.github.io/posts/linux/set-example/</link><pubDate>Wed, 15 Mar 2023 22:25:50 +0800</pubDate><guid>https://aryido.github.io/posts/linux/set-example/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>linux 指令範例: set</title><link>https://aryido.github.io/posts/shell-script/set-example/</link><pubDate>Wed, 15 Mar 2023 22:25:50 +0800</pubDate><guid>https://aryido.github.io/posts/shell-script/set-example/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>set 是 shell 內建的命令，適當的使用可以增加腳本的安全性和可維護性，幫助腳本執行時可盡快發現錯誤，從而減少不必要的問題。因此很多 &lt;code>script.sh&lt;/code> 檔，第一行都會加&lt;/p>
 &lt;ul>
@@ -367,7 +370,7 @@ Avro 也提供了編解碼和二進制格式，使得在高吞吐量的應用場
 &lt;li>第一次要寫出 bug free 有點困難&lt;/li>
 &lt;/ul>
 &lt;p>故備標註為 &lt;strong>hard&lt;/strong> ，但整體思路上並不算太難，值得品味一下 !&lt;/p>
-&lt;/blockquote></description></item><item><title>linux 指令範例: sed</title><link>https://aryido.github.io/posts/linux/sed-example/</link><pubDate>Mon, 06 Mar 2023 22:56:28 +0800</pubDate><guid>https://aryido.github.io/posts/linux/sed-example/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>linux 指令範例: sed</title><link>https://aryido.github.io/posts/shell-script/sed-example/</link><pubDate>Mon, 06 Mar 2023 22:56:28 +0800</pubDate><guid>https://aryido.github.io/posts/shell-script/sed-example/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>&lt;em>sed&lt;/em> 全名為 &lt;em>Stream EDitor&lt;/em> ，取了前面的 &lt;em>S&lt;/em> 和後面的 &lt;em>ED&lt;/em> 來命名。&lt;em>sed&lt;/em> 對正規表示法有良好的支援，主要功能為自動化的修改文字檔，是在 Linux 和 Unix 系統中使用的文本處理工具，可在 pipe 中間進行文字的取代、刪除、插入等等。&lt;/p>
 &lt;/blockquote></description></item><item><title>763. Partition Labels</title><link>https://aryido.github.io/posts/leetcode/leetcode763/</link><pubDate>Sun, 05 Mar 2023 22:48:40 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode763/</guid><description>&lt;!-- raw HTML omitted -->
@@ -400,10 +403,10 @@ Avro 也提供了編解碼和二進制格式，使得在高吞吐量的應用場
 &lt;/a>
 &lt;/div>
 &lt;/p>
-&lt;/blockquote></description></item><item><title>Apple M1 作業系統坑 - cloud run 出現錯誤</title><link>https://aryido.github.io/posts/others/m1-error-2/</link><pubDate>Sun, 08 Jan 2023 21:54:38 +0800</pubDate><guid>https://aryido.github.io/posts/others/m1-error-2/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Apple M1 作業系統坑 - cloud run 出現錯誤</title><link>https://aryido.github.io/posts/develop/m1-error-2/</link><pubDate>Sun, 08 Jan 2023 21:54:38 +0800</pubDate><guid>https://aryido.github.io/posts/develop/m1-error-2/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Cloud Run 是 Google 的 Serverless 產品，讓我們不用管理基礎 infra 也能建置容器，並會根據流量自動調整資源，且只依據實際使用的資源收費。 這邊特別注意一下，目前 Cloud Run 似乎還沒支持 ARM 格式的 image，故有使用 M1 筆電包 docker image 要特別注意一下，這會出現不可預期的 bug !&lt;/p>
-&lt;/blockquote></description></item><item><title>Apple M1 作業系統坑 - CPU 簡介</title><link>https://aryido.github.io/posts/others/m1-error-1/</link><pubDate>Wed, 04 Jan 2023 23:02:30 +0800</pubDate><guid>https://aryido.github.io/posts/others/m1-error-1/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Apple M1 作業系統坑 - CPU 簡介</title><link>https://aryido.github.io/posts/develop/m1-error-1/</link><pubDate>Wed, 04 Jan 2023 23:02:30 +0800</pubDate><guid>https://aryido.github.io/posts/develop/m1-error-1/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>現在公司很多都會給新進員工配上 Apple M1 筆電，整體筆電用起來都還不錯的。但因為 Apple M1 底層處理器架構大改變，對於軟體開發在本地端測試時候，常發生一些不可預期的狀況。這邊就來記錄一下有遇到的 BUG。&lt;/p>
 &lt;/blockquote></description></item><item><title>kubectl 簡單筆記</title><link>https://aryido.github.io/posts/kubernetes/kubectl/</link><pubDate>Sun, 25 Dec 2022 21:38:20 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/kubectl/</guid><description>&lt;!-- raw HTML omitted -->
@@ -484,7 +487,7 @@ Avro 也提供了編解碼和二進制格式，使得在高吞吐量的應用場
 &lt;/blockquote></description></item><item><title>Java 賦值語句的返回值</title><link>https://aryido.github.io/posts/java/java-assignment-statement/</link><pubDate>Sun, 13 Nov 2022 23:32:56 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-assignment-statement/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Java 賦值語句，是有返回值的，而且還並不是想像中的 bool 類型 ！ 想想其實一直都有看到一些類似的用法，但因自己平時開發並沒有特別使用過，也沒有很深入去探討了解。今天在這邊就舉例一些出來，來說明 Java 賦值語句的返回值。&lt;/p>
-&lt;/blockquote></description></item><item><title>CIDR 介紹</title><link>https://aryido.github.io/posts/others/cidr/</link><pubDate>Sun, 13 Nov 2022 17:37:27 +0800</pubDate><guid>https://aryido.github.io/posts/others/cidr/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>CIDR 介紹</title><link>https://aryido.github.io/posts/develop/cidr/</link><pubDate>Sun, 13 Nov 2022 17:37:27 +0800</pubDate><guid>https://aryido.github.io/posts/develop/cidr/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>無類別域間路由（ Classless Inter-Domain Routing ，簡稱 CIDR ）是為了避免造成 IP 位址的大量浪費，於是出現的一種技術。CIDR重點有：&lt;/p>
 &lt;ol>
@@ -497,7 +500,7 @@ Avro 也提供了編解碼和二進制格式，使得在高吞吐量的應用場
 &lt;/blockquote></description></item><item><title>139. Word Break</title><link>https://aryido.github.io/posts/leetcode/leetcode139/</link><pubDate>Sat, 12 Nov 2022 22:10:19 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode139/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>一道很經典的題目，是給定一 string ，能不能分被拆分成 wordDict 裡面的單詞。注意這題，wordDict 裡面的單詞可以重複使用，即單詞使用沒有次數限制，所以 string 可以分成任意段，這就增加了題目的難度。解法蠻多種的，可先從 brute force 下手，再加上暫存優化後，就是蠻標準的 dp 解了，來解一下吧。&lt;/p>
-&lt;/blockquote></description></item><item><title>IP and Subnet Mask 介紹</title><link>https://aryido.github.io/posts/others/ip-and-subnetmask/</link><pubDate>Mon, 07 Nov 2022 22:55:14 +0800</pubDate><guid>https://aryido.github.io/posts/others/ip-and-subnetmask/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>IP and Subnet Mask 介紹</title><link>https://aryido.github.io/posts/develop/ip-and-subnetmask/</link><pubDate>Mon, 07 Nov 2022 22:55:14 +0800</pubDate><guid>https://aryido.github.io/posts/develop/ip-and-subnetmask/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>IP (Internet Protocol) 是電腦的地址。IP 位址在系統中是一個 32 位元的數字，但為了方便人類讀寫，每一個位元組會被轉換成一個十進位的數字。&lt;/p>
 &lt;p>IP 位址可以分為 Network ID 和 Host ID，為了讓電腦可以判斷出 IP 位址的 Network ID 及 Host ID，必須靠子網路遮罩 (Subnet Mask) 的幫忙。&lt;/p>
@@ -574,7 +577,7 @@ Binary-Search 在處理邊界時很容易出錯。 基本上都是沒注意到�
 &lt;/blockquote></description></item><item><title>Terragrunt - Introduce</title><link>https://aryido.github.io/posts/terraform/terragrunt-1/</link><pubDate>Tue, 27 Sep 2022 20:45:15 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/terragrunt-1/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Terragrunt 是 gruntwork 推出的一個 Terraform thin wrapper，在執行 Terraform 前可以先&lt;strong>調整&lt;/strong> root module 內的 .tf 檔案，保持程式碼的精簡，並提供許多額外的工具和框架幫助開發，藉此可以讓你的 IaC code 更貼近 DRY 原則。&lt;/p>
-&lt;/blockquote></description></item><item><title>Parallel、Concurrent 介紹</title><link>https://aryido.github.io/posts/others/os-2/</link><pubDate>Mon, 26 Sep 2022 22:02:41 +0800</pubDate><guid>https://aryido.github.io/posts/others/os-2/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Parallel、Concurrent 介紹</title><link>https://aryido.github.io/posts/develop/os-2/</link><pubDate>Mon, 26 Sep 2022 22:02:41 +0800</pubDate><guid>https://aryido.github.io/posts/develop/os-2/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>前面介紹了 Program、Process、Thread 差異。再來淺談Parallel、Concurrent 吧! 其實主要是要注意中英文對照&amp;hellip;&lt;/p>
 &lt;/blockquote></description></item><item><title>297. Serialize and Deserialize Binary Tree</title><link>https://aryido.github.io/posts/leetcode/leetcode297/</link><pubDate>Sun, 25 Sep 2022 14:57:06 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode297/</guid><description>&lt;!-- raw HTML omitted -->
@@ -584,7 +587,7 @@ Binary-Search 在處理邊界時很容易出錯。 基本上都是沒注意到�
 &lt;/blockquote></description></item><item><title>AWS 與 GCP reliability 不同的地方比較 - 1</title><link>https://aryido.github.io/posts/cloud/reliability1/</link><pubDate>Sat, 24 Sep 2022 19:31:37 +0800</pubDate><guid>https://aryido.github.io/posts/cloud/reliability1/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>近期有機會來比較一下 AWS 和 GCP 的一些差別，也看了一些文章(&lt;del>練英文QQ&lt;/del>)。 GCP 和 AWS 都有 auto scaling 的功能，當我們在某些時候，需要比較多的資源處理事情時，可以自動增加機器來維持高 reliability。 那這部分 GCP 和 AWS 有甚麼區別呢 ?&lt;/p>
-&lt;/blockquote></description></item><item><title>Program、Process、Thread 差異</title><link>https://aryido.github.io/posts/others/os-1/</link><pubDate>Sat, 24 Sep 2022 18:07:17 +0800</pubDate><guid>https://aryido.github.io/posts/others/os-1/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Program、Process、Thread 差異</title><link>https://aryido.github.io/posts/develop/os-1/</link><pubDate>Sat, 24 Sep 2022 18:07:17 +0800</pubDate><guid>https://aryido.github.io/posts/develop/os-1/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Program/Process/Thread 是面試時經常會被問到的題目，中文部分翻譯有很多種，也來筆記一下吧。首先默念一下教科書上 Process 和 Thread 定義：&lt;/p>
 &lt;/blockquote>

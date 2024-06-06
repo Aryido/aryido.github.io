@@ -24,14 +24,14 @@
 &lt;/blockquote></description></item><item><title>Kubernetes - Service</title><link>https://aryido.github.io/posts/kubernetes/service/</link><pubDate>Thu, 12 Oct 2023 20:07:23 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/service/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Pod 的生命週期是動態的，因為 cluster 會根據需求，動態地創建或銷毀 Pod ，重啟的 Pod 自然也伴隨着 IP 地址的更動。為了解決這問題，kubernetes 在 客戶端和 Pod 間，引入了一個名為 Service 的組件，它會在 pod 的前方提供了一個穩定的網路端點。&lt;strong>不只可以建立內部 Pod 之間的通信，讓 Pod 間可以用 domain name 的方式相互溝通；另外也可以建立外部與 Pod 的溝通管道&lt;/strong>。 最後 Service 也有能力爲這些 Pod 進行負載分配，平均每個 Pod 的使用率。&lt;/p>
-&lt;/blockquote></description></item><item><title>CIDR 介紹</title><link>https://aryido.github.io/posts/others/cidr/</link><pubDate>Sun, 13 Nov 2022 17:37:27 +0800</pubDate><guid>https://aryido.github.io/posts/others/cidr/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>CIDR 介紹</title><link>https://aryido.github.io/posts/develop/cidr/</link><pubDate>Sun, 13 Nov 2022 17:37:27 +0800</pubDate><guid>https://aryido.github.io/posts/develop/cidr/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>無類別域間路由（ Classless Inter-Domain Routing ，簡稱 CIDR ）是為了避免造成 IP 位址的大量浪費，於是出現的一種技術。CIDR重點有：&lt;/p>
 &lt;ol>
 &lt;li>多變長度子網路遮罩 (Variable-Length Subnet Mask，VLSM)&lt;/li>
 &lt;li>路由匯總 （Route Summarization）(暫不介紹)&lt;/li>
 &lt;/ol>
-&lt;/blockquote></description></item><item><title>IP and Subnet Mask 介紹</title><link>https://aryido.github.io/posts/others/ip-and-subnetmask/</link><pubDate>Mon, 07 Nov 2022 22:55:14 +0800</pubDate><guid>https://aryido.github.io/posts/others/ip-and-subnetmask/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>IP and Subnet Mask 介紹</title><link>https://aryido.github.io/posts/develop/ip-and-subnetmask/</link><pubDate>Mon, 07 Nov 2022 22:55:14 +0800</pubDate><guid>https://aryido.github.io/posts/develop/ip-and-subnetmask/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>IP (Internet Protocol) 是電腦的地址。IP 位址在系統中是一個 32 位元的數字，但為了方便人類讀寫，每一個位元組會被轉換成一個十進位的數字。&lt;/p>
 &lt;p>IP 位址可以分為 Network ID 和 Host ID，為了讓電腦可以判斷出 IP 位址的 Network ID 及 Host ID，必須靠子網路遮罩 (Subnet Mask) 的幫忙。&lt;/p>
