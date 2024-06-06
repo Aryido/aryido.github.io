@@ -9,10 +9,10 @@ thumbnailImage: "/images/others/packer.jpg"
 
 categories:
 - cloud
+- _cloud-base
 
 tags:
-- aws
-- gcp
+
 
 comment: false
 
