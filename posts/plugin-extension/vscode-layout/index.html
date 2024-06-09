@@ -1,0 +1,142 @@
+<!doctype html><html lang=en-us><head><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"VSCode 基本 layout 介紹","image":"https://aryido.github.io/images/plugin-extension/vscode-logo.jpg","datePublished":"2024-05-21T23:21:38+08:00","dateModified":"2024-05-21T23:21:38+08:00","author":{"@type":"Person","name":"李昀陽 YunYang Lee","image":"https://aryido.github.io/images/aboutme/head-shot.jpg"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aryido.github.io\/posts\/plugin-extension\/vscode-layout\/"},"publisher":{"@type":"Organization","name":"Aryido Tech Note","logo":{"@type":"ImageObject","url":"https://aryido.github.io/images/aboutme/head-shot.jpg"}},"description":" 整合式開發環境 Integrated Development Environment 簡稱為 IDE ，是一種程式開發軟體，通常只針對特定語言，且有應用程式生命週期管理 ALM 功能 ; 另一方面文字編輯器 Text Editor 通常只提供如複製、剪下、貼上、搜尋、取代等文字操作功能，但現在兩個已經沒有區分的這麼明顯，原因就是 VSCode 的出現很大了融合了兩者。 VSCode 其定位採用核心是 \u0026lt;Text Editor + code understanding + debug\u0026gt;，並以檔案夾作為專案管理，保持輕量與高性能，但還是提供強大的支援語法。 與許多程式編輯器一樣，VSCode 也採用通用 layout，設計理念是希望可以提供簡單直覺的工具，讓使用者可以直觀的選取檔案並閱覽、編輯檔案，本文章首先討論 Workbench 的定義和介紹 vscode layout 各個名稱。\n","keywords":[]}</script><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Hugo 0.119.0 with theme Tranquilpeak 0.5.3-BETA"><meta name=author content="李昀陽 YunYang Lee"><meta name=keywords content><meta name=description content="
+
+整合式開發環境 Integrated Development Environment 簡稱為 IDE ，是一種程式開發軟體，通常只針對特定語言，且有應用程式生命週期管理 ALM 功能 ; 另一方面文字編輯器 Text Editor 通常只提供如複製、剪下、貼上、搜尋、取代等文字操作功能，但現在兩個已經沒有區分的這麼明顯，原因就是 VSCode 的出現很大了融合了兩者。 VSCode 其定位採用核心是 <Text Editor + code understanding + debug>，並以檔案夾作為專案管理，保持輕量與高性能，但還是提供強大的支援語法。
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
+與許多程式編輯器一樣，VSCode 也採用通用 layout，設計理念是希望可以提供簡單直覺的工具，讓使用者可以直觀的選取檔案並閱覽、編輯檔案，本文章首先討論 Workbench 的定義和介紹 vscode layout 各個名稱。
+"><meta property="og:description" content="
+
+整合式開發環境 Integrated Development Environment 簡稱為 IDE ，是一種程式開發軟體，通常只針對特定語言，且有應用程式生命週期管理 ALM 功能 ; 另一方面文字編輯器 Text Editor 通常只提供如複製、剪下、貼上、搜尋、取代等文字操作功能，但現在兩個已經沒有區分的這麼明顯，原因就是 VSCode 的出現很大了融合了兩者。 VSCode 其定位採用核心是 <Text Editor + code understanding + debug>，並以檔案夾作為專案管理，保持輕量與高性能，但還是提供強大的支援語法。
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
+與許多程式編輯器一樣，VSCode 也採用通用 layout，設計理念是希望可以提供簡單直覺的工具，讓使用者可以直觀的選取檔案並閱覽、編輯檔案，本文章首先討論 Workbench 的定義和介紹 vscode layout 各個名稱。
+"><meta property="og:type" content="article"><meta property="og:title" content="VSCode 基本 layout 介紹"><meta name=twitter:title content="VSCode 基本 layout 介紹"><meta property="og:url" content="https://aryido.github.io/posts/plugin-extension/vscode-layout/"><meta property="twitter:url" content="https://aryido.github.io/posts/plugin-extension/vscode-layout/"><meta property="og:site_name" content="Aryido Tech Note"><meta property="og:description" content="
+
+整合式開發環境 Integrated Development Environment 簡稱為 IDE ，是一種程式開發軟體，通常只針對特定語言，且有應用程式生命週期管理 ALM 功能 ; 另一方面文字編輯器 Text Editor 通常只提供如複製、剪下、貼上、搜尋、取代等文字操作功能，但現在兩個已經沒有區分的這麼明顯，原因就是 VSCode 的出現很大了融合了兩者。 VSCode 其定位採用核心是 <Text Editor + code understanding + debug>，並以檔案夾作為專案管理，保持輕量與高性能，但還是提供強大的支援語法。
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
+與許多程式編輯器一樣，VSCode 也採用通用 layout，設計理念是希望可以提供簡單直覺的工具，讓使用者可以直觀的選取檔案並閱覽、編輯檔案，本文章首先討論 Workbench 的定義和介紹 vscode layout 各個名稱。
+"><meta name=twitter:description content="
+
+整合式開發環境 Integrated Development Environment 簡稱為 IDE ，是一種程式開發軟體，通常只針對特定語言，且有應用程式生命週期管理 ALM 功能 ; 另一方面文字編輯器 Text Editor 通常只提供如複製、剪下、貼上、搜尋、取代等文字操作功能，但現在兩個已經沒有區分的這麼明顯，原因就是 VSCode 的出現很大了融合了兩者。 VSCode 其定位採用核心是 <Text Editor + code understanding + debug>，並以檔案夾作為專案管理，保持輕量與高性能，但還是提供強大的支援語法。
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
+與許多程式編輯器一樣，VSCode 也採用通用 layout，設計理念是希望可以提供簡單直覺的工具，讓使用者可以直觀的選取檔案並閱覽、編輯檔案，本文章首先討論 Workbench 的定義和介紹 vscode layout 各個名稱。
+"><meta property="og:locale" content="en-us"><meta property="article:published_time" content="2024-05-21T23:21:38"><meta property="article:modified_time" content="2024-05-21T23:21:38"><meta property="article:section" content="plugin-extension"><meta property="article:tag" content="vscode"><meta name=twitter:card content="summary"><meta property="og:image" content="https://aryido.github.io/images/aboutme/head-shot.jpg"><meta property="twitter:image" content="https://aryido.github.io/images/aboutme/head-shot.jpg"><meta property="og:image" content="https://aryido.github.io/images/plugin-extension/vscode-logo.jpg"><meta property="twitter:image" content="https://aryido.github.io/images/plugin-extension/vscode-logo.jpg"><title>VSCode 基本 layout 介紹</title><link rel=icon href=https://aryido.github.io/favicon.png><link rel=canonical href=https://aryido.github.io/posts/plugin-extension/vscode-layout/><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://aryido.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css></head><body><div id=blog><header id=header data-behavior=4><i id=btn-open-sidebar class="fa fa-lg fa-bars"></i><div class=header-title><a class=header-title-link href=https://aryido.github.io/ aria-label="Go to homepage">Aryido Tech Note</a></div><a class=header-right-picture href=https://aryido.github.io/#about aria-label="Open the link: /#about"><img class=header-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"></a></header><nav id=sidebar data-behavior=4><div class=sidebar-container><div class=sidebar-profile><a href=https://aryido.github.io/#about aria-label="Read more about the author"><img class=sidebar-profile-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"></a><h4 class=sidebar-profile-name>李昀陽 YunYang Lee</h4><h5 class=sidebar-profile-bio>Welcome to my Tech Note. You can read some of the chapters below.</h5></div><ul class=sidebar-buttons><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/ title=Home><i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden=true></i>
+<span class=sidebar-button-desc>Home</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/categories title=Categories><i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden=true></i>
+<span class=sidebar-button-desc>Categories</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/tags title=Tags><i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden=true></i>
+<span class=sidebar-button-desc>Tags</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://github.com/Aryido target=_blank rel=noopener title=GitHub><i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden=true></i>
+<span class=sidebar-button-desc>GitHub</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/index.xml title=RSS><i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden=true></i>
+<span class=sidebar-button-desc>RSS</span></a></li></ul><ul class=sidebar-buttons></ul><ul class=sidebar-buttons></ul></div></nav><div id=main data-behavior=4 class=hasCoverMetaIn><article class=post id=top><div class="post-header main-content-wrap text-left"><h1 class=post-title>VSCode 基本 layout 介紹</h1><div class="postShorten-meta post-meta"><time datetime=2024-05-21T23:21:38+08:00>May 21, 2024</time>
+<span>in</span>
+<a class=category-link href=https://aryido.github.io/categories/plugin-extension>plugin-extension</a></div></div><div class="post-content markdown"><div class=main-content-wrap><blockquote><p>整合式開發環境 Integrated Development Environment 簡稱為 IDE ，是一種程式開發軟體，通常只針對特定語言，且有應用程式生命週期管理 ALM 功能 ; 另一方面文字編輯器 Text Editor 通常只提供如複製、剪下、貼上、搜尋、取代等文字操作功能，但現在兩個已經沒有區分的這麼明顯，原因就是 VSCode 的出現很大了融合了兩者。 VSCode 其定位採用核心是 &lt;<strong>Text Editor + code understanding + debug</strong>>，並以<strong>檔案夾</strong>作為專案管理，保持輕量與高性能，但還是提供強大的支援語法。<div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/plugin-extension/vscode-positioning.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/plugin-extension/vscode-positioning.jpg></a></div>與許多程式編輯器一樣，VSCode 也採用通用 layout，設計理念是希望可以提供簡單直覺的工具，讓使用者可以直觀的選取檔案並閱覽、編輯檔案，本文章首先討論 Workbench 的定義和介紹 vscode layout 各個名稱。</p></blockquote><hr><p>VS Code 具有簡單直觀的佈局，其 User Interface 可分為五個主要區域：</p><div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/plugin-extension/vscode-layout.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/plugin-extension/vscode-layout.jpg></a></div><h1 id=workbench>Workbench</h1><p>VSCode 的整個介面統稱為 Workbench(工作臺)，即為上圖整個畫面，包含以下 UI 元件:</p><ul><li>Activity Bar</li><li>Side Bar</li><li>Panel</li><li>Editor Group</li><li>Status Bar</li></ul><p>這五個部分在 VSCode 的 extension api 裡，同屬於 Workbench 底下。透過 extension api，我們可以任意擴展這些 workbench 底下的元件，當我們要在 vscode 的相關 setting 檔設置跟這些元件相關的個人配置時，也是要在 workbench 的 namespace 底下配置。</p><h1 id=a-activity-bar>(A) Activity Bar</h1><p>通常位於最左側，也可以更改位置。上面可以放多個 icon 按鈕，從上到下的 icon 分別會呈現的 View 視圖為：</p><blockquote><ul><li>Explorer</li><li>Search</li><li>Source Control(GIT)</li><li>Run and Debug</li><li>Extension</li></ul></blockquote><p>通常 Activity Bar 的 icon 按鈕會和 SideBar 聯動，點擊不同按鈕可以切換不同 view 至 SideBar 內 ; 再次點擊已開啟 view 的 icon 按鈕會關閉 SideBar。關於 icon 按鈕，也有提供 context-specific indicators 功能，用個清楚的例子解釋，例如說 Source Control(GIT) ，會顯示出藍色的小數字表示更改檔案的數量在 icon 按鈕上，這個就是 context-specific indicators。</p><h1 id=b-side-bar>(B) Side Bar</h1><p>有分成 Primary Side Bar 和 Secondary Side Bar，都是用來顯示 view 的，而最常用的 view 大概就是 Explorer，可把專案的檔案以 tree 的方式呈現。使用 <code>⌥⌘B</code> 顯示 Secondary Side Bar，並把 view icon 拖動到 Secondary Side Bar，就可以顯示該 view 了。</p><h1 id=c-editor>(C) Editor</h1><p>Editor 是用來呈現和編輯 file 檔案的主要區域。可以根據需求垂直、水平、打開任意數量的 Editor ，這個群體統稱為 Editor Group。<div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/plugin-extension/vscode-editor-group.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/plugin-extension/vscode-editor-group.jpg></a></div>內部還有一些小組件 ：</p><ul><li><h5 id=breadcrumbs>Breadcrumbs</h5><p>Editor 的頂部有一個 navigation bar，如下圖紅色圈起來部分，會顯示檔路徑，稱為 <strong>Breadcrumbs</strong>。如果當前 file 對其語言有支援，還可以更快速地 navigate 到指定 code 位置。<div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/plugin-extension/vscode-breadcrumbs.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/plugin-extension/vscode-breadcrumbs.jpg></a></div></p></li><li><h5 id=tabs>Tabs</h5><p>每當打開一個文檔時，預設都會新增加一個 tab，如下圖紅色圈選處，可幫助在不同 file 之間快速切換。當 tab 太多時，在 tab 和 Breadcrumb 之間還會有個 scroll bar 可以拖動，雖然還蠻不明顯的。<div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/plugin-extension/vscode-tabs.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/plugin-extension/vscode-tabs.jpg></a></div>在 Explorer 中<strong>點擊一次</strong>打開檔案，會發現 tab 的名稱是 italics 斜體字，代表為預覽模式，稱為 <strong>Preview mode</strong> ，如下圖顯示。這時在選擇其他檔案時，會重複使用現有 Tab 並覆蓋，而不會開啟新的 Tab。<div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/plugin-extension/vscode-preview-tab.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/plugin-extension/vscode-preview-tab.jpg></a></div>也可以<strong>點擊兩次</strong>檔案來創建完全新的 Tab。</p></li></ul><h1 id=d-panels>(D) Panels</h1><p>通常位於 Editor 區域下面，主要有四個：</p><ul><li><strong>Problems Panel</strong>: 顯示當前 folder 下 code 的所有問題和警告，比如語法錯誤、格式問題、拼寫錯誤等，可以通過這個 Panel 瀏覽這些問題並且訪問對應的檔案。</li><li><strong>Output Panel</strong>: 會把 CLI 和 Extension 的運行狀態和結果輸出到 Output Panel。比如說用內置的 Source Control 來管理 code，其每個在 Source Control 上的 UI 操作，大概都能在 Output Panel 裡看到這個操作對應的 Git CLi命令行以及它的運行結果。故即使意外發生了，依然可以通過此 Panel 找到問題。</li><li><strong>Debug Console</strong>: 結合 debug 模式使用。</li><li><strong>Terminal</strong>: 可選擇各式終端環境例如 zsh、bash 等等。</li></ul><h1 id=e-status-bar>(E) Status Bar</h1><p>是最下方的藍色條，用於呈現各種狀態。例如可用於呈現 project 的資訊、 activity 狀態的 editor 的資訊、正在編輯的 file 的資訊。例如說當前 cursor 所在的 line、column 位置，selected 字數，編輯檔案的 coding 語言&mldr;等等。</p><h1 id=其他>其他</h1><h3 id=minimap>Minimap</h3><p><div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/plugin-extension/vscode-minimap.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/plugin-extension/vscode-minimap.jpg></a></div>Minimap 就是一個 code 大綱（code outline）可以快速 navigate 到指定區域，通常顯示在編輯器的右側。</p><h3 id=command-palette>Command Palette</h3><p>palette 發音是 <code>/ˈpæl.ət/</code>，可使用 <code>⇧⌘P</code> 來打開，從這裡可以搜尋到幾乎所有 VSCode 功能 CLI。<div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/plugin-extension/vscode-command-palette.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/plugin-extension/vscode-command-palette.jpg></a></div></p><hr><h3 id=參考資料>參考資料</h3><ul><li><p><a href=https://code.visualstudio.com/docs/getstarted/userinterface>VSCode Office - User Interface</a></p></li><li><p><a href=https://ithelp.ithome.com.tw/m/users/20108634/ironman/3815>Day02 | VSCode使用者介面概覽</a></p></li><li><p><a href=https://github.com/tommymsw/vscode-1>tommymsw/vscode-1</a></p></li></ul></div></div><div id=post-footer class="post-footer main-content-wrap"><div class=post-footer-tags><span class="text-color-light text-small">TAGGED IN</span><br><a class="tag tag--primary tag--small" href=https://aryido.github.io/tags/vscode/>vscode</a></div><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--disabled"><i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/plugin-extension/vscode-architecture/ data-tooltip="VSCode 架構簡介" aria-label="PREVIOUS: VSCode 架構簡介"><span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i></a></li></ul></nav><ul class="post-actions post-action-share"><li class="post-action hide-lg hide-md hide-sm"><a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post"><i class="fa fa-share-alt" aria-hidden=true></i></a></li><li class=post-action><a class="post-action-btn btn btn--default" href=#top aria-label="Back to top"><i class="fa fa-arrow-up" aria-hidden=true></i></a></li></ul></div></div></article><footer id=footer class=main-content-wrap><span class=copyrights>&copy; 2024 李昀陽 YunYang Lee. All Rights Reserved</span></footer></div><div id=bottom-bar class=post-bottom-bar data-behavior=4><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--disabled"><i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/plugin-extension/vscode-architecture/ data-tooltip="VSCode 架構簡介" aria-label="PREVIOUS: VSCode 架構簡介"><span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i></a></li></ul></nav><ul class="post-actions post-action-share"><li class="post-action hide-lg hide-md hide-sm"><a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post"><i class="fa fa-share-alt" aria-hidden=true></i></a></li><li class=post-action><a class="post-action-btn btn btn--default" href=#top aria-label="Back to top"><i class="fa fa-arrow-up" aria-hidden=true></i></a></li></ul></div></div></div><div id=about><div id=about-card><div id=about-btn-close><i class="fa fa-times"></i></div><img id=about-card-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"><h4 id=about-card-name>李昀陽 YunYang Lee</h4><div id=about-card-bio>Welcome to my Tech Note. You can read some of the chapters below.</div><div id=about-card-job><i class="fa fa-briefcase"></i><br>Software Engineer</div><div id=about-card-location><i class="fa fa-map-marker-alt"></i><br>Taiwan</div></div></div><div id=cover style=background-image:url(https://aryido.github.io/images/background.jpg)></div><script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://aryido.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js></script>
+<script>$(document).ready(function(){hljs.configure({classPrefix:"",useBR:!1}),$("pre.code-highlight > code, pre > code").each(function(e,t){$(this).hasClass("codeblock")||$(this).addClass("codeblock"),hljs.highlightBlock(t)})})</script></body></html>

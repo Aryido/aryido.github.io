@@ -14,6 +14,15 @@
 &lt;li>Microsoft Azure 中的 &lt;strong>Virtual Machine&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;p>Compute Engine 的其他的稱呼還有 &lt;strong>compute engine instance&lt;/strong> 、 &lt;strong>virtual machine instance&lt;/strong> 、 &lt;strong>VM instance&lt;/strong>。 啟動前可以選擇自己需要的 Machine Type ，例如 CPU、memory、disk 等等；再來 Boot disk OS 也可自行選擇 Linux 、 Windows 等等操作系統；針對容器虛擬化，可能使用專門優化來運行容器的 Container-Optimized OS (COS) image 在虛擬機上啟動容器服務。最後關於&lt;strong>備份資料&lt;/strong>，GCP 也有提供相應的服務來面對災難發生時的處理。&lt;/p>
+&lt;/blockquote></description></item><item><title>VSCode 基本 layout 介紹</title><link>https://aryido.github.io/posts/plugin-extension/vscode-layout/</link><pubDate>Tue, 21 May 2024 23:21:38 +0800</pubDate><guid>https://aryido.github.io/posts/plugin-extension/vscode-layout/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>整合式開發環境 Integrated Development Environment 簡稱為 IDE ，是一種程式開發軟體，通常只針對特定語言，且有應用程式生命週期管理 ALM 功能 ; 另一方面文字編輯器 Text Editor 通常只提供如複製、剪下、貼上、搜尋、取代等文字操作功能，但現在兩個已經沒有區分的這麼明顯，原因就是 VSCode 的出現很大了融合了兩者。 VSCode 其定位採用核心是 &amp;lt;&lt;strong>Text Editor + code understanding + debug&lt;/strong>&amp;gt;，並以&lt;strong>檔案夾&lt;/strong>作為專案管理，保持輕量與高性能，但還是提供強大的支援語法。
+&lt;div class="figure fig-100" >
+&lt;a class="fancybox" href="https://aryido.github.io/images/plugin-extension/vscode-positioning.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/plugin-extension/vscode-positioning.jpg" >
+&lt;/a>
+&lt;/div>
+與許多程式編輯器一樣，VSCode 也採用通用 layout，設計理念是希望可以提供簡單直覺的工具，讓使用者可以直觀的選取檔案並閱覽、編輯檔案，本文章首先討論 Workbench 的定義和介紹 vscode layout 各個名稱。&lt;/p>
 &lt;/blockquote></description></item><item><title>VSCode 架構簡介</title><link>https://aryido.github.io/posts/plugin-extension/vscode-architecture/</link><pubDate>Tue, 21 May 2024 23:21:38 +0800</pubDate><guid>https://aryido.github.io/posts/plugin-extension/vscode-architecture/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Visual Studio Code 簡稱 VSCode ，是微軟 2015 年開源的輕量化 code editor ，基於 Electron 並用自家雲端的編輯器 Monaco Editor 作為其底層開發，支援多語言及平台，且使用 TypeScript 來進行編寫，也提供了強大的外掛程式拓展機制給人加強功能。由 Eclipse 之父 Erich Gamma 領導（ Erich 也是《設計模式》作者之一），VSCode 也在 2019 年的 Stack Overflow 開發者研究中，獲選最受歡迎的 code editor 有 50.7% 的使用率。
@@ -301,9 +310,6 @@ Avro 也提供了編解碼和二進制格式，使得在高吞吐量的應用場
 &lt;/blockquote></description></item><item><title>cloc: code line 統計工具</title><link>https://aryido.github.io/posts/develop/cloc/</link><pubDate>Sat, 22 Apr 2023 13:25:32 +0800</pubDate><guid>https://aryido.github.io/posts/develop/cloc/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>cloc 全名是 &lt;strong>Count Lines of Code&lt;/strong> ， 為一個計算 code 和設定檔&lt;strong>行數&lt;/strong>的 CLI 工具，是使用 Perl 語言開發的開源統計工具。cloc 支援非常多程式語言、平台、格式的統計，可以快速地計算一個 project 中所有文件的行數、空行、註釋行等等。有時候在寫一些報告會用到，可以幫助整理資料。&lt;/p>
-&lt;/blockquote></description></item><item><title>cloc: code line 統計工具</title><link>https://aryido.github.io/posts/linux/cloc/</link><pubDate>Sat, 22 Apr 2023 13:25:32 +0800</pubDate><guid>https://aryido.github.io/posts/linux/cloc/</guid><description>&lt;!-- raw HTML omitted -->
-&lt;blockquote>
-&lt;p>cloc 全名是 &lt;strong>Count Lines of Code&lt;/strong> ， 為一個計算 code 和設定檔&lt;strong>行數&lt;/strong>的 CLI 工具，是使用 Perl 語言開發的開源統計工具。cloc 支援非常多程式語言、平台、格式的統計，可以快速地計算一個 project 中所有文件的行數、空行、註釋行等等。有時候在寫一些報告會用到，可以幫助整理資料。&lt;/p>
 &lt;/blockquote></description></item><item><title>Terraform-provider-archive</title><link>https://aryido.github.io/posts/terraform/archive/</link><pubDate>Fri, 21 Apr 2023 22:48:00 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/archive/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>terraform archive 是一個 HashiCorp 公司提供的一個 Provider，可以讓使用者在 Terraform 中，將指定的目錄或檔案打包(例如 zip )。&lt;/p>
@@ -464,7 +470,7 @@ Avro 也提供了編解碼和二進制格式，使得在高吞吐量的應用場
 &lt;/blockquote></description></item><item><title>cloud init 簡介</title><link>https://aryido.github.io/posts/cloud/cloud-init/</link><pubDate>Tue, 29 Nov 2022 20:23:44 +0800</pubDate><guid>https://aryido.github.io/posts/cloud/cloud-init/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>cloud-init 是一個 package，可以藉由配置 cloud-init 來執行各種任務，自動初始化 cloud instance。在初次開機時就將想要的檔案或設定與系統一併弄好而不用手動處理。大部分雲平台都支持 cloud-init，目前是 &lt;strong>industry standard (行業標準)&lt;/strong>。&lt;/p>
-&lt;/blockquote></description></item><item><title>Packer build machine image 偶爾會出錯誤</title><link>https://aryido.github.io/posts/others/packer-build-image-error/</link><pubDate>Mon, 28 Nov 2022 22:04:39 +0800</pubDate><guid>https://aryido.github.io/posts/others/packer-build-image-error/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Packer build machine image 偶爾會出錯誤</title><link>https://aryido.github.io/posts/cloud/packer-build-image-error/</link><pubDate>Mon, 28 Nov 2022 22:04:39 +0800</pubDate><guid>https://aryido.github.io/posts/cloud/packer-build-image-error/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>使用 Packer 建立 AWS EC2 AMI 或者是 GCP Machine Image，兩個都會有機率發生一些問題， 有時候是 image 內一些應用程式安裝出現問題；有時候是再最後啟動 AWS 或 GCP 虛擬機時，使用 user-data 或 startup-script 時會出現問題，共同的錯誤訊息是 &lt;strong>no installation candidate.&lt;/strong> 。 AWS 機率發生體感機率比 GCP 高不少。那問題的根源是什麼呢，來看看吧!&lt;/p>
 &lt;/blockquote></description></item><item><title>410. Split Array Largest Sum - dynamic programming</title><link>https://aryido.github.io/posts/leetcode/leetcode410/</link><pubDate>Sun, 27 Nov 2022 20:26:22 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode410/</guid><description>&lt;!-- raw HTML omitted -->
