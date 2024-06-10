@@ -16,4 +16,14 @@
 &lt;/a>
 &lt;/div>
 &lt;/p>
+&lt;/blockquote></description></item><item><title>Yeoman - 專案模板產生器</title><link>https://aryido.github.io/posts/plugin-extension/yeoman/</link><pubDate>Tue, 21 May 2024 23:21:38 +0800</pubDate><guid>https://aryido.github.io/posts/plugin-extension/yeoman/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>當要建立新專案時，都會需要決定一些關於基礎的架構或開發規劃的事項例如 :&lt;/p>
+&lt;ul>
+&lt;li>設計 folder structure&lt;/li>
+&lt;li>打包編譯工具的選擇&lt;/li>
+&lt;li>IDE 預設環境配置；IDE plugin 或 extension 的安裝&lt;/li>
+&lt;li>CI/CD、IaC 設定或工具選擇&lt;/li>
+&lt;/ul>
+&lt;p>每次建立專案時都會參考之前的架構規劃，然後手動複製架構雛形，重新設定參數，其實不太方便&amp;hellip; 這時就可以引入 Scaffold 這樣的&lt;strong>模坂&lt;/strong>概念，來直接生成&lt;strong>專案的骨架&lt;/strong>。本質用意是把那些重複地創建專案基礎結構、專案規格流程取代掉，實現 &lt;strong>DRY (Don’t Repeat Yourself) 原則&lt;/strong>。而 &lt;strong>Yeoman&lt;/strong> 就是一個著名 scaffolding generator tool，微軟官方維護 Visual Studio Code extensions，就是裡面非常著名的例子。&lt;/p>
 &lt;/blockquote></description></item></channel></rss>
