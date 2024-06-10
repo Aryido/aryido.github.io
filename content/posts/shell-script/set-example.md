@@ -9,7 +9,7 @@ thumbnailImage: "/images/linux/logo.jpg"
 
 categories:
 - language
-- shell
+- shell-script
 
 comment: false
 
