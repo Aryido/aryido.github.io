@@ -8,7 +8,7 @@ date: 2024-03-17T11:17:16+08:00
 thumbnailImage: "/images/monitoring/opentelemetry-logo.jpg"
 
 categories:
-- monitoring
+- develop
 
 comment: false
 
