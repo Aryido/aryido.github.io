@@ -8,7 +8,7 @@ date: 2024-05-21T23:21:38+08:00
 thumbnailImage: "/images/others/yeoman-logo.jpg"
 
 categories:
-- develop
+- plugin-extension
 
 tags:
 - vscode
@@ -36,7 +36,7 @@ Yeoman 是一個 Node.js 專案，雖然是用 Javascript 寫成的，但卻不�
 
 # 安裝
 
-#### [安装 nodejs](/posts/others/homebrew/)
+#### [安装 nodejs](/posts/develop/homebrew/)
 參考上述連結的**官方多版本 formula安裝**，有教學安裝 Nodejs 和版本更換。
 
 #### 安装 yo 和 Generator

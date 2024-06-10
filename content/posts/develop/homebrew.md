@@ -99,6 +99,9 @@ brew unlink node
 brew link --overwrite node@20
 node -v # v20.12.2 LTS
 ```
+{{< alert danger >}}
+非常建議 NodeJS 版本適用 LTS 版本。例如在比較新的 22.14.0 有測試，發現其 npm 似乎有些更新，導致 yoman 的 vscode plugin template 再跑 debug mode 發生很多奇怪的事情... 
+{{< /alert >}}
 
 ### Formula Git 歷史版本安裝
 brew 也可以安裝第三方的庫，除了自己的來源庫，還允許別人的來源庫添加進來，適用於安裝不在 homebrew 的第三方套件，會增加 homebrew 的 formula
