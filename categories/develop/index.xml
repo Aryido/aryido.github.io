@@ -5,6 +5,15 @@
 &lt;li>Google: 90% of our engineers use the software you wrote (Homebrew), but you can&amp;rsquo;t invert a binary tree on a whiteboard so f*** off.&lt;/li>
 &lt;/ul>
 &lt;p>因此在網上引發了面試白板題的討論。&lt;/p>
+&lt;/blockquote></description></item><item><title>Opentelemetry 緣起簡介</title><link>https://aryido.github.io/posts/develop/opentelemetry-hisotry/</link><pubDate>Sun, 17 Mar 2024 11:17:16 +0800</pubDate><guid>https://aryido.github.io/posts/develop/opentelemetry-hisotry/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>OpenTelemetry ，也稱為 OTel，是 Cloud Native Computing Foundation(CNCF) 下的一個開源專案，為一供應商中立(vendor-neutral)的&lt;strong>可觀測性框架&lt;/strong>，目的是提供一個&lt;strong>標準化&lt;/strong>Observability 的 pluggable 框架，解決 telemetry data 的模型定義、檢測、採集、處理、輸出等一致性問題。
+&lt;div class="figure fig-100" >
+&lt;a class="fancybox" href="https://aryido.github.io/images/monitoring/opentelemetry-architecture.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/monitoring/opentelemetry-architecture.jpg" >
+&lt;/a>
+&lt;/div>
+借助 OpenTelemetry ，可以從各種來源收集 telemetry data ，但對於資料的存儲和可視化是留給其他工具的，本身並不提供儲存，只能將其發送到其他的服務來存儲，如 Prometheus、或其他雲端廠商服務。&lt;/p>
 &lt;/blockquote></description></item><item><title>Regular Expression 簡介</title><link>https://aryido.github.io/posts/develop/regular-expression-intro/</link><pubDate>Fri, 26 Jan 2024 21:19:20 +0800</pubDate><guid>https://aryido.github.io/posts/develop/regular-expression-intro/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Regular Expression 是一種強大的&lt;strong>字串匹配&lt;/strong>、&lt;strong>字串查找&lt;/strong>等操作工具，常簡寫爲 regex 、regexp 或 RE。這概念最初由 Unix 的 sed、grep 操作而普及開，它定義一系列&lt;strong>符號&lt;/strong>來描述搜索的規則。
@@ -17,6 +26,15 @@
 &lt;p>PCRE : 現代 coding language如 Python、Ruby、 C、C++、Java 都屬於 PCRE 派系。&lt;/p>
 &lt;/li>
 &lt;/ul>
+&lt;/blockquote></description></item><item><title>Fluent Bit 基礎介紹</title><link>https://aryido.github.io/posts/develop/fluent-bit-intro/</link><pubDate>Wed, 24 Jan 2024 20:40:16 +0800</pubDate><guid>https://aryido.github.io/posts/develop/fluent-bit-intro/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Fluent Bit 是一款使用 C 語言編寫的開源的資料收集器，為 Fluentd 的輕量化版本，也是 Cloud Native Computing Foundation(雲原生運算基金會) 下的一個子項目。可以從&lt;strong>多種不同來源&lt;/strong>【如 Log file、kafka 等等】，收集 Logs、Metrics、 Traces 資料，然後輸出至&lt;strong>多種不同的服務&lt;/strong> 【如 Loki、Fluentd、Elasticsearch、DataDog、Kafka 以及各式雲端服務】。
+&lt;div class="figure fig-100" >
+&lt;a class="fancybox" href="https://aryido.github.io/images/monitoring/fluent-bit-2.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/monitoring/fluent-bit-2.jpg" >
+&lt;/a>
+&lt;/div>
+&lt;/p>
 &lt;/blockquote></description></item><item><title>Rolling vs Canary vs Blue-Green</title><link>https://aryido.github.io/posts/develop/rolling-canary-bluegreen/</link><pubDate>Wed, 17 May 2023 00:26:34 +0800</pubDate><guid>https://aryido.github.io/posts/develop/rolling-canary-bluegreen/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>現今應用程式發展迅速， app 的更新也變得越來越頻繁，在微服務、DevOps、Cloud-native 的迭代過程中，最終都需要上線。上線就需要部署；需要部署就意味著有修改；修改則意味著有風險，要如何在&lt;strong>盡量不影響 user 的前提下，讓 app 升版呢&lt;/strong> ? 這時就有一些&lt;strong>部屬策略&lt;/strong>可以考慮。對於 Deployment Strategies 有一些基本的專有名詞和觀念，例如 :&lt;/p>

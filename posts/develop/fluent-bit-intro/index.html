@@ -1,0 +1,143 @@
+<!doctype html><html lang=en-us><head><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Fluent Bit  基礎介紹","image":"https://aryido.github.io/images/monitoring/fluent-bit.jpg","datePublished":"2024-01-24T20:40:16+08:00","dateModified":"2024-01-24T20:40:16+08:00","author":{"@type":"Person","name":"李昀陽 YunYang Lee","image":"https://aryido.github.io/images/aboutme/head-shot.jpg"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aryido.github.io\/posts\/develop\/fluent-bit-intro\/"},"publisher":{"@type":"Organization","name":"Aryido Tech Note","logo":{"@type":"ImageObject","url":"https://aryido.github.io/images/aboutme/head-shot.jpg"}},"description":" Fluent Bit 是一款使用 C 語言編寫的開源的資料收集器，為 Fluentd 的輕量化版本，也是 Cloud Native Computing Foundation(雲原生運算基金會) 下的一個子項目。可以從多種不同來源【如 Log file、kafka 等等】，收集 Logs、Metrics、 Traces 資料，然後輸出至多種不同的服務 【如 Loki、Fluentd、Elasticsearch、DataDog、Kafka 以及各式雲端服務】。 ","keywords":[]}</script><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Hugo 0.119.0 with theme Tranquilpeak 0.5.3-BETA"><meta name=author content="李昀陽 YunYang Lee"><meta name=keywords content><meta name=description content="
+
+Fluent Bit 是一款使用 C 語言編寫的開源的資料收集器，為 Fluentd 的輕量化版本，也是 Cloud Native Computing Foundation(雲原生運算基金會) 下的一個子項目。可以從多種不同來源【如 Log file、kafka 等等】，收集 Logs、Metrics、 Traces 資料，然後輸出至多種不同的服務 【如 Loki、Fluentd、Elasticsearch、DataDog、Kafka 以及各式雲端服務】。
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
+"><meta property="og:description" content="
+
+Fluent Bit 是一款使用 C 語言編寫的開源的資料收集器，為 Fluentd 的輕量化版本，也是 Cloud Native Computing Foundation(雲原生運算基金會) 下的一個子項目。可以從多種不同來源【如 Log file、kafka 等等】，收集 Logs、Metrics、 Traces 資料，然後輸出至多種不同的服務 【如 Loki、Fluentd、Elasticsearch、DataDog、Kafka 以及各式雲端服務】。
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
+"><meta property="og:type" content="article"><meta property="og:title" content="Fluent Bit  基礎介紹"><meta name=twitter:title content="Fluent Bit  基礎介紹"><meta property="og:url" content="https://aryido.github.io/posts/develop/fluent-bit-intro/"><meta property="twitter:url" content="https://aryido.github.io/posts/develop/fluent-bit-intro/"><meta property="og:site_name" content="Aryido Tech Note"><meta property="og:description" content="
+
+Fluent Bit 是一款使用 C 語言編寫的開源的資料收集器，為 Fluentd 的輕量化版本，也是 Cloud Native Computing Foundation(雲原生運算基金會) 下的一個子項目。可以從多種不同來源【如 Log file、kafka 等等】，收集 Logs、Metrics、 Traces 資料，然後輸出至多種不同的服務 【如 Loki、Fluentd、Elasticsearch、DataDog、Kafka 以及各式雲端服務】。
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
+"><meta name=twitter:description content="
+
+Fluent Bit 是一款使用 C 語言編寫的開源的資料收集器，為 Fluentd 的輕量化版本，也是 Cloud Native Computing Foundation(雲原生運算基金會) 下的一個子項目。可以從多種不同來源【如 Log file、kafka 等等】，收集 Logs、Metrics、 Traces 資料，然後輸出至多種不同的服務 【如 Loki、Fluentd、Elasticsearch、DataDog、Kafka 以及各式雲端服務】。
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
+"><meta property="og:locale" content="en-us"><meta property="article:published_time" content="2024-01-24T20:40:16"><meta property="article:modified_time" content="2024-01-24T20:40:16"><meta property="article:section" content="develop"><meta name=twitter:card content="summary"><meta property="og:image" content="https://aryido.github.io/images/aboutme/head-shot.jpg"><meta property="twitter:image" content="https://aryido.github.io/images/aboutme/head-shot.jpg"><meta property="og:image" content="https://aryido.github.io/images/monitoring/fluent-bit.jpg"><meta property="twitter:image" content="https://aryido.github.io/images/monitoring/fluent-bit.jpg"><title>Fluent Bit 基礎介紹</title><link rel=icon href=https://aryido.github.io/favicon.png><link rel=canonical href=https://aryido.github.io/posts/develop/fluent-bit-intro/><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://aryido.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css></head><body><div id=blog><header id=header data-behavior=4><i id=btn-open-sidebar class="fa fa-lg fa-bars"></i><div class=header-title><a class=header-title-link href=https://aryido.github.io/ aria-label="Go to homepage">Aryido Tech Note</a></div><a class=header-right-picture href=https://aryido.github.io/#about aria-label="Open the link: /#about"><img class=header-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"></a></header><nav id=sidebar data-behavior=4><div class=sidebar-container><div class=sidebar-profile><a href=https://aryido.github.io/#about aria-label="Read more about the author"><img class=sidebar-profile-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"></a><h4 class=sidebar-profile-name>李昀陽 YunYang Lee</h4><h5 class=sidebar-profile-bio>Welcome to my Tech Note. You can read some of the chapters below.</h5></div><ul class=sidebar-buttons><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/ title=Home><i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden=true></i>
+<span class=sidebar-button-desc>Home</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/categories title=Categories><i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden=true></i>
+<span class=sidebar-button-desc>Categories</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/tags title=Tags><i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden=true></i>
+<span class=sidebar-button-desc>Tags</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://github.com/Aryido target=_blank rel=noopener title=GitHub><i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden=true></i>
+<span class=sidebar-button-desc>GitHub</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/index.xml title=RSS><i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden=true></i>
+<span class=sidebar-button-desc>RSS</span></a></li></ul><ul class=sidebar-buttons></ul><ul class=sidebar-buttons></ul></div></nav><div id=main data-behavior=4 class=hasCoverMetaIn><article class=post id=top><div class="post-header main-content-wrap text-left"><h1 class=post-title>Fluent Bit 基礎介紹</h1><div class="postShorten-meta post-meta"><time datetime=2024-01-24T20:40:16+08:00>January 24, 2024</time>
+<span>in</span>
+<a class=category-link href=https://aryido.github.io/categories/develop>develop</a></div></div><div class="post-content markdown"><div class=main-content-wrap><blockquote><p>Fluent Bit 是一款使用 C 語言編寫的開源的資料收集器，為 Fluentd 的輕量化版本，也是 Cloud Native Computing Foundation(雲原生運算基金會) 下的一個子項目。可以從<strong>多種不同來源</strong>【如 Log file、kafka 等等】，收集 Logs、Metrics、 Traces 資料，然後輸出至<strong>多種不同的服務</strong> 【如 Loki、Fluentd、Elasticsearch、DataDog、Kafka 以及各式雲端服務】。<div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/monitoring/fluent-bit-2.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/monitoring/fluent-bit-2.jpg></a></div></p></blockquote><hr><h1 id=前言>前言</h1><p>Fluent Bit 設計的最初目的是為了收集 IoT 設備的 Log，這些設備大多使用 Embedded Linux 且硬體資源很少，因此資料收集器必須要盡可能的輕量化，使其能夠在資源有限的設備上運行，也經常用在 Kubernetes 環境中。 fluent-bit 目標是收集、解析、過濾、最終把資料發到目標位置儲存。以下介紹一些術語 :</p><hr><h2 id=event-or-record>Event or Record</h2><p>可以簡化地認為 Fluent Bit 將收到的 Log 中的【一個 row entry】 ，轉成 【一個 Event】 或稱 【一個 Record】。我個人習慣稱為 Record，舉例來說 Syslog:</p><pre tabindex=0><code>Jan 18 12:52:16 flb systemd[2222]: Starting GNOME Terminal Server
+Jan 18 12:52:16 flb dbus-daemon[2243]: [session uid=1000 pid=2243] Successfully activated service &#39;org.gnome.Terminal&#39;
+Jan 18 12:52:16 flb systemd[2222]: Started GNOME Terminal Server.
+Jan 18 12:52:16 flb gsd-media-keys[2640]: # watch_fast: &#34;/org/gnome/terminal/legacy/&#34; (establishing: 0, active: 0)
+</code></pre><p>這 4 條 row entry ，會變成 4 個 Record 。 Record 的格式為:</p><pre tabindex=0><code>[[TIMESTAMP, METADATA], MESSAGE]
+</code></pre><ul><li>TIMESTAMP：時間戳記</li><li>METADATA：從 2.1.0 版開始新增的資料，以 key/value 形式儲存</li><li>MESSAGE：資料內容</li></ul><hr><h2 id=pipeline>Pipeline</h2><p><div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/monitoring/fluent-bit-architecture.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/monitoring/fluent-bit-architecture.jpg></a></div>在 Fluent Bit，資料會經過一連串的處理流程，稱為 Pipeline。主要元件包括：</p><h3 id=input>Input</h3><p>資料的來源。fluent-bit 提供了各種各樣的 Input plugin ，例如可以從 Log File 讀取每一個 row entry、從作業系統收集一些 metrics 等等。<div class="alert info"><p>一個 Pipeline 中可以包含多個 Input。</p></div></p><h3 id=parser>Parser</h3><p>將資料轉換為<strong>結構化</strong>資料以便後續處理。通常情況下，我們期望在收集到 Input 資料後，可以馬上轉換為結構化的資料，預設可以處理Apche、Nginx、Docker 等 Log 了；對於<strong>不規則</strong>的 Log 也可以透過 Regular Exp 來擷取所需部分。<div class="alert info"><p>每個 Input 都可以定義自己的 Parser（可選）。</p></div></p><h3 id=filter>Filter</h3><p>雖然名稱是 Filter ，但是其實可以對 Record 進行 filter 、 add field 、 delete field，等等修改操作。支援使用多個 filter 一起使用，常用的 filter plugin 包括 Grep、Lua、Modify 等等。<div class="alert warning"><p>一個 Pipeline 中可以包含多個 Filter，<strong>其執行順序與設定檔中的順序一致</strong>。</p></div></p><h3 id=buffer>Buffer</h3><p>是一種緩存機制。當 Output 無法連線或是暫時無法處理資料時，會先將資料暫存起來，待 Output 可以處理時再送出，以避免導致資料的遺失。Buffer 的配置是在：</p><ul><li>Service</li><li>Input</li></ul><div class="alert danger"><p>緩存 data 不是原始 data，而是 Fluent Bit 的內部二進位表示形式。</p></div><h3 id=routing--output>Routing & Output</h3><p>從 Filter 拿到的 Record 後，可以傳送到一個或多個目的地。規則是</p><ul><li>Input 的 Tag</li><li>Output 的 Match</li></ul><p>由以上兩個對應詞的連接，決定 Record 要送往哪個 Output 。而Output 代表資料的目的地，可以是輸出成另一個 file、elasticsearch、Loki 等。</p><div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/monitoring/fluent-bit-3.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/monitoring/fluent-bit-3.jpg></a></div><hr><h3 id=參考資料>參考資料</h3><ul><li><p><a href=https://ithelp.ithome.com.tw/articles/10332341>Fluent Bit — 資料收集界的萬能瑞士刀</a></p></li><li><p><a href=https://cloud.tencent.com/developer/article/1644519>轻量级日志收集转发 | fluent-bit指令详解（一）</a></p></li><li><p><a href=https://docs.fluentbit.io/manual>Fluent Bit v2.2 Documentation</a></p></li></ul></div></div><div id=post-footer class="post-footer main-content-wrap"><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/develop/regular-expression-intro/ data-tooltip="Regular Expression 簡介" aria-label="NEXT: Regular Expression 簡介"><i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/develop/rolling-canary-bluegreen/ data-tooltip="Rolling vs Canary vs Blue-Green" aria-label="PREVIOUS: Rolling vs Canary vs Blue-Green"><span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i></a></li></ul></nav><ul class="post-actions post-action-share"><li class="post-action hide-lg hide-md hide-sm"><a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post"><i class="fa fa-share-alt" aria-hidden=true></i></a></li><li class=post-action><a class="post-action-btn btn btn--default" href=#top aria-label="Back to top"><i class="fa fa-arrow-up" aria-hidden=true></i></a></li></ul></div></div></article><footer id=footer class=main-content-wrap><span class=copyrights>&copy; 2024 李昀陽 YunYang Lee. All Rights Reserved</span></footer></div><div id=bottom-bar class=post-bottom-bar data-behavior=4><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/develop/regular-expression-intro/ data-tooltip="Regular Expression 簡介" aria-label="NEXT: Regular Expression 簡介"><i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/develop/rolling-canary-bluegreen/ data-tooltip="Rolling vs Canary vs Blue-Green" aria-label="PREVIOUS: Rolling vs Canary vs Blue-Green"><span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i></a></li></ul></nav><ul class="post-actions post-action-share"><li class="post-action hide-lg hide-md hide-sm"><a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post"><i class="fa fa-share-alt" aria-hidden=true></i></a></li><li class=post-action><a class="post-action-btn btn btn--default" href=#top aria-label="Back to top"><i class="fa fa-arrow-up" aria-hidden=true></i></a></li></ul></div></div></div><div id=about><div id=about-card><div id=about-btn-close><i class="fa fa-times"></i></div><img id=about-card-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"><h4 id=about-card-name>李昀陽 YunYang Lee</h4><div id=about-card-bio>Welcome to my Tech Note. You can read some of the chapters below.</div><div id=about-card-job><i class="fa fa-briefcase"></i><br>Software Engineer</div><div id=about-card-location><i class="fa fa-map-marker-alt"></i><br>Taiwan</div></div></div><div id=cover style=background-image:url(https://aryido.github.io/images/background.jpg)></div><script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://aryido.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js></script>
+<script>$(document).ready(function(){hljs.configure({classPrefix:"",useBR:!1}),$("pre.code-highlight > code, pre > code").each(function(e,t){$(this).hasClass("codeblock")||$(this).addClass("codeblock"),hljs.highlightBlock(t)})})</script></body></html>
