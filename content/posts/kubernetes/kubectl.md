@@ -1,5 +1,5 @@
 ---
-title: kubectl 簡單筆記
+title: Kubernetes - kubectl 簡單筆記
 
 author: Aryido
 

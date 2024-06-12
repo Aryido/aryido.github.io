@@ -9,7 +9,7 @@ thumbnailImage: "/images/kubernetes/helm.jpg"
 
 categories:
 - containerization
-- _common
+- kubernetes
 
 comment: false
 
