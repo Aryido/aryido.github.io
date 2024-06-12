@@ -18,6 +18,15 @@
 &lt;li>Microsoft Azure 中的 &lt;strong>Virtual Machine&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;p>Compute Engine 的其他的稱呼還有 &lt;strong>compute engine instance&lt;/strong> 、 &lt;strong>virtual machine instance&lt;/strong> 、 &lt;strong>VM instance&lt;/strong>。 啟動前可以選擇自己需要的 Machine Type ，例如 CPU、memory、disk 等等；再來 Boot disk OS 也可自行選擇 Linux 、 Windows 等等操作系統；針對容器虛擬化，可能使用專門優化來運行容器的 Container-Optimized OS (COS) image 在虛擬機上啟動容器服務。最後關於&lt;strong>備份資料&lt;/strong>，GCP 也有提供相應的服務來面對災難發生時的處理。&lt;/p>
+&lt;/blockquote></description></item><item><title>Language Server Protocol</title><link>https://aryido.github.io/posts/plugin-extension/language-server-protocol/</link><pubDate>Tue, 21 May 2024 23:21:38 +0800</pubDate><guid>https://aryido.github.io/posts/plugin-extension/language-server-protocol/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Language Server Protocol 簡稱 LSP ，是微軟於 2016 所定的一個協定，專門用來輔助 Visual Studio Code 開發用的，目標是讓 Code-Editor 能便利地支援更多的程式語言。設計理念是把&lt;strong>語言撰寫領域模型如：掃描器、剖析器、類型檢查器等&lt;/strong>這些提供輔助功能的部分，拆出去用公定的介面來做溝通，給各自領域的人開發。
+&lt;div class="figure fig-100" >
+&lt;a class="fancybox" href="https://aryido.github.io/images/plugin-extension/lsp-nolsp.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/plugin-extension/lsp-nolsp.jpg" >
+&lt;/a>
+&lt;/div>
+LSP 專門用於描述 Code-Editor 中，用戶行爲與響應之間&lt;strong>通訊方式&lt;/strong>和&lt;strong>傳輸資料結構&lt;/strong>，像是 VSCode 的 IntelliSense 提供的 auto-completion 就可以基於這個協定，支援更多不同的 coding language。 現在支援 LSP 的編輯器也不少，不是只有 VSCode ，還有 Eclipse、Vim、NeoVim、都已經支援了，在 langserver.org 可以看到各個 client 的支援狀況。&lt;/p>
 &lt;/blockquote></description></item><item><title>VSCode 基本 layout 介紹</title><link>https://aryido.github.io/posts/plugin-extension/vscode-layout/</link><pubDate>Tue, 21 May 2024 23:21:38 +0800</pubDate><guid>https://aryido.github.io/posts/plugin-extension/vscode-layout/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>整合式開發環境 Integrated Development Environment 簡稱為 IDE ，是一種程式開發軟體，通常只針對特定語言，且有應用程式生命週期管理 ALM 功能 ; 另一方面文字編輯器 Text Editor 通常只提供如複製、剪下、貼上、搜尋、取代等文字操作功能，但現在兩個已經沒有區分的這麼明顯，原因就是 VSCode 的出現很大了融合了兩者。 VSCode 其定位採用核心是 &amp;lt;&lt;strong>Text Editor + code understanding + debug&lt;/strong>&amp;gt;，並以&lt;strong>檔案夾&lt;/strong>作為專案管理，保持輕量與高性能，但還是提供強大的支援語法。
