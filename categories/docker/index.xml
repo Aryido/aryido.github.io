@@ -2,6 +2,9 @@
 &lt;blockquote>
 &lt;p>RUN、CMD 和 ENTRYPOINT 指令都可以用來執行具體的命令。RUN 指令是在 Docker &lt;strong>鏡像構建&lt;/strong>時把執行結果會記錄到鏡像中；而 CMD 和 ENTYPOINT 指令是在&lt;strong>容器啟動&lt;/strong>時自動執行。&lt;/p>
 &lt;p>ENTRYPOINT 和 CMD 的區別在於使用 ENTRYPOINT 時， CMD 指令會被作為其&lt;strong>默認參數&lt;/strong>，也可以在啟動容器時通過覆蓋 CMD 指令來輸入參數。&lt;/p>
+&lt;/blockquote></description></item><item><title>Docker File</title><link>https://aryido.github.io/not-yet-finished/docker-file/</link><pubDate>Sat, 08 Apr 2023 12:50:16 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/docker-file/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Dockerfile 是一個設定檔，讓我們可以透過指令的設定，快速地更新或建構 Container 的環境。由於 Dockerfile 中可以清楚的知道映像檔的組成，因此，在安全性上會有所提升，也因為是純文字檔，所以檔案很小、很容易分享。Dockerfile 可以看成是一個腳本，他用來明確告訴 Docker build 指令產生新的 Image 時候，所需的資訊和步驟。Dockerfile 會提供 Docker 引擎建立容器映射所需的指示。這些指令會依序逐一執行。&lt;/p>
 &lt;/blockquote></description></item><item><title>Dockerfile - RUN、CMD、ENTRYPOINT 介紹</title><link>https://aryido.github.io/posts/docker/run-cmd-entrypoint/</link><pubDate>Sat, 08 Apr 2023 12:50:16 +0800</pubDate><guid>https://aryido.github.io/posts/docker/run-cmd-entrypoint/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Dockerfile 讓我們可以透過設定&lt;strong>指令&lt;/strong>的方式，快速地更新和建構 Image 。由於 Dockerfile 中可以清楚的知道 Image 建構的過程和引用的 package 組成，因此在安全性上會有所提升；也因為是純文字檔，所以 size 很小、易於分享。Dockerfile 裡面有一些指令蠻容易混淆的，這次重點介紹:&lt;/p>
@@ -11,4 +14,12 @@
 &lt;li>ENTRYPOINT&lt;/li>
 &lt;/ul>
 &lt;p>這三個指令都可以用來執行具體的命令，&lt;strong>但其中又有些差異&lt;/strong>，以下做一些說明和整理。&lt;/p>
+&lt;/blockquote></description></item><item><title>Docker - 基本操作</title><link>https://aryido.github.io/not-yet-finished/docker-cli/</link><pubDate>Thu, 06 Apr 2023 20:53:33 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/docker-cli/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>虛擬化技術 :&lt;/p>
+&lt;ul>
+&lt;li>系統層級虛擬化（Virtual machine ) ，例如 Virtual Box&lt;/li>
+&lt;li>作業系統層級虛擬化（Container），立如 Docker&lt;/li>
+&lt;/ul>
+&lt;p>Docker 是一個 software platform ，可讓我們快速構建、測試和部署應用程式。Docker 將軟體打包到標準化單元中，這些單元包含軟體運行所需的一切，包括 libraries 、 system tools 、code 等等。Docker 的基本哲學 &lt;strong>Build and Ship any Application Anywhere&lt;/strong> 。&lt;/p>
 &lt;/blockquote></description></item></channel></rss>

@@ -1,7 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>leetCode on Aryido Tech Note</title><link>https://aryido.github.io/categories/leetcode/</link><description>Recent content in leetCode on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 02 Dec 2023 17:28:05 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/leetcode/index.xml" rel="self" type="application/rss+xml"/><item><title>57. Insert Interval</title><link>https://aryido.github.io/posts/leetcode/leetcode57/</link><pubDate>Sat, 02 Dec 2023 17:28:05 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode57/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>LeetCode on Aryido Tech Note</title><link>https://aryido.github.io/categories/leetcode/</link><description>Recent content in LeetCode on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 24 Dec 2023 23:14:10 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/leetcode/index.xml" rel="self" type="application/rss+xml"/><item><title>322. Coin Change</title><link>https://aryido.github.io/not-yet-finished/leetcode322/</link><pubDate>Sun, 24 Dec 2023 23:14:10 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/leetcode322/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>這題是著名的&lt;strong>零錢兌換&lt;/strong>問題，給我們一些可用的硬幣面額，問&lt;strong>最少&lt;/strong>能用幾個硬幣來兌換出來。標準解法是用 Dynamic Programming 。比較需要知道的地方，是初見時都會想使用 Greedy 方法來做，也就是從最大的 coin 面額拿最多的硬幣開始，如果這個數目無法滿足，那麼從最大的面額數目減一，再重複步驟。但這個解法是錯的 ! 因為&lt;strong>不保證大面額硬幣拿最多的數目就是最佳解&lt;/strong>&amp;hellip;&lt;/p>
+&lt;/blockquote></description></item><item><title>57. Insert Interval</title><link>https://aryido.github.io/posts/leetcode/leetcode57/</link><pubDate>Sat, 02 Dec 2023 17:28:05 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode57/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>此題給定一個沒有 overlapping 且按照起始座標排序的 interval 集合，然後再給一個 newInterval 放到該集合內，要合併 interval 使它們都不會重疊，最後返回新的 &lt;strong>non-overlapping intervals&lt;/strong>。
 本題的生活化的模擬，可以把題目想成自修室租借，然後插入自己的使用時段(&lt;del>亂入別人的使用時間&amp;hellip;&lt;/del>)，最後返回整個自修室被租借的時段。&lt;/p>
+&lt;/blockquote></description></item><item><title>Leetcode216</title><link>https://aryido.github.io/not-yet-finished/leetcode/leetcode216/</link><pubDate>Tue, 17 Oct 2023 23:29:29 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/leetcode/leetcode216/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;/blockquote></description></item><item><title>90. Subsets II</title><link>https://aryido.github.io/not-yet-finished/leetcode/leetcode90/</link><pubDate>Tue, 17 Oct 2023 23:01:42 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/leetcode/leetcode90/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>是經典的 78. Subsets 的進階版，現在數字會有重複(duplicate) 。&lt;/p>
 &lt;/blockquote></description></item><item><title>90. Subsets II</title><link>https://aryido.github.io/posts/leetcode/leetcode90/</link><pubDate>Tue, 17 Oct 2023 23:01:42 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode90/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>是經典的 78. Subsets 的進階版，現在數字會有重複(duplicate)。這邊使用 Backtrack 模板來求解。這個題目還有要注意的地方，就是 array 不一定是順序的，例如 test case: &lt;code>[4,4,4,1,4]&lt;/code>，這範例在我們去除重複答案的時候，若沒注意到有亂序的可能性，高機率會出錯。&lt;/p>
@@ -33,6 +41,8 @@
 &lt;li>recursion 遞迴&lt;/li>
 &lt;/ul>
 &lt;p>由於 Fibonacci 數列的時間空間複雜度計算比較特別，加上可以很初步引入很多的思考方式，故雖然這題是 easy ，我還是做個紀錄。&lt;/p>
+&lt;/blockquote></description></item><item><title>Leetcode713</title><link>https://aryido.github.io/not-yet-finished/leetcode/leetcode713/</link><pubDate>Fri, 01 Sep 2023 00:13:42 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/leetcode/leetcode713/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
 &lt;/blockquote></description></item><item><title>206. Reverse Linked List</title><link>https://aryido.github.io/posts/leetcode/leetcode206/</link><pubDate>Sun, 27 Aug 2023 19:47:15 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode206/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>反轉 Linked List 是一道經典的題目，可以用分別用 :&lt;/p>
@@ -41,6 +51,8 @@
 &lt;li>&lt;strong>遞迴 (recursive)&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;p>兩種截然不同的風格來解答。個人認為是蠻好的題目，可以多寫幾次，並從各種不同的解答方式來說明思考，故在此筆記。要說簡單也不算，對於 recursive 解法一開始我覺得有點難理解 ! 雖然被歸類在 Easy，但我私心覺得蠻容易打擊第一次做的人的&amp;hellip;&lt;/p>
+&lt;/blockquote></description></item><item><title>234. Palindrome Linked List</title><link>https://aryido.github.io/not-yet-finished/leetcode/leetcode234/</link><pubDate>Sat, 26 Aug 2023 01:13:14 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/leetcode/leetcode234/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
 &lt;/blockquote></description></item><item><title>49. Group Anagrams</title><link>https://aryido.github.io/posts/leetcode/leetcode49/</link><pubDate>Sun, 04 Jun 2023 13:53:53 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode49/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>所謂的兩字串互為 Anagrams ，意思就是兩個字串中，&lt;strong>字母出現的次數都一樣，只是位置不同&lt;/strong>，比如題目說的 ate 、 eat 、 tea 它們就都互為 Anagrams 。如何判斷兩字串是否互為 Anagrams 是關鍵解題點，這題雖然歸為 Medium ，但是偏向 easy 的，需要注意的點是:&lt;/p>
@@ -106,7 +118,7 @@
 &lt;li>The relative order of the elements should be kept the same.&lt;/li>
 &lt;/ul>
 &lt;p>所以&lt;strong>不能用 Set 或另開 array 去寫&lt;/strong>。另外也花了些篇幅去說明，只要原 array 前面長度部分內，有把所有不重複數字列出來就好，不需要在意後面 array 的元素和 array 的長度。&lt;/p>
-&lt;/blockquote></description></item><item><title>410. Split Array Largest Sum - binary search</title><link>https://aryido.github.io/posts/leetcode/leetcode410-2/</link><pubDate>Sun, 11 Dec 2022 18:32:09 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode410-2/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Leetcode83</title><link>https://aryido.github.io/not-yet-finished/leetcode/leetcode83/</link><pubDate>Sun, 18 Dec 2022 21:50:23 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/leetcode/leetcode83/</guid><description>&lt;!-- raw HTML omitted --></description></item><item><title>410. Split Array Largest Sum - binary search</title><link>https://aryido.github.io/posts/leetcode/leetcode410-2/</link><pubDate>Sun, 11 Dec 2022 18:32:09 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode410-2/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>前面有介紹用 dp 方式把這題給解了，但看一下 Related Topics 發現也可以用 Binary Search 求解，上網參考大神們的解法，感覺特別巧妙。因為這題可用 dp 和 Binary Search，也變成是一道高頻難題。
 這邊記錄一下大神們的想法。&lt;/p>
@@ -130,9 +142,12 @@
 &lt;/blockquote></description></item><item><title>139. Word Break</title><link>https://aryido.github.io/posts/leetcode/leetcode139/</link><pubDate>Sat, 12 Nov 2022 22:10:19 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode139/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>一道很經典的題目，是給定一 string ，能不能分被拆分成 wordDict 裡面的單詞。注意這題，wordDict 裡面的單詞可以重複使用，即單詞使用沒有次數限制，所以 string 可以分成任意段，這就增加了題目的難度。解法蠻多種的，可先從 brute force 下手，再加上暫存優化後，就是蠻標準的 dp 解了，來解一下吧。&lt;/p>
-&lt;/blockquote></description></item><item><title>560. Subarray Sum Equals K</title><link>https://aryido.github.io/posts/leetcode/leetcode560/</link><pubDate>Sun, 23 Oct 2022 11:03:19 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode560/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>78. Subsets</title><link>https://aryido.github.io/not-yet-finished/leetcode/leetcode78/</link><pubDate>Sun, 06 Nov 2022 22:54:12 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/leetcode/leetcode78/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>這題是很經典的問題: &lt;strong>冪集 power set&lt;/strong> ，在數學上還蠻常見到的，理論上求得解答方式也很簡單，選或者不選就可以得出。但在程式上卻有點點難度，會被歸類到 Medium 等級。這邊使用 backtrack 模板來解題，但其實也有非遞回式的解法，都可看看並練習。&lt;/p>
+&lt;/blockquote></description></item><item><title>Leetcode102</title><link>https://aryido.github.io/not-yet-finished/leetcode/leetcode102/</link><pubDate>Sun, 30 Oct 2022 19:54:09 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/leetcode/leetcode102/</guid><description>&lt;!-- raw HTML omitted --></description></item><item><title>Leetcode130</title><link>https://aryido.github.io/not-yet-finished/leetcode/leetcode130/</link><pubDate>Sun, 23 Oct 2022 14:27:33 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/leetcode/leetcode130/</guid><description>&lt;!-- raw HTML omitted --></description></item><item><title>560. Subarray Sum Equals K</title><link>https://aryido.github.io/posts/leetcode/leetcode560/</link><pubDate>Sun, 23 Oct 2022 11:03:19 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode560/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;p>這題我看起來也是很技巧性的題目，一開始要把 subarray 的特性掌握的淋漓盡致，並且想到用 hashmap 來建立快速查找關係，真的有點困難&amp;hellip;但也是這道題的魅力吧 ! 基本上 hashmap 題目大概都會偏向這種步驟應用，多注意可以讓自己視野開闊。&lt;/p></description></item><item><title>1011. Capacity To Ship Packages Within D Days</title><link>https://aryido.github.io/posts/leetcode/leetcode1011/</link><pubDate>Sat, 15 Oct 2022 19:18:43 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode1011/</guid><description>&lt;!-- raw HTML omitted -->
-&lt;p>這題是 Google 面試題，在 Hide Hint 中表示可以使用 binary-search 解決，剛開始覺得蠻 tricky 的，但仔細思考會覺得 binary-search 很符合這題目。&lt;/p></description></item><item><title>127. Word Ladder</title><link>https://aryido.github.io/posts/leetcode/leetcode127/</link><pubDate>Sun, 09 Oct 2022 23:23:53 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode127/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;p>這題是 Google 面試題，在 Hide Hint 中表示可以使用 binary-search 解決，剛開始覺得蠻 tricky 的，但仔細思考會覺得 binary-search 很符合這題目。&lt;/p></description></item><item><title>Leetcode819</title><link>https://aryido.github.io/not-yet-finished/leetcode/leetcode819/</link><pubDate>Mon, 10 Oct 2022 15:31:46 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/leetcode/leetcode819/</guid><description>&lt;!-- raw HTML omitted --></description></item><item><title>127. Word Ladder</title><link>https://aryido.github.io/posts/leetcode/leetcode127/</link><pubDate>Sun, 09 Oct 2022 23:23:53 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode127/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>這題第一眼其實看不太出來是 graph 題，但仔細分析會發現是一個單詞，然後能 reach 到的是換一個字母的單詞，就是鄰居；然後要找最短路徑。 難就是難在一開始要把問題轉化成一個 graph!&lt;/p>
 &lt;/blockquote></description></item><item><title>23. Merge k Sorted Lists</title><link>https://aryido.github.io/posts/leetcode/leetcode23/</link><pubDate>Mon, 03 Oct 2022 21:54:34 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode23/</guid><description>&lt;!-- raw HTML omitted -->

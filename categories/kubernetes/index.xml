@@ -43,7 +43,16 @@
 &lt;li>升級回滾的策略&lt;/li>
 &lt;/ul>
 &lt;p>Deployment 是用來&lt;strong>編排無狀態 pod 的一種控制器資源&lt;/strong>，官方也建議應該透過 Deployment 來佈署 Pod &amp;amp; Replicaset，而非直接對 Pod &amp;amp; Replicaset 進行管理。&lt;/p>
-&lt;/blockquote></description></item><item><title>Kubernetes: command &amp; arguments</title><link>https://aryido.github.io/posts/kubernetes/command-arguments/</link><pubDate>Sun, 07 May 2023 20:22:59 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/command-arguments/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Kubernetes: Container Network Interface</title><link>https://aryido.github.io/not-yet-finished/network-cni/</link><pubDate>Sun, 25 Jun 2023 21:12:29 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/network-cni/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Container Network Interface（CNI）的基本思想，是先創建好網路命名空間 （netns） ，然後調用外掛程式，替這個網路命名空間配置網路，之後再啟動容器內的進程。 CNI 通過 Json Schema 描述當前容器網路的配置，實現標準化。專注於&lt;/p>
+&lt;ul>
+&lt;li>創建容器時分配 IP、網段等等&lt;/li>
+&lt;li>容器被回收時刪除網路資源&lt;/li>
+&lt;/ul>
+&lt;p>CNI 作為 Kubernetes 和底層網路之間的一個抽象存在，遮罩了底層網路實現的細節、實現了 Kubernetes 和具體網路實現方案的解耦。&lt;/p>
+&lt;/blockquote></description></item><item><title>Kubernetes Deployments: Rolling vs Canary vs Blue-Green</title><link>https://aryido.github.io/not-yet-finished/canary/</link><pubDate>Wed, 17 May 2023 00:26:34 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/canary/</guid><description>Canary Deployment 實施流程範例 apiVersion: apps/v1 kind: Deployment metadata: name: myapp-deployment spec: replicas: 3 selector: matchLabels: app: myapp template: metadata: labels: app: myapp spec: containers: - name: myapp-container image: myapp:v1 ports: - containerPort: 8080 readinessProbe: httpGet: path: / port: 8080 initialDelaySeconds: 5 periodSeconds: 5 livenessProbe: httpGet: path: / port: 8080 initialDelaySeconds: 10 periodSeconds: 10 在範例 yaml 中，使用的 image 是 myapp：v1，其中 replicas 先設 3 個來模擬狀況；比較重要的是要加個 health check 來檢查運行狀況，如果這些探測中的任何一個失敗，Pod 將重新啟動 :
+readyinessProbe 檢查容器是否已準備好接收流量 livenessProbe 檢查容器是否仍在運行。 若要執行 Canary Deployment，要創建第二個 deployment yaml 檔，並且使用的 image 是 myapp：v2 新版。然後 :</description></item><item><title>Kubernetes: command &amp; arguments</title><link>https://aryido.github.io/posts/kubernetes/command-arguments/</link><pubDate>Sun, 07 May 2023 20:22:59 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/command-arguments/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>當我們在編寫 Kubernetes Pod 相關的 yaml spec 時，有時會針對 spec.containers ，設置啟動時要執行的命令及其參數，而 Kubernetes 提供 &lt;code>command &lt;/code> 和 &lt;code>args&lt;/code>，兩種方式可以選擇。但這時候就會出現一些疑問 :&lt;/p>
 &lt;ul>

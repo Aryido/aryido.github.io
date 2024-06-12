@@ -1,4 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 30 May 2024 18:52:24 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP VPC 和 Subnet 概述</title><link>https://aryido.github.io/posts/google-cloud/vpc-networks/</link><pubDate>Thu, 30 May 2024 18:52:24 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/vpc-networks/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 02 Jun 2024 22:59:14 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Network Tag 概述</title><link>https://aryido.github.io/not-yet-finished/network-tags/</link><pubDate>Sun, 02 Jun 2024 22:59:14 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/network-tags/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;/blockquote></description></item><item><title>Cloud NAT 概述</title><link>https://aryido.github.io/not-yet-finished/cloud-nat/</link><pubDate>Thu, 30 May 2024 18:52:24 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/cloud-nat/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;/blockquote></description></item><item><title>GCP VPC 和 Subnet 概述</title><link>https://aryido.github.io/posts/google-cloud/vpc-networks/</link><pubDate>Thu, 30 May 2024 18:52:24 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/vpc-networks/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Virtual Private Cloud 虛擬私有雲網路，簡寫為 VPC、網路、VPC Network、Network 都可以，是 Google 使用 &lt;a href="https://01.me/2014/03/networking-at-google/">Andromeda&lt;/a>(/ænˈdrɑː.mə.də/) 網路虛擬化技術實現的一個 global 的雲端資源，提供 GCP-VM、GKE、serverless workloads 和 App Engine 等等雲端服務的網路功能，讓 User 可以高自由度地建立、管理和優化網路架構。對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
@@ -100,10 +104,20 @@
 &lt;/a>
 &lt;/div>
 &lt;/p>
+&lt;/blockquote></description></item><item><title>Elasticsearch 基礎介紹</title><link>https://aryido.github.io/not-yet-finished/elasticsearch-intro/</link><pubDate>Sun, 21 Jan 2024 22:47:34 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/elasticsearch-intro/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Elasticsearch 是一款開源的分佈式搜索引擎，也是一個分佈式資料庫。底層是基於 Lucene 開發，另外 ES 來提供了 RESTful API 風格的接口、支持分佈式、可水平擴展。除了進行全文檢索( full-text search )；倒排索引 (Inverted index)，也支持聚合以及排序操作。&lt;/p>
+&lt;/blockquote></description></item><item><title>322. Coin Change</title><link>https://aryido.github.io/not-yet-finished/leetcode322/</link><pubDate>Sun, 24 Dec 2023 23:14:10 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/leetcode322/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>這題是著名的&lt;strong>零錢兌換&lt;/strong>問題，給我們一些可用的硬幣面額，問&lt;strong>最少&lt;/strong>能用幾個硬幣來兌換出來。標準解法是用 Dynamic Programming 。比較需要知道的地方，是初見時都會想使用 Greedy 方法來做，也就是從最大的 coin 面額拿最多的硬幣開始，如果這個數目無法滿足，那麼從最大的面額數目減一，再重複步驟。但這個解法是錯的 ! 因為&lt;strong>不保證大面額硬幣拿最多的數目就是最佳解&lt;/strong>&amp;hellip;&lt;/p>
 &lt;/blockquote></description></item><item><title>57. Insert Interval</title><link>https://aryido.github.io/posts/leetcode/leetcode57/</link><pubDate>Sat, 02 Dec 2023 17:28:05 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode57/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>此題給定一個沒有 overlapping 且按照起始座標排序的 interval 集合，然後再給一個 newInterval 放到該集合內，要合併 interval 使它們都不會重疊，最後返回新的 &lt;strong>non-overlapping intervals&lt;/strong>。
 本題的生活化的模擬，可以把題目想成自修室租借，然後插入自己的使用時段(&lt;del>亂入別人的使用時間&amp;hellip;&lt;/del>)，最後返回整個自修室被租借的時段。&lt;/p>
+&lt;/blockquote></description></item><item><title>B Tree</title><link>https://aryido.github.io/not-yet-finished/b-tree/</link><pubDate>Sat, 25 Nov 2023 16:23:31 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/b-tree/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>B-tree 是一種自平衡的樹，能夠保持資料的有序性，能讓搜尋、插入、刪除都在 logN 時間內完成。B-tree 是一個廣義化的 binary search tree，可以擁有多於 2 的 sub-Node。
+B-tree 與自平衡 binary search tree 最大不同，是 B-tree 做了讀寫操作做的優化，減少定位記錄時所經歷的中間過程，從而加快存取速度。常應用在 database 和 file-system 實現上。&lt;/p>
 &lt;/blockquote></description></item><item><title>Kubernetes Pod 實現解析</title><link>https://aryido.github.io/posts/kubernetes/pod-implementation/</link><pubDate>Tue, 07 Nov 2023 23:10:05 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/pod-implementation/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Pod 是 Kubernetes 中最小的運行單位，它可以包含一個或多個 container。Pod 的實現原理主要涉及以下幾個方面：&lt;/p>
@@ -129,6 +143,11 @@
 &lt;li>隨機選取 k 個數，每個數被選中的機率為&lt;code>k/N&lt;/code>&lt;/li>
 &lt;/ul>
 &lt;p>本來面對這種問題，比較直接的想法是利用隨機數演算法，求 random(N) 得到隨機數，但是因&lt;strong>資料流極大&lt;/strong>，無法一次都讀到記憶體內，這就表示不能像數組一樣根據 index 獲取元素；而且題目強調&lt;strong>只能遍歷一遍&lt;code>O(N)&lt;/code>&lt;/strong>，代表也不能再採用分塊方式儲存資料，之後再隨機遍歷。為了解決這個問題，可以使用 Reservoir sampling ，非常的巧妙。&lt;/p>
+&lt;/blockquote></description></item><item><title>Leetcode216</title><link>https://aryido.github.io/not-yet-finished/leetcode/leetcode216/</link><pubDate>Tue, 17 Oct 2023 23:29:29 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/leetcode/leetcode216/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;/blockquote></description></item><item><title>90. Subsets II</title><link>https://aryido.github.io/not-yet-finished/leetcode/leetcode90/</link><pubDate>Tue, 17 Oct 2023 23:01:42 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/leetcode/leetcode90/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>是經典的 78. Subsets 的進階版，現在數字會有重複(duplicate) 。&lt;/p>
 &lt;/blockquote></description></item><item><title>90. Subsets II</title><link>https://aryido.github.io/posts/leetcode/leetcode90/</link><pubDate>Tue, 17 Oct 2023 23:01:42 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode90/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>是經典的 78. Subsets 的進階版，現在數字會有重複(duplicate)。這邊使用 Backtrack 模板來求解。這個題目還有要注意的地方，就是 array 不一定是順序的，例如 test case: &lt;code>[4,4,4,1,4]&lt;/code>，這範例在我們去除重複答案的時候，若沒注意到有亂序的可能性，高機率會出錯。&lt;/p>
@@ -204,6 +223,11 @@
 &lt;li>動態規劃 dynamic programming&lt;/li>
 &lt;/ul>
 &lt;p>在實際狀況中，遞迴函數的設計常常很難想像，因為遞迴設計屬於&lt;strong>逆向思維&lt;/strong>，在設計遞迴函數的時候，非常容易被這種層層嵌套搞暈，在這裡簡單給個模板範例講解。&lt;/p>
+&lt;/blockquote></description></item><item><title>Protobuf &amp; Avro</title><link>https://aryido.github.io/not-yet-finished/protobuf-avro/</link><pubDate>Sat, 02 Sep 2023 20:05:20 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/protobuf-avro/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>在現實情境中，data 的設計總是會不斷變化。故我們都會希望可以變成&lt;strong>能夠快速添加或刪除一些 field&lt;/strong>，但不影響太多系統的設計。目前 Protobuf 和 Avro 都支持 schema reversion，它允許你在不同的時間獨立地更新系統的不同組件，而不用擔心兼容性問題。&lt;/p>
+&lt;/blockquote></description></item><item><title>Leetcode713</title><link>https://aryido.github.io/not-yet-finished/leetcode/leetcode713/</link><pubDate>Fri, 01 Sep 2023 00:13:42 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/leetcode/leetcode713/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
 &lt;/blockquote></description></item><item><title>Complexity Analysis</title><link>https://aryido.github.io/posts/algorithm/complexity-analysis/</link><pubDate>Wed, 30 Aug 2023 00:06:02 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/complexity-analysis/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>在刷 leetcode 時，都會需要分析和解釋一下自己寫的程式的演算法複雜度，基本上主要是解釋 :&lt;/p>
@@ -220,6 +244,8 @@
 &lt;li>&lt;strong>遞迴 (recursive)&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;p>兩種截然不同的風格來解答。個人認為是蠻好的題目，可以多寫幾次，並從各種不同的解答方式來說明思考，故在此筆記。要說簡單也不算，對於 recursive 解法一開始我覺得有點難理解 ! 雖然被歸類在 Easy，但我私心覺得蠻容易打擊第一次做的人的&amp;hellip;&lt;/p>
+&lt;/blockquote></description></item><item><title>234. Palindrome Linked List</title><link>https://aryido.github.io/not-yet-finished/leetcode/leetcode234/</link><pubDate>Sat, 26 Aug 2023 01:13:14 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/leetcode/leetcode234/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
 &lt;/blockquote></description></item><item><title>Multiple points 題型簡單介紹</title><link>https://aryido.github.io/posts/algorithm/multiple-points/</link><pubDate>Wed, 23 Aug 2023 22:50:25 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/multiple-points/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Multiple points 的操作，經常用在 array 或 linkedList 上，有幾點事情可以在刷題時特別注意:&lt;/p>
@@ -261,6 +287,14 @@
 &lt;img class="fig-img" src="https://aryido.github.io/images/google-cloud/load-balancer-options.jpg" >
 &lt;/a>
 &lt;/div>
+&lt;/blockquote></description></item><item><title>Kubernetes: Container Network Interface</title><link>https://aryido.github.io/not-yet-finished/network-cni/</link><pubDate>Sun, 25 Jun 2023 21:12:29 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/network-cni/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Container Network Interface（CNI）的基本思想，是先創建好網路命名空間 （netns） ，然後調用外掛程式，替這個網路命名空間配置網路，之後再啟動容器內的進程。 CNI 通過 Json Schema 描述當前容器網路的配置，實現標準化。專注於&lt;/p>
+&lt;ul>
+&lt;li>創建容器時分配 IP、網段等等&lt;/li>
+&lt;li>容器被回收時刪除網路資源&lt;/li>
+&lt;/ul>
+&lt;p>CNI 作為 Kubernetes 和底層網路之間的一個抽象存在，遮罩了底層網路實現的細節、實現了 Kubernetes 和具體網路實現方案的解耦。&lt;/p>
 &lt;/blockquote></description></item><item><title>Terraform: Input Variables</title><link>https://aryido.github.io/posts/terraform/variables/</link><pubDate>Tue, 06 Jun 2023 23:21:58 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/variables/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>要讓 Terraform 能有複用性，我們需要加入一些&lt;strong>參數化&lt;/strong>變數來增加彈性，也就是為 module 的 parameter，而且在 root module 中定義好的 variable，可以根據需求來覆蓋。 Terraform Input Variables 的功能，讓我們可以宣告變數，並有幾種方式可以傳入自訂義 variable values:&lt;/p>
@@ -277,7 +311,8 @@
 &lt;li>熟悉一些 java 內建常用的字串處理 function ，寫起來會比較簡潔。&lt;/li>
 &lt;li>想到使用 map 結構來儲存分組資料。&lt;/li>
 &lt;/ul>
-&lt;/blockquote></description></item><item><title>Rolling vs Canary vs Blue-Green</title><link>https://aryido.github.io/posts/develop/rolling-canary-bluegreen/</link><pubDate>Wed, 17 May 2023 00:26:34 +0800</pubDate><guid>https://aryido.github.io/posts/develop/rolling-canary-bluegreen/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Kubernetes Deployments: Rolling vs Canary vs Blue-Green</title><link>https://aryido.github.io/not-yet-finished/canary/</link><pubDate>Wed, 17 May 2023 00:26:34 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/canary/</guid><description>Canary Deployment 實施流程範例 apiVersion: apps/v1 kind: Deployment metadata: name: myapp-deployment spec: replicas: 3 selector: matchLabels: app: myapp template: metadata: labels: app: myapp spec: containers: - name: myapp-container image: myapp:v1 ports: - containerPort: 8080 readinessProbe: httpGet: path: / port: 8080 initialDelaySeconds: 5 periodSeconds: 5 livenessProbe: httpGet: path: / port: 8080 initialDelaySeconds: 10 periodSeconds: 10 在範例 yaml 中，使用的 image 是 myapp：v1，其中 replicas 先設 3 個來模擬狀況；比較重要的是要加個 health check 來檢查運行狀況，如果這些探測中的任何一個失敗，Pod 將重新啟動 :
+readyinessProbe 檢查容器是否已準備好接收流量 livenessProbe 檢查容器是否仍在運行。 若要執行 Canary Deployment，要創建第二個 deployment yaml 檔，並且使用的 image 是 myapp：v2 新版。然後 :</description></item><item><title>Rolling vs Canary vs Blue-Green</title><link>https://aryido.github.io/posts/develop/rolling-canary-bluegreen/</link><pubDate>Wed, 17 May 2023 00:26:34 +0800</pubDate><guid>https://aryido.github.io/posts/develop/rolling-canary-bluegreen/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>現今應用程式發展迅速， app 的更新也變得越來越頻繁，在微服務、DevOps、Cloud-native 的迭代過程中，最終都需要上線。上線就需要部署；需要部署就意味著有修改；修改則意味著有風險，要如何在&lt;strong>盡量不影響 user 的前提下，讓 app 升版呢&lt;/strong> ? 這時就有一些&lt;strong>部屬策略&lt;/strong>可以考慮。對於 Deployment Strategies 有一些基本的專有名詞和觀念，例如 :&lt;/p>
 &lt;ul>
@@ -307,6 +342,9 @@
 &lt;blockquote>
 &lt;p>Avro 是一個 data serialization 框架 ，是 Apache Hadoop 下的一個子項目，是一個可跨多種程式語言和平台的&lt;strong>傳輸資料格式&lt;/strong>。Avro 可使用 JSON 格式來描述 data structure，並且支持&lt;strong>架構演進&lt;/strong>，保持向後、向前的相容性。
 Avro 也提供了編解碼和二進制格式，使得在高吞吐量的應用場景中非常有用且高效。&lt;/p>
+&lt;/blockquote></description></item><item><title>Avro 簡介</title><link>https://aryido.github.io/not-yet-finished/avro/</link><pubDate>Sun, 23 Apr 2023 15:27:54 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/avro/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Avro 是一個 data serialization 框架 ，為 Apache Hadoop 下的一個子項目，定義一個可跨多種程式語言和平台的&lt;strong>傳輸資料格式&lt;/strong>。Avro 可使用 JSON 格式來描述 data structure，並且支持&lt;strong>架構演進&lt;/strong>，保持向後/向前的相容性。 Avro 也提供了編解碼和二進制格式，使得在高吞吐量的應用場景中非常有用且高效。&lt;/p>
 &lt;/blockquote></description></item><item><title>cloc: code line 統計工具</title><link>https://aryido.github.io/posts/develop/cloc/</link><pubDate>Sat, 22 Apr 2023 13:25:32 +0800</pubDate><guid>https://aryido.github.io/posts/develop/cloc/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>cloc 全名是 &lt;strong>Count Lines of Code&lt;/strong> ， 為一個計算 code 和設定檔&lt;strong>行數&lt;/strong>的 CLI 工具，是使用 Perl 語言開發的開源統計工具。cloc 支援非常多程式語言、平台、格式的統計，可以快速地計算一個 project 中所有文件的行數、空行、註釋行等等。有時候在寫一些報告會用到，可以幫助整理資料。&lt;/p>
@@ -330,6 +368,9 @@ Avro 也提供了編解碼和二進制格式，使得在高吞吐量的應用場
 &lt;/blockquote></description></item><item><title>295. Find Median from Data Stream</title><link>https://aryido.github.io/posts/leetcode/leetcode295/</link><pubDate>Sat, 08 Apr 2023 19:56:55 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode295/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>這題為一個設計題，給了一個 Data Stream，希望設計一個 class 能夠支援連續的 operation，並找出該 Stream 目前的中位數。注意 Data Stream 中的 Data 是無序的且可以為負數，所以我們要做的第一件事是讓&lt;strong>每一次 data 輸入進來，都要讓其有序&lt;/strong>。這裡介紹的解法十分巧妙，&lt;strong>使用 maxHeap 和 minHeap 來解決問題&lt;/strong>，這樣中位數的計算便只要看 maxHeap 的最大值和 minHeap 的最小值來判斷。&lt;/p>
+&lt;/blockquote></description></item><item><title>Docker File</title><link>https://aryido.github.io/not-yet-finished/docker-file/</link><pubDate>Sat, 08 Apr 2023 12:50:16 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/docker-file/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Dockerfile 是一個設定檔，讓我們可以透過指令的設定，快速地更新或建構 Container 的環境。由於 Dockerfile 中可以清楚的知道映像檔的組成，因此，在安全性上會有所提升，也因為是純文字檔，所以檔案很小、很容易分享。Dockerfile 可以看成是一個腳本，他用來明確告訴 Docker build 指令產生新的 Image 時候，所需的資訊和步驟。Dockerfile 會提供 Docker 引擎建立容器映射所需的指示。這些指令會依序逐一執行。&lt;/p>
 &lt;/blockquote></description></item><item><title>Dockerfile - RUN、CMD、ENTRYPOINT 介紹</title><link>https://aryido.github.io/posts/docker/run-cmd-entrypoint/</link><pubDate>Sat, 08 Apr 2023 12:50:16 +0800</pubDate><guid>https://aryido.github.io/posts/docker/run-cmd-entrypoint/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Dockerfile 讓我們可以透過設定&lt;strong>指令&lt;/strong>的方式，快速地更新和建構 Image 。由於 Dockerfile 中可以清楚的知道 Image 建構的過程和引用的 package 組成，因此在安全性上會有所提升；也因為是純文字檔，所以 size 很小、易於分享。Dockerfile 裡面有一些指令蠻容易混淆的，這次重點介紹:&lt;/p>
@@ -339,6 +380,14 @@ Avro 也提供了編解碼和二進制格式，使得在高吞吐量的應用場
 &lt;li>ENTRYPOINT&lt;/li>
 &lt;/ul>
 &lt;p>這三個指令都可以用來執行具體的命令，&lt;strong>但其中又有些差異&lt;/strong>，以下做一些說明和整理。&lt;/p>
+&lt;/blockquote></description></item><item><title>Docker - 基本操作</title><link>https://aryido.github.io/not-yet-finished/docker-cli/</link><pubDate>Thu, 06 Apr 2023 20:53:33 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/docker-cli/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>虛擬化技術 :&lt;/p>
+&lt;ul>
+&lt;li>系統層級虛擬化（Virtual machine ) ，例如 Virtual Box&lt;/li>
+&lt;li>作業系統層級虛擬化（Container），立如 Docker&lt;/li>
+&lt;/ul>
+&lt;p>Docker 是一個 software platform ，可讓我們快速構建、測試和部署應用程式。Docker 將軟體打包到標準化單元中，這些單元包含軟體運行所需的一切，包括 libraries 、 system tools 、code 等等。Docker 的基本哲學 &lt;strong>Build and Ship any Application Anywhere&lt;/strong> 。&lt;/p>
 &lt;/blockquote></description></item><item><title>797. All Paths From Source to Target</title><link>https://aryido.github.io/posts/leetcode/leetcode797/</link><pubDate>Wed, 05 Apr 2023 17:00:37 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode797/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>這題給了我們一個無環有向圖 (directed acyclic graph)(DAG) 。有 N 個 node ，要找出所有可能的從 &lt;code>node 0&lt;/code> 到 &lt;code>node N-1&lt;/code> 的路徑。像這種需要走到終點，且在每一次新的遞迴時，都要把當前路徑記錄下來，其本質都是&lt;strong>深度遍歷 graph&lt;/strong> ，再加上 &lt;strong>backtrack 回溯狀態&lt;/strong>。是經典的 dfs 的題目。&lt;/p>
@@ -438,7 +487,7 @@ Avro 也提供了編解碼和二進制格式，使得在高吞吐量的應用場
 &lt;/blockquote></description></item><item><title>Kubernetes 基礎介紹 - 1</title><link>https://aryido.github.io/posts/kubernetes/overview-1/</link><pubDate>Mon, 19 Dec 2022 23:38:06 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/overview-1/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>從第一次聽到 Kubernetes 以來，已經有一年多了，永遠都記得 k8s 名稱的由來只是保留「開頭 K」及「結尾 S」，然後中間的英文字母數量剛好是 8 個英文字就這樣命名了&amp;hellip;。全球三大雲服務商，AWS、Azure 和 GCP 都有提供託管 Kubernetes 集群服務( EKS、AKS、GKE )，可見其有名火熱程度。現在終於有機會在工作上碰到這項技術，就來寫些簡單筆記吧 !&lt;/p>
-&lt;/blockquote></description></item><item><title>AWS EKS</title><link>https://aryido.github.io/posts/aws/eks/</link><pubDate>Sat, 17 Dec 2022 18:45:30 +0800</pubDate><guid>https://aryido.github.io/posts/aws/eks/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Leetcode83</title><link>https://aryido.github.io/not-yet-finished/leetcode/leetcode83/</link><pubDate>Sun, 18 Dec 2022 21:50:23 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/leetcode/leetcode83/</guid><description>&lt;!-- raw HTML omitted --></description></item><item><title>AWS EKS</title><link>https://aryido.github.io/posts/aws/eks/</link><pubDate>Sat, 17 Dec 2022 18:45:30 +0800</pubDate><guid>https://aryido.github.io/posts/aws/eks/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>ECS 很常拿來與 Kubernetes 比較，而 2017 aws 又進一步宣佈了 Amazon Elastic Container Service for Kubernetes(EKS)，使 aws 平台可以託管 k8s 服務。EKS 服務可以省去安裝以及操作自己的 Kubernetes 叢集的時間，輕鬆的在 AWS 上執行 Kubernetes；進一步地，可使用 Fargate 模式在 &lt;em>EKS&lt;/em> 上，可連 node 機器都不用管理。&lt;/p>
 &lt;/blockquote></description></item><item><title>AWS ECS</title><link>https://aryido.github.io/posts/aws/ecs/</link><pubDate>Sat, 17 Dec 2022 16:30:30 +0800</pubDate><guid>https://aryido.github.io/posts/aws/ecs/</guid><description>&lt;!-- raw HTML omitted -->
@@ -476,6 +525,9 @@ Avro 也提供了編解碼和二進制格式，使得在高吞吐量的應用場
 &lt;/blockquote></description></item><item><title>410. Split Array Largest Sum - dynamic programming</title><link>https://aryido.github.io/posts/leetcode/leetcode410/</link><pubDate>Sun, 27 Nov 2022 20:26:22 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode410/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>這題真的蠻難的，一開始看題目我也覺得很繞口，給了一個非負數的 nums 和一個 m 代表把 nums 分成 m 個 group 且 每個 group non-empty 並取 m 個 group 中的最大值。但注意，前面只是代表一種&lt;strong>切法&lt;/strong>而已，我們是要找所有可能&lt;strong>切法&lt;/strong>之中的最小值。看一下 Related Topics 發現可以用 Binary Search 和 DP 求解，也是一道高頻題目。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP Address 介紹</title><link>https://aryido.github.io/not-yet-finished/gcp-compuate-engine-address/</link><pubDate>Sat, 26 Nov 2022 23:20:50 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/gcp-compuate-engine-address/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>GCP 每個 vm instance 創建時，都會分配一個 internal IP，並且也可以選擇是否附加 external IP。 不管是 internal IP 或者是 external IP 其實都可以 static 化，把它固定下來使之不會變動。&lt;/p>
 &lt;/blockquote></description></item><item><title>877. Stone Game</title><link>https://aryido.github.io/posts/leetcode/leetcode877/</link><pubDate>Fri, 25 Nov 2022 23:36:44 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode877/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>石頭遊戲，兩個人輪流選石頭，Alex 先選，每次只能選開頭或結尾，最終獲得石頭總數多的人獲勝。 乍看之下不好想到可以用 DP 解，但其實可用一個 2D-state 去描述遞迴的狀態。 這題一開始會好奇是因為負評倒讚很多，個人是感覺能從 Game Theory 單純想出這結論也是蠻厲害的&amp;hellip;&lt;/p>
@@ -510,15 +562,18 @@ Avro 也提供了編解碼和二進制格式，使得在高吞吐量的應用場
 &lt;blockquote>
 &lt;p>IP (Internet Protocol) 是電腦的地址。IP 位址在系統中是一個 32 位元的數字，但為了方便人類讀寫，每一個位元組會被轉換成一個十進位的數字。&lt;/p>
 &lt;p>IP 位址可以分為 Network ID 和 Host ID，為了讓電腦可以判斷出 IP 位址的 Network ID 及 Host ID，必須靠子網路遮罩 (Subnet Mask) 的幫忙。&lt;/p>
+&lt;/blockquote></description></item><item><title>78. Subsets</title><link>https://aryido.github.io/not-yet-finished/leetcode/leetcode78/</link><pubDate>Sun, 06 Nov 2022 22:54:12 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/leetcode/leetcode78/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>這題是很經典的問題: &lt;strong>冪集 power set&lt;/strong> ，在數學上還蠻常見到的，理論上求得解答方式也很簡單，選或者不選就可以得出。但在程式上卻有點點難度，會被歸類到 Medium 等級。這邊使用 backtrack 模板來解題，但其實也有非遞回式的解法，都可看看並練習。&lt;/p>
 &lt;/blockquote></description></item><item><title>Dynamic Programming 基礎介紹</title><link>https://aryido.github.io/posts/algorithm/dynamic-programming1/</link><pubDate>Wed, 02 Nov 2022 21:52:00 +0800</pubDate><guid>https://aryido.github.io/posts/algorithm/dynamic-programming1/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Dynamic Programming 大概算是 leetcode 裡面平均難度最高的章節了，還蠻需要練習的。但在講 DP 之前，我們可以先講 Search，因為 Dynamic Programming 其實就是 Search + Memoization。&lt;/p>
 &lt;/blockquote></description></item><item><title>Datadog V.S Grafana</title><link>https://aryido.github.io/posts/monitoring/datadog/</link><pubDate>Mon, 31 Oct 2022 23:35:14 +0800</pubDate><guid>https://aryido.github.io/posts/monitoring/datadog/</guid><description>&lt;blockquote>
 &lt;p>Datadog 是 2010 年成立，以 infrastructure monitoring 起家。主要是整合多個雲平台如 GCP, AWS, Azure，讓工程師方便監測以進行 debug 。另外可用機器學習方式，將預先對可能發生異常狀況發出警示，是企業級的解決方案。&lt;/p>
-&lt;/blockquote></description></item><item><title>GCP load-balancer 的 terraform Module</title><link>https://aryido.github.io/posts/terraform/gcp-aws-terraform-module/</link><pubDate>Sat, 29 Oct 2022 23:17:25 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/gcp-aws-terraform-module/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Leetcode102</title><link>https://aryido.github.io/not-yet-finished/leetcode/leetcode102/</link><pubDate>Sun, 30 Oct 2022 19:54:09 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/leetcode/leetcode102/</guid><description>&lt;!-- raw HTML omitted --></description></item><item><title>GCP load-balancer 的 terraform Module</title><link>https://aryido.github.io/posts/terraform/gcp-aws-terraform-module/</link><pubDate>Sat, 29 Oct 2022 23:17:25 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/gcp-aws-terraform-module/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>目前使用 AWS 和 GCP terraform module 的感想，其實我覺得都還可以。但這邊特別覺得 GCP load-balancer module，我個人感覺寫得真的不好，有很多地方應該可以寫得更好，讓使用者體驗更棒的，但他們並沒做到&amp;hellip;，也讓我思考了其實一昧 module 化是否有必要呢 ? 讓我列出來一些我簡單比較和缺點吧。&lt;/p>
-&lt;/blockquote></description></item><item><title>560. Subarray Sum Equals K</title><link>https://aryido.github.io/posts/leetcode/leetcode560/</link><pubDate>Sun, 23 Oct 2022 11:03:19 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode560/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Leetcode130</title><link>https://aryido.github.io/not-yet-finished/leetcode/leetcode130/</link><pubDate>Sun, 23 Oct 2022 14:27:33 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/leetcode/leetcode130/</guid><description>&lt;!-- raw HTML omitted --></description></item><item><title>560. Subarray Sum Equals K</title><link>https://aryido.github.io/posts/leetcode/leetcode560/</link><pubDate>Sun, 23 Oct 2022 11:03:19 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode560/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;p>這題我看起來也是很技巧性的題目，一開始要把 subarray 的特性掌握的淋漓盡致，並且想到用 hashmap 來建立快速查找關係，真的有點困難&amp;hellip;但也是這道題的魅力吧 ! 基本上 hashmap 題目大概都會偏向這種步驟應用，多注意可以讓自己視野開闊。&lt;/p></description></item><item><title>Google Cloud CLI : Auth Credentials</title><link>https://aryido.github.io/posts/google-cloud/gcp-cli-3/</link><pubDate>Sat, 22 Oct 2022 16:13:45 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp-cli-3/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>最近使用 gcloud CLI 時，有遇到自己錯誤理解的部分，是關於 gcloud 管理的兩組 credentials :&lt;/p>
@@ -549,7 +604,7 @@ Binary-Search 在處理邊界時很容易出錯。 基本上都是沒注意到�
 &lt;li>每次縮減不能排除潛在答案&lt;/li>
 &lt;/ul>
 &lt;p>雖然淺顯易見，但實踐在寫的時候還是常常會寫出 bug 。&lt;/p>
-&lt;/blockquote></description></item><item><title>127. Word Ladder</title><link>https://aryido.github.io/posts/leetcode/leetcode127/</link><pubDate>Sun, 09 Oct 2022 23:23:53 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode127/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Leetcode819</title><link>https://aryido.github.io/not-yet-finished/leetcode/leetcode819/</link><pubDate>Mon, 10 Oct 2022 15:31:46 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/leetcode/leetcode819/</guid><description>&lt;!-- raw HTML omitted --></description></item><item><title>127. Word Ladder</title><link>https://aryido.github.io/posts/leetcode/leetcode127/</link><pubDate>Sun, 09 Oct 2022 23:23:53 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode127/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>這題第一眼其實看不太出來是 graph 題，但仔細分析會發現是一個單詞，然後能 reach 到的是換一個字母的單詞，就是鄰居；然後要找最短路徑。 難就是難在一開始要把問題轉化成一個 graph!&lt;/p>
 &lt;/blockquote></description></item><item><title>GCP Filestore vs AWS EFS 收費標準</title><link>https://aryido.github.io/posts/cloud/filestore-vs-efs/</link><pubDate>Fri, 07 Oct 2022 22:03:14 +0800</pubDate><guid>https://aryido.github.io/posts/cloud/filestore-vs-efs/</guid><description>&lt;!-- raw HTML omitted -->
