@@ -5,7 +5,7 @@
 &lt;/blockquote></description></item><item><title>Elasticsearch 基礎介紹</title><link>https://aryido.github.io/not-yet-finished/elasticsearch-intro/</link><pubDate>Sun, 21 Jan 2024 22:47:34 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/elasticsearch-intro/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Elasticsearch 是一款開源的分佈式搜索引擎，也是一個分佈式資料庫。底層是基於 Lucene 開發，另外 ES 來提供了 RESTful API 風格的接口、支持分佈式、可水平擴展。除了進行全文檢索( full-text search )；倒排索引 (Inverted index)，也支持聚合以及排序操作。&lt;/p>
-&lt;/blockquote></description></item><item><title>322. Coin Change</title><link>https://aryido.github.io/not-yet-finished/leetcode322/</link><pubDate>Sun, 24 Dec 2023 23:14:10 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/leetcode322/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>322. Coin Change</title><link>https://aryido.github.io/not-yet-finished/leetcode/leetcode322/</link><pubDate>Sun, 24 Dec 2023 23:14:10 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/leetcode/leetcode322/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>這題是著名的&lt;strong>零錢兌換&lt;/strong>問題，給我們一些可用的硬幣面額，問&lt;strong>最少&lt;/strong>能用幾個硬幣來兌換出來。標準解法是用 Dynamic Programming 。比較需要知道的地方，是初見時都會想使用 Greedy 方法來做，也就是從最大的 coin 面額拿最多的硬幣開始，如果這個數目無法滿足，那麼從最大的面額數目減一，再重複步驟。但這個解法是錯的 ! 因為&lt;strong>不保證大面額硬幣拿最多的數目就是最佳解&lt;/strong>&amp;hellip;&lt;/p>
 &lt;/blockquote></description></item><item><title>B Tree</title><link>https://aryido.github.io/not-yet-finished/b-tree/</link><pubDate>Sat, 25 Nov 2023 16:23:31 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/b-tree/</guid><description>&lt;!-- raw HTML omitted -->
