@@ -1,5 +1,5 @@
 ---
-title: GCP VPC 和 Subnet 概述
+title: GCP - VPC 和 Subnet 概述
 
 author: Aryido
 
@@ -8,10 +8,12 @@ date: 2024-05-30T18:52:24+08:00
 thumbnailImage: "/images/google-cloud/logo.jpg"
 
 categories:
+- cloud
 - gcp
 
 tags:
 - network
+- vpc
 
 comment: false
 
@@ -23,7 +25,6 @@ reward: false
 > - Microsoft Azure 中的 **Azure Virtual Network** 
 >
 > GCP-VPC 和 Amazon VPC/Azure Virtual Network 設計蠻不一樣的。GCP-VPC 是全球性的，只要在同一個 GCP-VPC 內，就算不同 region 也能使用 Internal IP ; 但如果是不同的 VPC ，就算在同一個地區 region 也不能互相通訊。而 Amazon VPC/Azure Virtual Network 是針對 Region 來設定的，只要跨 region 就不是內網的概念。
-
 
 <!--more-->
 
