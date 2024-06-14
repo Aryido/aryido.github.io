@@ -1,5 +1,5 @@
 ---
-title: GCP - VPC 和 Subnet 概述
+title: GCP - VPC 概述
 
 author: Aryido
 
@@ -45,15 +45,8 @@ GCP 專案內預設只先可以開 5 個 VPC 而已。若預設的 Quota 不足�
 # VPC
 簡單說 VPC 就是串接雲端服務的網路，每個 GCP-VPC 都是網路隔離的（network isolation），但在同一個 GCP-VPC 內視為**同一個內網環境**，可以透過 Internal IP 來相互通訊，減少延遲、增加效能。
 
-### 預設 VPC
-一般來說， GCP 一個 project 專案開起來後，會有一個預設 VPC 名字叫做 default ，它是在全世界每個 Region 都建了一個 Subnet 切好網段給我們了。雖然已經有預設的 VPC ，但其實不建議在 Prod 環境中使用， GCP 官方給出的 Best Practices 也說當建立了自己的 VPC 後，應該刪除這個 default 的 VPC ，原因是：
 
-- 不需要每個 Region 中都有一個 Subnet，應該是對應自己的需求。例如我們可能只台灣 region 部署服務而已，若使用 default VPC 就會有很多網段都給其他國家用掉了，可以自己分配的網段就會少很多，所以建議自訂 VPC。
-- 未來有計劃要使用 VPC Network Peering 或 Cloud VPN 等服務來連接不同的 VPC 網絡，就會建議要自行規劃網段，因為在 Auto 模式下其 subnet IP range，可能會產生衝突。
-
-
-
-# Subnet
+### Subnet
 
 官方文件中，有表示 subnet 和 subnetwork 為同一個意思。
 {{< image classes="fancybox fig-100" src="/images/google-cloud/network/vpc.jpg" >}}
@@ -64,20 +57,26 @@ GCP 專案內預設只先可以開 5 個 VPC 而已。若預設的 Quota 不足�
 可以發現，其實 VPC 並沒有 Mapping 到任何 Region，真正 Mapping 的是在 Subnet。
 {{< /alert >}}
 
-每個主 Subnet 網段內有四個不可用的 IP 位址，可參閱 [Unusable addresses in IPv4 subnet ranges](https://cloud.google.com/vpc/docs/subnets#unusable-ip-addresses-in-every-subnet); 又因為 Subnet 是直接配置在 Region 上的，故 Region 裡面的資源若有需要，都是會領取到該網段內的 IP address。
+每個 Subnet 網段內有四個不可用的 IP 位址，可參閱 [Unusable addresses in IPv4 subnet ranges](https://cloud.google.com/vpc/docs/subnets#unusable-ip-addresses-in-every-subnet); 又因為 Subnet 是直接配置在 Region 上的，故 Region 裡面的資源若有需要 IP 地址，都是會領取到該網段內的 IP address。
 
-### 為什麼同個 region 也會要切分 subnet ?
+##### 為什麼同個 region 也會要切分 subnet ?
 同個 region 也要切分 subnet 是因為我們在雲端上，會建立不同類型的資源例如資料庫、 VM 等。每種類型的資源都有**自己的存取要求**，例如我們可以為 Public 資源 和 private 資源建立不同的 subnet，User 可將不同存取權限的資源分配到不同的 Subnet 中，有助於管理和隔離 :
 - 可以從 Internet 存取 Public subnet 中的資源
 - 但無法從 Internet 存取 Private subnet 中的資源
 - 但是 Public subnet 中的資源可以和 Private subnet 中的資源通訊
 
-### Subnet 網段的擴張
+##### Subnet 網段的擴張
 
-隨著我們服務越來越多，Subnet 的 IP address 數量可能不夠了，這個時候就需要來進行 IPv4 位址範圍的擴展。在 Google Cloud 上進行 VPC 網段擴張並不會影響到資源的運作。在進行擴展時有幾個注意事項：
+隨著我們服務越來越多，Subnet 的 IP address 數量可能不夠了，這個時候就需要來進行 IP range 的擴展。在 Google Cloud 上進行 VPC 網段擴張並不會影響到資源的運作，但在進行擴展時有幾個注意事項：
 
 - 網段之間不能重複衝突的部分。
 - 網段只能擴張不能縮減，因此建議一開始配置不要太大夠用就好，後續隨著需求再增加。
+
+### 預設 VPC
+一般來說， GCP 一個 project 專案開起來後，就會有一個預設 VPC 名字叫做 default ，它是在全世界每個 Region 都建了切好一個 Subnet 網段給我們了。雖然已經有預設的 VPC ，但其實**不建議**在 Prod 環境中使用， GCP 官方給出的 Best Practices 也說應當建立了自己的 VPC 並刪除這個 default VPC ，原因是：
+
+- 不需要每個 Region 中都有一個 Subnet，應該是按照自己的需求來切分。例如可能只需要用台灣的 region 部署服務而已，若使用 default VPC 就會有很多網段都給其他國家用掉了，可以自己分配的網段就會少很多，所以建議自訂 VPC。
+- 未來有計劃要使用 VPC Network Peering 或 Cloud VPN 等服務來連接不同的 VPC 網絡，就會建議要自行規劃網段，因為在 Auto 模式下生成的 subnet IP range 可能會產生衝突。
 
 ---
 
