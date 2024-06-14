@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>virtual-machine on Aryido Tech Note</title><link>https://aryido.github.io/tags/virtual-machine/</link><description>Recent content in virtual-machine on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 23 May 2024 23:26:00 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/virtual-machine/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Compute Engine 概述</title><link>https://aryido.github.io/posts/google-cloud/compute-engine/</link><pubDate>Thu, 23 May 2024 23:26:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/compute-engine/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>virtual-machine on Aryido Tech Note</title><link>https://aryido.github.io/tags/virtual-machine/</link><description>Recent content in virtual-machine on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 02 Jun 2024 22:59:14 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/virtual-machine/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Network Tag 概述</title><link>https://aryido.github.io/posts/google-cloud/network-tags/</link><pubDate>Sun, 02 Jun 2024 22:59:14 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/network-tags/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Network Tag 在 GCP 中只是一個簡單的字符串標示，&lt;strong>會簡稱為 Tag&lt;/strong> ，可附加到如 VM 或 Instance template 上，設計想法上是可以由這個標示，更有效地控制和管理 VM 的網路防火牆安全設定。 Network Tag 算是 GCP 比較特別的設計，其他雲端似乎沒有比較類似的對應，由於不是一個獨立的 cloud resource ，所以是無法單獨建立 Tag 的，但對於其關聯的 GCP Firewall Rules ，對應其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>AWS: Security Groups&lt;/li>
+&lt;li>Azure: Network security groups&lt;/li>
+&lt;/ul>
+&lt;p>特別要注意的事情是在 GCP 中，Tag 和 Label 是不一樣的東西。通常 GCP 提到 tag 都是指 network tag 這個網路安全相關防火牆設定 ; 而 Label 是拿來作預算及資源管理使用。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Compute Engine 概述</title><link>https://aryido.github.io/posts/google-cloud/compute-engine/</link><pubDate>Thu, 23 May 2024 23:26:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/compute-engine/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Compute Engine 是託管在 Google 雲端上基礎架構即服務 (IaaS) 產品，對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
