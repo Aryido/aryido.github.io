@@ -34,7 +34,7 @@ reward: false
 {{< image classes="fancybox fig-100" src="/images/google-cloud/network/default-firewall-rule.jpg" >}}
 接下來就點進去看這幾個 Firewall-Rules 設定來學習一下基本觀念。
 {{< alert warning >}}
-**建議不要直接使用預設的 Firewall-Rules**，應該可以明顯發現有 IP Range 是 `0.0.0.0/0`，這是允許任何連線的設定，十分不安全，若是 VM 有使用這個防火牆，可以到 VM 內的 /var/log/auth.log 查詢登入連線，應該可以發現很多不明的 IP 嘗試連線...
+**建議不要直接使用預設的 Firewall-Rules**，應該可以明顯發現有 IP Range 是 `0.0.0.0/0` 的設定，這會允許任何連線，十分不安全。若是 VM 有使用這個防火牆，可以到 VM 內的 /var/log/auth.log 查詢登入，應該可以發現很多不明的 IP 嘗試連線...
 {{< /alert >}}
 
 {{< alert info >}}
@@ -47,34 +47,45 @@ default-allow-rdp：用於 Windows 遠端桌面協議的流量
 {{< image classes="fancybox fig-100" src="/images/google-cloud/network/firewall-rule-setting.jpg" >}}
 VPC firewall rules 是定義在 VPC 上的，這時 VPC 其實也是作為**在網路級別定義的分散式防火牆**，對環境中進行流量輸入與輸出的管控。對於每個 Rule 還可以**啟用 Log** ，監控每一條有符合的封包，以後要做 Troubleshooting 的時候可以協助做故障排除。除此之外，也能查看和分析網路流量，檢測可能的安全風險或攻擊，並及時採取相應的措施。
 {{< alert warning >}}
-本身 Firewall Rules 是不計費的，但打開 Firewall Rules Logging 會產生額外花費要注意。
+本身 Firewall Rules 是不計費的，但打開 Firewall Rules Logging 會產生額外花費。
 {{< /alert >}}
 Firewall Rules 有幾個比較重要的觀念在這裡提出來：
 
-#### Actions & Directions 
-Actions 就只分成 `Allow`、`Deny` ，允許或拒絕這兩種。而 Direction 分成 `傳入（Ingress）`或`傳出（Engress）`流量，個別都只能二選一，不能同時選擇兩者。對於Ingress 和 Egress 的定義，我們說：不管是從外網 Internet 傳進來流量或者從內網其他資源進來流量都叫 Ingress ; 若是說從這台 VM 傳送流量出去外網 Internet 或者是內網的其他主機都叫 Egress，簡言之：
+### Actions & Directions 
+Actions 就只分成 `Allow`、`Deny` ，允許或拒絕這兩種。而 Direction 分成 `傳入（Ingress）`或`傳出（Engress）`流量，個別都只能二選一，不能同時選擇兩者。對於 Ingress 和 Egress 的定義，簡言之：
 - **進到 VM 的流量都叫做 Ingress**
 - **而離開 VM 的流量叫做 Egress** 
 
-#### Target & filters
-設定  firewall rules 時，在前面的部分已經確定了**Actions & Directions**，接下來是決定  Target & filters。 Targets 是 **for firewall rules** 的，每個 Firewall-Rule 都必須要設定 Target，分成： 
-- `All instances in network`
-- `target tags`
-- `service accounts`
+{{< alert success >}}
+Ingress 和 Egress 的主體都是 VM。
+
+- 不管是從外網 Internet 傳進來 VM 的流量，或者從內網其他資源傳進 VM 的流量，對於該 VM 都叫 Ingress。
+
+- 若是說從這台 VM 傳送流量出去外網 Internet ，或者是傳送流量到內網的其他主機，對於該 VM 都叫 Egress。
+{{< /alert >}}
+
+
+### Target
+設定  firewall rules 時，在前面的部分已經確定了**Actions & Directions**，接下來是決定  Target & filters。 Targets 可以想成是代表**要把 firewall 用在哪個對象上**，每個 Firewall-Rule 都必須要設定 Target，分成： 
 {{< image classes="fancybox fig-100" src="/images/google-cloud/network/targets.jpg" >}}
+選擇 `All instances in the network`，就不用寫 target tag 名稱了，因為是直接幫我們把 firewall rule 生效在該 vpc 內所有的 VM 上。 
 
-不同的 Directions 會對應不同的 filter:
-- `Ingress 是對應 Source filter` 
-- `Egress 是對應 Destination filter`
+### filters
+接下來是關於 filters 的設定，這裏會設定更細部的 IP-Range、協議、port 或 service-account。前面指定的不同的 Directions 就會對應不同的 filter:
 
-接下來是關於 filters 的設定，這裏會設定更細部的 IP-Range、協議、port 或 service-account。Source filters 是 **for ingress firewall rules** 的，它可以是單個 filter 或有多個 filters，但是多個的話只能是：
--  `IP-Range + source tags`
--  `IP-Range + source service-account`
+- Ingress 是對應 Source filters ，它可以是單個 filter 或有多個 filters，但是多個的話只能是：
+    -  `IP-Range + source tags`
+    -  `IP-Range + source service-account`
 
-特別注意**不能同時使用 tag 和 service-account**。 而 Destination filter 就是 **for egree firewall rules**，從 Web UI 上只有看到 `IP-Range` 能使用。
+        {{< alert danger >}}
+特別注意 Source filters **不能同時使用 tag 和 service-account**。 
+{{< /alert >}}
 
-#### Priority
-Priority 的值設定範圍是`0–65535`，數字越少 Priority 越高，**若 priority 一樣， Deny rules take precedence over Allow Rule**。 每個 VPC 網路都有兩個**雖然我們看不到但是為預設的規則**的 IPv4 防火牆規則 ; 如果 IPv6 啟用，該 VPC 還會再多有兩個隱含的 IPv6 防火牆規則。隱含規則為:
+
+- Egress 是對應 Destination filter 是 **for egree firewall rules**，從 Web UI 上只有看到 `IP-Range` 能使用。
+
+### Priority
+Priority 的值設定範圍是`0–65535`，數字越少 Priority 越高，**若 priority 一樣， Deny rules take precedence over Allow Rule**，已禁止為優先。 每個 VPC 網路都有兩個**雖然我們看不到但是為預設的規則**的 IPv4 防火牆規則 ; 如果 IPv6 啟用，該 VPC 還會再多有兩個隱含的 IPv6 防火牆規則，隱含規則為:
 - Allow all egress
 - Deny all ingress
 
@@ -86,13 +97,12 @@ Priority 的值設定範圍是`0–65535`，數字越少 Priority 越高，**若
 
 # Best Practice
 - 實施 Least-Privilege Principles 原則
-- 考慮使用  hierarchical firewall policy rules 來禁止流量
+- 考慮先使用  hierarchical firewall policy rules 來禁止流量
 - 考慮使用 service account 來允許進入 VM 
 - 根據 IP-Range 創建的 rules，盡量不要太多個
 - 考慮使用只允許來自 LB 的流量進入 VM
 - 從 source IP 範圍中刪除 `0.0.0.0/0`
 - **新增 `130.211.0.0/22` 和 `35.191.0.0/16`，為 health-check 網路。**
-
 
 ---
 
