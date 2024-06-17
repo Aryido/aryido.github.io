@@ -1,9 +1,10 @@
 ---
-title: GCP load-balancer 架構簡介
+title: GCP - Load-Balancer 架構簡介
 
 author: Aryido
 
-date: 2023-06-26T23:47:00+08:00
+#first-date: 2023-06-26T23:47:00+08:00
+date: 2024-06-17T16:54:22+08:00
 
 thumbnailImage: "/images/google-cloud/logo.jpg"
 
