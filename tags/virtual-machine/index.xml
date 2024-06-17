@@ -6,14 +6,22 @@
 &lt;li>Azure: Network security groups&lt;/li>
 &lt;/ul>
 &lt;p>特別要注意的事情是在 GCP 中，Tag 和 Label 是不一樣的東西。通常 GCP 提到 tag 都是指 network tag 這個網路安全相關防火牆設定 ; 而 Label 是拿來作預算及資源管理使用。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Instance Template 概述</title><link>https://aryido.github.io/posts/google-cloud/instance-template/</link><pubDate>Fri, 24 May 2024 19:26:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/instance-template/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Instance Template 一個用於定義 VM instance 配置的模板，其中包括如 machine type、bootdisk、startup script 等等實例屬性，經常和 Instance Groups 結合使用來自動創建 VM instance。對應其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>AWS: Launch Template&lt;/li>
+&lt;li>Azure:（沒有直接類似的）&lt;/li>
+&lt;/ul>
+&lt;p>概念上就次做好 VM 的模板，讓 VM 啟動完成後直接就可以達到我們想要的狀態，從這個方向出發的話: Startup Script、Custom Image、Instance Template 都蠻類似的，等等都會介紹和比較一下。&lt;/p>
 &lt;/blockquote></description></item><item><title>GCP - Compute Engine 概述</title><link>https://aryido.github.io/posts/google-cloud/compute-engine/</link><pubDate>Thu, 23 May 2024 23:26:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/compute-engine/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>Compute Engine 是託管在 Google 雲端上基礎架構即服務 (IaaS) 產品，對應其他的雲端服務是 :&lt;/p>
+&lt;p>Compute Engine 是託管在 Google 雲端上基礎架構即服務 (IaaS) 產品，其他的稱呼還有 &lt;strong>compute engine instance&lt;/strong> 、 &lt;strong>virtual machine instance&lt;/strong> 、 &lt;strong>VM instance&lt;/strong>。 對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
 &lt;li>Amazon Web Services (AWS) 中的 Amazon &lt;strong>EC2&lt;/strong>&lt;/li>
 &lt;li>Microsoft Azure 中的 &lt;strong>Virtual Machine&lt;/strong>&lt;/li>
 &lt;/ul>
-&lt;p>Compute Engine 的其他的稱呼還有 &lt;strong>compute engine instance&lt;/strong> 、 &lt;strong>virtual machine instance&lt;/strong> 、 &lt;strong>VM instance&lt;/strong>。 啟動前可以選擇自己需要的 Machine Type ，例如 CPU、memory、disk 等等；再來 Boot disk OS 也可自行選擇 Linux 、 Windows 等等操作系統；針對容器虛擬化，可能使用專門優化來運行容器的 Container-Optimized OS (COS) image 在虛擬機上啟動容器服務。最後關於&lt;strong>備份資料&lt;/strong>，GCP 也有提供相應的服務來面對災難發生時的處理。&lt;/p>
+&lt;p>啟動前可以訂製自己需要的 Machine Type ，例如 CPU、memory、disk 等等；再來 Boot disk OS 也可自行選擇 Linux 、 Windows 等等操作系統；針對容器虛擬化，可能使用專門優化來運行容器的 Container-Optimized OS (COS) image 在虛擬機上啟動容器服務。最後關於&lt;strong>備份資料&lt;/strong>，GCP 也有提供相應的服務來面對災難發生時的處理。&lt;/p>
 &lt;/blockquote></description></item><item><title>cloud init 簡介</title><link>https://aryido.github.io/posts/cloud/cloud-init/</link><pubDate>Tue, 29 Nov 2022 20:23:44 +0800</pubDate><guid>https://aryido.github.io/posts/cloud/cloud-init/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>cloud-init 是一個 package，可以藉由配置 cloud-init 來執行各種任務，自動初始化 cloud instance。在初次開機時就將想要的檔案或設定與系統一併弄好而不用手動處理。大部分雲平台都支持 cloud-init，目前是 &lt;strong>industry standard (行業標準)&lt;/strong>。&lt;/p>

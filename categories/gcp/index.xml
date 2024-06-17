@@ -25,14 +25,22 @@
 &lt;li>Microsoft Azure 中的 &lt;strong>Azure Virtual Network&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;p>GCP-VPC 和 Amazon VPC/Azure Virtual Network 設計蠻不一樣的。GCP-VPC 是全球性的，只要在同一個 GCP-VPC 內，就算不同 region 也能使用 Internal IP ; 但如果是不同的 VPC ，就算在同一個地區 region 也不能互相通訊。而 Amazon VPC/Azure Virtual Network 是針對 Region 來設定的，只要跨 region 就不是內網的概念。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Instance Template 概述</title><link>https://aryido.github.io/posts/google-cloud/instance-template/</link><pubDate>Fri, 24 May 2024 19:26:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/instance-template/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Instance Template 一個用於定義 VM instance 配置的模板，其中包括如 machine type、bootdisk、startup script 等等實例屬性，經常和 Instance Groups 結合使用來自動創建 VM instance。對應其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>AWS: Launch Template&lt;/li>
+&lt;li>Azure:（沒有直接類似的）&lt;/li>
+&lt;/ul>
+&lt;p>概念上就次做好 VM 的模板，讓 VM 啟動完成後直接就可以達到我們想要的狀態，從這個方向出發的話: Startup Script、Custom Image、Instance Template 都蠻類似的，等等都會介紹和比較一下。&lt;/p>
 &lt;/blockquote></description></item><item><title>GCP - Compute Engine 概述</title><link>https://aryido.github.io/posts/google-cloud/compute-engine/</link><pubDate>Thu, 23 May 2024 23:26:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/compute-engine/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>Compute Engine 是託管在 Google 雲端上基礎架構即服務 (IaaS) 產品，對應其他的雲端服務是 :&lt;/p>
+&lt;p>Compute Engine 是託管在 Google 雲端上基礎架構即服務 (IaaS) 產品，其他的稱呼還有 &lt;strong>compute engine instance&lt;/strong> 、 &lt;strong>virtual machine instance&lt;/strong> 、 &lt;strong>VM instance&lt;/strong>。 對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
 &lt;li>Amazon Web Services (AWS) 中的 Amazon &lt;strong>EC2&lt;/strong>&lt;/li>
 &lt;li>Microsoft Azure 中的 &lt;strong>Virtual Machine&lt;/strong>&lt;/li>
 &lt;/ul>
-&lt;p>Compute Engine 的其他的稱呼還有 &lt;strong>compute engine instance&lt;/strong> 、 &lt;strong>virtual machine instance&lt;/strong> 、 &lt;strong>VM instance&lt;/strong>。 啟動前可以選擇自己需要的 Machine Type ，例如 CPU、memory、disk 等等；再來 Boot disk OS 也可自行選擇 Linux 、 Windows 等等操作系統；針對容器虛擬化，可能使用專門優化來運行容器的 Container-Optimized OS (COS) image 在虛擬機上啟動容器服務。最後關於&lt;strong>備份資料&lt;/strong>，GCP 也有提供相應的服務來面對災難發生時的處理。&lt;/p>
+&lt;p>啟動前可以訂製自己需要的 Machine Type ，例如 CPU、memory、disk 等等；再來 Boot disk OS 也可自行選擇 Linux 、 Windows 等等操作系統；針對容器虛擬化，可能使用專門優化來運行容器的 Container-Optimized OS (COS) image 在虛擬機上啟動容器服務。最後關於&lt;strong>備份資料&lt;/strong>，GCP 也有提供相應的服務來面對災難發生時的處理。&lt;/p>
 &lt;/blockquote></description></item><item><title>GCP Cloud CDN</title><link>https://aryido.github.io/posts/google-cloud/gcp-cloud-cdn/</link><pubDate>Thu, 27 Jul 2023 23:26:32 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp-cloud-cdn/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>CDN 全名為 Content Delivery Network，是一種透過分散在不同地區的 server，用離使用者&lt;strong>最近的伺服器&lt;/strong>來傳送快取內容。而 Google Cloud CDN，就是借助 Google 分佈在&lt;strong>全球各地&lt;/strong>的網路節點，將內容以快取(Cache)形式預先儲存，以達到最快速的內容交付。以下是一個 CDN 的全球分布架構，如圖所示歐洲使用者可以從荷蘭的節點獲取資料，而不必透過跨大西洋電纜，到位於美國 host server 拿取資料。
