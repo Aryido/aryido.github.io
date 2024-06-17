@@ -5,7 +5,7 @@ author: Aryido
 
 date: 2024-05-23T23:26:00+08:00
 
-thumbnailImage: "/images/google-cloud/logo.jpg"
+thumbnailImage: "/images/google-cloud/vm/vm-logo.jpg"
 
 categories:
 - cloud
@@ -19,11 +19,11 @@ comment: false
 reward: false
 ---
 <!--BODY-->
->  Compute Engine 是託管在 Google 雲端上基礎架構即服務 (IaaS) 產品，對應其他的雲端服務是 :
+>  Compute Engine 是託管在 Google 雲端上基礎架構即服務 (IaaS) 產品，其他的稱呼還有 **compute engine instance** 、 **virtual machine instance** 、 **VM instance**。 對應其他的雲端服務是 :
 > - Amazon Web Services (AWS) 中的 Amazon **EC2**
 > - Microsoft Azure 中的 **Virtual Machine**
 >
-> Compute Engine 的其他的稱呼還有 **compute engine instance** 、 **virtual machine instance** 、 **VM instance**。 啟動前可以選擇自己需要的 Machine Type ，例如 CPU、memory、disk 等等；再來 Boot disk OS 也可自行選擇 Linux 、 Windows 等等操作系統；針對容器虛擬化，可能使用專門優化來運行容器的 Container-Optimized OS (COS) image 在虛擬機上啟動容器服務。最後關於**備份資料**，GCP 也有提供相應的服務來面對災難發生時的處理。
+> 啟動前可以訂製自己需要的 Machine Type ，例如 CPU、memory、disk 等等；再來 Boot disk OS 也可自行選擇 Linux 、 Windows 等等操作系統；針對容器虛擬化，可能使用專門優化來運行容器的 Container-Optimized OS (COS) image 在虛擬機上啟動容器服務。最後關於**備份資料**，GCP 也有提供相應的服務來面對災難發生時的處理。
 
 <!--more-->
 
@@ -39,14 +39,14 @@ Compute Engine 資源託管在全球多個位置，分成 Region 和 Zone。資�
 {{< image classes="fancybox fig-100" src="/images/google-cloud/region-zone.jpg" >}}
 
 
-在全世界各地都有資料中心，這樣做的目的有：
+在全世界各地都有資料中心，提供了：
 - 高可用(High Availability)，避免因為資料中心掛掉造成 VM 服務不可用
 - 網路低延遲(Low latency)，盡量靠近 user 減少延遲時間
 - FedRAMP法規政策，各國都希望自己國民政府資料能留在自己國家內
 
 # 創建 GCP VM
 
-雲端資源的一大特性就是，用多少算多少，但還是要注意就算暫時關機 VM，**還是會依照 Disk 跟 static ip 等等收取費用**。GCP 還提供 Spot VM，與一般 VM 相比 Spot VM 有更低的價格`(25.46 >> 9.44)`，可以設定幾小時之後停止或刪除 VM，可根據需求選擇此功能。
+雲端資源的一大特性就是，用多少算多少，但還是要注意就算暫時關機 VM，**還是會依照 Disk 跟 static ip 等等佔用而需要收取費用**。GCP 還提供 Spot VM，與一般 VM 相比， Spot VM 有更低的價格`(25.46 >> 9.44)`，可以設定幾小時之後停止或刪除 VM，可根據需求選擇此功能。
 
 ### GCP VM 的 Machine Types
 可以使用 preset machine types 如下 :
@@ -66,7 +66,7 @@ Compute Engine 資源託管在全球多個位置，分成 Region 和 Zone。資�
 
   介於 HDD 跟 SSD 中間的 Disk ，沒有像 SSD 那麼貴，可是它又比傳統的 Disk 還快。
   {{< alert warning >}}
-如果用 Windows 系統的話，建議選擇 Balanced Disk 以上，因為 Windows 檔案非常的多而且 從開機開始它就一直有大量的讀寫，所以最好不要選傳統硬碟，不然的話會太慢，最好選擇 Balanced Disk 以上的。
+如果用 Windows 系統的話，建議選擇 Balanced Disk 以上，因為 Windows 檔案非常的多而且從開機開始它就一直有大量的讀寫，所以最好不要選傳統硬碟，不然的話會太慢，最好選擇 Balanced Disk 以上的。
 {{< /alert >}}
 
 - ***Extreme Disk***
@@ -114,7 +114,7 @@ OS Image 概念上是一開始就把需要的 Application 與設定預先做好 
 ---
 
 # Back up and Restore
-承上說明 disk 時，有提到 Boot-Disk 和另外開的一個 Data-Disk，此概念就和備份息息相關，因為如果資料和啟動系統放在一起， VM 出問題開不起來會比較麻煩 ; 但如果一開始就有把資料分開的話，VM 出問題後可以直接開一台全新的，再把 Data-Disk 掛到新的 VM 就可以了。 VM 主機崩潰救不回來，經常會依靠**備份**來確保安全，故 GCP VM 提供 **replicate 複製  VM** 的 Machine Image 方式，和 **back up 備份 disk**的 snapshot 功能去保護資料 :
+承上說明 disk 時，有提到 Boot-Disk 和另外開的一個 Data-Disk，此概念就和備份息息相關，因為如果資料和啟動系統放在一起， VM 出問題開不起來會比較麻煩 ; 但如果一開始就有把資料分開的話，VM 出問題後可以直接開一台全新的，再把 Data-Disk 掛到新的 VM 就可以了。 VM 主機崩潰救不回來，經常會依靠**備份**來復原資料，有 **replicate 複製 VM** 的 Machine Image 方式，和 **back up 備份 disk** 的 snapshot 功能 :
 
 | Scenarios                | Machine Image | Snapshot |
 |--------------------------|---------------|---------------------------|
