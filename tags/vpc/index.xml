@@ -6,7 +6,7 @@
 &lt;li>Azure: Network security groups&lt;/li>
 &lt;/ul>
 &lt;p>特別要注意的事情是在 GCP 中，Tag 和 Label 是不一樣的東西。通常 GCP 提到 tag 都是指 network tag 這個網路安全相關防火牆設定 ; 而 Label 是拿來作預算及資源管理使用。&lt;/p>
-&lt;/blockquote></description></item><item><title>GCP - VPC Firewall Rules 概述</title><link>https://aryido.github.io/posts/google-cloud/firewall/</link><pubDate>Sun, 02 Jun 2024 22:59:14 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/firewall/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>GCP - VPC Firewall Rules 概述</title><link>https://aryido.github.io/posts/google-cloud/firewall-rule/</link><pubDate>Sun, 02 Jun 2024 22:59:14 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/firewall-rule/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>GCP Firewall 提供精細的安全控制機制的雲端資源，可以讓資源管理者保護其 VPC 內資料，不會收到未經授權的訪問或者意外流出資料，從而提高安全性和隱私性。 GCP 防火牆其實是一個蠻大的類別，產品全稱是 Cloud Next Generation Firewall 簡稱 Cloud NGFW，其中基本可分成：&lt;/p>
 &lt;ul>
