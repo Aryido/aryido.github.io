@@ -13,7 +13,6 @@ categories:
 
 tags:
 - virtual-machine
-- load-balancer
 
 comment: false
 
@@ -21,10 +20,10 @@ reward: false
 ---
 <!--BODY-->
 > Instance Template 一個用於定義 VM instance 配置的模板，其中包括如 machine type、bootdisk、startup script 等等實例屬性，經常和 Instance Groups 結合使用來自動創建 VM instance。對應其他的雲端服務是 :
-> - AWS: Launch Template 
-> - Azure:（沒有直接類似的）
+> - Amazon Web Services (AWS) : Launch Template 
+> - Microsoft Azure : 沒有直接類似的，需在 Virtual Machine Scale Sets 內直接設定 VM 所需參數設定
 >
-> 概念上就次做好 VM 的模板，讓 VM 啟動完成後直接就可以達到我們想要的狀態，從這個方向出發的話: Startup Script、Custom Image、Instance Template 都蠻類似的，等等都會介紹和比較一下。
+> 概念上就是做好 VM 的模板，讓 VM 啟動完成後直接就可以達到我們想要的狀態，從這個方向出發的話: Startup Script、Custom Image、Instance Template 都蠻類似的，等等都會介紹和比較一下。
 <!--more-->
 
 ---
@@ -56,6 +55,9 @@ Image 會放到 Instance Template 裡面 ; 而 Startup Script 會看需求設定
 Instance Template 不會被 GCP 收取任何費用
 {{< /alert >}}
 
+{{< alert info >}}
+不難發現 Instance Template 能夠設定的東西基本上和 VM 是完全一樣的，故也不難想像為什麼 Azure 並沒有特地把機器設定的 Template 從 Virtual Machine Scale Sets 中拉出來，大概就是覺得很多餘吧。
+{{< /alert >}}
 
 ---
 
@@ -80,7 +82,8 @@ Instance Template 不會被 GCP 收取任何費用
 
     也是基於單一 disk 的。目前自己看起來， Custom Image 現在只當作第一次啟動 VM 需要的作業系統定義檔會比較好。雖然也可以，但感覺已經不太適合用作備份概念了，因為快速輕量的 backup 比不上 snapshot ; 方便完整性也沒有 Machine Image 好。 
     {{< alert info >}}
-目前自己看起來，感覺 Machine Image 就是來取代 Custom Image 在備份方面的不方便，或許使用 Machine Image 來做為大版本升級前的 backup 會是比較優的選擇。
+目前自己看起來，感覺 Machine Image 就是來取代 Custom Image 在備份方面的不方便，Machine Image 包含了該台 VM 的所有 Disk、Configuration、Metadata、Permissions ; 但 OS Image 只有 Boot Disk。
+或許使用 Machine Image 來做為大版本升級前的 backup 會是比較優的選擇。
 {{< /alert >}}
     
 

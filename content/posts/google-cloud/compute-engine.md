@@ -20,8 +20,8 @@ reward: false
 ---
 <!--BODY-->
 >  Compute Engine 是託管在 Google 雲端上基礎架構即服務 (IaaS) 產品，其他的稱呼還有 **compute engine instance** 、 **virtual machine instance** 、 **VM instance**。 對應其他的雲端服務是 :
-> - Amazon Web Services (AWS) 中的 Amazon **EC2**
-> - Microsoft Azure 中的 **Virtual Machine**
+> - Amazon Web Services (AWS) : **EC2**
+> - Microsoft Azure : **Virtual Machine**
 >
 > 啟動前可以訂製自己需要的 Machine Type ，例如 CPU、memory、disk 等等；再來 Boot disk OS 也可自行選擇 Linux 、 Windows 等等操作系統；針對容器虛擬化，可能使用專門優化來運行容器的 Container-Optimized OS (COS) image 在虛擬機上啟動容器服務。最後關於**備份資料**，GCP 也有提供相應的服務來面對災難發生時的處理。
 
