@@ -7,14 +7,14 @@
 &lt;li>Cloud NGFW Standard&lt;/li>
 &lt;/ul>
 &lt;p>但通常在我們在 GCP 提到的防火牆，其實都是指最常用的 &lt;strong>Firewall-Rules 防火牆規則&lt;/strong> ，隸屬於 Cloud NGFW Essentials，只能應用在給定的 project 和指定的 VPC ; 如果想要把 Firewall-Rules 應用到 organization 下的其他 project 或者其他 VPC，則要使用 Firewall-Policies，本篇重點介紹 Firewall-Rules。&lt;/p>
-&lt;/blockquote></description></item><item><title>GCP - VPC 概述</title><link>https://aryido.github.io/posts/google-cloud/vpc-networks/</link><pubDate>Thu, 30 May 2024 18:52:24 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/vpc-networks/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>GCP - VPC 概述</title><link>https://aryido.github.io/posts/google-cloud/vpc/</link><pubDate>Thu, 30 May 2024 18:52:24 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/vpc/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Virtual Private Cloud 虛擬私有雲網路，簡寫為 VPC、網路、VPC Network、Network 都可以，是 Google 使用 &lt;a href="https://01.me/2014/03/networking-at-google/">Andromeda&lt;/a>(/ænˈdrɑː.mə.də/) 網路虛擬化技術實現的一個 global 的雲端資源，提供 GCP-VM、GKE、serverless workloads 和 App Engine 等等雲端服務的網路功能，讓 User 可以高自由度地建立、管理和優化網路架構。對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
-&lt;li>Amazon Web Services (AWS) 中的 &lt;strong>Amazon VPC&lt;/strong>&lt;/li>
-&lt;li>Microsoft Azure 中的 &lt;strong>Azure Virtual Network&lt;/strong>&lt;/li>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>Amazon VPC&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Azure Virtual Network&lt;/strong>&lt;/li>
 &lt;/ul>
-&lt;p>GCP-VPC 和 Amazon VPC/Azure Virtual Network 設計蠻不一樣的。GCP-VPC 是全球性的，只要在同一個 GCP-VPC 內，就算不同 region 也能使用 Internal IP ; 但如果是不同的 VPC ，就算在同一個地區 region 也不能互相通訊。而 Amazon VPC/Azure Virtual Network 是針對 Region 來設定的，只要跨 region 就不是內網的概念。&lt;/p>
+&lt;p>GCP-VPC 和 Amazon VPC 設計蠻不一樣的。GCP-VPC 是全球性的，只要在同一個 GCP-VPC 內，就算不同 region 也能使用 Internal IP ; 但如果是不同的 VPC ，就算在同一個地區 region 也不能互相通訊。而 Amazon VPC 是針對 Region 來設定的，只要跨 region 就不是內網的概念。&lt;/p>
 &lt;/blockquote></description></item><item><title>Kubernetes - Ingress</title><link>https://aryido.github.io/posts/kubernetes/ingress/</link><pubDate>Thu, 12 Oct 2023 20:11:25 +0800</pubDate><guid>https://aryido.github.io/posts/kubernetes/ingress/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Kubernetes 若要把應用暴露於 &lt;strong>Cluster 外部&lt;/strong> ，已知可以使用 &lt;strong>NodePort&lt;/strong> 和 &lt;strong>LoadBlancer&lt;/strong> 類型的 Service，但當每暴露一個 Service 給外部時，就會需要暴露一個對應的 Port ，隨著 Service 越來越多之後，我們就需要管理更多的 Port Number，也會使得維運上更加複雜。這時就可以考慮使用 Kubernetes Ingress ，它可用來代理不同 Kubernetes Service，能對外開放&lt;strong>統一的 Port&lt;/strong> ，並將外部的請求轉發到 &lt;strong>Cluster 內不同的 Service&lt;/strong> 上，來實現負載均衡。 Ingress 專注於 Cluster 對外的暴露、負載均衡、L7轉發、 Virtual Hosting 等功能。&lt;/p>
