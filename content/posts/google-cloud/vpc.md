@@ -5,7 +5,7 @@ author: Aryido
 
 date: 2024-05-30T18:52:24+08:00
 
-thumbnailImage: "/images/google-cloud/logo.jpg"
+thumbnailImage: "/images/google-cloud/network/vpc-logo.jpg"
 
 categories:
 - cloud
@@ -21,16 +21,16 @@ reward: false
 ---
 <!--BODY-->
 >  Virtual Private Cloud 虛擬私有雲網路，簡寫為 VPC、網路、VPC Network、Network 都可以，是 Google 使用 [Andromeda](https://01.me/2014/03/networking-at-google/)(/ænˈdrɑː.mə.də/) 網路虛擬化技術實現的一個 global 的雲端資源，提供 GCP-VM、GKE、serverless workloads 和 App Engine 等等雲端服務的網路功能，讓 User 可以高自由度地建立、管理和優化網路架構。對應其他的雲端服務是 :
-> - Amazon Web Services (AWS) 中的 **Amazon VPC**
-> - Microsoft Azure 中的 **Azure Virtual Network** 
+> - Amazon Web Services (AWS) :  **Amazon VPC**
+> - Microsoft Azure : **Azure Virtual Network** 
 >
-> GCP-VPC 和 Amazon VPC/Azure Virtual Network 設計蠻不一樣的。GCP-VPC 是全球性的，只要在同一個 GCP-VPC 內，就算不同 region 也能使用 Internal IP ; 但如果是不同的 VPC ，就算在同一個地區 region 也不能互相通訊。而 Amazon VPC/Azure Virtual Network 是針對 Region 來設定的，只要跨 region 就不是內網的概念。
+> GCP-VPC 和 Amazon VPC 設計蠻不一樣的。GCP-VPC 是全球性的，只要在同一個 GCP-VPC 內，就算不同 region 也能使用 Internal IP ; 但如果是不同的 VPC ，就算在同一個地區 region 也不能互相通訊。而 Amazon VPC 是針對 Region 來設定的，只要跨 region 就不是內網的概念。
 
 <!--more-->
 
 ---
 
-前面有介紹了 GCP Compute Engine，而這些 VM 就是放在 Google 全世界分佈的實體資料中心，而在使用 VM 時，會需要替每個客戶提供虛擬化網路服務才能連接使用，而統籌管理這些網路功能的平台就是 VPC，基本功能有：
+前面有介紹了 GCP Compute Engine，而這些 VM 就是放在 Google 全世界分佈的實體資料中心，而在使用 VM 時，會需要替每個客戶提供虛擬化網路服務才能連線使用，而統籌管理這些網路功能的平台就是 VPC，基本功能有：
 - 可以建立許多 subnet，並可以位於不同的 Region
 - 不同 Region 內的資源，只要他們在同個 VPC 內，就可以用 Internal IP 互相連線  
 - VPC 各自擁有自己的 Firewall 和 Route 來限制和保護資源之間的通訊
@@ -73,10 +73,15 @@ GCP 專案內預設只先可以開 5 個 VPC 而已。若預設的 Quota 不足�
 - 網段只能擴張不能縮減，因此建議一開始配置不要太大夠用就好，後續隨著需求再增加。
 
 ### 預設 VPC
-一般來說， GCP 一個 project 專案開起來後，就會有一個預設 VPC 名字叫做 default ，它是在全世界每個 Region 都建了切好一個 Subnet 網段給我們了。雖然已經有預設的 VPC ，但其實**不建議**在 Prod 環境中使用， GCP 官方給出的 Best Practices 也說應當建立了自己的 VPC 並刪除這個 default VPC ，原因是：
+一般來說 GCP project 開起來後，就會有一個預設 VPC 名字叫做 default ，它是在全世界每個 Region 都建了切好 Subnet 網段給我們。雖然已經有預設的 VPC ，但其實**不建議**在 Prod 環境中使用，應當建立了自己的 VPC ， GCP 官方給出的 Best Practices 也是這樣說明的，原因是：
 
-- 不需要每個 Region 中都有一個 Subnet，應該是按照自己的需求來切分。例如可能只需要用台灣的 region 部署服務而已，若使用 default VPC 就會有很多網段都給其他國家用掉了，可以自己分配的網段就會少很多，所以建議自訂 VPC。
-- 未來有計劃要使用 VPC Network Peering 或 Cloud VPN 等服務來連接不同的 VPC 網絡，就會建議要自行規劃網段，因為在 Auto 模式下生成的 subnet IP range 可能會產生衝突。
+##### **不需要每個 Region 中都有一個 Subnet**
+
+應該是按照自己的需求來切分。例如可能只需要用台灣的 region 部署服務而已，若使用 default VPC 就會有很多網段都給其他國家用掉了，可以自己分配的網段就會少很多，所以建議自訂 VPC。
+
+##### Peering 的限制
+
+未來有計劃要使用 VPC Network Peering 或 Cloud VPN 等服務來連接不同的 VPC 網絡，就會一定會建議要自行規劃網段，因為在 Auto 模式下生成的 subnet IP range 會產生衝突。
 
 ---
 

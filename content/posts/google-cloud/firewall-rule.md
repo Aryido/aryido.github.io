@@ -5,7 +5,7 @@ author: Aryido
 
 date: 2024-06-02T22:59:14+08:00
 
-thumbnailImage: "/images/google-cloud/logo.jpg"
+thumbnailImage: "/images/google-cloud/network/vpc-logo.jpg"
 
 categories:
 - cloud
@@ -71,9 +71,9 @@ Ingress 和 Egress 的主體都是 VM。
 選擇 `All instances in the network`，就不用寫 target tag 名稱了，因為是直接幫我們把 firewall rule 生效在該 vpc 內所有的 VM 上。 
 
 ### filters
-接下來是關於 filters 的設定，這裏會設定更細部的 IP-Range、協議、port 或 service-account。前面指定的不同的 Directions 就會對應不同的 filter:
+接下來是關於 filters 的設定，這裏會設定更細部的 IP-Range、協議、port 或 service-account。前面指定的不同的 Directions 就會對應不同的 filter :
 
-- Ingress 是對應 Source filters ，它可以是單個 filter 或有多個 filters，但是多個的話只能是：
+- Ingress 是對應 **Source filters** ，它可以是單個 filter 或有多個 filters，但是多個的話只能是：
     -  `IP-Range + source tags`
     -  `IP-Range + source service-account`
 
@@ -82,10 +82,10 @@ Ingress 和 Egress 的主體都是 VM。
 {{< /alert >}}
 
 
-- Egress 是對應 Destination filter 是 **for egree firewall rules**，從 Web UI 上只有看到 `IP-Range` 能使用。
+- Egress 是對應 **Destination filter**，從 Web UI 上只有看到 `IP-Range` 能使用。
 
 ### Priority
-Priority 的值設定範圍是`0–65535`，數字越少 Priority 越高，**若 priority 一樣， Deny rules take precedence over Allow Rule**，已禁止為優先。 每個 VPC 網路都有兩個**雖然我們看不到但是為預設的規則**的 IPv4 防火牆規則 ; 如果 IPv6 啟用，該 VPC 還會再多有兩個隱含的 IPv6 防火牆規則，隱含規則為:
+Priority 的值設定範圍是`0–65535`，數字越小優先度越高，**若 priority 一樣， Deny rules take precedence over Allow Rule**，已禁止為優先。 每個 VPC 網路都有兩個**雖然我們看不到但是為預設的規則**的 IPv4 防火牆規則，如果 IPv6 啟用，該 VPC 還會再多有兩個隱含的 IPv6 防火牆規則，隱含規則為:
 - Allow all egress
 - Deny all ingress
 
