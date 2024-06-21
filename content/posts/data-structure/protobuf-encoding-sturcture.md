@@ -12,6 +12,7 @@ categories:
 - data-structure
 
 tags:
+- protobuf
 - data-exchange
 
 comment: false
@@ -27,8 +28,8 @@ reward: false
 
 # 前言
 
-來看看負十進制值 `-128` 不同的表示型態 :
-- 以 2’s Complemen 表示
+來看看 `-128` 不同的表示型態 :
+- 以 2’s Complemen 「數字的編碼」表示 :
     ```
     -128
     => 128 二進制 `10000000`
@@ -38,7 +39,7 @@ reward: false
     ```
 
 
-- 在 XML 或 JSON 中是屬於文字編碼，則需要更多個 bytes。假設是用 UTF-8 編碼，`-128` 需要四個 bytes，每個字元一個 byte，解釋如下 :
+- 以 UTF-8「文字的編碼」表示 :
     ```
     '-'、'1'、'2','8' (ASCII 字符)
     = 45、49、50、56 (十進制)
@@ -46,7 +47,7 @@ reward: false
     = 每個字母至少需要 1 byte，故共 4 bytes
     ```
 
-> 由上述的舉例，不難發現本質上文字編碼，就會需要比較多的 bytes 來儲存，故 Protobuf 選擇回到**二進制**系統來優化，而不選擇文字編碼。
+> 由上述的舉例，不難發現本質上文字編碼就會需要比較多的 bytes 來儲存，而 XML 或 JSON 就是屬於全部轉成「文字編碼」。為了避免全部都換成「文字編碼」造成冗余， Protobuf 決定在描述檔內加上資料的類型 type ，來針對個別資料類型做特定的壓縮算法，回到**二進制**來優化。
 
 對於 JSON、XML 資料傳輸時，會保留資料的**結構化資訊**，舉個 JSON 例子 :
 ```
@@ -58,25 +59,18 @@ reward: false
   }
 }
 ```
-其**結構化**資訊就是指 :
-- `{}`
-- name、age、interests 等等 `key name`
-- `:`
-- `,`
-- `]`
+其**結構化**資訊就是指 : `{}`、`key name`、`:`、`,`、`]`。故人們一樣開始思考: **是否真的需要保留這麼多的結構化訊息? 應該可以再簡化一些吧?** 對於資料傳輸交換，本來發送方和接收方就會密切合作，對**資料的結構**都會有所共識，故真的有需要在每次資料傳輸時，每筆資料都要附上這麼多結構化資訊嗎? 應該是可以簡化一些的。
 
-人們一樣開始思考: **是否真的需要保留這麼多的結構化訊息? 應該可以再簡化一些吧?** 對於資料傳輸交換，本來發送方和接收方就會密切合作，對**資料的結構**都會有所共識，故真的有需要在每次資料傳輸時，每筆資料都要附上這麼多結構化資訊嗎? 應該是可以簡化一些的。
+> Protobuf 最終的結論，是決定**刪除許多傳送資料時會附上的結構化資訊**，因此可以更加壓縮資料。而發送方和接收方，維護一份共同的\<**結構聲明檔**\>，雙方都參考此\<**結構聲明檔**\>來序列化反序列化資料，而這個\<**結構聲明檔**\>就是 **.proto**。
 
-> 因此 Protobuf 最終的結論，是它決定**刪除許多傳送資料時會附上的結構化資訊**，因此可以更加壓縮資料。而發送方和接收方，維護一份共同的\<**結構聲明檔**\>，雙方都參考此\<**結構聲明檔**\>來序列化反序列化資料，而這個\<**結構聲明檔**\>就是 **.proto**。
-
-{{< alert info >}}
+{{< alert success >}}
 由於 Protobuf 是二進位資料格式，數
 據本身不具有可讀性，且雙方必須有共同的 `.proto`檔案才能有效編碼和解碼，故一定程度上保證了其安全性。
 {{< /alert >}}
 
-{{< alert info >}}
+
 也由於雙方必須有共同的 `.proto`檔案才能有效編碼和解碼，故也稱 protobuf 是**缺乏自描述性**的。
-{{< /alert >}}
+
 
 ---
 
@@ -91,28 +85,30 @@ message Author {
 }
 ```
 
-當一個資料實例，被 Protobuf Author Message 編碼後，其每個 field 會被表示成的結構，粗略表示大概會像這樣: `(field number, type, payload)`，更進一步說明，Protobuf 實現的資料存儲和傳輸格式，
-是以**二進制**格式表示，編碼後所得到的結構，會是如下圖:
+當一個資料實例，被 Protobuf Author Message 編碼後，其每個 field 會被表示成的結構，粗略表示大概會像這樣: `(field number, type, payload)`，會使用 payload 這個名詞，是因為這部分的內容物，可能是 :
+- 全都為被**壓縮**的值
+- 包含 length 和其被**壓縮**的值
+
+由於都不太算是真的資料的值，所以就不用 Value 來形容，換個字眼使用 payload 來說明避免混淆。更進一步說明， Protobuf 編碼後所得到的結構，會是如下圖:
 {{< image classes="fancybox fig-100" src="/images/data-structure/protobuf-encode-data.jpg" >}}
 
+承上結構，會發現 Protobuf 已經做了一些事情，分別是: 
 
-承上結構，再來我們必須要知道 Protobuf 已經做了一些事情和一些名詞意義 :
-> 1. 編碼後 Type 會轉換成 WireType
-> 2. 承上`(field number, WireType)` 通常會被歸類為一組來聲明，被稱為 **Tag**
-> 3. 會使用 payload 這個名詞，是因為這部分的內容物，可能是 :
->       - 都是被**壓縮**的值
->       - 包含 length 和其被**壓縮**的值
->
->     所以換個字眼，使用 payload 來說明避免混淆。
+> Tag 是什麼呢 ？
 
-以上這種結構被稱為 **Tag-Length-Value**，簡稱(TLV)。接下來說明 :
-- WireType
-- Tag-Length-Value
+在 Protobuf 中， Tag 是 `(field number, WireType)` 歸類為一組的名稱，整體才代表 field 的唯一標示，簡單說就是 `Tag = field number + WireType`。
+
+> `Tag = field number + WireType` ，突然多出個 WireType，和 type 有什麼不一樣呢？
+
+Protobuf 編碼後 **Type 會轉換成 WireType** 。因為 .proto 檔中有很多 type 種類選，但實際上可以簡單歸類分成幾組，減少數量，分組後就稱為 WireType。
+
+
+綜合以上，這種結構被稱為 **Tag-Length-Value**，簡稱(TLV)，接下來說明 「WireType」 和 「Tag-Length-Value」。
 
 ---
 
 # WireType
-Protobuf 對 Type 做了專門的分類和編碼，把 `string`、`int64`...等等在 `.proto` 內各式不同的 type，對應成一個 Protobuf 中的 enum，稱為 `WireType`，故每個 `WireType` 有自己的 **field number**。不同的 WireType 對應的 **payload** 格式不同，可以通過序列化的 WireType 的值，知道後續的 data **儲存方式**。
+Protobuf 對 Type 做了專門的分類和編碼，把 `string`、`int64`...等等在 `.proto` 內各式不同的 type，對應成一個 Protobuf 中的 enum，稱為 `WireType`，故每個 `WireType` 有自己的 **field number**。「**不同的 WireType 對應的 payload 格式不同**」，可以通過序列化的 WireType 的值，知道後續的 data **儲存方式**。
 
 {{< alert success >}}
 WireType 的作用是告訴解析器 **payload 的格式**，表示這個編碼中，下一個 byte 到底是代表 length 還是 value。
@@ -150,17 +146,19 @@ WireType 的作用是告訴解析器 **payload 的格式**，表示這個編碼�
 
 
 {{< alert warning >}}
-### 如果知道了 field number，那把它對應到 `.proto` 文件後就能知道 type 了，為什麼還要把 type 資訊轉成 wireType 編碼到 byte array 內呢 ?
+##### 如果知道了 field number，那把它對應到 `.proto` 文件後就能知道 type 了，為什麼還要把 type 資訊轉成 wireType 編碼到 byte array 內呢 ?
 
 主要因為**擴展性**! Protobuf 是可以自由移除掉 optional field 而不會影響新舊格式資料的序列化/反序列化，那是如何實現這一點呢? 就是因為有把 type 資訊編碼到 byte array 內。
 
 試想當我們移除了一個 optional field，但有一個舊格式的序列化資料，要用新的格式來反序列化，如果全部資訊都參考 `.proto`，那就完全不知道 payload 的格式到底是 T-L-V 還是 T-V ，因為新的 `.proto` 已經把 field 刪掉了，完全找不到訊息。
+
+特別注意 Protobuf 編碼後所有 T-[L]-V 都是緊密接續在一起的，如果分不出來 是 T-L-V 還是 T-V ，那下一個 field 的 bytes 就會可能拿錯，導致全部解析失敗。
 {{< /alert >}}
 
 那接下來說一下剛剛一直提到 T-[L]-V 儲存格式吧~
 
 # Tag-Length-Value (簡稱 T-L-V)
-## Tag
+### Tag
 {{< image classes="fancybox fig-100" src="/images/data-structure/protobuf-tag-structure.jpg" >}}
 
 其中 T 就是代表 Tag ， 由 ```field number + WireType``` 組成， Tag 的最低三位表示 WireType。配合 WireType 章節中的表格，也可以知道為什麼這裡 Tag 的圖中，WireType 只需要用 3 個 bit，因為 WireType 目前只有 6 種，所以使用 3 個 bit 完全夠用。
@@ -174,12 +172,12 @@ WireType 的作用是告訴解析器 **payload 的格式**，表示這個編碼�
 Tag = (field number << 3) | WireType number
 ```
 
-## Length
+### Length
 而 L 就是指 Length ，是可有可無的，同時也有使用 varint 壓縮。只有 `WireType = 2` 時，才需要 Length。 而 Length 是可選的原因，是因為看 Tag 內的 WireType 訊息，就能知道 value 的編碼是甚麼。像是:
 - `WireType = 0` 時， 是使用 Varint 編碼，這種編碼方式是自帶 length 的資訊的，故不需要再另外多儲存一個 Length ，可以更加節省空間。
-- `WireType = 1, 5`，後面會使用固定長度的 byte array ，故不需要再另外多儲存一個 Length。
+- `WireType = 1, 5`，後面會使用固定長度的 byte array ，故不需要再另外多儲存一個 Length，也可以節省空間。
 
-## Value
+### Value
 V 就是指 Value，這部分等到序列化-反序列化章節時，在詳細介紹。基本上對於數值部分，也是有使用 varint 來壓縮，甚至針對負數，會特別使用 zigzag + varint 來優化，可參考 [Varint & Zigzag Encoding](/posts/algorithm/varint-zigzag-encoding/)。
 
 ---

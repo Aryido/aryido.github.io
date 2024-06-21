@@ -12,6 +12,7 @@ categories:
 - data-structure
 
 tags:
+- protobuf
 - data-exchange
 
 comment: false
@@ -40,20 +41,20 @@ reward: false
 ---
 
 # Serialization
-Protobuf encode 後二進制表示法結構，就是**多個 field 組成**的。下面我們就針對不同的 WireType，來一個個分析，Protocol Buffers 不同 WireType 的序列化方式 :
+Protobuf encode 後二進制表示法結構，就是**多個 field 組成**的。下面我們就針對不同的 WireType，來一個個分析 Protocol Buffers 不同 WireType 的序列化方式 :
 
 ### WireType = 0, 1, 5
 
 {{< image classes="fancybox fig-100" src="/images/data-structure/protobuf-wiretype-015.jpg" >}}
 
-- int32: `WireType = 0`，其 Value 是數字，用 Varint 編碼，因此編碼自帶長度訊息，**最多會使用到 8 個 bytes**。
+- int32: `WireType = 0`，其 Value 是整數字且會用 Varint 編碼，因此編碼自帶長度訊息，**最多會使用到 8 個 bytes**。
 
-- double: `WireType = 1`，其 Value 固定 8 bytes，是採用**雙精確度浮點數**的編碼方式 `IEEE 754`。
+- double: `WireType = 1`，其 Value 固定 8 bytes，是採用雙精確度浮點數 `IEEE 754`。
 
 - float: `WireType = 5`，其 Value 固定 4 bytes。
 
-{{< alert info >}}
-以上這幾種類型，都不需要再多一個 byte 來說明 Length，故更好的利用了空間。
+{{< alert success >}}
+因為以上這幾種類型都不需要再多一個 byte 來說明 Length，故更好的利用了空間。
 {{< /alert >}}
 
 ### WireType = 2
@@ -74,7 +75,7 @@ Protobuf encode 後二進制表示法結構，就是**多個 field 組成**的�
 {{< /alert >}}
 
 {{< alert warning >}}
-如果原始資料的某個 field 沒有被附加上值，那麼序列化後的 byte array 就會完全不存在相關資訊。相應 field 在解碼時會被設置爲**默認值**。
+如果原始資料的某個 field 沒有被附加上值，那麼序列化後的 byte array 就會完全不存在相關資訊，相應 field 在反序列化時會被設置爲**默認值**。
 {{< /alert >}}
 
 
@@ -180,7 +181,7 @@ Protobuf 在解析時，主要都是看 `field number`。如果看到 Protobuf b
 
 - 第 82 個 byte 為 tag， `10000001`，因最高位元為 `1`，表示該 tag 超過一個 byte ，繼續看下一個。
 - 第 83 個 byte `10000000`，因最高位元為 `1`，繼續看下一個。
-- 第 84 個 byte `00000001  `，因最高位元為 `0`，tag 結束。去掉最高位標示並重新排列後 `0000001 0000000 0000001`，故 field number 為 `100000000000` = 2048
+- 第 84 個 byte `00000001  `，因最高位元為 `0`，tag 結束。去掉最高位標示並重新排列後 `0000001 0000000 0000001`，故 field number 為 `100000000000` = 2048，
  `wiretype = 1` ，下 8 個 bytes 表示為 double
 - 第 85 ~ 93 個 byte 都是 value:
   ```
