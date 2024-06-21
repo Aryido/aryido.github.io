@@ -68,11 +68,15 @@ Editor 是用來呈現和編輯 file 檔案的主要區域。可以根據需求�
     {{< image classes="fancybox fig-100" src="/images/plugin-extension/vscode-breadcrumbs.jpg" >}}
 
 - ##### Tabs
-    每當打開一個文檔時，預設都會新增加一個 tab，如下圖紅色圈選處，可幫助在不同 file 之間快速切換。當 tab 太多時，在 tab 和 Breadcrumb 之間還會有個 scroll bar 可以拖動，雖然還蠻不明顯的。
+    每當打開一個文檔時，預設都會新增加一個 tab ，如下圖紅色圈選處，可幫助在不同 file 之間快速切換。當 tab 太多時，在 tab 和 Breadcrumb 之間還會有個 scroll bar 可以拖動，雖然還蠻不明顯的。
     {{< image classes="fancybox fig-100" src="/images/plugin-extension/vscode-tabs.jpg" >}}
+    {{< alert info >}}切換 tab 還可以使用 `Command + Option + 方向鍵`{{< /alert >}}
+    
     在 Explorer 中**點擊一次**打開檔案，會發現 tab 的名稱是 italics 斜體字，代表為預覽模式，稱為 **Preview mode** ，如下圖顯示。這時在選擇其他檔案時，會重複使用現有 Tab 並覆蓋，而不會開啟新的 Tab。
     {{< image classes="fancybox fig-100" src="/images/plugin-extension/vscode-preview-tab.jpg" >}}
-    也可以**點擊兩次**檔案來創建完全新的 Tab。
+    如果只是想要簡單且快速的看一下特定幾個檔案的內容，這個設定並不會產生新分頁，後續就不用另外再關閉分頁。若要從 Preview mode 換成正常 tab :
+    - 1. 可以**點擊兩次**檔案來創建完全新的 Tab
+    - 2. 開始編輯（任意輸入/刪除檔案內文字觸發編輯
 
 # (D) Panels
 通常位於 Editor 區域下面，主要有四個：
@@ -88,6 +92,10 @@ Editor 是用來呈現和編輯 file 檔案的主要區域。可以根據需求�
 ### Minimap
 {{< image classes="fancybox fig-100" src="/images/plugin-extension/vscode-minimap.jpg" >}}
 Minimap 就是一個 code 大綱（code outline）可以快速 navigate 到指定區域，通常顯示在編輯器的右側。
+{{< alert info >}}
+如果說覺得它有些佔畫面的話，可以使用 `Command/control + Shift + P` 叫出 Command Palette 然後使用 `Toggle Minimap`，可以開啟或關閉它。
+{{< /alert >}}
+
 
 ### Command Palette
 palette 發音是 ```/ˈpæl.ət/```，可使用 `⇧⌘P` 來打開，從這裡可以搜尋到幾乎所有 VSCode 功能 CLI。
