@@ -6,6 +6,16 @@
 &lt;li>Microsoft Azure : &lt;strong>Network security groups&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;p>特別要注意的事情是在 GCP 中，Tag 和 Label 是不一樣的東西。通常 GCP 提到 tag 都是指 network tag 這個網路安全相關防火牆設定 ; 而 Label 是拿來作預算及資源管理使用。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - IP addresses 概述</title><link>https://aryido.github.io/posts/google-cloud/ip-address/</link><pubDate>Sun, 02 Jun 2024 14:51:14 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/ip-address/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>GCP IP Address 經常是分配給 GCP VM Instance 和 GCP Load-Balancer 使用，讓他們可以和 GCP 其他雲端資源，或者是外部公共網路上的系統通訊。IP Address 劃分也蠻多的，會使用以下種類來描述不同的類型：&lt;/p>
+&lt;ul>
+&lt;li>Internal IP Address &amp;lt;=&amp;gt; External IP Address&lt;/li>
+&lt;li>Private IP Address &amp;lt;=&amp;gt; Public IP Address&lt;/li>
+&lt;li>Ephemeral IP Address &amp;lt;=&amp;gt; Static IP Address&lt;/li>
+&lt;li>Regional IP Address &amp;lt;=&amp;gt; Global IP Address&lt;/li>
+&lt;/ul>
+&lt;p>此篇會全部做簡單的介紹。而在使用 IP Address 也常發生一些使用上的疏忽，例如一直 reserve IP 卻沒有使用它，因為 IP 算是稀有資源，如果有保留固定 IP ，就算沒有使用還是會持續計費的，而且會更貴！&lt;/p>
 &lt;/blockquote></description></item><item><title>GCP - Instance Template 概述</title><link>https://aryido.github.io/posts/google-cloud/instance-template/</link><pubDate>Fri, 24 May 2024 19:26:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/instance-template/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Instance Template 一個用於定義 VM instance 配置的模板，其中包括如 machine type、bootdisk、startup script 等等實例屬性，經常和 Instance Groups 結合使用來自動創建 VM instance。對應其他的雲端服務是 :&lt;/p>

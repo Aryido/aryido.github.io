@@ -29,6 +29,16 @@
 &lt;li>Cloud NGFW Standard&lt;/li>
 &lt;/ul>
 &lt;p>但通常在我們在 GCP 提到的防火牆，其實都是指最常用的 &lt;strong>Firewall-Rules 防火牆規則&lt;/strong> ，隸屬於 Cloud NGFW Essentials，只能應用在給定的 project 和指定的 VPC ; 如果想要把 Firewall-Rules 應用到 organization 下的其他 project 或者其他 VPC，則要使用 Firewall-Policies，本篇重點介紹 Firewall-Rules。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - IP addresses 概述</title><link>https://aryido.github.io/posts/google-cloud/ip-address/</link><pubDate>Sun, 02 Jun 2024 14:51:14 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/ip-address/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>GCP IP Address 經常是分配給 GCP VM Instance 和 GCP Load-Balancer 使用，讓他們可以和 GCP 其他雲端資源，或者是外部公共網路上的系統通訊。IP Address 劃分也蠻多的，會使用以下種類來描述不同的類型：&lt;/p>
+&lt;ul>
+&lt;li>Internal IP Address &amp;lt;=&amp;gt; External IP Address&lt;/li>
+&lt;li>Private IP Address &amp;lt;=&amp;gt; Public IP Address&lt;/li>
+&lt;li>Ephemeral IP Address &amp;lt;=&amp;gt; Static IP Address&lt;/li>
+&lt;li>Regional IP Address &amp;lt;=&amp;gt; Global IP Address&lt;/li>
+&lt;/ul>
+&lt;p>此篇會全部做簡單的介紹。而在使用 IP Address 也常發生一些使用上的疏忽，例如一直 reserve IP 卻沒有使用它，因為 IP 算是稀有資源，如果有保留固定 IP ，就算沒有使用還是會持續計費的，而且會更貴！&lt;/p>
 &lt;/blockquote></description></item><item><title>Cloud NAT 概述</title><link>https://aryido.github.io/not-yet-finished/cloud-nat/</link><pubDate>Thu, 30 May 2024 18:52:24 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/cloud-nat/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;/blockquote></description></item><item><title>GCP - VPC 概述</title><link>https://aryido.github.io/posts/google-cloud/vpc/</link><pubDate>Thu, 30 May 2024 18:52:24 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/vpc/</guid><description>&lt;!-- raw HTML omitted -->
@@ -557,9 +567,6 @@ Avro 也提供了編解碼和二進制格式，使得在高吞吐量的應用場
 &lt;/blockquote></description></item><item><title>410. Split Array Largest Sum - dynamic programming</title><link>https://aryido.github.io/posts/leetcode/leetcode410/</link><pubDate>Sun, 27 Nov 2022 20:26:22 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode410/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>這題真的蠻難的，一開始看題目我也覺得很繞口，給了一個非負數的 nums 和一個 m 代表把 nums 分成 m 個 group 且 每個 group non-empty 並取 m 個 group 中的最大值。但注意，前面只是代表一種&lt;strong>切法&lt;/strong>而已，我們是要找所有可能&lt;strong>切法&lt;/strong>之中的最小值。看一下 Related Topics 發現可以用 Binary Search 和 DP 求解，也是一道高頻題目。&lt;/p>
-&lt;/blockquote></description></item><item><title>GCP Address 介紹</title><link>https://aryido.github.io/not-yet-finished/gcp-compuate-engine-address/</link><pubDate>Sat, 26 Nov 2022 23:20:50 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/gcp-compuate-engine-address/</guid><description>&lt;!-- raw HTML omitted -->
-&lt;blockquote>
-&lt;p>GCP 每個 vm instance 創建時，都會分配一個 internal IP，並且也可以選擇是否附加 external IP。 不管是 internal IP 或者是 external IP 其實都可以 static 化，把它固定下來使之不會變動。&lt;/p>
 &lt;/blockquote></description></item><item><title>877. Stone Game</title><link>https://aryido.github.io/posts/leetcode/leetcode877/</link><pubDate>Fri, 25 Nov 2022 23:36:44 +0800</pubDate><guid>https://aryido.github.io/posts/leetcode/leetcode877/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>石頭遊戲，兩個人輪流選石頭，Alex 先選，每次只能選開頭或結尾，最終獲得石頭總數多的人獲勝。 乍看之下不好想到可以用 DP 解，但其實可用一個 2D-state 去描述遞迴的狀態。 這題一開始會好奇是因為負評倒讚很多，個人是感覺能從 Game Theory 單純想出這結論也是蠻厲害的&amp;hellip;&lt;/p>
