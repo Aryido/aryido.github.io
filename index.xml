@@ -20,7 +20,7 @@
 &lt;li>Azure : &lt;strong>Virtual Machine Scale Set&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;p>MIGs 的 Autoscaling Policy 能夠基於 Application 的 CPU/Memory 使用率、網路流量等等設定，自動增加或減少資源，根據業務需求靈活調整資源數量從而保證&lt;strong>高性能&lt;/strong>和&lt;strong>成本彈性&lt;/strong>。&lt;/p>
-&lt;/blockquote></description></item><item><title>GCP - Network Tag 概述</title><link>https://aryido.github.io/posts/google-cloud/network-tags/</link><pubDate>Sun, 02 Jun 2024 22:59:14 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/network-tags/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>GCP - Network Tag 概述</title><link>https://aryido.github.io/posts/google-cloud/network-tags/</link><pubDate>Mon, 03 Jun 2024 22:59:14 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/network-tags/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Network Tag 在 GCP 中只是一個簡單的字符串標示，&lt;strong>會簡稱為 Tag&lt;/strong> ，可附加到如 VM 或 Instance template 上，設計想法上是可以由這個標示，更有效地控制和管理 VM 的網路防火牆安全設定。 Network Tag 算是 GCP 比較特別的設計，其他雲端似乎沒有比較類似的對應，由於不是一個獨立的 cloud resource ，所以是無法單獨建立 Tag 的，但對於其關聯的 GCP Firewall Rules ，對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
@@ -28,7 +28,7 @@
 &lt;li>Microsoft Azure : &lt;strong>Network security groups&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;p>特別要注意的事情是在 GCP 中，Tag 和 Label 是不一樣的東西。通常 GCP 提到 tag 都是指 network tag 這個網路安全相關防火牆設定 ; 而 Label 是拿來作預算及資源管理使用。&lt;/p>
-&lt;/blockquote></description></item><item><title>GCP - VPC Firewall Rules 概述</title><link>https://aryido.github.io/posts/google-cloud/firewall-rule/</link><pubDate>Sun, 02 Jun 2024 22:59:14 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/firewall-rule/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>GCP - VPC Firewall Rules 概述</title><link>https://aryido.github.io/posts/google-cloud/firewall-rule/</link><pubDate>Mon, 03 Jun 2024 22:59:14 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/firewall-rule/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>GCP Firewall 提供精細的安全控制機制的雲端資源，可以讓資源管理者保護其 VPC 內資料，不會收到未經授權的訪問或者意外流出資料，從而提高安全性和隱私性。 GCP 防火牆其實是一個蠻大的類別，產品全稱是 Cloud Next Generation Firewall 簡稱 Cloud NGFW，其中基本可分成：&lt;/p>
 &lt;ul>
