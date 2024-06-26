@@ -3,9 +3,9 @@ title:  GCP - VPC Firewall Rules 概述
 
 author: Aryido
 
-date: 2024-06-02T22:59:14+08:00
+date: 2024-06-03T22:59:14+08:00
 
-thumbnailImage: "/images/google-cloud/network/vpc-logo.jpg"
+thumbnailImage: "/images/google-cloud/network/firewall-rules-logo.jpg"
 
 categories:
 - cloud
