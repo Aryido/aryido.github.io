@@ -1,15 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 17 Jun 2024 16:54:22 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Load-Balancer 架構簡介</title><link>https://aryido.github.io/posts/google-cloud/load-balancer/</link><pubDate>Mon, 17 Jun 2024 16:54:22 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/load-balancer/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 17 Jun 2024 16:54:22 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Load Balancer 架構概述</title><link>https://aryido.github.io/posts/google-cloud/load-balancer/</link><pubDate>Mon, 17 Jun 2024 16:54:22 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/load-balancer/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>GCP load-balancer 透過平均分發流量到多個 server ，可以防止單一伺服器的過載，從而減少系統故障的風險；也因為只需透過配置單個負載平衡器對外 IP 地址和憑證，故可以達到降低維運成本的目的。目前有多種 Load Balancer 類型，若從 console 上，有由&lt;strong>流量類型&lt;/strong>大概分成了三個 :&lt;/p>
+&lt;p>Cloud Load Balancing 是 GCP 透過平均分發流量到多個 server ，可以防止單一伺服器的過載，從而減少系統故障的風險的產品，對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
-&lt;li>HTTP(S) load balancing&lt;/li>
-&lt;li>TCP load balancing&lt;/li>
-&lt;li>UPD load balancing&lt;/li>
+&lt;li>Amazon Web Services (AWS) : Elastic Load Balancing&lt;/li>
+&lt;li>Microsoft Azure : Azure Load Balancer&lt;/li>
 &lt;/ul>
-&lt;p>但實際上依照細部功能，還有分 Global 或 Regional 等地域性分類，總體設定蠻細緻的 :&lt;/p>
+&lt;p>因為只需透過配置單個負載平衡器的對外 IP 地址和憑證，故可以達到降低維運成本的目的，目前 若從 GCP console 上，由&lt;strong>流量類型&lt;/strong>大概分成了兩類 : HTTP(S) load balancing、TCP/UPD load balancing，但實際上依照細部功能，還有分 Global/Regional 、Internal/External 等等，總體設定蠻細緻的 :&lt;/p>
 &lt;div class="figure fig-100" >
-&lt;a class="fancybox" href="https://aryido.github.io/images/google-cloud/load-balancer-options.jpg" data-fancybox="">
-&lt;img class="fig-img" src="https://aryido.github.io/images/google-cloud/load-balancer-options.jpg" >
+&lt;a class="fancybox" href="https://aryido.github.io/images/google-cloud/lb/lb-types.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/google-cloud/lb/lb-types.jpg" >
 &lt;/a>
 &lt;/div>
 &lt;/blockquote></description></item><item><title>GCP - Managed instance groups 概述</title><link>https://aryido.github.io/posts/google-cloud/managed-instance-groups/</link><pubDate>Sun, 16 Jun 2024 22:54:22 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/managed-instance-groups/</guid><description>&lt;!-- raw HTML omitted -->
