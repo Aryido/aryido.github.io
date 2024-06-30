@@ -1,5 +1,5 @@
 ---
-title: GCP - Load Balancer 架構概述
+title: GCP - Cloud Load Balancing 架構概述
 
 author: Aryido
 
