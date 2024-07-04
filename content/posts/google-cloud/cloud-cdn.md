@@ -66,7 +66,7 @@ Network Endpoint Group 提供 GKE 分散流量到 **Pod-level**，而不只是�
 > 那 Internet NEGs with external backends 和 CDN 有什麼關係呢？
 
 因為蠻常 CDN 的存儲位置可能位於地端自有機房，或者是在其他的雲端平台如 AWS 等等，這時就需要設定外部網路端點，而 Cloud Load Balancing 支援將流量代理到在 Google Cloud 之外的外部 backend ，這時就是用 NEG，而整體結構大概可以參考下圖：
-{{< image classes="fancybox fig-100" src="/images/google-cloud/dns-cdn/internet-neg-cdn.jpg" >}}
+{{< image classes="fancybox fig-100" src="/images/google-cloud/lb/cdn/internet-neg-cdn.jpg" >}}
 這樣 Cloud CDN 就可以透過設定的 NEG 輕鬆支援外部來源的快取。
 
 {{< alert info >}}
