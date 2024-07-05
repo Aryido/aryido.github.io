@@ -5,11 +5,5 @@
 &lt;li>Amazon Web Services (AWS) : &lt;strong>Amazon Route 53&lt;/strong>&lt;/li>
 &lt;li>Microsoft Azure : &lt;strong>Azure DNS&lt;/strong>&lt;/li>
 &lt;/ul>
-&lt;p>Cloud DNS 是&lt;strong>提供代管功能而不是註冊&lt;/strong>，而代管的好處是有一個「共同管理維護」的介面 ; 還能「基於地理位置」將流量轉到最接近的服務器從而提高性能與速度 ; 結合「 GCP 雲端安全服務」保護應用程式免於如 DDoS 攻擊。 最後比較特別的是 Google 的 Cloud DNS 服務號稱是 &lt;a href="https://cloud.google.com/dns/sla">100% SLA&lt;/a> ，服務絕對不會中斷，一旦使用上未能達到此標準，客戶都可以申請相關補償。
-&lt;div class="figure fig-100" >
-&lt;a class="fancybox" href="https://aryido.github.io/images/google-cloud/dns/dns-sla.jpg" data-fancybox="">
-&lt;img class="fig-img" src="https://aryido.github.io/images/google-cloud/dns/dns-sla.jpg" >
-&lt;/a>
-&lt;/div>
-&lt;/p>
+&lt;p>Cloud DNS 是&lt;strong>提供代管功能而不是註冊&lt;/strong>，而代管的好處是有一個「共同管理維護」的介面 ; 還能「基於地理位置」將流量轉到最接近的服務器從而提高性能與速度 ; 結合「 GCP 雲端安全服務」保護應用程式免於如 DDoS 攻擊。 最後比較特別的是 Google 的 Cloud DNS 服務號稱是 &lt;a href="https://cloud.google.com/dns/sla">100% SLA&lt;/a> ，服務絕對不會中斷，一旦使用上未能達到此標準，客戶都可以申請相關補償。&lt;/p>
 &lt;/blockquote></description></item></channel></rss>
