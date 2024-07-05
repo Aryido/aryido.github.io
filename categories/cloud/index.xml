@@ -1,4 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cloud on Aryido Tech Note</title><link>https://aryido.github.io/categories/cloud/</link><description>Recent content in cloud on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 24 Jun 2024 23:26:00 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Cloud CDN 概述</title><link>https://aryido.github.io/posts/google-cloud/cloud-cdn/</link><pubDate>Mon, 24 Jun 2024 23:26:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/cloud-cdn/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cloud on Aryido Tech Note</title><link>https://aryido.github.io/categories/cloud/</link><description>Recent content in cloud on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 01 Jul 2024 23:26:00 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Cloud DNS 概述</title><link>https://aryido.github.io/posts/google-cloud/cloud-dns/</link><pubDate>Mon, 01 Jul 2024 23:26:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/cloud-dns/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Cloud DNS 是 Google 提供的高性能、代管式的全球網域名稱系統服務，是一個&lt;strong>分布式的分層資料庫&lt;/strong>，可以創建 DNS Zone 和 record 而無需自己管理 DNS Service ，對應其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>Amazon Route 53&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Azure DNS&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>Cloud DNS 是&lt;strong>提供代管功能而不是註冊&lt;/strong>，而代管的好處是有一個「共同管理維護」的介面 ; 還能「基於地理位置」將流量轉到最接近的服務器從而提高性能與速度 ; 結合「 GCP 雲端安全服務」保護應用程式免於如 DDoS 攻擊。 最後比較特別的是 Google 的 Cloud DNS 服務號稱是 &lt;a href="https://cloud.google.com/dns/sla">100% SLA&lt;/a> ，服務絕對不會中斷，一旦使用上未能達到此標準，客戶都可以申請相關補償。
+&lt;div class="figure fig-100" >
+&lt;a class="fancybox" href="https://aryido.github.io/images/google-cloud/dns/dns-sla.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/google-cloud/dns/dns-sla.jpg" >
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Cloud CDN 概述</title><link>https://aryido.github.io/posts/google-cloud/cloud-cdn/</link><pubDate>Mon, 24 Jun 2024 23:26:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/cloud-cdn/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>CDN 全名為 Content Delivery Network，是一種透過分散在不同地區的 server，用離使用者&lt;strong>最近的伺服器&lt;/strong>來傳送快取內容。而 Google Cloud CDN，就是借助 Google 分佈在&lt;strong>全球各地&lt;/strong>的網路節點，將內容以快取(Cache)形式預先儲存，以達到最快速的內容交付。以下是一個 CDN 的全球分布架構，如圖所示歐洲使用者可以從荷蘭的節點獲取資料，而不必透過跨大西洋電纜，到位於美國 host server 拿取資料。
 &lt;div class="figure fig-100" >
