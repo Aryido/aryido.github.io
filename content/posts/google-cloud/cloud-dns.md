@@ -5,7 +5,7 @@ author: Aryido
 
 date: 2024-07-01T23:26:00+08:00
 
-thumbnailImage: "/images/google-cloud/dns-cdn/dns-logo.jpg"
+thumbnailImage: "/images/google-cloud/dns/dns-logo.jpg"
 
 categories:
 - cloud
@@ -24,11 +24,11 @@ reward: false
 > - Microsoft Azure : **Azure DNS**
 >
 > Cloud DNS 是**提供代管功能而不是註冊**，而代管的好處是有一個「共同管理維護」的介面 ; 還能「基於地理位置」將流量轉到最接近的服務器從而提高性能與速度 ; 結合「 GCP 雲端安全服務」保護應用程式免於如 DDoS 攻擊。 最後比較特別的是 Google 的 Cloud DNS 服務號稱是 [100% SLA](https://cloud.google.com/dns/sla) ，服務絕對不會中斷，一旦使用上未能達到此標準，客戶都可以申請相關補償。
-{{< image classes="fancybox fig-100" src="/images/google-cloud/dns/dns-sla.jpg" >}}
-
 <!--more-->
 
 ---
+
+{{< image classes="fancybox fig-100" src="/images/google-cloud/dns/dns-sla.jpg" >}}
 
 開頭也特別提到一點， 「**Cloud DNS 是代管而不是註冊**」， 那「註冊」跟「代管」有什麼不一樣呢？
 
