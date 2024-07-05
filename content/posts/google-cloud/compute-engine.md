@@ -36,7 +36,7 @@ Compute Engine 資源託管在全球多個位置，分成 Region 和 Zone。資�
   - Zone: `us-west1-b`
   - Zone: `us-west1-c`
 
-{{< image classes="fancybox fig-100" src="/images/google-cloud/region-zone.jpg" >}}
+{{< image classes="fancybox fig-100" src="/images/google-cloud/vm/region-zone.jpg" >}}
 
 
 在全世界各地都有資料中心，提供了：
@@ -55,7 +55,7 @@ Compute Engine 資源託管在全球多個位置，分成 Region 和 Zone。資�
 - ***Memory Optimized (M2、M1)*** : 這通常是給需要大量記憶體的 DB 或分析工具使用。
 
 另外還可以自己 custom machine types，會有一個 **Bar** 可以去訂製例如 22GB Memory 這種特殊的規格，算是 GCP 特有的便利功能，**其它雲端似乎沒這麼彈性**。
-{{< image classes="fancybox fig-100" src="/images/google-cloud/vm-machine-custom.jpg" >}}
+{{< image classes="fancybox fig-100" src="/images/google-cloud/vm/vm-machine-custom.jpg" >}}
 
 ###  Disk Type
 每個 Compute Engine 實例都有一個 **Boot-Disk**，此 disk 主要會包含作業系統，當需要更大的儲存空間時，可以添加額外 Disk 簡稱 Data-Disk。無論是 **Boot-Disk** 還是 **Data-Disk**，都有各式 Type 可以選擇 :
@@ -100,7 +100,7 @@ Boot-Disk 和 Data-DiskDisk 最主要的差別，可以點進去看其內容資�
   - - 儲存在 Cloud Storage 中的映像建立
   - - Virtual disk (VMDK、VHD)
 
-{{< image classes="fancybox fig-100" src="/images/google-cloud/vm-os-image-custom.jpg" >}}
+{{< image classes="fancybox fig-100" src="/images/google-cloud/vm/vm-os-image-custom.jpg" >}}
 
 
 - ***Container-Optimized OS (COS)***
