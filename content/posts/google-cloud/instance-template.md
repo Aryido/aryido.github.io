@@ -20,7 +20,7 @@ reward: false
 ---
 <!--BODY-->
 > Instance Template 一個用於定義 VM instance 配置的模板，其中包括如 machine type、bootdisk、startup script 等等實例屬性，經常和 Instance Groups 結合使用來自動創建 VM instance。對應其他的雲端服務是 :
-> - Amazon Web Services (AWS) : Launch Template 
+> - Amazon Web Services (AWS) : **Launch Template **
 > - Microsoft Azure : 沒有直接類似的，需在 Virtual Machine Scale Sets 內直接設定 VM 所需參數設定
 >
 > 概念上就是做好 VM 的模板，讓 VM 啟動完成後直接就可以達到我們想要的狀態，從這個方向出發的話: Startup Script、Custom Image、Instance Template 都蠻類似的，等等都會介紹和比較一下。
