@@ -24,8 +24,8 @@
 &lt;blockquote>
 &lt;p>Cloud 是最能展現&lt;strong>自動伸縮擴展服務&lt;/strong>功能的平台，而 GCP 的 Autoscaling Groups of Instances 代表產品是 Managed Instance Groups (簡稱 MIGs) ，雖然名稱有一點點不太直覺。 GCP 會根據自訂義 Autoscaling Policy 來自動添加或刪除 VM ，這些自動縮放而產生的 VM 會有一個&lt;strong>群組&lt;/strong>來管體，就是 MIG。對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
-&lt;li>AWS : &lt;strong>Auto Scaling groups&lt;/strong>&lt;/li>
-&lt;li>Azure : &lt;strong>Virtual Machine Scale Set&lt;/strong>&lt;/li>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>Auto Scaling groups&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Virtual Machine Scale Set&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;p>MIGs 的 Autoscaling Policy 能夠基於 Application 的 CPU/Memory 使用率、網路流量等等設定，自動增加或減少資源，根據業務需求靈活調整資源數量從而保證&lt;strong>高性能&lt;/strong>和&lt;strong>成本彈性&lt;/strong>。&lt;/p>
 &lt;/blockquote></description></item><item><title>AWS load-balancer 基礎介紹</title><link>https://aryido.github.io/posts/aws/aws-load-balancer/</link><pubDate>Mon, 17 Oct 2022 22:00:06 +0800</pubDate><guid>https://aryido.github.io/posts/aws/aws-load-balancer/</guid><description>&lt;!-- raw HTML omitted -->

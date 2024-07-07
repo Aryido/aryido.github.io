@@ -32,8 +32,8 @@
 &lt;blockquote>
 &lt;p>Cloud 是最能展現&lt;strong>自動伸縮擴展服務&lt;/strong>功能的平台，而 GCP 的 Autoscaling Groups of Instances 代表產品是 Managed Instance Groups (簡稱 MIGs) ，雖然名稱有一點點不太直覺。 GCP 會根據自訂義 Autoscaling Policy 來自動添加或刪除 VM ，這些自動縮放而產生的 VM 會有一個&lt;strong>群組&lt;/strong>來管體，就是 MIG。對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
-&lt;li>AWS : &lt;strong>Auto Scaling groups&lt;/strong>&lt;/li>
-&lt;li>Azure : &lt;strong>Virtual Machine Scale Set&lt;/strong>&lt;/li>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>Auto Scaling groups&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Virtual Machine Scale Set&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;p>MIGs 的 Autoscaling Policy 能夠基於 Application 的 CPU/Memory 使用率、網路流量等等設定，自動增加或減少資源，根據業務需求靈活調整資源數量從而保證&lt;strong>高性能&lt;/strong>和&lt;strong>成本彈性&lt;/strong>。&lt;/p>
 &lt;/blockquote></description></item><item><title>GCP - Network Tag 概述</title><link>https://aryido.github.io/posts/google-cloud/network-tags/</link><pubDate>Mon, 03 Jun 2024 22:59:14 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/network-tags/</guid><description>&lt;!-- raw HTML omitted -->
@@ -77,7 +77,7 @@
 &lt;blockquote>
 &lt;p>Instance Template 一個用於定義 VM instance 配置的模板，其中包括如 machine type、bootdisk、startup script 等等實例屬性，經常和 Instance Groups 結合使用來自動創建 VM instance。對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
-&lt;li>Amazon Web Services (AWS) : Launch Template&lt;/li>
+&lt;li>Amazon Web Services (AWS) : **Launch Template **&lt;/li>
 &lt;li>Microsoft Azure : 沒有直接類似的，需在 Virtual Machine Scale Sets 內直接設定 VM 所需參數設定&lt;/li>
 &lt;/ul>
 &lt;p>概念上就是做好 VM 的模板，讓 VM 啟動完成後直接就可以達到我們想要的狀態，從這個方向出發的話: Startup Script、Custom Image、Instance Template 都蠻類似的，等等都會介紹和比較一下。&lt;/p>
