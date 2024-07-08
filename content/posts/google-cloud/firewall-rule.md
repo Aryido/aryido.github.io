@@ -20,12 +20,11 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> GCP Firewall 提供精細的安全控制機制的雲端資源，可以讓資源管理者保護其 VPC 內資料，不會收到未經授權的訪問或者意外流出資料，從而提高安全性和隱私性。 GCP 防火牆其實是一個蠻大的類別，產品全稱是 Cloud Next Generation Firewall 簡稱 Cloud NGFW，其中基本可分成：
-> - Cloud NGFW Essentials
-> - Cloud NGFW Enterprise
-> - Cloud NGFW Standard
+> GCP Firewall 提供精細的安全控制機制的雲端資源，可以讓資源管理者保護其 VPC 內資料，不會收到未經授權的訪問或者意外流出資料，從而提高安全性和隱私性。 GCP 防火牆其實是一個蠻大的類別，產品全稱是 Cloud Next Generation Firewall 簡稱 Cloud NGFW，其中可分成：「 Cloud NGFW Essentials 」、「 Cloud NGFW Enterprise 」、「 Cloud NGFW Standard 」。但通常在我們在 GCP 提到的防火牆，其實都是指最常用的 **Firewall-Rules 防火牆規則** ，隸屬於 Cloud NGFW Essentials，只能應用在給定的 project 和指定的 VPC，對應其他的雲端服務是 :
+> - Amazon Web Services (AWS) :  **Security Groups**
+> - Microsoft Azure : **Network security groups**
 >
-> 但通常在我們在 GCP 提到的防火牆，其實都是指最常用的 **Firewall-Rules 防火牆規則** ，隸屬於 Cloud NGFW Essentials，只能應用在給定的 project 和指定的 VPC ; 如果想要把 Firewall-Rules 應用到 organization 下的其他 project 或者其他 VPC，則要使用 Firewall-Policies，本篇重點介紹 Firewall-Rules。
+> 如果想要把 Firewall-Rules 應用到 organization 下的其他 project 或者其他 VPC，則要使用 Firewall-Policies，本篇重點介紹 Firewall-Rules。
 <!--more-->
 
 ---
@@ -113,6 +112,5 @@ Priority 的值設定範圍是`0–65535`，數字越小優先度越高，**若 
 - [Google Cloud — 網路服務簡介](https://jason-kao-blog.medium.com/google-cloud-%E7%B6%B2%E8%B7%AF%E6%9C%8D%E5%8B%99%E7%B0%A1%E4%BB%8B-d6b74c178714)
 
 - [GCP 新手村 — Firewall](https://medium.com/@kellenjohn175/explanation-gcp-%E6%96%B0%E6%89%8B%E6%9D%91-firewall-39cd71353b1)
-
 
 - [[GCP 教學] 043 2小時學完 GCP 重點服務 VM, LB, Kubernetes, DevOps, 混合雲, 資料庫, 大數據, 機器學習, AI, 網路防禦, 權限, 資訊安全等](https://www.youtube.com/watch?v=hQE14DX4LHQ&t=134s)
