@@ -21,8 +21,8 @@ reward: false
 ---
 <!--BODY-->
 > Cloud Load Balancing 是 GCP 透過平均分發流量到多個 server ，以防止單一伺服器的過載從而減少系統故障的風險的產品，對應其他的雲端服務是 :
-> - Amazon Web Services (AWS) : Elastic Load Balancing
-> - Microsoft Azure : Azure Load Balancer
+> - Amazon Web Services (AWS) : **Elastic Load Balancing**
+> - Microsoft Azure : **Azure Load Balancer**
 > 
 > 因為只需透過配置單個負載平衡器的對外 IP 地址和憑證，故可以達到降低維運成本的目的，目前若從 GCP console 上，由**流量類型**大概分成了兩類 : HTTP(S) load balancing、TCP/UPD load balancing，但實際上依照細部功能，還有分 Global/Regional 、Internal/External 等等，總體設定蠻細緻的 :
 >
