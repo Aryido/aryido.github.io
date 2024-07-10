@@ -20,7 +20,7 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> Network Tag 在 GCP 中只是一個簡單的字符串標示，**會簡稱為 Tag** ，可附加到如 VM 或 Instance template 上，設計想法上是可以由這個標示，更有效地控制和管理 VM 的網路防火牆安全設定。 Network Tag 算是 GCP 比較特別的設計，其他雲端似乎沒有比較類似的對應，由於不是一個獨立的 cloud resource ，所以是無法單獨建立 Tag 的，但對於其關聯的 GCP Firewall Rules ，對應其他的雲端服務是 :
+> Network Tag 在 GCP 中，只是一個簡單的字符串標示並不會建立出雲端資源，**會簡稱為 Tag** 並可選擇附加到如 VM 或 Instance template 上，其設計想法上是可以由這個標示，更有效地控制和管理 VM 的網路防火牆安全設定。 Network Tag 算是 GCP 比較特別的設計，其他雲端似乎沒有比較類似的對應，由於不是一個獨立的 cloud resource ，所以是無法單獨建立 Tag 的，但對於其關聯的 GCP Firewall Rules ，對應其他的雲端服務是 :
 > - Amazon Web Services (AWS) :  **Security Groups**
 > - Microsoft Azure : **Network security groups**
 > 
