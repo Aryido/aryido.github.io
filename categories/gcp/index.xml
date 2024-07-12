@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gcp on Aryido Tech Note</title><link>https://aryido.github.io/categories/gcp/</link><description>Recent content in gcp on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 01 Jul 2024 23:26:00 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/gcp/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Cloud DNS 概述</title><link>https://aryido.github.io/posts/google-cloud/cloud-dns/</link><pubDate>Mon, 01 Jul 2024 23:26:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/cloud-dns/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gcp on Aryido Tech Note</title><link>https://aryido.github.io/categories/gcp/</link><description>Recent content in gcp on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 02 Jul 2024 20:18:34 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/gcp/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Cloud NAT 概述</title><link>https://aryido.github.io/posts/google-cloud/cloud-nat/</link><pubDate>Tue, 02 Jul 2024 20:18:34 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/cloud-nat/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Cloud NAT 全稱是 Cloud Network Address Translation，是 Google Cloud 代管的 IP 轉譯服務，可在不公開 IP 位址的情況下，讓 GCP VM 或 GKE 內的 Pod 可以高效的&lt;strong>連接上&lt;/strong>「外部網路 Internet」，而外部資源無法直接存取 Cloud NAT gateway 後方的資源，維持獨立性與安全性。對應其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>NAT gateways&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Azure NAT Gateway&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>Cloud NAT 是以 Software-defined Networking 服務，中間不存在 proxy instance ，故性能方面比傳統 NAT 好上不少。除了 VM、GKE 之外，也可使用在 Cloud Run、Cloud Functions、App Engine 等服務。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Cloud DNS 概述</title><link>https://aryido.github.io/posts/google-cloud/cloud-dns/</link><pubDate>Mon, 01 Jul 2024 23:26:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/cloud-dns/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Cloud DNS 是 Google 提供的高性能、代管式的全球網域名稱系統服務，是一個&lt;strong>分布式的分層資料庫&lt;/strong>，可以創建 DNS Zone 和 record 而無需自己管理 DNS Service ，對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
