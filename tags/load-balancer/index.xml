@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>load-balancer on Aryido Tech Note</title><link>https://aryido.github.io/tags/load-balancer/</link><description>Recent content in load-balancer on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 24 Jun 2024 23:26:00 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/load-balancer/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Cloud CDN 概述</title><link>https://aryido.github.io/posts/google-cloud/cloud-cdn/</link><pubDate>Mon, 24 Jun 2024 23:26:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/cloud-cdn/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>CDN 全名為 Content Delivery Network，是一種透過分散在不同地區的 server，用離使用者&lt;strong>最近的伺服器&lt;/strong>來傳送快取內容。而 Google Cloud CDN，就是借助 Google 分佈在&lt;strong>全球各地&lt;/strong>的網路節點，將內容以快取(Cache)形式預先儲存，以達到最快速的內容交付。以下是一個 CDN 的全球分布架構，如圖所示歐洲使用者可以從荷蘭的節點獲取資料，而不必透過跨大西洋電纜，到位於美國 host server 拿取資料。
-&lt;div class="figure fig-100" >
-&lt;a class="fancybox" href="https://aryido.github.io/images/google-cloud/lb/cdn/cdn-global.jpg" data-fancybox="">
-&lt;img class="fig-img" src="https://aryido.github.io/images/google-cloud/lb/cdn/cdn-global.jpg" >
-&lt;/a>
-&lt;/div>
-&lt;strong>Cloud CDN 會需要與 GCP-Load-Balancer 搭配使用&lt;/strong>，故建議可以先熟習 GCP 負載平衡器的基本用法和觀念。&lt;/p>
+&lt;p>CDN 全名為 Content Delivery Network，是一種透過分散在不同地區的 server，用離使用者&lt;strong>最近的伺服器&lt;/strong>來傳送快取內容。而 Google Cloud CDN，就是借助 Google 分佈在&lt;strong>全球各地&lt;/strong>的網路節點，將內容以快取(Cache)形式預先儲存，以達到最快速的內容交付。，對應其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>Amazon CloudFront&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Azure CDN&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Cloud CDN 會需要與 GCP-Load-Balancer 搭配使用&lt;/strong>，故建議可以先熟習 GCP 負載平衡器的基本用法和觀念。&lt;/p>
 &lt;/blockquote></description></item><item><title>GCP - Cloud Load Balancing 架構概述</title><link>https://aryido.github.io/posts/google-cloud/cloud-load-balancing/</link><pubDate>Mon, 17 Jun 2024 16:54:22 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/cloud-load-balancing/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Cloud Load Balancing 是 GCP 透過平均分發流量到多個 server ，以防止單一伺服器的過載從而減少系統故障的風險的產品，對應其他的雲端服務是 :&lt;/p>
