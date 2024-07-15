@@ -21,11 +21,17 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> CDN 全名為 Content Delivery Network，是一種透過分散在不同地區的 server，用離使用者**最近的伺服器**來傳送快取內容。而 Google Cloud CDN，就是借助 Google 分佈在**全球各地**的網路節點，將內容以快取(Cache)形式預先儲存，以達到最快速的內容交付。以下是一個 CDN 的全球分布架構，如圖所示歐洲使用者可以從荷蘭的節點獲取資料，而不必透過跨大西洋電纜，到位於美國 host server 拿取資料。
-> {{< image classes="fancybox fig-100" src="/images/google-cloud/lb/cdn/cdn-global.jpg" >}} **Cloud CDN 會需要與 GCP-Load-Balancer 搭配使用**，故建議可以先熟習 GCP 負載平衡器的基本用法和觀念。
+> CDN 全名為 Content Delivery Network，是一種透過分散在不同地區的 server，用離使用者**最近的伺服器**來傳送快取內容。而 Google Cloud CDN，就是借助 Google 分佈在**全球各地**的網路節點，將內容以快取(Cache)形式預先儲存，以達到最快速的內容交付。，對應其他的雲端服務是 :
+> - Amazon Web Services (AWS) : **Amazon CloudFront**
+> - Microsoft Azure : **Azure CDN**
+>
+> **Cloud CDN 會需要與 GCP-Load-Balancer 搭配使用**，故建議可以先熟習 GCP 負載平衡器的基本用法和觀念。
 <!--more-->
 
 ---
+
+以下是一個 CDN 的全球分布架構，如圖所示歐洲使用者可以從荷蘭的節點獲取資料，而不必透過跨大西洋電纜，到位於美國 host server 拿取資料。
+{{< image classes="fancybox fig-100" src="/images/google-cloud/lb/cdn/cdn-global.jpg" >}} 
 
 # 架構及工作原理
 {{< image classes="fancybox fig-100" src="/images/google-cloud/lb/cdn/cdn-architecture.jpg" >}}
