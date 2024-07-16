@@ -12,7 +12,7 @@ categories:
 - gcp
 
 tags:
-- virtual-machine
+- gcp-virtual-machine
 - vpc
 
 comment: false

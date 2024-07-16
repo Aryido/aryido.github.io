@@ -13,6 +13,7 @@ categories:
 
 tags:
 - virtual-machine
+- gcp-virtual-machine
 - load-balancer
 
 comment: false
