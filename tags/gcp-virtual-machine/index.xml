@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gcp-virtual-machine on Aryido Tech Note</title><link>https://aryido.github.io/tags/gcp-virtual-machine/</link><description>Recent content in gcp-virtual-machine on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 16 Jun 2024 22:54:22 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/gcp-virtual-machine/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Managed instance groups 概述</title><link>https://aryido.github.io/posts/google-cloud/managed-instance-groups/</link><pubDate>Sun, 16 Jun 2024 22:54:22 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/managed-instance-groups/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Cloud 是最能展現&lt;strong>自動伸縮擴展服務&lt;/strong>功能的平台，而 GCP 的 Autoscaling Groups of Instances 代表產品是 Managed Instance Groups (簡稱 MIGs) ，雖然名稱有一點點不太直覺。 GCP 會根據自訂義 Autoscaling Policy 來自動添加或刪除 VM ，這些自動縮放而產生的 VM 會有一個&lt;strong>群組&lt;/strong>來管體，就是 MIG。對應其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>Auto Scaling groups&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Virtual Machine Scale Set&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>MIGs 的 Autoscaling Policy 能夠基於 Application 的 CPU/Memory 使用率、網路流量等等設定，自動增加或減少資源，根據業務需求靈活調整資源數量從而保證&lt;strong>高性能&lt;/strong>和&lt;strong>成本彈性&lt;/strong>。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Network Tag 概述</title><link>https://aryido.github.io/posts/google-cloud/network-tags/</link><pubDate>Mon, 03 Jun 2024 22:59:14 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/network-tags/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Network Tag 在 GCP 中，只是一個簡單的字符串標示並不會建立出雲端資源，&lt;strong>會簡稱為 Tag&lt;/strong> 並可選擇附加到如 VM 或 Instance template 上，其設計想法上是可以由這個標示，更有效地控制和管理 VM 的網路防火牆安全設定。 Network Tag 算是 GCP 比較特別的設計，其他雲端似乎沒有比較類似的對應，由於不是一個獨立的 cloud resource ，所以是無法單獨建立 Tag 的，但對於其關聯的 GCP Firewall Rules ，對應其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>Security Groups&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Network security groups&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>特別要注意的事情是在 GCP 中，Tag 和 Label 是不一樣的東西。通常 GCP 提到 tag 都是指 network tag 這個網路安全相關防火牆設定 ; 而 Label 是拿來作預算及資源管理使用。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - IP addresses 概述</title><link>https://aryido.github.io/posts/google-cloud/ip-address/</link><pubDate>Sun, 02 Jun 2024 14:51:14 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/ip-address/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>GCP IP Address 經常是分配給 GCP VM Instance 和 GCP Load-Balancer 使用，讓他們可以和 GCP 其他雲端資源，或者是外部公共網路上的系統通訊。IP Address 劃分也蠻多的，會使用以下種類來描述不同的類型：&lt;/p>
+&lt;ul>
+&lt;li>Internal IP Address &amp;lt;=&amp;gt; External IP Address&lt;/li>
+&lt;li>Private IP Address &amp;lt;=&amp;gt; Public IP Address&lt;/li>
+&lt;li>Ephemeral IP Address &amp;lt;=&amp;gt; Static IP Address&lt;/li>
+&lt;li>Regional IP Address &amp;lt;=&amp;gt; Global IP Address&lt;/li>
+&lt;/ul>
+&lt;p>此篇會全部做簡單的介紹。而在使用 IP Address 也常發生一些使用上的疏忽，例如一直 reserve IP 卻沒有使用它，因為 IP 算是稀有資源，如果有保留固定 IP ，就算沒有使用還是會持續計費的，而且會更貴！&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Instance Template 概述</title><link>https://aryido.github.io/posts/google-cloud/instance-template/</link><pubDate>Fri, 24 May 2024 19:26:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/instance-template/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Instance Template 一個用於定義 VM instance 配置的模板，其中包括如 machine type、bootdisk、startup script 等等實例屬性，經常和 Instance Groups 結合使用來自動創建 VM instance。對應其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : **Launch Template **&lt;/li>
+&lt;li>Microsoft Azure : 沒有直接類似的，需在 Virtual Machine Scale Sets 內直接設定 VM 所需參數設定&lt;/li>
+&lt;/ul>
+&lt;p>概念上就是做好 VM 的模板，讓 VM 啟動完成後直接就可以達到我們想要的狀態，從這個方向出發的話: Startup Script、Custom Image、Instance Template 都蠻類似的，等等都會介紹和比較一下。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Compute Engine 概述</title><link>https://aryido.github.io/posts/google-cloud/compute-engine/</link><pubDate>Thu, 23 May 2024 23:26:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/compute-engine/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Compute Engine 是託管在 Google 雲端上基礎架構即服務 (IaaS) 產品，其他的稱呼還有 &lt;strong>compute engine instance&lt;/strong> 、 &lt;strong>virtual machine instance&lt;/strong> 、 &lt;strong>VM instance&lt;/strong>。 對應其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>EC2&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Virtual Machine&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>啟動前可以訂製自己需要的 Machine Type ，例如 CPU、memory、disk 等等；再來 Boot disk OS 也可自行選擇 Linux 、 Windows 等等操作系統；針對容器虛擬化，可能使用專門優化來運行容器的 Container-Optimized OS (COS) image 在虛擬機上啟動容器服務。最後關於&lt;strong>備份資料&lt;/strong>，GCP 也有提供相應的服務來面對災難發生時的處理。&lt;/p>
+&lt;/blockquote></description></item></channel></rss>
