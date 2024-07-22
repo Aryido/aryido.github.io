@@ -131,7 +131,7 @@ Machine Image 是**基於整台 VM** ，為一個新的雲端資源，包含了�
 - **Clone** VM instance
 
 ### Snapshot
-Snapshot 是基於 Persistent disk ，反映在具體的時間點上 disk 的內容。 2019/02 GCP 進一步推出了 Snapshot Cchedule 的功能，可以自動排程建立 Snapshot ，會依照**差異**來備份的，不會佔用大量儲存空間；也可以設定排程自動刪除舊的 Snapshot。
+Snapshot 是基於 Persistent disk ，反映在具體的時間點上 disk 的內容。 2019/02 GCP 進一步推出了 Snapshot Schedule 的功能，可以自動排程建立 Snapshot ，會依照**差異**來備份的，不會佔用大量儲存空間；也可以設定排程自動刪除舊的 Snapshot。
 - **適用於備份和災難恢復**
 - 成本低於圖像，比圖像小，因為不包含操作系統等
 
