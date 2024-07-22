@@ -17,9 +17,9 @@ reward: false
 
 <!--BODY-->
 
-> Language Server Protocol 簡稱 LSP ，是微軟於 2016 製定協定，專門用來輔助 Visual Studio Code 開發用的，目標是讓 Code-Editor 能便利地支援更多的程式語言。設計理念是把**語言撰寫領域模型如：自動補全、引用定義、類型檢查器**等等，這些提供輔助功能的部分拆出去用「公定的介面」來做溝通，給各自領域的人開發。
+> Language Server Protocol 簡稱 LSP ，是微軟於 2016 製定的 Protocol 協定，專門用來輔助 Visual Studio Code 開發用的，目標是讓 Code-Editor 能便利地支援更多的程式語言。設計理念是把**語言撰寫領域模型如：自動補全、引用定義、類型檢查器**等等，這些提供輔助功能的部分拆出去用「公定的介面」來做溝通，給各自領域的人開發。
 > {{< image classes="fancybox fig-100" src="/images/plugin-extension/lsp-nolsp.jpg" >}}
-> LSP 專門用於描述 Code-Editor 中，用戶行爲與響應之間**通訊方式**和**傳輸資料結構**，像是 VSCode 的 IntelliSense 提供的 auto-completion 就可以基於這個協定，支援更多不同的 coding language。 現在支援 LSP 的編輯器也不少，不是只有 VSCode ，還有 Eclipse、Vim、NeoVim、都已經支援了，在 langserver.org 可以看到各個 client 的支援狀況。
+> LSP 專門用於描述 Code-Editor 中，用戶行爲與響應之間**通訊方式**和**傳輸資料結構**，像是 VSCode 的 IntelliSense 提供的 auto-completion 就可以基於這個協定支援更多不同的 coding language。 現在支援 LSP 的 Code-Editor 也不少，除了 VSCode 還有 Eclipse 、 Vim 、 NeoVim 都已經支援了，可以 在 langserver.org 可以看到各個 client 的支援狀況。
 
 <!--more-->
 
