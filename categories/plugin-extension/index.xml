@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>plugin-extension on Aryido Tech Note</title><link>https://aryido.github.io/categories/plugin-extension/</link><description>Recent content in plugin-extension on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 21 May 2024 23:21:38 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/plugin-extension/index.xml" rel="self" type="application/rss+xml"/><item><title>Language Server Protocol</title><link>https://aryido.github.io/posts/plugin-extension/language-server-protocol/</link><pubDate>Tue, 21 May 2024 23:21:38 +0800</pubDate><guid>https://aryido.github.io/posts/plugin-extension/language-server-protocol/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>Language Server Protocol 簡稱 LSP ，是微軟於 2016 所定的一個協定，專門用來輔助 Visual Studio Code 開發用的，目標是讓 Code-Editor 能便利地支援更多的程式語言。設計理念是把&lt;strong>語言撰寫領域模型如：掃描器、剖析器、類型檢查器等&lt;/strong>這些提供輔助功能的部分，拆出去用公定的介面來做溝通，給各自領域的人開發。
+&lt;p>Language Server Protocol 簡稱 LSP ，是微軟於 2016 製定協定，專門用來輔助 Visual Studio Code 開發用的，目標是讓 Code-Editor 能便利地支援更多的程式語言。設計理念是把&lt;strong>語言撰寫領域模型如：自動補全、引用定義、類型檢查器&lt;/strong>等等，這些提供輔助功能的部分拆出去用「公定的介面」來做溝通，給各自領域的人開發。
 &lt;div class="figure fig-100" >
 &lt;a class="fancybox" href="https://aryido.github.io/images/plugin-extension/lsp-nolsp.jpg" data-fancybox="">
 &lt;img class="fig-img" src="https://aryido.github.io/images/plugin-extension/lsp-nolsp.jpg" >

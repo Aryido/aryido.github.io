@@ -97,7 +97,7 @@
 &lt;p>啟動前可以訂製自己需要的 Machine Type ，例如 CPU、memory、disk 等等；再來 Boot disk OS 也可自行選擇 Linux 、 Windows 等等操作系統；針對容器虛擬化，可能使用專門優化來運行容器的 Container-Optimized OS (COS) image 在虛擬機上啟動容器服務。最後關於&lt;strong>備份資料&lt;/strong>，GCP 也有提供相應的服務來面對災難發生時的處理。&lt;/p>
 &lt;/blockquote></description></item><item><title>Language Server Protocol</title><link>https://aryido.github.io/posts/plugin-extension/language-server-protocol/</link><pubDate>Tue, 21 May 2024 23:21:38 +0800</pubDate><guid>https://aryido.github.io/posts/plugin-extension/language-server-protocol/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>Language Server Protocol 簡稱 LSP ，是微軟於 2016 所定的一個協定，專門用來輔助 Visual Studio Code 開發用的，目標是讓 Code-Editor 能便利地支援更多的程式語言。設計理念是把&lt;strong>語言撰寫領域模型如：掃描器、剖析器、類型檢查器等&lt;/strong>這些提供輔助功能的部分，拆出去用公定的介面來做溝通，給各自領域的人開發。
+&lt;p>Language Server Protocol 簡稱 LSP ，是微軟於 2016 製定協定，專門用來輔助 Visual Studio Code 開發用的，目標是讓 Code-Editor 能便利地支援更多的程式語言。設計理念是把&lt;strong>語言撰寫領域模型如：自動補全、引用定義、類型檢查器&lt;/strong>等等，這些提供輔助功能的部分拆出去用「公定的介面」來做溝通，給各自領域的人開發。
 &lt;div class="figure fig-100" >
 &lt;a class="fancybox" href="https://aryido.github.io/images/plugin-extension/lsp-nolsp.jpg" data-fancybox="">
 &lt;img class="fig-img" src="https://aryido.github.io/images/plugin-extension/lsp-nolsp.jpg" >
