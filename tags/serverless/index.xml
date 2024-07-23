@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>serverless on Aryido Tech Note</title><link>https://aryido.github.io/tags/serverless/</link><description>Recent content in serverless on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 12 Jul 2024 23:26:00 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/serverless/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Cloud Functions 概述</title><link>https://aryido.github.io/posts/google-cloud/cloud-functions/</link><pubDate>Fri, 12 Jul 2024 23:26:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/cloud-functions/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Cloud Functions 是一個&lt;strong>無伺服器的雲端執行環境&lt;/strong> (serverless execution environment)，寫出來的 code 完全託管（fully managed）給 GCP 並且無需配置任何 Infra 也不用管理任何 Servers ，只需要專注在自己的程式碼邏輯即可，為標準的 &lt;strong>FaaS&lt;/strong> 類型服務。對應其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>AWS Lamda&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Azure Functions&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>Cloud Functions 可以用 Java、Python、Node.js、Go 等 coding language 來撰寫，常用於部署單一化用途的程式，或用於連接和擴展其他的 GCP 雲端服務，以 Events and triggers 為其使用的設計核心思想。&lt;/p>
+&lt;/blockquote></description></item></channel></rss>
