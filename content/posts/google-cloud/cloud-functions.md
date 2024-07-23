@@ -102,7 +102,7 @@ Cloud Function 是一個事件驅動（Event-driven）的計算平台，由於�
 
 - 在多數情況下其實都是「非密集存取」且「不會耗用大量網路資源」的情境，這時 Cloud Function 有機會比 VM 便宜很多。
   {{< alert info >}}
-  [GCP calculator](https://cloud.google.com/products/calculator/?utm_source=google&utm_medium=cpc&utm_campaign=japac-SG-all-en-dr-SKWS-all-all-trial-DSA-dr-1605216&utm_content=text-ad-none-none-DEV_c-CRE_655856180813-ADGP_Hybrid%20%7C%20SKWS%20-%20BRO%20%7C%20DSA%20-All%20Webpages-KWID_39700076131768134-dsa-1456167871416&userloc_9198554-network_g&utm_term=KW_&gad_source=1&gclid=EAIaIQobChMIjNTywra4hwMV-V0PAh0rcQ5iEAAYASAAEgKKtvD_BwE&gclsrc=aw.ds&hl=en&dl=CiRkODQ4ZDY4Ny0wN2NkLTRiNDAtYjIyOC0yYjdhMmFlZmM2YzMQExokNkI4MzE5NTUtOTkxRC00NEFFLTk4QTItRTFBQzBCRTE0RTY0) 簡單估算，一個月存取約 50000 次，平均時間 3 秒，只需要 1.54 美金，如果好好運用可以非常便宜。
+  [GCP calculator](https://cloud.google.com/products/calculator?hl=en) 簡單估算，一個月存取約 50000 次，平均時間 3 秒，只需要 1.54 美金，如果好好運用可以非常便宜。
   {{< /alert >}}
 
 ---
