@@ -21,27 +21,29 @@ reward: false
 
 <!--BODY-->
 
-> Cloud Functions 是一個**無伺服器的雲端執行環境** (serverless execution environment)，寫出來的 code 完全託管（fully managed）給 GCP 並且無需配置任何 Infra 也不用管理任何 Servers ，只需要專注在自己的程式碼邏輯即可，為標準的 **FaaS** 類型服務。對應其他的雲端服務是 :
+> Cloud Functions 是一個**無伺服器的雲端執行環境** (serverless execution environment)，會把寫出來的 code 完全託管給 GCP 並且無需配置任何 Infra 也不用管理任何 Servers 就可以執行了，對於程式設計師來說只需要專注在自己的程式邏輯即可，基本完全省去管理硬體的煩惱，為最標準的 **FaaS** 類型服務。對應其他的雲端服務是 :
 >
 > - Amazon Web Services (AWS) : **AWS Lamda**
 > - Microsoft Azure : **Azure Functions**
 >
-> Cloud Functions 可以用 Java、Python、Node.js、Go 等 coding language 來撰寫，常用於部署單一化用途的程式，或用於連接和擴展其他的 GCP 雲端服務，以 Events and triggers 為其使用的設計核心思想。
+> Cloud Functions 可以用 Java、Python、Node.js、Go 等常用 coding language 來撰寫，適用於部署單一化用途的程式，或用於連接擴展其他的 GCP 雲端服務，以 Events and triggers 為其核心設計思想。
 
 <!--more-->
 
 ---
 
-使用了 Cloud Functions 之後，因為有不需要另外建置相關的 Server 的便利性，加上又能應對突然的流量高峰有不錯的擴展性，對於 Use-Cases 在官方文件也給出了蠻好的整理，例如適用於：
+使用了 Cloud Functions 之後，因為有不需要另外建置相關的 Server 的便利性，加上又能應對突然的流量高峰的擴展性，對於其 Use-Cases 部分，在官方文件也給出了蠻好的整理，例如適用於：
 
 - 輕量級 ETL、Data Processing
 - 觸發應用程式 Build
 
+{{< image classes="fancybox fig-100" src="/images/google-cloud/functions/functions-glue.jpg" >}}
+
 其具備 「**fine-grained**」 和「**依用量自動配置資源 (On-demand)**」
-的特點，因此很常用做輕量級 API 和 Webhook 的一些非同步工作。也因為只需將 Cloud Functions 綁定在指定的 Event ，再加上 Cloud Functions 可以直接訪問 Google Service Account credential ，因此可以和大多數 GCP 服務無縫連結，非常適合做為各種服務之間的溝通橋樑。
+的特點，因此很常用做輕量級 API 和 Webhook 等非同步工作。也可將 Cloud Functions 綁定到指定的 Event ，再加上其可以直接訪問 Google Service Account credential 的特性，因此可以和大多數 GCP 服務無縫連結，非常適合做為各種服務之間的溝通橋樑。
 
 {{< alert success >}}
-Cloud Functions 常用來當作雲端服務之間的「粘合劑」。
+Cloud Functions 常用來當作雲端服務之間的溝通橋樑。
 {{< /alert >}}
 
 # Cloud Functions Version
@@ -56,54 +58,63 @@ Cloud Functions (2nd gen) 是基於 「 Cloud Run 」 和 「Eventarc」 構建�
 
 Cloud Functions (2nd gen) 有增強不少功能 :
 
-- Request Timeout 對於 HTTP-Triggered 增加到 **60 mins**
-- 因為需要支援來自 Cloud Storage 或 BigQuery 的 large streams ，也能應對 compute-intensive 的情境， 加上 parallel workloads 平行處理等等，故對於 **Memory 和 CPU 都提供了更強且更好的定制性**
-- Eventarc 的**支援數量增加**非常多
+> - Request Timeout 對於 HTTP-Triggered 增加到 **60 mins**
+> 
+> - 因為需要支援來自 Cloud Storage 或 BigQuery 的 large streams ，也需要能夠應對 compute-intensive 的情境， 加上 parallel workloads 平行處理需求等等，故對於 **Memory 和 CPU 都提供了更強且更好的定制性**
+> 
+> - Eventarc 的**支援數量增加**非常多
+> 
+> - 流量分割和 Concurrency 都比 1st gen 增強很多
 
-- 流量分割和 Concurrency 都比 1st gen 增強很多
-
-1st Gen 是典型的 Serverless Functions 架構，故每個 function instance 在需要時才會被建立，因此容易出現「 **Cold Start** 」，解決方法是設定「最小 instance 數量」，但相對這會增加成本。
+1st Gen 是典型的 Serverless Functions 架構，故每個 function instance 在需要時才會被建立，因此容易出現「 **Cold Start** 」，最簡單的解決方法是設定「最小 instance 數量」，但相對這會增加成本。
 2nd Gen 對於每個 function 有更高的並發，故提供更高的吞吐量和延遲。
 
 {{< alert info >}}
-Cloud Functions 「 Cold Start」冷啟動，是系統需要時間啟動新的容器執行個體以服務新請求時所會遇到的延遲。通常還會發生在：
-
-- 從零到一的執行個體縮放事件
-- 配置服務單一**並行**請求
-- 流量縮放期間
-
+Cloud Functions 「 Cold Start 」冷啟動，是系統需要時間啟動新的容器執行個體以服務新請求時，所會遇到的延遲。
 {{< /alert >}}
 
 # 設計 Cloud Function
 
-Cloud Function 是一個事件驅動（Event-driven）的計算平台，由於是以 Function 為單位，設計會面臨到一些系統設計的選擇和取捨，例如:
+Cloud Function 是一個事件驅動（Event-driven）的計算平台，以下列出 Cloud Function 需要注意的事項及限制，以及提供官方的 best practices 設計思路，主要會是先圍繞在避免不必要的 cold starts 發生：
 
-- Function 應該負責的事情是甚麼
-- 透過甚麼事件去驅動 Function
+- ##### Cloud Function 會 Time Out 限制
 
-以下列出 Cloud Function 有些需要注意的事項及限制：
+超過時間限制後 Cloud Function 會拋出錯誤狀態。
+如果發生 Time Out ，是會被收取整個超時時間的費用，且超時還可能導致不可預知的行為或後續調用的冷啟動，導致額外的延遲。
 
-- 每個 Cloud Function 有 「 **time out 限制** 」，超過時間限制後會拋出錯誤狀態
-  {{< alert warning >}}
-  雖然 V2 版本 time out 時間對於 http-trigger 有增長時間，但還是簡單記憶一下，若處理會耗費近 10 分鐘左右的話，這會是一個需要注意的時間。
-  {{< /alert >}}
+{{< alert warning >}}
+雖然 V2 版本 time out 時間對於 http-trigger 有增長時間，但還是簡單記憶一下，若處理會耗費近 10 分鐘左右的話，這會是一個需要注意的時間。
+{{< /alert >}}
 
-- 雖然大部分常用語言都有，但 Cloud Function Runtime 還是會面臨一些語言是**沒有支援**的
+- ##### 確保 HTTP 函數發送 HTTP 回應
 
-- 多個 Cloud Function 間並**不共享** Memory、Global Variable、File System
-  {{< alert warning >}}
-  如果真的有資料共享的需求，可以考慮使用 GCP 上的 storage bucket。但其實並不推薦讓多個 Cloud Function 共享資料的情形，最好以無狀態的方式來使用各個 cloud function。
-  {{< /alert >}}
+**如果 Cloud Function 是 HTTP 觸發的，一定記得要發送 HTTP 回應**。如果沒有這樣做，可能會導致 Time Out 發生 。而每一種 coding language 判定為「有發送 HTTP 回應」的形式會有點不太一樣，需要參考[範例](https://cloud.google.com/functions/docs/bestpractices/tips#ensure_http_functions_send_an_http_response)。
 
-- Cloud Function 要想好怎麼管理，尤其 project 內可能散落好幾個不同功能的 Cloud Function。可以利用以下方法好好非類 function：
+- ##### Always delete temporary files
 
-  - 善用自訂的命名原則
-  - **多利用 tag (推薦)**
+因為 Cloud Function 的臨時目錄儲存是 in-memory filesystem，故寫入 tem-file 是會消耗記憶體的。如果都沒顯式刪除 tem-file 可能會導致記憶體不足錯誤而發生 cold starts。
 
-- 在多數情況下其實都是「非密集存取」且「不會耗用大量網路資源」的情境，這時 Cloud Function 有機會比 VM 便宜很多。
-  {{< alert info >}}
-  [GCP calculator](https://cloud.google.com/products/calculator?hl=en) 簡單估算，一個月存取約 50000 次，平均時間 3 秒，只需要 1.54 美金，如果好好運用可以非常便宜。
-  {{< /alert >}}
+- ##### 以 Idempotent Functions 方式設計
+
+意思是即使 Cloud Function 被調用多次，也是產生相同的結果，在最佳實踐中會建議這樣設計，原因是有 retries 重試的功能。當要處理上一次失敗而重新調用的 Function，在**冪等**的設計下 retries 比較不會發生奇怪的問題。
+
+{{< alert warning >}}
+多個 Cloud Function 間也並**不共享** Memory、Global Variable。
+如果真的有資料共享的需求，可以考慮使用 GCP 上的 storage bucket。但其實並不推薦讓多個 Cloud Function 共享資料的情形，最好以無狀態的方式來使用各個 cloud function。
+{{< /alert >}}
+
+### 管理 Cloud Function
+
+由於一個 GCP Project 內可能散落好幾個不同功能的 Cloud Function，個可以利用以下方法分類 function：
+
+- 善用自訂的命名原則
+- **多利用 tag (推薦)**
+
+
+在多數情況下我們使用 Server 的場景其實都是「非密集存取」且「不會耗用大量網路資源」的情境，這時 Cloud Function 有機會比 VM 便宜很多。[GCP calculator](https://cloud.google.com/products/calculator?hl=en) 簡單估算，一個月存取約 50000 次，平均時間 3 秒，只需要 1.54 美金，如果好好運用可以非常便宜。
+
+
+雖然大部分常用語言 Cloud Function Runtime 都有支援，但還是會面臨一些語言是**沒有支援**的，這時可能就是 Cloud Run 可以考慮使用的場景了。
 
 ---
 
