@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/google-cloud/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 12 Jul 2024 23:26:00 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/google-cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Cloud Functions 概述</title><link>https://aryido.github.io/posts/google-cloud/cloud-functions/</link><pubDate>Fri, 12 Jul 2024 23:26:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/cloud-functions/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>Cloud Functions 是一個&lt;strong>無伺服器的雲端執行環境&lt;/strong> (serverless execution environment)，寫出來的 code 完全託管（fully managed）給 GCP 並且無需配置任何 Infra 也不用管理任何 Servers ，只需要專注在自己的程式碼邏輯即可，為標準的 &lt;strong>FaaS&lt;/strong> 類型服務。對應其他的雲端服務是 :&lt;/p>
+&lt;p>Cloud Functions 是一個&lt;strong>無伺服器的雲端執行環境&lt;/strong> (serverless execution environment)，會把寫出來的 code 完全託管給 GCP 並且無需配置任何 Infra 也不用管理任何 Servers 就可以執行了，對於程式設計師來說只需要專注在自己的程式邏輯即可，基本完全省去管理硬體的煩惱，為最標準的 &lt;strong>FaaS&lt;/strong> 類型服務。對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
 &lt;li>Amazon Web Services (AWS) : &lt;strong>AWS Lamda&lt;/strong>&lt;/li>
 &lt;li>Microsoft Azure : &lt;strong>Azure Functions&lt;/strong>&lt;/li>
 &lt;/ul>
-&lt;p>Cloud Functions 可以用 Java、Python、Node.js、Go 等 coding language 來撰寫，常用於部署單一化用途的程式，或用於連接和擴展其他的 GCP 雲端服務，以 Events and triggers 為其使用的設計核心思想。&lt;/p>
+&lt;p>Cloud Functions 可以用 Java、Python、Node.js、Go 等常用 coding language 來撰寫，適用於部署單一化用途的程式，或用於連接擴展其他的 GCP 雲端服務，以 Events and triggers 為其核心設計思想。&lt;/p>
 &lt;/blockquote></description></item><item><title>GCP - Cloud NAT 概述</title><link>https://aryido.github.io/posts/google-cloud/cloud-nat/</link><pubDate>Tue, 02 Jul 2024 20:18:34 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/cloud-nat/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Cloud NAT 全稱是 Cloud Network Address Translation，是 Google Cloud 代管的 IP 轉譯服務，可在不公開 IP 位址的情況下，讓 GCP VM 或 GKE 內的 Pod 可以高效的&lt;strong>連接上&lt;/strong>「外部網路 Internet」，而外部資源無法直接存取 Cloud NAT gateway 後方的資源，維持獨立性與安全性。對應其他的雲端服務是 :&lt;/p>
