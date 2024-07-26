@@ -5,7 +5,7 @@ author: Aryido
 
 date: 2023-01-08T21:54:38+08:00
 
-thumbnailImage: "/images/google-cloud/cloud-run.jpg"
+thumbnailImage: "/images/google-cloud/cloud-run/cloud-run-logo.jpg"
 
 categories:
 - develop
