@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/google-cloud/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 13 Jul 2024 23:14:20 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/google-cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Cloud Run 概述</title><link>https://aryido.github.io/posts/google-cloud/cloud-run/</link><pubDate>Sat, 13 Jul 2024 23:14:20 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/cloud-run/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/google-cloud/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 15 Jul 2024 20:06:13 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/google-cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Google Kubernetes Engine 概述</title><link>https://aryido.github.io/posts/google-cloud/gke/</link><pubDate>Mon, 15 Jul 2024 20:06:13 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gke/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Google Kubernetes Engine 簡稱是 GKE ，是一個由 Google 管理的 Kubernetes 開源容器編排平台的實現。因為 Kubernetes 的前身 Borg 本來就是 Google 內部的產品，憑藉著這樣的背景，GKE 號稱對於 Kubernetes 的支援跟擴展性跟其它雲端比起來會是最好的。對應其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>EKS&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>AKS&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>雲端化的 Kubernetes 簡單的說就是&lt;strong>把可在地端原生的 Kubernetes 放到雲端上運行&lt;/strong>，由雲供應商幫助我們大幅簡化集群的設置管理與維運。由於只是讓雲供應商託管 Kubernetes ，最終差異也只是看雲供應商如何「預設」和「整合自己平台其他服務」至 k8s 罷了，本質上 EKS、AKS、GKE 差異並不大，故基本上不推薦更換 Kubernetes 服務的雲供應商或使用多雲，會考慮 GKE 的公司，大多都是只是思考怎樣更方便的整合 Kubernetes 和 GCP 的各種服務而已。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Cloud Run 概述</title><link>https://aryido.github.io/posts/google-cloud/cloud-run/</link><pubDate>Sat, 13 Jul 2024 23:14:20 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/cloud-run/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Cloud Run 是一套基於 Knative 的全代管無伺服器容器平台，也屬於 Google Cloud 中的 FaaS 服務，功能是可在 GCP 託管的環境中運行 &lt;strong>Container&lt;/strong> 且已經具有&lt;strong>高擴展性&lt;/strong>基礎架構。若從「無基礎建設的容器化平台（Containers without infrastructure）」的角度來說，對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
