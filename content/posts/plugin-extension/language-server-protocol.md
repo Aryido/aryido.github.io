@@ -19,7 +19,7 @@ reward: false
 
 > Language Server Protocol 簡稱 LSP ，是微軟於 2016 製定的 Protocol 協定，專門用來輔助 Visual Studio Code 開發用的，目標是讓 Code-Editor 能便利地支援更多的程式語言。設計理念是把**語言撰寫領域模型如：自動補全、引用定義、類型檢查器**等等，這些提供輔助功能的部分拆出去用「公定的介面」來做溝通，給各自領域的人開發。
 > {{< image classes="fancybox fig-100" src="/images/plugin-extension/lsp-nolsp.jpg" >}}
-> LSP 專門用於描述 Code-Editor 中，用戶行爲與響應之間**通訊方式**和**傳輸資料結構**，像是 VSCode 的 IntelliSense 提供的 auto-completion 就可以基於這個協定支援更多不同的 coding language。 現在支援 LSP 的 Code-Editor 也不少，除了 VSCode 還有 Eclipse 、 Vim 、 NeoVim 都已經支援了，可以 在 langserver.org 可以看到各個 client 的支援狀況。
+> LSP 專門用於描述 Code-Editor 中，用戶行爲與響應之間**通訊方式**和**傳輸資料結構**，像是 VSCode 的 IntelliSense 提供的 auto-completion 就可以基於這個協定支援更多不同的 coding language。 現在支援 LSP 的 Code-Editor 也不少，除了 VSCode 還有 Eclipse 、 Vim 、 NeoVim 都已經支援了，可以在 langserver.org 可以看到各個 client 的支援狀況。
 
 <!--more-->
 
@@ -55,6 +55,7 @@ Language Server 和 Extension 會持續不斷地進行各式各樣的請求體�
 {{< /alert >}}
 
 啟用完成後，Client 和 Language Server 就可以相互溝通了，Client 和 Server 都可以相互發送請求/通知，發送的各種請求有哪些，也是參考 [Language Server Protocol Specification - 3.17](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/)，簡單舉例如有 :
+
 - textDocument/completion(下語法提示快捷鍵，請求取得智慧提示清單)
 - textDocument/hover
 - ...
@@ -102,50 +103,50 @@ func main() {
 
 再來當我們開始編輯 Document 時， Language Server 會發送編輯產生的 **diff 部分** 而非更新後的整體內容。舉例來說:
 
->1. 我們在 code 中新增一行 `a`：
+> 1.  我們在 code 中新增一行 `a`：
 >
->   ```go
->   package main
->   import (
->       "fmt"
->   )
+> ```go
+> package main
+> import (
+>     "fmt"
+> )
 >
->   func main() {
->       fmt.Println("Hello World go!")
->   +   a
->   }
->   ```
+> func main() {
+>     fmt.Println("Hello World go!")
+> +   a
+> }
+> ```
 >
->   Extension 會偵測到並更新文檔的內容，然後發通知 `textDocument/didChange` 給 Language Server：
+> Extension 會偵測到並更新文檔的內容，然後發通知 `textDocument/didChange` 給 Language Server：
 >
->   ```
->   {
->       "jsonrpc":"2.0",
->       "method":"textDocument/didChange",
->       "params": {
->           "textDocument": {
->               "uri": "file:///workspace/main.go",
->               "version": 37  // 用於確認先後順序
->           },
->           "contentChanges": [{
->               "range": {
->                   "start": {
->                       "line":8,
->                       "character":4
->                   },
->                   "end": {
->                       "line": 8,
->                       "character": 4
->                   }
->               },
->               "rangeLength": 0,
->               "text": "a"
->           }]
->       }
->   }
->   ```
+> ```
+> {
+>     "jsonrpc":"2.0",
+>     "method":"textDocument/didChange",
+>     "params": {
+>         "textDocument": {
+>             "uri": "file:///workspace/main.go",
+>             "version": 37  // 用於確認先後順序
+>         },
+>         "contentChanges": [{
+>             "range": {
+>                 "start": {
+>                     "line":8,
+>                     "character":4
+>                 },
+>                 "end": {
+>                     "line": 8,
+>                     "character": 4
+>                 }
+>             },
+>             "rangeLength": 0,
+>             "text": "a"
+>         }]
+>     }
+> }
+> ```
 >
->   Language Server 會更新的記憶體中的內容，再來是決定是否產生某些行為，如程式碼診斷發送 `textDocument/publishDiagnostics` 通知回給 Extension。
+> Language Server 會更新的記憶體中的內容，再來是決定是否產生某些行為，如程式碼診斷發送 `textDocument/publishDiagnostics` 通知回給 Extension。
 
 再用其他例子舉例來說 :
 
@@ -187,10 +188,10 @@ func main() {
 >        }
 >    }
 >    ```
-> 上述通知傳送給 Language Server 後，會回應 responses ，並在`Go to Definition`的使用位置顯示 Result。
-> {{< alert success >}}
-`Go to Definition` 簡單說法就是所謂**引用跳轉功能**，我們會點選 class、function、variable 等等，看看還有哪些地方有出現相同引用、有哪些地方有呼叫等等。
-{{< /alert >}}
+>
+>    上述通知傳送給 Language Server 後，會回應 responses ，並在`Go to Definition`的使用位置顯示 Result。
+>    {{< alert success >}} > `Go to Definition` 簡單說法就是所謂**引用跳轉功能**，我們會點選 class、function、variable 等等，看看還有哪些地方有出現相同引用、有哪些地方有呼叫等等。
+>    {{< /alert >}}
 
 ##### textDocument/didClose
 
