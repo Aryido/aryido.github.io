@@ -20,13 +20,13 @@ reward: false
 
 > 前面介紹了 Google Cloud 中有常見的幾個 Compute Service 運算服務，分別是：
 >
-> - Compute Engine
-> - Cloud Functions
-> - Cloud Run
-> - Google Kubernetes Engine
+> - [Compute Engine](https://aryido.github.io/posts/google-cloud/compute-engine/)
+> - [Cloud Functions](https://aryido.github.io/posts/google-cloud/cloud-functions/)
+> - [Cloud Run](https://aryido.github.io/posts/google-cloud/cloud-run/)
+> - [Google Kubernetes Engine](https://aryido.github.io/posts/google-cloud/gke/)
 >
-> 然後略過了一個現在可能比較少再繼續更迭的 App Engine。這五種運算服務應該在什麼情況下選擇呢？ 選擇正確的基礎架構服務來運行 workload 是很重要的，以下對其做一些廣義的整理：
-> {{< image classes="fancybox fig-100" src="/images/google-cloud/compute-services.jpg" >}}
+> 另外補充一個一個現在可能比較少再繼續更迭的 App Engine。以上這五種運算服務應該在什麼情況下選擇呢？ 選擇正確的基礎架構服務來運行 APP 是很重要的，故以下對其做一些廣義的整理和筆記：
+> {{< image classes="fancybox fig-100" src="/images/google-cloud/compute-service-summary/compute-services.jpg" >}}
 
 <!--more-->
 
@@ -34,35 +34,31 @@ reward: false
 
 # 服務簡介
 
-{{< image classes="fancybox fig-100" src="/images/google-cloud/compute-services1.jpg" >}}
+{{< image classes="fancybox fig-100" src="/images/google-cloud/compute-service-summary/compute-services1.jpg" >}}
 
 - ### Compute Engine => 抽象級別 : IaaS
 
-  也稱 Virtual machines 虛擬機，需要自行配置 CPU、 memory、disk 或者 GPUs 等等，並決定要運行的作業系統和其他軟體，還可以做其他設定來支持 Autoscale 功能。如果需要對底層**硬體**基礎架構進行更多控制，那就建議使用 Compute Engine。
+  也稱 Virtual machines 虛擬機，需要自行配置 CPU、 memory、disk 或者 GPUs 等等，並決定要運行的作業系統和安裝其他軟體，還可以做其他設定來支持 Autoscale 功能。如果需求可能要對底層**硬體**基礎架構進行更多控制，那就建議使用 Compute Engine。
 
 - ### Google Kubernetes Engine => 抽象級別 : IaaS 或 PaaS
 
-  Kubernetes 本來就是一個 Open-Source Container Orchestration，用於自動化容器化應用程式的部署、擴展和管理 ; 而雲端託管的 Kubernetes Clusters 更無縫整合 GCP 其他服務，可移再加上地端可移植性，如果本身就對 k8s 有一定熟悉度，那可以嘗試使用 GKE。
+  Kubernetes 本來就是一個 Open-Source Container Orchestration，用於自動化容器化應用程式的部署、擴展和管理 ; 而雲端託管的 Kubernetes Clusters 更無縫整合 GCP 其他服務。如果本身就對 K8S 有一定熟悉度且有使用很多 GCP 其他雲端服務想整合，那可以嘗試使用 GKE。
 
 - ### Cloud Run => 抽象級別 : FaaS 或 PaaS
 
-  一個完全託管的**容器化**無伺服器平臺，可運行單個容器，面對大流量也可自動擴展以回應 Web 和其他事件。由於只要能打包成容器即可運作，支援的語言情境更加廣泛。 關鍵字是**容器化**，如果不需要像 Kubernetes 那樣複雜的操作，且比較起 Cloud Functions 更加複雜一點的容器化微服務，可考慮使用 Cloud Run。
+  一個完全託管的**容器化**無伺服器平臺，可運行單個容器，面對大流量也可自動擴展以回應 Web Request 或其他事件，由於只要能打包成容器即可運作，支援的語言情境更加廣泛。 關鍵字是**容器化**，如果不需要像 Kubernetes 那樣複雜的操作，且需求是比較起 Cloud Functions 更加複雜一點的容器化微服務，可考慮使用 Cloud Run。
 
 - ### Cloud Functions => 抽象級別 : 標準 FaaS
 
-  事件驅動 Event-driven serverless functions，上傳程式碼即可運作。不會讓程式一直運行著，當事件發生時 Cloud Functions 才會調用函數方法，請求結束之後，就 shutdown，為完全微服務化設計。如果有強烈 Event-driven 的 ETL pipeline 流程設計，可以使用 Cloud Functions 。
+  事件驅動 Event-driven serverless functions，上傳程式碼即可運作，概念上是強烈的使用才付費的，所以 Cloud Functions 不會一直運行著，當事件發生時 Cloud Functions 才會調用函數方法，請求結束之後，就 shutdown。 為完全微服務化設計，如果有強烈 Event-driven 的 輕量 ETL pipeline 流程設計，可以使用 Cloud Functions 。
 
 {{< alert info >}}
-承前知道在 Google Cloud 中，有兩種運算服務同為 FaaS 架構，一個是
-
-- Cloud Run
-- Cloud Functions
-
-這兩個同為 Serverless 服務，若更加細分的話:
+承前知道在 Google Cloud 中，有兩種運算服務同為 FaaS 架構也同為 Serverless 服務，若更加細分的話，一個是
 
 - Cloud Run 定義為 **Serverless platform**
 - Cloud Functions 定義為 **Serveless logic**
-  {{< /alert >}}
+
+{{< /alert >}}
 
 - ### App Engine => 抽象級別 : PaaS 運算服務
 
@@ -72,37 +68,37 @@ reward: false
 
 # 其他整理比較
 
-{{< image classes="fancybox fig-100" src="/images/google-cloud/compute-choose.jpg" >}}
+{{< image classes="fancybox fig-100" src="/images/google-cloud/compute-service-summary/compute-choose.jpg" >}}
 
 如果只是一個小型開發團隊，並且希望專注在 code 上，那麼 Cloud Run 或 App Engine 等無伺服器選項是一個不錯的選擇 ; 如果擁有更大的團隊，有自己的工具和流程，可以使用 Compute Engine 或 GKE 定制自己的 infra。
 
 - ### 計費模式
 
-  - Compute Engine 和 GKE 計費模式基於資源，需要為預置的實例付費，與使用方式無關
-  - Cloud Run、App Engine 和 Cloud Functions 按請求計費
+  - Compute Engine 和 GKE 計費模式偏向基於資源，需要為預置的實例付費，與使用方式無關
+  - Cloud Run、App Engine 和 Cloud Functions 偏向按請求計費
 
 - ### [「VM Image」 V.S 「Cloud Run」 V.S 「GKE」](https://www.youtube.com/watch?v=jh0fPT-AWwM)
 
-  在 GCP 中想使用**運行容器**的解決方案，其中一種方法是使用 GKE。 GKE Cluster 預設是整合雲端 IAM 安全、可設定高可用、預設監控服務，且對於節點具有雲端自動擴充、自動修復功能。借助 GKE for Anthos，還可以混合多雲和地端平台，自由移動 workload。
+  在 GCP 中想使用**運行容器**的解決方案，其中一種方法是使用 GKE。 GKE Cluster 是整合 GCP 雲端 IAM 安全及監控服務、可設定高可用，且對於節點 Node 可雲端自動擴充、自動修復功能 ; 借助 GKE for Anthos，還可以混合多雲和地端平台，自由移動 workload。
 
   如果不想像 GKE 那樣寫許多 YAML 檔並管理 Infra，只想專注於建立無狀態容器化應用，可以考慮 Cloud Run，同樣也可以借助 Cloud Run for Anthos ，混合自己的私人託管環境並部署容器。
 
   最後是使用 GCE 虛擬機器，就類似在本地電腦內啟動 docker，並在其上面運行各式容器。對於此情景有建議的虛擬機器作業系統 <**容器最佳化作業系統**> 稱 Container-Optimized OS，它針對運行容器進行了最佳化，並由 Google 維護。
 
-- ### 「Cloud Run」V.S「App Engine」和 「Cloud Functions」
+- ### 「Cloud Run」V.S「App Engine 和 Cloud Functions」
 
   - 依靠 App Engine 上多年的經驗，現在 Cloud Run 是 GCP Serverless 最新的推薦工具，Cloud Run 改進了 App Engine 體驗，[主要是與 Google Cloud 其他雲端服務的集成](https://cloud.google.com/appengine/migration-center/run/compare-gae-with-run)。
 
-  {{< image classes="fancybox fig-100" src="/images/google-cloud/functions-run.jpg" >}}
-
   - Cloud Functions 代表了 Google Cloud 的**事件驅動**型無伺服器計算服務，關鍵是「**輕量級事件驅動方法**」; Cloud Run 偏向做為一個完全託管的計算平臺，提供**容器化 Web 應用程式**的自動擴展，關鍵字是「**容器化靈活性**」
+
+  {{< image classes="fancybox fig-100" src="/images/google-cloud/compute-service-summary/functions-run.jpg" >}}
 
 - ### 可移植性和開源需求
 
   基於「可移植性和開源支援」，可考慮 GKE 和 Cloud Run 因為都基於開源框架：
 
   - GKE 集群由 Kubernetes 開源集群管理系統提供支援
-  - Cloud Run 遵照 Knative 提供支援，Knative 是一個開源專案
+  - Cloud Run 遵照 Knative 開源專案提供支援
 
 ---
 
