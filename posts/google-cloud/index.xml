@@ -1,4 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/google-cloud/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 15 Jul 2024 20:06:13 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/google-cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Google Kubernetes Engine 概述</title><link>https://aryido.github.io/posts/google-cloud/gke/</link><pubDate>Mon, 15 Jul 2024 20:06:13 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gke/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/google-cloud/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 20 Jul 2024 23:41:17 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/google-cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Compute Service 總整理</title><link>https://aryido.github.io/posts/google-cloud/compute-service-all/</link><pubDate>Sat, 20 Jul 2024 23:41:17 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/compute-service-all/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>前面介紹了 Google Cloud 中有常見的幾個 Compute Service 運算服務，分別是：&lt;/p>
+&lt;ul>
+&lt;li>Compute Engine&lt;/li>
+&lt;li>Cloud Functions&lt;/li>
+&lt;li>Cloud Run&lt;/li>
+&lt;li>Google Kubernetes Engine&lt;/li>
+&lt;/ul>
+&lt;p>然後略過了一個現在可能比較少再繼續更迭的 App Engine。這五種運算服務應該在什麼情況下選擇呢？ 選擇正確的基礎架構服務來運行 workload 是很重要的，以下對其做一些廣義的整理：
+&lt;div class="figure fig-100" >
+&lt;a class="fancybox" href="https://aryido.github.io/images/google-cloud/compute-services.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/google-cloud/compute-services.jpg" >
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Google Kubernetes Engine 概述</title><link>https://aryido.github.io/posts/google-cloud/gke/</link><pubDate>Mon, 15 Jul 2024 20:06:13 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gke/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Google Kubernetes Engine 簡稱是 GKE ，是一個由 Google 管理的 Kubernetes 開源容器編排平台的實現。因為 Kubernetes 的前身 Borg 本來就是 Google 內部的產品，憑藉著這樣的背景，GKE 號稱對於 Kubernetes 的支援跟擴展性跟其它雲端比起來會是最好的。對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
