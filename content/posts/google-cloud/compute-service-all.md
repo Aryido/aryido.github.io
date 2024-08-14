@@ -18,8 +18,8 @@ reward: false
 
 <!--BODY-->
 
-> 前面幾個章節有介紹了 Google Cloud 中常見的幾個 Compute Service 運算服務，分別是： [Compute Engine](https://aryido.github.io/posts/google-cloud/compute-engine/)、[Cloud Functions](https://aryido.github.io/posts/google-cloud/cloud-functions/)、[Cloud Run](https://aryido.github.io/posts/google-cloud/cloud-run/)、[Google Kubernetes Engine](https://aryido.github.io/posts/google-cloud/gke/)。另外補充一個現在可能比較少被提到的 App Engine，它也是屬於 GCP 運算服務，只要上傳滿足格式的程式碼就可以開始運作，會做自動的負載平衡並不需要管理任何硬體機器，是一個**無伺服器平台**，聽說當年很紅的[遊戲 **Angry Birds** 就是使用 App Engine](https://cloud.google.com/files/Rovio.pdf) 來作為服務平台。
-> 
+> 前面幾個章節有介紹了 Google Cloud 中常見的幾個 Compute Service 運算服務，分別是： [Compute Engine](https://aryido.github.io/posts/google-cloud/compute-engine/)、[Cloud Functions](https://aryido.github.io/posts/google-cloud/cloud-functions/)、[Cloud Run](https://aryido.github.io/posts/google-cloud/cloud-run/)、[Google Kubernetes Engine](https://aryido.github.io/posts/google-cloud/gke/)。另外補充一個現在可能比較少被提到的 App Engine，它也是屬於 GCP 運算服務，只要上傳滿足格式的程式碼就可以開始運作，會自動做負載平衡且並不需要管理任何硬體機器，聽說當年很紅的[遊戲 **Angry Birds** 就是使用 App Engine](https://cloud.google.com/files/Rovio.pdf) 來作為服務平台。
+>
 > 以上這五種運算服務應該在什麼情況下選擇呢？ 選擇正確的基礎架構服務來運行 APP 是很重要的，故以下對其做一些廣義的整理和筆記：
 > {{< image classes="fancybox fig-100" src="/images/google-cloud/compute-service-summary/compute-services.jpg" >}}
 
@@ -45,7 +45,7 @@ reward: false
 
 - ### Cloud Functions => 抽象級別 : 標準 FaaS
 
-  事件驅動 Event-driven serverless functions，上傳程式碼即可運作，概念上是**使用才付費的**，所以 Cloud Functions 不會一直運行著，當事件發生時 Cloud Functions 才會調用函數方法，請求結束之後，就 shutdown。 為完全微服務化設計，如果有強烈 Event-driven 導向或輕量 ETL pipeline 流程設計需求，可以使用 Cloud Functions 。
+  事件驅動 Event-driven serverless functions，上傳程式碼即可運作。由於概念上是**使用才付費的**，所以 Cloud Functions 不會一直運行著，當事件發生時 Cloud Functions 才會調用函數方法，請求結束之後，就 shutdown。為較強烈的微服務導向化設計，如果是 Event-Driven 導向或輕量 ETL pipeline 流程設計需求，可以使用 Cloud Functions 。
 
 {{< alert info >}}
 承前知道在 Google Cloud 中，有兩種運算服務同為 FaaS 架構也同為 Serverless 服務，若更加細分的話，一個是
@@ -59,7 +59,7 @@ reward: false
 
   一個完全託管的無伺服器平臺，用於完整的 Web 應用程式，會負責處理網路、應用擴展和資料庫擴展，更新版本等操作。雖然蠻多介紹都說他是**單體式 monolithic server-side** 但官網介紹上看起來也可以做很好的**微服務化**。 App Engine 設計上是由一個或多個 service 組成，service 的行為就類似於微服務，彈性很大，可以有多個版本、不同的運行環境 runtime 等等。
   {{< image classes="fancybox fig-100" src="/images/google-cloud/compute-service-summary/app-engine-architecture.jpg" >}}
-  聽說是 App Engine 是整個 GCP 雲端**第一個**雲端服務，現在已經是很成熟的產品，所以後來也比較少有重大的更新。 
+  聽說是 App Engine 是整個 GCP 雲端**第一個**雲端服務，現在已經是很成熟的產品，所以後來也比較少有重大的更新。
 
 ---
 
@@ -75,6 +75,7 @@ reward: false
   - Cloud Run、App Engine 和 Cloud Functions 偏向按請求計費
 
 - ### [「VM Image」 V.S 「Cloud Run」 V.S 「GKE」](https://www.youtube.com/watch?v=jh0fPT-AWwM)
+
   在 GCP 中想使用**運行容器**的解決方案：
 
   - 其中一種方法是使用 GKE。 GKE Cluster 是整合 GCP 雲端 IAM 安全及監控服務、可設定高可用，且對於節點 Node 可雲端自動擴充、自動修復功能 ; 借助 GKE for Anthos，還可以混合多雲和地端平台，自由移動 workload。
