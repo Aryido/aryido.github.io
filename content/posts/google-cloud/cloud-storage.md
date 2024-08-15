@@ -72,12 +72,16 @@ Minium storage duration，意指 object 最少需要存放的天數。例如 nea
 
 有 Data protection 設定，可以客製化設定如： Custom soft delete policy 、 Object Versioning 、Retention 等等，來防止誤刪檔案或用於恢復被覆蓋的 Object ; 再來還有 Data encryption 設定，encryption 進階還可以用 Cloud KMS 來進行 key 的管理。
 
-# Cloud Storage 和其他雲端產品的結合
+# Cloud Storage 和[其他雲端產品的結合](https://cloud.google.com/storage/docs/google-integration)
 
 Object Storage 特性上經常是用來當作「 網站靜態圖片」或者「 影片 」的儲存庫使用。舉例來說如果所有的影片都放在一個 Web Server 上，當 user 很多人來看影片的時候，主機 Loading 可能就會不堪負荷。這時常用的解法就會是把影片放到 Cloud Storage，自己 Web Server 就只是簡單 HTML 直接引用 Cloud Storag url，資料是從 Cloud Storage 出去而不是透過自己的 Web Server 再出去，可有效減少主機 Loading，這是一個**主機效能優化**很常見且重要的概念。
 
+簡單上傳資料的話使用 gcloud storage 就足夠了，但若有大量資料傳送需求且需要排程設定，可以參考 [Storage Transfer Service](https://cloud.google.com/storage-transfer/docs/overview)。
+{{< image classes="fancybox fig-100" src="/images/google-cloud/gcs/transfer-ways.jpg" >}}
+1T 以下的資料用 gcloud storage 就可以了，大於 1T 可以考慮使用 Storage Transfer Service。
+
 - ### Load Balancer & CDN Bucket
-  GCS 可以用來儲存靜態網頁，也提供使用 Load Balancer 的掛載方式，讓 GCS 作為 Load Balancer 的 Backend，進階還可以搭配上 Load Balancer 的 CDN 功能來進行 Cache，讓存取更加快速。可以參考 [GoogleCloudPlatform-terraform-large-data-sharing-java-webapp](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-java-webapp)
+  GCS 可以用來儲存靜態網頁，也提供使用 Load Balancer 的掛載方式，讓 GCS 作為 Load Balancer 的 Backend，進階還可以搭配上 Load Balancer 的 CDN 功能來進行 Cache 讓存取更加快速。可以參考 [GoogleCloudPlatform-terraform-large-data-sharing-java-webapp](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-java-webapp)
 
 ---
 
@@ -87,14 +91,9 @@ Object Storage 特性上經常是用來當作「 網站靜態圖片」或者「 
 
 > 以使用 gcloud-cli 的 storage 功能為優先，gsutil 並不是 google 官方推薦的 CLI
 
-可以直接從官方網站中 gsutil 頁面看到類似的敘述。因為新的 gcloud storage CLI 提供了顯著的性能改進（參照 title 連結說明），也保持一致的方式來管理所有 Google Cloud 資源，不用因為 cloud storage 而特別使用一個特定 lib 。簡單上傳資料的話使用 gcloud storage 就足夠了，但若有大量資料傳送需求且需要排程設定，可以參考 [Storage Transfer Service](https://cloud.google.com/storage-transfer/docs/overview)。
-{{< image classes="fancybox fig-100" src="/images/google-cloud/gcs/transfer-ways.jpg" >}}
-{{< alert info >}}
-1T 以下的資料用 gcloud storage 就可以了，大於 1T 可以考慮使用 Storage Transfer Service。
-{{< /alert >}}
-這邊也特別注意一下，儘管 Google 都已經在很多 GCS 官方文件上都註明一個醒目的警告標語說
+可以直接從官方網站中 gsutil 頁面看到類似的敘述。因為新的 gcloud storage CLI 提供了顯著的性能改進（參照 title 連結說明），也保持一致的方式來管理所有 Google Cloud 資源，不用因為 cloud storage 而特別使用一個特定 lib 。這邊也特別注意一下，儘管 Google 都已經在很多 GCS 官方文件上都註明一個醒目的警告標語說:
 
-> gsutil 不是 GCS 推薦的 CLI，用戶應該改用 gcloud
+`gsutil 不是 GCS 推薦的 CLI，用戶應該改用 gcloud`
 
 而且相關資訊已經公告從 2022 開始，直到今天也算過蠻久的了，但現在很多 LLM 語言模型還是會推薦首選 gsutil 而不是 gcloud。畢竟 gsutil 從 2016 年就開始發展了，所以至今有太多範例都還是使用 gsutil，因此 LLM 模型都有非常大的機率採用 gsutil 而不是 gcloud，這也是 LLM 現在蠻容易遇到的問題之一...
 
