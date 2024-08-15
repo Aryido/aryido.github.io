@@ -25,21 +25,23 @@ reward: false
 > - Amazon Web Services (AWS) : **Simple Storage Service (S3)**
 > - Microsoft Azure : **Azure Blob Storage**
 >
-> Cloud Storage 是具備高性能、全球網際網路存取規模 BLOB（Binary Large Object）儲存裝置，基本上可當成是**近乎無限大的檔案儲存空間**，不用預先配置容量也無需花費心力去管理容量，並提供 User 以 Google Web Console 介面 、SDK 或 RESTful API 的方式存取。
+> Cloud Storage 是具有高性能 BLOB（Binary Large Object）儲存裝置，基本上可當成是**近乎無限大的檔案儲存空間**，不用預先配置容量也無需花費心力去管理容量，並提供 User 以 Google Web Console 介面 、SDK 或 RESTful API 的方式，簡單直觀地存取儲存的 Object。
 
 <!--more-->
 
 ---
 
-Object Storage 中所謂的 object ，是指**除了檔案本身之外還包含了該檔案的 metadata**，內容包含檔案大小或是自己設定的 key-value 等等，而且每一個 Object 可以有自己的 Access control 設定。Cloud Storage 也是一個無伺服器應用，它的 API 可以承受全世界用戶達數億次的 request，穩定而且強大，再加上本身權限控管已經足夠精細，可以不需要再用 FTP 去做檔案的分享跟傳輸。
+Object Storage 中比較重要的特徵，是**除了檔案本身之外還包含了該檔案的 metadata**。 metadata 的內容包含： 檔案大小或是自己設定的 key-value 等等，而且每一個 Object 可以有自己的 Access control 設定。Cloud Storage 是一個無伺服器應用，它的 API 可以承受全世界用戶達數億次的 request，穩定而且強大，再加上本身權限控管已經足夠精細，可以不需要再用 FTP 去做檔案的分享跟傳輸。
+
+{{< image classes="fancybox fig-100" src="/images/google-cloud/gcs/block-file-object-storage.jpg" >}}
 
 # Bucket
 
-說到 Object Storage 就一定會提到 Bucket，每一個 object 都必須存放在某一個 Bucket 內。在創建 Bucket 時也有些需要注意的地方：
+說到 Object Storage 就一定會提到 Bucket，每一個 object 都必須存放在某一個 Bucket 內。在創建 GCP Bucket 時也有些需要注意的地方：
 
 ### Bucket Name
 
-Bucket name 必須 **globally unique**，需要在整個 GCP 服務中都不能和其他人公司或使用者重複，原因是 Bucket name 會成為 URL 的一部分，也因此 Bucket name 要符合語法上**有效的 DNS 名稱**，所以名稱有限制 :
+GCP 的 Bucket name 必須 **globally unique**，需要在整個 GCP 服務中都不能和其他人公司或使用者重複，原因是 Bucket name 會成為 URL 的一部分，也因此 Bucket name 要符合語法上**有效的 DNS 名稱**，所以名稱有限制 :
 
 - Bucket name 必須以數字或字母來開頭和結尾
 - 只能包含英文小寫、數字、破折號（-）、底線（\_）和點（.），且注意包含點（.）的名稱會需要[驗證](https://cloud.google.com/storage/docs/domain-name-verification)，需參考官網說明
@@ -72,7 +74,7 @@ Minium storage duration，意指 object 最少需要存放的天數。例如 nea
 
 # Cloud Storage 和其他雲端產品的結合
 
-Object Storage 特性上經常是用來當作網站靜態圖片或者影片的儲存庫使用。舉例來說如果所有的影片都放在一個 Web Server 上，當 user 很多人來看影片的時候，主機 Loading 可能就會不堪負荷。這時常用的解法就會是把影片放到 Cloud Storage，自己 Web Server 就只是簡單 HTML 直接引用 Cloud Storag url，資料是從 Cloud Storage 出去而不是透過自己的 Web Server 再出去，可有效減少主機 Loading，這是一個**主機效能優化**很常見且重要的概念。
+Object Storage 特性上經常是用來當作「 網站靜態圖片」或者「 影片 」的儲存庫使用。舉例來說如果所有的影片都放在一個 Web Server 上，當 user 很多人來看影片的時候，主機 Loading 可能就會不堪負荷。這時常用的解法就會是把影片放到 Cloud Storage，自己 Web Server 就只是簡單 HTML 直接引用 Cloud Storag url，資料是從 Cloud Storage 出去而不是透過自己的 Web Server 再出去，可有效減少主機 Loading，這是一個**主機效能優化**很常見且重要的概念。
 
 - ### Load Balancer & CDN Bucket
   GCS 可以用來儲存靜態網頁，也提供使用 Load Balancer 的掛載方式，讓 GCS 作為 Load Balancer 的 Backend，進階還可以搭配上 Load Balancer 的 CDN 功能來進行 Cache，讓存取更加快速。可以參考 [GoogleCloudPlatform-terraform-large-data-sharing-java-webapp](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-java-webapp)
@@ -81,14 +83,20 @@ Object Storage 特性上經常是用來當作網站靜態圖片或者影片的�
 
 # [「gcloud-cli」V.S 「gsutil」](https://cloud.google.com/blog/products/storage-data-transfer/new-gcloud-storage-cli-for-your-data-transfers)
 
-先說結論: `以使用 gcloud-cli 的 storage 功能為優先，gsutil 並不是 google 官方推薦的 CLI`，也可以直接從官方網站中 gsutil 頁面看到類似的敘述。新的 gcloud storage CLI 提供了顯著的性能改進（參照 title 連結說明），也保持一致的方式來管理所有 Google Cloud 資源，不用因為 cloud storage 而特別使用一個特定 lib 。
+先說結論:
 
-簡單上傳資料的話使用 gcloud storage 就足夠了，但若有大量資料傳送需求且需要排程設定，可以參考 [Storage Transfer Service](https://cloud.google.com/storage-transfer/docs/overview)。
+> 以使用 gcloud-cli 的 storage 功能為優先，gsutil 並不是 google 官方推薦的 CLI
+
+可以直接從官方網站中 gsutil 頁面看到類似的敘述。因為新的 gcloud storage CLI 提供了顯著的性能改進（參照 title 連結說明），也保持一致的方式來管理所有 Google Cloud 資源，不用因為 cloud storage 而特別使用一個特定 lib 。簡單上傳資料的話使用 gcloud storage 就足夠了，但若有大量資料傳送需求且需要排程設定，可以參考 [Storage Transfer Service](https://cloud.google.com/storage-transfer/docs/overview)。
 {{< image classes="fancybox fig-100" src="/images/google-cloud/gcs/transfer-ways.jpg" >}}
 {{< alert info >}}
 1T 以下的資料用 gcloud storage 就可以了，大於 1T 可以考慮使用 Storage Transfer Service。
 {{< /alert >}}
-這邊也特別注意一下，儘管 Google 都已經在很多 GCS 官方文件上都註明一個醒目的警告標語說`gsutil 不是 GCS 推薦的 CLI，用戶應該改用 gcloud`，而且相關資訊已經公告從 2022 開始也算蠻久的了，但現在很多 LLM 語言模型還是會推薦首選 gsutil 而不是 gcloud。畢竟 gsutil 從 2016 年就開始發展了，所以至今有太多範例都還是使用 gsutil，因此 LLM 模型都有非常大的機率採用 gsutil 而不是 gcloud，這也是 LLM 現在蠻危險的問題之一...
+這邊也特別注意一下，儘管 Google 都已經在很多 GCS 官方文件上都註明一個醒目的警告標語說
+
+> gsutil 不是 GCS 推薦的 CLI，用戶應該改用 gcloud
+
+而且相關資訊已經公告從 2022 開始，直到今天也算過蠻久的了，但現在很多 LLM 語言模型還是會推薦首選 gsutil 而不是 gcloud。畢竟 gsutil 從 2016 年就開始發展了，所以至今有太多範例都還是使用 gsutil，因此 LLM 模型都有非常大的機率採用 gsutil 而不是 gcloud，這也是 LLM 現在蠻容易遇到的問題之一...
 
 ---
 
