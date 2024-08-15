@@ -5,7 +5,7 @@
 &lt;li>Amazon Web Services (AWS) : &lt;strong>Simple Storage Service (S3)&lt;/strong>&lt;/li>
 &lt;li>Microsoft Azure : &lt;strong>Azure Blob Storage&lt;/strong>&lt;/li>
 &lt;/ul>
-&lt;p>Cloud Storage 是具備高性能、全球網際網路存取規模 BLOB（Binary Large Object）儲存裝置，基本上可當成是&lt;strong>近乎無限大的檔案儲存空間&lt;/strong>，不用預先配置容量也無需花費心力去管理容量，並提供 User 以 Google Web Console 介面 、SDK 或 RESTful API 的方式存取。&lt;/p>
+&lt;p>Cloud Storage 是具有高性能 BLOB（Binary Large Object）儲存裝置，基本上可當成是&lt;strong>近乎無限大的檔案儲存空間&lt;/strong>，不用預先配置容量也無需花費心力去管理容量，並提供 User 以 Google Web Console 介面 、SDK 或 RESTful API 的方式，簡單直觀地存取儲存的 Object。&lt;/p>
 &lt;/blockquote></description></item><item><title>GCP - Compute Service 總整理</title><link>https://aryido.github.io/posts/google-cloud/compute-service-all/</link><pubDate>Sat, 20 Jul 2024 23:41:17 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/compute-service-all/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>前面幾個章節有介紹了 Google Cloud 中常見的幾個 Compute Service 運算服務，分別是： &lt;a href="https://aryido.github.io/posts/google-cloud/compute-engine/">Compute Engine&lt;/a>、&lt;a href="https://aryido.github.io/posts/google-cloud/cloud-functions/">Cloud Functions&lt;/a>、&lt;a href="https://aryido.github.io/posts/google-cloud/cloud-run/">Cloud Run&lt;/a>、&lt;a href="https://aryido.github.io/posts/google-cloud/gke/">Google Kubernetes Engine&lt;/a>。另外補充一個現在可能比較少被提到的 App Engine，它也是屬於 GCP 運算服務，只要上傳滿足格式的程式碼就可以開始運作，會自動做負載平衡且並不需要管理任何硬體機器，聽說當年很紅的&lt;a href="https://cloud.google.com/files/Rovio.pdf">遊戲 &lt;strong>Angry Birds&lt;/strong> 就是使用 App Engine&lt;/a> 來作為服務平台。&lt;/p>
