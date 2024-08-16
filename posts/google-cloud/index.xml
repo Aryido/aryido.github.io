@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/google-cloud/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 21 Jul 2024 20:56:57 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/google-cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Cloud Storage 概述</title><link>https://aryido.github.io/posts/google-cloud/cloud-storage/</link><pubDate>Sun, 21 Jul 2024 20:56:57 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/cloud-storage/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/google-cloud/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 24 Jul 2024 19:05:55 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/google-cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Cloud Filestore 概述</title><link>https://aryido.github.io/posts/google-cloud/filestore/</link><pubDate>Wed, 24 Jul 2024 19:05:55 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/filestore/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Filestore 是 Google Cloud 上完全託管的 Network FileSystem ，目的讓不同的機器、不甚至同的作業系統都可以彼此分享檔案。對應其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>Elastic File System (EFS)&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Azure Files&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>Filestore 讀寫速度超級快，作為 file storage 並&lt;strong>支持併發同時訪問同一個檔案&lt;/strong>，還提供其他不同種類的存儲類型一些可選替代方案例如：「作為一種 Persistent Disk 的 block storage 存儲種類 」、「類似 Cloud Storage FUSE 的 object storage 存儲種類」等等，因此適用連接整合到多種 GCP Client 端服務如：VM、GKE、Cloud Run 等等。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Cloud Storage 概述</title><link>https://aryido.github.io/posts/google-cloud/cloud-storage/</link><pubDate>Sun, 21 Jul 2024 20:56:57 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/cloud-storage/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Cloud Storage 簡稱為 GCS ，是 Google 提供的 Object Storage，會把物件儲存在一個名叫 &lt;strong>Bucket&lt;/strong> 的容器內，而 Bucket 還可以有類似劃分資料夾的功能稱 &lt;strong>Managed Folders&lt;/strong>，可以針對這些資料夾加上個別的 IAM 來提供更精細的存取權限。對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
