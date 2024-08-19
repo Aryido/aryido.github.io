@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 24 Jul 2024 19:05:55 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Cloud Filestore 概述</title><link>https://aryido.github.io/posts/google-cloud/filestore/</link><pubDate>Wed, 24 Jul 2024 19:05:55 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/filestore/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 27 Jul 2024 18:02:56 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Firestore 概述</title><link>https://aryido.github.io/posts/google-cloud/firestore/</link><pubDate>Sat, 27 Jul 2024 18:02:56 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/firestore/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Firestore 是 Google 提供的一款雲端全代管無伺服器的 &lt;strong>NoSQL 資料庫&lt;/strong>，也是 scale out 取向的設計，會自動多區域資料複製 replication， 也有強一致性 query 和 transaction 支援。對應其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>DocumentDB&lt;/strong>、&lt;strong>DynamoDB&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Cosmos DB&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>Firestore 特別的一點是有提供 &lt;strong>realtime listeners 即時監聽器&lt;/strong>來同步 Firestore 資料庫和 client apps 之間的資料，同時也有提供 &lt;strong>offline support 離線支援&lt;/strong>，也就是說一旦雲端的 Firestore 有異動，資料便會自動同步到用戶端上 ; 另一方面當用戶端無法上網時會先存取資料在自己用戶端上，等到可以上網之後會跟雲端的 Firestore 資料庫互相同步。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Cloud Filestore 概述</title><link>https://aryido.github.io/posts/google-cloud/filestore/</link><pubDate>Wed, 24 Jul 2024 19:05:55 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/filestore/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Filestore 是 Google Cloud 上完全託管的 Network FileSystem ，目的讓不同的機器、不甚至同的作業系統都可以彼此分享檔案。對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
@@ -508,9 +516,6 @@ Avro 也提供了編解碼和二進制格式，使得在高吞吐量的應用場
 &lt;blockquote>
 &lt;p>在 Cloud Firestore 中，存儲單位是 document 。document 是一個 lightweight record ，可包含 data 欄位 (稱: fields)，也可以嵌套另一個 collection。
 因為 terraform 的 google_firestore_document，要求 fields 的 format 要是 json string ，比想像中的難寫，在這邊簡單紀錄一下範例。&lt;/p>
-&lt;/blockquote></description></item><item><title>Google Cloud Firestore 簡介</title><link>https://aryido.github.io/posts/google-cloud/firestore/</link><pubDate>Mon, 27 Mar 2023 22:18:10 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/firestore/</guid><description>&lt;!-- raw HTML omitted -->
-&lt;blockquote>
-&lt;p>Cloud Firestore 是 Google 提供的一款雲端 NoSQL 資料庫。資料模型上簡單分成了 collection 、 document 結構，本質上也是 JSON 格式，但使用起來更直觀。Firestore 還具有即時同步資料的功能，也就是說一旦資料庫有異動，資料便會自動同步到相關的用戶端上（如手機 App）&lt;/p>
 &lt;/blockquote></description></item><item><title>apt、yum、apk 介绍</title><link>https://aryido.github.io/posts/develop/apt-yum-apk/</link><pubDate>Wed, 22 Mar 2023 22:58:26 +0800</pubDate><guid>https://aryido.github.io/posts/develop/apt-yum-apk/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Linux 有多種流通版本，例如常見的 Ubuntu、Debian、CentOS、Fedora、Red Hat 等等，其中裡面預設的&lt;strong>包管理系統&lt;/strong>也不太一樣。包管理系統可以&lt;strong>安裝 package&lt;/strong> 、&lt;strong>更新 package&lt;/strong> 、確保使用的 &lt;strong>package 是經過審查的&lt;/strong>。 接下來淺淺的分析 apt 、 yum 、 apk 之間的差別。&lt;/p>

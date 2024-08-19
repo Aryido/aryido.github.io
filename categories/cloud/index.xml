@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cloud on Aryido Tech Note</title><link>https://aryido.github.io/categories/cloud/</link><description>Recent content in cloud on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 24 Jul 2024 19:05:55 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Cloud Filestore 概述</title><link>https://aryido.github.io/posts/google-cloud/filestore/</link><pubDate>Wed, 24 Jul 2024 19:05:55 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/filestore/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cloud on Aryido Tech Note</title><link>https://aryido.github.io/categories/cloud/</link><description>Recent content in cloud on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 27 Jul 2024 18:02:56 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Firestore 概述</title><link>https://aryido.github.io/posts/google-cloud/firestore/</link><pubDate>Sat, 27 Jul 2024 18:02:56 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/firestore/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Firestore 是 Google 提供的一款雲端全代管無伺服器的 &lt;strong>NoSQL 資料庫&lt;/strong>，也是 scale out 取向的設計，會自動多區域資料複製 replication， 也有強一致性 query 和 transaction 支援。對應其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>DocumentDB&lt;/strong>、&lt;strong>DynamoDB&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Cosmos DB&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>Firestore 特別的一點是有提供 &lt;strong>realtime listeners 即時監聽器&lt;/strong>來同步 Firestore 資料庫和 client apps 之間的資料，同時也有提供 &lt;strong>offline support 離線支援&lt;/strong>，也就是說一旦雲端的 Firestore 有異動，資料便會自動同步到用戶端上 ; 另一方面當用戶端無法上網時會先存取資料在自己用戶端上，等到可以上網之後會跟雲端的 Firestore 資料庫互相同步。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Cloud Filestore 概述</title><link>https://aryido.github.io/posts/google-cloud/filestore/</link><pubDate>Wed, 24 Jul 2024 19:05:55 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/filestore/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Filestore 是 Google Cloud 上完全託管的 Network FileSystem ，目的讓不同的機器、不甚至同的作業系統都可以彼此分享檔案。對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
@@ -145,9 +153,6 @@
 &lt;li>Microsoft Azure : &lt;strong>Virtual Machine&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;p>啟動前可以訂製自己需要的 Machine Type ，例如 CPU、memory、disk 等等；再來 Boot disk OS 也可自行選擇 Linux 、 Windows 等等操作系統；針對容器虛擬化，可能使用專門優化來運行容器的 Container-Optimized OS (COS) image 在虛擬機上啟動容器服務。最後關於&lt;strong>備份資料&lt;/strong>，GCP 也有提供相應的服務來面對災難發生時的處理。&lt;/p>
-&lt;/blockquote></description></item><item><title>Google Cloud Firestore 簡介</title><link>https://aryido.github.io/posts/google-cloud/firestore/</link><pubDate>Mon, 27 Mar 2023 22:18:10 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/firestore/</guid><description>&lt;!-- raw HTML omitted -->
-&lt;blockquote>
-&lt;p>Cloud Firestore 是 Google 提供的一款雲端 NoSQL 資料庫。資料模型上簡單分成了 collection 、 document 結構，本質上也是 JSON 格式，但使用起來更直觀。Firestore 還具有即時同步資料的功能，也就是說一旦資料庫有異動，資料便會自動同步到相關的用戶端上（如手機 App）&lt;/p>
 &lt;/blockquote></description></item><item><title>AWS EKS</title><link>https://aryido.github.io/posts/aws/eks/</link><pubDate>Sat, 17 Dec 2022 18:45:30 +0800</pubDate><guid>https://aryido.github.io/posts/aws/eks/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>ECS 很常拿來與 Kubernetes 比較，而 2017 aws 又進一步宣佈了 Amazon Elastic Container Service for Kubernetes(EKS)，使 aws 平台可以託管 k8s 服務。EKS 服務可以省去安裝以及操作自己的 Kubernetes 叢集的時間，輕鬆的在 AWS 上執行 Kubernetes；進一步地，可使用 Fargate 模式在 &lt;em>EKS&lt;/em> 上，可連 node 機器都不用管理。&lt;/p>
