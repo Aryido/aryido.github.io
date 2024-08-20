@@ -9,7 +9,7 @@
 與許多程式編輯器一樣，VSCode 也採用通用 layout，設計理念是希望可以提供簡單直覺的排版，讓使用者可以直觀的選取檔案並閱覽、編輯檔案，本文章首先討論 Workbench 的定義和介紹 vscode layout 的各個名稱。&lt;/p>
 &lt;/blockquote></description></item><item><title>VSCode 架構簡介</title><link>https://aryido.github.io/posts/plugin-extension/vscode-architecture/</link><pubDate>Tue, 21 May 2024 23:21:38 +0800</pubDate><guid>https://aryido.github.io/posts/plugin-extension/vscode-architecture/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>Visual Studio Code 簡稱 VSCode ，是微軟 2015 年開源的輕量化 code editor ，基於 Electron 並用自家雲端的編輯器 Monaco Editor 作為其底層開發，支援多語言及平台，且使用 TypeScript 來進行編寫，也提供了強大的外掛程式拓展機制給人加強功能。由 Eclipse 之父 Erich Gamma 領導（ Erich 也是《設計模式》作者之一），VSCode 也在 2019 年的 Stack Overflow 開發者研究中，獲選最受歡迎的 code editor 有 50.7% 的使用率。
+&lt;p>Visual Studio Code 簡稱 VSCode ，是微軟 2015 年開源的輕量化 code editor ，基於 Electron 並用自家雲端的編輯器 Monaco Editor 作為其底層開發，支援多語言及平台且使用 TypeScript 來進行編寫，也提供了強大的外掛程式拓展機制給人加強功能。VSCode 的開發是由 Eclipse 之父 Erich Gamma 領導（ Erich 也是《設計模式》作者之一），在 2019 年的 Stack Overflow 開發者研究中，其獲選最受歡迎的 code editor 有 &lt;code>50.7%&lt;/code> 的使用率。
 &lt;div class="figure fig-100" >
 &lt;a class="fancybox" href="https://aryido.github.io/images/plugin-extension/vscode-context-overview.jpg" data-fancybox="">
 &lt;img class="fig-img" src="https://aryido.github.io/images/plugin-extension/vscode-context-overview.jpg" >
