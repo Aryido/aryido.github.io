@@ -190,7 +190,7 @@ func main() {
 >    ```
 >
 >    上述通知傳送給 Language Server 後，會回應 responses ，並在`Go to Definition`的使用位置顯示 Result。
->    {{< alert success >}} > `Go to Definition` 簡單說法就是所謂**引用跳轉功能**，我們會點選 class、function、variable 等等，看看還有哪些地方有出現相同引用、有哪些地方有呼叫等等。
+>    {{< alert success >}} `Go to Definition` 簡單說法就是所謂**引用跳轉功能**，我們會點選 class、function、variable 等等，看看還有哪些地方有出現相同引用、有哪些地方有呼叫等等。
 >    {{< /alert >}}
 
 ##### textDocument/didClose
