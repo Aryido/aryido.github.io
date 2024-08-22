@@ -19,7 +19,7 @@ reward: false
 
 <!--BODY-->
 
-> Firestore 是 Google 提供的一款雲端全代管無伺服器的 **NoSQL 資料庫**，也是 scale out 取向的設計，會自動多區域資料複製 replication， 也有強一致性 query 和 transaction 支援。對應其他的雲端服務是 :
+> Firestore 是 Google 提供的一款雲端全代管無伺服器的 **NoSQL 資料庫**，scale out 取向的設計會自動多區域資料複製 replication ，也有強一致性 query 和 transaction 支援。對應其他的雲端服務是 :
 >
 > - Amazon Web Services (AWS) : **DocumentDB**、**DynamoDB**
 > - Microsoft Azure : **Cosmos DB**
@@ -57,6 +57,7 @@ reward: false
   {{< /alert >}}
 
 以上說明可以統整出一些關鍵：
+
 - Firebase 原本是一間公司，提供的 BaaS 平台名稱也叫 Firebase
 - Firebase 並不是資料庫，是一個 BaaS 平台
 - Google 的資料庫產品: Datastore 是 Firestore 的前身
@@ -64,6 +65,7 @@ reward: false
 - 無論是 Firebase 還是 GCP 平台上，都建議新的開發專案都使用 Cloud Firestore。
 
 # Data Model
+
 {{< image classes="fancybox fig-100" src="/images/google-cloud/firestore/structure-data.jpg" >}}
 
 Firestore 是 document 的 NoSQL 資料庫，資料模型上分成了 collection 、 document 結構。資料存儲在 document 而由 collection 組織管理， document 內還可以包含另一個 subcollection 形成 nested 嵌套結構。
