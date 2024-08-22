@@ -20,7 +20,7 @@ reward: false
 
 <!--BODY-->
 
-> Visual Studio Code 簡稱 VSCode ，是微軟 2015 年開源的輕量化 code editor ，基於 Electron 並用自家雲端的編輯器 Monaco Editor 作為其底層開發，支援多語言及平台且使用 TypeScript 來進行編寫，也提供了強大的外掛程式拓展機制給人加強功能。VSCode 的開發是由 Eclipse 之父 Erich Gamma 領導（ Erich 也是《設計模式》作者之一），在 2019 年的 Stack Overflow 開發者研究中，其獲選最受歡迎的 code editor 有 `50.7%` 的使用率。
+> Visual Studio Code 簡稱 VSCode ，是微軟 2015 年開源的輕量化 code editor ，基於 Electron 並用自家雲端的編輯器 Monaco Editor 作為其底層開發，支援多語言及平台且使用 TypeScript 來進行編寫，也提供了強大的外掛程式拓展機制給人加強功能。VSCode 的開發是由 Eclipse 之父 Erich Gamma 領導（ Erich 也是《設計模式》作者之一），在 2019 年的 Stack Overflow 開發者研究中，其獲選最受歡迎的 code editor 有 `50.7%` 的使用率，且還在持續增加當中。
 > {{< image classes="fancybox fig-100" src="/images/plugin-extension/vscode-context-overview.jpg" >}}
 
 <!--more-->
@@ -29,15 +29,19 @@ reward: false
 
 # 由來
 
-Visual Studio Code 的由來可先追溯到在大概 2011 年，廣泛用於微軟內部及外部一些 Web 產品的編輯器 Monaco Editor，後來 Monaco 變成一個內部產品代號，並於 2013 年推出成為一個上線的網頁編輯器產品 Visual Studio Online，其介面與較老版本的 VSCode 一樣，最後 Visual Studio Online 也做了些改善並搬到了**桌面端**，就變成我們現今的 VSCode 。
+Visual Studio Code 的由來可先追溯到在大概 2011 年，廣泛用於微軟內部及外部一些 Web 產品的編輯器 Monaco Editor，後來 Monaco 變成一個內部產品代號，並於 2013 年推出成為一個上線的網頁編輯器產品 Visual Studio Online，其介面與較老版本的 VSCode 一樣，最後 Visual Studio Online 也做了些改善，基於 Electron 框架構建，便搬到了**桌面端**變成我們現今的 VSCode 。
 
 承前考古不難想像 Monaco Editor 和 VSCode 有一大部分的程式都是共用的，實際上也是如此的，在 VSCode source code 也可發現 monaco-editor-core 基本成為 VSCode 的基石 ; 最後甚至在 editor 交互以及 UI 上例如佈局、輸出面板、終端...等等，兩個也幾乎是一樣的。
 
 {{< alert info >}}
 隨著 VSCode 的生態逐漸成熟， Visual Studio Online 也回頭參考 VSCode ，並於 2019 年短暫的運營了一段時間以後，改名叫做 GitHub Codespaces。
 {{< /alert >}}
+簡單來說 ：
 
-由於 **VSCode 基於 Electron 框架構建**，故接下來簡介一下 Electron。 
+- Monaco 基於 Brower 框架開發
+- VSCode 基於 Electron 框架開發
+
+由於 **VSCode 基於 Electron 框架構建**，故接下來簡介一下 Electron。
 
 # Electron
 
@@ -56,10 +60,6 @@ Electron 原名 Atom-Shell，是 Github 為 Atom editor 編寫的開源框架，
 {{< alert success >}}
 Electron 擁有 Node 運行環境，賦予了使用者與系統底層互動的能力，依靠 Chromium 提供基於 Web 技術（HTML、CSS、JS）的介面互動支持，另外還具有一些平台特性，例如桌面通知等
 {{< /alert >}}
-簡單來說 ：
-
-- Monaco 基於 Brower 框架開發
-- VSCode 基於 Electron 框架開發
 
 ---
 
@@ -89,12 +89,11 @@ Workbench 是指包含以下 UI 元件的整體 Visual Studio Code UI：Title Ba
 
 Extension Host 也是獨立的 Process，用於運行其它 extension，並可以存取一些 VSCode 的 API 供 extension 去使用。 由於 VSCode 考慮到 Extension 可能會影響啓動性能和 IDE 自身的穩定性，所以通過**進程隔離**來解決這個問題，每個 Extension 都運行在一個自己的 NodeJS 環境中，彼此間由 Shared Process 進行通信。
 
-這樣設計最主要的目的就是避免複雜的 Extension 阻塞 UI 的回應，但是將 Extension Host 放在其他的 Process 也有很明顯的缺點: 
+這樣設計最主要的目的就是避免複雜的 Extension 阻塞 UI 的回應，但是將 Extension Host 放在其他的 Process 也有很明顯的缺點:
 
 > 因為不是直接屬於 UI Process，所以沒有辦法直接訪問 DOM tree，故想要即時高效的改變 UI 會比較困難，也比較難客製化 VSCode 外觀。
 
 VSCode 開發團隊，也蠻常為了優化 VSCode 而頻繁更改 UI Dom，所以將 UI 定製能力限制起來也方便他們做事情。
-
 
 - ##### **其他的進程** :
 
