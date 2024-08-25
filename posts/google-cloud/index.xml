@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/google-cloud/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 27 Jul 2024 18:02:56 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/google-cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Firestore 概述</title><link>https://aryido.github.io/posts/google-cloud/firestore/</link><pubDate>Sat, 27 Jul 2024 18:02:56 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/firestore/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/google-cloud/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 30 Jul 2024 21:58:50 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/google-cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Bigtable 概述 I - 架構</title><link>https://aryido.github.io/posts/google-cloud/bigtable-1/</link><pubDate>Tue, 30 Jul 2024 21:58:50 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/bigtable-1/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Bigtable &lt;strong>並不是&lt;/strong>傳統 RDB 關係型資料庫，而是 GCP 提供的企業級 NoSQL Database，是一個支持大數據應用的&lt;strong>分散式存儲系統&lt;/strong>，保證高可擴展、高可用性、高性能與高吞吐需求的服務，與現有 Apache Big Data 生態系統的開源軟體如 HBase 也有蠻好的整合。對應到其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>DynamoDB&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Cosmos DB&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>Bigtable 優勢在於其強大的擴充性，效能完全和 cluster 中的 Node 數量成正比，該產品的強大性完全不用質疑，因為 Google 的很多重量級專案都有使用 Bigtable 來存儲資料例如： Youtube、Google Earth、Google 搜尋引擎、Google Map 等等，每個專案都為數十億活躍使用者提供穩定的服務。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Firestore 概述</title><link>https://aryido.github.io/posts/google-cloud/firestore/</link><pubDate>Sat, 27 Jul 2024 18:02:56 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/firestore/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Firestore 是 Google 提供的一款雲端全代管無伺服器的 &lt;strong>NoSQL 資料庫&lt;/strong>，scale out 取向的設計會自動多區域資料複製 replication ，也有強一致性 query 和 transaction 支援。對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
