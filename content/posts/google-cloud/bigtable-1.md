@@ -46,17 +46,17 @@ Client libraries 提供連接到 Bigtable Instance 的橋樑，所有 Client 的
 > - Single-Cluster Bigtable Instance 提供 **strong consistency**
 > - 而預設 Multi-Cluster Bigtable Instance 提供 **eventual consistency**。
 
-看了一些相關的論文， Bigtable Cluster 設計上會有兩個重要組件：「Master Server」、「Tablet Servers」，接下來對應一下在 GCP Bigtable 的官方文件內容：
+看了一些相關的論文， Bigtable Cluster 設計上會有兩個重要組件：「Master Server」、「Tablet Servers」，接下來對應一下在 GCP Bigtable 的官方文件內容 :
 
 ##### Tablet Servers (Node)
 
-在 GCP Bigtable 官方文件中有特別說明，對應到原始 Bigtable 論文這邊 **Node 的舊稱即是 Tablet servers**，故接下來一律以 Node 來稱呼。而 Node 在原始論文中的功用 :
+在 GCP Bigtable 官方文件中有特別說明，對應到原始 Bigtable 論文這邊 **Node 的舊稱即是 Tablet servers**，而 Node 在原始論文中的功用為 :
 
 > - 管理追蹤多個 tablets
 > - 負責處理對 tablets 的讀寫請求和
 > - 若某個 Tablet 的 traffic 或 size 太高或太低，會執行 Tablet split/merge
 
-最初 Table 資料都只有儲存在一個小 Tablet 內，隨著單一個 Tablet 內資料 size 的增長， Node 還會把大 Tablet 分裂成更多個小的 Tablets，大小控制在 100 ～ 200 MB。另外 Node 並不存儲真實資料，而是一個用來連接 Bigtable 真實儲存位置的代理，其僅只有儲存 metadata 指向真實儲存位置。由於真實資料不是儲存在 Node，故 Node 發生故障時不會丟失任何資料，且復原時使需將 metadata 訊息給到另一個 Node ，這是可以迅速進行的。
+最初 Table 資料都只有儲存在一個小 Tablet 內，隨著單一個 Tablet 內資料 size 的增長，**Node 還會把大 Tablet 分裂成更多個小的 Tablets**，大小控制在 100 ～ 200 MB。另外 Node 並不存儲真實資料，而是一個用來連接 Bigtable 真實儲存位置的代理，其僅只有儲存 metadata 指向真實儲存位置。由於真實資料不是儲存在 Node，故 Node 發生故障時不會丟失任何資料，且復原時使需將 metadata 訊息給到另一個 Node ，這是可以迅速進行的。
 
 ##### Master Server
 
@@ -69,7 +69,7 @@ Client libraries 提供連接到 Bigtable Instance 的橋樑，所有 Client 的
 > - 垃圾回收（GC）
 > - 處理 schema 變動例如 table 和 column family 的創建或刪除
 
-Master Server 在 GCP Bigtable 官方文件中似乎沒特別提到，但官方文件內有一個關於 Load balancing 的說明: 每個 Bigtable 的 zone 都有一個 **Primary-Process 主進程**，作用是平衡 cluster 內資料，會把 tablet 分配到適當的 Node。我想這個 Primary-Process 就是擔當 Master Server 的職責吧。
+Master Server 的功能看起來蠻重要的，但在 GCP Bigtable 官方文件中似乎沒特別提到，可是官方文件內有一個關於 Load balancing 的說明: **每個 Bigtable 的 zone 都有一個 「 Primary-Process 主進程」，作用是平衡 cluster 內資料，會把 tablet 分配到適當的 Node**。我想這個 Primary-Process 就是擔當 Master Server 的職責吧。
 
 {{< alert warning >}}
 比較奇怪的是， 在 GCP 官方文件 [Load balancing](https://cloud.google.com/bigtable/docs/overview#load-balancing) 的說明文中說 Primary-Process 也會針對 tablets 的進行 split 與 merge ，但這應該是 Node 的職責才對...
@@ -77,21 +77,24 @@ Master Server 在 GCP Bigtable 官方文件中似乎沒特別提到，但官方�
 
 ### Colossus [kəˋlɑsəs]
 
-前面已經多次提到 Tablet ，而它是什麼呢？ 為了存儲更多資料以及保持擴展性， Bigtable 會把 Table 自動 **Sharded** 分片成多個 rows-block 稱為 Tablets ，**它是 Bigtable 中的基本單位**，代表 the unit of distribution and load balancing 。
+前面已經多次提到 Tablet ，而它是什麼呢？ 為了存儲更多資料以及保持擴展性， Bigtable 會把 Table 自動 **Sharded** 分片成多個 rows-block 稱為 Tablets ，**它是 Bigtable 中的基本單位**，代表 the unit of distribution and load balancing ，概念上等價於 MongoDB 中的 chunk。
 
 {{< alert danger >}}
-注意 Tablets 多個 t 但不是 typo 喔，「Tablets」 和 「Tables」 是不一樣的東西
+注意 Tablet 多個 t 但不是 typo 喔，「Tablet」 和 「Table」 是不一樣的東西
 {{< /alert >}}
 
-承前也提到 Node 並不直接存儲 Tablet ， **Tablet 是儲存在 Google's file system Colossus 中**，並且 Tablet 的持久化是以 SSTable format 儲存的。
+承前也提到 Node 並不直接存儲真實資料，那資料到底儲存在哪裡呢？怎麼被儲存的呢？簡單說明是： **真實資料儲存在 Google's file system Colossus 中** ; 並且 Tablet 內部採用了類似 [LSM（log-Structured merge）](https://en.wikipedia.org/wiki/Log-structured_merge-tree) 的存儲方式，把資料的持久化用 SSTable format 儲存。
 
 - ##### SSTable
   SSTable 全稱是 Sorted Strings Table，是一**不可修改的有序的 key-value 映射**。每個 SSTable 由 block 組成，block 預設設為 64KB 是可配置的，在 SSTable 的尾部存儲著塊索引，用於定位 Block。
   {{< image classes="fancybox fig-100" src="/images/google-cloud/bigtable/sstable.jpg" >}}
 
-Tablet 寫入到 Colossus 的流程 : 首先是先把資料寫在**記憶體表 memTable** 中，而不是直接寫入到 SSTable ，當 memTable 大小達到閾值時，memtable 會被凍結然後會再創建一個新的 memtable，這時才將資料寫入到新生成的 SSTable，然後才儲存到 Colossus 內 ; 另外由於可能發生 memTable 中的資料還沒寫入磁碟的但發生丟失的情況，所以 Bigtable 通過預寫 Log 解決了這個問題，故整理可得：
+Tablet 把資料寫入到 Colossus 的流程，基本上就類似 log-Structured merge Tree 的流程 :
 
-`Tablet = 「 memTable 」 + 「 a list of SSTables 」 + 「 Logs 」`
+- 首先是先把資料寫在**記憶體表 memTable** 中，而不是直接寫入到 SSTable
+- 當 memTable 大小達到閾值時，memtable 會被凍結然後會再創建一個新的 memtable，這時才將資料寫入到新生成的 SSTable，然後才儲存到 Colossus 內
+
+另外由於可能發生 memTable 中的資料還沒寫入磁碟的但發生丟失的情況，所以 Bigtable 通過預寫 Log 解決了這個問題，這也是架構圖內 Shared Log 的由來，故整理可得： `Tablet = 「 memTable 」 + 「 a list of SSTables 」 + 「 Logs 」`
 
 {{< alert info >}}
 由於 Bigtable 是屬於全託管是服務，所以其實使用者也沒有機會接觸到這麼底層的儲存。從架構圖上 Colossus 、 SSTable 、Shared Log ，對於我們使用 Cloud Bigtable 基本上都是不可見的。
@@ -101,7 +104,7 @@ Tablet 寫入到 Colossus 的流程 : 首先是先把資料寫在**記憶體表 
 
 # 使用情境選擇建議
 
-Bigtable 雖然有一些術語如 row、column、table 等等，但它**並非**是傳統 RDB ，其並**不支持** SQL 語法查詢如: table joins、multi-row transactions 等等，故反而更接近為 NoSQL。
+Bigtable 雖然有一些術語如 row、column、table 等等，但它**並非**是傳統 RDB ，其並**不支持** SQL 語法查詢如: table joins、multi-row transactions 等等，反而更接近為 NoSQL。
 
 > - Firestore 是基本的 NoSQL 資料庫 ; 而 Bigtable 就是企業等級的 NoSQL 資料庫，建議資料量 1TB 以上再來考慮使用 Bigtable
 
@@ -126,3 +129,5 @@ Bigtable 雖然有一些術語如 row、column、table 等等，但它**並非**
 - [Bigtable 論文 閱讀筆記 - 原理部分](https://github.com/Lhfcws/bigtable_notes/blob/master/Bigtable.md)
 
 - [淺析 Bigtable 和 LevelDB 的實現](https://draveness.me/bigtable-leveldb/)
+
+- [典型分散式系統分析：Bigtable ](https://www.cnblogs.com/xybaby/p/9096748.html)
