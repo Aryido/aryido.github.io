@@ -18,23 +18,11 @@ reward: false
 
 <!--BODY-->
 
-> Bigtable 是對有使用 GCP 的人，經常會被問到有沒有使用過的一個雲端服務，我想是因為 Google 在 2003 ~ 2006 年間連續發表了幾篇很有影響力的技術文章：
->
-> - [The Google File System (GFS)](https://static.googleusercontent.com/media/research.google.com/zh-CN//archive/gfs-sosp2003.pdf)
-> - [MapReduce: Simplified Data Processing on Large Clusters](https://static.googleusercontent.com/media/research.google.com/zh-CN//archive/mapreduce-osdi04.pdf)
-> - [Bigtable: A Distributed Storage System for Structured Data](https://static.googleusercontent.com/media/research.google.com/zh-CN//archive/bigtable-osdi06.pdf)
->
-> 上面的主角 Bigtable 就是其技術集大成者，其基於「GFS 文件儲存」概念所建構延伸出的分散式存儲系統，又加上可以在低延遲的情況下支持高讀寫吞吐量，故也是 Google 開發的大規模並行計算框架 「MapReduce」 理想的 source 來源，若要再深入了解還有「 Chubby 的 Paxos 演算法提供分散式鎖服務 」可以研究，最後 Bigtable 於 `2015/5` 變成了 GCP 的一個雲端產品推出。
+> Bigtable 是對有使用 GCP 的人經常被問有沒有使用過的一個雲端服務，於 2006 年發表了它的論文：[Bigtable: A Distributed Storage System for Structured Data](https://static.googleusercontent.com/media/research.google.com/zh-CN//archive/bigtable-osdi06.pdf)，然後在 2015/5 推出成為 GCP 雲端產品。在 google 官網上 Bigtable 的定義是一個 sparsely populated table，其中 sparse 意思是如果某 Column 未在特定 Row 中使用，就不會佔用任何空間。 Bigtable 可以輕鬆擴展到數十億 Rows 和數千個 Columns ，能夠存儲 PB 級的資料量，適合 High-Throughput 場景的服務。Apache Hadoop 系列中 HBase 一般被認為是 Bigtable 的開源實現，甚至連 API 都可共用，適用場景也大部分重合 ; Cassandra 也是以 Bigtable 原始論文為模型實現出來的技術，不過在部分設計思路上有很大不同。
 
 <!--more-->
 
 ---
-
-在 google 官網上 Bigtable 的定義是一個 sparsely populated table，其中 sparse 意思是如果某 Column 未在特定 Row 中使用，就不會佔用任何空間。 Bigtable 可以輕鬆擴展到「 數十億 Rows 」 或有「 數千個 Columns 」，且能夠存儲 PB 級的資料量，適合 High-Throughput 場景的服務。
-
-{{< alert success >}}
-Apache Hadoop 系列中 HBase 一般被認為是 Bigtable 的開源實現，甚至連 API 都可共用，適用場景也大部分重合 ; Cassandra 也是以 Bigtable 原始論文為模型實現出來的技術，不過在部分設計思路上有很大不同。
-{{< /alert >}}
 
 承前篇 [Bigtable Architecture](https://aryido.github.io/posts/google-cloud/bigtable-1/) 的介紹，對於部署一個 Bigtable ，其整體是稱為 Bigtable Instance 。 Instance 最前面有 Front-end Server 控制路由，再來會對應到一到多個 Clusters，而每個 Cluster 內有一到多個 Nodes，最後是儲存組件 Colossus 用來儲存中 SSTable 與 Log，整體來說簡單架構表示為：
 
@@ -127,7 +115,7 @@ GCP 建議在單一 cell 中存儲不超過 10 MB ; 在整個 Row 中存儲不�
   # 上面 3 條記錄共同構成原表中的 Row-Key 為 1 的 row，形成一個 entity
   ```
 
-- 最後對於 Bigtable 的一些限制，以下整理:
+- 最後對於 Bigtable 的一些限制，雖然上面有簡單提過了但還是整理如下:
   {{< image classes="fancybox fig-100" src="/images/google-cloud/bigtable/data-size.jpg" >}}
 
 另外特別注意，[Table 屬於整個 Bigtable Instance，而不是屬於任一 Cluster 或 Node](https://cloud.google.com/bigtable/docs/instances-clusters-nodes#instances)，所以其實沒有將 Table 分配給某個指定 Cluster 這種功能，也沒有在不同 Cluster 內的 Table 存不同資料這種事情。
