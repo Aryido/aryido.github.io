@@ -18,7 +18,9 @@ reward: false
 
 <!--BODY-->
 
-> Bigtable 是對有使用 GCP 的人經常被問有沒有使用過的一個雲端服務，於 2006 年發表了它的論文：[Bigtable: A Distributed Storage System for Structured Data](https://static.googleusercontent.com/media/research.google.com/zh-CN//archive/bigtable-osdi06.pdf)，然後在 2015/5 推出成為 GCP 雲端產品。在 google 官網上 Bigtable 的定義是一個 sparsely populated table，其中 sparse 意思是如果某 Column 未在特定 Row 中使用，就不會佔用任何空間。 Bigtable 可以輕鬆擴展到數十億 Rows 和數千個 Columns ，能夠存儲 PB 級的資料量，適合 High-Throughput 場景的服務。Apache Hadoop 系列中 HBase 一般被認為是 Bigtable 的開源實現，甚至連 API 都可共用，適用場景也大部分重合 ; Cassandra 也是以 Bigtable 原始論文為模型實現出來的技術，不過在部分設計思路上有很大不同。
+> 由於 Bigtable 在 Google 內部廣為使用，故有於 2006 年發表了它的論文介紹：[Bigtable: A Distributed Storage System for Structured Data](https://static.googleusercontent.com/media/research.google.com/zh-CN//archive/bigtable-osdi06.pdf)，然後在 2015/5 推出成為 GCP 雲端產品給大眾使用。 在 Google 官網上 Bigtable 的定義是一個 Sparsely-Populated-Table，其中 sparse 意思是如果某 Column 未在特定 Row 中使用，就不會佔用任何空間。
+> 
+> Bigtable 也可以輕鬆擴展到數十億 Rows 和數千個 Columns ，能夠存儲 PB 級的資料量，適合 High-Throughput 場景的服務，是個強大的服務。而個人也覺得 Bigtable 是對有使用 GCP 的人常被問有沒有使用過的一個雲端服務之一，故可以特別看一下這個服務。(**第一名最常問的，我個人認為是 Bigquery**)
 
 <!--more-->
 
@@ -29,6 +31,10 @@ reward: false
 ```
 Bigtable = 「 Front-end Server Pool 」 + 「 Cluster(s) 」 + 「 Colossus 」
 ```
+
+{{< alert success >}}
+Apache Hadoop 系列中 HBase 一般被認為是 Bigtable 的開源實現，甚至連 API 都可共用，適用場景也大部分重合 ; Cassandra 也是以 Bigtable 原始論文為模型實現出來的技術，不過在部分設計思路上有很大不同。
+{{< /alert >}}
 
 # Bigtable storage model
 
