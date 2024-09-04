@@ -21,7 +21,7 @@ reward: false
 
 > Firestore 是 Google 提供的一款雲端全代管無伺服器的 **NoSQL 資料庫**，scale out 取向的設計會自動多區域資料複製 replication ，也有強一致性 query 和 transaction 支援。對應其他的雲端服務是 :
 >
-> - Amazon Web Services (AWS) : **DocumentDB**、**DynamoDB**
+> - Amazon Web Services (AWS) : **DocumentDB**
 > - Microsoft Azure : **Cosmos DB**
 >
 > Firestore 特別的一點是有提供 **realtime listeners 即時監聽器**來同步 Firestore 資料庫和 client apps 之間的資料，同時也有提供 **offline support 離線支援**，也就是說一旦雲端的 Firestore 有異動，資料便會自動同步到用戶端上 ; 另一方面當用戶端無法上網時會先存取資料在自己用戶端上，等到可以上網之後會跟雲端的 Firestore 資料庫互相同步。
