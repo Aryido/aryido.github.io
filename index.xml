@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 03 Aug 2024 23:33:55 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Cloud SQL 概述</title><link>https://aryido.github.io/posts/google-cloud/sql/</link><pubDate>Sat, 03 Aug 2024 23:33:55 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/sql/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 05 Aug 2024 22:13:08 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Cloud Spanner 概述</title><link>https://aryido.github.io/posts/google-cloud/spanner/</link><pubDate>Mon, 05 Aug 2024 22:13:08 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/spanner/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Cloud Spanner 是 Google 開發的一個完全託管&lt;strong>關係型資料庫&lt;/strong>，屬於企業級解決方案 PaaS 服務。具有全球同步、全域事務、強一致性、可擴展、分散式和 replica/failover 功能，可保持 &lt;code>99.999% &lt;/code>可用性，使用者不需要多花心思在底層的基礎建設與管理。對應其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>Amazon Aurora&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Azure SQL Database (SQL Server base)&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>Cloud Spanner 於 &lt;code>2012&lt;/code> 年開始為 Google 內部的重量級產品如 Youtube、Gmail、Google PlayStore 等等提供服務，取代了 Google 的自定義 MySQL 且&lt;a href="https://cloud.google.com/blog/products/databases/inside-cloud-spanner-and-the-cap-theorem">號稱是盡量滿足 CAP 理論限制&lt;/a>。2020Q1 統計每月約 1 億活躍使用者，每天有高達 1800 萬次外送記錄的 Uber，是使用 CLOUD SPANNER 成功案例。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Cloud SQL 概述</title><link>https://aryido.github.io/posts/google-cloud/sql/</link><pubDate>Sat, 03 Aug 2024 23:33:55 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/sql/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Cloud SQL 是 GCP 提供針對 MySQL、PostgreSQL、SQL Server 推出的&lt;strong>完全託管關係型資料庫&lt;/strong>服務，讓使用者能夠從資料庫的管理任務中解放出來，花更多時間在資料本身而非硬體維護。雲端資料庫只是在雲端上建置、部署和存取的資料庫而已，其底層操作和傳統地端資料庫完全一樣，對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
