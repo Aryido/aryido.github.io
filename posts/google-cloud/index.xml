@@ -28,7 +28,7 @@
 &lt;p>Bigtable 優勢在於其強大的擴充性，效能完全和 cluster 中的 Node 數量成正比，該產品的強大性完全不用質疑，因為 Google 的很多重量級專案都有使用 Bigtable 來存儲資料例如： Youtube、Google Earth、Google 搜尋引擎、Google Map 等等，每個專案都為數十億活躍使用者提供穩定的服務。&lt;/p>
 &lt;/blockquote></description></item><item><title>GCP - Firestore 概述</title><link>https://aryido.github.io/posts/google-cloud/firestore/</link><pubDate>Sat, 27 Jul 2024 18:02:56 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/firestore/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>Firestore 是 Google 提供的一款雲端全代管無伺服器的 &lt;strong>NoSQL 資料庫&lt;/strong>，scale out 取向的設計會自動多區域資料複製 replication ，也有強一致性 query 和 transaction 支援。對應其他的雲端服務是 :&lt;/p>
+&lt;p>Firestore 是 Google 提供的一款雲端全代管無伺服器的 &lt;strong>Document NoSQL 資料庫&lt;/strong>，scale out 取向的設計會自動多區域資料複製 replication ，也有強一致性 query 和 transaction 支援。對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
 &lt;li>Amazon Web Services (AWS) : &lt;strong>DocumentDB&lt;/strong>&lt;/li>
 &lt;li>Microsoft Azure : &lt;strong>Cosmos DB&lt;/strong>&lt;/li>
