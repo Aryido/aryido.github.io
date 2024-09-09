@@ -15,8 +15,11 @@ comment: false
 
 reward: false
 ---
+
 <!--BODY-->
+
 >
+
 <!--more-->
 
 ---
@@ -26,6 +29,7 @@ reward: false
 ---
 
 # 解答
+
 ```java
 
 ```
@@ -34,11 +38,13 @@ reward: false
 
 # 時間空間複雜度
 
-### 時間複雜度 : ```O(N^2)```
+### 時間複雜度 : `O(N^2)`
+
 兩層迴圈
 
-### 空間複雜度 : ```O(N^2)```
-2-D陣列
+### 空間複雜度 : `O(N^2)`
+
+2-D 陣列
 
 ---
 
@@ -60,6 +66,7 @@ example
 {{< /alert >}}
 
 ---
+
 ### 參考資料
 
 - [[LeetCode]5. Longest Palindromic Substring 中文](https://www.youtube.com/watch?v=ZnzvU03HtYk)

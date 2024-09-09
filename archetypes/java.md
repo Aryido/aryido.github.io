@@ -14,19 +14,14 @@ comment: false
 
 reward: false
 ---
-<!--BODY-->
 
+<!--BODY-->
 
 <!--more-->
 
 ---
 
-
-
-
-
 ---
-
 
 {{< alert info >}}
 example
@@ -46,5 +41,7 @@ example
 {{< /alert >}}
 
 ---
+
 ### 參考資料
+
 - [[LeetCode]5. Longest Palindromic Substring 中文](https://www.youtube.com/watch?v=ZnzvU03HtYk)
