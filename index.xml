@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 05 Aug 2024 22:13:08 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Cloud Spanner 概述</title><link>https://aryido.github.io/posts/google-cloud/spanner/</link><pubDate>Mon, 05 Aug 2024 22:13:08 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/spanner/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 07 Aug 2024 16:58:29 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Memorystore 概述</title><link>https://aryido.github.io/posts/google-cloud/memorystore/</link><pubDate>Wed, 07 Aug 2024 16:58:29 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/memorystore/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Memorystore 是 GCP 提供的完全託管 In-Memory Database 服務，可以輕鬆地在 GCP 上建立 Redis 和 Memcached 等著名的開源 &lt;strong>Caching-Engines&lt;/strong>，專門提供&lt;strong>毫秒級的低延遲資料存取/寫入&lt;/strong>，並減輕管理 Database 的部署 deployment、Replica、容錯移轉等等維運事項。對應其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>Amazon ElastiCache&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Azure Cache&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>Memorystore 也是屬於 NoSQL，由於常用於快取情境故也會被稱呼為&lt;strong>快取資料庫&lt;/strong>。目前看起來主流是使用 Redis，故建議在大部份的使用場景上，優先考慮使用 Redis。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Cloud Spanner 概述</title><link>https://aryido.github.io/posts/google-cloud/spanner/</link><pubDate>Mon, 05 Aug 2024 22:13:08 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/spanner/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Cloud Spanner 是 Google 開發的一個完全託管&lt;strong>關係型資料庫&lt;/strong>，屬於企業級解決方案 PaaS 服務。具有全球同步、全域事務、強一致性、可擴展、分散式和 replica/failover 功能，可保持 &lt;code>99.999% &lt;/code>可用性，使用者不需要多花心思在底層的基礎建設與管理。對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
