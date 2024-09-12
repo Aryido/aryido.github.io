@@ -20,7 +20,7 @@ reward: false
 
 <!--BODY-->
 
-> Cloud Spanner 是 Google 開發的一個完全託管**關係型資料庫**，屬於企業級解決方案 PaaS 服務。具有全球同步、全域事務、強一致性、可擴展、分散式和 replica/failover 功能，可保持 `99.999% `可用性，使用者不需要多花心思在底層的基礎建設與管理。對應其他的雲端服務是 :
+> Cloud Spanner 是 Google 開發的一個完全託管**關係型資料庫**，屬於企業級 PaaS 解決方案，具有全球同步、全域事務、強一致性、可擴展、分散式和 Replica/Failover 功能，可保證 `99.999% `可用性 SLA，使用者不需要多花心思在底層的基礎建設與管理。對應其他的雲端服務是 :
 >
 > - Amazon Web Services (AWS) : **Amazon Aurora**
 > - Microsoft Azure : **Azure SQL Database (SQL Server base)**
