@@ -8,7 +8,7 @@
 &lt;p>Memorystore 也是屬於 NoSQL，由於常用於快取情境故也會被稱呼為&lt;strong>快取資料庫&lt;/strong>。目前看起來主流是使用 Redis，故建議在大部份的使用場景上，優先考慮使用 Redis。&lt;/p>
 &lt;/blockquote></description></item><item><title>GCP - Cloud Spanner 概述</title><link>https://aryido.github.io/posts/google-cloud/spanner/</link><pubDate>Mon, 05 Aug 2024 22:13:08 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/spanner/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>Cloud Spanner 是 Google 開發的一個完全託管&lt;strong>關係型資料庫&lt;/strong>，屬於企業級解決方案 PaaS 服務。具有全球同步、全域事務、強一致性、可擴展、分散式和 replica/failover 功能，可保持 &lt;code>99.999% &lt;/code>可用性，使用者不需要多花心思在底層的基礎建設與管理。對應其他的雲端服務是 :&lt;/p>
+&lt;p>Cloud Spanner 是 Google 開發的一個完全託管&lt;strong>關係型資料庫&lt;/strong>，屬於企業級 PaaS 解決方案，具有全球同步、全域事務、強一致性、可擴展、分散式和 Replica/Failover 功能，可保證 &lt;code>99.999% &lt;/code>可用性 SLA，使用者不需要多花心思在底層的基礎建設與管理。對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
 &lt;li>Amazon Web Services (AWS) : &lt;strong>Amazon Aurora&lt;/strong>&lt;/li>
 &lt;li>Microsoft Azure : &lt;strong>Azure SQL Database (SQL Server base)&lt;/strong>&lt;/li>
