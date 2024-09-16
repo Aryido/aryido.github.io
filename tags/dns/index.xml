@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dns on Aryido Tech Note</title><link>https://aryido.github.io/tags/dns/</link><description>Recent content in dns on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 01 Jul 2024 23:26:00 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/dns/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Cloud DNS 概述</title><link>https://aryido.github.io/posts/google-cloud/cloud-dns/</link><pubDate>Mon, 01 Jul 2024 23:26:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/cloud-dns/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>Cloud DNS 是 Google 提供的高性能、代管式的全球網域名稱系統服務，是一個&lt;strong>分布式的分層資料庫&lt;/strong>，可以創建 DNS Zone 和 record 而無需自己管理 DNS Service ，對應其他的雲端服務是 :&lt;/p>
+&lt;p>Cloud DNS 是 Google 提供的代管式的全球 Domain Name System(網域名稱系統服務)，為一個&lt;strong>分布式的分層資料庫(hierarchical distributed database)&lt;/strong> 用於存儲 IP addresses 和 Domain Name 的對應關係，還可以建立 DNS Zone 並在其下管理和創建 Record 。對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
 &lt;li>Amazon Web Services (AWS) : &lt;strong>Amazon Route 53&lt;/strong>&lt;/li>
 &lt;li>Microsoft Azure : &lt;strong>Azure DNS&lt;/strong>&lt;/li>
 &lt;/ul>
-&lt;p>Cloud DNS 是&lt;strong>提供代管功能而不是註冊&lt;/strong>，而代管的好處是有一個「共同管理維護」的介面 ; 還能「基於地理位置」將流量轉到最接近的服務器從而提高性能與速度 ; 結合「 GCP 雲端安全服務」保護應用程式免於如 DDoS 攻擊。 最後比較特別的是 Google 的 Cloud DNS 服務號稱是 &lt;a href="https://cloud.google.com/dns/sla">100% SLA&lt;/a> ，服務絕對不會中斷，一旦使用上未能達到此標準，客戶都可以申請相關補償。&lt;/p>
+&lt;p>Cloud DNS 是&lt;strong>提供代管功能而不是註冊&lt;/strong>，而代管的好處是有一個「共同管理維護」的介面 ; 還能「基於地理位置」將流量轉到最接近的服務器從而提高性能與速度 ; 結合「 GCP 雲端安全服務」保護應用程式免於如 DDoS 攻擊。 最後比較特別的是 Google 的 Cloud DNS 服務號稱是 &lt;a href="https://cloud.google.com/dns/sla">100% SLA&lt;/a> 服務保證絕對不會中斷， Google 對其 DNS 服務設計非常的有信心。&lt;/p>
 &lt;/blockquote></description></item></channel></rss>
