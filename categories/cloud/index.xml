@@ -123,7 +123,8 @@
 &lt;li>Amazon Web Services (AWS) : &lt;strong>Elastic Load Balancing&lt;/strong>&lt;/li>
 &lt;li>Microsoft Azure : &lt;strong>Azure Load Balancer&lt;/strong>&lt;/li>
 &lt;/ul>
-&lt;p>因為只需透過配置單個負載平衡器的對外 IP 地址和憑證，故可以達到降低維運成本的目的，目前若從 GCP console 上，由&lt;strong>流量類型&lt;/strong>大概分成了兩類 : HTTP(S) load balancing、TCP/UPD load balancing，但實際上依照細部功能，還有分 Global/Regional 、Internal/External 等等，總體設定蠻細緻的 :&lt;/p>
+&lt;p>因為只需透過配置&lt;strong>單個&lt;/strong>對外 IP 地址和憑證，就可讓負載平衡器的內部的管理的所有 VM 被外網存取，故從購買 External IP 的角度來說 Load Balancing 也可算是一種降低維運成本的方式。&lt;/p>
+&lt;p>目前從 GCP console 上由&lt;strong>流量類型&lt;/strong>大概分成了「 HTTP(S) 」和 「 TCP/UPD 」兩類負載平衡器，但實際上依照細部功能，還有分 Global/Regional 和 Internal/External 等等，總體設定蠻細緻的 :&lt;/p>
 &lt;div class="figure fig-100" >
 &lt;a class="fancybox" href="https://aryido.github.io/images/google-cloud/lb/lb-types.jpg" data-fancybox="">
 &lt;img class="fig-img" src="https://aryido.github.io/images/google-cloud/lb/lb-types.jpg" >
@@ -212,9 +213,6 @@
 &lt;/blockquote></description></item><item><title>Packer build machine image 偶爾會出錯誤</title><link>https://aryido.github.io/posts/cloud/packer-build-image-error/</link><pubDate>Mon, 28 Nov 2022 22:04:39 +0800</pubDate><guid>https://aryido.github.io/posts/cloud/packer-build-image-error/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>使用 Packer 建立 AWS EC2 AMI 或者是 GCP Machine Image，兩個都會有機率發生一些問題， 有時候是 image 內一些應用程式安裝出現問題；有時候是再最後啟動 AWS 或 GCP 虛擬機時，使用 user-data 或 startup-script 時會出現問題，共同的錯誤訊息是 &lt;strong>no installation candidate.&lt;/strong> 。 AWS 機率發生體感機率比 GCP 高不少。那問題的根源是什麼呢，來看看吧!&lt;/p>
-&lt;/blockquote></description></item><item><title>GCP load-balancer 的 terraform Module</title><link>https://aryido.github.io/posts/terraform/gcp-aws-terraform-module/</link><pubDate>Sat, 29 Oct 2022 23:17:25 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/gcp-aws-terraform-module/</guid><description>&lt;!-- raw HTML omitted -->
-&lt;blockquote>
-&lt;p>目前使用 AWS 和 GCP terraform module 的感想，其實我覺得都還可以。但這邊特別覺得 GCP load-balancer module，我個人感覺寫得真的不好，有很多地方應該可以寫得更好，讓使用者體驗更棒的，但他們並沒做到&amp;hellip;，也讓我思考了其實一昧 module 化是否有必要呢 ? 讓我列出來一些我簡單比較和缺點吧。&lt;/p>
 &lt;/blockquote></description></item><item><title>Google Cloud CLI : Auth Credentials</title><link>https://aryido.github.io/posts/google-cloud/gcp-cli-3/</link><pubDate>Sat, 22 Oct 2022 16:13:45 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp-cli-3/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>最近使用 gcloud CLI 時，有遇到自己錯誤理解的部分，是關於 gcloud 管理的兩組 credentials :&lt;/p>

@@ -123,7 +123,8 @@
 &lt;li>Amazon Web Services (AWS) : &lt;strong>Elastic Load Balancing&lt;/strong>&lt;/li>
 &lt;li>Microsoft Azure : &lt;strong>Azure Load Balancer&lt;/strong>&lt;/li>
 &lt;/ul>
-&lt;p>因為只需透過配置單個負載平衡器的對外 IP 地址和憑證，故可以達到降低維運成本的目的，目前若從 GCP console 上，由&lt;strong>流量類型&lt;/strong>大概分成了兩類 : HTTP(S) load balancing、TCP/UPD load balancing，但實際上依照細部功能，還有分 Global/Regional 、Internal/External 等等，總體設定蠻細緻的 :&lt;/p>
+&lt;p>因為只需透過配置&lt;strong>單個&lt;/strong>對外 IP 地址和憑證，就可讓負載平衡器的內部的管理的所有 VM 被外網存取，故從購買 External IP 的角度來說 Load Balancing 也可算是一種降低維運成本的方式。&lt;/p>
+&lt;p>目前從 GCP console 上由&lt;strong>流量類型&lt;/strong>大概分成了「 HTTP(S) 」和 「 TCP/UPD 」兩類負載平衡器，但實際上依照細部功能，還有分 Global/Regional 和 Internal/External 等等，總體設定蠻細緻的 :&lt;/p>
 &lt;div class="figure fig-100" >
 &lt;a class="fancybox" href="https://aryido.github.io/images/google-cloud/lb/lb-types.jpg" data-fancybox="">
 &lt;img class="fig-img" src="https://aryido.github.io/images/google-cloud/lb/lb-types.jpg" >
