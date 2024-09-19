@@ -12,7 +12,6 @@ categories:
 - gcp
 
 tags:
-- virtual-machine
 - gcp-virtual-machine
 - load-balancer
 
@@ -41,33 +40,39 @@ reward: false
 
 大部份的設定在先前建立 Instance-Template 時都已經完成了，接下來 Managed Instance Group 基本只要設定 Name 、 Location 以及 Autoscaling :
 
-### Location
-有分成 Single zone 和 Multiple zones ，若設定成 Multiple zones，則不須擔心當其中一機房掛掉時，服務就掛掉了，以實現更高的可用性。
+- ### Location
+    有分成 Single zone 和 Multiple zones ，若設定成 Multiple zones，則不須擔心當其中一機房掛掉時，服務就掛掉了，以實現更高的可用性。
 
 
-### Autoscaling 自動縮放
-也稱作 「Autoscaling Policy」 ，可根據設定自動增加或減少 VM instance 的數量，還可以設置最小和最大 instance 數量以確保上下限。
-{{< image classes="fancybox fig-100" src="/images/google-cloud/lb/autoscaling.jpg" >}}
+- ### Autoscaling 自動縮放
+    也稱作 「Autoscaling Policy」 ，可根據設定自動增加或減少 VM instance 的數量，還可以設置最小和最大 instance 數量以確保上下限。
+    {{< image classes="fancybox fig-100" src="/images/google-cloud/lb/autoscaling.jpg" >}}
 
-Autoscaling Policy 至少要有一個 「Autoscaling signals (縮放信號)」。常用的 signals 指標有：
-- CPU utilization  — Defult 的 `60%` CPU utilization
-- HTTP load balancing utilization
-- Cloud Monitoring metrics
-- Cloud Pub/Sub queue 
+    Autoscaling Policy 至少要有一個 「Autoscaling signals (縮放信號)」。常用的 signals 指標有：
+    - CPU utilization  — Defult 的 `60%` CPU utilization
+    - HTTP load balancing utilization
+    - Cloud Monitoring metrics
+    - Cloud Pub/Sub queue 
 
 
 還可以進一步設定 **Initialization Period**（舊稱呼是 cool-down period），可以設定等待多少時間後，才再根據指標決定 VM 是否繼續增加或銷毀。另外還有 **Scale-in Controls** 選項讓 VM 數量短時間不要下降太快，例如在 10 分鐘內降幅不要高於10%，或是 5 分鐘內最多不可以關超過 3 台 VM 。
 
-### Auto Healing 自動修復 
-主要是會需要 health-check 來偵測 VM 的狀態，而在 health-check 內可以設定等待多久之後才檢查，讓應用程式可以完成初始化。 如果 health-check 發現 VM instance 出現問題，MIG 會自動替換它們，以維持正常運行的 VM 數量，確保應用程序高可用性和其高性能。
+- ### Auto Healing 自動修復 
+    主要是會需要 health-check 來偵測 VM 的狀態，而在 health-check 內可以設定等待多久之後才檢查，讓應用程式可以完成初始化。 如果 health-check 發現 VM instance 出現問題，MIG 會自動替換它們，以維持正常運行的 VM 數量，確保應用程序高可用性和其高性能。
 
-{{< alert warning >}}
+    {{< alert info >}}
 雖然名稱說是 Auto Healing 自動修復，但其實是把不健康的資源砍掉，然後再新建一個資源出來，和我們正常理解的修復不太一樣。
 {{< /alert >}}
 
-### 更新策略（Updates strategy）
-到目標 Managed Instance Group 內，最上面有 Update VMs 選項，在裡面可以設定新的 Instance-Template，這樣就可以產生新的 VM ，同時可以簡單設定更新的策略。  MIG 提供 zero downtime 來發布新的 Application 版本，當 Application 有 update/upgrade 時，通過 rolling updates 逐漸將新實例添加到實例群組中。
-{{< alert success >}}
+{{< alert warning >}}
+這邊注意一下，Backend Service 和 Instance Group 都可以設定 health check，但檢查完成後的行為不太一樣：
+- Backend Service : 確保資源健康之後，Backend service 才將流量導向 Backends。
+- Instance Group :  檢查若資源不健康，會把不健康的資源砍掉，並重新建立新的資源
+{{< /alert >}}
+
+- ### 更新策略（Updates strategy）
+    到目標 Managed Instance Group 內，最上面有 Update VMs 選項，在裡面可以設定新的 Instance-Template，這樣就可以產生新的 VM ，同時可以簡單設定更新的策略。  MIG 提供 zero downtime 來發布新的 Application 版本，當 Application 有 update/upgrade 時，通過 rolling updates 逐漸將新實例添加到實例群組中。
+    {{< alert success >}}
 除了 rolling updates，還有 Canary Deployment 也有支援。
 {{< /alert >}}
 

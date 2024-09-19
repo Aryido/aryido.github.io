@@ -1,5 +1,5 @@
 ---
-title: GCP load-balancer 的 terraform Module
+title: "Terraform - GCP Load Balancer Module"
 
 author: Aryido
 
@@ -8,11 +8,10 @@ date: 2022-10-29T23:17:25+08:00
 thumbnailImage: "/images/terraform/logo.jpg"
 
 categories:
-- cloud
+- terraform
 
 tags:
-- aws
-- gcp
+- load-balancer
 
 comment: false
 

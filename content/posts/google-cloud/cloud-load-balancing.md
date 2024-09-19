@@ -24,7 +24,9 @@ reward: false
 > - Amazon Web Services (AWS) : **Elastic Load Balancing**
 > - Microsoft Azure : **Azure Load Balancer**
 > 
-> 因為只需透過配置單個負載平衡器的對外 IP 地址和憑證，故可以達到降低維運成本的目的，目前若從 GCP console 上，由**流量類型**大概分成了兩類 : HTTP(S) load balancing、TCP/UPD load balancing，但實際上依照細部功能，還有分 Global/Regional 、Internal/External 等等，總體設定蠻細緻的 :
+> 因為只需透過配置**單個**對外 IP 地址和憑證，就可讓負載平衡器的內部的管理的所有 VM 被外網存取，故從購買 External IP 的角度來說 Load Balancing 也可算是一種降低維運成本的方式。
+> 
+> 目前從 GCP console 上由**流量類型**大概分成了「 HTTP(S) 」和 「 TCP/UPD 」兩類負載平衡器，但實際上依照細部功能，還有分 Global/Regional 和 Internal/External 等等，總體設定蠻細緻的 :
 >
 > {{< image classes="fancybox fig-100" src="/images/google-cloud/lb/lb-types.jpg" >}}
 <!--more-->
@@ -41,39 +43,44 @@ reward: false
 
 這邊特別注意，在 GCP load-balancer 架構中，我們常提到  Frontend、Backend 這些關鍵字，**記住這些跟我們常聽到網頁前端、後端是不一樣的東西 !** 是代表 load-balancer 的組成組件。
 
+---
 
 #  Frontend
-load-balancer 訪問的流量，都會先傳入 Frontend ，再依據**連線方式**與**轉發規則**被送往不同的 backend service 。主要有四個組件:
+load-balancer 訪問的流量，都會先傳入 Frontend ，再依據**連線方式**與**轉發規則**被送往不同的 backend service 。主要有四個組件如下圖:
 
 {{< image classes="fancybox fig-100" src="/images/google-cloud/lb/frontend.jpg" >}}
 
-### Forwarding rule：
-Global load balancing with **single anycast IP**，透過設置 IP 讓傳入流量進入負載平衡器，並運用對應的 Protocol 與 Port 將流量轉至 Proxy。
+- ### Forwarding rule：
+  
+  Global load balancing with **single anycast IP**，透過設置 IP 讓傳入流量進入負載平衡器，並運用對應的 Protocol 與 Port 將流量轉至 Proxy。
 
-### Target proxy：
-設定 HTTP request / response 常見的 header，作為 Client 與 Server 間的橋梁，可設置 SSL 憑證安全連線。
-{{< alert info >}}
-還可以設定一個參數叫`X-Cloud-Trace-Context`，可以透過 Stackdriver 紀錄追蹤 HTTP Request，這在 Microservice 架構找問題是很重要的追蹤參考。
-{{< /alert >}}
+- ### Target proxy：
+  
+  設定 HTTP request / response 常見的 header，作為 Client 與 Server 間的橋梁，可設置 SSL 憑證安全連線。
+  {{< alert info >}}
+  還可以設定一個參數叫`X-Cloud-Trace-Context`，可以透過 Stackdriver 紀錄追蹤 HTTP Request，這在 Microservice 架構找問題是很重要的追蹤參考。
+  {{< /alert >}}
 
-### SSL certificate：
-設定加密協議，這個憑證可以是 Google 幫我們管理，或由我們自行管理。
+- ### SSL certificate：
+  
+  設定加密協議，這個憑證可以是 Google 幫我們管理，或由我們自行管理。
 
-### URL map：
-定義一些規則來將不同需求或類型的流量導到不同的 backned service，例如:
-- By Path - `如不同的網址路徑 - `aryido.com/a` 或 `aryido.com/b`
-- By Host - `不同的站台 - `asite.aryido.com` 與 `bsite.aryido.com`
-- By HTTP - `headers (Authorization header)` 或 `methods (POST、GET...)`
+- ### URL map：
+  
+  定義一些規則來將不同需求或類型的流量導到不同的 backned service，例如:
+    - By Path - `如不同的網址路徑 - `aryido.com/a` 或 `aryido.com/b`
+    - By Host - `不同的站台 - `asite.aryido.com` 與 `bsite.aryido.com`
+    - By HTTP - `headers (Authorization header)` 或 `methods (POST、GET...)`
 
-{{< alert info >}}
-有點像是 AWS ALB 的 Target Group
-{{< /alert >}}
+  {{< alert info >}}
+  有點像是 AWS ALB 的 Target Group
+  {{< /alert >}}
 
 
-# Backend service
-Backend service 主要是定義負載平衡器如何分配流量到我們設置的 Backends 資源，由 health checks 和一到多個 backends 組成，可以先理解成 Backend service 管理 Backends。
+# Backend Service
+Backend Service 主要是定義負載平衡器如何分配流量到我們設置的 Backends，由 health checks 和一到多個 backends 組成，**可以先理解成 Backend Service 管理 Backends**。
 
-Backend service 會藉由 health check 設定的頻率，向指定的 port 探測並取得回應，確保資源健康之後， Backend service 才將流量導向 Backends。
+Backend Service 會藉由 health check 設定的頻率，向指定的 port 探測並取得回應，確保資源健康之後， Backend service 才將流量導向 Backends。
 {{< alert danger >}}
 這邊提醒，要對後端資源進行健康檢查就必須設置 Firewall rule ，允許來自 Health check 的流量
 
@@ -91,26 +98,35 @@ Backend service 會藉由 health check 設定的頻率，向指定的 port 探�
 
 - 流量分佈演算法，使負載均衡器用於在後端實例或服務之間分配傳入請求的方式
 
+{{< alert warning >}}
+這邊注意一下，Backend Service 和 Instance Group 都可以設定 health check，但檢查完成後的行為不太一樣：
+- Backend Service : 確保資源健康之後，Backend service 才將流量導向 Backends。
+- Instance Group :  檢查若資源不健康，會把不健康的資源砍掉，並重新建立新的資源
+{{< /alert >}}
+
 
 # Backends
 為從 Load Balance Frontend 接收流量的 endpoint group ，可以分成以下幾個 :
+
 {{< image classes="fancybox fig-100" src="/images/google-cloud/lb/backend.jpg" >}}
 
-### Instance group：
-多個 vm 放在一個群組以集中管理，可以有 Auto Scaling 功能，分為 : 
-  - Google 代管的 Managed Instance Group(MIG)
-  - 我們自行管理的 Unmanaged Instance Group(UMG)
+- ### Instance group：
+  多個 vm 放在一個群組以集中管理，可以有 Auto Scaling 功能，分為 : 
+    - Google 代管的 Managed Instance Group(MIG)
+    - 我們自行管理的 Unmanaged Instance Group(UMG)
 
-{{< alert info >}}
-相當於 AWS Auto Scaling Group
-{{< /alert >}}
+  {{< alert info >}}
+  相當於 AWS Auto Scaling Group
+  {{< /alert >}}
 
-### Cloud Storage：
-針對 html、css、js、圖片和影片等靜態內容，直接存在 Cloud Storage 可有效節省資源，常和 CDN 搭配使用。
+- ### Cloud Storage：
+  
+  針對 html、css、js、圖片和影片等靜態內容，直接存在 Cloud Storage 可有效節省資源，常和 CDN 搭配使用。
 
 
-### Network Endpoint Group（NEG）:
-對於 cloud run 、 k8s Pods 等等虛擬化容器類型的群組，都是屬於 NEG。
+- ### Network Endpoint Group（NEG）:
+  
+  對於 cloud run 、 k8s Pods 等等虛擬化容器類型的群組，都是屬於 NEG。
 
 ---
 
