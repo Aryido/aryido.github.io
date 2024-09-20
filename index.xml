@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 07 Aug 2024 16:58:29 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Memorystore 概述</title><link>https://aryido.github.io/posts/google-cloud/memorystore/</link><pubDate>Wed, 07 Aug 2024 16:58:29 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/memorystore/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 09 Aug 2024 23:08:24 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Bigquery 概述 I - 架構</title><link>https://aryido.github.io/posts/google-cloud/bigquery-1/</link><pubDate>Fri, 09 Aug 2024 23:08:24 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/bigquery-1/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>BigQuery 是 Google 提供的一個無伺服器資料倉儲 (Serverless Data Warehouse)，其支持 ANSI SQL 來搜尋資料，所以只要會 SQL 語法就可以立即開始使用，且可高效率分析 TB、PB 等級的資料，故 Bigquery 也是企業級雲端大數據資料分析平台。對應到其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>Amazon Athena&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Azure Synapse Analytics&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>Google 在非常早期的時候，就有類似 BigQuery 其的服務就存在了，是自 2006 年以來一直在內部使用的 Dremel，後來隨著 GCP 雲端平台的產生，並於 2011 年以 BigQuery 為名被正式推出。目前是 GCP 分析資料的主力產品， Google 自家產品如搜尋引擎、 Gmail 等服務背後，其資料處理與分析的核心技術也和 Bigquery 息息相關。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Memorystore 概述</title><link>https://aryido.github.io/posts/google-cloud/memorystore/</link><pubDate>Wed, 07 Aug 2024 16:58:29 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/memorystore/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Memorystore 是 GCP 提供的完全託管 In-Memory Database 服務，可以輕鬆地在 GCP 上建立 Redis 和 Memcached 等著名的開源 &lt;strong>Caching-Engines&lt;/strong>，專門提供&lt;strong>毫秒級的低延遲資料存取/寫入&lt;/strong>，並減輕管理 Database 的部署 deployment、Replica、容錯移轉等等維運事項。對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
