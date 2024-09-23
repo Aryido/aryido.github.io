@@ -1,4 +1,22 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gcp on Aryido Tech Note</title><link>https://aryido.github.io/categories/gcp/</link><description>Recent content in gcp on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 09 Aug 2024 23:08:24 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/gcp/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Bigquery 概述 I - 架構</title><link>https://aryido.github.io/posts/google-cloud/bigquery-1/</link><pubDate>Fri, 09 Aug 2024 23:08:24 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/bigquery-1/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gcp on Aryido Tech Note</title><link>https://aryido.github.io/categories/gcp/</link><description>Recent content in gcp on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 13 Aug 2024 23:58:17 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/gcp/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP 儲存服務 - 總整理</title><link>https://aryido.github.io/posts/google-cloud/storage-service-all/</link><pubDate>Tue, 13 Aug 2024 23:58:17 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/storage-service-all/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>在前面幾個章節有介紹了 GCP 常見的 Storage Service ，有提供了各種高可靠且高可擴展存儲服務產品，雲端化直觀的提供了「減輕管理服務基礎架構」的負擔，特別是是硬體角度的管理。從比較 High-Level 角度來討論的話，雲存儲的服務類型分成&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Block Storage&lt;/strong> : Compute-engine 的 Persistent Disk&lt;/li>
+&lt;li>&lt;strong>Object Storage&lt;/strong> : &lt;a href="https://aryido.github.io/posts/google-cloud/cloud-storage/">Cloud Storage&lt;/a>&lt;/li>
+&lt;li>&lt;strong>File Storage&lt;/strong> : &lt;a href="https://aryido.github.io/posts/google-cloud/filestore/">Filestore&lt;/a>&lt;/li>
+&lt;li>&lt;strong>SQL&lt;/strong> : &lt;a href="https://aryido.github.io/posts/google-cloud/sql/">Cloud SQL&lt;/a>、&lt;a href="https://aryido.github.io/posts/google-cloud/spanner/">Cloud Spanner&lt;/a>&lt;/li>
+&lt;li>&lt;strong>NoSQL&lt;/strong> : &lt;a href="https://aryido.github.io/posts/google-cloud/firestore/">Firestore&lt;/a>、&lt;a href="https://aryido.github.io/posts/google-cloud/bigtable-1/">Bigtable&lt;/a>、&lt;a href="https://aryido.github.io/posts/google-cloud/memorystore/">Memorystore&lt;/a>&lt;/li>
+&lt;li>&lt;strong>Data Warehouse&lt;/strong> : &lt;a href="https://aryido.github.io/posts/google-cloud/bigquery-1/">Bigquery&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="figure fig-100" >
+&lt;a class="fancybox" href="https://aryido.github.io/images/google-cloud/storage-service-summary/storage-services.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/google-cloud/storage-service-summary/storage-services.jpg" >
+&lt;/a>
+&lt;/div>
+在現今的雲端計算時代，儲存和管理大量資料變得更加重要，以上這幾種儲存服務需根據業務來選擇，因為這也會決定到訪問和管理組資料的難易程度，故以下對其做一些廣義的整理和筆記來幫助和選擇適合的儲存服務。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Bigquery 概述 I - 架構</title><link>https://aryido.github.io/posts/google-cloud/bigquery-1/</link><pubDate>Fri, 09 Aug 2024 23:08:24 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/bigquery-1/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>BigQuery 是 Google 提供的一個無伺服器資料倉儲 (Serverless Data Warehouse)，其支持 ANSI SQL 來搜尋資料，所以只要會 SQL 語法就可以立即開始使用，且可高效率分析 TB、PB 等級的資料，故 Bigquery 也是企業級雲端大數據資料分析平台。對應到其他的雲端服務是 :&lt;/p>
 &lt;ul>

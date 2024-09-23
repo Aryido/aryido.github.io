@@ -1,0 +1,175 @@
+<!doctype html><html lang=en-us><head><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"GCP 儲存服務 - 總整理","image":"https://aryido.github.io/images/google-cloud/logo.jpg","datePublished":"2024-08-13T23:58:17+08:00","dateModified":"2024-08-13T23:58:17+08:00","author":{"@type":"Person","name":"李昀陽 YunYang Lee","image":"https://aryido.github.io/images/aboutme/head-shot.jpg"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aryido.github.io\/posts\/google-cloud\/storage-service-all\/"},"publisher":{"@type":"Organization","name":"Aryido Tech Note","logo":{"@type":"ImageObject","url":"https://aryido.github.io/images/aboutme/head-shot.jpg"}},"description":" 在前面幾個章節有介紹了 GCP 常見的 Storage Service ，有提供了各種高可靠且高可擴展存儲服務產品，雲端化直觀的提供了「減輕管理服務基礎架構」的負擔，特別是是硬體角度的管理。從比較 High-Level 角度來討論的話，雲存儲的服務類型分成\nBlock Storage : Compute-engine 的 Persistent Disk Object Storage : Cloud Storage File Storage : Filestore SQL : Cloud SQL、Cloud Spanner NoSQL : Firestore、Bigtable、Memorystore Data Warehouse : Bigquery 在現今的雲端計算時代，儲存和管理大量資料變得更加重要，以上這幾種儲存服務需根據業務來選擇，因為這也會決定到訪問和管理組資料的難易程度，故以下對其做一些廣義的整理和筆記來幫助和選擇適合的儲存服務。\n","keywords":[]}</script><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Hugo 0.119.0 with theme Tranquilpeak 0.5.3-BETA"><meta name=author content="李昀陽 YunYang Lee"><meta name=keywords content><meta name=description content="
+
+在前面幾個章節有介紹了 GCP 常見的 Storage Service ，有提供了各種高可靠且高可擴展存儲服務產品，雲端化直觀的提供了「減輕管理服務基礎架構」的負擔，特別是是硬體角度的管理。從比較 High-Level 角度來討論的話，雲存儲的服務類型分成
+
+Block Storage : Compute-engine 的 Persistent Disk
+Object Storage : Cloud Storage
+File Storage : Filestore
+SQL : Cloud SQL、Cloud Spanner
+NoSQL : Firestore、Bigtable、Memorystore
+Data Warehouse : Bigquery
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
+在現今的雲端計算時代，儲存和管理大量資料變得更加重要，以上這幾種儲存服務需根據業務來選擇，因為這也會決定到訪問和管理組資料的難易程度，故以下對其做一些廣義的整理和筆記來幫助和選擇適合的儲存服務。
+"><meta property="og:description" content="
+
+在前面幾個章節有介紹了 GCP 常見的 Storage Service ，有提供了各種高可靠且高可擴展存儲服務產品，雲端化直觀的提供了「減輕管理服務基礎架構」的負擔，特別是是硬體角度的管理。從比較 High-Level 角度來討論的話，雲存儲的服務類型分成
+
+Block Storage : Compute-engine 的 Persistent Disk
+Object Storage : Cloud Storage
+File Storage : Filestore
+SQL : Cloud SQL、Cloud Spanner
+NoSQL : Firestore、Bigtable、Memorystore
+Data Warehouse : Bigquery
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
+在現今的雲端計算時代，儲存和管理大量資料變得更加重要，以上這幾種儲存服務需根據業務來選擇，因為這也會決定到訪問和管理組資料的難易程度，故以下對其做一些廣義的整理和筆記來幫助和選擇適合的儲存服務。
+"><meta property="og:type" content="article"><meta property="og:title" content="GCP 儲存服務 - 總整理"><meta name=twitter:title content="GCP 儲存服務 - 總整理"><meta property="og:url" content="https://aryido.github.io/posts/google-cloud/storage-service-all/"><meta property="twitter:url" content="https://aryido.github.io/posts/google-cloud/storage-service-all/"><meta property="og:site_name" content="Aryido Tech Note"><meta property="og:description" content="
+
+在前面幾個章節有介紹了 GCP 常見的 Storage Service ，有提供了各種高可靠且高可擴展存儲服務產品，雲端化直觀的提供了「減輕管理服務基礎架構」的負擔，特別是是硬體角度的管理。從比較 High-Level 角度來討論的話，雲存儲的服務類型分成
+
+Block Storage : Compute-engine 的 Persistent Disk
+Object Storage : Cloud Storage
+File Storage : Filestore
+SQL : Cloud SQL、Cloud Spanner
+NoSQL : Firestore、Bigtable、Memorystore
+Data Warehouse : Bigquery
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
+在現今的雲端計算時代，儲存和管理大量資料變得更加重要，以上這幾種儲存服務需根據業務來選擇，因為這也會決定到訪問和管理組資料的難易程度，故以下對其做一些廣義的整理和筆記來幫助和選擇適合的儲存服務。
+"><meta name=twitter:description content="
+
+在前面幾個章節有介紹了 GCP 常見的 Storage Service ，有提供了各種高可靠且高可擴展存儲服務產品，雲端化直觀的提供了「減輕管理服務基礎架構」的負擔，特別是是硬體角度的管理。從比較 High-Level 角度來討論的話，雲存儲的服務類型分成
+
+Block Storage : Compute-engine 的 Persistent Disk
+Object Storage : Cloud Storage
+File Storage : Filestore
+SQL : Cloud SQL、Cloud Spanner
+NoSQL : Firestore、Bigtable、Memorystore
+Data Warehouse : Bigquery
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
+在現今的雲端計算時代，儲存和管理大量資料變得更加重要，以上這幾種儲存服務需根據業務來選擇，因為這也會決定到訪問和管理組資料的難易程度，故以下對其做一些廣義的整理和筆記來幫助和選擇適合的儲存服務。
+"><meta property="og:locale" content="en-us"><meta property="article:published_time" content="2024-08-13T23:58:17"><meta property="article:modified_time" content="2024-08-13T23:58:17"><meta property="article:section" content="cloud"><meta property="article:section" content="gcp"><meta name=twitter:card content="summary"><meta property="og:image" content="https://aryido.github.io/images/aboutme/head-shot.jpg"><meta property="twitter:image" content="https://aryido.github.io/images/aboutme/head-shot.jpg"><meta property="og:image" content="https://aryido.github.io/images/google-cloud/logo.jpg"><meta property="twitter:image" content="https://aryido.github.io/images/google-cloud/logo.jpg"><title>GCP 儲存服務 - 總整理</title><link rel=icon href=https://aryido.github.io/favicon.png><link rel=canonical href=https://aryido.github.io/posts/google-cloud/storage-service-all/><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://aryido.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css></head><body><div id=blog><header id=header data-behavior=4><i id=btn-open-sidebar class="fa fa-lg fa-bars"></i><div class=header-title><a class=header-title-link href=https://aryido.github.io/ aria-label="Go to homepage">Aryido Tech Note</a></div><a class=header-right-picture href=https://aryido.github.io/#about aria-label="Open the link: /#about"><img class=header-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"></a></header><nav id=sidebar data-behavior=4><div class=sidebar-container><div class=sidebar-profile><a href=https://aryido.github.io/#about aria-label="Read more about the author"><img class=sidebar-profile-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"></a><h4 class=sidebar-profile-name>李昀陽 YunYang Lee</h4><h5 class=sidebar-profile-bio>Welcome to my Tech Note. You can read some of the chapters below.</h5></div><ul class=sidebar-buttons><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/ title=Home><i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden=true></i>
+<span class=sidebar-button-desc>Home</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/categories title=Categories><i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden=true></i>
+<span class=sidebar-button-desc>Categories</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/tags title=Tags><i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden=true></i>
+<span class=sidebar-button-desc>Tags</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://github.com/Aryido target=_blank rel=noopener title=GitHub><i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden=true></i>
+<span class=sidebar-button-desc>GitHub</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/index.xml title=RSS><i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden=true></i>
+<span class=sidebar-button-desc>RSS</span></a></li></ul><ul class=sidebar-buttons></ul><ul class=sidebar-buttons></ul></div></nav><div id=main data-behavior=4 class=hasCoverMetaIn><article class=post id=top><div class="post-header main-content-wrap text-left"><h1 class=post-title>GCP 儲存服務 - 總整理</h1><div class="postShorten-meta post-meta"><time datetime=2024-08-13T23:58:17+08:00>August 13, 2024</time>
+<span>in</span>
+<a class=category-link href=https://aryido.github.io/categories/cloud>cloud</a>,
+<a class=category-link href=https://aryido.github.io/categories/gcp>gcp</a></div></div><div class="post-content markdown"><div class=main-content-wrap><blockquote><p>在前面幾個章節有介紹了 GCP 常見的 Storage Service ，有提供了各種高可靠且高可擴展存儲服務產品，雲端化直觀的提供了「減輕管理服務基礎架構」的負擔，特別是是硬體角度的管理。從比較 High-Level 角度來討論的話，雲存儲的服務類型分成</p><ul><li><strong>Block Storage</strong> : Compute-engine 的 Persistent Disk</li><li><strong>Object Storage</strong> : <a href=https://aryido.github.io/posts/google-cloud/cloud-storage/>Cloud Storage</a></li><li><strong>File Storage</strong> : <a href=https://aryido.github.io/posts/google-cloud/filestore/>Filestore</a></li><li><strong>SQL</strong> : <a href=https://aryido.github.io/posts/google-cloud/sql/>Cloud SQL</a>、<a href=https://aryido.github.io/posts/google-cloud/spanner/>Cloud Spanner</a></li><li><strong>NoSQL</strong> : <a href=https://aryido.github.io/posts/google-cloud/firestore/>Firestore</a>、<a href=https://aryido.github.io/posts/google-cloud/bigtable-1/>Bigtable</a>、<a href=https://aryido.github.io/posts/google-cloud/memorystore/>Memorystore</a></li><li><strong>Data Warehouse</strong> : <a href=https://aryido.github.io/posts/google-cloud/bigquery-1/>Bigquery</a></li></ul><p><div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/google-cloud/storage-service-summary/storage-services.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/google-cloud/storage-service-summary/storage-services.jpg></a></div>在現今的雲端計算時代，儲存和管理大量資料變得更加重要，以上這幾種儲存服務需根據業務來選擇，因為這也會決定到訪問和管理組資料的難易程度，故以下對其做一些廣義的整理和筆記來幫助和選擇適合的儲存服務。</p></blockquote><hr><h1 id=data-type->Data Type :</h1><p>為了正確的選擇適當的儲存技術，通常需要對資料的<strong>結構</strong>和<strong>使用場景</strong>有一定的了解，以下簡單介紹結構化資料 :</p><blockquote><ul><li><strong>Structured 結構化資料</strong> : 如果資料可以以 Column 和 Row 等格式進行組織，則稱為結構化數據。結構化資料主要存儲在 Relational DB 內，對應 GCP 儲存服務為 Cloud SQL 、 Cloud Spanner</li></ul></blockquote><blockquote><ul><li><strong>Semi-Structured 半結構化資料</strong> : 結構資料通常會被組織成 key-value pairs 、 document 、 wide-column 的形式</li></ul></blockquote><blockquote><ul><li><strong>Unstructured 非結構化資料</strong> : 它是一個 sequence of bytes 資料，例如 Video 、 圖像檔、聲音檔等等，其資料作為「物件」存儲，最標準的是會使用 Cloud Storage</li></ul></blockquote><div class="alert success"><p>Structured 與 Semi-Structured 資料，都會有一些 Schema 設計來定義儲存資料格式，雖然近年來來 Relational DB 與 NoSQL 的界線越來越模糊，但這邊還是簡單介紹分類一下</p></div><ul><li><h3 id=從資料型態概念上出發來做產品選擇>從資料型態概念上出發來做產品選擇</h3><div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/google-cloud/storage-service-summary/select1.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/google-cloud/storage-service-summary/select1.jpg></a></div></li></ul><h1 id=gcp-服務簡介和比較>GCP 服務簡介和比較</h1><h3 id=cloud-storage--filestore--gcp-persistent-disks>Cloud Storage & Filestore & GCP Persistent Disks</h3><p>從比較物理層面的儲存類型來說的話，儲存類型分成 : <strong>Block Storage</strong>、<strong>Object Storage</strong>、<strong>File Storage</strong> 這三種類型的儲存:</p><ul><li><h5 id=cloud-storage>Cloud Storage</h5><p>Cloud Storage 會在 Bucket 內儲存非結構化的 blob 資料如圖片、影片等，其服務具有高度可擴充性、為完全託管式服務，屬於標準 Object Storage，其特色除了前面提到的 Bucket 管理介面之外，Object 都會有一個 <strong>metadata 元數據</strong> 一起存儲。另外還可以根據自己服務對於<strong>資料存取</strong>特性，選擇保存的類型來 Archive，最佳化存儲成本 :<div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/google-cloud/storage-service-summary/storage-class.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/google-cloud/storage-service-summary/storage-class.jpg></a></div></p><ul><li><strong>Pros</strong>: 巨大的可擴充性，使用物件存儲，可擴充性幾乎沒有限制</li><li><strong>Cons</strong>: 物件的存儲對於<strong>事務</strong>並不理想，且與檔存儲或塊存儲相比，寫入資料的過程稍慢</li></ul><div class="alert info"><p>由於 Block/File storage 成本較高，大量數據且不太會修改資料的話，建議用 Object storage 來存儲</p></div></li><li><h5 id=filestore>Filestore</h5><p>Filestore 顧名思義是對到 File storage，大多數人都會在電腦的使用中熟悉到它例如：創建一個名為「trip」的 folder ，然後在此 folder 下添加另一個名為「animal」的 folder，將旅行遇到喜歡的動物照片放入其中。這種將文件放到「資料夾」和其「子資料夾」的層次結構管理，並使用資料夾/檔案路徑訪問就是 File storage 的特色。雖然日常使用中表現良好，但隨著資料量的增長，性能會下降蠻快的 :</p><ul><li><strong>Pros</strong>: 使用者友好的管理，可輕鬆創建、管理和刪除自己的檔 ; 還提供簡單的訪問管理，以自定義誰可以訪問檔、查看檔和更改檔</li><li><strong>Cons</strong>: 檔、資料夾和目錄越多，查找和訪問就越慢</li></ul><div class="alert info"><p>從 Management 來考慮的話 File Storage 最為簡單好用，但它通常不太適合處理大數據存儲，也是這原因讓 Object Storage 逐漸發展起來</p></div></li><li><h5 id=gcp-persistent-disks>GCP Persistent Disks</h5><p>Block Storage 是儲存系統的<strong>基礎</strong>，實際上 Object/File storage 都是 Block Storage 上的一個應用，常聽到的 SSD/HDD 就是標準的 Block Storage，直接關聯到 Disk 磁碟讀取，故可以非常快速地檢索/寫入資料。<div class="alert info"><p>Block Storage 將資料視為一系列固定大小的 chunks 或 blocks，這些「塊」不需要連續存儲在磁碟上可以分散，每當使用者請求此資料時，底層存儲系統會將塊合併在一起提供。由於有分「塊」的概念，故名稱上就稱作 Block Storage</p></div></p><ul><li><strong>Pros</strong>: 快速的效能</li><li><strong>Cons</strong>: 需要為所有分配的存儲空間付費，故價格比較價格昂貴</li></ul></li></ul><h3 id=firestore--bigtable>Firestore & Bigtable</h3><p>Firestore 跟 Bigtable 一樣是屬於 NoSQL 資料庫。 Firestore 它適合儲存相對較小的資料，且價格便宜非常多 ; 而 Bigtable 屬於是企業級 NoSQL 大數據資料庫服務。</p><table><thead><tr><th></th><th>Firestore</th><th>Bigtable</th></tr></thead><tbody><tr><td><strong>Type</strong></td><td>NoSQL document</td><td>NoSQL Wide Column</td></tr><tr><td><strong>Transactions</strong></td><td>Yes</td><td>Single-Row</td></tr><tr><td><strong>Capacity</strong></td><td>Terabytes</td><td>Petabytes</td></tr><tr><td><strong>Best for</strong></td><td>Getting started</td><td>Flat data, heavy read/write events, analytical data</td></tr></tbody></table><ul><li><h5 id=firestore>Firestore</h5><p>Firestore 預設是「強一致性的」，以反映數據的最新更新，因為它在設計時考慮了與客戶端之間提供即時數據同步，故適合需要即時更新的 Mobile 和 Web 應用程式。另外 Firestore 它也可以在不需要立即一致性的資料的情況下，提供「終將一致性」，是以靈活地選擇的</p></li><li><h5 id=bigtable>Bigtable</h5><p>Bigtable 是一個分散式系統，採用「最終一致性」，它更看重高輸送量和低延遲，而不是即時一致性。另外 Bigtable 也經常配合其他大數據處理工具和框架如 Apache Hadoop 和 Apache Spark 一起使用，用於大規模分析和批處理</p></li></ul><p>Firestore 與 Bigtable 相比，不需要預置資料庫實例（Bigtable 要設定 Node）、也支援 ACID 原子事務，但 Bigtable 強大在於提供更強大的可擴展性和 PB 量級資料的處理。</p><div class="alert warning"><p>還是額外提一下，Filestore 和 Firestore 名稱和發音都非常相似，但是為完全不一樣的服務。Filestore 是 NFS 儲存類型 ; 而 Firestore 是 Document NoSQL database，注意不要看錯了</p></div><h3 id=cloud-sql--cloud-spanner--bigquery>Cloud SQL & Cloud Spanner & BigQuery</h3><p>Cloud SQL 是 GCP 中提供的代管 Relational Database 服務，適用於較小資料量 ; 而 Cloud Spanner 是 GCP 下的全球分散式 Relational Database 系統，用於需要高度一致性和可擴展性的大數據資料儲存。</p><p>Online transaction processing(OLTP) 是指我們常用的關聯式資料庫的<strong>交易處理</strong>，Cloud SQL、Cloud Spanner 都可提供該能力 ; Online analytical processing（OLAP） 主要針對<strong>分析讀取</strong>進行最佳化，BigQuery 是代表產品。</p><table><thead><tr><th></th><th>Cloud SQL</th><th>Cloud Spanner</th><th>BigQuery</th></tr></thead><tbody><tr><td><strong>Type</strong></td><td>RDB - OLTP</td><td>RDB - OLTP</td><td>Warehouse - OLAP</td></tr><tr><td><strong>Transactions</strong></td><td>Yes</td><td>Yes</td><td>No</td></tr><tr><td><strong>Capacity</strong></td><td>Up to ~10TB</td><td>Petabytes</td><td>Petabytes</td></tr><tr><td><strong>Best for</strong></td><td>Basic web applications</td><td>Very Large-scale database applications</td><td>Interactive querying, offline analytics</td></tr></tbody></table><div class="alert warning"><p>也提一下，Bigtable 和 BigQuery 名稱也是非常相似的，但為完全不一樣的服務。 Bigtable 是企業級 NoSQL 大數據資料庫 ; 而 BigQuery 是 OLAP DataWarehouse</p></div><h3 id=從服務角度上出發來做產品選擇>從服務角度上出發來做產品選擇</h3><div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/google-cloud/storage-service-summary/select2.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/google-cloud/storage-service-summary/select2.jpg></a></div><hr><h3 id=參考資料>參考資料</h3><ul><li><p><a href=https://k21academy.com/google-cloud/gcp-training-day-4/>Google Professional Cloud Architect Day 4 Q/A Review: Storage Services</a></p></li><li><p><a href=https://ithelp.ithome.com.tw/m/articles/10333191>GCP 零基礎入門 (18) - 數據儲存服務總結</a></p></li><li><p><a href="https://cloud.google.com/discover/object-vs-block-vs-file-storage?hl=en">Object Storage vs Block Storage vs File Storage</a></p></li><li><p><a href=https://jayendrapatil.com/google-cloud-storage-options/>Google Cloud 儲存選項</a></p></li></ul></div></div><div id=post-footer class="post-footer main-content-wrap"><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--disabled"><i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/google-cloud/bigquery-1/ data-tooltip="GCP - Bigquery 概述 I - 架構" aria-label="PREVIOUS: GCP - Bigquery 概述 I - 架構"><span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i></a></li></ul></nav><ul class="post-actions post-action-share"><li class="post-action hide-lg hide-md hide-sm"><a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post"><i class="fa fa-share-alt" aria-hidden=true></i></a></li><li class=post-action><a class="post-action-btn btn btn--default" href=#top aria-label="Back to top"><i class="fa fa-arrow-up" aria-hidden=true></i></a></li></ul></div></div></article><footer id=footer class=main-content-wrap><span class=copyrights>&copy; 2024 李昀陽 YunYang Lee. All Rights Reserved</span></footer></div><div id=bottom-bar class=post-bottom-bar data-behavior=4><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--disabled"><i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/google-cloud/bigquery-1/ data-tooltip="GCP - Bigquery 概述 I - 架構" aria-label="PREVIOUS: GCP - Bigquery 概述 I - 架構"><span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i></a></li></ul></nav><ul class="post-actions post-action-share"><li class="post-action hide-lg hide-md hide-sm"><a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post"><i class="fa fa-share-alt" aria-hidden=true></i></a></li><li class=post-action><a class="post-action-btn btn btn--default" href=#top aria-label="Back to top"><i class="fa fa-arrow-up" aria-hidden=true></i></a></li></ul></div></div></div><div id=about><div id=about-card><div id=about-btn-close><i class="fa fa-times"></i></div><img id=about-card-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"><h4 id=about-card-name>李昀陽 YunYang Lee</h4><div id=about-card-bio>Welcome to my Tech Note. You can read some of the chapters below.</div><div id=about-card-job><i class="fa fa-briefcase"></i><br>Software Engineer</div><div id=about-card-location><i class="fa fa-map-marker-alt"></i><br>Taiwan</div></div></div><div id=cover style=background-image:url(https://aryido.github.io/images/background.jpg)></div><script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://aryido.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js></script>
+<script>$(document).ready(function(){hljs.configure({classPrefix:"",useBR:!1}),$("pre.code-highlight > code, pre > code").each(function(e,t){$(this).hasClass("codeblock")||$(this).addClass("codeblock"),hljs.highlightBlock(t)})})</script></body></html>
