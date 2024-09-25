@@ -12,7 +12,7 @@ categories:
   - gcp
 
 tags:
-  - dns
+  - gcp-network
 
 comment: false
 
