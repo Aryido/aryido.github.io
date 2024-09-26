@@ -21,7 +21,7 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> CDN 全名為 Content Delivery Network，是一種透過分散在不同地區的 server，用離使用者**最近的伺服器**來傳送快取內容。而 Google Cloud CDN，就是借助 Google 分佈在**全球各地**的網路節點，將內容以快取(Cache)形式預先儲存，以達到最快速的內容交付。對應其他的雲端服務是 :
+> CDN 全名為 Content Delivery Network，是一種透過分散在不同地區的 server，用離使用者**最近的伺服器**來傳送快取內容。而 Cloud CDN，就是借助 Google 分佈在**全球各地**的網路節點，將內容以快取(Cache)形式預先儲存，以達到最快速的內容交付。對應其他的雲端服務是 :
 > - Amazon Web Services (AWS) : **Amazon CloudFront**
 > - Microsoft Azure : **Azure CDN**
 >
