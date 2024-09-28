@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gcp-compute-service on Aryido Tech Note</title><link>https://aryido.github.io/tags/gcp-compute-service/</link><description>Recent content in gcp-compute-service on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 20 Jul 2024 23:41:17 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/gcp-compute-service/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP 運算服務 - 總整理</title><link>https://aryido.github.io/posts/google-cloud/compute-service-all/</link><pubDate>Sat, 20 Jul 2024 23:41:17 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/compute-service-all/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>前面幾個章節有介紹了 Google Cloud 中常見的幾個 Compute Service 運算服務，分別是： &lt;a href="https://aryido.github.io/posts/google-cloud/compute-engine/">Compute Engine&lt;/a>、&lt;a href="https://aryido.github.io/posts/google-cloud/cloud-functions/">Cloud Functions&lt;/a>、&lt;a href="https://aryido.github.io/posts/google-cloud/cloud-run/">Cloud Run&lt;/a>、&lt;a href="https://aryido.github.io/posts/google-cloud/gke/">Google Kubernetes Engine&lt;/a> :
+&lt;div class="figure fig-100" >
+&lt;a class="fancybox" href="https://aryido.github.io/images/google-cloud/compute-service-summary/compute-services.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/google-cloud/compute-service-summary/compute-services.jpg" >
+&lt;/a>
+&lt;/div>
+這邊也補充介紹 App Engine，它也是屬於 GCP 運算服務，只要上傳滿足&lt;strong>該平台規範&lt;/strong>的 Code 格式就可以開始運作，會自動做負載平衡且並不需要管理任何硬體機器，聽說當年很紅的&lt;a href="https://cloud.google.com/files/Rovio.pdf">遊戲 &lt;strong>Angry Birds&lt;/strong> 就是使用 App Engine&lt;/a> 來作為服務平台。以上這五種運算服務應該在什麼情況下選擇呢？ 選擇正確的基礎架構服務來運行 APP 是很重要的，故以下對其做一些廣義的整理和筆記。&lt;/p>
+&lt;/blockquote></description></item></channel></rss>
