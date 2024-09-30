@@ -14,6 +14,7 @@ categories:
 tags:
   - serverless
   - cloud-run
+  - gcp-compute-service
 
 comment: false
 

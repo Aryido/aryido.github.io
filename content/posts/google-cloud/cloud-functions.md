@@ -13,6 +13,7 @@ categories:
 
 tags:
   - serverless
+  - gcp-compute-service
 
 comment: false
 
@@ -59,11 +60,11 @@ Cloud Functions (2nd gen) 是基於 「 Cloud Run 」 和 「Eventarc」 構建�
 Cloud Functions (2nd gen) 有增強不少功能 :
 
 > - Request Timeout 對於 HTTP-Triggered 增加到 **60 mins**
-> 
+>
 > - 因為需要支援來自 Cloud Storage 或 BigQuery 的 large streams ，也需要能夠應對 compute-intensive 的情境， 加上 parallel workloads 平行處理需求等等，故對於 **Memory 和 CPU 都提供了更強且更好的定制性**
-> 
+>
 > - Eventarc 的**支援數量增加**非常多
-> 
+>
 > - 流量分割和 Concurrency 都比 1st gen 增強很多
 
 1st Gen 是典型的 Serverless Functions 架構，故每個 function instance 在需要時才會被建立，因此容易出現「 **Cold Start** 」，最簡單的解決方法是設定「最小 instance 數量」，但相對這會增加成本 ; 而 2nd Gen 對於每個 function 有更高的並發，故提供更高的吞吐量和延遲。
@@ -108,9 +109,7 @@ Cloud Function 是一個事件驅動（Event-driven）的計算平台，以下�
 - 善用自訂的命名原則
 - **多利用 tag (推薦)**
 
-
 在多數情況下我們使用 Server 的場景其實都是「非密集存取」且「不會耗用大量網路資源」的情境，這時 Cloud Function 有機會比 VM 便宜很多。[GCP calculator](https://cloud.google.com/products/calculator?hl=en) 簡單估算，一個月存取約 50000 次，平均時間 3 秒，只需要 1.54 美金，如果好好運用可以非常便宜。
-
 
 雖然大部分常用語言 Cloud Function Runtime 都有支援，但還是會面臨一些語言是**沒有支援**的，這時可能就是 Cloud Run 可以考慮使用的場景了。
 
