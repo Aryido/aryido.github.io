@@ -7,4 +7,36 @@
 &lt;/a>
 &lt;/div>
 這邊也補充介紹 App Engine，它也是屬於 GCP 運算服務，只要上傳滿足&lt;strong>該平台規範&lt;/strong>的 Code 格式就可以開始運作，會自動做負載平衡且並不需要管理任何硬體機器，聽說當年很紅的&lt;a href="https://cloud.google.com/files/Rovio.pdf">遊戲 &lt;strong>Angry Birds&lt;/strong> 就是使用 App Engine&lt;/a> 來作為服務平台。以上這五種運算服務應該在什麼情況下選擇呢？ 選擇正確的基礎架構服務來運行 APP 是很重要的，故以下對其做一些廣義的整理和筆記。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Google Kubernetes Engine 概述</title><link>https://aryido.github.io/posts/google-cloud/gke/</link><pubDate>Mon, 15 Jul 2024 20:06:13 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gke/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Google Kubernetes Engine 簡稱是 GKE ，是一個由 Google 管理的 Kubernetes 開源容器編排平台的實現。因為 Kubernetes 的前身 Borg 本來就是 Google 內部的產品，憑藉著這樣的背景 GKE 號稱對於 Kubernetes 的支援跟擴展性跟其它雲端比起來會是最好的。對應其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>EKS&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>AKS&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>雲端化的 Kubernetes 簡單的說就是&lt;strong>把可在地端原生的 Kubernetes 放到雲端上運行&lt;/strong>，由雲供應商幫助我們大幅簡化集群的設置管理與維運。由於只是讓雲供應商託管 Kubernetes ，最終差異也只是看雲供應商如何「預設」和「整合自己平台其他服務」至 Kubernetes 罷了，本質上 EKS、AKS、GKE 差異並不大，故基本上不推薦隨意更換 Kubernetes 服務的雲供應商或使用多雲，會考慮 GKE 的公司，大多都是只是思考怎樣更方便的整合 Kubernetes 和 GCP 的各種服務而已。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Cloud Run 概述</title><link>https://aryido.github.io/posts/google-cloud/cloud-run/</link><pubDate>Sat, 13 Jul 2024 23:14:20 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/cloud-run/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Cloud Run 是一套基於 Knative 的全代管無伺服器容器平台，也屬於 Google Cloud 中的 FaaS 服務，功能是可在 GCP 託管的環境中運行 &lt;strong>Container&lt;/strong> 且已經具有&lt;strong>高擴展性&lt;/strong>基礎架構。若從「無基礎建設的容器化平台（Containers without infrastructure）」的角度來說，對應其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>AWS App Runner&lt;/strong>、&lt;strong>Fargate&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Azure Container Apps&lt;/strong>、&lt;strong>Azure Container Instances&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>Cloud Run 一個蠻大的好處是 : 如果已經把程式打包成 Container Image 鏡象檔，那就可以使用&lt;strong>任何程式語言&lt;/strong>來部署，但其實 &lt;strong>Container Image 化是可選的&lt;/strong>，如果使用的是 Go、Node.js、Python、Java 等等常用的語言，也可以直接使用 Source Code 的方式來部署，讓我們可以使用 FaaS 的概念去執行如 Web Server 比較大型一點的程式。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Cloud Functions 概述</title><link>https://aryido.github.io/posts/google-cloud/cloud-functions/</link><pubDate>Fri, 12 Jul 2024 23:26:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/cloud-functions/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Cloud Functions 是一個&lt;strong>無伺服器的雲端執行環境&lt;/strong> (serverless execution environment)，會把寫出來的 code 完全託管給 GCP 並且無需配置任何 Infra 也不用管理任何 Servers 就可以執行了，對於程式設計師來說只需要專注在自己的程式邏輯即可，基本完全省去管理硬體的煩惱，為最標準的 &lt;strong>FaaS&lt;/strong> 類型服務。對應其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>AWS Lamda&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Azure Functions&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>Cloud Functions 可以用 Java、Python、Node.js、Go 等常用 coding language 來撰寫，適用於部署單一化用途的程式，或用於連接擴展其他的 GCP 雲端服務，以 Events and triggers 為其核心設計思想。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Compute Engine 概述</title><link>https://aryido.github.io/posts/google-cloud/compute-engine/</link><pubDate>Thu, 23 May 2024 23:26:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/compute-engine/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Compute Engine 是託管在 Google 雲端上基礎架構即服務 (IaaS) 產品，其他的稱呼還有 &lt;strong>compute engine instance&lt;/strong> 、 &lt;strong>virtual machine instance&lt;/strong> 、 &lt;strong>VM instance&lt;/strong>。 對應其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>EC2&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Virtual Machine&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>啟動前可以訂製自己需要的 Machine Type ，例如 CPU、memory、disk 等等；再來 Boot disk OS 也可自行選擇 Linux 、 Windows 等等操作系統；針對容器虛擬化，可能使用專門優化來運行容器的 Container-Optimized OS (COS) image 在虛擬機上啟動容器服務。最後關於&lt;strong>備份資料&lt;/strong>，GCP 也有提供相應的服務來面對災難發生時的處理。&lt;/p>
 &lt;/blockquote></description></item></channel></rss>
