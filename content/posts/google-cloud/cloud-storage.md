@@ -58,15 +58,19 @@ GCP 的 Bucket name 必須 **globally unique**，需要在整個 GCP 服務中�
 Bucket 的 Location 是在創建存儲桶時就要設置的 建立 Bucket 完成之後，就**無法更改**其 Location 了，如果還是有移動 Location 的需求，解法是新建 Bucket 然後將資料移至這個新建的 Bucket。Location 的類型決定定價的方式，有 「multi-region」、「dual-region」、「region」可以選。
 
 # Storage Class
+Storage Class 是一個 metadata 附加在每個 Object 上，依據自身‘需求， GCS 提供不同的儲存方案，此會影響 Object 的 Availability 和定價，可以讓儲存價格最佳化。
 
-依據的需求， GCS 提供不同的儲存方案，主要是可以讓價格最佳化。建立 Bucket 時，可以在 Bucket 級別上預設 Class ，當 object 加入 Bucket 時，除非自身有另外指定 Storage Class ，否則就會使用 Bucket 預設 Class 來儲存。
+建立 Bucket 時，可以在 Bucket 級別上預設 Storage Class ，當 Object 加入 Bucket 時，除非 Object 自身有另外指定 Storage Class ，否則就會使用 Bucket 預設 Storage Class 來儲存。
 
-對於每種 Class 都提供 99.999999999%，稱 11 個 9 的 durability。
+對於每種 Class 都提供到達 99.999999999%，稱 11 個 9 的 durability。
 {{< image classes="fancybox fig-100" src="/images/google-cloud/gcs/storage-class.jpg" >}}
 目前最新的 Cloud Storage 功能上還有新增一個新選項為 **Autoclass**，由 GCP 自動推薦 Storage Class。
 {{< alert warning >}}
 Minium storage duration，意指 object 最少需要存放的天數。例如 nearline storage 最少要放 30 天，如果**沒有放超過時間**就刪除、替換或移動該 object，就要另外付錢
 {{< /alert >}}
+
+補充一下 Archive storage，它適用於資料長期歸檔、online backup 和 災難恢復 disaster recovery 的資料備份。 Archive 和 Coldest 都屬於儲存不頻繁訪問的資料，但不同處是 Archive 中的資料可以在毫秒內訪問，因為 disaster recovery 時間是關鍵點， Archive storage 提供資料再需要時可以快速取得。
+
 
 # Protect Object Data
 
