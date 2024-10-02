@@ -20,7 +20,7 @@ reward: false
 
 > BigQuery 是 Google 提供的一個無伺服器資料倉儲 (Serverless Data Warehouse)，其支持 ANSI SQL 來搜尋資料，所以只要會 SQL 語法就可以立即開始使用，且可高效率分析 TB、PB 等級的資料，故 Bigquery 也是企業級雲端大數據資料分析平台。對應到其他的雲端服務是 :
 >
-> - Amazon Web Services (AWS) : **Amazon Athena**
+> - Amazon Web Services (AWS) : **Athena**、**Redshift Spectrum**、**Redshift**
 > - Microsoft Azure : **Azure Synapse Analytics**
 >
 > Google 在非常早期的時候，就有類似 BigQuery 其的服務就存在了，是自 2006 年以來一直在內部使用的 Dremel，後來隨著 GCP 雲端平台的產生，並於 2011 年以 BigQuery 為名被正式推出。目前是 GCP 分析資料的主力產品， Google 自家產品如搜尋引擎、 Gmail 等服務背後，其資料處理與分析的核心技術也和 Bigquery 息息相關。

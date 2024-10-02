@@ -12,7 +12,6 @@ categories:
 - gcp
 
 tags:
-- virtual-machine
 - gcp-virtual-machine
 
 comment: false
