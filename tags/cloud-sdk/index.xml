@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cloud-sdk on Aryido Tech Note</title><link>https://aryido.github.io/tags/cloud-sdk/</link><description>Recent content in cloud-sdk on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 29 Sep 2024 22:26:59 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/cloud-sdk/index.xml" rel="self" type="application/rss+xml"/><item><title>gcloud CLI 概述 - Auth Credentials</title><link>https://aryido.github.io/posts/google-cloud/gcp-cli-3/</link><pubDate>Sun, 29 Sep 2024 22:26:59 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp-cli-3/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>曾經在 gcloud CLI 時，有遇到自己錯誤理解的部分，是關於 gcloud 管理的兩組 credentials :&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>gcloud auth application-default login&lt;/code>: 是用於應用程式的 credential，此 command 會管理 GCP Cloud Client Libraries 等套件會用到的 Application Default Credentials (簡稱ADC)&lt;/li>
+&lt;li>&lt;code>gcloud auth login&lt;/code>: 此 command &lt;strong>只會&lt;/strong>授權 gcloud CLI 工具權限，讓它可以使用 user credential 訪問 GCP 雲端資源，同時把當前的 account activate&lt;/li>
+&lt;/ul>
+&lt;p>除了以上講解，這兩個還有什麼不同呢 ? 接下來再多做一些探討。&lt;/p>
+&lt;/blockquote></description></item><item><title>gcloud CLI 概述 - Initialization GCP Project</title><link>https://aryido.github.io/posts/google-cloud/gcp-cli-1/</link><pubDate>Fri, 27 Sep 2024 20:14:37 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp-cli-1/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>gcloud CLI 全稱是 Google Cloud Command Line Interface ，是創建和管理 GCP 雲端資源的命令行工具，還捆綁了專用的子工具例如 BigQuery （bq CLI）、 Kubernetes 集群 （kubectl CLI） 配合使用，是隸屬在 Cloud SDK 內的。對應其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>AWS CLI&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Azure CLI&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>雖然可以使用 gcloud 來撰寫 script 自動化執行許多常見的任務，但實務上更多是會用例如 &lt;strong>Terraform&lt;/strong> 等 IaC 工具來部屬和管理雲端資源， gcloud 現在基本上用最多是在初始化帳戶如 :&lt;strong>管理身份驗證(manage authentication)&lt;/strong>，或是&lt;strong>自定義本地配置(customize local configuration)&lt;/strong>，這些如權限管理、Project 設定、Billing 有關的功能會是 gcloud 主要使用的地方。&lt;/p>
+&lt;/blockquote></description></item></channel></rss>
