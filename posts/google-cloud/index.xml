@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/google-cloud/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 29 Sep 2024 22:26:59 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/google-cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>gcloud CLI 概述 - Auth Credentials</title><link>https://aryido.github.io/posts/google-cloud/gcp-cli-3/</link><pubDate>Sun, 29 Sep 2024 22:26:59 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp-cli-3/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/google-cloud/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 29 Sep 2024 22:26:59 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/google-cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>gcloud CLI 概述 - Auth Credentials</title><link>https://aryido.github.io/posts/google-cloud/gcloud-cli-2/</link><pubDate>Sun, 29 Sep 2024 22:26:59 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcloud-cli-2/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>曾經在 gcloud CLI 時，有遇到自己錯誤理解的部分，是關於 gcloud 管理的兩組 credentials :&lt;/p>
 &lt;ul>
@@ -6,7 +6,7 @@
 &lt;li>&lt;code>gcloud auth login&lt;/code>: 此 command &lt;strong>只會&lt;/strong>授權 gcloud CLI 工具權限，讓它可以使用 user credential 訪問 GCP 雲端資源，同時把當前的 account activate&lt;/li>
 &lt;/ul>
 &lt;p>除了以上講解，這兩個還有什麼不同呢 ? 接下來再多做一些探討。&lt;/p>
-&lt;/blockquote></description></item><item><title>gcloud CLI 概述 - Initialization GCP Project</title><link>https://aryido.github.io/posts/google-cloud/gcp-cli-1/</link><pubDate>Fri, 27 Sep 2024 20:14:37 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcp-cli-1/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>gcloud CLI 概述 - Initialization GCP Project</title><link>https://aryido.github.io/posts/google-cloud/gcloud-cli-1/</link><pubDate>Fri, 27 Sep 2024 20:14:37 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcloud-cli-1/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>gcloud CLI 全稱是 Google Cloud Command Line Interface ，是創建和管理 GCP 雲端資源的命令行工具，還捆綁了專用的子工具例如 BigQuery （bq CLI）、 Kubernetes 集群 （kubectl CLI） 配合使用，是隸屬在 Cloud SDK 內的。對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
