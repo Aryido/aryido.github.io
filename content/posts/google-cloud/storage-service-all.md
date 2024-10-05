@@ -11,6 +11,9 @@ categories:
   - cloud
   - gcp
 
+tags:
+  - gcp-storage-service
+
 comment: false
 
 reward: false
@@ -110,16 +113,17 @@ Firestore 與 Bigtable 相比，不需要預置資料庫實例（Bigtable 要設
 
 ### Cloud SQL & Cloud Spanner & BigQuery
 
-Cloud SQL 是 GCP 中提供的代管 Relational Database 服務，適用於較小資料量 ; 而 Cloud Spanner 是 GCP 下的全球分散式 Relational Database 系統，用於需要高度一致性和可擴展性的大數據資料儲存。
-
-Online transaction processing(OLTP) 是指我們常用的關聯式資料庫的**交易處理**，Cloud SQL、Cloud Spanner 都可提供該能力 ; Online analytical processing（OLAP） 主要針對**分析讀取**進行最佳化，BigQuery 是代表產品。
-
 |                     | Cloud SQL              | Cloud Spanner                          | BigQuery                                |
 | ------------------- | ---------------------- | -------------------------------------- | --------------------------------------- |
 | **Type**            | RDB - OLTP  | RDB - OLTP                  | Warehouse - OLAP                   |
 | **Transactions**    | Yes                    | Yes                                    | No                                      |
 | **Capacity**        | Up to ~10TB            | Petabytes                              | Petabytes                               |
 | **Best for**        | Basic web applications | Very Large-scale database applications | Interactive querying, offline analytics |
+
+
+Online transaction processing(OLTP) 是指我們常用的關聯式資料庫的**交易處理**Cloud SQL、Cloud Spanner 都可提供該能力。Cloud SQL 是 GCP 中提供的代管 Relational Database 服務，適用於較小資料量 ; 而 Cloud Spanner 是 GCP 下的全球分散式 Relational Database 系統，用於需要高度一致性和可擴展性的大數據資料儲存。 
+
+Online analytical processing（OLAP） 主要針對**分析讀取**進行最佳化，BigQuery 是代表產品。
 
 {{< alert warning >}}
 也提一下，Bigtable 和 BigQuery 名稱也是非常相似的，但為完全不一樣的服務。 Bigtable 是企業級 NoSQL 大數據資料庫 ; 而 BigQuery 是 OLAP DataWarehouse

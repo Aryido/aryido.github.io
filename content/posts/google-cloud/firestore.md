@@ -12,6 +12,9 @@ categories:
   - cloud
   - gcp
 
+tags:
+  - gcp-storage-service
+
 comment: false
 
 reward: false

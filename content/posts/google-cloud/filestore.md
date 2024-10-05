@@ -1,5 +1,5 @@
 ---
-title: GCP - Cloud Filestore 概述
+title: GCP - Filestore 概述
 
 author: Aryido
 
@@ -12,6 +12,7 @@ categories:
   - gcp
 
 tags:
+  - gcp-storage-service
 
 comment: false
 

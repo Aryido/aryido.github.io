@@ -12,6 +12,7 @@ categories:
   - gcp
 
 tags:
+  - gcp-storage-service
 
 comment: false
 
