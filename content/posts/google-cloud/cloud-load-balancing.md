@@ -99,9 +99,11 @@ Backend Service 會藉由 health check 設定的頻率，向指定的 port 探�
 - 流量分佈演算法，使負載均衡器用於在後端實例或服務之間分配傳入請求的方式
 
 {{< alert warning >}}
-這邊注意一下，Backend Service 和 Instance Group 都可以設定 health check，但檢查完成後的行為不太一樣：
-- Backend Service : 確保資源健康之後，Backend service 才將流量導向 Backends。
+這邊注意一下，Load-balancer 的 Backend Service 或者是 Instance Group 本身，都可以設定 health check，但檢查完成後的行為不太一樣：
+- Backend Service : 確保資源健康之後， Load-balancer  才會將流量導向後面的 App
 - Instance Group :  檢查若資源不健康，會把不健康的資源砍掉，並重新建立新的資源
+
+Load-balancer 的健康檢查，只是用來確定流量分配的實例是否健康，並**不能**自動重新創建實例，使之復原成健康的
 {{< /alert >}}
 
 

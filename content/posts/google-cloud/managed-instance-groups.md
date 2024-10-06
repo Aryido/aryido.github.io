@@ -65,9 +65,11 @@ reward: false
 {{< /alert >}}
 
 {{< alert warning >}}
-這邊注意一下，Backend Service 和 Instance Group 都可以設定 health check，但檢查完成後的行為不太一樣：
-- Backend Service : 確保資源健康之後，Backend service 才將流量導向 Backends。
+這邊注意一下，Load-balancer 的 Backend Service 或者是 Instance Group 本身，都可以設定 health check，但檢查完成後的行為不太一樣：
+- Backend Service : 確保資源健康之後， Load-balancer  才會將流量導向後面的 App
 - Instance Group :  檢查若資源不健康，會把不健康的資源砍掉，並重新建立新的資源
+
+MIG 支持自動修復功能，這是實現 VM 自動修復的 best practice
 {{< /alert >}}
 
 - ### 更新策略（Updates strategy）
