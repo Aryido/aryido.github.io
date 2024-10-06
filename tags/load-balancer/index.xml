@@ -14,7 +14,7 @@
 &lt;li>Microsoft Azure : &lt;strong>Azure Load Balancer&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;p>因為只需透過配置&lt;strong>單個&lt;/strong>對外 IP 地址和憑證，就可讓負載平衡器的內部的管理的所有 VM 被外網存取，故從購買 External IP 的角度來說 Load Balancing 也可算是一種降低維運成本的方式。&lt;/p>
-&lt;p>目前從 GCP console 上由&lt;strong>流量類型&lt;/strong>大概分成了「 HTTP(S) 」和 「 TCP/UPD 」兩類負載平衡器，但實際上依照細部功能，還有分 Global/Regional 和 Internal/External 等等，總體設定蠻細緻的 :&lt;/p>
+&lt;p>目前從 GCP console 上由&lt;strong>流量類型&lt;/strong>劃分成了「 HTTP(S) 」和 「 TCP/UDP 」兩大類 Load Balancing ，然後在依照細部應用場景還有分成 「Global/Regional」 和 「Internal/External」 等等各種組合，總體設定蠻精細的，可以對應不同的場合需求。&lt;/p>
 &lt;div class="figure fig-100" >
 &lt;a class="fancybox" href="https://aryido.github.io/images/google-cloud/lb/lb-types.jpg" data-fancybox="">
 &lt;img class="fig-img" src="https://aryido.github.io/images/google-cloud/lb/lb-types.jpg" >
@@ -22,7 +22,7 @@
 &lt;/div>
 &lt;/blockquote></description></item><item><title>GCP - Managed instance groups 概述</title><link>https://aryido.github.io/posts/google-cloud/managed-instance-groups/</link><pubDate>Sun, 16 Jun 2024 22:54:22 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/managed-instance-groups/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>Cloud 是最能展現&lt;strong>自動伸縮擴展服務&lt;/strong>功能的平台，而 GCP 的 Autoscaling Groups of Instances 代表產品是 Managed Instance Groups (簡稱 MIGs) ，雖然名稱有一點點不太直覺。 GCP 會根據自訂義 Autoscaling Policy 來自動添加或刪除 VM ，這些自動縮放而產生的 VM 會有一個&lt;strong>群組&lt;/strong>來管體，就是 MIG。對應其他的雲端服務是 :&lt;/p>
+&lt;p>Cloud 是最能展現&lt;strong>自動伸縮擴展服務&lt;/strong>功能的平台，而 GCP 的 Autoscaling Groups of Instances 代表產品是 Managed Instance Groups (簡稱 MIGs) ，雖然名稱有一點點不太直覺。 GCP 會根據自訂義 Autoscaling Policy 來自動添加或刪除 VMs ，這些自動縮放而產生的 VMs 會有一個&lt;strong>群組&lt;/strong>來管體，就是 MIG。對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
 &lt;li>Amazon Web Services (AWS) : &lt;strong>Auto Scaling groups&lt;/strong>&lt;/li>
 &lt;li>Microsoft Azure : &lt;strong>Virtual Machine Scale Set&lt;/strong>&lt;/li>
