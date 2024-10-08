@@ -1,4 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gcp on Aryido Tech Note</title><link>https://aryido.github.io/categories/gcp/</link><description>Recent content in gcp on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 17 Aug 2024 23:18:06 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/gcp/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Pub/Sub 概述 I - 架構</title><link>https://aryido.github.io/posts/google-cloud/pubsub-1/</link><pubDate>Sat, 17 Aug 2024 23:18:06 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/pubsub-1/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gcp on Aryido Tech Note</title><link>https://aryido.github.io/categories/gcp/</link><description>Recent content in gcp on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 16 Sep 2024 19:23:44 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/gcp/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Identity and Access Management 概述</title><link>https://aryido.github.io/posts/google-cloud/iam/</link><pubDate>Mon, 16 Sep 2024 19:23:44 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/iam/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>GCP 雲端資源的權限管理服務是 IAM，其全稱為 Identity and Access Management，可讓管理員(Administrator)去授權(authorize)一個 Identity，使它可以 action 操作特定的 Resources。對應到其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>AWS Identity and Access Managemen&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Microsoft Entra ID (舊稱 Azure Active Directory)&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>簡單從英文上來說 IAM 是做什麼的 : 「manage &lt;strong>who&lt;/strong> can do &lt;strong>what&lt;/strong> on &lt;strong>which resources&lt;/strong>」，此概念會貫穿整個 IAM 的使用，用於保護 GCP 資源不受&lt;strong>未經授權&lt;/strong>的存取，提供了非常細粒度的控制，可根據具體需求定制安全性策略。
+&lt;div class="figure fig-100" >
+&lt;a class="fancybox" href="https://aryido.github.io/images/google-cloud/iam/iam-overview.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/google-cloud/iam/iam-overview.jpg" >
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Pub/Sub 概述 I - 架構</title><link>https://aryido.github.io/posts/google-cloud/pubsub-1/</link><pubDate>Sat, 17 Aug 2024 23:18:06 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/pubsub-1/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Pub/Sub 是 Google 推出的 Message Service ，作為中介層(Middleware) 可讓一些系統解耦，並透過 Publish-Subscribe 的模式來 「異步 asynchronous」 收發消息，實現高可靠(highly reliable) 和高可擴展(scalable)的服務。 簡單以 Event-Driven 消息傳遞設計為主體概念的話，對應到其他的雲端服務是 :&lt;/p>
 &lt;ul>
