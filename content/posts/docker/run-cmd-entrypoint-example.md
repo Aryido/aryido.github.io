@@ -9,10 +9,9 @@ thumbnailImage: "/images/docker/docker.jpg"
 
 categories:
 - containerization
-- docker
 
 tags:
-- docker-file
+- docker
 
 comment: false
 
