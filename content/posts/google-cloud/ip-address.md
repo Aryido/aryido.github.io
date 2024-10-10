@@ -9,12 +9,12 @@ date: 2024-06-02T14:51:14+08:00
 thumbnailImage: "/images/google-cloud/network/vpc-logo.jpg"
 
 categories:
-- cloud
-- gcp
+  - cloud
+  - gcp
 
 tags:
-- gcp-virtual-machine
-- vpc
+  - gcp-virtual-machine
+  - gcp-network
 
 comment: false
 
