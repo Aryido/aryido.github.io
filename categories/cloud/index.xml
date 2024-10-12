@@ -125,7 +125,7 @@
 &lt;p>雲端化的 Kubernetes 簡單的說就是&lt;strong>把可在地端原生的 Kubernetes 放到雲端上運行&lt;/strong>，由雲供應商幫助我們大幅簡化集群的設置管理與維運。由於只是讓雲供應商託管 Kubernetes ，最終差異也只是看雲供應商如何「預設」和「整合自己平台其他服務」至 Kubernetes 罷了，本質上 EKS、AKS、GKE 差異並不大，故基本上不推薦隨意更換 Kubernetes 服務的雲供應商或使用多雲，會考慮 GKE 的公司，大多都是只是思考怎樣更方便的整合 Kubernetes 和 GCP 的各種服務而已。&lt;/p>
 &lt;/blockquote></description></item><item><title>GCP - Cloud Run 概述</title><link>https://aryido.github.io/posts/google-cloud/cloud-run/</link><pubDate>Sat, 13 Jul 2024 23:14:20 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/cloud-run/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>Cloud Run 是一套基於 Knative 的全代管無伺服器容器平台，也屬於 Google Cloud 中的 FaaS 服務，功能是可在 GCP 託管的環境中運行 &lt;strong>Container&lt;/strong> 且已經具有&lt;strong>高擴展性&lt;/strong>基礎架構。若從「無基礎建設的容器化平台（Containers without infrastructure）」的角度來說，對應其他的雲端服務是 :&lt;/p>
+&lt;p>Cloud Run 是一套基於 Knative 的全代管無伺服器(serverless)容器平台，也屬於 Google Cloud 中的 FaaS 服務，功能是可在 GCP 託管的環境中運行 &lt;strong>Container&lt;/strong> 且已經具有&lt;strong>高擴展性&lt;/strong>基礎架構。若從「無基礎建設的容器化平台（Containers without infrastructure）」的角度來說，對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
 &lt;li>Amazon Web Services (AWS) : &lt;strong>AWS App Runner&lt;/strong>、&lt;strong>Fargate&lt;/strong>&lt;/li>
 &lt;li>Microsoft Azure : &lt;strong>Azure Container Apps&lt;/strong>、&lt;strong>Azure Container Instances&lt;/strong>&lt;/li>
@@ -215,12 +215,12 @@
 &lt;blockquote>
 &lt;/blockquote></description></item><item><title>GCP - Virtual Private Cloud 概述</title><link>https://aryido.github.io/posts/google-cloud/vpc/</link><pubDate>Thu, 30 May 2024 18:52:24 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/vpc/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>Virtual Private Cloud 虛擬私有雲網路，可簡寫成 VPC、網路、VPC Network、Network 等等都可以，是 Google 使用 &lt;a href="https://01.me/2014/03/networking-at-google/">Andromeda&lt;/a>(/ænˈdrɑː.mə.də/) 網路虛擬化技術實現的一個雲端資源，提供如 GCP-VM、GKE、Serverless Workloads 和 App Engine 等等雲端服務的網路功能，能讓 User 可以高自由度地建立管理和優化網路架構。對應其他的雲端服務是 :&lt;/p>
+&lt;p>Virtual Private Cloud 虛擬私有雲網路，簡寫為 VPC、網路、VPC Network、Network 等等都可以，是 Google 使用 &lt;a href="https://01.me/2014/03/networking-at-google/">Andromeda&lt;/a>(/ænˈdrɑː.mə.də/) 網路虛擬化技術實現的一個雲端資源，提供如 GCP-VM、GKE、Serverless Workloads 或 App Engine 等等雲端服務的「網路功能」，能讓 User 高自由度的建立管理和優化網路架構。對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
 &lt;li>Amazon Web Services (AWS) : &lt;strong>Amazon VPC&lt;/strong>&lt;/li>
 &lt;li>Microsoft Azure : &lt;strong>Azure Virtual Network&lt;/strong>&lt;/li>
 &lt;/ul>
-&lt;p>GCP-VPC 和 AWS-VPC 架構上蠻不一樣的，GCP-VPC 是全球性的，只要在同一個 GCP-VPC 內，就算不同 Region 也能使用 Internal IP ; 但如果是不同的 GCP-VPC 就算在同一個 Region 也不能互相通訊。而 AWS-VPC 是針對 Region 來設計的，故只要跨 Region 就不是內網無法直接溝通需再多做其他設定。&lt;/p>
+&lt;p>GCP-VPC 和 AWS-VPC 架構上蠻不一樣的，GCP-VPC 是全球性的，只要在同一個 GCP-VPC 內，就算不同 Region 也能使用 Internal IP ; 但如果是不同的 GCP-VPC 就算在同一個 Region 下也不能互相通訊。而 AWS-VPC 是針對 Region 來設計的，故 AWS-VPC 只要跨 Region 就不是內網無法直接溝通，需再多做其他設定才能連線到彼此。&lt;/p>
 &lt;/blockquote></description></item><item><title>GCP - Instance Template 概述</title><link>https://aryido.github.io/posts/google-cloud/instance-template/</link><pubDate>Fri, 24 May 2024 19:26:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/instance-template/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Instance Template 一個用於定義 GCP VM instance 配置的模板，其中包括如 machine type、bootdisk、startup script 等等實例屬性，基本上都是和 &lt;a href="https://aryido.github.io/posts/google-cloud/managed-instance-groups/">Managed Instance Groups&lt;/a> 結合使用來自動創建 VM instance。對應其他的雲端服務是 :&lt;/p>

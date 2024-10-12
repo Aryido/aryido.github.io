@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>serverless on Aryido Tech Note</title><link>https://aryido.github.io/tags/serverless/</link><description>Recent content in serverless on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 13 Jul 2024 23:14:20 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/serverless/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Cloud Run 概述</title><link>https://aryido.github.io/posts/google-cloud/cloud-run/</link><pubDate>Sat, 13 Jul 2024 23:14:20 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/cloud-run/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>Cloud Run 是一套基於 Knative 的全代管無伺服器容器平台，也屬於 Google Cloud 中的 FaaS 服務，功能是可在 GCP 託管的環境中運行 &lt;strong>Container&lt;/strong> 且已經具有&lt;strong>高擴展性&lt;/strong>基礎架構。若從「無基礎建設的容器化平台（Containers without infrastructure）」的角度來說，對應其他的雲端服務是 :&lt;/p>
+&lt;p>Cloud Run 是一套基於 Knative 的全代管無伺服器(serverless)容器平台，也屬於 Google Cloud 中的 FaaS 服務，功能是可在 GCP 託管的環境中運行 &lt;strong>Container&lt;/strong> 且已經具有&lt;strong>高擴展性&lt;/strong>基礎架構。若從「無基礎建設的容器化平台（Containers without infrastructure）」的角度來說，對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
 &lt;li>Amazon Web Services (AWS) : &lt;strong>AWS App Runner&lt;/strong>、&lt;strong>Fargate&lt;/strong>&lt;/li>
 &lt;li>Microsoft Azure : &lt;strong>Azure Container Apps&lt;/strong>、&lt;strong>Azure Container Instances&lt;/strong>&lt;/li>
