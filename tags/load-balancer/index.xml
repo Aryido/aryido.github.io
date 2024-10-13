@@ -22,12 +22,12 @@
 &lt;/div>
 &lt;/blockquote></description></item><item><title>GCP - Managed instance groups 概述</title><link>https://aryido.github.io/posts/google-cloud/managed-instance-groups/</link><pubDate>Sun, 16 Jun 2024 22:54:22 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/managed-instance-groups/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>Cloud 是最能展現&lt;strong>自動伸縮擴展服務&lt;/strong>功能的平台，而 GCP 的 Autoscaling Groups of Instances 代表產品是 Managed Instance Groups (簡稱 MIGs) ，雖然名稱有一點點不太直覺。 GCP 會根據自訂義 Autoscaling Policy 來自動添加或刪除 VMs ，這些自動縮放而產生的 VMs 會有一個&lt;strong>群組&lt;/strong>來管體，就是 MIG。對應其他的雲端服務是 :&lt;/p>
+&lt;p>Cloud 是最能展現&lt;strong>自動伸縮擴展服務&lt;/strong>好處的平台，而 GCP 的 Autoscaling Groups of Instances 代表產品是 Managed Instance Groups (簡稱 MIGs) ，雖然名稱有一點點不太直覺。 GCP 會根據自訂義的 Autoscaling Policy 來自動添加或刪除 VMs ，這些自動縮放而產生的 VMs 會有一個&lt;strong>群組&lt;/strong>來管體，就是 MIG。對應其他的雲端服務是 :&lt;/p>
 &lt;ul>
 &lt;li>Amazon Web Services (AWS) : &lt;strong>Auto Scaling groups&lt;/strong>&lt;/li>
 &lt;li>Microsoft Azure : &lt;strong>Virtual Machine Scale Set&lt;/strong>&lt;/li>
 &lt;/ul>
-&lt;p>MIGs 的 Autoscaling Policy 能夠基於 Application 的 CPU/Memory 使用率、網路流量等等設定，自動增加或減少資源，根據業務需求靈活調整資源數量從而保證&lt;strong>高性能&lt;/strong>和&lt;strong>成本彈性&lt;/strong>。&lt;/p>
+&lt;p>MIGs 的 Autoscaling Policy 再詳細說一些，是能夠基於 Application 的 CPU/Memory 使用率、網路流量等等設定，自動增加或減少 VM，可根據業務需求或突發流量的場景，靈活調整資源數量從而保證&lt;strong>高性能&lt;/strong>和&lt;strong>成本彈性&lt;/strong>。&lt;/p>
 &lt;/blockquote></description></item><item><title>Terraform - GCP Load Balancer Module</title><link>https://aryido.github.io/posts/terraform/gcp-aws-terraform-module/</link><pubDate>Sat, 29 Oct 2022 23:17:25 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/gcp-aws-terraform-module/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>目前使用 AWS 和 GCP terraform module 的感想，其實我覺得都還可以。但這邊特別覺得 GCP load-balancer module，我個人感覺寫得真的不好，有很多地方應該可以寫得更好，讓使用者體驗更棒的，但他們並沒做到&amp;hellip;，也讓我思考了其實一昧 module 化是否有必要呢 ? 讓我列出來一些我簡單比較和缺點吧。&lt;/p>
