@@ -21,12 +21,12 @@ reward: false
 
 <!--BODY-->
 
-> Pub/Sub 是 Google 推出的 Message Service ，作為中介層(Middleware) 可讓一些系統解耦，並透過 Publish-Subscribe 的模式來 「異步 asynchronous」 收發消息，實現高可靠(highly reliable) 和高可擴展(scalable)的服務。 簡單以 Event-Driven 消息傳遞設計為主體概念的話，對應到其他的雲端服務是 :
+> Pub/Sub 是 Google 推出的 Message Service ，作為中介層(Middleware) 可讓系統解耦，解耦的兩系統透過 Publish-Subscribe 的模式來 「異步 asynchronous」 收發消息，實現高可靠(highly reliable) 和高可擴展(scalable)的服務。 簡單以 Event-Driven 消息傳遞設計為主體概念的話，對應到其他的雲端服務是 :
 >
 > - Amazon Web Services (AWS) : **SQS + SNS**
 > - Microsoft Azure : **Azure Service Bus Messaging**
 >
-> Pub/Sub 也簡化了許多 Message Service Infra 的管理如 Broker、Exchange、Queue 等這些底層架構組件並不會直接被使用者接觸，而是 GCP 完全代管且提供 [Pub/Sub service level agreement (SLA)](https://cloud.google.com/pubsub/sla?hl=en)，developer 僅需要瞭解 Message、Topic、Publisher、Subscription、Subscriber 這些接近應用程式端的 Components，算是降低入門檻可快速使用。
+> Pub/Sub 也簡化了許多 Message Service Infra 的管理如 Broker、Exchange、Queue 等這些底層架構組件並不會直接被使用者接觸，而是 GCP 完全代管且提供 [Pub/Sub service level agreement (SLA)](https://cloud.google.com/pubsub/sla?hl=en)，developer 僅需要瞭解 Message、Topic、Publisher、Subscription、Subscriber 這些接近應用程式端的 Components，算是降低門檻達到快速使用的目的。
 
 <!--more-->
 
@@ -34,7 +34,7 @@ reward: false
 
 # Pub/Sub Components
 
-Pub/Sub 要瞭解如 : Publisher、Topic、Subscription、Subscriber 等幾個關鍵名詞就可以開始設計 Message Service，其運作流程和關係簡單用下圖來進行介紹：
+Pub/Sub 需瞭解 Publisher、Topic、Subscription、Subscriber 等幾個關鍵名詞就可以開始設計 Message Service，其運作流程和關係簡單用下圖來進行介紹：
 
 {{< image classes="fancybox fig-100" src="/images/google-cloud/pubsub/pubsub-components.jpg" >}}
 
@@ -57,9 +57,9 @@ Pub/Sub 要瞭解如 : Publisher、Topic、Subscription、Subscriber 等幾個�
 - `Subscriber 1`
 - `Subscriber 2`
 
-這兩個 Subscriber 會並行一起幫忙處理 Message 增快處理速度，像圖中表示是 `Subscriber 1` 處理 `Message B` 而 `Subscriber 2` 處理 `Message A`，其中一個正常處理完 Message 之後，其他的 Subscriber 就不會處理該消息了 ; 而比較簡單的是 `Subscription 2`，僅連接到單個訂閱者 `Subscriber 3` 來處理資料。
+這兩個 Subscriber 會並行一起幫忙處理 Message 增快處理速度，像圖中表示是 `Subscriber 1` 處理 `Message B` 而 `Subscriber 2` 處理 `Message A`，其中一個正常處理完 Message 之後，其他的 Subscriber 就不會處理該消息了。
 
-{{< image classes="fancybox fig-100" src="/images/google-cloud/pubsub/real-usecases.jpg" >}}
+比較簡單的是 `Subscription 2`，僅連接到單個訂閱者 `Subscriber 3` 來處理資料。
 
 # Pub/Sub Resources Naming Guideline
 
@@ -80,8 +80,9 @@ Publisher 會發送 Message 至 Topic 這個目的地，然後加上要創建 Su
 
 {{< image classes="fancybox fig-100" src="/images/google-cloud/pubsub/topic.jpg" >}}
 
-Pub/Sub 有兩種類型的 Topic : 
-- `standard topic` 
+Pub/Sub 有兩種類型的 Topic :
+
+- `standard topic`
 - `import topic`
 
 `import topic` 比較特別，它可以讓外部資料源(External DataSource)，把**外部資料 Ingest 到 GCP 的 Topic**，也就是上圖中的 `Enable ingestion` 的功能。例如說現在可以把 AWS Kinesis 的 streaming data 導入 GCP 的 Topic 。
@@ -140,21 +141,23 @@ Pub/Sub 的架構模式蠻多樣化的，也因如此 Message Service 在 GCP �
 
 # Pub/Sub Comparison
 
+{{< image classes="fancybox fig-100" src="/images/google-cloud/pubsub/real-usecases.jpg" >}}
+
 Pub/Sub 消息傳遞服務在使用場景上非常多元，故會有很多類似的產品可以做比較，無論是對應到 GCP 平台的其他服務還是對比其他雲平台 AWS 、 Azure 的其他服務。
 
 ### Pub/Sub 和其他 GCP 類似產品的比較
 
 - ##### Cloud Tasks
 
-  Cloud Tasks 和 Pub/Sub 都可用於 Asynchronous Message-Passing，概念上相似，但主要差別是在 Implicit invocation 和 Explicit invocation :
+  Cloud Tasks 和 Pub/Sub 都可用於 Asynchronous Message-Passing，概念上相似，但主要差別是在 「Implicit invocation」 和 「Explicit invocation」 :
 
   > - **Pub/Sub** 屬於 Implicit invocation 隱式調用，因為 Pub/Sub 主要目的是把 Publisher 和 Subscriber 解耦，故 Publisher 是不會知道 Subscriber 的任何資訊的
 
-  > - **Cloud Tasks** 屬於 Explicit invocation 顯式調用，這時 Publisher 是直接指定 Endpoint 來傳送消息，故 Cloud Tasks 適用的場景有 **定時任務觸發特 webhook**、**遠端 procedure 調用**
+  > - **Cloud Tasks** 屬於 Explicit invocation 顯式調用，這時 Publisher 是直接指定 Endpoint 來傳送消息，故 Cloud Tasks 適用的場景有: 定時任務觸發特 webhook、遠端 procedure 調用
 
 - ##### Firebase
 
-  根據官網所敘述，Pub/Sub 主要是用於 Service-To-Service 的訊息異步傳遞，而不是用於 End-User 或 IoT Clients 的通訊，所以若主要是讓 Mobile 或 Web-App 和 Service 溝通的話，尤其是 Mobile 可以考慮 Firebase 系列展品
+  根據官網所敘述，Pub/Sub 主要是用於 Service-To-Service 的訊息異步傳遞，而不是用於 End-User 或 IoT Clients 的通訊，所以若主要是讓 Mobile 或 Web-App 和 Service 溝通的話，**尤其是 Mobile 可以考慮 Firebase 系列展品**
 
 - ##### Pub/Sub Lite
   {{< alert danger >}}
@@ -174,11 +177,11 @@ Pub/Sub 消息傳遞服務在使用場景上非常多元，故會有很多類似
 
 Pub/Sub 是一個強大服務，既支持**訂閱推送**模型也可以像**消息隊列**一樣使用。相比之下 AWS 提供兩個不同的消息傳遞服務設計: SNS 和 SQS ，其區別簡述如下：
 
-- ##### SNS（分散式主題/訂閱）
+- ##### SNS (分散式主題/訂閱)
 
   當生產者把消息發送給 SNS 服務後，會**將消息推送給多個訂閱者**如 : Short Message Service ( SMS 簡訊服務) 、 電子郵件服務 、 Simple Queue Service (SQS) 或 AWS Lambda 。因為一條消息會同時傳遞給多個訂閱者，故適合廣播通知，屬於 **Fan out 設計**
 
-- ##### SQS（分散式消息隊列
+- ##### SQS (分散式消息隊列)
 
   SQS 是消息隊列，消息由一個生產者放入隊列中，不會主動發送給用戶端，由一個或多個消費者按 FIFO 順序拉取消息進行處理，適合任務隊列，供點對點的消息傳遞
 
@@ -203,7 +206,9 @@ Pub/Sub 是一個強大服務，既支持**訂閱推送**模型也可以像**消
 > - Amazon Web Services (AWS) : **Amazon Kinesis**
 > - Microsoft Azure : **Azure Event Hubs**
 
-以上這些都是設計用來處理高吞吐量的 Streaming Data，偏向屬於專門 Data-Engineer 或 Data-Science 領域的雲端工具
+以上這些都是設計用來處理高吞吐量的 Streaming Data，偏向屬於專門 Data-Engineer 或 Data-Science 領域的雲端工具，下圖就舉例一個 GCP Big-Data Analysis 的一種經典架構 : 
+
+{{< image classes="fancybox fig-100" src="/images/google-cloud/pubsub/example.jpg" >}}
 
 {{< alert success >}}
 相似的產品非常多，若真的想了解其中差異可能還會需要更多的實際使用才能比較，以上就先列出來
