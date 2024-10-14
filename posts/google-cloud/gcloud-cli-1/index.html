@@ -48,6 +48,24 @@ Microsoft Azure : Azure CLI
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e># 防止自動打開 web browser，常用在 remote ssh</span>
 </span></span><span style=display:flex><span>gcloud init --console-only
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>gcloud config list --format<span style=color:#f92672>=</span>yaml
+</span></span><span style=display:flex><span><span style=color:#75715e># compute:</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#   region: us-central1</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#   zone: us-central1-a</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># core:</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#   account = XXXXX@gmail.com</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#   project = YYYYY-test-project</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 使用 gcloud CLI 設置 Compute Engine 服務器的 default region/zone = us-east1/us-east1-a</span>
+</span></span><span style=display:flex><span>gcloud config set compute/region us-east1
+</span></span><span style=display:flex><span>gcloud config set compute/zone us-east1-a
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Config 的 Project 的操作</span>
+</span></span><span style=display:flex><span>gcloud config set project <span style=color:#f92672>[</span>PROJECT_ID<span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span>gcloud config unset <span style=color:#f92672>[</span>PROJECT_ID<span style=color:#f92672>]</span>
 </span></span></code></pre></div><div class="alert success"><p>gcloud init 時在 terminal 會有教學，幫助把 Account、Project、Region/Zone 都設定完成，設定完成之後 <code>default</code> 會是預設的 configuration 名稱</p></div><h1 id=管理-gcloud-cli-配置>管理 gcloud CLI 配置</h1><p>實務上蠻有可能會需要配置多個 gcloud CLI configuration 的，原因是可能「有多個 GCP-Accounts 會使用到」或者是「多個 GCP Projects 要切換」，故可以設定 :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 創建/刪除 configuration</span>
 </span></span><span style=display:flex><span>gcloud config configurations create <span style=color:#f92672>[</span>NAME<span style=color:#f92672>]</span>
 </span></span><span style=display:flex><span>gcloud config configurations delete <span style=color:#f92672>[</span>NAME<span style=color:#f92672>]</span>
@@ -71,16 +89,11 @@ Microsoft Azure : Azure CLI
 </span></span></code></pre></div><div class="alert success"><p>使用 <code>gcloud config configurations create [NAME]</code> 創建多個配置，並通過 <code>gcloud config configurations activate [NAME]</code> 來切換不同的帳戶和配置，是管理多個 GCP 帳戶的 Best Practice</p></div><p>一般來說 configuration 的儲存位置會在 :</p><ul><li>MacOS/Linux : <code>~/.config/gcloud</code></li><li>Windows : <code>%APPDATA%\gcloud</code></li></ul><p>可以用 gcloud CLI 確認 configuration 設定檔案儲存在本機哪裡 :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>gcloud info --format<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;value(config.paths.global_config_dir)&#39;</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e># 另外也可用</span>
-</span></span><span style=display:flex><span>which gcloud 
-</span></span></code></pre></div><div class="alert info"><p>which 是一個命令，主要用來在類 Unix 系統（如 Linux 或 macOS）中查找<strong>指定命令的執行檔所在的路徑</strong>。 which 命令會在系統的 PATH 環境變數指定的目錄中，逐一查找可執行文件，如果 which 沒有返回任何結果，可能是指定套件尚未安裝，或它不在 PATH 路徑中</p></div><h3 id=project-操作>Project 操作</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>gcloud config set project <span style=color:#f92672>[</span>PROJECT_ID<span style=color:#f92672>]</span>
-</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>which gcloud
+</span></span></code></pre></div><div class="alert info"><p>which 是一個命令，主要用來在類 Unix 系統（如 Linux 或 macOS）中查找<strong>指定命令的執行檔所在的路徑</strong>。 which 命令會在系統的 PATH 環境變數指定的目錄中，逐一查找可執行文件，如果 which 沒有返回任何結果，可能是指定套件尚未安裝，或它不在 PATH 路徑中</p></div><h3 id=project-操作>Project 操作</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 單純針對 Project 的操作</span>
 </span></span><span style=display:flex><span>gcloud projects describe <span style=color:#f92672>[</span>PROJECT_ID<span style=color:#f92672>]</span>
-</span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>gcloud projects list --format<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;json&#34;</span>
-</span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>gcloud projects list --sort-by<span style=color:#f92672>=[</span>PROJECT_ID<span style=color:#f92672>]</span> --limit<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>gcloud config unset <span style=color:#f92672>[</span>PROJECT_ID<span style=color:#f92672>]</span>
 </span></span></code></pre></div><h3 id=其他常用命令httpscloudgooglecomsdkdocscheatsheet><a href=https://cloud.google.com/sdk/docs/cheatsheet>其他常用命令</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Display version and installed components.</span>
 </span></span><span style=display:flex><span>gcloud version
 </span></span><span style=display:flex><span>
@@ -91,13 +104,13 @@ Microsoft Azure : Azure CLI
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e># Grant gcloud CLI 的 credentials</span>
 </span></span><span style=display:flex><span>gcloud auth login
-</span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>gcloud auth login --no-browser
 </span></span><span style=display:flex><span>gcloud auth login --no-launch-browser
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e># Revoke 對 gcloud CLI 的 credentials</span>
 </span></span><span style=display:flex><span>gcloud auth revoke &lt;ACCOUNT_ID&gt;
 </span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Service-Account Activate</span>
 </span></span><span style=display:flex><span>gcloud auth activate-service-account &lt;SERVICE_ACCOUNT_ID&gt; --key-file<span style=color:#f92672>=</span>&lt;KEY_FILE_PATH&gt; --project<span style=color:#f92672>=</span>&lt;PROJECT_ID&gt;
 </span></span></code></pre></div><h1 id=alpha--beta-version>Alpha & Beta Version</h1><p>默認情況下， gcloud CLI 會安裝 <code>alpha</code>、<code>beta</code> 這種還未正式 release 的 gcloud CLI 版本，可以嘗試的使用它，這兩個的差別介紹如下附表 :</p><table><thead><tr><th><strong>Label</strong></th><th><strong>Description</strong></th></tr></thead><tbody><tr><td><code>beta</code></td><td>Commands 在功能上是完整的，但可能還未完成， Commands 還是可能發生 Breaking changes 且<strong>可能</strong>不會另行通知</td></tr><tr><td><code>alpha</code></td><td>Commands 處於 early release 早期版本中，如有更改，恕不另行通知!</td></tr></tbody></table><p>使用上就是很簡單的在 gcloud 後面加上 Label 就可以使用了例如：</p><pre tabindex=0><code># 與 Compute Engine 相關的 Beta 版命令
 gcloud beta compute
