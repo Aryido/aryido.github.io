@@ -55,7 +55,7 @@ reward: false
 <service>.<resource>.<verb>
 ```
 
-實際舉例一個 Permission 例子如 `pubsub.subscriptions.consume`。現在大概知道 Permission 的樣子了，那 Role 是什麼呢？
+實際舉幾個 Permission 例子如 `pubsub.subscriptions.consume`、`storage.buckets.create` 等等。現在大概知道 Permission 的樣子了，那 Role 是什麼呢？
 
 > 「 **Role 是 Permissions 的集合** 」
 
@@ -73,11 +73,17 @@ roles/<service>.<roleName>
 
 **Role 可當成是用來管理許多 Permissions 的載體**，因為 GCP 上面 Permissions 大概近萬個，為了管理這些權限 GCP 已經有先幫把一些 Permissions 組合成一些常見的 Role 來描述了：
 
-- **Basic roles**: 有 Owner、Editor、Viewer、Browser，因為這些 Role 太廣義，故不建議在 production 上
+- ##### **Basic roles**
 
-- **Predefined roles**: 像上述 `Compute Instance Admin` 就是一個範例，比 Basic Role 更精細
+  有 Owner、Editor、Viewer、Browser，因為這些 Role 太廣義，故不建議在 production 上
 
-- **Custom role**: 也可以選擇來完全自己客製化 Role ，自己取名稱以及加上適用的 Permissions
+- ##### **Predefined roles**
+
+  像上述 `Compute Instance Admin` 就是一個範例，比 Basic Role 更精細，為特定服務提供 granular access ，這些 Role 會由 Google 來創建及維護，當有新的服務或功能加入時，這些 Role 的權限也會跟著擴充
+
+- ##### **Custom role**:
+
+  也可以選擇來完全自己客製化 Role ，自己取名稱以及加上適用的 Permissions
 
 {{< alert success >}}
 「Access」 和「Permission」也十分相像，**個人自己看完文件後，我個人的理解是**:
@@ -98,7 +104,7 @@ Principal 有[很多不同的類型](https://cloud.google.com/iam/docs/overview#
 
 - ##### Google Account
 
-  Google Account 基本可代表成 End-User 終端用戶，可以是 developer 或者 administrator，是使用 [Google Account signup page](https://accounts.google.com/lifecycle/steps/signup/name?ddm=0&dsh=S-2128785099:1726630792338814&flowEntry=SignUp&flowName=GlifWebSignIn&TL=APps6eawczPxyJ3RscxI5EZ03JQDdNwO0VqYkUcYUgPv4E_-a9GH69oqT77aHKJ9) 註冊的帳戶，其會有像是 `gmail.com`代表個人的 email address 作為 identifier
+  Google Account 基本可代表成 End-User 終端用戶，可以是 developer 或者 administrator，是使用 [Google Account signup page](https://accounts.google.com/lifecycle/steps/signup/name?ddm=0&dsh=S-2128785099:1726630792338814&flowEntry=SignUp&flowName=GlifWebSignIn&TL=APps6eawczPxyJ3RscxI5EZ03JQDdNwO0VqYkUcYUgPv4E_-a9GH69oqT77aHKJ9) 註冊的帳戶，其會有像是 `gmail.com`代表個人的 email address 或者是公司行號的 `XXX@acompany.com` 等等作為 identifier
 
 - ##### [Service Account](https://cloud.google.com/docs/authentication#service-accounts)
 
@@ -110,9 +116,7 @@ Principal 有[很多不同的類型](https://cloud.google.com/iam/docs/overview#
 
 - **Google Workspace account** 通常會代表一個公司組織的 internet domain name，例如說公司有申請 domain name 叫做 `mysupercompany.com`，那當創建 Google Account 是 `username@mysupercompany.com`的話，就會自動加入 Workspace 來管理
 
-- **allAuthenticatedUsers** & **allUsers** : 這兩個都是特別的 Principal 類型
-
-其實還有蠻多的，但就暫時略過。
+- **allAuthenticatedUsers** & **allUsers** : 這兩個都是特別的 Principal 類型，例如在 Terraform 內設定 iam-binding 會看到
 
 ### Policy
 
@@ -154,23 +158,23 @@ IAM API 是 eventually consistent，所以如果更改 IAM ，然後立即讀取
 
 # Practice
 
-> 如果有一個 GCP project owner 想把管理 Cloud Storage buckets 和 files 的權限 delegate 委託給同事 colleague 。若要遵循 Google- recommended practices，應該給 colleague 授予哪些 IAM Role ?
+> 如果有一個 GCP project owner 想把管理 Cloud Storage buckets 和 files 的權限 delegate 委託給同事 colleague 。若要依照 Google-recommended practices 來做的話，應該給 colleague 授予哪些 IAM Role ?
 >
 > - A. `Project Editor`
-> - B. `Storage Admin`
+> - B. `Storage Admin` **(O)**
 > - C. `Storage Object Admin`
 > - D. `Storage Object Creator`
 
-`Project Editor` 會有幾乎所有 GCP Resource 的編輯權限，賦予的權限太大，違反了最小權限原則。 `Storage Admin` 角色是針對 Cloud Storage 的最廣泛的 Role ，可以存取 buckets 和其內部的 objs 內容，這是正確答案 ; `Storage Object Admin` 就只有 obj 的權限，如果需要的是對 buckets 及其內容的全面管理，這個角色的權限不夠。
+`Project Editor` 會有幾乎所有 GCP Resource 的編輯權限，賦予的權限太大，違反了**最小權限原則**。 `Storage Admin` 角色是針對 Cloud Storage 的最廣泛的 Role ，可以存取 buckets 和其內部的 objs 內容，這是正確答案 ; `Storage Object Admin` 就只有 obj 的權限，如果需要的是對 buckets 及其內容的全面管理，這個角色的權限不夠。
 
 # Practice
 
-> 有一個已定義適當 IAM Role 的 dev-project，若要創建一個 prod-project 並在此 prod-project 中擁有相同的 IAM Role，使用最少的步驟，應該怎麼做？
+> 有一個已定義好 IAM Role 的 dev-project，若要創建一個 prod-project 並在此 prod-project 中擁有相同的 IAM Role，怎麼做最快速？
 
-有 `gcloud iam roles copy` 可以使用，舉例如
+有 `gcloud iam roles copy` 可以使用，舉例如 :
 
 ```bash
-gcloud iam roles copy --source="roles/myCustomAdmin" --destination=myCustomAdmin --dest-project=[PROJECT_ID]
+gcloud iam roles copy --source="roles/myCustomAdmin" --destination=myCustomAdmin --dest-project=prod-project
 ```
 
 ---
@@ -184,3 +188,5 @@ gcloud iam roles copy --source="roles/myCustomAdmin" --destination=myCustomAdmin
 - [IAM 是什麼？GCP Cloud IAM 介紹](https://blog.cloud-ace.tw/identity-security/what-is-cloud-iam/)
 
 - [【Explanation】GCP 新手村 — IAM](https://medium.com/@kellenjohn175/explanation-gcp-%E6%96%B0%E6%89%8B%E6%9D%91-iam-e0bb19952413)
+
+- [快速了解 Google Cloud Platform IAM](https://hackmd.io/@kevinhuangtw/SJ2KjoRKc)
