@@ -23,7 +23,7 @@ reward: false
 <!--BODY-->
 
 > gcloud CLI 全稱是 Google Cloud Command Line Interface ，是創建和管理 GCP 雲端資源的「命令行」
-工具，還捆綁了專用的子工具例如 BigQuery(bq CLI)、 Kubernetes 集群(kubectl CLI) 可配合使用，是隸屬在 Cloud SDK 內的。對應其他的雲端服務是 :
+> 工具，還捆綁了專用的子工具例如 BigQuery(bq CLI)、 Kubernetes 集群(kubectl CLI) 可配合使用，是隸屬在 Cloud SDK 內的。對應其他的雲端服務是 :
 >
 > - Amazon Web Services (AWS) : **AWS CLI**
 > - Microsoft Azure : **Azure CLI**
@@ -39,6 +39,7 @@ reward: false
 # GCP Project 初始化
 
 GCP 的設計是把所有雲端資源建立在一個 GCP Project 上，故 GCP Project 概念上對應成其他雲端服務的部分類似為:
+
 - **azure resource group**
 - **aws account**
 
@@ -50,6 +51,24 @@ gcloud init
 
 # 防止自動打開 web browser，常用在 remote ssh
 gcloud init --console-only
+
+---
+
+gcloud config list --format=yaml
+# compute:
+#   region: us-central1
+#   zone: us-central1-a
+# core:
+#   account = XXXXX@gmail.com
+#   project = YYYYY-test-project
+
+# 使用 gcloud CLI 設置 Compute Engine 服務器的 default region/zone = us-east1/us-east1-a
+gcloud config set compute/region us-east1
+gcloud config set compute/zone us-east1-a
+
+# Config 的 Project 的操作
+gcloud config set project [PROJECT_ID]
+gcloud config unset [PROJECT_ID]
 ```
 
 {{< alert success >}}
@@ -89,16 +108,17 @@ gcloud config configurations activate [NAME]
 {{< /alert >}}
 
 一般來說 configuration 的儲存位置會在 :
+
 - MacOS/Linux : `~/.config/gcloud`
 - Windows : `%APPDATA%\gcloud`
 
-
 可以用 gcloud CLI 確認 configuration 設定檔案儲存在本機哪裡 :
+
 ```bash
 gcloud info --format='value(config.paths.global_config_dir)'
 
 # 另外也可用
-which gcloud 
+which gcloud
 ```
 
 {{< alert info >}}
@@ -108,15 +128,10 @@ which 是一個命令，主要用來在類 Unix 系統（如 Linux 或 macOS）�
 ### Project 操作
 
 ```bash
-gcloud config set project [PROJECT_ID]
-
+# 單純針對 Project 的操作
 gcloud projects describe [PROJECT_ID]
-
 gcloud projects list --format="json"
-
 gcloud projects list --sort-by=[PROJECT_ID] --limit=5
-
-gcloud config unset [PROJECT_ID]
 
 ```
 
@@ -133,20 +148,20 @@ gcloud auth list
 
 # Grant gcloud CLI 的 credentials
 gcloud auth login
-
 gcloud auth login --no-browser
 gcloud auth login --no-launch-browser
 
 # Revoke 對 gcloud CLI 的 credentials
 gcloud auth revoke <ACCOUNT_ID>
 
+# Service-Account Activate
 gcloud auth activate-service-account <SERVICE_ACCOUNT_ID> --key-file=<KEY_FILE_PATH> --project=<PROJECT_ID>
 
 ```
 
 # Alpha & Beta Version
 
-默認情況下， gcloud CLI 會安裝 `alpha`、`beta` 這種還未正式 release 的 gcloud CLI 版本，可以嘗試的使用它，這兩個的差別介紹如下附表 : 
+默認情況下， gcloud CLI 會安裝 `alpha`、`beta` 這種還未正式 release 的 gcloud CLI 版本，可以嘗試的使用它，這兩個的差別介紹如下附表 :
 | **Label** | **Description** |
 |-----------|-----------------|
 | `beta` | Commands 在功能上是完整的，但可能還未完成， Commands 還是可能發生 Breaking changes 且**可能**不會另行通知 |
