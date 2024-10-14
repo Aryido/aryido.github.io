@@ -118,6 +118,16 @@ TTL 作用是設定每一筆紀錄在 DNS **快取伺服器**所保留的時間�
 
 ---
 
+# Practice
+
+> 有一個 Compute Engine 上運行著多個相關的 APP ，現在想要通過 DNS name 來 expose 公開每個 APP， 若遵循 Google-recommended practices 則應該怎麼做？
+
+由於需要 Expose APP，所以就不能用 Internal DNS，故選擇透過 **Public DNS** 為每個 App 分配一個公共域名，並將該域名映射到 VM 的 IP 地址，從而使得外部 User 能夠通過域名訪問 App 。
+
+Cloud DNS 提供高效低成本的域名解析，是公開應用程序的最佳方法，符合 Google 的最佳實踐。
+
+---
+
 ### 參考資料
 
 - [Cloud DNS overview ](https://cloud.google.com/dns/docs/overview)
