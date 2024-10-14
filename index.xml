@@ -1,4 +1,28 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 16 Sep 2024 19:23:44 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Identity and Access Management 概述</title><link>https://aryido.github.io/posts/google-cloud/iam/</link><pubDate>Mon, 16 Sep 2024 19:23:44 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/iam/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 13 Oct 2024 23:50:08 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Cloud Build 概述</title><link>https://aryido.github.io/not-yet-finished/cloud-build/</link><pubDate>Sun, 13 Oct 2024 23:50:08 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/cloud-build/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>對應到其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : ****&lt;/li>
+&lt;li>Microsoft Azure : ****&lt;/li>
+&lt;/ul>
+&lt;/blockquote></description></item><item><title>GCP - 概述</title><link>https://aryido.github.io/not-yet-finished/dataproc/</link><pubDate>Fri, 11 Oct 2024 20:21:20 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/dataproc/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>對應到其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : ****&lt;/li>
+&lt;li>Microsoft Azure : ****&lt;/li>
+&lt;/ul>
+&lt;/blockquote></description></item><item><title>gcloud CLI 概述 II - Authorize the gcloud CLI</title><link>https://aryido.github.io/not-yet-finished/gcp-cli-2/</link><pubDate>Sat, 28 Sep 2024 21:25:48 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/gcp-cli-2/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>我們經常會透過 gcloud CLI 和 GCP 的雲端資源互動，為了能夠 Access 到 GCP 的雲端資源，就必須 authorize gcloud CLI，提供了兩個方式來 grant authorization 到 gcloud CLI :&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>User account&lt;/strong>: 代表「 End-user 」，是最常見的使用案例也是 best practice&lt;/li>
+&lt;li>&lt;strong>Service account&lt;/strong>: 是關聯到 Project 代表「 Application 」而不是「人」的使用者&lt;/li>
+&lt;/ul>
+&lt;p>無論是 User account 和 Service account ，這兩個都屬於 Google Account 類型並且可以加入到 GCP IAM 成為一個 Principal，授權流程是使用 OAuth2 進行，授權成功之後就會有對應 Access 權限，可用來操作雲端資源了。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Identity and Access Management</title><link>https://aryido.github.io/not-yet-finished/iam/</link><pubDate>Mon, 16 Sep 2024 19:23:44 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/iam/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;/blockquote></description></item><item><title>GCP - Identity and Access Management 概述</title><link>https://aryido.github.io/posts/google-cloud/iam/</link><pubDate>Mon, 16 Sep 2024 19:23:44 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/iam/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>GCP 雲端資源的權限管理服務是 IAM，其全稱為 Identity and Access Management，可讓管理員(Administrator)去授權(authorize)一個 Identity，使它可以 action 操作特定的 Resources。對應到其他的雲端服務是 :&lt;/p>
 &lt;ul>
@@ -12,6 +36,8 @@
 &lt;/a>
 &lt;/div>
 &lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Pub/Sub 概述 I - 架構</title><link>https://aryido.github.io/not-yet-finished/pubsub-2/</link><pubDate>Sat, 17 Aug 2024 23:18:06 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/pubsub-2/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
 &lt;/blockquote></description></item><item><title>GCP - Pub/Sub 概述 I - 架構</title><link>https://aryido.github.io/posts/google-cloud/pubsub-1/</link><pubDate>Sat, 17 Aug 2024 23:18:06 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/pubsub-1/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Pub/Sub 是 Google 推出的 Message Service ，作為中介層(Middleware) 可讓一些系統解耦，並透過 Publish-Subscribe 的模式來 「異步 asynchronous」 收發消息，實現高可靠(highly reliable) 和高可擴展(scalable)的服務。 簡單以 Event-Driven 消息傳遞設計為主體概念的話，對應到其他的雲端服務是 :&lt;/p>
@@ -38,6 +64,9 @@
 &lt;/a>
 &lt;/div>
 在現今的雲端計算時代，儲存和管理大量資料變得更加重要，以上這幾種儲存服務需根據業務來選擇，因為這也會決定到訪問和管理組資料的難易程度，故以下對其做一些廣義的整理和筆記來幫助和選擇適合的儲存服務。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Bigquery 概述 II -</title><link>https://aryido.github.io/not-yet-finished/bigquery-2/</link><pubDate>Sun, 11 Aug 2024 02:18:34 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/bigquery-2/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>BigQuery 除了可以把資料以 columnar storage format 儲存進 BigQuery 內後進行查詢分析，也&lt;strong>支持直接查詢外部資料來源&lt;/strong>如 GCS、Bigtable 、 Spanner/SQL 、 Google Sheets 等等&lt;/p>
 &lt;/blockquote></description></item><item><title>GCP - Bigquery 概述 I - 架構</title><link>https://aryido.github.io/posts/google-cloud/bigquery-1/</link><pubDate>Fri, 09 Aug 2024 23:08:24 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/bigquery-1/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>BigQuery 是 Google 提供的一個無伺服器資料倉儲 (Serverless Data Warehouse)，其支持 ANSI SQL 來搜尋資料，所以只要會 SQL 語法就可以立即開始使用，且可高效率分析 TB、PB 等級的資料，故 Bigquery 也是企業級雲端大數據資料分析平台。對應到其他的雲端服務是 :&lt;/p>
@@ -70,7 +99,7 @@
 &lt;li>Microsoft Azure : &lt;strong>Azure SQL Database for MySQL/PostgreSQL&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;p>Cloud SQL 除了可快速啟用資料庫，還可以同時整合讀寫分離、同步、自動備份、監控等等，也讓我們能更安全便捷地整合 GCP 的其它雲端產品例如：「創建 Table 並從 Cloud Storage 導入 .sql 資料」、「使用 Cloud SQL Auth Proxy 連結到 Compute Engine」、「連接到 BigQuery 來使用聯合查詢」等等。&lt;/p>
-&lt;/blockquote></description></item><item><title>GCP - Bigtable 概述 II - 儲存模型</title><link>https://aryido.github.io/posts/google-cloud/bigtable-2/</link><pubDate>Wed, 31 Jul 2024 15:28:33 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/bigtable-2/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>GCP - Cloud SQL 連線</title><link>https://aryido.github.io/not-yet-finished/sql-connection/</link><pubDate>Sat, 03 Aug 2024 23:33:55 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/sql-connection/</guid><description>&lt;!-- raw HTML omitted --></description></item><item><title>GCP - Bigtable 概述 II - 儲存模型</title><link>https://aryido.github.io/posts/google-cloud/bigtable-2/</link><pubDate>Wed, 31 Jul 2024 15:28:33 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/bigtable-2/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>由於 Bigtable 在 Google 內部廣為使用，故有於 2006 年發表了它的論文介紹：&lt;a href="https://static.googleusercontent.com/media/research.google.com/zh-CN//archive/bigtable-osdi06.pdf">Bigtable: A Distributed Storage System for Structured Data&lt;/a>，然後在 2015/5 推出成為 GCP 雲端產品給大眾使用。 在 Google 官網上 Bigtable 的定義是一個 Sparsely-Populated-Table，其中 sparse 意思是如果某 Column 未在特定 Row 中使用，就不會佔用任何空間。&lt;/p>
 &lt;p>Bigtable 也可以輕鬆擴展到數十億 Rows 和數千個 Columns ，能夠存儲 PB 級的資料量，適合 High-Throughput 場景的服務，是個強大的服務。而個人也覺得 Bigtable 是對有使用 GCP 的人常被問有沒有使用過的一個雲端服務之一，故可以特別看一下這個服務。(&lt;strong>第一名最常問的，我個人認為是 Bigquery&lt;/strong>)&lt;/p>
@@ -139,6 +168,14 @@
 &lt;li>Microsoft Azure : &lt;strong>Azure Functions&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;p>Cloud Functions 可以用 Java、Python、Node.js、Go 等常用 coding language 來撰寫，適用於部署單一化用途的程式，或用於連接擴展其他的 GCP 雲端服務，以 Events and triggers 為其核心設計思想。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Cloud VPN 概述</title><link>https://aryido.github.io/not-yet-finished/cloud-vpn/</link><pubDate>Wed, 10 Jul 2024 18:18:34 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/cloud-vpn/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Cloud VPN 全稱是 Cloud Virtual Private Network，能夠將自己本地的 Network 和 GCP VPC Network 進行對等連接 peering 在一起。兩個 Network 之間傳輸的流量由一個 VPN Gateway 透過 IPSec 協議進行加密，再由另一個 VPN Gateway 解密，此操作可以更加保護資料在網路上傳輸的安全。對應其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>AWS VPN&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Azure VPN&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>除了自己本地的 Network 和 GCP VPC 對等連接 peering 之外，Cloud VPN 也支持把兩個 GCP VPC 通過連接兩個 Cloud VPN 實例將網路連接在一起，由於是由 Google 託管的服務，也提供了 99% 以上的 SLA。&lt;/p>
 &lt;/blockquote></description></item><item><title>GCP - Cloud NAT 概述</title><link>https://aryido.github.io/posts/google-cloud/cloud-nat/</link><pubDate>Tue, 02 Jul 2024 20:18:34 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/cloud-nat/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Cloud NAT 全稱是 Cloud Network Address Translation，是 Google Cloud 代管的 IP 轉譯服務，可在不公開 IP 位址的情況下，讓 GCP VM 或 GKE 內的 Pod 可以高效的&lt;strong>連接上&lt;/strong>「外部網路 Internet」，而外部資源無法直接存取 Cloud NAT gateway 後方的資源，維持獨立性與安全性。對應其他的雲端服務是 :&lt;/p>
@@ -147,6 +184,14 @@
 &lt;li>Microsoft Azure : &lt;strong>Azure NAT Gateway&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;p>Cloud NAT 是以 Software-defined Networking 服務，中間不存在 proxy instance ，故性能方面比傳統 NAT 好上不少。除了 VM、GKE 之外，也可使用在 Cloud Run、Cloud Functions、App Engine 等服務。&lt;/p>
+&lt;/blockquote></description></item><item><title>NAT 概述</title><link>https://aryido.github.io/not-yet-finished/nat/</link><pubDate>Tue, 02 Jul 2024 20:18:34 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/nat/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Cloud NAT 全稱是 Cloud Network Address Translation，是 Google Cloud 代管的 IP 轉譯服務，可在不公開 IP 位址的情況下，讓「某些 GCP 資源」可以高效的&lt;strong>連接上&lt;/strong>「外部網路 Internet」，而外部資源無法直接存取 Cloud NAT gateway 後方的資源，維持獨立性與安全性。對應其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>NAT gateways&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Azure NAT Gateway&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>Cloud NAT 是以 Software-defined Networking 服務，中間不存在 proxy instance ，故性能方面比傳統 NAT 好，目前最經常是用在 VM、GKE 上，除此之外也提供 Cloud Run、Cloud Functions、App Engine 等服務，能夠透過&lt;strong>共用&lt;/strong>一組 IP 位址對外通訊，建立 NAT gateways 連線到 VPC 外部網路，由於&lt;strong>共用&lt;/strong>一組 IP，也解決了 IP 短缺問題。&lt;/p>
 &lt;/blockquote></description></item><item><title>GCP - Cloud DNS 概述</title><link>https://aryido.github.io/posts/google-cloud/cloud-dns/</link><pubDate>Mon, 01 Jul 2024 23:26:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/cloud-dns/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Cloud DNS 是 Google 提供的代管式的全球 Domain Name System(網域名稱系統服務)，為一個&lt;strong>分布式的分層資料庫(hierarchical distributed database)&lt;/strong> 用於存儲 IP addresses 和 Domain Name 的對應關係，還可以建立 DNS Zone 並在其下管理和創建 Record 。對應其他的雲端服務是 :&lt;/p>
@@ -155,6 +200,10 @@
 &lt;li>Microsoft Azure : &lt;strong>Azure DNS&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;p>Cloud DNS 是&lt;strong>提供代管功能而不是註冊&lt;/strong>，而代管的好處是有一個「共同管理維護」的介面 ; 還能「基於地理位置」將流量轉到最接近的服務器從而提高性能與速度 ; 結合「 GCP 雲端安全服務」保護應用程式免於如 DDoS 攻擊。 最後比較特別的是 Google 的 Cloud DNS 服務號稱是 &lt;a href="https://cloud.google.com/dns/sla">100% SLA&lt;/a> 服務保證絕對不會中斷， Google 對其 DNS 服務設計非常的有信心。&lt;/p>
+&lt;/blockquote></description></item><item><title/><link>https://aryido.github.io/not-yet-finished/amqp-mqtt/</link><pubDate>Mon, 24 Jun 2024 23:26:00 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/amqp-mqtt/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;/blockquote></description></item><item><title>DNS 概述</title><link>https://aryido.github.io/not-yet-finished/dns/</link><pubDate>Mon, 24 Jun 2024 23:26:00 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/dns/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
 &lt;/blockquote></description></item><item><title>GCP - Cloud CDN 概述</title><link>https://aryido.github.io/posts/google-cloud/cloud-cdn/</link><pubDate>Mon, 24 Jun 2024 23:26:00 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/cloud-cdn/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>CDN 全名為 Content Delivery Network，是一種透過分散在不同地區的 server，用離使用者&lt;strong>最近的伺服器&lt;/strong>來傳送快取內容。而 Cloud CDN，就是借助 Google 分佈在&lt;strong>全球各地&lt;/strong>的網路節點，將內容以快取(Cache)形式預先儲存，以達到最快速的內容交付。對應其他的雲端服務是 :&lt;/p>
@@ -237,6 +286,8 @@
 &lt;li>Microsoft Azure : &lt;strong>Virtual Machine&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;p>啟動前可以訂製自己需要的 Machine Type ，例如 CPU、memory、disk 等等；再來 Boot disk OS 也可自行選擇 Linux 、 Windows 等等操作系統；針對容器虛擬化，可能使用專門優化來運行容器的 Container-Optimized OS (COS) image 在虛擬機上啟動容器服務。最後關於&lt;strong>備份資料&lt;/strong>，GCP 也有提供相應的服務來面對災難發生時的處理。&lt;/p>
+&lt;/blockquote></description></item><item><title>PaaS、IaaS、SaaS、CaaS 介紹</title><link>https://aryido.github.io/not-yet-finished/iaas-paas-saas-caas/</link><pubDate>Wed, 22 May 2024 23:41:17 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/iaas-paas-saas-caas/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
 &lt;/blockquote></description></item><item><title>gcloud CLI 概述 - Auth Credentials</title><link>https://aryido.github.io/posts/google-cloud/gcloud-cli-2/</link><pubDate>Wed, 22 May 2024 22:26:59 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcloud-cli-2/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>曾經在使用 gcloud CLI 時，有遇到自己錯誤理解的部分，是關於 gcloud 管理的兩組 credentials :&lt;/p>

@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cloud-sdk on Aryido Tech Note</title><link>https://aryido.github.io/tags/cloud-sdk/</link><description>Recent content in cloud-sdk on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 22 May 2024 22:26:59 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/cloud-sdk/index.xml" rel="self" type="application/rss+xml"/><item><title>gcloud CLI 概述 - Auth Credentials</title><link>https://aryido.github.io/posts/google-cloud/gcloud-cli-2/</link><pubDate>Wed, 22 May 2024 22:26:59 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcloud-cli-2/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cloud-sdk on Aryido Tech Note</title><link>https://aryido.github.io/tags/cloud-sdk/</link><description>Recent content in cloud-sdk on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 28 Sep 2024 21:25:48 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/cloud-sdk/index.xml" rel="self" type="application/rss+xml"/><item><title>gcloud CLI 概述 II - Authorize the gcloud CLI</title><link>https://aryido.github.io/not-yet-finished/gcp-cli-2/</link><pubDate>Sat, 28 Sep 2024 21:25:48 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/gcp-cli-2/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>我們經常會透過 gcloud CLI 和 GCP 的雲端資源互動，為了能夠 Access 到 GCP 的雲端資源，就必須 authorize gcloud CLI，提供了兩個方式來 grant authorization 到 gcloud CLI :&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>User account&lt;/strong>: 代表「 End-user 」，是最常見的使用案例也是 best practice&lt;/li>
+&lt;li>&lt;strong>Service account&lt;/strong>: 是關聯到 Project 代表「 Application 」而不是「人」的使用者&lt;/li>
+&lt;/ul>
+&lt;p>無論是 User account 和 Service account ，這兩個都屬於 Google Account 類型並且可以加入到 GCP IAM 成為一個 Principal，授權流程是使用 OAuth2 進行，授權成功之後就會有對應 Access 權限，可用來操作雲端資源了。&lt;/p>
+&lt;/blockquote></description></item><item><title>gcloud CLI 概述 - Auth Credentials</title><link>https://aryido.github.io/posts/google-cloud/gcloud-cli-2/</link><pubDate>Wed, 22 May 2024 22:26:59 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/gcloud-cli-2/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>曾經在使用 gcloud CLI 時，有遇到自己錯誤理解的部分，是關於 gcloud 管理的兩組 credentials :&lt;/p>
 &lt;ul>

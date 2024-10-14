@@ -1,0 +1,103 @@
+<!doctype html><html lang=en-us><head><script type=application/ld+json>{"@context":"http://schema.org","@type":"Website","@id":"https:\/\/aryido.github.io\/","author":{"@type":"Person","name":"李昀陽 YunYang Lee","image":"https://aryido.github.io/images/aboutme/head-shot.jpg"},"name":"Aryido Tech Note","description":"\u003c!-- raw HTML omitted --\u003e\n\u003cblockquote\u003e\n\u003cp\u003e對應到其他的雲端服務是 :\u003c\/p\u003e\n\u003cul\u003e\n\u003cli\u003eAmazon Web Services (AWS) : ****\u003c\/li\u003e\n\u003cli\u003eMicrosoft Azure : ****\u003c\/li\u003e\n\u003c\/ul\u003e\n\u003c\/blockquote\u003e","url":"https:\/\/aryido.github.io\/not-yet-finished\/cloud-build\/","keywords":"[]"}</script><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Hugo 0.119.0 with theme Tranquilpeak 0.5.3-BETA"><meta name=author content="李昀陽 YunYang Lee"><meta name=keywords content><meta name=description content="
+
+對應到其他的雲端服務是 :
+
+Amazon Web Services (AWS) : ****
+Microsoft Azure : ****
+
+"><meta property="og:description" content="
+
+對應到其他的雲端服務是 :
+
+Amazon Web Services (AWS) : ****
+Microsoft Azure : ****
+
+"><meta property="og:type" content="article"><meta property="og:title" content="GCP -  Cloud Build 概述"><meta name=twitter:title content="GCP -  Cloud Build 概述"><meta property="og:url" content="https://aryido.github.io/not-yet-finished/cloud-build/"><meta property="twitter:url" content="https://aryido.github.io/not-yet-finished/cloud-build/"><meta property="og:site_name" content="Aryido Tech Note"><meta property="og:description" content="
+
+對應到其他的雲端服務是 :
+
+Amazon Web Services (AWS) : ****
+Microsoft Azure : ****
+
+"><meta name=twitter:description content="
+
+對應到其他的雲端服務是 :
+
+Amazon Web Services (AWS) : ****
+Microsoft Azure : ****
+
+"><meta property="og:locale" content="en-us"><meta property="article:published_time" content="2024-10-13T23:50:08"><meta property="article:modified_time" content="2024-10-13T23:50:08"><meta property="article:section" content="cloud"><meta property="article:section" content="gcp"><meta name=twitter:card content="summary"><meta property="og:image" content="https://aryido.github.io/images/aboutme/head-shot.jpg"><meta property="twitter:image" content="https://aryido.github.io/images/aboutme/head-shot.jpg"><meta property="og:image" content="https://aryido.github.io/images/google-cloud/-logo.jpg"><meta property="twitter:image" content="https://aryido.github.io/images/google-cloud/-logo.jpg"><title>GCP - Cloud Build 概述</title><link rel=icon href=https://aryido.github.io/favicon.png><link rel=canonical href=https://aryido.github.io/not-yet-finished/cloud-build/><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://aryido.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css></head><body><div id=blog><header id=header data-behavior=1><i id=btn-open-sidebar class="fa fa-lg fa-bars"></i><div class=header-title><a class=header-title-link href=https://aryido.github.io/ aria-label="Go to homepage">Aryido Tech Note</a></div><a class=header-right-picture href=https://aryido.github.io/#about aria-label="Open the link: /#about"><img class=header-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"></a></header><nav id=sidebar data-behavior=1><div class=sidebar-container><div class=sidebar-profile><a href=https://aryido.github.io/#about aria-label="Read more about the author"><img class=sidebar-profile-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"></a><h4 class=sidebar-profile-name>李昀陽 YunYang Lee</h4><h5 class=sidebar-profile-bio>Welcome to my Tech Note. You can read some of the chapters below.</h5></div><ul class=sidebar-buttons><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/ title=Home><i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden=true></i>
+<span class=sidebar-button-desc>Home</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/categories title=Categories><i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden=true></i>
+<span class=sidebar-button-desc>Categories</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/tags title=Tags><i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden=true></i>
+<span class=sidebar-button-desc>Tags</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://github.com/Aryido target=_blank rel=noopener title=GitHub><i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden=true></i>
+<span class=sidebar-button-desc>GitHub</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/index.xml title=RSS><i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden=true></i>
+<span class=sidebar-button-desc>RSS</span></a></li></ul><ul class=sidebar-buttons></ul><ul class=sidebar-buttons></ul></div></nav><div id=main data-behavior=1 class=hasCoverMetaIn><article class=post id=top><div class="post-header main-content-wrap text-left"><h1 class=post-title>GCP - Cloud Build 概述</h1><div class="postShorten-meta post-meta"><time datetime=2024-10-13T23:50:08+08:00>October 13, 2024</time>
+<span>in</span>
+<a class=category-link href=https://aryido.github.io/categories/cloud>cloud</a>,
+<a class=category-link href=https://aryido.github.io/categories/gcp>gcp</a></div></div><div class="post-content markdown"><div class=main-content-wrap><blockquote><p>對應到其他的雲端服務是 :</p><ul><li>Amazon Web Services (AWS) : ****</li><li>Microsoft Azure : ****</li></ul></blockquote><hr><h1 id=cloud-build>Cloud Build</h1><h2 id=簡介>簡介</h2><p>Cloud Build 的宗旨是無伺服器 CI 平台。以前我們需要在本地端或者準備專門的 VM，去處理部署的部分，現在可透過 Cloud Build 完成線上 build 和 簡單 deploy 的服務。</p><h2 id=cloudbuild-yaml簡介>CloudBuild YAML簡介</h2><p>簡單範例如下</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>steps</span>:
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>name</span>: <span style=color:#e6db74>&#34;hashicorp/terraform&#34;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>env</span>:
+</span></span><span style=display:flex><span>        - <span style=color:#ae81ff>PROJECT_ID=$PROJECT_ID</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>script</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        terraform init
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        terraform apply -var &#34;project_id=$PROJECT_ID&#34; -auto-approve</span>        
+</span></span></code></pre></div><ul><li>name
+最關鍵的屬性，每一個 name 代表一個 docker image 且可以是不同得 docker image 。代表 Cloud Build 每 step 都會設置一個新 container 環境，每個 step 環境互相獨立。</li></ul><p>官方有提供一些內建的 <a href=https://github.com/GoogleCloudPlatform/cloud-builders>cloud-builders</a>，值得一提的是 gcr.io/google.com/cloudsdktool/cloud-sdk 這個 image，</p><h2 id=substitutions>substitutions</h2><p>以下三種寫法都一樣</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span>    - <span style=color:#f92672>name</span>: <span style=color:#e6db74>&#34;gcr.io/google.com/cloudsdktool/cloud-sdk&#34;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>entrypoint</span>: <span style=color:#e6db74>&#34;bash&#34;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>args</span>:
+</span></span><span style=display:flex><span>          [
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;-c&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;bash script.sh $LOCATION ${_ZONE_CODE1}&#34;</span>,
+</span></span><span style=display:flex><span>          ]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>name</span>: <span style=color:#e6db74>&#34;gcr.io/google.com/cloudsdktool/cloud-sdk&#34;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>entrypoint</span>: <span style=color:#e6db74>&#34;bash&#34;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>args</span>:
+</span></span><span style=display:flex><span>          [
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;script.sh&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;$LOCATION&#34;</span>, 
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;${_ZONE_CODE1}&#34;</span>
+</span></span><span style=display:flex><span>          ]
+</span></span><span style=display:flex><span>          
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>name</span>: <span style=color:#e6db74>&#34;gcr.io/google.com/cloudsdktool/cloud-sdk&#34;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>env</span>:
+</span></span><span style=display:flex><span>        - <span style=color:#ae81ff>LOCATION=$LOCATION</span>
+</span></span><span style=display:flex><span>        - <span style=color:#ae81ff>ZONE_CODE1=${_ZONE_CODE1}</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>script</span>: |<span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          #!/usr/bin/env bash
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>          bash script.sh $LOCATION $ZONE_CODE1</span>          
+</span></span></code></pre></div><p>使用 args，可以直接讀取到 substitutions 和預設的變數</p><h2 id=secret-value>Secret value</h2><p>要用secret ，只能用args</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span>- <span style=color:#f92672>name</span>: <span style=color:#e6db74>&#34;gcr.io/cloud-builders/gke-deploy&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>env</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>PROJECT_ID=$PROJECT_ID</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>LOCATION=$LOCATION</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>secretEnv</span>: [<span style=color:#e6db74>&#34;ACCESS_KEY&#34;</span>, <span style=color:#e6db74>&#34;SECRET_KEY&#34;</span>] <span style=color:#75715e># refer to secrets ONLY in the args field of a build step.</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>entrypoint</span>: <span style=color:#e6db74>&#34;bash&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>args</span>: [<span style=color:#e6db74>&#34;script.sh&#34;</span>]
+</span></span></code></pre></div><div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/google-cloud//.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/google-cloud//.jpg></a></div><div class="alert warning"><p></p></div><p>自動建構 Image 的Cloud Build
+首先就是 Cloud Build 就像剛剛有稍微講過 就是我今天程式碼開發完成
+你可以上傳到 GCP 它會經過 Cloud Build 幫你做成 Image
+幫你把它 Build 起來 它就是可以做到 DevOps 或者是 CI/CD 裡面的自動整合
+自動部署等等的一些作業 它包含了兩部分 一個是 Trigger
+就是透過一些事件去驅動它 讓它去跑一些建構的 Job
+就是誰觸發它了 然後就開始去跑它的 建立 Docker Image 的動作
+它主要的一些細部設定 我們也是用 YAML 檔的方式 它就是一個很詳細的設定檔
+比如說發生什麼事情了 然後接下來我要執行哪些作業 我會把這些
+工作詳細的寫在 YAML 檔裡面 然後讓它開始跑這樣子 那 Artifact Registry</p><hr><h3 id=參考資料>參考資料</h3><ul><li><p><a href=https://cloud.google.com/build/docs/overview>Overview of Cloud Build</a></p></li><li><p><a href="https://www.youtube.com/watch?v=hQE14DX4LHQ&amp;t=134s">[GCP 教學] 043 2 小時學完 GCP 重點服務 VM, LB, Kubernetes, DevOps, 混合雲, 資料庫, 大數據, 機器學習, AI, 網路防禦, 權限, 資訊安全等</a></p></li></ul></div></div><div id=post-footer class="post-footer main-content-wrap"><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--disabled"><i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/not-yet-finished/dataproc/ data-tooltip="GCP -  概述" aria-label="PREVIOUS: GCP -  概述"><span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i></a></li></ul></nav><ul class="post-actions post-action-share"><li class="post-action hide-lg hide-md hide-sm"><a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post"><i class="fa fa-share-alt" aria-hidden=true></i></a></li><li class=post-action><a class="post-action-btn btn btn--default" href=#top aria-label="Back to top"><i class="fa fa-arrow-up" aria-hidden=true></i></a></li></ul></div></div></article><footer id=footer class=main-content-wrap><span class=copyrights>&copy; 2024 李昀陽 YunYang Lee. All Rights Reserved</span></footer></div><div id=bottom-bar class=post-bottom-bar data-behavior=1><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--disabled"><i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/not-yet-finished/dataproc/ data-tooltip="GCP -  概述" aria-label="PREVIOUS: GCP -  概述"><span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i></a></li></ul></nav><ul class="post-actions post-action-share"><li class="post-action hide-lg hide-md hide-sm"><a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post"><i class="fa fa-share-alt" aria-hidden=true></i></a></li><li class=post-action><a class="post-action-btn btn btn--default" href=#top aria-label="Back to top"><i class="fa fa-arrow-up" aria-hidden=true></i></a></li></ul></div></div></div><div id=about><div id=about-card><div id=about-btn-close><i class="fa fa-times"></i></div><img id=about-card-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"><h4 id=about-card-name>李昀陽 YunYang Lee</h4><div id=about-card-bio>Welcome to my Tech Note. You can read some of the chapters below.</div><div id=about-card-job><i class="fa fa-briefcase"></i><br>Software Engineer</div><div id=about-card-location><i class="fa fa-map-marker-alt"></i><br>Taiwan</div></div></div><div id=cover style=background-image:url(https://aryido.github.io/images/background.jpg)></div><script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://aryido.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js></script>
+<script>$(document).ready(function(){hljs.configure({classPrefix:"",useBR:!1}),$("pre.code-highlight > code, pre > code").each(function(e,t){$(this).hasClass("codeblock")||$(this).addClass("codeblock"),hljs.highlightBlock(t)})})</script></body></html>
