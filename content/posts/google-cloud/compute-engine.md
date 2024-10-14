@@ -154,12 +154,39 @@ Snapshot 是基於 Persistent disk ，反映在具體的時間點上 disk 的內
 Machine Image 包含了該台 VM 的所有 Disk、Configuration、Metadata、Permissions。但 snapshot 只有備份 Boot Disk。
 {{< /alert >}}
 
----
-
 # VM lifecycle
 
 建立好 VM 之後，運行時會有各種不同狀態：
 {{< image classes="fancybox fig-100" src="/images/google-cloud/vm/vm-lifecycle.jpg" >}}
+
+---
+
+# Practice
+
+> Organization 的所有員工都有一個 Google account，你的運營團隊 operations team 需要管理超過 100 個 Compute Engine，該團隊的 member 必須 「 only with administrative access to the VM instances」，此外 security team 希望審核實例登錄(audit instance login)並確保 credentials 的管理有效率，應該怎麼做比較好？
+>
+> - A. Create a new SSH key pair. Issue the private key to each member of the team. Configure the public key in the metadata of each instance.
+> - B. Require each member of the team to generate a new SSH key pair. Have them send their public key to you. Utilize a configuration management tool to deploy those SSH keys on each instance.
+> - C. Require each member of the team to generate a new SSH key pair and to add the public key to their respective Google account. Then grant the compute.osAdminLogin role to the corresponding Google group of the operations team.
+> - D. Create a new SSH key pair. Issue the private key to each member of the operations team. Configure the public key as a project-wide public SSH key in your project. Lastly, allow project-wide public SSH keys on each instance.
+
+正確答案是 C. : 要求團隊的每個成員生成一個新的 SSH 密鑰對，並將公鑰添加到他們各自的 Google account 中，然後將 `compute.osAdminLogin` 授予到對應的 Google group。
+
+首先如果看到 private key 分給其他人，這就是不對的行為，而且因為所有成員共用同一 private key，無法區分是哪個成員的操作，對於安全性和 audit login 都是不理想的，故 A.D. 都不會是正確的。B. 的話會需要手動收集每個成員的公鑰，並使用配置管理工具來部署，會增加出錯的機會，並且在 audit log 方面也不如通過 Google 帳戶管理簡單。
+
+{{< alert warning >}}
+需要管理 User 對 VM 的 SSH 訪問，可以使用以下方法：
+
+- 操作系統登錄 `OS Login`
+
+- 管理元數據中的 SSH 金鑰
+
+- 臨時授予使用者對實例的訪問許可權
+
+在大多數情況下，Google 建議使用 `OS Login` 操作系統登錄功能，須在 VM 的 Metadata 中設定 KVP `enable-oslogin=TRUE `來啟用 OS 登錄功能。啟用後 VM 就會使用 IAM 角色來管理對 VM 的 SSH 訪問， VM 僅接受來自在 project 或 Org 中具有必要 IAM 角色的 account 的連接。
+
+若 IAM 的 email 發現並非來自同一個 Org 的 email，則需要在組織層級加入 email 並賦予 ` roles/compute.osLoginExternalUser` 角色才可以登入。
+{{< /alert >}}
 
 ---
 
