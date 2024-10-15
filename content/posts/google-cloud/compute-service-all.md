@@ -35,25 +35,55 @@ App Engine 是一個**完全託管的無伺服器平臺**，用於完整的 Web 
 
 App Engine 設計上是由一個或多個 service 組成，service 的行為就類似於微服務，彈性很大可以有多個版本、不同的運行環境 runtime 等等 :
 {{< image classes="fancybox fig-100" src="/images/google-cloud/compute-service-summary/app-engine-architecture.jpg" >}}
-聽說是 App Engine 是整個 GCP 雲端**第一個**雲端服務，現在已經是很成熟的產品，所以後來也比較少有重大的更新。
-
-### 注意事項
-
-**一個 GCP Project 中只能有一個 App Engine**，以下是創建 App Engine 的 UI Console 畫面 :
-{{< image classes="fancybox fig-100" src="/images/google-cloud/compute-service-summary/app-engine-init.jpg" >}}
-一開始最主要是要選擇 Location，[注意一旦決定 Location 創建完成之後就無法更改了](https://cloud.google.com/appengine/docs/standard/locations#:~:text=Using%20services%20across%20multiple%20locations,region%20after%20you%20set%20it.)。如果想瞭解 App Engine 的設定，可以使用：
+聽說是 App Engine 是整個 GCP 雲端**第一個**雲端服務，現在已經是很成熟的產品，所以後來也比較少有重大的更新。如果想瞭解 App Engine 的設定，可以使用：
 
 ```
 gcloud app describe
 ```
 
-{{< alert warning >}}
-所以如果想改變已經設定的 App Engine Location，解決方式只能:
+### 注意事項
 
-- 建立一個新的 Project
-- 並在該新 Project 中，建立一個 App Engine 然後指定新的區域
+> - ##### 一個 GCP Project 中只能有一個 App Engine
+
+以下是創建 App Engine 的 UI Console 畫面 :
+{{< image classes="fancybox fig-100" src="/images/google-cloud/compute-service-summary/app-engine-init.jpg" >}}
+一開始最主要是要選擇 Location，[注意一旦決定 Location 創建完成之後就無法更改了](https://cloud.google.com/appengine/docs/standard/locations#:~:text=Using%20services%20across%20multiple%20locations,region%20after%20you%20set%20it.)。 所以如果想改變已經設定的 App Engine Location，解決方式只能建立一個新的 Project，並在該新 Project 中，建立一個 App Engine 然後指定新的區域
+
+> - ##### 將 APP 的新版本部署到了 App Engine 但發現了錯誤，需要恢復到上一個版本，應該怎麼做？
+
+App Engine 頁面中，可以將流量分配給已部署的任何版本。故當發現新版本有問題時，將 `100%` 的流量重新路由到先前的版本，是一個簡單且有效的方法來迅速恢復服務，可以立即將用戶導回到之前的穩定版本。
+
+> - ##### 將 APP 的新版本部署到了 App Engine ，希望能讓 1% 的用戶看到該網站的新測試版本，其他維持一樣舊版本，對於 App Engine Best-Practice 應該怎麼做？
+>   - A. Deploy the new version in the same application and use the --migrate option.
+>   - B. Deploy the new version in the same application and use the --splits option to give a weight of 99 to the current version and a weight of 1 to the new version. **(O)**
+>   - C. Create a new App Engine application in the same project. Deploy the new version in that application. Use the App Engine library to proxy 1% of the requests to the new version.
+>   - D. Create a new App Engine application in the same project. Deploy the new version in that application. Configure your network load balancer to send 1% of the traffic to that new application.
+
+因為 App Engine 已經內置了流量拆分功能，可以將流量分配給已部署的任何版本 :
+
+- 使用 `--migrate`: 會將所有的流量，從當前版本轉到到新版本
+- 使用 `--splits`: 可以設定按百分比，將流量分配給不同的版本
+
+```bash
+# migrate
+gcloud app services set-traffic [MY_SERVICE] --splits [MY_VERSION]=1 --migrate
+
+# splits
+gcloud app services set-traffic [MY_SERVICE] --splits [MY_VERSION1]=[VERSION1_WEIGHT],[MY_VERSION2]=[VERSION2_WEIGHT]
+```
+
+故選 B. 使用 `--splits` 是比較好的作法。
+
+{{< alert info >}}
+補充一下，還有[`-–no-promote`](https://cloud.google.com/sdk/gcloud/reference/app/deploy)，這是用來在部署新版本時，阻止自動將流量分配到新版本的選項，可以在部署新版本後進行測試 :
+
+```
+gcloud app deploy ~/my_app/app.yaml --no-promote
+```
 
 {{< /alert >}}
+
+---
 
 # GCP 運算服務簡介
 
@@ -90,7 +120,9 @@ GCP 官方取名為 <**運算服務**> ，我一開始也覺得有點抽象，�
 # 其他整理比較
 
 {{< image classes="fancybox fig-100" src="/images/google-cloud/compute-service-summary/compute-choose.jpg" >}}
+
 - ### Infra 可控性
+
   - 如果只是一個小型開發團隊，並且希望專注在 code 上，那麼 Cloud Run 或 App Engine 等無伺服器選項是一個不錯的選擇
   - 如果擁有更大的團隊，有自己的工具和流程，可以使用 Compute Engine 或 GKE 自己控制更多底層架構設計
 
@@ -118,10 +150,10 @@ GCP 官方取名為 <**運算服務**> ，我一開始也覺得有點抽象，�
   - loud Run 偏向做為一個完全託管的計算平臺，提供**容器化 Web 應用程式**的自動擴展，關鍵字是「**容器化靈活性**」
 
 {{< image classes="fancybox fig-100" src="/images/google-cloud/compute-service-summary/functions-run.jpg" >}}
-    
+
 - ### 可移植性和開源需求
 
-  基於「可移植性和開源支援」，可考慮 GKE 和 Cloud Run 因為他們都基於開源框架： **GKE** 集群由 Kubernetes 開源集群管理系統提供支援 ; 而 **Cloud Run** 遵照 Knative 開源專案提供支援
+  基於「可移植性和開源支援」可考慮 GKE 和 Cloud Run ，因為他們都基於開源框架： **GKE** 集群由 Kubernetes 開源集群管理系統提供支援 ; 而 **Cloud Run** 遵照 Knative 開源專案提供支援。若真的有轉移雲供應商的考量，以可移植性來考慮的話，**GKE 可能比 Cloud Run 更容易遷移**，因為 k8s 有比較多獨立的配置檔，可控性更高。
 
   {{< alert info >}}
   簡單查一下 Knative 是建構在 Kubernetes 之上，將 Deployment、Service 和 Ingress 等 k8s 資源簡化成 Knative Service
