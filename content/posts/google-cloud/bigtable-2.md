@@ -11,6 +11,10 @@ categories:
   - cloud
   - gcp
 
+tags:
+  - bigtable
+  - gcp-storage-service
+
 comment: false
 
 reward: false
@@ -19,7 +23,7 @@ reward: false
 <!--BODY-->
 
 > 由於 Bigtable 在 Google 內部廣為使用，故有於 2006 年發表了它的論文介紹：[Bigtable: A Distributed Storage System for Structured Data](https://static.googleusercontent.com/media/research.google.com/zh-CN//archive/bigtable-osdi06.pdf)，然後在 2015/5 推出成為 GCP 雲端產品給大眾使用。 在 Google 官網上 Bigtable 的定義是一個 Sparsely-Populated-Table，其中 sparse 意思是如果某 Column 未在特定 Row 中使用，就不會佔用任何空間。
-> 
+>
 > Bigtable 也可以輕鬆擴展到數十億 Rows 和數千個 Columns ，能夠存儲 PB 級的資料量，適合 High-Throughput 場景的服務，是個強大的服務。而個人也覺得 Bigtable 是對有使用 GCP 的人常被問有沒有使用過的一個雲端服務之一，故可以特別看一下這個服務。(**第一名最常問的，我個人認為是 Bigquery**)
 
 <!--more-->
@@ -144,6 +148,21 @@ Bigtable 表內部存儲了大量的 web 相關信息如圖中所示，代表 `w
 {{< /alert >}}
 
 例如 `maps.google.com/index.html` 頁面在儲存時， Row-Key 就是把字反過來變成 `com.google.maps/index.html`，其會把來自相同網域的頁面儲存到**連續的 Row**，會使那些針對「 主機 」和「網域」的分析（host and domain analyses）非常有效率。
+
+---
+
+# Practice
+
+> 有一個 Cloud IOT application 需要存儲達 10 petabytes(PB) 的資料，且 application 必須支持 high-speed reads and writes pieces of data，好消息是 data schema 比較簡單。承上述需求，最 economical 的 data storage solution，哪個比較合適？
+>
+> - A. Store the data in Cloud Spanner, and add an in-memory cache for speed.
+> - B. Store the data in Cloud Storage, and distribute the data through Cloud CDN for speed.
+> - C. Store the data in Cloud Bigtable, and implement the business logic in the programming language of your choice. **(O)**
+> - D. Use BigQuery, and implement the business logic in SQL.
+
+Cloud Storage 和 BigQuery 都不太適合 high-speed Writes 「高頻寫」的場景。Cloud Spanner 是的**全球分佈式關係資料庫**，它支持強一致性和自動擴展 ; 而 Bigtable 是一個**分佈式 NoSQL**，也適合處理高頻讀寫操作，並且也可以自動擴展支持大規模 PB 等級的資料存儲。
+
+其實 Cloud Spanner 或 Bigtable 都算可以達成題目都要求，但由於 data schema 很簡單，而且要考量 economical。 Cloud Spanner 通常比 Bigtable 更昂貴，因為其提供更高的強一致性、ACID 事務的功能，且由於 schema 簡單大概也代表應該也沒有需要什麼 table join 之類的，故在這題可能選擇 Bigtable 是比較好的解決方案。
 
 ---
 

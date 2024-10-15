@@ -12,6 +12,7 @@ categories:
   - gcp
 
 tags:
+  - bigtable
   - gcp-storage-service
 
 comment: false
