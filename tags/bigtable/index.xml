@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>bigtable on Aryido Tech Note</title><link>https://aryido.github.io/tags/bigtable/</link><description>Recent content in bigtable on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 31 Jul 2024 15:28:33 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/bigtable/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Bigtable 概述 II - 儲存模型</title><link>https://aryido.github.io/posts/google-cloud/bigtable-2/</link><pubDate>Wed, 31 Jul 2024 15:28:33 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/bigtable-2/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>由於 Bigtable 在 Google 內部廣為使用，故有於 2006 年發表了它的論文介紹：&lt;a href="https://static.googleusercontent.com/media/research.google.com/zh-CN//archive/bigtable-osdi06.pdf">Bigtable: A Distributed Storage System for Structured Data&lt;/a>，然後在 2015/5 推出成為 GCP 雲端產品給大眾使用。 在 Google 官網上 Bigtable 的定義是一個 Sparsely-Populated-Table，其中 sparse 意思是如果某 Column 未在特定 Row 中使用，就不會佔用任何空間。&lt;/p>
+&lt;p>Bigtable 也可以輕鬆擴展到數十億 Rows 和數千個 Columns ，能夠存儲 PB 級的資料量，適合 High-Throughput 場景的服務，是個強大的服務。而個人也覺得 Bigtable 是對有使用 GCP 的人常被問有沒有使用過的一個雲端服務之一，故可以特別看一下這個服務。(&lt;strong>第一名最常問的，我個人認為是 Bigquery&lt;/strong>)&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - Bigtable 概述 I - 架構</title><link>https://aryido.github.io/posts/google-cloud/bigtable-1/</link><pubDate>Tue, 30 Jul 2024 21:58:50 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/bigtable-1/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Bigtable &lt;strong>並不是&lt;/strong>傳統 RDB 關係型資料庫，而是 GCP 提供的企業級 NoSQL Database，是一個支持大數據應用的&lt;strong>分散式存儲系統&lt;/strong>，保證高可擴展、高可用性、高性能與高吞吐需求的服務，與現有 Apache Big Data 生態系統的開源軟體如 HBase 也有蠻好的整合。對應到其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>DynamoDB&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Cosmos DB&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>Bigtable 優勢在於其強大的擴充性，效能完全和 cluster 中的 Node 數量成正比，該產品的強大性完全不用質疑，因為 Google 的很多重量級專案都有使用 Bigtable 來存儲資料例如： Youtube、Google Earth、Google 搜尋引擎、Google Map 等等，每個專案都為數十億活躍使用者提供穩定的服務。&lt;/p>
+&lt;/blockquote></description></item></channel></rss>
