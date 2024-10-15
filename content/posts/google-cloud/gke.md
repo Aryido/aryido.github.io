@@ -13,6 +13,7 @@ categories:
 
 tags:
   - gcp-compute-service
+  - kubernetes-service
 
 comment: false
 
@@ -41,14 +42,26 @@ GKE Cluster 由 「Control Plane」 和 「Nodes(也常稱為 Workers)」組成�
 
 ### Autopilot （recommended）
 
-這是連 Node 設定都基本上完全託管給 GCP 管理，會根據 Pod 中的 Pod 數量自動擴展 Node，能請求的硬體種類也大致上被固定，參考 [Request compute classes](https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-compute-classes)，要查看 Node 資訊只能使用 kubectl，並沒辦法 SSH 直接連線到 Node 裡面。
-
+Autopilot 模式是一種全託管集群模式，這是連 Node 設定都基本上託管給 GCP 管理， GCP 會根據 Pod 的數量自動擴展 Node 或優化 Node 利用率，從而降低成本，讓用戶專注於應用開發，而無需手動管理集群。 Node 能請求的硬體種類也大致上被固定了，可參考 [Request compute classes](https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-compute-classes)。
+{{< alert warning >}}
+Autopilot 模式下若要查看 Node 資訊只能使用 kubectl，並沒辦法 SSH 直接連線到 Node 裡面
+{{< /alert >}}
 {{< image classes="fancybox fig-100" src="/images/google-cloud/gke/autopilot-standard.jpg" >}}
 從 GCP Console 介面預設就是 Autopilot ，上圖為 GCP console 近期的新畫面，一開始想換成 Standard 時，我還花了點時間找畫面按鈕在哪裡...
 
 ### Standard
 
-可以自己掌控 Node 的設置但比較繁瑣，藉由配製 [node pools](https://cloud.google.com/kubernetes-engine/docs/concepts/node-pools)來管理 nodes ，在 pool 中的 nodes 都是相同的 configuration，再進階還可以透過 `nodeSelector` 來指定 Pod 要部署到哪個 node pool 中。
+可以自己掌控 Node 的設置但比較繁瑣，藉由配製 [node pools](https://cloud.google.com/kubernetes-engine/docs/concepts/node-pools)來管理 nodes ，在 pool 中的 nodes 都是相同的 configuration，再進階還可以透過 `nodeSelector` 來指定 Pod 要部署到哪個 node pool 中。 現在可以使用
+
+```bash
+gcloud container node-pools update POOL_NAME \
+    --cluster CLUSTER_NAME \
+    --machine-type MACHINE_TYPE \
+    --disk-type DISK_TYPE \
+    --disk-size DISK_SIZE
+```
+
+來修改 node pool 已配置的 machine-type 、 disk-type 和 disk-size。修改時 GKE 會使用為 node pool 配置的升級策略，如果有配置 [blue-green upgrade policy](https://cloud.google.com/kubernetes-engine/docs/concepts/node-pool-upgrade-strategies?hl=zh-cn#blue-green-upgrade-strategy)，在遷移失敗時，也能會回溯回原始節點。
 
 Standard 模式下要查看 Node 資訊，可以使用 「kubectl」或者 「gcloud CLI」。由於 gcloud CLI 可以看到 Node 資訊，這其實也代表 Node 屬於在 GCP 雲端的管理範圍，那是管理在哪裡呢？
 
@@ -91,15 +104,63 @@ GKE 包含大多數 beta 版和穩定的 Kubernetes 功能，但如果想要嘗�
 
 ### 雲端整合及安全性
 
-GKE 在雲端整合 GCP 方面最常用的: 是透過 K8S-Ingress 或 K8S-Service 建立 Google Cloud Load Balancer，至此還可以進階設定整合 Load Balancer 的 Cloud CDN。
+GKE 在雲端整合 GCP 方面最常用的: 
+- 透過 K8S-Ingress 或 K8S-Service 建立 Google Cloud Load Balancer
+- 至此還可以進階設定整合 Load Balancer 的 Cloud CDN。
 
-網路安全方面有 project 層級的 VPC Firewall 和 Cluster 層級的 Private Cluster Mode 與 Network Policy ; 對於 IAM 可以配合 GCP 的 IAM 或者使用 Cluster 層級的 Role-Based Access Control(RABC) 來限制使用者的權限。
+網路安全方面有 
+- project 層級的 VPC Firewall
+- Cluster 層級的 Private Cluster Mode 與 Network Policy
+- 對於 IAM 可以配合 GCP 的 IAM 或者使用 Cluster 層級的 Role-Based Access Control(RABC) 來限制使用者的權限
 
 ### 提升服務可用性
 
 GKE Cluster Autoscaler 是 GKE 對運算資源擴充的一種解決方案，會根據用戶提出的 Workload 需求自動調整機器的數量，以 Node Pool 為單位進行開啟，用戶僅需要設定 Autoscaling 的最高與最低機器數量。 一個 Cluster 聽說有超過一萬個 Node 可以配置都沒有問題，故一般來說中小型公司如果對自己業務成長真的不太確定時，很難規劃硬體需要購買的量，這時雲端的彈性就有一些用武之地。
 
 {{< image classes="fancybox fig-100" src="/images/google-cloud/gke/gke-features.jpg" >}}
+
+---
+
+# Practice
+
+> 有一個 APP 在 GKE 上運行且有多個 replicas ，其 APP expose 了一個 TCP endpoint ; 且還有一個位於另一個 VPC 中的 VM ，並且兩個 VPC 之間 no overlapping IP ranges。若該 VM 需要連接到 GKE 上的 APP， Best-Practice 應該怎麼做？
+
+在 GKE 中，創建一個[K8S-Service LoadBalancer 且 backend 是 Network Endpoint Group (NEG)](https://cloud.google.com/kubernetes-engine/docs/how-to/internal-load-balancing#create)，會需要在 K8S-Service YAML 的範例大概會是這樣:
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: ilb-svc
+  annotations:
+    networking.gke.io/load-balancer-type: "Internal"
+spec:
+  type: LoadBalancer
+  externalTrafficPolicy: Cluster
+  selector:
+    app: ilb-deployment
+  ports:
+  - name: tcp-port
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+```
+
+由於題目中說兩個 VPC 沒有 overlapping Subnet，所以可以 **Peering** 在一起，故 VM 可以在另一個 VPC 中**直接使用**創建的 TCP Internal LoadBalancer 的 IP 和 GKE 內的 APP 做溝通。
+
+以上創建了一個僅在內部網絡中可訪問的 LoadBalancer ，通過 VPC-Peering 可以實現不同 VPC 之間的內部通訊，以上算符合最小化配置工作的要求。
+
+# Practice
+
+> 在 GKE 上創建了 backend 和 frontend 兩個 App，希望確保 backend 的 Pod 被移動或重啟時 frontend 不會連接不到 backend，那應該怎麼做？
+> - A. Create a service that groups your pods in the backend service, and tell your frontend pods to communicate through that service. **(O)**
+> - B. Create a DNS entry with a fixed IP address that the frontend service can use to reach the backend service.
+> - C. Assign static internal IP addresses that the frontend service can use to reach the backend pods.
+> - D. Assign static external IP addresses that the frontend service can use to reach the backend pods.
+
+A. 創建一個 Kubernetes Service 將後端服務的 Pod 管理起來讓前端 Pod 通過 Kubernetes Service 進行通訊，這是正確的，因為 Kubernetes Service 會提供穩定的網絡端點，即使後端 Pod 被移動或重啟，Kubernetes Service的 IP 地址仍然不會變，這確保了前端可無需關注後端 Pod 的變動。
+
+B. DNS entry with a fixed IP address 不可行，因為後端 Pod 在重啟後 IP 可能會變動，這還是不能保證穩定的通訊。而 C.D. Pod 的生命周期可能很短，經常會被移動或重啟，故使用  static internal/external IP 都不符合 Kubernetes **動態調度**的設計初衷。
 
 ---
 
