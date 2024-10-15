@@ -118,6 +118,25 @@ Organization 概念上經常表示**一家公司 Company**，雖然不需要 Org
 
 ---
 
+# Practice
+
+> 假如需要負責優化 GCP Resource 使用情況，具體來說需要調查 resource consumption charges(資源使用費用)，分析並呈現調查結果，Google 推薦應該怎麼做？
+
+答案是：
+
+`Attach labels to resources to reflect the owner and purpose. Export Cloud Billing data into BigQuery, and analyze it with Data Studio.`
+
+- **Label 是 GCP 最推薦的管理資源方式**。可以將 Label 附加到資源上就可以在 Cloud Billing 報告中清晰地看到各個資源的費用歸屬。
+- 可以將 Cloud Billing 導出到 BigQuery 可以做分析，並使用 Data Studio 創建直觀的報告，這種方式自動化程度高，分析過程簡單高效。
+
+Label、BigQuery、Data Studio 的結合，可以自動化費用分析並生成可視化報告，這是 GCP 推從的「費用分析」解決方案。
+
+{{< alert warning >}}
+特別注意在 GCP 中 Tag 通常是指 VM 的 [Network Tag](https://aryido.github.io/posts/google-cloud/network-tags/)，和資源管理沒有任何關係。
+{{< /alert >}}
+
+---
+
 ### 參考資料
 
 - [BigQuery overview](https://cloud.google.com/bigquery/docs/introduction)
