@@ -59,6 +59,7 @@ GCP 的 Bucket name 必須 **globally unique**，需要在整個 GCP 服務中�
 Bucket 的 Location 是在創建存儲桶時就要設置的 建立 Bucket 完成之後，就**無法更改**其 Location 了，如果還是有移動 Location 的需求，解法是新建 Bucket 然後將資料移至這個新建的 Bucket。Location 的類型決定定價的方式，有 「multi-region」、「dual-region」、「region」可以選。
 
 # Storage Class
+
 Storage Class 是一個 metadata 附加在每個 Object 上，依據自身‘需求， GCS 提供不同的儲存方案，此會影響 Object 的 Availability 和定價，可以讓儲存價格最佳化。
 
 建立 Bucket 時，可以在 Bucket 級別上預設 Storage Class ，當 Object 加入 Bucket 時，除非 Object 自身有另外指定 Storage Class ，否則就會使用 Bucket 預設 Storage Class 來儲存。
@@ -72,6 +73,25 @@ Minium storage duration，意指 object 最少需要存放的天數。例如 nea
 
 補充一下 Archive storage，它適用於資料長期歸檔、online backup 和 災難恢復 disaster recovery 的資料備份。 Archive 和 Coldest 都屬於儲存不頻繁訪問的資料，但不同處是 Archive 中的資料可以在毫秒內訪問，因為 disaster recovery 時間是關鍵點， Archive storage 提供資料再需要時可以快速取得。
 
+### [Object Lifecycle Management](https://cloud.google.com/storage/docs/lifecycle)
+
+Cloud Storage 使用時會有一些常見的案例需求，例如
+
+- 為 Object 設置存留時間 Time to Live(TTL)，超過後自動刪除
+- 保留 Object 的非當前的 3 個版本，作為簡單的版本控制或留存
+- 超過 1 年的 Object 的 Storage Class 自動改為 Coldline 來節省錢
+
+為了支援以上這些案例，Cloud Storage 也提供了 Object Lifecycle Management 功能可以配置。
+
+{{< alert info >}}
+Object Lifecycle Management 的依據是完全基於 Object 的創建時間。例如有一些 files 在 Bueckt 中，希望 3 個月後要轉換成 Coldline 儲存，然後在創建之日起一年後自動刪除，則配置為:
+
+- action to 90 days >> Coldline
+- action to 365 days >> Delete
+
+**不需要去思考 `365-90=275`** 這種事情。
+
+{{< /alert >}}
 
 # Protect Object Data
 
@@ -96,11 +116,30 @@ Object Storage 特性上經常是用來當作「 網站靜態圖片」或者「 
 
 > 以使用 gcloud-cli 的 storage 功能為優先，gsutil 並不是 google 官方推薦的 CLI
 
-可以直接從官方網站中 gsutil 頁面看到類似的敘述。因為新的 gcloud storage CLI 提供了顯著的性能改進（參照 title 連結說明），也保持一致的方式來管理所有 Google Cloud 資源，不用因為 cloud storage 而特別使用一個特定 lib 。這邊也特別注意一下，儘管 Google 都已經在很多 GCS 官方文件上都註明一個醒目的警告標語說:
+可以直接從官方網站中 gsutil 頁面看到類似的敘述。
+
+{{< image classes="fancybox fig-100" src="/images/google-cloud/gcs/gsutil.jpg" >}}
+
+因為新的 gcloud storage CLI 提供了顯著的性能改進（參照 title 連結說明），也保持一致的方式來管理所有 Google Cloud 資源，不用因為 cloud storage 而特別使用一個特定 lib 。這邊也特別注意一下，儘管 Google 都已經在很多 GCS 官方文件上都註明一個醒目的警告標語說:
 
 `gsutil 不是 GCS 推薦的 CLI，用戶應該改用 gcloud`
 
 而且相關資訊已經公告從 2022 開始，直到今天也算過蠻久的了，但現在很多 LLM 語言模型還是會推薦首選 gsutil 而不是 gcloud。畢竟 gsutil 從 2016 年就開始發展了，所以至今有太多範例都還是使用 gsutil，因此 LLM 模型都有非常大的機率採用 gsutil 而不是 gcloud，這也是 LLM 現在蠻容易遇到的問題之一...
+
+---
+
+# Practice
+
+> Cloud Storage bucket 中有一個 object 要分享給外部公司，但該 object 包含 sensitive data ，需要在**四小時後移除對該內容的訪問權限**。外部公司沒有 Google 帳戶，因此無法授予基於特定用戶的訪問權限，該怎麼做 ?
+>
+> - A. Create a signed URL with a four-hour expiration and share the URL with the company. **(O)**
+> - B. Set object access to 'public' and use object lifecycle management to remove the object after four hours.
+> - C. Configure the storage bucket as a static website and furnish the object's URL to the company. Delete the object from the storage bucket after four hours.
+> - D. Create a new Cloud Storage bucket specifically for the external company to access. Copy the object to that bucket. Delete the bucket after four hours have passed.
+
+這題考點是需要知道 Cloud Storage 有 Signed URL 功能，可以創建一個具有四小時過期的 [Signed URL](https://cloud.google.com/storage/docs/access-control/signed-urls)，並將該 URL 分享給外部公司，這是最符合需求的解決方案，因為外部公司沒有 Google 帳戶， Signed URL 也可以設定 `X-Goog-Expires` 過期時間。
+
+B,C 選項都會讓資料 Public 出去，由於資料是 sensitive data 故絕對不能這樣做。 D. 選項其實可能也是一種解法但方式比較複雜，如果有大量外部分享需求，才會需要往這方向做。
 
 ---
 
