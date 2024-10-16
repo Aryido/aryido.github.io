@@ -3,7 +3,7 @@ title: "GCP -  概述"
 
 author: Aryido
 
-date: { { .Date } }
+date: {{ .Date }}
 
 thumbnailImage: "/images/google-cloud//-logo.jpg"
 
