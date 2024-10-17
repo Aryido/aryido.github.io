@@ -1,4 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cloud on Aryido Tech Note</title><link>https://aryido.github.io/categories/cloud/</link><description>Recent content in cloud on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 13 Oct 2024 23:50:08 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - Cloud Build 概述</title><link>https://aryido.github.io/not-yet-finished/cloud-build/</link><pubDate>Sun, 13 Oct 2024 23:50:08 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/cloud-build/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cloud on Aryido Tech Note</title><link>https://aryido.github.io/categories/cloud/</link><description>Recent content in cloud on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 14 Oct 2024 00:23:58 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - 概述</title><link>https://aryido.github.io/not-yet-finished/shared-responsibility/</link><pubDate>Mon, 14 Oct 2024 00:23:58 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/shared-responsibility/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>對應到其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : ****&lt;/li>
+&lt;li>Microsoft Azure : ****&lt;/li>
+&lt;/ul>
+&lt;/blockquote></description></item><item><title>GCP - Cloud Build 概述</title><link>https://aryido.github.io/not-yet-finished/cloud-build/</link><pubDate>Sun, 13 Oct 2024 23:50:08 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/cloud-build/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>對應到其他的雲端服務是 :&lt;/p>
 &lt;ul>
