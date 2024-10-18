@@ -151,7 +151,7 @@ organization >> Folders >> Project >> Resource
 
 ##### Consistency model for the IAM API
 
-IAM API 是 eventually consistent，所以如果更改 IAM ，然後立即讀取該 IAM，讀取操作可能會返回舊版本的資了，故可能需要一些時間等待更改生效。
+IAM API 是 eventually consistent，所以如果更改了 IAM 權限，然後立即讀取該 IAM 拿取其設定資料，讀取操作可能會返回舊版本的 data ，故有時候可能可以等待一些時間讓更改生效。
 {{< /alert >}}
 
 ---
