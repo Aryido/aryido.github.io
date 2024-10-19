@@ -18,12 +18,12 @@ reward: false
 
 <!--BODY-->
 
-> GCP 雲端資源的權限管理服務是 IAM，其全稱為 Identity and Access Management，可讓管理員(Administrator)去授權(authorize)一個 Identity，使它可以 action 操作特定的 Resources。對應到其他的雲端服務是 :
+> GCP 雲端資源的權限管理服務是 IAM，其全稱為 Identity and Access Management，可讓管理員(Administrator)去授權(authorize)一個 Identity，使它可以操作特定的 Resources。對應到其他的雲端服務是 :
 >
 > - Amazon Web Services (AWS) : **AWS Identity and Access Managemen**
 > - Microsoft Azure : **Microsoft Entra ID (舊稱 Azure Active Directory)**
 >
-> 簡單從英文上來說 IAM 是做什麼的 : 「manage **who** can do **what** on **which resources**」，此概念會貫穿整個 IAM 的使用，用於保護 GCP 資源不受**未經授權**的存取，提供了非常細粒度的控制，可根據具體需求定制安全性策略。
+> 簡單從英文上來說 IAM 是做什麼的 : 「manage **who** can do **what** on **which resources**」，此概念會貫穿整個 IAM 的使用，用於保護 GCP 資源，提供了非常細粒度的控制，可根據具體需求定制安全性策略。
 > {{< image classes="fancybox fig-100" src="/images/google-cloud/iam/iam-overview.jpg" >}}
 
 <!--more-->
@@ -38,18 +38,18 @@ reward: false
 「誰(Principal)」對「哪個資源(Resource)」具有什麼「訪問許可權(Role)」
 ```
 
-其中最簡單直觀可以了解的，大概就是 Resource 是什麼 :
+其中最簡單直觀可以了解的，就是 Resource 是什麼 :
 
 - 例如說 Compute Engine、GKE、Cloud Storage 這些我們熟知的 GCP 服務
-- 甚至比較抽象的 Organization、Folder、Project
+- 甚至比較抽象的管理資源如 Organization、Folder、Project
 
-以上這些都可以定義為資源 Resource 。接下來用下圖來說明 Role 和 Principal :
+以上這些都被定義為 Resource 。接下來用下圖來說明 Role 和 Principal :
 
 {{< image classes="fancybox fig-100" src="/images/google-cloud/iam/iam-examples.jpg" >}}
 
 ### Role
 
-在開始 Role 介紹之前先提一下 Permission ，它是決定「**對 Resource 來說哪些操作是允許執行的**」，在 GCP IAM 中的 Permission 形式格式表示為 :
+在開始 Role 介紹之前先提一下 Permission ，它是用來決定對特定一個 Resource 來說「**哪些操作是允許執行的**」，在 GCP IAM 中的 Permission 形式格式表示為 :
 
 ```
 <service>.<resource>.<verb>
@@ -65,17 +65,17 @@ reward: false
 roles/<service>.<roleName>
 ```
 
-例如說 GCP 已經有一個定義 Role 名稱叫 [`Compute Instance Admin`](https://cloud.google.com/iam/docs/understanding-roles?hl=en&_gl=1*ipsrgi*_ga*Mjk3MDYwNi4xNzE4MjU5OTM1*_ga_WH2QY8WWF5*MTcyNjY0MTkzMi4xNjYuMS4xNzI2NjQyMTQ2LjM2LjAuMA..#compute.instanceAdmin)，從 API 呈現是 `roles/compute.instanceAdmin` ，並且其擁有的 Permissions 從官網上查尋到如下圖 :
+例如說 GCP 已經有一個定義 Role 名稱叫 [`Compute Instance Admin`](https://cloud.google.com/iam/docs/understanding-roles?hl=en&_gl=1*ipsrgi*_ga*Mjk3MDYwNi4xNzE4MjU5OTM1*_ga_WH2QY8WWF5*MTcyNjY0MTkzMi4xNjYuMS4xNzI2NjQyMTQ2LjM2LjAuMA..#compute.instanceAdmin)，從形式格式上呈現是 `roles/compute.instanceAdmin` ，並且其擁有的 Permissions 從官網上查尋到如下圖 :
 
 {{< image classes="fancybox fig-100" src="/images/google-cloud/iam/compute-instanceAdmin.jpg" >}}
 
-上圖 `Compute Instance Admin` 其還有很多 Permissions 但因為圖片大小而沒有辦法列出來，基本上要做到**最小權限原則**是要花時間精力的，只能花時間去看每個 Role 。
+上圖的 `Compute Instance Admin` 其還有很多 Permissions ，但因為圖片大小而沒有辦法列出來，基本上要分配「**最小權限原則**」是要花時間精力的，只能花時間去看每個 Role 的定義，然後去對應實際應用場景來分配合適的 Role。
 
-**Role 可當成是用來管理許多 Permissions 的載體**，因為 GCP 上面 Permissions 大概近萬個，為了管理這些權限 GCP 已經有先幫把一些 Permissions 組合成一些常見的 Role 來描述了：
+**Role 可當成是用來管理許多 Permissions 的載體**，因為 GCP 上面 Permissions 大概近萬個，為了管理這些權限 GCP 已經有先幫忙把一些 Permissions ，組合成一些更高階的形容來描述了：
 
 - ##### **Basic roles**
 
-  有 Owner、Editor、Viewer、Browser，因為這些 Role 太廣義，故不建議在 production 上
+  有 Owner、Editor、Viewer、Browser，但因為這些 Role 太廣義，故不建議在 prod 上使用
 
 - ##### **Predefined roles**
 
@@ -94,13 +94,17 @@ roles/<service>.<roleName>
 
 ### Principal
 
-首先來看官網的簡單介紹，會知道每個 Principal 都有一個 identifier 唯一標示碼，然後:
+首先來看官網的簡單介紹，會知道每個 Principal 都有一個 identifier 唯一標示碼，然後定義是:
 
-> 「 **Principal 代表是有能力 access 資源的 Identity** 」
+> 「 **Principal 是有能力 access 資源的 Identity** 」
 
-故看起來: `Principal = Identity + Role`。 Principal 也可以詳細稱為 「Authenticated principal」; 另外官網中其實也有說**在過去 Principal 的舊稱是 member**，這個稱呼在一些 API 上也還是有沿用(例如 Terraform)。實際上 Resource 的 Permission 並不會直接給 Principal，而是先把 Permissions 集中起來成一個 Role，再來 granted Role 給 Principal。
+故看起來: `Principal = Identity + Role`，因此 Principal 也可以詳細稱為 「Authenticated principal」，另外官網中其實也有說**在過去 Principal 的舊稱是 Member**，這個稱呼在一些 API 上也還是有沿用(例如 Terraform)。雖然上述這樣分析，但其實在很多文章中或者講解中，是不是真的付加上 Role 了其實都沒有很明確，故其實基本上還是可以當成：
 
-Principal 有[很多不同的類型](https://cloud.google.com/iam/docs/overview#concepts_related_identity)，舉簡單常見的例如 :
+> `Principal = Identity = Member`
+
+再來實際上 Resource 的 Permission 並不會直接賦予給 Principal，而是先把 Permissions 集中起來成一個 Role，再來 granted Role 給 Principal。
+
+Principal 在官網上有[很多不同的類型](https://cloud.google.com/iam/docs/overview#concepts_related_identity)，舉簡單常見的例如 :
 
 - ##### Google Account
 
@@ -109,6 +113,10 @@ Principal 有[很多不同的類型](https://cloud.google.com/iam/docs/overview#
 - ##### [Service Account](https://cloud.google.com/docs/authentication#service-accounts)
 
   Service Account 代表了**非人類的使用者**，是給 Application 使用的 Identity 。例如說有一段程式運行在 GCP 環境內且會呼叫其他 GCP 雲端服務，那會需要給那段程式一個 Identity ，這就會是其用 Service Account
+
+{{< alert success >}}
+這裡也大概可以猜測為什麼舊稱 Member 會被換掉，因為 Member 太有「人」的感覺了，這和 Service Account 的概念差比較多，所以 GCP 官方換成了 Principal 這個更中性的詞
+{{< /alert >}}
 
 雖然 「Google Account」 和 「Service Account」 是兩個最常見的 Principal，但其他還有像是 :
 
@@ -136,8 +144,8 @@ Policy 除了常見的 Allow policy ，其實也有 Deny policy，目前先介�
 會發現上圖中的 UI 邏輯算是把 Principal 和 Identity 當成**一樣的**事情了，所以**個人自己看完文件後，我個人的理解是**:
 
 - Principal(主體) : 是指一個擁有 Role 的實體，也是比較官方且具體的說法，文件中也有對其的詳細定義
-- Identity(身份) : 相比 Principal 來說也比較抽象描述，通常只是夾雜在句子的描述用詞，某些情況下可把 Identity 等同於 Principal
-  {{< /alert >}}
+- Identity(身份) : 相比 Principal 來說也比較抽象描述，通常只是夾雜在句子的描述用詞，多數情況下可把 Identity 等同於 Principal
+{{< /alert >}}
 
 另外 Google Cloud Resources 有層次結構的例如:
 
@@ -151,7 +159,7 @@ organization >> Folders >> Project >> Resource
 
 ##### Consistency model for the IAM API
 
-IAM API 是 eventually consistent，所以如果更改了 IAM 權限，然後立即讀取該 IAM 拿取其設定資料，讀取操作可能會返回舊版本的 data ，故有時候可能可以等待一些時間讓更改生效。
+IAM API 是 eventually consistent，所以如果更改了 IAM 權限，然後立即讀取該 IAM 拿取其設定資料，讀取操作可能會返回舊版本的 data ，故有時候可能可以等待一些時間讓更改生效，但通常幾秒鐘後就完成了
 {{< /alert >}}
 
 ---
