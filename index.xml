@@ -19,6 +19,23 @@
 &lt;li>Amazon Web Services (AWS) : ****&lt;/li>
 &lt;li>Microsoft Azure : ****&lt;/li>
 &lt;/ul>
+&lt;/blockquote></description></item><item><title>GCP - Cloud VPN &amp; Cloud Interconnect 概述</title><link>https://aryido.github.io/not-yet-finished/cloud-vpn/</link><pubDate>Thu, 10 Oct 2024 18:18:34 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/cloud-vpn/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Cloud VPN 全稱是 Cloud Virtual Private Network，能夠將 On-premise Network 和 GCP VPC Network 連接在一起，流量透過 IPSec 協議進行加密。而 Cloud Interconnect 可以說是加強版的 Cloud VPN，它是真的從你 On-premise 的設備做&lt;strong>一個實體的線路&lt;/strong>，一直到 Google 的機房裡面。兩個分別對應其他的雲端服務是 :&lt;/p>
+&lt;ul>
+&lt;li>Cloud VPN
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>AWS VPN&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Azure VPN&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Cloud Interconnect
+&lt;ul>
+&lt;li>Amazon Web Services (AWS) : &lt;strong>AWS Direct Connect&lt;/strong>&lt;/li>
+&lt;li>Microsoft Azure : &lt;strong>Azure ExpressRoute&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
 &lt;/blockquote></description></item><item><title>gcloud CLI 概述 II - Authorize the gcloud CLI</title><link>https://aryido.github.io/not-yet-finished/gcp-cli-2/</link><pubDate>Sat, 28 Sep 2024 21:25:48 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/gcp-cli-2/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>我們經常會透過 gcloud CLI 和 GCP 的雲端資源互動，為了能夠 Access 到 GCP 的雲端資源，就必須 authorize gcloud CLI，提供了兩個方式來 grant authorization 到 gcloud CLI :&lt;/p>
@@ -175,14 +192,6 @@
 &lt;li>Microsoft Azure : &lt;strong>Azure Functions&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;p>Cloud Functions 可以用 Java、Python、Node.js、Go 等常用 coding language 來撰寫，適用於部署單一化用途的程式，或用於連接擴展其他的 GCP 雲端服務，以 Events and triggers 為其核心設計思想。&lt;/p>
-&lt;/blockquote></description></item><item><title>GCP - Cloud VPN 概述</title><link>https://aryido.github.io/not-yet-finished/cloud-vpn/</link><pubDate>Wed, 10 Jul 2024 18:18:34 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/cloud-vpn/</guid><description>&lt;!-- raw HTML omitted -->
-&lt;blockquote>
-&lt;p>Cloud VPN 全稱是 Cloud Virtual Private Network，能夠將自己本地的 Network 和 GCP VPC Network 進行對等連接 peering 在一起。兩個 Network 之間傳輸的流量由一個 VPN Gateway 透過 IPSec 協議進行加密，再由另一個 VPN Gateway 解密，此操作可以更加保護資料在網路上傳輸的安全。對應其他的雲端服務是 :&lt;/p>
-&lt;ul>
-&lt;li>Amazon Web Services (AWS) : &lt;strong>AWS VPN&lt;/strong>&lt;/li>
-&lt;li>Microsoft Azure : &lt;strong>Azure VPN&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;p>除了自己本地的 Network 和 GCP VPC 對等連接 peering 之外，Cloud VPN 也支持把兩個 GCP VPC 通過連接兩個 Cloud VPN 實例將網路連接在一起，由於是由 Google 託管的服務，也提供了 99% 以上的 SLA。&lt;/p>
 &lt;/blockquote></description></item><item><title>GCP - Cloud NAT 概述</title><link>https://aryido.github.io/posts/google-cloud/cloud-nat/</link><pubDate>Tue, 02 Jul 2024 20:18:34 +0800</pubDate><guid>https://aryido.github.io/posts/google-cloud/cloud-nat/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Cloud NAT 全稱是 Cloud Network Address Translation，是 Google Cloud 代管的 IP 轉譯服務，可在不公開 IP 位址的情況下，讓 GCP VM 或 GKE 內的 Pod 可以高效的&lt;strong>連接上&lt;/strong>「外部網路 Internet」，而外部資源無法直接存取 Cloud NAT gateway 後方的資源，維持獨立性與安全性。對應其他的雲端服務是 :&lt;/p>
