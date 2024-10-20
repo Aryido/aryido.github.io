@@ -1,9 +1,9 @@
 ---
-title: GCP - Cloud VPN 概述
+title: GCP - Cloud VPN & Cloud Interconnect 概述
 
 author: Aryido
 
-date: 2024-07-10T18:18:34+08:00
+date: 2024-10-10T18:18:34+08:00
 
 thumbnailImage: "/images/google-cloud/vpn-interconnect/vpn-logo.jpg"
 
@@ -19,11 +19,15 @@ comment: false
 reward: false
 ---
 <!--BODY-->
-> Cloud VPN 全稱是 Cloud Virtual Private Network，能夠將自己本地的 Network 和 GCP VPC Network 進行對等連接 peering 在一起。兩個 Network 之間傳輸的流量由一個 VPN Gateway 透過 IPSec 協議進行加密，再由另一個 VPN Gateway 解密，此操作可以更加保護資料在網路上傳輸的安全。對應其他的雲端服務是 :
-> - Amazon Web Services (AWS) : **AWS VPN**
-> - Microsoft Azure : **Azure VPN**
-> 
-> 除了自己本地的 Network 和 GCP VPC 對等連接 peering 之外，Cloud VPN 也支持把兩個 GCP VPC 通過連接兩個 Cloud VPN 實例將網路連接在一起，由於是由 Google 託管的服務，也提供了 99% 以上的 SLA。
+> Cloud VPN 全稱是 Cloud Virtual Private Network，能夠將 On-premise Network 和 GCP VPC Network 連接在一起，流量透過 IPSec 協議進行加密。而 Cloud Interconnect 可以說是加強版的 Cloud VPN，它是真的從你 On-premise 的設備做**一個實體的線路**，一直到 Google 的機房裡面。兩個分別對應其他的雲端服務是 :
+> - Cloud VPN
+>   - Amazon Web Services (AWS) : **AWS VPN**
+>   - Microsoft Azure : **Azure VPN** 
+> - Cloud Interconnect
+>   - Amazon Web Services (AWS) : **AWS Direct Connect**
+>   - Microsoft Azure : **Azure ExpressRoute**
+>
+
 
 <!--more-->
 
@@ -31,12 +35,17 @@ reward: false
 
 # Cloud VPN 類型
 
+Cloud VPN 把 On-premise 和 Cloud 兩個不同 Network 之間傳輸的流量，由一個 VPN Gateway 透過 IPSec 協議進行加密，再由另一個 VPN Gateway 解密，此操作可以更加保護資料在網路上傳輸的安全。
+
+{{< alert info >}}
+此外 Cloud VPN 也支持把兩個 VPC 透過「兩個 Cloud VPN 實例」連接在一起
+{{< /alert >}}
+
 ### HA VPN
 
-單個地區中通過 IPsec VPN 連接將本地網絡連接到 VPC 。HA VPN 提供服務可用性達 99.99% 的服務等級協議(SLA)。
+{{< image classes="fancybox fig-100" src="/images/google-cloud/vpn-interconnect/ha-vpn.jpg" >}}
 
-創建 HA VPN Gateway 時， GCP 會自動選擇兩個 external IP 以支
-持高可用性 ; HA VPN Gateway 接口都支持多個隧道，也可以創建多
+創建 HA VPN Gateway 時， GCP 會自動選擇兩個 external IP 以支持高可用性 ; HA VPN Gateway 接口都支持多個隧道，也可以創建多
 個 HA VPN Gateway。
 
 刪除 HA VPN Gateway 時，GCP 會 release IP 
@@ -44,6 +53,8 @@ reward: false
 
 可以將高可用性VPN 網關配置為只有一個活動接口和一
 個外部IP 地址；但是，此配置不會提供服務可用性達到99.99% 的SLA。
+
+單個地區中通過 IPsec VPN 連接將本地網絡連接到 VPC 。HA VPN 提供服務可用性達 99.99% 的服務等級協議(SLA)。
 
 ### Classic VPN
 Classic VPN Gateway 只有單個接口、單個外部 IP 地址，使用靜態路由（基於政策或基於路由）的隧道。
@@ -95,9 +106,29 @@ Cloud VPN 會建議你這個傳輸通道 要建兩條 為什麼要建兩條
 
 
 
-{{< alert success >}}
-其實簡單來說，Cloud NAT 就可以讓你沒有 IP 的主機都可以上網。
-{{< /alert >}}
+
+
+
+高速混合雲方案 Cloud Interconnect
+也就是說剛剛講的 VPN 我們是在地端做一個設備
+然後連到雲端 所以我們到雲端上 它其實只是在
+網際網路上做一個加密傳輸通道而已 可是 Cloud Interconnect
+
+就是說 Cloud Interconnect 完全不會碰到 Internet 你的封包完全不會有被監聽的可能
+
+這個東西 因為它有實體的建置工作 在台灣目前有中華電信跟是方電訊
+可以來你的公司去拉這個線 會先拉到這兩家廠商的機房
+然後再插到 Google 的機器上 因為從頭到尾都是走線路 不會跟別人塞車
+所以它的速度是非常非常快的 它的 Latency 非常的低
+可能是 1/2/3 反正它的 Latency 非常的低 剛剛講的是毫秒
+它也可以去做 HA 你可以做兩條實體線路
+你也可以直接到兩個不同的廠商 然後再到 Google 的機房
+目前許多大型的 上市公司或政府機關都有用
+就像上面寫的這樣子給大家參考 這只是其中一個 Google 公開的例子
+
+Extend your on-premises network to Google's network through a highly available, low-latency connection. You can use Dedicated Interconnect to connect directly to Google or use Partner Interconnect to connect to Google through a supported service provider.
+
+
 
 
 ---
