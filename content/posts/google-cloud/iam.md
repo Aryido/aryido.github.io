@@ -98,11 +98,11 @@ roles/<service>.<roleName>
 
 > 「 **Principal 是有能力 access 資源的 Identity** 」
 
-故看起來: `Principal = Identity + Role`，因此 Principal 也可以詳細稱為 「Authenticated principal」，另外官網中其實也有說**在過去 Principal 的舊稱是 Member**，這個稱呼在一些 API 上也還是有沿用(例如 Terraform)。雖然上述這樣分析，但其實在很多文章中或者講解中，是不是真的付加上 Role 了其實都沒有很明確，故其實基本上還是可以當成：
+故看起來: `Principal = Identity + Role`，因此 Principal 也可以詳細稱為 「Authenticated principal」，另外官網中其實也有說**在過去 Principal 的舊稱是 Member**，這個稱呼在一些 API 上也還是有沿用(例如 Terraform)。雖然上述這樣分析，但其實在很多文章中或者講解中，敘述的 Principal 是不是真的有付加上 Role 而有權限了這件事情，其實都沒有很明確，故其實基本上還是可以當成：
 
 > `Principal = Identity = Member`
 
-再來實際上 Resource 的 Permission 並不會直接賦予給 Principal，而是先把 Permissions 集中起來成一個 Role，再來 granted Role 給 Principal。
+再來要知道，實際上 Resource 的 Permission 並不會直接賦予給 Principal，而是先把 Permissions 集中起來成一個 Role ，再來 granted Role 給 Principal ，當然一個 Principal 可以有多個不同的 Roles。
 
 Principal 在官網上有[很多不同的類型](https://cloud.google.com/iam/docs/overview#concepts_related_identity)，舉簡單常見的例如 :
 
