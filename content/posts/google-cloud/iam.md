@@ -69,7 +69,7 @@ roles/<service>.<roleName>
 
 {{< image classes="fancybox fig-100" src="/images/google-cloud/iam/compute-instanceAdmin.jpg" >}}
 
-上圖的 `Compute Instance Admin` 其還有很多 Permissions ，但因為圖片大小而沒有辦法列出來，基本上要分配「**最小權限原則**」是要花時間精力的，只能花時間去看每個 Role 的定義，然後去對應實際應用場景來分配合適的 Role。
+上圖的 `Compute Instance Admin` 其還有很多 Permissions ，但因為圖片大小而沒有辦法列出來，基本上要分配「**principle of least privilege (最小權限原則)**」是要花時間精力的，只能花時間去看每個 Role 的定義，然後去對應實際應用場景來分配合適的 Role。
 
 **Role 可當成是用來管理許多 Permissions 的載體**，因為 GCP 上面 Permissions 大概近萬個，為了管理這些權限 GCP 已經有先幫忙把一些 Permissions ，組合成一些更高階的形容來描述了：
 
