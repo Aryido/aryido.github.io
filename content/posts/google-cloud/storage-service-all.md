@@ -30,7 +30,7 @@ reward: false
 > - **NoSQL** : [Firestore](https://aryido.github.io/posts/google-cloud/firestore/)、[Bigtable](https://aryido.github.io/posts/google-cloud/bigtable-1/)、[Memorystore](https://aryido.github.io/posts/google-cloud/memorystore/)
 > - **Data Warehouse** : [Bigquery](https://aryido.github.io/posts/google-cloud/bigquery-1/)
 >
-> {{< image classes="fancybox fig-100" src="/images/google-cloud/storage-service-summary/storage-services.jpg" >}}
+> {{< image classes="fancybox fig-100" src="/images/google-cloud/storage-service-summary/storage-services-new.jpg" >}}
 > 在現今的雲端計算時代，儲存和管理大量資料變得更加重要，以上這幾種儲存服務需根據業務來選擇，因為這也會決定到訪問和管理組資料的難易程度，故以下對其做一些廣義的整理和筆記來幫助和選擇適合的儲存服務。
 
 <!--more-->
