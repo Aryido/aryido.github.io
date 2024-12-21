@@ -92,9 +92,13 @@ Zonal 與 Regional 的設定，用於決定 Control Plane 和 Node 的 Availabil
 由於 Autopilot 模式， GCP 會給出成本優化的建議，故可以先嘗試用一陣子 Autopilot 看看費用變化情形。
 {{< /alert >}}
 
-# Benefits of GKE
+# Benefits and Drawbacks of GKE
 
-Kubernetes 功能雖然強大，但背後最大的成本便是**維運複雜的架構**。傳統上在地端要架設好 Kubernetes，要準備一些硬體資源機器，然後組合成 Cluster，再來去做各式各樣的網路設定，若中間遇到問題時還要 Troubleshooting ，環境要弄起來蠻花時間的，不僅需要具備 Container, Kubernetes 相關的背景知識，同時也需在具備企業級網路架構知識。另外怎麼樣配置合適的 resource 資源用量也是個難題，這時雲端化 Kubernetes 就可能就有機會顯現一定的優勢：
+Kubernetes 功能雖然強大，但背後最大的成本便是**維運複雜的架構**。傳統上在地端要架設好 Kubernetes，要準備一些硬體資源機器，然後組合成 Cluster，再來去做各式各樣的網路設定 ; 若中間遇到問題時還要 Troubleshooting ，環境要弄起來蠻花時間的，不僅需要具備 Container 相關的背景知識，同時也需具備網路架構知識。
+
+> 這時雲端化 Kubernetes 有機會顯現一定的優勢...嗎？
+
+「 K8S上雲能簡化運維，更節省人力」其實也找到蠻多文章直接否定了，簡單來說，似乎還沒有真的有研究直接表明，僅僅因爲遷移到雲端，就能實質性地大幅縮減運維團隊。
 
 ### 軟硬體設置
 
@@ -103,6 +107,9 @@ Kubernetes 功能雖然強大，但背後最大的成本便是**維運複雜的�
 {{< alert warning >}}
 GKE 包含大多數 beta 版和穩定的 Kubernetes 功能，但如果想要嘗試還不太穩定的 alpha 階段 Kubernetes ，可以使用 alpha Standard cluster。
 {{< /alert >}}
+
+雖然風險是真的需要注意的，但爲某些微小的可能性而付出過高的溢價，雖然不能全盤否定，但總體上到底有沒有浪費，得就需要思考一下了。文章還有很貼切的比喻：「It's like paying a quarter of your house's value for earthquake insurance when you don't live anywhere near a fault line.」（沒有住在地震帶的附近卻花了四分之一的房價去買了地震保險）
+
 
 ### 雲端整合及安全性
 
@@ -120,6 +127,16 @@ GKE 在雲端整合 GCP 方面最常用的:
 GKE Cluster Autoscaler 是 GKE 對運算資源擴充的一種解決方案，會根據用戶提出的 Workload 需求自動調整機器的數量，以 Node Pool 為單位進行開啟，用戶僅需要設定 Autoscaling 的最高與最低機器數量。 一個 Cluster 聽說有超過一萬個 Node 可以配置都沒有問題，故一般來說中小型公司如果對自己業務成長真的不太確定時，很難規劃硬體需要購買的量，這時雲端的彈性就有一些用武之地。
 
 {{< image classes="fancybox fig-100" src="/images/google-cloud/gke/gke-features.jpg" >}}
+
+上面詳細地說出了上雲的好處，**但請注意**是在某些條件下上雲才會是適宜的選擇，例如：
+
+- 當應用程序非常簡單且流量很低時，可能可以使用完全託管的服務，來減少基礎建設的維運
+
+- 當負載不確定時，無法預判到底是需要 10 臺服務器還是 100 臺服務器的情況下，上雲可能會是好的選擇
+  
+- 當負載波動很大，例如一年中只有幾天要用到超多台服務器，那麼把購買許多服務器並閑置著就是沒有意義的，這種情況上雲也是個選擇
+
+如果是增長穩定的中型公司，租用 IT 基礎設施可能就沒什麼必要。
 
 ---
 
@@ -176,3 +193,7 @@ B. DNS entry with a fixed IP address 不可行，因為後端 Pod 在重啟後 I
 - [淺談 Google Kubernetes Engine 架構與五大面向介紹](https://mile.cloud/zh/resources/blog/gke-k8s-introduction-Node-Pool-autoscaling_522)
 
 - [GCP 百科 04：全面探索 Google Kubernetes Engine（GKE）：功能、特性和服務教學](https://tw.cocloud.com/zh-tw/blog/google-kubernetes-Engine)
+
+- [Why we're leaving the cloud](https://world.hey.com/dhh/why-we-re-leaving-the-cloud-654b47e0)
+
+- [Our cloud exit has already yielded $1m/year in savings](https://world.hey.com/dhh/our-cloud-exit-has-already-yielded-1m-year-in-savings-db358dea)
