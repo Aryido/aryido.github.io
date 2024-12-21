@@ -27,7 +27,7 @@ reward: false
 > - Amazon Web Services (AWS) : **EKS**
 > - Microsoft Azure : **AKS**
 >
-> 雲端化的 Kubernetes 簡單的說就是**把可在地端原生的 Kubernetes 放到雲端上運行**，由雲供應商幫助我們大幅簡化集群的設置管理與維運。由於只是讓雲供應商託管 Kubernetes ，最終差異也只是看雲供應商如何「預設」和「整合自己平台其他服務」至 Kubernetes 罷了，本質上 EKS、AKS、GKE 差異並不大，故基本上不推薦隨意更換 Kubernetes 服務的雲供應商或使用多雲，會考慮 GKE 的公司，大多都是只是思考怎樣更方便的整合 Kubernetes 和 GCP 的各種服務而已。
+> 雲端化的 Kubernetes 簡單的說就是**把可在地端原生的 Kubernetes 放到雲端上運行**，由雲供應商幫助我們大幅簡化集群的設置管理與維運。由於只是讓雲供應商託管 Kubernetes ，最終差異也只是看雲供應商如何「預設」和「整合自己平台其他服務」至 Kubernetes 罷了，本質上 EKS、AKS、GKE 差異並不大，故基本上不推薦隨意更換 Kubernetes 服務的雲供應商或使用多雲，會考慮 GKE 的公司大多都是本來就在使用 GCP 雲端，更方便整合 Kubernetes 和 GCP 的各種服務。
 
 <!--more-->
 
@@ -42,7 +42,7 @@ GKE Cluster 由 「Control Plane」 和 「Nodes(也常稱為 Workers)」組成�
 
 ### Autopilot （recommended）
 
-Autopilot 模式是一種全託管集群模式，這是連 Node 設定都基本上託管給 GCP 管理， GCP 會根據 Pod 的數量自動擴展 Node 或優化 Node 利用率，從而降低成本，讓用戶專注於應用開發，而無需手動管理集群。 Node 能請求的硬體種類也大致上被固定了，可參考 [Request compute classes](https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-compute-classes)。
+Autopilot 模式是一種**全託管**集群模式，是連 Node 設定都基本上託管給 GCP 管理， GCP 會根據 Pod 的數量自動擴展 Node 或優化 Node 利用率，從而降低成本，讓用戶專注於應用開發而無需手動管理集群。 Node 能請求的硬體種類也大致上被固定了，可參考 [Request compute classes](https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-compute-classes)。
 {{< alert warning >}}
 Autopilot 模式下若要查看 Node 資訊只能使用 kubectl，並沒辦法 SSH 直接連線到 Node 裡面
 {{< /alert >}}
@@ -51,7 +51,7 @@ Autopilot 模式下若要查看 Node 資訊只能使用 kubectl，並沒辦法 S
 
 ### Standard
 
-可以自己掌控 Node 的設置但比較繁瑣，藉由配製 [node pools](https://cloud.google.com/kubernetes-engine/docs/concepts/node-pools)來管理 nodes ，在 pool 中的 nodes 都是相同的 configuration，再進階還可以透過 `nodeSelector` 來指定 Pod 要部署到哪個 node pool 中。 現在可以使用
+可以自己掌控 Node 的設置但比較繁瑣，藉由配製 [node pools](https://cloud.google.com/kubernetes-engine/docs/concepts/node-pools)來管理 nodes ，在 pool 中的 nodes 都是相同的 configuration，再進階還可以透過 `nodeSelector` 來指定 Pod 要部署到哪個 node pool 中。 在過去 node pool 一旦建立是無法修改的，但現在可以嘗試使用
 
 ```bash
 gcloud container node-pools update POOL_NAME \
@@ -61,12 +61,14 @@ gcloud container node-pools update POOL_NAME \
     --disk-size DISK_SIZE
 ```
 
-來修改 node pool 已配置的 machine-type 、 disk-type 和 disk-size。修改時 GKE 會使用為 node pool 配置的升級策略，如果有配置 [blue-green upgrade policy](https://cloud.google.com/kubernetes-engine/docs/concepts/node-pool-upgrade-strategies?hl=zh-cn#blue-green-upgrade-strategy)，在遷移失敗時，也能會回溯回原始節點。
+來修改 node pool 已配置的 machine-type 、 disk-type 和 disk-size。修改時 GKE 會使用 node pool 配置的升級策略，如果有配置 [blue-green upgrade policy](https://cloud.google.com/kubernetes-engine/docs/concepts/node-pool-upgrade-strategies?hl=zh-cn#blue-green-upgrade-strategy)，在遷移失敗時， Pod 也能會回溯回原始節點。
 
-Standard 模式下要查看 Node 資訊，可以使用 「kubectl」或者 「gcloud CLI」。由於 gcloud CLI 可以看到 Node 資訊，這其實也代表 Node 屬於在 GCP 雲端的管理範圍，那是管理在哪裡呢？
+
 
 {{< alert success >}}
-在 VM console 畫面可以看到 Node 的資訊，也進一步也有能力 SSH 到 Node 內
+Standard 模式下要查看 Node 資訊，可以使用 「kubectl」或者 「gcloud CLI」。由於 gcloud CLI 可以看到 Node 資訊，這其實也代表 Node 屬於在 GCP 雲端的管理範圍，那是管理在哪裡呢？
+
+> 在 GCP VM 頁面可以看到 Node 的資訊，也有機會進一步 SSH 到 Node 內
 {{< /alert >}}
 
 ##### Standard Mode 下 Zonal 與 Regional
