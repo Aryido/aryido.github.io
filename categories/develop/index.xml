@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>develop on Aryido Tech Note</title><link>https://aryido.github.io/categories/develop/</link><description>Recent content in develop on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 20 May 2024 19:38:28 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/develop/index.xml" rel="self" type="application/rss+xml"/><item><title>Homebrew 介紹和常用操作</title><link>https://aryido.github.io/posts/develop/homebrew/</link><pubDate>Mon, 20 May 2024 19:38:28 +0800</pubDate><guid>https://aryido.github.io/posts/develop/homebrew/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>develop on Aryido Tech Note</title><link>https://aryido.github.io/categories/develop/</link><description>Recent content in develop on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 13 Mar 2025 19:27:31 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/develop/index.xml" rel="self" type="application/rss+xml"/><item><title>淺談 Process、Thread - 很重要的面試八股文</title><link>https://aryido.github.io/posts/develop/process-thread/</link><pubDate>Thu, 13 Mar 2025 19:27:31 +0800</pubDate><guid>https://aryido.github.io/posts/develop/process-thread/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>電腦運行時&lt;strong>任務的的單元是什麼呢&lt;/strong>？ 這個涉及了「程式(Program)」、「進程(Process)」、「線程(Thread)」的概念，是面試時經常會被問到的題目，首先&lt;strong>默念默背&lt;/strong>一下教科書上 Process 和 Thread 的簡單定義：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Process： 資源分配的最小單位&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>Thread： CPU 執行的最小單位&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>在實際生活中如點開一個聊天應用程式，這就是將 Program 活化成 Process 的例子，因此我們可以在電腦的資源管理器 Monitor 中看到 PID (Process ID) ; 再繼續以聊天室 Process 為例，我們可以同時「接受對方傳來的訊息」以及「發送自己的訊息給對方」，這就是同個 Process 中不同 Thread 的功勞。&lt;/p>
+&lt;/blockquote></description></item><item><title>Homebrew 介紹和常用操作</title><link>https://aryido.github.io/posts/develop/homebrew/</link><pubDate>Mon, 20 May 2024 19:38:28 +0800</pubDate><guid>https://aryido.github.io/posts/develop/homebrew/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Homebrew 是一個廣泛使用在 MAC 上的&lt;strong>套件管理工具&lt;/strong>，可以安裝一些 Mac App Store 上沒有的軟體，其操作十分方便，可以簡化軟體安裝的過程，是個很有名的&lt;strong>非官方工具&lt;/strong>，由 Max Howell 以 Git 和 Ruby 為基底寫成，並通過 GitHub 維護，為 2012 年 GitHub 上擁有最多新貢獻者的專案。對於其作者也有個有趣的軼事：Max Howell 曾應聘過 Google 的職位，面試失敗之後在 Twitter 上發文章 :&lt;/p>
 &lt;ul>
@@ -71,11 +79,4 @@
 &lt;/blockquote></description></item><item><title>Parallel、Concurrent 介紹</title><link>https://aryido.github.io/posts/develop/os-2/</link><pubDate>Mon, 26 Sep 2022 22:02:41 +0800</pubDate><guid>https://aryido.github.io/posts/develop/os-2/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>前面介紹了 Program、Process、Thread 差異。再來淺談Parallel、Concurrent 吧! 其實主要是要注意中英文對照&amp;hellip;&lt;/p>
-&lt;/blockquote></description></item><item><title>Program、Process、Thread 差異</title><link>https://aryido.github.io/posts/develop/os-1/</link><pubDate>Sat, 24 Sep 2022 18:07:17 +0800</pubDate><guid>https://aryido.github.io/posts/develop/os-1/</guid><description>&lt;!-- raw HTML omitted -->
-&lt;blockquote>
-&lt;p>Program/Process/Thread 是面試時經常會被問到的題目，中文部分翻譯有很多種，也來筆記一下吧。首先默念一下教科書上 Process 和 Thread 定義：&lt;/p>
-&lt;/blockquote>
-&lt;ul>
-&lt;li>Process：資源分配的最小單位。&lt;/li>
-&lt;li>Thread：執行的最小單位。&lt;/li>
-&lt;/ul></description></item></channel></rss>
+&lt;/blockquote></description></item></channel></rss>

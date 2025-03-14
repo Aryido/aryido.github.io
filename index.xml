@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 14 Oct 2024 00:23:58 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>GCP - 概述</title><link>https://aryido.github.io/not-yet-finished/shared-responsibility/</link><pubDate>Mon, 14 Oct 2024 00:23:58 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/shared-responsibility/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 13 Mar 2025 19:27:31 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>淺談 Process、Thread - 很重要的面試八股文</title><link>https://aryido.github.io/posts/develop/process-thread/</link><pubDate>Thu, 13 Mar 2025 19:27:31 +0800</pubDate><guid>https://aryido.github.io/posts/develop/process-thread/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>電腦運行時&lt;strong>任務的的單元是什麼呢&lt;/strong>？ 這個涉及了「程式(Program)」、「進程(Process)」、「線程(Thread)」的概念，是面試時經常會被問到的題目，首先&lt;strong>默念默背&lt;/strong>一下教科書上 Process 和 Thread 的簡單定義：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Process： 資源分配的最小單位&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>Thread： CPU 執行的最小單位&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>在實際生活中如點開一個聊天應用程式，這就是將 Program 活化成 Process 的例子，因此我們可以在電腦的資源管理器 Monitor 中看到 PID (Process ID) ; 再繼續以聊天室 Process 為例，我們可以同時「接受對方傳來的訊息」以及「發送自己的訊息給對方」，這就是同個 Process 中不同 Thread 的功勞。&lt;/p>
+&lt;/blockquote></description></item><item><title>GCP - 概述</title><link>https://aryido.github.io/not-yet-finished/shared-responsibility/</link><pubDate>Mon, 14 Oct 2024 00:23:58 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/shared-responsibility/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>對應到其他的雲端服務是 :&lt;/p>
 &lt;ul>
@@ -923,14 +931,7 @@ Binary-Search 在處理邊界時很容易出錯。 基本上都是沒注意到�
 &lt;/blockquote></description></item><item><title>AWS 與 GCP reliability 不同的地方比較 - 1</title><link>https://aryido.github.io/posts/cloud/reliability1/</link><pubDate>Sat, 24 Sep 2022 19:31:37 +0800</pubDate><guid>https://aryido.github.io/posts/cloud/reliability1/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>近期有機會來比較一下 AWS 和 GCP 的一些差別，也看了一些文章(&lt;del>練英文QQ&lt;/del>)。 GCP 和 AWS 都有 auto scaling 的功能，當我們在某些時候，需要比較多的資源處理事情時，可以自動增加機器來維持高 reliability。 那這部分 GCP 和 AWS 有甚麼區別呢 ?&lt;/p>
-&lt;/blockquote></description></item><item><title>Program、Process、Thread 差異</title><link>https://aryido.github.io/posts/develop/os-1/</link><pubDate>Sat, 24 Sep 2022 18:07:17 +0800</pubDate><guid>https://aryido.github.io/posts/develop/os-1/</guid><description>&lt;!-- raw HTML omitted -->
-&lt;blockquote>
-&lt;p>Program/Process/Thread 是面試時經常會被問到的題目，中文部分翻譯有很多種，也來筆記一下吧。首先默念一下教科書上 Process 和 Thread 定義：&lt;/p>
-&lt;/blockquote>
-&lt;ul>
-&lt;li>Process：資源分配的最小單位。&lt;/li>
-&lt;li>Thread：執行的最小單位。&lt;/li>
-&lt;/ul></description></item><item><title>JAVA Map方法：compute、computeIfAbsent、put、putIfAbsent</title><link>https://aryido.github.io/posts/java/java-skill-7/</link><pubDate>Thu, 22 Sep 2022 21:58:05 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-7/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>JAVA Map方法：compute、computeIfAbsent、put、putIfAbsent</title><link>https://aryido.github.io/posts/java/java-skill-7/</link><pubDate>Thu, 22 Sep 2022 21:58:05 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-7/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;p>Map 是 Java 的其中一 interface，不是collection，也不會繼承 Collection interface。
 JDK8 的 Map API 有不少便利的預設方法，以下可以介紹一下。&lt;/p></description></item><item><title>Terratag</title><link>https://aryido.github.io/posts/terraform/terratag/</link><pubDate>Wed, 21 Sep 2022 23:11:25 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/terratag/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
