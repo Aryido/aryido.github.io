@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>develop on Aryido Tech Note</title><link>https://aryido.github.io/categories/develop/</link><description>Recent content in develop on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 13 Mar 2025 19:27:31 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/develop/index.xml" rel="self" type="application/rss+xml"/><item><title>淺談 Process、Thread - 很重要的面試八股文</title><link>https://aryido.github.io/posts/develop/process-thread/</link><pubDate>Thu, 13 Mar 2025 19:27:31 +0800</pubDate><guid>https://aryido.github.io/posts/develop/process-thread/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>develop on Aryido Tech Note</title><link>https://aryido.github.io/categories/develop/</link><description>Recent content in develop on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 14 Mar 2025 12:25:54 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/develop/index.xml" rel="self" type="application/rss+xml"/><item><title>淺談 Concurrency 與 Asynchronous - 兩個常被一起提起的詞</title><link>https://aryido.github.io/posts/develop/concurrency-asynchronous/</link><pubDate>Fri, 14 Mar 2025 12:25:54 +0800</pubDate><guid>https://aryido.github.io/posts/develop/concurrency-asynchronous/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>前面基本介紹了 &lt;a href="https://aryido.github.io/posts/develop/process-thread/">Process 、 Thread&lt;/a> ，那其際的運作可以配合我們自己的常見的電腦使用情況來舉例，例如電腦操作系統的各種基本功能運行的「系統進程」、由 user 自己啓動的如 Word 文書應用程式的「用戶進程」; 再進一步的 Word 應用程式是可以同時進行「打字」、「拼寫檢查、「寫入硬碟儲存」等等工作，以上這些運作就是由「&lt;strong>多執行緒(Multithreading)&lt;/strong>」和「&lt;strong>多進程(Multiprocessing)&lt;/strong>」來達成的，基本上都是思考怎麼更&lt;strong>高效&lt;/strong>更&lt;strong>多工&lt;/strong>的處理多個不同的工作，這時 :&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>非同步（Asynchronous）&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>併發（Concurrency）&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>兩個關鍵字會經常一起出現，是許多高效應用的關鍵，接下來就簡單談一下吧！另外可以稍微注意一下其他相關名詞的中文英文對照。&lt;/p>
+&lt;/blockquote></description></item><item><title>淺談 Process、Thread - 很重要的面試八股文</title><link>https://aryido.github.io/posts/develop/process-thread/</link><pubDate>Thu, 13 Mar 2025 19:27:31 +0800</pubDate><guid>https://aryido.github.io/posts/develop/process-thread/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>電腦運行時&lt;strong>任務的的單元是什麼呢&lt;/strong>？ 這個涉及了「程式(Program)」、「進程(Process)」、「線程(Thread)」的概念，是面試時經常會被問到的題目，首先&lt;strong>默念默背&lt;/strong>一下教科書上 Process 和 Thread 的簡單定義：&lt;/p>
 &lt;ul>
@@ -76,7 +84,4 @@
 &lt;blockquote>
 &lt;p>IP (Internet Protocol) 是電腦的地址。IP 位址在系統中是一個 32 位元的數字，但為了方便人類讀寫，每一個位元組會被轉換成一個十進位的數字。&lt;/p>
 &lt;p>IP 位址可以分為 Network ID 和 Host ID，為了讓電腦可以判斷出 IP 位址的 Network ID 及 Host ID，必須靠子網路遮罩 (Subnet Mask) 的幫忙。&lt;/p>
-&lt;/blockquote></description></item><item><title>Parallel、Concurrent 介紹</title><link>https://aryido.github.io/posts/develop/os-2/</link><pubDate>Mon, 26 Sep 2022 22:02:41 +0800</pubDate><guid>https://aryido.github.io/posts/develop/os-2/</guid><description>&lt;!-- raw HTML omitted -->
-&lt;blockquote>
-&lt;p>前面介紹了 Program、Process、Thread 差異。再來淺談Parallel、Concurrent 吧! 其實主要是要注意中英文對照&amp;hellip;&lt;/p>
 &lt;/blockquote></description></item></channel></rss>
