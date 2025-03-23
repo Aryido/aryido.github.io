@@ -1,5 +1,5 @@
 ---
-title: "淺談 Concurrency 與 Asynchronous - 兩個常被一起提起的詞"
+title: "淺談 Concurrency 與 Asynchronous"
 
 author: Aryido
 
@@ -21,14 +21,18 @@ reward: false
 
 <!--BODY-->
 
-> 前面基本介紹了 [Process 、 Thread](https://aryido.github.io/posts/develop/process-thread/) ，那其際的運作可以配合我們自己的常見的電腦使用情況來舉例，例如電腦操作系統的各種基本功能運行的「系統進程」、由 user 自己啓動的如 Word 文書應用程式的「用戶進程」; 再進一步的 Word 應用程式是可以同時進行「打字」、「拼寫檢查、「寫入硬碟儲存」等等工作，以上這些運作就是由「**多執行緒(Multithreading)**」和「**多進程(Multiprocessing)**」來達成的，基本上都是思考怎麼更**高效**更**多工**的處理多個不同的工作，這時 :
+> 前面基本介紹了 [Process 、 Thread](https://aryido.github.io/posts/develop/process-thread/)，而在現實世界中 Process 、 Thread 的任務是更加複雜的，都會是需要「**多執行緒(Multithreading)**」和「**多進程(Multiprocessing)**」來協調達成的，再來是要如何**更高效更多工**的處理多個不同的工作，變成是經常需要思考的問題，這時 :
 >
-> - **非同步（Asynchronous）**
-> - **併發（Concurrency）**
+> - **非同步（Asynchronous）** : 執行 Non-blocking 操作，允許程式在等待某些操作完成時可執行其他任務，之後可再回頭處理之前等待操作剩下的部分
+> - **併發（Concurrency）** : 是系統能夠在一段時間內處理多個任務，這些任務可能交錯執行，不一定要同時發生
 >
-> 兩個關鍵字會經常一起出現，是許多高效應用的關鍵，接下來就簡單談一下吧！另外可以稍微注意一下其他相關名詞的中文英文對照。
+> 兩個關鍵字會經常一起出現，因為 Concurrency + Asynchronous 是許多高效能應用的關鍵，接下來就簡單談一下吧！另外可以稍微注意一下其他相關名詞的中文英文對照。
 
 <!--more-->
+
+---
+
+雖然 Concurrency 與 Asynchronous 是兩個常同時一起提起的詞，但又很難說他們真的很相關，頗有一種**相關係數是** `0.38`的怪異...，到底算**低度相關**還是**中相關**有各個看法 ; 同理看來 Parallelism 和 Synchronous 一起看也是相當微妙呢 ! 但我解釋脈絡上還是會把它們放在一起同時說明，以下就來談一下吧 : 
 
 ---
 
@@ -41,27 +45,23 @@ reward: false
 - 輪流使用 CPU
 - 每個任務允許佔用 CPU 的時間非常短 (比如 10 毫秒)
 
-由於 context 間切換得很快，故用戶可能根本感覺不出來 CPU 是在輪流爲多個任務服務，就好像所有的任務都在不間斷地運行一樣，但實際上在任何一個時間內有僅有一個任務佔有 CPU。
+由於切換得很快，故用戶可能根本感覺不出來 CPU 是在輪流爲多個任務服務，就好像所有的任務都在不間斷地運行一樣，但實際上在任何一個時間內有僅有一個任務佔有 CPU。以上的解釋比較是屬於從 「CPU 運行的角度」來說明，若從 「Thread 的角度」去談， Multi-Thread 間彼此需要協調等待，交出 CPU 執行時間片的使用權，**這也是一種 Concurrency 併發**。
 
-那再多核 CPU 情況下，如果任務數小於 CPU 數，則不同任務可以分配給不同的 CPU 來運行，則多個任務就是「真正同時運行」了，這就是 Parallelism。
 
-## Parallelism - 常見翻譯 : 平行、併行
 
-> Parallelism 定義是要多個 Process/Thread **同時平行處理多個任務**
+那再**多核 CPU** 情況下，如果任務數小於 CPU 數，且不同任務可以分配給不同的 CPU 來運行，讓多個任務達成「真正同時運行」，這就是所謂的 Parallelism。
+
+- ## Parallelism - 常見翻譯 : 平行、併行
+
+  > Parallelism 定義是要多個 Process/Thread **同時平行處理多個任務**，能夠利用「多核心 CPU」的數量特性，適合用在圖像處理、算法處理、機器學習等需大量計算，提高效率
+
+**Concurrency 主要關注於任務的管理和調度**，要在一時間段內處理多個任務，不論是通過時間片輪轉在單核處理器上切換進行，還是在多核處理器上水平並行。 Concurrency 和 Parallelism 會同時出現比較像是想對比 「交錯執行」 與 「同時進行」的概念。
 
 {{< alert danger >}}
-Parallelism 定義是要**平行同時處理**多個任務的 ; 而 Concurrency 的關鍵是有處理多個任務的能力，不一定要同時，所以可以說 **Parallelism 是 Concurrency 的 subset**。
+Parallelism 定義是要**平行同時處理**多個任務的 ; 而 Concurrency 的關鍵是有處理多個任務的能力，不一定要同時，所以可以說 **Parallelism 是 Concurrency 的 subset**，而 Parallelism 是提高 Concurrency 的一種實現方式。
 
-如果真的要說 Parallelism 的反意詞，使用 Sequential Processing 或 Serial Processing 會是最準確的。但雖然是這樣說，偶爾還是會有人用 Concurrency 來當 Parallelism 的反意形容 ... ，溝通上要注意一下！
+如果真的要說 Parallelism 的反意詞，使用 Sequential Processing 或 Serial Processing 會是最準確的。但雖然是這樣說，偶爾還是會有人用 Concurrency 來當 Parallelism 的反意形容 ... 溝通上要注意一下！
 {{< /alert >}}
-
-以上的 Concurrency 解釋比較是屬於從 「CPU 運行的角度」來說明，但作為軟體工程師我們更常用從 「Thread 的角度」去談 :
-
-- 若 Multi-Thread 間彼此需要協調等待，會需要交出 CPU 執行時間片的使用權 >> **Concurrency**
-
-- 若 Multi-Thread 間不存在資料共用，能夠利用「多核心 CPU」的數量特性，提高圖像處理、算法處理、機器學習等需大量計算效率 >> **Parallelism**
-
-**Concurrency 主要關注於任務的管理和調度**，要在一時間段內處理多個任務，不論是通過時間片輪轉在單核處理器上切換進行，還是在多核處理器上水平並行。
 
 ---
 
@@ -69,7 +69,7 @@ Parallelism 定義是要**平行同時處理**多個任務的 ; 而 Concurrency 
 
 > **任務可以「不阻塞」當前執行流程，允許程式繼續執行其他工作，並在未來某個時間點返回來繼續進行剩下的任務部分。**
 
-一般來說 Asynchronous 會使用在例如 I/O 等相對「慢」的操作任務上（與 CPU 和 RAM 速度相比），實際舉例的話如下 :
+一般來說 Asynchronous 會使用在例如 I/O 等相對「慢」的操作任務上（與 CPU 和 RAM 速度相比的慢），實際舉例的話如下 :
 
 - 網絡資料的收發、遠端 API 操作
   {{<alert info>}}
@@ -83,25 +83,21 @@ Parallelism 定義是要**平行同時處理**多個任務的 ; 而 Concurrency 
 
 以磁盤文件讀取寫入的 **I/O 操作**爲例，實際上是 code 通過系統調用的方式，向操作系統發出讀寫請求。以 read 函數爲例在 **Synchronous** 調用方式下，文件在讀取完之前 main thread 是無法繼續向前進的，只有當 read 函數返回後才可以繼續往後
 
-```python
-read(file, buf); # main thread 會阻塞在這裡 等待文件讀取完成後才會繼續往下運行
-```
-
 {{<alert warning>}}
 由於 Synchronous 也是按照順序調用執行，故也稱為 Sequential
 {{</alert>}}
 
-若 read 函數以 **Asynchronous** 調用的話，那即使文件還沒有完全讀取完成，read 函數也可以執行接下來的 code。 Asynchronous 的重點就在於調用方可以在接下來的程序執行，和文件讀取同時進行，從圖中我們也能看出這一點，這就是異步的高效之處。
+若 read 函數以 **Asynchronous** 調用的話，那即使文件還沒有完全讀取完成，read 函數也可以執行接下來的 code，這就是異步的高效之處。
 
 {{< image classes="fancybox fig-100" src="/images/others/concurrency-asynchronous/concurrency.jpg" >}}
 
-Asynchronous 主要關注於提高程式在「等待（通常是 I/O 操作）期間」的效率， Asynchronous 允許程式在等待一個操作完成的同時，繼續執行其他任務，從而避免阻塞。
+Asynchronous 主要關注於提高程式在「等待期間」的效率，允許程式在等待一個操作完成的同時，繼續執行其他任務，從而避免阻塞。
 
 {{<alert info>}}
 與此相對的，若大部分執行時間，都是實際運算工作而不是等待回應，因為計算機中的工作是由 CPU 完成的，因此可將這些問題稱為「**CPU bound**」。
 {{</alert>}}
 
-## Asynchronous 的實現方式: Notify & callback
+## Asynchronous 的實現方式: Notify / Callback
 
 以常見的 Web 服務來舉例， 當 Web Server 接收到用戶請求，後續操作經常會做一些資料庫查詢之類的事情，故一般來說 Web Server 服務通常有兩個典型的 Thread ：
 
@@ -115,7 +111,7 @@ mainThread() {
     A;
     B;
     C;
-    資料庫查詢請求; //慢操作
+    資料庫查詢請求; // 慢操作
     D;
     E;
     F;
@@ -173,19 +169,9 @@ DB-Thread 需要做的僅僅就是查詢資料、然後調用 callback function 
 從這裏我們可以看到，ABCDEF 幾個步驟全部都由 Main-Thread 處理
 {{< /alert >}}
 
-# 心得
-
-- 並發（Concurrency）+ 非同步（Asynchronous） 是許多高效能應用的關鍵
-
-- Asynchronous 執行非阻塞（Non-blocking）操作，允許程式在等待某些操作完成時可執行其他任務，之後再回頭處理 ; 而 Concurrency 是系統能夠在一段時間內處理多個任務，這些任務可能交錯執行，不一定要同時發生
-
-- Asynchronous 可以單執行緒，例如 Python 的 `asyncio` 可用一個 Main-Thread 單執行緒達成非同步機制
-
-- Concurrency 和 Parallelism 並不是完全的反義詞，會同時出現比較像是想對比「同時進行」與「交錯執行」
-
--  Parallelism 的反義詞
-    - Sequential Processing 或者 Serial Execution ，表示「是否一個接一個逐一完成」
-    - Synchronous Processing ，從這角度出來比較像是說「有沒有同步的能力」
+{{< alert danger >}}
+雖然上面的 Asynchronous 舉例都是多執行緒的，但**Asynchronous 也可以單執行緒執行**，例如 Python 的 `asyncio` 就是用一個 Main-Thread 單執行緒達成非同步機制
+{{< /alert >}}
 
 
 ---
