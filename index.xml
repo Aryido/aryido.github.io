@@ -6,7 +6,7 @@
 &lt;li>&lt;strong>併發（Concurrency）&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;p>兩個關鍵字會經常一起出現，是許多高效應用的關鍵，接下來就簡單談一下吧！另外可以稍微注意一下其他相關名詞的中文英文對照。&lt;/p>
-&lt;/blockquote></description></item><item><title>淺談 Process、Thread - 很重要的面試八股文</title><link>https://aryido.github.io/posts/develop/process-thread/</link><pubDate>Thu, 13 Mar 2025 19:27:31 +0800</pubDate><guid>https://aryido.github.io/posts/develop/process-thread/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>淺談 Process、Thread</title><link>https://aryido.github.io/posts/develop/process-thread/</link><pubDate>Thu, 13 Mar 2025 19:27:31 +0800</pubDate><guid>https://aryido.github.io/posts/develop/process-thread/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>電腦運行時&lt;strong>任務的的單元是什麼呢&lt;/strong>？ 這個涉及了「程式(Program)」、「進程(Process)」、「線程(Thread)」的概念，是面試時經常會被問到的題目，首先&lt;strong>默念默背&lt;/strong>一下教科書上 Process 和 Thread 的簡單定義：&lt;/p>
 &lt;ul>
