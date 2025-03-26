@@ -1,5 +1,5 @@
 ---
-title: "Python : Coroutine 和 await/async"
+title: "Python : Coroutine 和 async/await"
 
 author: Aryido
 
@@ -22,14 +22,14 @@ reward: false
 
 > 之前有介紹了 [Asynchronous](https://aryido.github.io/posts/develop/concurrency-asynchronous/) ，而 Python 的 **Coroutine 是實現 Asynchronous 的一種設計方式**，且 Python 目前已經有非常直觀簡單的語法糖來定義 Asynchronous Code，使得程式寫起來就像普通的 「 Sequential Processing 順序執行 」任務那樣，但同時卻也可以對**目標函數標註做「等待」的動作，並在「等待」期間可以先去做其他任務**，達成非同步的功效，提高程式的並發性，而其重要的關鍵字就是 :
 >
-> - **`await` : 用來標記 Coroutine 切換暫停和繼續的位置**
 > - **`async` : 用來宣告 function 能夠有異步的功能成為 Coroutine function**
+> - **`await` : 用來標記 Coroutine 切換暫停和繼續的位置**
 >
 > 而這兩個關鍵字是在 `Python3.5` 引入且在 `Python3.7` 成為**保留關鍵字**。它們在著名的 FastAPI 框架下的 path operation function 也經常使用，接下來就簡單介紹一下吧。
 
 <!--more-->
 
-# Coroutine(協程)
+# Coroutine(協程) 和 async 關鍵字
 
 Asynchronous code 代表程式語言有辦法在 code 中的某個地方標註等待，且在等待時間中可以另外去做一些其他工作，最後再回來把剩下的事情做完，而 Python 的異步函數常使用 :
 
@@ -50,7 +50,13 @@ def load_file_2(path):
     pass
 ```
 
-Coroutine Function 在調用時會返回一個 「Coroutine」，這也是 Coroutine 的基本定義，是指 Coroutine Function 返回的物件，它可以「等待」並在等待狀態時，將執行權**讓給**其他 Coroutine，之後可以**再返回來**繼續執行任務剩下的小部分，且可以多次的進行這樣的行為。
+透過 `async def` 明確告知 Python 該函式具有非同步執行的能力，並且會**定義一個 Coroutine function** ， 且調用 Coroutine Function 時返回的東西為一個 Coroutine Obj 或簡稱 Coroutine，而這也是 **Coroutine Obj 的基本定義，是指 Coroutine Function 返回的物件**。 
+
+{{< alert warning >}}
+單只說 Coroutine 這個詞的話，在溝通時會因使用情景，有時是指 Coroutine Function ; 有時是指 Coroutine Obj，要注意一下！
+{{< /alert >}}
+
+Coroutine 它可以「等待」並在等待狀態時，將執行權**讓給**其他 Coroutine，之後可以**再返回來**繼續執行任務剩下的小部分，且可以多次的進行這樣的行為。
 
 {{< alert success >}}
 Python 的 Coroutine 可以對應於 Go 的 Goroutine
@@ -62,80 +68,80 @@ Python 的 Coroutine 可以對應於 Go 的 Goroutine
 
 故在使用 Coroutine Function 上要注意一些事情 :
 
-- ## 需啟動 async 模式，讓 Event-Loop 控制我們程序之後 Coroutine 才能正確開始調用執行
+## 需啟動 async 模式，讓 Event-Loop 控制我們程序之後 Coroutine 才能正確開始調用執行
 
-  由於 Coroutine 本身的特性有別於一般函式，一定要透過 Event-Loop 排程後執行，若直接調用的話**並不會運行任何 Coroutine code** ，例如 :
+由於 Coroutine 本身的特性有別於一般函式，一定要透過 Event-Loop 排程後才能執行，若直接調用的話**並不會運行任何 Coroutine code** ，例如 :
 
-  ````python
-  import asyncio
+````python
+import asyncio
 
-  async def say_after(delay, what):
-      await asyncio.sleep(delay)
-      print(what)
-      await asyncio.sleep(delay)
+async def say_after(delay, what):
+    await asyncio.sleep(delay)
+    print(what)
+    await asyncio.sleep(delay)
 
-  async def do():
-      await say_after(1, 'hello')
-      print("####### finished do function #######")
+async def do():
+    await say_after(1, 'hello')
+    print("####### finished do function #######")
 
-  do() # 注意，這裡直接調用了 Coroutine Function，這有問題
+do() # 注意，這裡直接調用了 Coroutine Function，這有問題
 
-  # Terminal:
-  # ```
-  # RuntimeWarning: coroutine 'do' was never awaited
-  #   do()
-  # RuntimeWarning: Enable tracemalloc to get the object allocation traceback
-  # ```
-  ````
+# Terminal:
+# ```
+# RuntimeWarning: coroutine 'do' was never awaited
+#   do()
+# RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+# ```
+````
 
 由這範例主要的錯誤是沒有正確**進入 async 模式，而最簡單是使用 `asyncio.run()` 就可以進入 async 模式了。**
 
-- ## Coroutine 需變成 Task 給 Event-Loop 才能被排程
+## Coroutine 需變成 Task 給 Event-Loop 才能被排程
 
-    若沒使用 `await` 就呼叫 Coroutine 且也沒有做其他處理，此時 Coroutine 並沒轉變成 Task ，故 Event-Loop 沒辦法排程它，**會無法運行！** 例如 :
-    
-    ``` python
-    import asyncio
+若沒使用 `await` 就呼叫 Coroutine 且也沒有做其他處理，此時 Coroutine 並沒轉變成 Task ，故 Event-Loop 沒辦法排程它，**會無法運行！** 例如 :
 
-    async def say_after(delay, what):
-        await asyncio.sleep(delay)
-        print(what)
-        await asyncio.sleep(delay)
+``` python
+import asyncio
 
-    async def do():
-        say_after(1, 'hello') # 注意，這裡沒有用 await
-        print("####### finished do function #######")
+async def say_after(delay, what):
+    await asyncio.sleep(delay)
+    print(what)
+    await asyncio.sleep(delay)
 
-    asyncio.run(do())
+async def do():
+    say_after(1, 'hello') # 注意，這裡沒有用 await
+    print("####### finished do function #######")
 
-    # Terminal:
-    # ```
-    # RuntimeWarning: coroutine 'say_after' was never awaited
-    #   say_after(1, 'hello')
-    # RuntimeWarning: Enable tracemalloc to get the object allocation traceback
-    # ####### finished do function #######
-    # ```
+asyncio.run(do())
 
-    ```
+# Terminal:
+# ```
+# RuntimeWarning: coroutine 'say_after' was never awaited
+#   say_after(1, 'hello')
+# RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+# ####### finished do function #######
+# ```
 
-    例如上面範例有使用 `asyncio.run()` 來執行 `do()` ，但在其內部的 Coroutine Function `say_after(1, 'hello')` 沒有加 await 關鍵字也沒有其他處理。接著執行程式後會發現在 terminal 上 : 
+```
 
-    - 馬上出現 `finished do function`
-    - 並沒有「等待 1 秒之後才列印出 hello 字串然後再等待 1 秒之後才列印出後續的 `finished do function` 字串」這種行為。 
-    
-    
-    看起來 **`say_after(1, 'hello')` 這個函數根本沒有運行 !** 導致不合預期的原因是 Coroutine 沒有成功轉成 Task 給 Event-Loop 排程。
-    
-    
-那要讓 Coroutine 變成 Task 該怎麼做呢？有以下幾種方法 :
+例如上面範例有使用 `asyncio.run()` 來執行 `do()` ，但在其內部的 Coroutine Function `say_after(1, 'hello')` 沒有使用 `await` 關鍵字也沒有其他處理，接著執行程式後會發現在 terminal 上 : 
+
+- 馬上出現 `finished do function`
+- 並沒有「等待 1 秒之後才列印出 hello 字串然後再等待 1 秒之後才列印出後續的 `finished do function` 字串」這種行為。 
+
+看起來 **`say_after(1, 'hello')` 這個函數根本沒有運行 !** 導致不合預期的原因是 Coroutine 沒有成功轉成 Task 給 Event-Loop 排程。
+
+### await 關鍵字
+要解決上面範例的錯誤最簡單是使用 `await` 加在 `say_after(1, 'hello')` 前面，之後就就可以正常運行了，`await` 語法會告知 Python 可以在此處暫停轉而執行其他工作，並且若 `await` 後面是接一個 Coroutine 的話，會把這個 Coroutine 轉為 Task 並且註冊到 Event-Loop 內。
+
+{{< alert warning >}}
+另外注意一下 `await` 需使用在 async def 函數內，且 await 後面必須接一個 Coroutine 或是 awaitable(之後會再解釋 awaitablse)
+{{< /alert >}}
+
+除了 `await` 關鍵字可以讓 Coroutine 變成 Task ，還有其他方法也可以達成的，故以下都列出來 :
 - **使用 `await` 關鍵字**
 - `asyncio.create_task()`
 - `asyncio.gather()`
-
-
-{{< alert warning >}}
-另外注意一下 `await` 需使用在 async def 函數內
-{{< /alert >}}
 
 ## 總結
 上述的範例要變成正確的，可以修正為：
@@ -155,6 +161,10 @@ async def do():
 asyncio.run(do())
 
 ```
+在此範例使用 Coroutine 需要注意的重點簡單來說有 :
+- 會使用 async 用來宣告一個 native Coroutine
+- 使用 `asyncio.run()` 來讓進入 async 模式
+- 使用 await 讓 Coroutine 轉為 Task 並註冊到 Event-Loop 內， Task 同時將控制權還給 Event-Loop 讓他決定接下來的排程和哪個 Task 要執行
 
 ---
 
