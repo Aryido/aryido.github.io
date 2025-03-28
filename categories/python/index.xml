@@ -13,5 +13,5 @@
 &lt;li>&lt;strong>&lt;code>async&lt;/code> : 用來宣告 function 能夠有異步的功能成為 Coroutine function&lt;/strong>&lt;/li>
 &lt;li>&lt;strong>&lt;code>await&lt;/code> : 用來標記 Coroutine 切換暫停和繼續的位置&lt;/strong>&lt;/li>
 &lt;/ul>
-&lt;p>而這兩個關鍵字是在 &lt;code>Python3.5&lt;/code> 引入且在 &lt;code>Python3.7&lt;/code> 成為&lt;strong>保留關鍵字&lt;/strong>。它們在著名的 FastAPI 框架下的 path operation function 也經常使用，接下來就簡單介紹一下吧。&lt;/p>
+&lt;p>而這兩個關鍵字是在 &lt;code>Python3.5&lt;/code> 引入且在 &lt;code>Python3.7&lt;/code> 成為&lt;strong>保留關鍵字&lt;/strong>。它們在著名的 FastAPI 框架下的 path operation function 下也經常使用，接下來就簡單介紹一下吧。&lt;/p>
 &lt;/blockquote></description></item></channel></rss>
