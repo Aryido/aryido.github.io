@@ -25,7 +25,7 @@ reward: false
 > - **`async` : 用來宣告 function 能夠有異步的功能成為 Coroutine function**
 > - **`await` : 用來標記 Coroutine 切換暫停和繼續的位置**
 >
-> 而這兩個關鍵字是在 `Python3.5` 引入且在 `Python3.7` 成為**保留關鍵字**。它們在著名的 FastAPI 框架下的 path operation function 也經常使用，接下來就簡單介紹一下吧。
+> 而這兩個關鍵字是在 `Python3.5` 引入且在 `Python3.7` 成為**保留關鍵字**。它們在著名的 FastAPI 框架下的 path operation function 下也經常使用，接下來就簡單介紹一下吧。
 
 <!--more-->
 
@@ -50,10 +50,10 @@ def load_file_2(path):
     pass
 ```
 
-透過 `async def` 明確告知 Python 該函式具有非同步執行的能力，並且會**定義一個 Coroutine function** ， 且調用 Coroutine Function 時返回的東西為一個 Coroutine Obj 或簡稱 Coroutine，而這也是 **Coroutine Obj 的基本定義，是指 Coroutine Function 返回的物件**。 
+透過 `async def` 明確告知 Python 該函式具有非同步執行的能力，並且會**定義一個 Coroutine function** ， 且調用 Coroutine Function 時返回的東西為一個 Coroutine Obj 或簡稱 Coroutine，而這也是 **Coroutine Obj 的基本定義，是指 Coroutine Function 返回的物件**。
 
 {{< alert warning >}}
-單只說 Coroutine 這個詞的話，在溝通時會因使用情景，有時是指 Coroutine Function ; 有時是指 Coroutine Obj，要注意一下！
+單單只說 Coroutine 這個詞的話，在溝通時會因為使用情景，有時是指 Coroutine Function ; 有時是指 Coroutine Obj，這邊要注意一下！
 {{< /alert >}}
 
 Coroutine 它可以「等待」並在等待狀態時，將執行權**讓給**其他 Coroutine，之後可以**再返回來**繼續執行任務剩下的小部分，且可以多次的進行這樣的行為。
@@ -62,13 +62,17 @@ Coroutine 它可以「等待」並在等待狀態時，將執行權**讓給**其
 Python 的 Coroutine 可以對應於 Go 的 Goroutine
 {{< /alert >}}
 
-運行 Coroutine 是個稍微麻煩的事情，簡單形容的話必須要達成以下事情 :
-- #### 要啟動 async 模式，也就是讓 Event-Loop 控制我們程序的狀態
-- #### 再來是把 Coroutine 變成 Task 傳給「事件迴圈(Event-Loop)」
+要運行 Coroutine 是個稍微麻煩的事情，故在使用 Coroutine Function 上要注意一些事情，必須要達成以下事情 :
 
-故在使用 Coroutine Function 上要注意一些事情 :
+- **啟動 async 模式，也就是讓 Event-Loop 控制 Task 的執行**
+- **需把 Coroutine 轉成 Task 傳給 Event-Loop**
 
-## 需啟動 async 模式，讓 Event-Loop 控制我們程序之後 Coroutine 才能正確開始調用執行
+    {{< alert info >}}
+
+  這裡開始出現一些陌生詞: Event-Loop 和 Task ，但先記得上面的敘述就好，後續會再作解釋，以下是一些常見錯誤或解決方式紀錄
+  {{< /alert >}}
+
+## 使用 asyncio.run() 來啟動 Coroutine
 
 由於 Coroutine 本身的特性有別於一般函式，一定要透過 Event-Loop 排程後才能執行，若直接調用的話**並不會運行任何 Coroutine code** ，例如 :
 
@@ -94,13 +98,13 @@ do() # 注意，這裡直接調用了 Coroutine Function，這有問題
 # ```
 ````
 
-由這範例主要的錯誤是沒有正確**進入 async 模式，而最簡單是使用 `asyncio.run()` 就可以進入 async 模式了。**
+- > 由這範例主要的錯誤是**沒有正確進入 async 模式**，而最簡單是使用 `asyncio.run()`調用就可以啟動 Coroutine，解決沒有運行的問題。
 
-## Coroutine 需變成 Task 給 Event-Loop 才能被排程
+## 使用 await 把 Coroutine 轉成 Task 給 Event-Loop 排程
 
-若沒使用 `await` 就呼叫 Coroutine 且也沒有做其他處理，此時 Coroutine 並沒轉變成 Task ，故 Event-Loop 沒辦法排程它，**會無法運行！** 例如 :
+若沒使用 `await` 就呼叫 Coroutine 且也沒有做其他處理，此時 Coroutine 會沒有轉變成 Task ，故 Event-Loop 沒辦法排程它，**會無法運行！** 例如 :
 
-``` python
+````python
 import asyncio
 
 async def say_after(delay, what):
@@ -122,29 +126,36 @@ asyncio.run(do())
 # ####### finished do function #######
 # ```
 
-```
+````
 
-例如上面範例有使用 `asyncio.run()` 來執行 `do()` ，但在其內部的 Coroutine Function `say_after(1, 'hello')` 沒有使用 `await` 關鍵字也沒有其他處理，接著執行程式後會發現在 terminal 上 : 
+例如上面範例有使用 `asyncio.run()` 來執行 `do()` ，但在其內部的 Coroutine Function `say_after(1, 'hello')` 沒有使用 `await` 關鍵字也沒有其他處理，接著執行程式後會發現在 terminal 上 :
 
 - 馬上出現 `finished do function`
-- 並沒有「等待 1 秒之後才列印出 hello 字串然後再等待 1 秒之後才列印出後續的 `finished do function` 字串」這種行為。 
+- 並沒有「等待 1 秒之後才列印出 hello 字串然後再等待 1 秒之後才列印出後續的 `finished do function` 字串」這種行為。
 
 看起來 **`say_after(1, 'hello')` 這個函數根本沒有運行 !** 導致不合預期的原因是 Coroutine 沒有成功轉成 Task 給 Event-Loop 排程。
 
-### await 關鍵字
-要解決上面範例的錯誤最簡單是使用 `await` 加在 `say_after(1, 'hello')` 前面，之後就就可以正常運行了，`await` 語法會告知 Python 可以在此處暫停轉而執行其他工作，並且若 `await` 後面是接一個 Coroutine 的話，會把這個 Coroutine 轉為 Task 並且註冊到 Event-Loop 內。
+- > 要解決上面範例的錯誤最簡單是**使用 `await` 加在 `say_after(1, 'hello')` 前面**，之後就就可以正常運行了
+
+# await 關鍵字
+
+上面已經給了 `await` 的一個例子，同時可以知道 `await` 語法會告知 Python 可以在此處暫停轉而執行其他工作，並且**若 `await` 後面是接一個 Coroutine 的話，會把這個 Coroutine 轉為 Task 並且註冊到 Event-Loop 內**。
 
 {{< alert warning >}}
-另外注意一下 `await` 需使用在 async def 函數內，且 await 後面必須接一個 Coroutine 或是 awaitable(之後會再解釋 awaitablse)
+另外注意一下 `await` 需使用在 async def 函數內
 {{< /alert >}}
 
-除了 `await` 關鍵字可以讓 Coroutine 變成 Task ，還有其他方法也可以達成的，故以下都列出來 :
+除了 `await` 關鍵字可以讓 Coroutine 變成 Task ，還有其他方法也可以達成的，故以下都先列出來 :
+
 - **使用 `await` 關鍵字**
 - `asyncio.create_task()`
 - `asyncio.gather()`
 
-## 總結
-上述的範例要變成正確的，可以修正為：
+至於 `create_task()` 和 `gather()`之後再補充，這邊先知道一下。
+
+# 總結
+
+故上述的範例要變成正確的，可以修正為：
 
 ```python
 import asyncio
@@ -161,9 +172,11 @@ async def do():
 asyncio.run(do())
 
 ```
+
 在此範例使用 Coroutine 需要注意的重點簡單來說有 :
+
 - 會使用 async 用來宣告一個 native Coroutine
-- 使用 `asyncio.run()` 來讓進入 async 模式
+- 使用 `asyncio.run()` 來讓進入 async 模式啟動運行
 - 使用 await 讓 Coroutine 轉為 Task 並註冊到 Event-Loop 內， Task 同時將控制權還給 Event-Loop 讓他決定接下來的排程和哪個 Task 要執行
 
 ---
@@ -173,10 +186,10 @@ asyncio.run(do())
 大多數 Web 應用程式都會遇到一些和資料庫互動的 I/O 類型操作，這時 server 會需等待著資料庫回覆，此時在 synchronous 的情況下會阻塞著無法處理其他請求。若再有大量使用者，雖然阻塞時間可能只有微秒，但當所有時間累積起來，總體來看依然是**大量的等待時間**，這就是為什麼在 Web API 中，使用 Asynchronous 還算蠻不錯的優化。
 
 {{< alert success >}}
-這種非同步性也是讓 NodeJS 變得開始流行的其中一個原因，同時 FastAPI 也能夠提供的同級效能
+這種非同步性也是讓 NodeJS 變得開始流行的其中一個原因，而 FastAPI 也能夠提供同級的效能
 {{< /alert >}}
 
-面對這種需要「等待」一下才能給出結果的任務，在 FastAPI 的一個 path operation functions 範例可以這樣寫：
+面對這種需要「等待」一下才能給出結果的任務，在 FastAPI 的一個 path operation functions 範例是這樣寫的：
 
 ```python
 @app.get('/burgers')
@@ -193,8 +206,7 @@ async def get_burgers(number: int):
     return burgers
 ```
 
-
-這時可能會有個疑問，FastAPI 是怎麼調用 path operation function 的 ？ 雖然我們沒看 `asyncio.run()` ，但目前不用太擔心，是可以正常啟動的， 這邊 FastAPI 有幫我們做處理了，它會知道如何做正確的事情！而為什麼 FastAPI 可以這樣啟動呢？ 如果想知道可以參考 [AnyIO](https://anyio.readthedocs.io/en/stable/)，FastAPI 是基於此來做實現的。
+這時可能會有個疑問，FastAPI 是怎麼調用 path operation function 的 ？ 雖然我們沒看到 `asyncio.run()` 出現，但目前不用太擔心，這是可以正常啟動的， 這邊 FastAPI 有幫我們做處理了，它會知道如何做正確的事情！而為什麼 FastAPI 可以這樣啟動呢？ 如果想知道可以參考 [AnyIO](https://anyio.readthedocs.io/en/stable/)，FastAPI 是基於此來做實現的。
 
 ---
 
