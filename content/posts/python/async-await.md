@@ -29,6 +29,8 @@ reward: false
 
 <!--more-->
 
+`async` 和 `await` 雖然是 Python 引入的一個新的語法，但它本質上還是一段非常正常的 Python 運行的「**單進程單線程**」的程序，它比較適合處理那些需要等待的任務。
+
 # Coroutine(協程) 和 async 關鍵字
 
 Asynchronous code 代表程式語言有辦法在 code 中的某個地方標註等待，且在等待時間中可以另外去做一些其他工作，最後再回來把剩下的事情做完，而 Python 的異步函數常使用 :
@@ -50,10 +52,10 @@ def load_file_2(path):
     pass
 ```
 
-透過 `async def` 明確告知 Python 該函式具有非同步執行的能力，並且會**定義一個 Coroutine function** ， 且調用 Coroutine Function 時返回的東西為一個 Coroutine Obj 或簡稱 Coroutine，而這也是 **Coroutine Obj 的基本定義，是指 Coroutine Function 返回的物件**。
+透過 `async def` 明確告知 Python 該函式具有非同步執行的能力，代表**定義一個 Coroutine function** ， 且調用 Coroutine Function 時返回的東西為一個 Coroutine Obj 或簡稱 Coroutine，而這也是 **Coroutine Obj 的基本定義，是指 Coroutine Function 返回的物件**。
 
 {{< alert warning >}}
-單單只說 Coroutine 這個詞的話，在溝通時會因為使用情景，有時是指 Coroutine Function ; 有時是指 Coroutine Obj，這邊要注意一下！
+單單只說 Coroutine 這個詞的話，在溝通時會因為使用情景，有時是指 Coroutine Function 而有時是指 Coroutine Obj，算是個統稱或者簡化詞，這邊要注意一下！
 {{< /alert >}}
 
 Coroutine 它可以「等待」並在等待狀態時，將執行權**讓給**其他 Coroutine，之後可以**再返回來**繼續執行任務剩下的小部分，且可以多次的進行這樣的行為。
@@ -62,19 +64,15 @@ Coroutine 它可以「等待」並在等待狀態時，將執行權**讓給**其
 Python 的 Coroutine 可以對應於 Go 的 Goroutine
 {{< /alert >}}
 
-要運行 Coroutine 是個稍微麻煩的事情，故在使用 Coroutine Function 上要注意一些事情，必須要達成以下事情 :
+呼叫 `async def` 函數時，不會立即執行函數體，而是傳回一個 Coroutine ，故要運行 Coroutine 是個稍微麻煩的事情，所以在使用 Coroutine Function 上要注意一些事情，以下是一些常見錯誤或解決方式紀錄 :
 
-- **啟動 async 模式，也就是讓 Event-Loop 控制 Task 的執行**
-- **需把 Coroutine 轉成 Task 傳給 Event-Loop**
-
-    {{< alert info >}}
-
-  這裡開始出現一些陌生詞: Event-Loop 和 Task ，但先記得上面的敘述就好，後續會再作解釋，以下是一些常見錯誤或解決方式紀錄
-  {{< /alert >}}
+{{< alert info >}}
+以下會開始出現一些陌生詞: Event-Loop 、 Task 等等，但先記得就好，後續會再作解釋
+{{< /alert >}}
 
 ## 使用 asyncio.run() 來啟動 Coroutine
 
-由於 Coroutine 本身的特性有別於一般函式，一定要透過 Event-Loop 排程後才能執行，若直接調用的話**並不會運行任何 Coroutine code** ，例如 :
+由於 Coroutine 本身的特性有別於一般函式，需要透過 Event-Loop 排程後才能執行，若直接調用 Coroutine 的話**並不會運行任何 Coroutine 內的 code** ，例如 :
 
 ````python
 import asyncio
@@ -98,11 +96,11 @@ do() # 注意，這裡直接調用了 Coroutine Function，這有問題
 # ```
 ````
 
-- > 由這範例主要的錯誤是**沒有正確進入 async 模式**，而最簡單是使用 `asyncio.run()`調用就可以啟動 Coroutine，解決沒有運行的問題。
+- > 由這範例主要的錯誤是**沒有正確進入 async 模式，讓 Event-Loop 控制任務的執行**，而解決方式是使用 `asyncio.run()`來調用，就可以啟動 Coroutine，解決沒有運行的問題。
 
-## 使用 await 把 Coroutine 轉成 Task 給 Event-Loop 排程
+## 在 async def 的函數內，要調用其他 async def 函數要使用 await
 
-若沒使用 `await` 就呼叫 Coroutine 且也沒有做其他處理，此時 Coroutine 會沒有轉變成 Task ，故 Event-Loop 沒辦法排程它，**會無法運行！** 例如 :
+`await` 的功能是告訴 Event-Loop 這是一個標記點，且可以開始執行這個 coroutine 並等待它。沒使用 `await` 就呼叫 Coroutine 且也沒有做其他處理的話，coroutine 就只是被建出來，但沒被安排執行，此時 Event-Loop 沒辦法排程它例如 :
 
 ````python
 import asyncio
@@ -131,27 +129,29 @@ asyncio.run(do())
 例如上面範例有使用 `asyncio.run()` 來執行 `do()` ，但在其內部的 Coroutine Function `say_after(1, 'hello')` 沒有使用 `await` 關鍵字也沒有其他處理，接著執行程式後會發現在 terminal 上 :
 
 - 馬上出現 `finished do function`
-- 並沒有「等待 1 秒之後才列印出 hello 字串然後再等待 1 秒之後才列印出後續的 `finished do function` 字串」這種行為。
+- 其並沒有「等待 1 秒之後才列印出 hello 字串然後再等待 1 秒之後才列印出後續的 `finished do function` 字串」這種行為。
 
-看起來 **`say_after(1, 'hello')` 這個函數根本沒有運行 !** 導致不合預期的原因是 Coroutine 沒有成功轉成 Task 給 Event-Loop 排程。
+  看起來 **`say_after(1, 'hello')` 這個函數根本沒有運行 !**
 
-- > 要解決上面範例的錯誤最簡單是**使用 `await` 加在 `say_after(1, 'hello')` 前面**，之後就就可以正常運行了
+- > 要解決上面範例的錯誤最簡單是**使用 `await` 加在 `say_after(1, 'hello')` 前面**，之後就可以正常運行了
 
-# await 關鍵字
+# await 關鍵字 ＆ Awaitable
 
-上面已經給了 `await` 的一個例子，同時可以知道 `await` 語法會告知 Python 可以在此處暫停轉而執行其他工作，並且**若 `await` 後面是接一個 Coroutine 的話，會把這個 Coroutine 轉為 Task 並且註冊到 Event-Loop 內**。
+上面已經給了 `await` 的一個例子，同時可以知道 `await` 語法會告知 Python **可以**在此處暫停轉而執行其他工作。
 
 {{< alert warning >}}
-另外注意一下 `await` 需使用在 async def 函數內
+另外還是特別重申一下 `await` 需使用在 async def 函數內
 {{< /alert >}}
 
-除了 `await` 關鍵字可以讓 Coroutine 變成 Task ，還有其他方法也可以達成的，故以下都先列出來 :
+`await` 關鍵字用來標記一個「等待及後續開始的點」，在使用 `await` 關鍵字或是 `asyncio` 相關函式時，經常可以在文件中看到 awaitable 這個關鍵字，我們看定義後也可以知道 `await` 後面是必須 Coroutine 或是 awaitable obj 的，故以下把 `await` 後面常接的給列出來 :
 
-- **使用 `await` 關鍵字**
-- `asyncio.create_task()`
-- `asyncio.gather()`
+- Coroutine
+- Task (asyncio.Task)
+- Future (asyncio.Future)
 
-至於 `create_task()` 和 `gather()`之後再補充，這邊先知道一下。
+{{< alert info >}}
+Future 和 Task 有什麼不同呢？ 目前簡單來說， Task 不需要手動 `set_result()`，只要 Coroutine 執行完就會把 return 值當作它的 result ; Future 物件可以透過 `set_result()` 或 `set_exception()` 設定結果或例外。
+{{< /alert >}}
 
 # 總結
 
@@ -177,7 +177,7 @@ asyncio.run(do())
 
 - 會使用 async 用來宣告一個 native Coroutine
 - 使用 `asyncio.run()` 來讓進入 async 模式啟動運行
-- 使用 await 讓 Coroutine 轉為 Task 並註冊到 Event-Loop 內， Task 同時將控制權還給 Event-Loop 讓他決定接下來的排程和哪個 Task 要執行
+- 簡單使用 `await` 來調用執行其他 Coroutine Function
 
 ---
 

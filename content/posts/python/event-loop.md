@@ -20,12 +20,7 @@ reward: false
 
 <!--BODY-->
 
-> Python 的 Coroutine 發展已經逐漸穩定成熟，已經成為了提升 Python 程式效能的優秀解決方案之一，在之前簡單介紹 [Coroutine 和 await/async](https://aryido.github.io/posts/python/async-await/) 時，我們在範例 code 中一直有用到一個 Python buildin 模組 `asyncio` ，我們必須要利用它才能讓 Coroutine 執行非同步運作，這是因為 Coroutine 是無法直接運行的，只有變成了 Task 才能被管理執行。而要讓 Coroutine 運行的話必須要達成以下事情 :
->
-> - **啟動 async 模式，讓 Event-Loop 控制程序的狀態**
-> - **需 Coroutine 變成 Task 傳給 Event-Loop**
->
-> `asyncio` 模組它的核心是 Event-Loop ，故接著來了解 Event-Loop 和其工作的執行單位 Task 吧 !
+> Python 的 Coroutine 發展已經逐漸穩定成熟，已經成為了提升 Python 程式效能的優秀解決方案之一，在之前簡單介紹 [Coroutine 和 await/async](https://aryido.github.io/posts/python/async-await/) 時，我們在範例 code 中一直有用到一個 Python buildin 模組 `asyncio`，它提供了一套完整的工具和接口，用於建立非同步應用程式，其核心是 Event-Loop，會追蹤所有註冊的任務，並根據任務的狀態調度它們的執行。 故接著來了解 Event-Loop 和其工作的執行單位 Task 吧 !
 
 <!--more-->
 
@@ -64,32 +59,29 @@ Python 3.7 之後 Event-Loop 做了蠻好的封裝，官網上也說**原則上�
 
 # Task
 
-前面文章有提到讓 Coroutine 變成 Task 的方式有 :
+Task 是 Event-Loop 的調度基本單位，可進行更細粒度的控制如可以被取消、等待或加入任務群組。 **可以將 Task 視為 Coroutine 的再包裝**，這由 `asyncio.create_task()` 能感受到，因為他的輸入參數是一個 Coroutine ，然後經過此方法 Coroutine 會變成 Task 並會註冊到 Event-Loop 內。而讓 Coroutine 變成 Task 的方式有以下方法 :
 
-- 使用 `await` 關鍵字
 - `asyncio.create_task()`
 - `asyncio.gather()`
 
+Event-Loop 一次只能執行 1 個 Task ，**最常見的頂層運行中的 Task 就是 `asyncio.run()` 啟動的 Coroutine** ，這基本上就是一個 「運行中的 Task」。
+
+
+接下來如果目前「運行中的 Task」 進入「正在等待執行結果的狀態」時，也就是到 code 的 `await` 位置，由於 `await` 後面可以接 Coroutine 或 Awaitable obj ，故簡單分成兩種狀況 :
+- **`await` 後面接 Coroutine** :
+  - 這時其實是繼續同步調用直到這個 Coroutine 結束或是遇到下一個 `await` 標記點，「運行中的 Task」並不會交出控制權給 Event-Loop ，**這代表 Asynchronous 可能還不完善**，可以看之後舉例了解
+
+- **`await` 後面接 Awaitable obj** :
+  - 這時的情形會比較重要，「運行中的 Task」**會把主控權交還給 Event-Loop** 且暫停
+
 {{< alert warning >}}
-await 後面必須接一個 Coroutine 或是 awaitable(之後會再解釋)
+注意一下，所有控制權的返回都是**顯性的**，也就是 Event-Loop 其實沒辦法強行從 Task 拿回控制權，都是 Task 主動把控制權交回去。控制權交出的方式如上述所說有:
+
+- 遇到 `await`
+- Task 運行結束
+
+所以如果有一個 Task 裡面有**死尋循環**，Event-Loop 就可能會卡死了，要特別小心。
 {{< /alert >}}
-
-Event-Loop 一次只能執行 1 個 Task，如果該 Task 進入「正在等待執行結果的狀態」時(也就是到 code 的 `await` 位置)，那麼:
-
-- 該 Task 會把主控權交還給 Event-Loop 且暫停(suspend)
-- 再來 Event-Loop 會將等待的任務也放進排程中，然後在任務列表(deque)內選擇可執行的 Task 再接著執行
-
-**可以將 Task 視為 Coroutine 的再包裝**，這可以由 `asyncio.create_task()` 感受到，因為他的輸入參數是一個 Coroutine ，然後經過此方法 Coroutine 會變成 Task 並會註冊到 Event-Loop 內。
-
-# Awaitables
-
-在使用 `await` 關鍵字或是 `asyncio` 相關函式時，經常可以在文件中看到 awaitables 關鍵字，其實他代表了以下 Python 物件 :
-
-- Coroutines
-- Tasks (asyncio.Task)
-- Futures (asyncio.Future)
-
-那這些有什麼小差別呢，下面也會簡介一下。
 
 ---
 
@@ -122,64 +114,11 @@ asyncio.run(main())
 # finished at 21:53:06
 ```
 
-首先差不多 1 秒後 print 了 hello ，再來 2 秒後 print 了 world ，**總共花了 3 秒**。那來還原一下過程 :
-
-- > `asyncio.run(main())` 啟動了 asyn 模式，並把這個 `main()` 轉為一個 Task 放到 Event-Loop 內
-
-- > Event-Loop 任務列表內只有一個 main 這個 Task，所以開始運行 `main()`
-
-- > `main()` 首先會運行 `print started at` ，再來運行 `await say_after(1, 'hello')`
-
-- > `await` 的作用會把 `say_after(1, 'hello')` 這個 Coroutine 轉變成 Task 然後註冊到 Event-Loop 任務列表內
-  >
-  > `main()` 同時也會告訴 Event-Loop 它會等待 `say_after(1, 'hello')` 的結果，這時 **main 會把控制權還給 Event-Loop**
-
-- > 現在 Event-Loop 任務列表內有兩個 Task :
-  >
-  > - `main()` : **要等待 `say_after(1, 'hello')`**
-  > - `say_after(1, 'hello')`
-  >
-  > 目前 Event-Loop 只能讓 `say_after(1, 'hello')` 運行
-
-- > `say_after(1, 'hello')` 內有 `await asyncio.sleep(1)`，故 `asyncio.sleep(1)`也會變成 Task 然後註冊到 Event-Loop 任務列表
-  >
-  > `say_after(1, 'hello')` 同時也會告訴 Event-Loop 它會等待 `asyncio.sleep(1)` ，這時 **say_after 會把控制權還給 Event-Loop**
-
-- > 現在 Event-Loop 內有三個 Task :
-  >
-  > - `main()` : **要等待 `say_after(1, 'hello')`**
-  > - `say_after(1, 'hello')` : **要等待 `asyncio.sleep(1)`**
-  > - `asyncio.sleep(1)`
-  >
-  > Event-Loop 因為也沒有其他 Task 可以執行，故等待 1 秒後 sleep 運行結束並移除掉這個 Task
-
-- > 現在 Event-Loop 內有兩個 Task :
-  >
-  > - `main()` : **要等待 `say_after(1, 'hello')`**
-  > - `say_after(1, 'hello')`
-  >
-  > 所以 Event-Loop 只能讓 `say_after(1, 'hello')` 繼續運行且只剩下 print 了 hello 的部分， **say_after 打印完成後結束並移除掉這個 Task，然後把控制權還給 Event-Loop**
-
-- > Event-Loop 只剩下 main 這個 Task，所以繼續運行 `main()` ，而接下來的剩下部分有 `await say_after(2, 'world')`，其流程和 `await say_after(1, 'hello')` 一樣，故不再贅述
-
-- > Event-Loop 把 `await say_after(2, 'world')` 任務做完後，還是剩下 main 這個 Task，繼續運行剩下的 `print finished at` ， **main 打印完成後結束並移除掉這個 Task，然後把控制權還給 Event-Loop**
-
-- > 最後 Event-Loop 內沒有任何任務，所以程式結束
-
-{{< alert warning >}}
-注意一下，所有控制權的返回都是**顯性的**，也就是 Event-Loop 其實沒辦法強行從 Task 拿回控制權，都是 Task 主動把控制權交回去。控制權交出的方式如上述所說有:
-
-- `await`
-- Task 運行結束
-
-所以如果有一個 Task 裡面有**死尋循環**，Event-Loop 就可能會卡死了，要特別小心。
-{{< /alert >}}
+首先差不多 1 秒後 print 了 hello ，再來 2 秒後 print 了 world ，**總共花了 3 秒**。
 
 # 使用 asyncio.create_task()
 
-上面的 code 運行後我們發現一個大問題 : 「 print hello 要 1 秒，再來 print world 要 2 秒，總共花了 3 秒 」，竟然沒有同時一起執行 ! ? 這樣 Coroutine 到底有什麼意義 ？
-
-那這邊就是 `await` 不足的地方，為了解決這問題 asyncio 有提供了 `create_task()`，範例如下 :
+上面的 code 運行完後發現一個大問題 : 「 print hello 要 1 秒，再來 print world 要 2 秒，總共花了 3 秒 」，竟然沒有同時一起執行 ! ? 這樣 Coroutine 到底有什麼意義 ？ 那這就是 `await` 不足的地方，為了解決這問題 asyncio 有提供了 `create_task()`，範例如下 :
 
 ```python
 import asyncio
@@ -209,125 +148,74 @@ asyncio.run(main())
 # finished at 00:00:17
 ```
 
-上面這個範例的結果，發現**總共只花了 2 秒**，是我們期望的！ 那也來還原一下過程 :
+上面這個範例的結果，發現**總共只花了 2 秒**，是我們期望的！ 
 
-- > `asyncio.run(main())` 啟動了 asyn 模式，並把這個 main() 作為一個 Task 放到 Event-Loop 內
+這範例最重要的是 `asyncio.create_task()`，代表有把**兩個任務都先添加到 Event-Loop 裡面了**，故 `task1` 和 `task2` 會**同時執行**，因為它們是獨立的 Task，故代表 : 
+- `await task1` 會等待 task1 完成，但不會影響 task2 的執行
+- `await task2` 會等待 task2 完成，確保 main() 不會過早結束
 
-- > Event-Loop 發現只有一個 main 這個 Task，所以先開始運行這個 main()
 
-- > main() 首先會創建 `task1` 和 `task2` 這兩個 Task ，並且最重要的是**會把這兩個 「 Task 註冊到 Event-Loop 任務列表內 」**，這時控制權還在 main 上，故繼續會 `print started at`，接下來執行 `await task1`
+這部分可以嘗試著調整 delay 時間和註解掉 `await task2`，會發現一些特別的事情，例如 : 
+```python
+import asyncio
+import time
 
-- > 由於 `await` 後面直接就是是一個 Task 了，且已經註冊到 Event-Loop 任務列表內，故就省略了變成 Task 和註冊這些步驟
-  >
-  > **main 也會告訴 Event-Loop 它要等待 `task1` 並把控制權還給 Event-Loop**
+async def say_after(delay, what):
+    await asyncio.sleep(delay)
+    print(what)
 
-- > 現在 Event-Loop 內有直接有三個 Task :
-  >
-  > - `main()` : **要等待 `task1`**
-  > - `task1`
-  > - `task2`
-  >
-  > Event-Loop 可能讓 `task1` 或 `task2` 運行
+async def main():
+    task1 = asyncio.create_task(say_after(3, 'hello'))
+    task2 = asyncio.create_task(say_after(2, 'world'))
+    
+    print(f"started at {time.strftime('%X')}")
+    
+    await task1
+    #await task2
+    
+    print(f"finished at {time.strftime('%X')}")
+    
+asyncio.run(main())
 
-無論是執行 `task1` 或 `task2` 哪一個，由於內部都有 `asyncio.sleep()`，故都會馬上返回控制權給 Event-Loop ，而馬上會執行另一個 Task :
+# Terminal :
+# started at 18:15:41
+# world
+# hello
+# finished at 18:15:44
 
-> #### 因此 `asyncio.sleep(1)` 和 `asyncio.sleep(2)` 基本上會同時進行，所以只需要等 2 秒就完成這個 code 了。
+```
+特別的地方是會先等 2 秒後顯示 world，在等 1 秒顯示 hello !
 
-不太相信的話可以來隨機分析一遍，**如果是 `task2` 先運行** :
+再例如 : 
+```python
+import asyncio
+import time
 
-- > `task2` 內有 `await asyncio.sleep(2)`，故 `asyncio.sleep(2)` 也會變成 Task 然後註冊到 Event-Loop 任務列表內
-  >
-  > `task2` 同時也會告訴 Event-Loop 它會等待 `asyncio.sleep(2)` ，這時會把控制權還給 Event-Loop
+async def say_after(delay, what):
+    await asyncio.sleep(delay)
+    print(what)
 
-- > 現在 Event-Loop 內有這些 Task :
-  >
-  > - `main()` : **要等待 `task2`**
-  > - `task1`
-  > - `task2`: **要等待 `asyncio.sleep(2)`**
-  > - `asyncio.sleep(2)`
-  >
-  > Event-Loop 可能讓 `task1` 或 `asyncio.sleep(2)` 運行
+async def main():
+    task1 = asyncio.create_task(say_after(1, 'hello'))
+    task2 = asyncio.create_task(say_after(2, 'world'))
+    
+    print(f"started at {time.strftime('%X')}")
+    
+    await task1
+    #await task2
+    
+    print(f"finished at {time.strftime('%X')}")
+    
+asyncio.run(main())
 
-**如果是 `asyncio.sleep(2)` 運行** :
+# Terminal :
+# started at 18:18:09
+# hello
+# finished at 18:18:10
 
-- > `sleep(2)` 開始執行後就休息了，所以馬上會把控制權還給 Event-Loop
+```
+等 1 秒後顯示 hello 後就直接結束了，沒有等 `task2`
 
-- > 現在 Event-Loop 內有這些 Task :
-  >
-  > - `main()` : **要等待 `task2`**
-  > - `task1`
-  > - `task2`: **要等待 `asyncio.sleep(2)`**
-  > - `asyncio.sleep(2)` **要等待 2 秒**
-  >
-  > Event-Loop 只能執行 `task1`
-
-- > `task1` 內有 `await asyncio.sleep(1)`，故 `asyncio.sleep(1)` 也會變成 Task 然後註冊到 Event-Loop 內
-  >
-  > `task1` 同時也會告訴 Event-Loop 它會等待 `asyncio.sleep(1)` ，這時會把控制權還給 Event-Loop
-
-- > 現在 Event-Loop 內有這些 Task :
-  >
-  > - `main()` : **要等待 `task2`**
-  > - `task1` : **要等待 `asyncio.sleep(1)`**
-  > - `task2` : **要等待 `asyncio.sleep(2)`**
-  > - `asyncio.sleep(1)`
-  > - `asyncio.sleep(2)` **要等待 2 秒**
-  >
-  > Event-Loop 只能執行 `asyncio.sleep(1)`
-
-- > `sleep(1)`開始執行後馬上會把控制權還給 Event-Loop
-
-- > 現在 Event-Loop 內有這些 Task :
-  >
-  > - `main()` : **要等待 `task2`**
-  > - `task1` : **要等待 `asyncio.sleep(1)`**
-  > - `task2` : **要等待 `asyncio.sleep(2)`**
-  > - `asyncio.sleep(1)` : **要等待 1 秒**
-  > - `asyncio.sleep(2)` : **要等待 2 秒**
-  >
-  > 故基本上 `sleep(1)` 和 `sleep(2)` 是同時的，然後等待 1 秒後 `asyncio.sleep(1)` 首先運行結束並移除掉這個 Task，然後把控制權還給 Event-Loop
-
-- > 現在 Event-Loop 內有這些 Task :
-  >
-  > - `main()` : **要等待 `task2`**
-  > - `task1`
-  > - `task2` : **要等待 `asyncio.sleep(2)`**
-  > - `asyncio.sleep(2)` : **還要再等待 1 秒**
-  >
-  > Event-Loop 只能執行 `task1` 且只剩下 print 了 hello，打印完成後結束並移除掉這個 Task，然後把控制權還給 Event-Loop
-
-{{< alert warning >}}
-特別注意到這裡時，其實 `asyncio.sleep(2)` 已經休息 1 秒了，故只要在等待 1 秒就完成休息了
-{{< /alert >}}
-
-- > 現在 Event-Loop 內有這些 Task :
-  >
-  > - `main()` **要等待 `task2`**
-  > - `task2` : **要等待 `asyncio.sleep(2)`**
-  > - `asyncio.sleep(2)` : **還要再等待 1 秒**
-  >
-  > Event-Loop 只能執行 `main()` ，其下一步是 `await task2`，但由於 `task2` 已經在 Event-Loop 任務列表內， 故不用執行什麼， main 直接把控制權還給 Event-Loop
-
-- > 現在 Event-Loop 這些 Task :
-  >
-  > - `main()` : **要等待 task2**
-  > - `task2` : **要等待 `asyncio.sleep(2)`**
-  > - `asyncio.sleep(2)` : **還要再等待 1 秒**
-  >
-  > 再等待 1 秒後 `asyncio.sleep(2)` 也結束了，移除掉這個 Task，然後把控制權還給 Event-Loop
-
-- > 現在 Event-Loop 內有這些 Task :
-  >
-  > - `main()` : **要等待 task2**
-  > - `task2`
-  >
-  > Event-Loop 只能讓 `task2` 運行，且只剩下 print 了 world ， **`task2` 打印完成後結束並移除掉這個 Task，然後把控制權還給 Event-Loop**
-
-- > Event-Loop 發現只剩 main 這個 Task，所以繼續運行 main() 剩下的部分，而接下來是運行 print finished at ，**main 打印完成後結束並移除掉這個 Task，然後把控制權還給 Event-Loop**
-
-- > 最後 Event-Loop 內沒有任何任務了，程式結束
-
-以上很詳細的把程式可能的一條流程支線給演練出來了，希望可以更了解整個 Python 非同步的執行邏輯。
 
 # Coroutine 的 return value
 
@@ -414,7 +302,9 @@ asyncio.run(main())
 
 ### 參考資料
 
-- [【python】asyncio 的理解与入门，搞不明白协程？看这个视频就够了。](https://www.youtube.com/watch?v=brYsDi-JajI)
+- [注意 await 後接一個 Coroutine 時，會把 Coroutine 轉成 Task 是錯誤的](https://www.youtube.com/watch?v=K0BjgYZbgfE&t=684s)
+
+- [python asyncio 的理解与入门，搞不明白协程？看这个视频就够了。](https://www.youtube.com/watch?v=brYsDi-JajI)
 
 - [Python asyncio 從不會到上路](https://myapollo.com.tw/blog/begin-to-asyncio/)
 
