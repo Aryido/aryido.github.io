@@ -137,20 +137,22 @@ asyncio.run(do())
 
 # await 關鍵字 ＆ Awaitable
 
-上面已經給了 `await` 的一個例子，同時可以知道 `await` 語法會告知 Python **可以**在此處暫停轉而執行其他工作。
+上面已經給了 `await` 的一個例子，可以知道 `await` 語法會告知 Python 接下來執行的 code ，是一個**可在此處暫停，轉而執行其他工作**的東西。
 
 {{< alert warning >}}
 另外還是特別重申一下 `await` 需使用在 async def 函數內
 {{< /alert >}}
 
-`await` 關鍵字用來標記一個「等待及後續開始的點」，在使用 `await` 關鍵字或是 `asyncio` 相關函式時，經常可以在文件中看到 awaitable 這個關鍵字，我們看定義後也可以知道 `await` 後面是必須 Coroutine 或是 awaitable obj 的，故以下把 `await` 後面常接的給列出來 :
+在使用 `await` 關鍵字或是 `asyncio` 相關函式時，經常可以在文件中看到 awaitable 這個關鍵字，我們看定義後也可以知道 `await` 後面是必須 Coroutine 或是 awaitable obj 的，故以下把 `await` 後面常接的給列出來 :
 
 - Coroutine
 - Task (asyncio.Task)
 - Future (asyncio.Future)
 
 {{< alert info >}}
-Future 和 Task 有什麼不同呢？ 目前簡單來說， Task 不需要手動 `set_result()`，只要 Coroutine 執行完就會把 return 值當作它的 result ; Future 物件可以透過 `set_result()` 或 `set_exception()` 設定結果或例外。
+Future 和 Task 有什麼不同呢？ 目前簡單來說
+- Task 不需要手動 `set_result()`，只要 Coroutine 執行完就會把 return 值當作它的 result 值
+- Future 物件可以透過 `set_result()` 或 `set_exception()` 設定結果或例外
 {{< /alert >}}
 
 # 總結

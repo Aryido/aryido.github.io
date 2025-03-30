@@ -154,8 +154,8 @@ asyncio.run(main())
 - `await task1` 會等待 task1 完成，但不會影響 task2 的執行
 - `await task2` 會等待 task2 完成，確保 main() 不會過早結束
 
-
-這部分可以嘗試著調整 delay 時間和註解掉 `await task2`，會發現一些特別的事情，例如 : 
+{{< alert warning >}}
+上面說明部分可以嘗試著調整 delay 時間和註解掉 `await task2` 來做一些測試，會發現一些特別的事情，例如 : 
 ```python
 import asyncio
 import time
@@ -184,7 +184,7 @@ asyncio.run(main())
 # finished at 18:15:44
 
 ```
-特別的地方是會先等 2 秒後顯示 world，在等 1 秒顯示 hello !
+特別的地方是會先等 2 秒後顯示 world，在等 1 秒顯示 hello ! **雖然沒有 `await task2` 但他還是有被排程！**
 
 再例如 : 
 ```python
@@ -214,8 +214,8 @@ asyncio.run(main())
 # finished at 18:18:10
 
 ```
-等 1 秒後顯示 hello 後就直接結束了，沒有等 `task2`
-
+承前例我們知道 `task2` 是有被排到 Event-Loop 內的，但因為沒有 `await task2`，所以等 1 秒後顯示 hello 後就直接結束了，沒有等 `task2` 完成。
+{{< /alert >}}
 
 # Coroutine 的 return value
 
