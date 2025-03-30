@@ -76,7 +76,7 @@ Python 的 Coroutine 發展已經逐漸穩定成熟，已經成為了提升 Pyth
 </span></span><span style=display:flex><span><span style=color:#75715e># hello</span>
 </span></span><span style=display:flex><span><span style=color:#75715e># world</span>
 </span></span><span style=display:flex><span><span style=color:#75715e># finished at 00:00:17</span>
-</span></span></code></pre></div><p>上面這個範例的結果，發現<strong>總共只花了 2 秒</strong>，是我們期望的！</p><p>這範例最重要的是 <code>asyncio.create_task()</code>，代表有把<strong>兩個任務都先添加到 Event-Loop 裡面了</strong>，故 <code>task1</code> 和 <code>task2</code> 會<strong>同時執行</strong>，因為它們是獨立的 Task，故代表 :</p><ul><li><code>await task1</code> 會等待 task1 完成，但不會影響 task2 的執行</li><li><code>await task2</code> 會等待 task2 完成，確保 main() 不會過早結束</li></ul><p>這部分可以嘗試著調整 delay 時間和註解掉 <code>await task2</code>，會發現一些特別的事情，例如 :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> asyncio
+</span></span></code></pre></div><p>上面這個範例的結果，發現<strong>總共只花了 2 秒</strong>，是我們期望的！</p><p>這範例最重要的是 <code>asyncio.create_task()</code>，代表有把<strong>兩個任務都先添加到 Event-Loop 裡面了</strong>，故 <code>task1</code> 和 <code>task2</code> 會<strong>同時執行</strong>，因為它們是獨立的 Task，故代表 :</p><ul><li><code>await task1</code> 會等待 task1 完成，但不會影響 task2 的執行</li><li><code>await task2</code> 會等待 task2 完成，確保 main() 不會過早結束</li></ul><div class="alert warning"><p><p>上面說明部分可以嘗試著調整 delay 時間和註解掉 <code>await task2</code> 來做一些測試，會發現一些特別的事情，例如 :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> asyncio
 </span></span><span style=display:flex><span><span style=color:#f92672>import</span> time
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>say_after</span>(delay, what):
@@ -101,7 +101,7 @@ Python 的 Coroutine 發展已經逐漸穩定成熟，已經成為了提升 Pyth
 </span></span><span style=display:flex><span><span style=color:#75715e># world</span>
 </span></span><span style=display:flex><span><span style=color:#75715e># hello</span>
 </span></span><span style=display:flex><span><span style=color:#75715e># finished at 18:15:44</span>
-</span></span></code></pre></div><p>特別的地方是會先等 2 秒後顯示 world，在等 1 秒顯示 hello !</p><p>再例如 :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> asyncio
+</span></span></code></pre></div><p>特別的地方是會先等 2 秒後顯示 world，在等 1 秒顯示 hello ! <strong>雖然沒有 <code>await task2</code> 但他還是有被排程！</strong></p><p>再例如 :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> asyncio
 </span></span><span style=display:flex><span><span style=color:#f92672>import</span> time
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>say_after</span>(delay, what):
@@ -125,7 +125,7 @@ Python 的 Coroutine 發展已經逐漸穩定成熟，已經成為了提升 Pyth
 </span></span><span style=display:flex><span><span style=color:#75715e># started at 18:18:09</span>
 </span></span><span style=display:flex><span><span style=color:#75715e># hello</span>
 </span></span><span style=display:flex><span><span style=color:#75715e># finished at 18:18:10</span>
-</span></span></code></pre></div><p>等 1 秒後顯示 hello 後就直接結束了，沒有等 <code>task2</code></p><h1 id=coroutine-的-return-value>Coroutine 的 return value</h1><p>Coroutine 的返回值也是蠻重要的，這該怎麼做呢 ？ 而 <code>await</code> 有一個重要功用是把 Coroutine 或 Task 的返回值拿出來，故首先我們修改一下原始 code :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> asyncio
+</span></span></code></pre></div><p>承前例我們知道 <code>task2</code> 是有被排到 Event-Loop 內的，但因為沒有 <code>await task2</code>，所以等 1 秒後顯示 hello 後就直接結束了，沒有等 <code>task2</code> 完成。</p></p></div><h1 id=coroutine-的-return-value>Coroutine 的 return value</h1><p>Coroutine 的返回值也是蠻重要的，這該怎麼做呢 ？ 而 <code>await</code> 有一個重要功用是把 Coroutine 或 Task 的返回值拿出來，故首先我們修改一下原始 code :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> asyncio
 </span></span><span style=display:flex><span><span style=color:#f92672>import</span> time
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>say_after</span>(delay, what):
