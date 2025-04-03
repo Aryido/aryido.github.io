@@ -34,9 +34,9 @@ reward: false
 
 雖然 Concurrency 與 Asynchronous 是兩個常同時一起提起的詞，但又很難說他們真的很相關，頗有一種**相關係數是** `0.38`的怪異...，到底算**低度相關**還是**中相關**有各個看法 ; 同理看來 Parallelism 和 Synchronous 一起看也是相當微妙呢 ! 但我解釋脈絡上還是會把它們放在一起同時說明，以下就來談一下吧 : 
 
----
-
 # Concurrency - 常見翻譯 : 併發、並發
+
+首先 Concurrency 是一個比較廣泛的概念，它單純代表計算機能夠同時執行多項任務，至於怎麼做到的，可以用多種形式 :
 
 > **Concurrency 是指在同一時間範圍內處理多個任務。另外注意這些任務不一定要真正同時執行，而是可以交錯進行的。**
 
@@ -45,8 +45,7 @@ reward: false
 - 輪流使用 CPU
 - 每個任務允許佔用 CPU 的時間非常短 (比如 10 毫秒)
 
-由於切換得很快，故用戶可能根本感覺不出來 CPU 是在輪流爲多個任務服務，就好像所有的任務都在不間斷地運行一樣，但實際上在任何一個時間內有僅有一個任務佔有 CPU。以上的解釋比較是屬於從 「CPU 運行的角度」來說明，若從 「Thread 的角度」去談， Multi-Thread 間彼此需要協調等待，交出 CPU 執行時間片的使用權，**這也是一種 Concurrency 併發**。
-
+由於切換得很快，故用戶可能根本感覺不出來 CPU 是在輪流爲多個任務服務，就好像所有的任務都在不間斷地運行一樣，但實際上在任何一個時間內有僅有一個任務佔有 CPU。以上的解釋比較是屬於從 「CPU 運行的角度」來說明，若從 「Thread 的角度」去談， Multi-Thread 間彼此需要協調等待，交出 CPU 執行時間片的使用權，這也是一種 Concurrency 併發，以上的事情也被稱為**process/thread 的上下文切換**。
 
 
 那再**多核 CPU** 情況下，如果任務數小於 CPU 數，且不同任務可以分配給不同的 CPU 來運行，讓多個任務達成「真正同時運行」，這就是所謂的 Parallelism。
@@ -64,6 +63,8 @@ Parallelism 定義是要**平行同時處理**多個任務的 ; 而 Concurrency 
 {{< /alert >}}
 
 ---
+
+再講 Asynchronous 之前我們先講簡單的 synchronous ， 由於 「synchronous(同步)」代表需要等到前一個任務執行完畢之後，才能進行下一個任務，因此在 「synchronous 中完全沒有 Concurrency 或 Parallelism 的概念。
 
 # Asynchronous 非同步/異步
 
@@ -97,9 +98,11 @@ Asynchronous 主要關注於提高程式在「等待期間」的效率，允許�
 與此相對的，若大部分執行時間，都是實際運算工作而不是等待回應，因為計算機中的工作是由 CPU 完成的，因此可將這些問題稱為「**CPU bound**」。
 {{</alert>}}
 
+---
+
 ## Asynchronous 的實現方式: Notify / Callback
 
-以常見的 Web 服務來舉例， 當 Web Server 接收到用戶請求，後續操作經常會做一些資料庫查詢之類的事情，故一般來說 Web Server 服務通常有兩個典型的 Thread ：
+有個典型實現 Asynchronous 的方式則是透過「 multi-thread 」，以常見的 Web 服務來舉例， 當 Web Server 接收到用戶請求，後續操作經常會做一些資料庫查詢之類的事情，故一般來說 Web Server 服務通常有兩個典型的 Thread ：
 
 > - Main-Thread
 > - DB-Thread
@@ -185,3 +188,5 @@ DB-Thread 需要做的僅僅就是查詢資料、然後調用 callback function 
 - [Concurrency vs Parallelism 淺談兩者區別以及名詞介紹](https://davidleitw.github.io/posts/concurrency01/)
 
 - [一張圖讀懂併發/並行/異步的區別 ](https://www.sohu.com/a/754341569_121124363)
+
+- [一个视频告诉你并发、并行、异步、同步的区别](https://www.youtube.com/watch?v=I3E4MHTpABA)
