@@ -1,0 +1,339 @@
+<!doctype html><html lang=en-us><head><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Python : Type Hint","image":"https://aryido.github.io/images/python/python-logo.jpg","datePublished":"2025-04-26T14:39:56+08:00","dateModified":"2025-04-26T14:39:56+08:00","author":{"@type":"Person","name":"李昀陽 YunYang Lee","image":"https://aryido.github.io/images/aboutme/head-shot.jpg"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aryido.github.io\/posts\/python\/type-hint\/"},"publisher":{"@type":"Organization","name":"Aryido Tech Note","logo":{"@type":"ImageObject","url":"https://aryido.github.io/images/aboutme/head-shot.jpg"}},"description":" 我們都知道 Python 是一個動態的語言，代表每一個 variable 是什麼型別是在 runtime 的時候決定的，雖然很靈活可是當 code 量級上去之後因爲類型不正確引發的錯誤也逐漸增加。但 Python 也可以做到型別要求的，就是使用 「 Type Hint 」 或者叫 「 Type Annotation 」，中文稱呼蠻多種的例如「型別標註」、「型別提示」等等。 若有寫 type hint 的話，比較現代的 IDE 都會自動顯示補全 : 而 Python 的 Type Hint 是從 3.5 開始萌芽逐漸引入直到現在，，故有一個發展的歷史脈絡，有一些寫法也漸漸更替，故簡單介紹和分析一下。\n","keywords":[]}</script><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Hugo 0.119.0 with theme Tranquilpeak 0.5.3-BETA"><meta name=author content="李昀陽 YunYang Lee"><meta name=keywords content><meta name=description content="
+
+我們都知道 Python 是一個動態的語言，代表每一個 variable 是什麼型別是在 runtime 的時候決定的，雖然很靈活可是當 code 量級上去之後因爲類型不正確引發的錯誤也逐漸增加。但 Python 也可以做到型別要求的，就是使用 「 Type Hint 」 或者叫 「 Type Annotation 」，中文稱呼蠻多種的例如「型別標註」、「型別提示」等等。 若有寫 type hint 的話，比較現代的 IDE 都會自動顯示補全 :
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
+而 Python 的 Type Hint 是從 3.5 開始萌芽逐漸引入直到現在，，故有一個發展的歷史脈絡，有一些寫法也漸漸更替，故簡單介紹和分析一下。
+"><meta property="og:description" content="
+
+我們都知道 Python 是一個動態的語言，代表每一個 variable 是什麼型別是在 runtime 的時候決定的，雖然很靈活可是當 code 量級上去之後因爲類型不正確引發的錯誤也逐漸增加。但 Python 也可以做到型別要求的，就是使用 「 Type Hint 」 或者叫 「 Type Annotation 」，中文稱呼蠻多種的例如「型別標註」、「型別提示」等等。 若有寫 type hint 的話，比較現代的 IDE 都會自動顯示補全 :
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
+而 Python 的 Type Hint 是從 3.5 開始萌芽逐漸引入直到現在，，故有一個發展的歷史脈絡，有一些寫法也漸漸更替，故簡單介紹和分析一下。
+"><meta property="og:type" content="article"><meta property="og:title" content="Python : Type Hint"><meta name=twitter:title content="Python : Type Hint"><meta property="og:url" content="https://aryido.github.io/posts/python/type-hint/"><meta property="twitter:url" content="https://aryido.github.io/posts/python/type-hint/"><meta property="og:site_name" content="Aryido Tech Note"><meta property="og:description" content="
+
+我們都知道 Python 是一個動態的語言，代表每一個 variable 是什麼型別是在 runtime 的時候決定的，雖然很靈活可是當 code 量級上去之後因爲類型不正確引發的錯誤也逐漸增加。但 Python 也可以做到型別要求的，就是使用 「 Type Hint 」 或者叫 「 Type Annotation 」，中文稱呼蠻多種的例如「型別標註」、「型別提示」等等。 若有寫 type hint 的話，比較現代的 IDE 都會自動顯示補全 :
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
+而 Python 的 Type Hint 是從 3.5 開始萌芽逐漸引入直到現在，，故有一個發展的歷史脈絡，有一些寫法也漸漸更替，故簡單介紹和分析一下。
+"><meta name=twitter:description content="
+
+我們都知道 Python 是一個動態的語言，代表每一個 variable 是什麼型別是在 runtime 的時候決定的，雖然很靈活可是當 code 量級上去之後因爲類型不正確引發的錯誤也逐漸增加。但 Python 也可以做到型別要求的，就是使用 「 Type Hint 」 或者叫 「 Type Annotation 」，中文稱呼蠻多種的例如「型別標註」、「型別提示」等等。 若有寫 type hint 的話，比較現代的 IDE 都會自動顯示補全 :
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
+而 Python 的 Type Hint 是從 3.5 開始萌芽逐漸引入直到現在，，故有一個發展的歷史脈絡，有一些寫法也漸漸更替，故簡單介紹和分析一下。
+"><meta property="og:locale" content="en-us"><meta property="article:published_time" content="2025-04-26T14:39:56"><meta property="article:modified_time" content="2025-04-26T14:39:56"><meta property="article:section" content="language"><meta property="article:section" content="python"><meta name=twitter:card content="summary"><meta property="og:image" content="https://aryido.github.io/images/aboutme/head-shot.jpg"><meta property="twitter:image" content="https://aryido.github.io/images/aboutme/head-shot.jpg"><meta property="og:image" content="https://aryido.github.io/images/python/python-logo.jpg"><meta property="twitter:image" content="https://aryido.github.io/images/python/python-logo.jpg"><title>Python : Type Hint</title><link rel=icon href=https://aryido.github.io/favicon.png><link rel=canonical href=https://aryido.github.io/posts/python/type-hint/><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://aryido.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css></head><body><div id=blog><header id=header data-behavior=4><i id=btn-open-sidebar class="fa fa-lg fa-bars"></i><div class=header-title><a class=header-title-link href=https://aryido.github.io/ aria-label="Go to homepage">Aryido Tech Note</a></div><a class=header-right-picture href=https://aryido.github.io/#about aria-label="Open the link: /#about"><img class=header-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"></a></header><nav id=sidebar data-behavior=4><div class=sidebar-container><div class=sidebar-profile><a href=https://aryido.github.io/#about aria-label="Read more about the author"><img class=sidebar-profile-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"></a><h4 class=sidebar-profile-name>李昀陽 YunYang Lee</h4><h5 class=sidebar-profile-bio>Welcome to my Tech Note. You can read some of the chapters below.</h5></div><ul class=sidebar-buttons><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/ title=Home><i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden=true></i>
+<span class=sidebar-button-desc>Home</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/categories title=Categories><i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden=true></i>
+<span class=sidebar-button-desc>Categories</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/tags title=Tags><i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden=true></i>
+<span class=sidebar-button-desc>Tags</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://github.com/Aryido target=_blank rel=noopener title=GitHub><i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden=true></i>
+<span class=sidebar-button-desc>GitHub</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/index.xml title=RSS><i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden=true></i>
+<span class=sidebar-button-desc>RSS</span></a></li></ul><ul class=sidebar-buttons></ul><ul class=sidebar-buttons></ul></div></nav><div id=main data-behavior=4 class=hasCoverMetaIn><article class=post id=top><div class="post-header main-content-wrap text-left"><h1 class=post-title>Python : Type Hint</h1><div class="postShorten-meta post-meta"><time datetime=2025-04-26T14:39:56+08:00>April 26, 2025</time>
+<span>in</span>
+<a class=category-link href=https://aryido.github.io/categories/language>language</a>,
+<a class=category-link href=https://aryido.github.io/categories/python>python</a></div></div><div class="post-content markdown"><div class=main-content-wrap><blockquote><p>我們都知道 Python 是一個動態的語言，代表每一個 variable 是什麼型別是在 runtime 的時候決定的，雖然很靈活可是當 code 量級上去之後因爲類型不正確引發的錯誤也逐漸增加。但 Python 也可以做到型別要求的，就是使用 「 Type Hint 」 或者叫 「 Type Annotation 」，中文稱呼蠻多種的例如「型別標註」、「型別提示」等等。 若有寫 type hint 的話，比較現代的 IDE 都會自動顯示補全 :<div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/python/type-hint/ide-hint-2.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/python/type-hint/ide-hint-2.jpg></a></div></p><p>而 Python 的 Type Hint 是從 <code>3.5</code> 開始萌芽逐漸引入直到現在，，故有一個發展的歷史脈絡，有一些寫法也漸漸更替，故簡單介紹和分析一下。</p></blockquote><p>首次導入了 Type Hint，可見〈PEP 484 – Type Hints〉，該 PEP 提案的共同發起人除了 Python 之父 Guido van Rossum，還有 Mypy 作者，接下來的每一版 Python，都少不了對 Type Hint 的擴充與增強，以下是一些筆記和感想</p><h1 id=any>Any</h1><p>如果不對 variable 或返回值進行標註，那它的默認就是 Any。但比較要注意的是 <strong>function 返回值的標註</strong>，可能有人會認為 function 沒有返回值的話就是 Any，但這個想法是錯誤的，<strong>在 Python 裡若沒有顯示的返回值，則定義上是返回 None</strong>。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> Any
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>bar1</span>():
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>&#34;a&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>bar2</span>() <span style=color:#f92672>-&gt;</span> <span style=color:#66d9ef>None</span>:
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>&#34;b&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 以下寫法反而是有問題的，雖然沒有報錯，但實際語意上不應該被定爲 Any</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># def bar3() -&gt; Any: </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#     print(&#34;c&#34;)</span>
+</span></span></code></pre></div><p>若這 function 它是真的不返回，可能是 raise 一個 exception或者會直接退出了程序，這個時候可以給它標註 <code>NoReTurn</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> NoReturn
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>fatal_error</span>(message: str) <span style=color:#f92672>-&gt;</span> NoReturn:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>raise</span> <span style=color:#a6e22e>RuntimeError</span>(message)
+</span></span></code></pre></div><div class="alert success"><p><p>由於大部分是認為&lt;<strong>顯式</strong>表示類型>是要好&lt;於<strong>隱式</strong>不表示的>，故其實 Python 官方是鼓勵 :</p><blockquote><p>無論是覺得這個地方現在還沒有想好怎麼標註，還是覺得這裡就是出入或返回什麼都行，有標註一個 Any，都是比把它留空還更好。</p></blockquote><p>但我個人會覺得可能矯枉過正了，至少在function 沒有返回值的時候，我會選擇把它留空，而不會特別標註它要返回 None，這個可以看看團隊的想法</p></p></div><hr><h1 id=type-hint-簡單範例說明>Type Hint 簡單範例說明</h1><h3 id=類別內有參數或回傳自己本身物件的型別>類別內有參數或回傳自己本身物件的型別</h3><p>這是一個常見的情況，舉一個簡單的會<strong>錯誤</strong>例子:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Node</span>:
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>def</span> __init__(self, value: int, next: Node): <span style=color:#75715e># 不用運行就直接會報錯了: Node&#34; is not defined</span>
+</span></span><span style=display:flex><span>      self<span style=color:#f92672>.</span>value <span style=color:#f92672>=</span> value
+</span></span><span style=display:flex><span>      self<span style=color:#f92672>.</span>next <span style=color:#f92672>=</span> next
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_next</span>(self) <span style=color:#f92672>-&gt;</span> Node: <span style=color:#75715e># 不用運行就直接會報錯了:  ㄋ Node&#34; is not defined</span>
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>return</span> self<span style=color:#f92672>.</span>next
+</span></span></code></pre></div><p>會報錯的原因是 function 在 Class 的裡面定義的時候，這個 Class 本身是還沒有出現的，那解決方式有 :</p><ul><li><h5 id=早期版本是可以把這個類型-兩邊加上雙引號讓它變成一個-string>早期版本是可以把這個類型 <strong>&lt;兩邊加上雙引號></strong>，讓它變成一個 String</h5>這樣就解決了循環依賴的問題，這是一個合法的操作，也是被認可的。</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Node</span>:
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>def</span> __init__(self, value: int, next: <span style=color:#e6db74>&#34;Node&#34;</span>):
+</span></span><span style=display:flex><span>      self<span style=color:#f92672>.</span>value: int <span style=color:#f92672>=</span> value
+</span></span><span style=display:flex><span>      self<span style=color:#f92672>.</span>next: <span style=color:#e6db74>&#34;Node&#34;</span> <span style=color:#f92672>=</span> next
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_next</span>(self) <span style=color:#f92672>-&gt;</span> <span style=color:#e6db74>&#34;Node&#34;</span>:
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>return</span> self<span style=color:#f92672>.</span>next
+</span></span></code></pre></div><ul><li><h5 id=若是使用-python37-以上的版本可在-code-加上-from-__future__-import-annotations>若是使用 <code>Python3.7</code> 以上的版本，可在 code 加上 <code>from __future__ import annotations</code></h5></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> __future__ <span style=color:#f92672>import</span> annotations
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Node</span>:
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>def</span> __init__(self, value: int, next: Node):
+</span></span><span style=display:flex><span>      self<span style=color:#f92672>.</span>value <span style=color:#f92672>=</span> value
+</span></span><span style=display:flex><span>      self<span style=color:#f92672>.</span>next <span style=color:#f92672>=</span> next
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_next</span>(self) <span style=color:#f92672>-&gt;</span> Node:
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>return</span> self<span style=color:#f92672>.</span>next
+</span></span></code></pre></div><div class="alert success"><p>目前我自己是偏向使用 <code>from __future__ import annotations</code>。但這兩個都有一些小缺點，主要看團隊的偏好決定就可以了</p></div><h3 id=標註-列表-裡面-item-的型別>標註 &lt;列表> 裡面 item 的型別</h3><p>這要注意一下，標註列表裡面 item 的型別的方式，有不同寫法</p><ul><li><h5 id=如果是-python38-或更舊版本的話需要從-typing-這個-lib-裡引用大寫-list作為-type-hint-的類型>如果是 <code>Python3.8</code> 或更舊版本的話，需要從 typing 這個 lib 裡引用<code>大寫 List</code>作為 Type Hint 的類型</h5></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> List
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>duplicate_first_element</span>(values: list[int]) <span style=color:#f92672>-&gt;</span> list[int]:
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> values:
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>return</span> []
+</span></span><span style=display:flex><span>  first <span style=color:#f92672>=</span> values[<span style=color:#ae81ff>0</span>]
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> [first] <span style=color:#f92672>*</span> len(values)
+</span></span></code></pre></div><ul><li><h5 id=小寫-list-後面直接加方括號是-python39-才支持的-><code>小寫 list</code> 後面直接加方括號是 <code>python3.9</code> 才支持的 :</h5></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>duplicate_first_element</span>(values: list[int]) <span style=color:#f92672>-&gt;</span> list[int]:
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> values:
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>return</span> []
+</span></span><span style=display:flex><span>  first <span style=color:#f92672>=</span> values[<span style=color:#ae81ff>0</span>]
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> [first] <span style=color:#f92672>*</span> len(values)
+</span></span></code></pre></div><p>如果是想寫一個對現在版本都正在支持的應用，就要用 <code>typing List</code> 因為它在 <code>3.9</code> 版本之前也能用 ; 如果程式只需要支持 <code>3.9</code> 以後的版本，就用 <code>Build-in list</code>。</p><div class="alert info"><p><p>同理 &lt;字典 dict> 型別:</p><ul><li><code>python3.9</code> 以上(含)：直接使用 dict</li><li><code>python3.9</code> 以下：需引用 <code>typing</code>，使用<code>from typing import Dict</code></li></ul></p></div><div class="alert success"><p>那目前是覺得<strong>盡量使用 Build-in list 這個小寫寫法</strong>。因為 Type List、Dict 從 <code>Python3.9</code>版本開始就 Deprecated 了，而在 <code>Python3.9</code> 版本發布那年的 5 年後 Type List 也會被刪除</p></div><h3 id=literal>Literal</h3><p>Literal 是 <code>Python 3.8</code> 才加進來 <code>typing</code> 模組裡的，是用來限制變數或參數只能是某幾個特定的值。比如說有一個 Person 裡面有一個 Gender，而 Gender 想用 String 的方式存就好，可能不需要開一個 <code>Enum</code>，這個時候我可以通過 Type Hint 規定 Gender 傳只能是 Male 或者是 Female 字串，其他的都不可以 :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> Literal
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Person</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> __init__(self, name: str, gender:  Literal[<span style=color:#e6db74>&#34;Male&#34;</span>, <span style=color:#e6db74>&#34;Female&#34;</span>]):
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>name <span style=color:#f92672>=</span> name
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>gender <span style=color:#f92672>=</span> gender
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 若寫成 man ，則不用運行就直接會報錯了</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Argument of type &#34;Literal[&#39;man&#39;]&#34; cannot be assigned to parameter &#34;gender&#34; of type &#34;Literal[&#39;Male&#39;, &#39;Female&#39;]&#34;</span>
+</span></span><span style=display:flex><span>Person(<span style=color:#e6db74>&#34;tom&#34;</span>, <span style=color:#e6db74>&#34;man&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>gender: Literal[<span style=color:#e6db74>&#34;Male&#34;</span>, <span style=color:#e6db74>&#34;Female&#34;</span>] <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Male&#34;</span>
+</span></span><span style=display:flex><span>Person(<span style=color:#e6db74>&#34;tom&#34;</span>, gender)
+</span></span></code></pre></div><p>由於很多人會直接用 String 來表示有限的狀態，故有時候可能會出現一些 typo 打錯字的情形，這個 Literal 就可以幫忙檢查。</p><p>再來 <code>Literal["Male", "Female"]</code> 其實也蠻推薦移出來的，會有一些優點:</p><ul><li><p>例如要增加不同 Gender 類型時，只要在上面共同修正就好</p></li><li><p>給這個型別取一個名稱，也能增加一些可讀性 :</p></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> Literal
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Gender <span style=color:#f92672>=</span> Literal[<span style=color:#e6db74>&#34;Male&#34;</span>, <span style=color:#e6db74>&#34;Female&#34;</span>]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Person</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> __init__(self, name: str, gender: Gender):
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>name <span style=color:#f92672>=</span> name
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>gender <span style=color:#f92672>=</span> gender
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>gender: Gender <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Male&#34;</span>
+</span></span><span style=display:flex><span>Person(<span style=color:#e6db74>&#34;tom&#34;</span>, gender)
+</span></span></code></pre></div><div class="alert success"><p><p><code>Literal</code> 和 <code>Enum</code> 哪個比較好呢，其實目前我也沒有答案。 <code>Literal</code> 寫法很輕量 ; <code>Enum</code> 可以更詳細定義一些方法例如：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> enum <span style=color:#f92672>import</span> Enum
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Status</span>(Enum):
+</span></span><span style=display:flex><span>    SUCCESS <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;success&#34;</span>
+</span></span><span style=display:flex><span>    ERROR <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;error&#34;</span>
+</span></span><span style=display:flex><span>    PENDING <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;pending&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>with_prefix</span>(self, prefix: str) <span style=color:#f92672>-&gt;</span> str:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>prefix<span style=color:#e6db74>}{</span>self<span style=color:#f92672>.</span>value<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>
+</span></span></code></pre></div><p>故</p><ul><li>只是想要簡單型別限制 → 用 Literal。</li><li>想要完整物件、功能、可擴充性 → 用 Enum。</li></ul></p></div><h3 id=newtype>NewType</h3><p>像這種把型別直接換一個名字的方式也有一些壞處，就是編譯器會認為這兩個型別是等價的，例如:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>UserId <span style=color:#f92672>=</span> int
+</span></span><span style=display:flex><span>AttackPoint <span style=color:#f92672>=</span> int
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Player</span>:
+</span></span><span style=display:flex><span>    uid: UserId
+</span></span><span style=display:flex><span>    attack: AttackPoint
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> __init__(self, uid: UserId, attack: AttackPoint):
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>uid <span style=color:#f92672>=</span> uid
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>attack <span style=color:#f92672>=</span> attack
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>update_attack</span>(self, atk: AttackPoint):
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>uid <span style=color:#f92672>=</span> atk  <span style=color:#75715e># 這邊有問題，但編譯器沒報錯</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>player1 <span style=color:#f92672>=</span> Player(<span style=color:#ae81ff>100101</span>, <span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>new_attack <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>
+</span></span><span style=display:flex><span>player1<span style=color:#f92672>.</span>update_attack(new_attack)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 以下都正常運行，但是邏輯上發生大錯誤</span>
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#39;player1 id: </span><span style=color:#e6db74>{</span>player1<span style=color:#f92672>.</span>uid<span style=color:#e6db74>}</span><span style=color:#e6db74>&#39;</span>) <span style=color:#75715e># id 100101 &gt;&gt;  10 ; 意外更新成 id，超級大錯誤</span>
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#39;player1 attack: </span><span style=color:#e6db74>{</span>player1<span style=color:#f92672>.</span>attack<span style=color:#e6db74>}</span><span style=color:#e6db74>&#39;</span>) <span style=color:#75715e># attack 還是 1 ; 攻擊力沒變</span>
+</span></span></code></pre></div><p>由於只是給 <code>int</code> 重新起了兩個名字，編譯器就會認為 Attack 和 UID 都是 <code>int</code> ，所以 code 沒有問題，但明顯我們知道 Attack 和 UID 不應該是一樣的。為了解決這個問題， Python 引入了 NewType ，它會產生一個獨立的新型別 :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> NewType
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>UserId <span style=color:#f92672>=</span> NewType(<span style=color:#e6db74>&#39;UserId&#39;</span>, int)
+</span></span><span style=display:flex><span>AttackPoint <span style=color:#f92672>=</span> NewType(<span style=color:#e6db74>&#39;AttackPoint&#39;</span>, int)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Player</span>:
+</span></span><span style=display:flex><span>    uid: UserId
+</span></span><span style=display:flex><span>    attack: AttackPoint
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> __init__(self, uid: UserId, attack: AttackPoint):
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>uid <span style=color:#f92672>=</span> uid
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>attack <span style=color:#f92672>=</span> attack
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>update_attack</span>(self, atk: AttackPoint) <span style=color:#f92672>-&gt;</span> <span style=color:#66d9ef>None</span>:
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>uid <span style=color:#f92672>=</span> atk  <span style=color:#75715e># 不用運行就直接會報錯了，會出現 Cannot assign to attribute &#34;uid&#34; for class &#34;Player*&#34; &#34;AttackPoint&#34; is not assignable to &#34;UserId&#34;player1 = Player(100101, 1)</span>
+</span></span></code></pre></div><p>當然這種用法也會產生一個問題，就是沒有辦法在用 <code>int</code> 來 assign 值了，因為編譯器認為 UserID 跟 AttackPoint 都不是 <code>int</code> 而是不同類型:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 不用運行就直接會報錯了，不能單純用 int 來賦值了</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># player1 = Player(100101, 1) </span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>player1 <span style=color:#f92672>=</span> Player(UserId(<span style=color:#ae81ff>100101</span>), AttackPoint(<span style=color:#ae81ff>1</span>))
+</span></span></code></pre></div><div class="alert success"><p>從另一個角度， NewType 寫法讓 python 變得更不 python 了，我認為這樣實在有點太多了，但用還是不用、怎麼用、用多少還是可以聽一下團隊的意見</p></div><hr><h1 id=type-hint-進階範例說明>Type Hint 進階範例說明</h1><h3 id=union-和->Union 和 |</h3><p>也是一個常見的情況，例如當我們輸入 argument 的時候，有兩個或兩個以上可能的類型，即是要表達「某幾種型別，任一種都可以」，則 :</p><ul><li><h5 id=python35-開始可以使用-typing-模組中-union-><code>Python3.5</code> 開始可以使用 Typing 模組中 Union :</h5><p>例如 <code>Union[str, int]</code> 表示字串或整數其中一種 :</p></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> Union
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>stringify</span>(value: Union[str, int]) <span style=color:#f92672>-&gt;</span> str:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> str(value)
+</span></span></code></pre></div><ul><li><h5 id=在-python310-版本之後可以簡寫成-->在 <code>Python3.10</code> 版本之後，可以簡寫成 <code>|</code> :</h5></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>stringify</span>(value: str <span style=color:#f92672>|</span> int) <span style=color:#f92672>-&gt;</span> str:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> str(value)
+</span></span></code></pre></div><h3 id=抽象類別表示-type-hint-例如-sequence--iterable>抽象類別表示 Type Hint ，例如 Sequence ＆ Iterable</h3><p>在實際上應用上， list 和 Tuple 用法上是幾乎一樣的，故在當作 argument 的時候常常會把 list 跟 Tuple 混著傳，所以說一般情況下不會寫死 list 當 argument 的型別 ，而是用它的一個更抽象的型別叫做 <code>Sequence</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> Sequence
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>my_sum</span>(values: Sequence[int]) <span style=color:#f92672>-&gt;</span> int:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> sum(values)
+</span></span></code></pre></div><div class="alert info"><p>那 Sequence 對 list、Tuple 可以用，它也對 Range ，甚至對 Byte 也可以用，這個是相對更普遍的用法</p></div><p>還有另一種情況，是要 function 的某個 argument 可以接受任何 Iterable 物件，那會想到 Iterable 有 list、tuple、set， 所以 Typing 裡寫法會像是 <code>Union[set, list, tuple]</code> 這樣，但這有些問題，例如</p><ul><li><p>我<strong>Iterable 物件</strong>有窮舉了嗎？</p><p>其實在 python 中我還少了 <code>dict</code> 跟 <code>str</code>， 雖然這兩個型別也可遍歷，但是他們不符合 <code>Union[set, list, tuple]</code>，所以無法放入 function</p></li><li><p>以補破洞方式寫成 <code>Union[set, list, tuple, dict, str]</code> 也太長了</p></li><li><p>如果是自定義了新的 Iterable 物件，也要自己記得手動加進去 Union 裡面相當麻煩</p></li></ul><p>所以其實蠻適合用<strong>抽象類別</strong>來定義型別的，只要某個類別符合該抽象類別定出的「協議」，該類別就可以是該抽象類別的一員：</p><ul><li>Iterable 是要實作 <code>__iter__()</code></li><li>Sequence 是要實作 <code>__getitem__(index)</code> 和 <code>__len__()</code></li></ul><table><thead><tr><th style=text-align:left>項目</th><th style=text-align:left>Iterable</th><th style=text-align:left>Sequence</th></tr></thead><tbody><tr><td style=text-align:left>基本定義</td><td style=text-align:left>能「被迭代」的物件</td><td style=text-align:left>有「順序」且能「索引」的物件</td></tr><tr><td style=text-align:left>必要支援方法</td><td style=text-align:left><code>__iter__()</code></td><td style=text-align:left><code>__getitem__(index)</code> + <code>__len__()</code></td></tr><tr><td style=text-align:left>是否有順序</td><td style=text-align:left>不一定有順序</td><td style=text-align:left>一定有順序（可以用索引取資料）</td></tr><tr><td style=text-align:left>能否 for loop</td><td style=text-align:left>可以</td><td style=text-align:left>可以</td></tr><tr><td style=text-align:left>能否隨機存取</td><td style=text-align:left>不行</td><td style=text-align:left>可以（用 <code>obj[0]</code>, <code>obj[1]</code> 這樣取）</td></tr><tr><td style=text-align:left>常見例子</td><td style=text-align:left><code>list</code>、<code>set</code>、<code>dict</code>、<code>generator</code></td><td style=text-align:left><code>list</code>、<code>tuple</code>、<code>str</code></td></tr></tbody></table><h3 id=optional>Optional</h3><p>由於一個參數有可能是一個類型或者 None ，這個 Pattern 過於常見了，所以特別給了 <code>Optional</code> 形式 ，這代表這個參數有可能是 None，會比 Union None 更清晰一些，兩個是完全等價的，但會偏向使用 <code>Optional</code> :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> Union, Optional
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 如果是 `Union` vs `Optional`的話，比較建議使用 Optional</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>greet</span>(name: Union[str, <span style=color:#66d9ef>None</span>]) <span style=color:#f92672>-&gt;</span> str:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> name <span style=color:#f92672>is</span> <span style=color:#66d9ef>None</span>:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;Hello, guest!&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Hello, </span><span style=color:#e6db74>{</span>name<span style=color:#e6db74>}</span><span style=color:#e6db74>!&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>greet</span>(name: Optional[str]) <span style=color:#f92672>-&gt;</span> str:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> name <span style=color:#f92672>is</span> <span style=color:#66d9ef>None</span>:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;Hello, guest!&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Hello, </span><span style=color:#e6db74>{</span>name<span style=color:#e6db74>}</span><span style=color:#e6db74>!&#34;</span>
+</span></span></code></pre></div><p>由於 <code>Python3.10</code> 之後， 支持 <code>|</code>，所以其實也可以 :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>greet</span>(name: str <span style=color:#f92672>|</span> <span style=color:#66d9ef>None</span>) <span style=color:#f92672>-&gt;</span> str:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> name <span style=color:#f92672>is</span> <span style=color:#66d9ef>None</span>:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;Hello, guest!&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Hello, </span><span style=color:#e6db74>{</span>name<span style=color:#e6db74>}</span><span style=color:#e6db74>!&#34;</span>
+</span></span></code></pre></div><div class="alert success"><p>結論上由於 Python 官方 <a href=https://peps.python.org/pep-0604/#proposal>PEP 604</a>是建議都用 <code>|</code> 表示，故用 <code>|</code> 可能是比較好的選擇。但在我自己的感覺上，我是比較偏好 <code>Optional</code> 的</p></div><h3 id=callable>Callable</h3><p>Callable 的定義是有實作 <code>__call__</code>的東西，可以被當作 function 一樣調用，在 Type Hint 上 Callable 裡面的方括號要放兩個內容 :</p><ul><li>第一個是 argument 的 type ，也用方括號擴起來，代表可以多個</li><li>第二個是返回的 type</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> Callable
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>executor</span>(func: Callable[[], <span style=color:#66d9ef>None</span>]) <span style=color:#f92672>-&gt;</span> <span style=color:#66d9ef>None</span>:
+</span></span><span style=display:flex><span>    func()
+</span></span></code></pre></div><p>故這裡範例意思是：</p><ul><li>executor 這個函數接受一個 func 參數</li><li>而 func 是一個不接受任何參數、也不回傳任何東西的函數</li></ul><p>比如說我們寫一個非常簡單的 Decorator :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>my_dec</span>(func):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>wrapper</span>(<span style=color:#f92672>*</span>args, <span style=color:#f92672>**</span>kwargs):
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;start&#34;</span>)
+</span></span><span style=display:flex><span>        ret <span style=color:#f92672>=</span> func(<span style=color:#f92672>*</span>args, <span style=color:#f92672>**</span>kwargs)
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;end&#34;</span>)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> ret
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> wrapper
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>my_dec(<span style=color:#ae81ff>1</span>)
+</span></span></code></pre></div><p><code>my_dec(1)</code> 在語法上它是被允許的，但是顯然這是一個錯誤的調用，我們明顯希望這個 argument func 是 Callable，所以可以修正為 :</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> Callable
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>my_dec</span>(func: Callable):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>wrapper</span>(<span style=color:#f92672>*</span>args, <span style=color:#f92672>**</span>kwargs):
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;start&#34;</span>)
+</span></span><span style=display:flex><span>        ret <span style=color:#f92672>=</span> func(<span style=color:#f92672>*</span>args, <span style=color:#f92672>**</span>kwargs)
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;end&#34;</span>)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> ret
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> wrapper
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Argument of type &#34;Literal[1]&#34; cannot be assigned to parameter &#34;func&#34; of type &#34;(...) -&gt; Unknown&#34; in function &#34;my_dec&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># my_dec(1) 不用運行就直接會報錯了</span>
+</span></span></code></pre></div><p>接下來再進階一些：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> Callable
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>my_dec</span>(func: Callable[[int, int], int]):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>wrapper</span>(a: int, b: int) <span style=color:#f92672>-&gt;</span> int:
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;args = </span><span style=color:#e6db74>{</span>a<span style=color:#e6db74>}</span><span style=color:#e6db74>, </span><span style=color:#e6db74>{</span>b<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>        ret <span style=color:#f92672>=</span> func(a, b)
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;result = </span><span style=color:#e6db74>{</span>ret<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> ret
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> wrapper
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@my_dec</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>add</span>(a: int, b: int) <span style=color:#f92672>-&gt;</span> int:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> a <span style=color:#f92672>+</span> b
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 不用運行就報錯了</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Argument of type &#34;(a: int) -&gt; int&#34; cannot be assigned to parameter &#34;func&#34; of type &#34;(int, int) -&gt; int&#34; in function &#34;my_dec&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@my_dec</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>absolute</span>(a: int) <span style=color:#f92672>-&gt;</span> int:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> abs(a)
+</span></span></code></pre></div><hr><h1 id=python-type-hint-支援版本總整理>Python Type Hint 支援版本總整理</h1><table><thead><tr><th style=text-align:left>Python 版本</th><th style=text-align:left>主要 type hint 新增或改變內容</th></tr></thead><tbody><tr><td style=text-align:left>3.5</td><td style=text-align:left>第一次正式加入 <code>typing</code> 模組（<code>List</code>、<code>Dict</code>、<code>Optional</code>、<code>Union</code>、<code>Callable</code>）</td></tr><tr><td style=text-align:left>3.6</td><td style=text-align:left>支援 <code>variable annotations</code>（變數型別註解，PEP 526）</td></tr><tr><td style=text-align:left>3.7</td><td style=text-align:left><code>from __future__ import annotations</code> 可以延遲型別解析（PEP 563）</td></tr><tr><td style=text-align:left>3.8</td><td style=text-align:left>加入 <code>Literal</code>、<code>Final</code>、<code>TypedDict</code>（需要 <code>typing_extensions</code> 支援）</td></tr><tr><td style=text-align:left>3.9</td><td style=text-align:left>小寫 built-in 泛型支援（可以寫 <code>list[int]</code>、<code>dict[str, int]</code>，不用再 <code>List[int]</code>）</td></tr><tr><td style=text-align:left>3.10</td><td style=text-align:left>型別聯集新語法 <strong>|</strong>（例如可以寫 int | str）</td></tr><tr><td style=text-align:left>3.11</td><td style=text-align:left><code>Self</code> 型別正式標準化（方法回傳自己類型）、加入 <code>typing.assert_type</code>、<code>typing.reveal_type</code></td></tr><tr><td style=text-align:left>3.12</td><td style=text-align:left><code>typing</code> 大改版：<code>TypeAliasType</code>、更好型別推論、優化 <code>ParamSpec</code>、支援內建 collection 使用泛型</td></tr></tbody></table><hr><h1 id=心得>心得</h1><p>Python 在推廣 Type Hint 的過程中有幾個可以深思的做法 :</p><ul><li><p>type-hint 是幾乎沒有 runtime 懲罰的，也就是說你並不會因為寫了 Type Hint 導致你的 code 運行變慢，這是一個非常好的工程理念：<strong>引入一些新的 feature 不會產生其他問題</strong></p></li><li><p>gradual typing 漸進式類型標註: 這裡體現為大家可以嘗試使用 Type Hint 但並不強制要求，不是在有和沒有之間做選擇，而是可以漸漸的在自己的 code 裡逐漸加入，可以讓更多的人在無傷的情況下去嘗試增加這樣的 feature，感受到它的好處</p></li></ul><hr><h3 id=參考資料>參考資料</h3><ul><li><p><a href=https://docs.python.org/3/library/typing.html>typing — Support for type hints</a></p></li><li><p><a href="https://www.youtube.com/watch?v=HYE85bqNoGw">python】Type Hint 入门与初探，好好的 python 写什么类型标注？</a></p></li><li><p><a href="https://www.youtube.com/watch?v=6rgBwA7TRfE">python】Type Hint 的进阶知识，这下总该有你没学过的内容了吧？</a></p></li><li><p><a href=https://ithelp.ithome.com.tw/m/articles/10338998>Python 微進階 Day28 - type hint(型別提示)</a></p></li><li><p><a href=https://stackoverflow.com/questions/51710037/how-should-i-use-the-optional-type-hint>How should I use the Optional type hint?</a></p></li><li><p><a href=https://haosquare.com/python-type-hints-3-beginner-mistakes/>Python Type Hints 教學：我犯過的 3 個菜鳥錯誤</a></p></li><li><p><a href=https://blog.kyomind.tw/robust-python-01/>《強健的 Python》筆記：如何有效導入 Type Hints</a></p></li></ul></div></div><div id=post-footer class="post-footer main-content-wrap"><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--disabled"><i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/python/event-loop/ data-tooltip="Python : Coroutine 的核心 - Event-Loop" aria-label="PREVIOUS: Python : Coroutine 的核心 - Event-Loop"><span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i></a></li></ul></nav><ul class="post-actions post-action-share"><li class="post-action hide-lg hide-md hide-sm"><a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post"><i class="fa fa-share-alt" aria-hidden=true></i></a></li><li class=post-action><a class="post-action-btn btn btn--default" href=#top aria-label="Back to top"><i class="fa fa-arrow-up" aria-hidden=true></i></a></li></ul></div></div></article><footer id=footer class=main-content-wrap><span class=copyrights>&copy; 2025 李昀陽 YunYang Lee. All Rights Reserved</span></footer></div><div id=bottom-bar class=post-bottom-bar data-behavior=4><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--disabled"><i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/python/event-loop/ data-tooltip="Python : Coroutine 的核心 - Event-Loop" aria-label="PREVIOUS: Python : Coroutine 的核心 - Event-Loop"><span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i></a></li></ul></nav><ul class="post-actions post-action-share"><li class="post-action hide-lg hide-md hide-sm"><a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post"><i class="fa fa-share-alt" aria-hidden=true></i></a></li><li class=post-action><a class="post-action-btn btn btn--default" href=#top aria-label="Back to top"><i class="fa fa-arrow-up" aria-hidden=true></i></a></li></ul></div></div></div><div id=about><div id=about-card><div id=about-btn-close><i class="fa fa-times"></i></div><img id=about-card-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"><h4 id=about-card-name>李昀陽 YunYang Lee</h4><div id=about-card-bio>Welcome to my Tech Note. You can read some of the chapters below.</div><div id=about-card-job><i class="fa fa-briefcase"></i><br>Software Engineer</div><div id=about-card-location><i class="fa fa-map-marker-alt"></i><br>Taiwan</div></div></div><div id=cover style=background-image:url(https://aryido.github.io/images/background.jpg)></div><script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://aryido.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js></script>
+<script>$(document).ready(function(){hljs.configure({classPrefix:"",useBR:!1}),$("pre.code-highlight > code, pre > code").each(function(e,t){$(this).hasClass("codeblock")||$(this).addClass("codeblock"),hljs.highlightBlock(t)})})</script></body></html>

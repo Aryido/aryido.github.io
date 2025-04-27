@@ -29,7 +29,7 @@
 &lt;p>Array 是 Java 中的基本功能，而 ArrayList 是 Collection 的一部分； ArrayList 和 LinkedList 都是 Java 中的集合類型，它們都實現了 List 接口。基本特徵簡單如下 :&lt;/p>
 &lt;ul>
 &lt;li>Array 是一個有固定大小的，每次創建都需要設定，而且在創建後，是不能再更改大小&lt;/li>
-&lt;li>ArrayList ，是一個有浮動大小的Array，且適用於需要快速訪問集合中的元素的場景。&lt;/li>
+&lt;li>ArrayList ，是一個有浮動大小的 Array，且適用於需要快速訪問集合中的元素的場景。&lt;/li>
 &lt;li>LinkedList 適用於頻繁插入和刪除元素的場景。&lt;/li>
 &lt;/ul>
 &lt;p>如果需要實現隊列或棧等數據結構，也可以選擇 LinkedList。&lt;/p>

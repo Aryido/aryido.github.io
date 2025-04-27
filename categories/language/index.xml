@@ -1,4 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>language on Aryido Tech Note</title><link>https://aryido.github.io/categories/language/</link><description>Recent content in language on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 16 Apr 2023 16:44:04 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/language/index.xml" rel="self" type="application/rss+xml"/><item><title>linux 指令範例: tar &amp; gz</title><link>https://aryido.github.io/posts/shell-script/tar-example/</link><pubDate>Sun, 16 Apr 2023 16:44:04 +0800</pubDate><guid>https://aryido.github.io/posts/shell-script/tar-example/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>language on Aryido Tech Note</title><link>https://aryido.github.io/categories/language/</link><description>Recent content in language on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 26 Apr 2025 14:39:56 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/language/index.xml" rel="self" type="application/rss+xml"/><item><title>Python : Type Hint</title><link>https://aryido.github.io/posts/python/type-hint/</link><pubDate>Sat, 26 Apr 2025 14:39:56 +0800</pubDate><guid>https://aryido.github.io/posts/python/type-hint/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>我們都知道 Python 是一個動態的語言，代表每一個 variable 是什麼型別是在 runtime 的時候決定的，雖然很靈活可是當 code 量級上去之後因爲類型不正確引發的錯誤也逐漸增加。但 Python 也可以做到型別要求的，就是使用 「 Type Hint 」 或者叫 「 Type Annotation 」，中文稱呼蠻多種的例如「型別標註」、「型別提示」等等。 若有寫 type hint 的話，比較現代的 IDE 都會自動顯示補全 :
+&lt;div class="figure fig-100" >
+&lt;a class="fancybox" href="https://aryido.github.io/images/python/type-hint/ide-hint-2.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/python/type-hint/ide-hint-2.jpg" >
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>而 Python 的 Type Hint 是從 &lt;code>3.5&lt;/code> 開始萌芽逐漸引入直到現在，，故有一個發展的歷史脈絡，有一些寫法也漸漸更替，故簡單介紹和分析一下。&lt;/p>
+&lt;/blockquote></description></item><item><title>Python : Coroutine 的核心 - Event-Loop</title><link>https://aryido.github.io/posts/python/event-loop/</link><pubDate>Sun, 16 Mar 2025 22:56:39 +0800</pubDate><guid>https://aryido.github.io/posts/python/event-loop/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Python 的 Coroutine 發展已經逐漸穩定成熟，已經成為了提升 Python 程式效能的優秀解決方案之一，在之前簡單介紹 &lt;a href="https://aryido.github.io/posts/python/async-await/">Coroutine 和 await/async&lt;/a> 時，我們在範例 code 中一直有用到一個 Python buildin 模組 &lt;code>asyncio&lt;/code>，它提供了一套完整的工具和接口，用於建立非同步應用程式，其核心是 Event-Loop，會追蹤所有註冊的任務，並根據任務的狀態調度它們的執行。 故接著來了解 Event-Loop 和其工作的執行單位 Task 吧 !&lt;/p>
+&lt;/blockquote></description></item><item><title>Python : Coroutine 和 async/await</title><link>https://aryido.github.io/posts/python/async-await/</link><pubDate>Sat, 15 Mar 2025 19:46:08 +0800</pubDate><guid>https://aryido.github.io/posts/python/async-await/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>之前有介紹了 &lt;a href="https://aryido.github.io/posts/develop/concurrency-asynchronous/">Asynchronous&lt;/a> ，而 Python 的 &lt;strong>Coroutine 是實現 Asynchronous 的一種設計方式&lt;/strong>，且 Python 目前已經有非常直觀簡單的語法糖來定義 Asynchronous Code，使得程式寫起來就像普通的 「 Sequential Processing 順序執行 」任務那樣，但同時卻也可以對&lt;strong>目標函數標註做「等待」的動作，並在「等待」期間可以先去做其他任務&lt;/strong>，達成非同步的功效，提高程式的並發性，而其重要的關鍵字就是 :&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>&lt;code>async&lt;/code> : 用來宣告 function 能夠有異步的功能成為 Coroutine function&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>&lt;code>await&lt;/code> : 用來標記 Coroutine 切換暫停和繼續的位置&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>而這兩個關鍵字是在 &lt;code>Python3.5&lt;/code> 引入且在 &lt;code>Python3.7&lt;/code> 成為&lt;strong>保留關鍵字&lt;/strong>。它們在著名的 FastAPI 框架下的 path operation function 下也經常使用，接下來就簡單介紹一下吧。&lt;/p>
+&lt;/blockquote></description></item><item><title>linux 指令範例: tar &amp; gz</title><link>https://aryido.github.io/posts/shell-script/tar-example/</link><pubDate>Sun, 16 Apr 2023 16:44:04 +0800</pubDate><guid>https://aryido.github.io/posts/shell-script/tar-example/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>tar是 Unix 和類 Unix 系統上常用的壓縮工具，名字來自於 tape archive 的縮寫， tar 可以將多個文件或目錄打包成一個檔案。單純 .tar 檔案是沒有壓縮資料的，只是把好多目錄與資料夾打包起來變成一個大檔案而已；如果要有壓縮資料的功能，要使用 .tar.gz 壓縮檔案，是最常見的壓縮檔案格式。&lt;/p>
 &lt;/blockquote></description></item><item><title>linux 指令範例: set</title><link>https://aryido.github.io/posts/shell-script/set-example/</link><pubDate>Wed, 15 Mar 2023 22:25:50 +0800</pubDate><guid>https://aryido.github.io/posts/shell-script/set-example/</guid><description>&lt;!-- raw HTML omitted -->
@@ -18,13 +39,13 @@
 &lt;blockquote>
 &lt;p>Java 8 因為引入了 lambda 這樣的 functional 函數，所以 Map 系列增加了一些方法，感覺還是很好用的，簡單做一些相關介紹 &amp;hellip;&lt;/p>
 &lt;/blockquote></description></item><item><title>JAVA Map方法：compute、computeIfAbsent、put、putIfAbsent</title><link>https://aryido.github.io/posts/java/java-skill-7/</link><pubDate>Thu, 22 Sep 2022 21:58:05 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-7/</guid><description>&lt;!-- raw HTML omitted -->
-&lt;p>Map 是 Java 的其中一 interface，不是collection，也不會繼承 Collection interface。
+&lt;p>Map 是 Java 的其中一 interface，不是 collection，也不會繼承 Collection interface。
 JDK8 的 Map API 有不少便利的預設方法，以下可以介紹一下。&lt;/p></description></item><item><title>Array &amp; ArrayList &amp; LinkedList 選擇場景</title><link>https://aryido.github.io/posts/java/array-arraylist-linkedlist/</link><pubDate>Sat, 17 Sep 2022 12:49:55 +0800</pubDate><guid>https://aryido.github.io/posts/java/array-arraylist-linkedlist/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Array 是 Java 中的基本功能，而 ArrayList 是 Collection 的一部分； ArrayList 和 LinkedList 都是 Java 中的集合類型，它們都實現了 List 接口。基本特徵簡單如下 :&lt;/p>
 &lt;ul>
 &lt;li>Array 是一個有固定大小的，每次創建都需要設定，而且在創建後，是不能再更改大小&lt;/li>
-&lt;li>ArrayList ，是一個有浮動大小的Array，且適用於需要快速訪問集合中的元素的場景。&lt;/li>
+&lt;li>ArrayList ，是一個有浮動大小的 Array，且適用於需要快速訪問集合中的元素的場景。&lt;/li>
 &lt;li>LinkedList 適用於頻繁插入和刪除元素的場景。&lt;/li>
 &lt;/ul>
 &lt;p>如果需要實現隊列或棧等數據結構，也可以選擇 LinkedList。&lt;/p>

@@ -1,4 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 16 Mar 2025 22:56:39 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Python : Coroutine 的核心 - Event-Loop</title><link>https://aryido.github.io/posts/python/event-loop/</link><pubDate>Sun, 16 Mar 2025 22:56:39 +0800</pubDate><guid>https://aryido.github.io/posts/python/event-loop/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 26 Apr 2025 14:39:56 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Python : Type Hint</title><link>https://aryido.github.io/posts/python/type-hint/</link><pubDate>Sat, 26 Apr 2025 14:39:56 +0800</pubDate><guid>https://aryido.github.io/posts/python/type-hint/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>我們都知道 Python 是一個動態的語言，代表每一個 variable 是什麼型別是在 runtime 的時候決定的，雖然很靈活可是當 code 量級上去之後因爲類型不正確引發的錯誤也逐漸增加。但 Python 也可以做到型別要求的，就是使用 「 Type Hint 」 或者叫 「 Type Annotation 」，中文稱呼蠻多種的例如「型別標註」、「型別提示」等等。 若有寫 type hint 的話，比較現代的 IDE 都會自動顯示補全 :
+&lt;div class="figure fig-100" >
+&lt;a class="fancybox" href="https://aryido.github.io/images/python/type-hint/ide-hint-2.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/python/type-hint/ide-hint-2.jpg" >
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>而 Python 的 Type Hint 是從 &lt;code>3.5&lt;/code> 開始萌芽逐漸引入直到現在，，故有一個發展的歷史脈絡，有一些寫法也漸漸更替，故簡單介紹和分析一下。&lt;/p>
+&lt;/blockquote></description></item><item><title>Python : Coroutine 的核心 - Event-Loop</title><link>https://aryido.github.io/posts/python/event-loop/</link><pubDate>Sun, 16 Mar 2025 22:56:39 +0800</pubDate><guid>https://aryido.github.io/posts/python/event-loop/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Python 的 Coroutine 發展已經逐漸穩定成熟，已經成為了提升 Python 程式效能的優秀解決方案之一，在之前簡單介紹 &lt;a href="https://aryido.github.io/posts/python/async-await/">Coroutine 和 await/async&lt;/a> 時，我們在範例 code 中一直有用到一個 Python buildin 模組 &lt;code>asyncio&lt;/code>，它提供了一套完整的工具和接口，用於建立非同步應用程式，其核心是 Event-Loop，會追蹤所有註冊的任務，並根據任務的狀態調度它們的執行。 故接著來了解 Event-Loop 和其工作的執行單位 Task 吧 !&lt;/p>
 &lt;/blockquote></description></item><item><title>Python : Coroutine 和 async/await</title><link>https://aryido.github.io/posts/python/async-await/</link><pubDate>Sat, 15 Mar 2025 19:46:08 +0800</pubDate><guid>https://aryido.github.io/posts/python/async-await/</guid><description>&lt;!-- raw HTML omitted -->
@@ -948,7 +958,7 @@ Binary-Search 在處理邊界時很容易出錯。 基本上都是沒注意到�
 &lt;blockquote>
 &lt;p>近期有機會來比較一下 AWS 和 GCP 的一些差別，也看了一些文章(&lt;del>練英文QQ&lt;/del>)。 GCP 和 AWS 都有 auto scaling 的功能，當我們在某些時候，需要比較多的資源處理事情時，可以自動增加機器來維持高 reliability。 那這部分 GCP 和 AWS 有甚麼區別呢 ?&lt;/p>
 &lt;/blockquote></description></item><item><title>JAVA Map方法：compute、computeIfAbsent、put、putIfAbsent</title><link>https://aryido.github.io/posts/java/java-skill-7/</link><pubDate>Thu, 22 Sep 2022 21:58:05 +0800</pubDate><guid>https://aryido.github.io/posts/java/java-skill-7/</guid><description>&lt;!-- raw HTML omitted -->
-&lt;p>Map 是 Java 的其中一 interface，不是collection，也不會繼承 Collection interface。
+&lt;p>Map 是 Java 的其中一 interface，不是 collection，也不會繼承 Collection interface。
 JDK8 的 Map API 有不少便利的預設方法，以下可以介紹一下。&lt;/p></description></item><item><title>Terratag</title><link>https://aryido.github.io/posts/terraform/terratag/</link><pubDate>Wed, 21 Sep 2022 23:11:25 +0800</pubDate><guid>https://aryido.github.io/posts/terraform/terratag/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Terratag 是個 CLI 工具，可簡化 resource tag 的方式，允許將標籤應用於整個 Terraform 或 Terragrunt，對於 Terraform 社群來說，他們希望&lt;strong>集中化&lt;/strong>來標註 resource 而不是分別寫在每個resource內，以更方便的追蹤和管理&amp;hellip;&lt;/p>
@@ -960,7 +970,7 @@ JDK8 的 Map API 有不少便利的預設方法，以下可以介紹一下。&lt
 &lt;p>Array 是 Java 中的基本功能，而 ArrayList 是 Collection 的一部分； ArrayList 和 LinkedList 都是 Java 中的集合類型，它們都實現了 List 接口。基本特徵簡單如下 :&lt;/p>
 &lt;ul>
 &lt;li>Array 是一個有固定大小的，每次創建都需要設定，而且在創建後，是不能再更改大小&lt;/li>
-&lt;li>ArrayList ，是一個有浮動大小的Array，且適用於需要快速訪問集合中的元素的場景。&lt;/li>
+&lt;li>ArrayList ，是一個有浮動大小的 Array，且適用於需要快速訪問集合中的元素的場景。&lt;/li>
 &lt;li>LinkedList 適用於頻繁插入和刪除元素的場景。&lt;/li>
 &lt;/ul>
 &lt;p>如果需要實現隊列或棧等數據結構，也可以選擇 LinkedList。&lt;/p>
