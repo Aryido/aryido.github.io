@@ -8,6 +8,7 @@ date: 2025-03-16T22:56:39+08:00
 thumbnailImage: "/images/python/python-logo.jpg"
 
 categories:
+  - language
   - python
 
 tags:
@@ -66,9 +67,10 @@ Task 是 Event-Loop 的調度基本單位，可進行更細粒度的控制如可
 
 Event-Loop 一次只能執行 1 個 Task ，**最常見的頂層運行中的 Task 就是 `asyncio.run()` 啟動的 Coroutine** ，這基本上就是一個 「運行中的 Task」。
 
-
 接下來如果目前「運行中的 Task」 進入「正在等待執行結果的狀態」時，也就是到 code 的 `await` 位置，由於 `await` 後面可以接 Coroutine 或 Awaitable obj ，故簡單分成兩種狀況 :
+
 - **`await` 後面接 Coroutine** :
+
   - 這時其實是繼續同步調用直到這個 Coroutine 結束或是遇到下一個 `await` 標記點，「運行中的 Task」並不會交出控制權給 Event-Loop ，**這代表 Asynchronous 可能還不完善**，可以看之後舉例了解
 
 - **`await` 後面接 Awaitable obj** :
@@ -148,14 +150,16 @@ asyncio.run(main())
 # finished at 00:00:17
 ```
 
-上面這個範例的結果，發現**總共只花了 2 秒**，是我們期望的！ 
+上面這個範例的結果，發現**總共只花了 2 秒**，是我們期望的！
 
-這範例最重要的是 `asyncio.create_task()`，代表有把**兩個任務都先添加到 Event-Loop 裡面了**，故 `task1` 和 `task2` 會**同時執行**，因為它們是獨立的 Task，故代表 : 
+這範例最重要的是 `asyncio.create_task()`，代表有把**兩個任務都先添加到 Event-Loop 裡面了**，故 `task1` 和 `task2` 會**同時執行**，因為它們是獨立的 Task，故代表 :
+
 - `await task1` 會等待 task1 完成，但不會影響 task2 的執行
 - `await task2` 會等待 task2 完成，確保 main() 不會過早結束
 
 {{< alert warning >}}
-上面說明部分可以嘗試著調整 delay 時間和註解掉 `await task2` 來做一些測試，會發現一些特別的事情，例如 : 
+上面說明部分可以嘗試著調整 delay 時間和註解掉 `await task2` 來做一些測試，會發現一些特別的事情，例如 :
+
 ```python
 import asyncio
 import time
@@ -167,14 +171,14 @@ async def say_after(delay, what):
 async def main():
     task1 = asyncio.create_task(say_after(3, 'hello'))
     task2 = asyncio.create_task(say_after(2, 'world'))
-    
+
     print(f"started at {time.strftime('%X')}")
-    
+
     await task1
     #await task2
-    
+
     print(f"finished at {time.strftime('%X')}")
-    
+
 asyncio.run(main())
 
 # Terminal :
@@ -184,9 +188,11 @@ asyncio.run(main())
 # finished at 18:15:44
 
 ```
+
 特別的地方是會先等 2 秒後顯示 world，在等 1 秒顯示 hello ! **雖然沒有 `await task2` 但他還是有被排程！**
 
-再例如 : 
+再例如 :
+
 ```python
 import asyncio
 import time
@@ -198,14 +204,14 @@ async def say_after(delay, what):
 async def main():
     task1 = asyncio.create_task(say_after(1, 'hello'))
     task2 = asyncio.create_task(say_after(2, 'world'))
-    
+
     print(f"started at {time.strftime('%X')}")
-    
+
     await task1
     #await task2
-    
+
     print(f"finished at {time.strftime('%X')}")
-    
+
 asyncio.run(main())
 
 # Terminal :
@@ -214,6 +220,7 @@ asyncio.run(main())
 # finished at 18:18:10
 
 ```
+
 承前例我們知道 `task2` 是有被排到 Event-Loop 內的，但因為沒有 `await task2`，所以等 1 秒後顯示 hello 後就直接結束了，沒有等 `task2` 完成。
 {{< /alert >}}
 

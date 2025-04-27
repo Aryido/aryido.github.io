@@ -8,6 +8,7 @@ date: 2025-03-15T19:46:08+08:00
 thumbnailImage: "/images/python/python-logo.jpg"
 
 categories:
+  - language
   - python
 
 tags:
@@ -151,9 +152,10 @@ asyncio.run(do())
 
 {{< alert info >}}
 Future 和 Task 有什麼不同呢？ 目前簡單來說
+
 - Task 不需要手動 `set_result()`，只要 Coroutine 執行完就會把 return 值當作它的 result 值
 - Future 物件可以透過 `set_result()` 或 `set_exception()` 設定結果或例外
-{{< /alert >}}
+  {{< /alert >}}
 
 # 總結
 
