@@ -21,7 +21,7 @@ reward: false
 <!--BODY-->
 
 > 我們都知道 Python 是一個動態的語言，代表每一個 variable 是什麼型別是在 runtime 的時候決定的，雖然很靈活可是當 code 量級上去之後因爲類型不正確引發的錯誤也逐漸增加。但 Python 也可以做到型別要求的，就是使用 「 Type Hint 」 或者叫 「 Type Annotation 」，中文稱呼蠻多種的例如「型別標註」、「型別提示」等等。 若有寫 type hint 的話，比較現代的 IDE 都會自動顯示補全 :
-> {{< image classes="fancybox fig-100" src="/images/python/type-hint/ide-hint-2.jpg" >}}
+> {{< image classes="fancybox fig-100" src="/images/python/ide-hint.jpg" >}}
 > 
 > 而 Python 的 Type Hint 是從 `3.5` 開始萌芽逐漸引入直到現在，，故有一個發展的歷史脈絡，有一些寫法也漸漸更替，故簡單介紹和分析一下。
 
