@@ -2,8 +2,8 @@
 &lt;blockquote>
 &lt;p>我們都知道 Python 是一個動態的語言，代表每一個 variable 是什麼型別是在 runtime 的時候決定的，雖然很靈活可是當 code 量級上去之後因爲類型不正確引發的錯誤也逐漸增加。但 Python 也可以做到型別要求的，就是使用 「 Type Hint 」 或者叫 「 Type Annotation 」，中文稱呼蠻多種的例如「型別標註」、「型別提示」等等。 若有寫 type hint 的話，比較現代的 IDE 都會自動顯示補全 :
 &lt;div class="figure fig-100" >
-&lt;a class="fancybox" href="https://aryido.github.io/images/python/type-hint/ide-hint-2.jpg" data-fancybox="">
-&lt;img class="fig-img" src="https://aryido.github.io/images/python/type-hint/ide-hint-2.jpg" >
+&lt;a class="fancybox" href="https://aryido.github.io/images/python/ide-hint.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/python/ide-hint.jpg" >
 &lt;/a>
 &lt;/div>
 &lt;/p>
