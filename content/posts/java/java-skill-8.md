@@ -8,17 +8,19 @@ date: 2022-10-01T16:36:17+08:00
 thumbnailImage: "/images/java/java-bean-logo1.jpg"
 
 categories:
-- language
-- java
+  - language
+  - java
 
 tags:
-- map
+  - map
 
 comment: false
 
 reward: false
 ---
+
 <!--BODY-->
+
 > Java 8 因為引入了 lambda 這樣的 functional 函數，所以 Map 系列增加了一些方法，感覺還是很好用的，簡單做一些相關介紹 ...
 
 <!--more-->
@@ -26,15 +28,18 @@ reward: false
 ---
 
 # compute
+
 compute 方法可以指定 key ，然後用指定的 Lambda 來運算，決定 key 的對應 value ，這是它之所以命名為 compute 的原因。
 
 compute 是返回新的值。 更詳細的說:
+
 - key 有對應的 value 時
-   1. Lambda 的傳回值若**不為** null，以新值取代舊值
-   2. Lambda 的傳回值若**為** null，將 key -  value 移除
+  1.  Lambda 的傳回值若**不為** null，以新值取代舊值
+  2.  Lambda 的傳回值若**為** null，將 key - value 移除
 
 {{< alert warning >}}
 注意 computeIfAbsent 和 compute 兩個 lambda function 參數不一樣!
+
 ```java
 map.computeIfAbsent( "b", k -> "v" );
 
@@ -46,9 +51,11 @@ map.compute( "b", (k,v) -> "wwww" );
 ---
 
 # merge
+
 merge 方法的 Lambda 比 compute **多了一個參數**，可以指定 value。
 
 返回值:
+
 1. 如果 key 對應的 value 不存在，則返回該 value 值
 2. 如果存在，則返回 Lambda 的值。
 
@@ -71,10 +78,12 @@ int value2 = map.merge("Shoes", 12, (oldValue, v) -> oldValue - v);
 ```
 
 {{< alert info >}}
+
 ### merge 方法適用情況
+
 比如分組求和這類的操作，雖然 stream 中有相關 groupingBy() 方法，但如果你想在循環中做一些其他操作的時候，merge() 還是一個挺不錯的選擇。
 
-例如有一個學生列表，包含id、科目分數，要求求得每個學生的總成績。
+例如有一個學生列表，包含 id、科目分數，要求求得每個學生的總成績。
 
 ```java
 int[] o11 = new int[]{1, 70}; //id1 學生數學 70
@@ -124,9 +133,10 @@ list.forEach(array -> {
 {{< /alert >}}
 
 {{< alert warning >}}
-merge 參數是 **舊value 和 新value**
+merge 參數是 **舊 value 和 新 value**
 
 compute 參數是 **鍵值對**
+
 ```java
 map.merge("Shirt", 100, (oldValue, newValue) -> oldValue + newValue);
 

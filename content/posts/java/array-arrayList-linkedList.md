@@ -8,25 +8,28 @@ date: 2022-09-17T12:49:55+08:00
 thumbnailImage: "/images/java/java-bean-logo3.jpg"
 
 categories:
-- language
-- java
+  - language
+  - java
 
 tags:
-- array
-- linked-list
+  - array
+  - linked-list
 
 comment: false
 
 reward: false
 ---
+
 <!--BODY-->
+
 > Array 是 Java 中的基本功能，而 ArrayList 是 Collection 的一部分； ArrayList 和 LinkedList 都是 Java 中的集合類型，它們都實現了 List 接口。基本特徵簡單如下 :
+>
 > - Array 是一個有固定大小的，每次創建都需要設定，而且在創建後，是不能再更改大小
-> - ArrayList ，是一個有浮動大小的Array，且適用於需要快速訪問集合中的元素的場景。
+> - ArrayList ，是一個有浮動大小的 Array，且適用於需要快速訪問集合中的元素的場景。
 > - LinkedList 適用於頻繁插入和刪除元素的場景。
 >
 > 如果需要實現隊列或棧等數據結構，也可以選擇 LinkedList。
->
+
 <!--more-->
 
 ---
@@ -34,17 +37,21 @@ reward: false
 # Array 和 LinkedList
 
 Array 是一組內存中，連續的 data :
-- 能用 index 直接搜尋 >> ```O(1)``` access
+
+- 能用 index 直接搜尋 >> `O(1)` access
 - **加入 data 時要注意擴容問題**
-- 刪除 data  會需要後面所有 data 的 index
+- 刪除 data 會需要後面所有 data 的 index
 
 LinkedList
 內存中不一定連續的 data :
--  不能用 index 直接搜尋，只能遍歷 >> ```O(n)``` access
-- 刪除 data 要先遍歷找到目標 >> ```O(n)``` access
+
+- 不能用 index 直接搜尋，只能遍歷 >> `O(n)` access
+- 刪除 data 要先遍歷找到目標 >> `O(n)` access
 
 # Array 和 ArrayList
+
 比較常忘記的部分，是資料結構(Data type)的類別有所限制 :
+
 - Array 可以包含 primitive data types 和 object entities
 - ArrayList 只可以包含 object entries ，**但不支持 primitive data types**
 
@@ -80,9 +87,10 @@ Primitive data types : **byte**, **short**, **int**, **long**, **float**, **doub
 ---
 
 ## Interface List<E> 方法
+
 ### set(int index, E element)
 
-- **set(int index, E element)**:  替換 array 中指定位置的元素。
+- **set(int index, E element)**: 替換 array 中指定位置的元素。
 - **返回值**: 是在指定位置**過去舊的**元素
 
 ```java
@@ -99,6 +107,7 @@ Integer int = list.set( 1, 55 ); // int = 20
 ```
 
 ### add(int index, E element)
+
 - **add(int index, E element)**: 插入到指定位置，然後*其他指定位置之後所有元素，向後移一個位置*。
 - 返回值: 沒有返回值
 
@@ -122,7 +131,7 @@ list.add( 1, 1 ); // void
 
 {{< /alert >}}
 
- 因為 ArrayList 的 add 底層實作，首先考慮擴容，故可能要複製一個新的 array ，且指定位置之後的元素要往後一個位置。
+因為 ArrayList 的 add 底層實作，首先考慮擴容，故可能要複製一個新的 array ，且指定位置之後的元素要往後一個位置。
 而 **LinkedList** 直接把 node 的 reference 更改就達成插入了。
 
 ---
@@ -131,5 +140,4 @@ list.add( 1, 1 ); // void
 
 - [Java - Array 與 ArrayList 的分別](https://ithelp.ithome.com.tw/articles/10229699)
 
-- [Linked List链表题型解题套路和模板](https://www.youtube.com/watch?v=0czlvlqg5xw&list=PLV5qT67glKSErHD66rKTfqerMYz9OaTOs&index=4)
-
+- [Linked List 链表题型解题套路和模板](https://www.youtube.com/watch?v=0czlvlqg5xw&list=PLV5qT67glKSErHD66rKTfqerMYz9OaTOs&index=4)

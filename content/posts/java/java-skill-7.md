@@ -8,19 +8,22 @@ date: 2022-09-22T21:58:05+08:00
 thumbnailImage: "/images/java/java-bean-logo6.jpg"
 
 categories:
-- language
-- java
+  - language
+  - java
 
 tags:
-- map
+  - map
 
 comment: false
 
 reward: false
 ---
+
 <!--BODY-->
-Map 是 Java 的其中一 interface，不是collection，也不會繼承 Collection interface。
+
+Map 是 Java 的其中一 interface，不是 collection，也不會繼承 Collection interface。
 JDK8 的 Map API 有不少便利的預設方法，以下可以介紹一下。
+
 <!--more-->
 
 ---
@@ -29,11 +32,12 @@ JDK8 的 Map API 有不少便利的預設方法，以下可以介紹一下。
 
 ---
 
-# 不管存不存在key，都會存入 map 中：
+# 不管存不存在 key，都會存入 map 中：
 
 ## put
 
 put: 返回舊值，如果沒有則返回 null
+
 ```java
 HashMap<String, String> map = new HashMap<>();
 map.put("b","B");
@@ -49,6 +53,7 @@ String value3 = map.put( "d", null ); // value3 = null ; {b=v, c=test, d=null}
 ## compute（相當於 put ,只不過返回的是新值）
 
 compute : 返回新值。 另外若 Lambda 的傳回值若為 null，將 key - value 移除
+
 ```java
 HashMap<String, String> map = new HashMap<>();
 map.put("b","B");
@@ -60,8 +65,11 @@ String value3 = map.compute( "c", (k,v) -> null ); // value3 = null ; {b=wwww}
 ```
 
 {{< alert info >}}
+
 ### compute 方法適用情況
+
 統計一個 List<String> 中每個元素出現的次數
+
 ```java
 List<String> list = Arrays.asList("a", "b", "b", "c", "c", "c", "d", "d", "d", "f", "f", "g");
 
@@ -70,14 +78,17 @@ list.forEach(str -> map.compute(str, (k, v) -> v == null ? 1 : v + 1));
 // 此時：新值 = 舊值 + 1
 // map = {a=1, b=2, c=3, d=3, f=2, g=1}
 ```
-{{< /alert >}}
 
+{{< /alert >}}
 
 ---
 
 # key 不存在，才會存入 map：
+
 ## putIfAbsent
+
 putIfAbsent : 返回舊值，如果沒有則返回 null
+
 ```java
 HashMap<String, String> map = new HashMap<>();
 map.put("b","B");
@@ -86,9 +97,12 @@ String value2 = map.putIfAbsent( "c", "test" ); // value2 = null ; {b=B, c=test}
 ```
 
 ## computeIfAbsent
+
 computeIfAbsent : 特別注意一下 !
--  **key 存在時是返回舊值**
--  key 不存在時，會把 kvp 存入 map 內，並返回新值
+
+- **key 存在時是返回舊值**
+- key 不存在時，會把 kvp 存入 map 內，並返回新值
+
 ```java
 HashMap<String, String> map = new HashMap<>();
 map.put("b","B");
@@ -97,11 +111,14 @@ String value2 = map.computeIfAbsent( "c", k -> "test" ); // value2 = test ; {b=B
 ```
 
 {{< alert info >}}
+
 ### computeIfAbsent 方法適用情況
+
 JDK1.8 的 API 中說到在需要生成一個類似於 Map<K, Collection> 的結構時，computeIfAbsent 很適合這種情況
 {{< /alert >}}
 
 ---
+
 想想 put 用了這麼久，我卻忘記它有返回什麼...， 以上方法筆記一下，希望有機會用到時可以淋漓盡致!
 
 ---
