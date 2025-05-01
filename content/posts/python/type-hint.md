@@ -20,17 +20,17 @@ reward: false
 
 <!--BODY-->
 
-> 我們都知道 Python 是一個動態的語言，代表每一個 variable 是什麼型別是在 runtime 的時候決定的，雖然很靈活可是當 code 量級上去之後因爲類型不正確引發的錯誤也逐漸增加。但 Python 也可以做到型別要求的，就是使用 「 Type Hint 」 或者叫 「 Type Annotation 」，中文稱呼蠻多種的例如「型別標註」、「型別提示」等等。 若有寫 type hint 的話，比較現代的 IDE 都會自動顯示補全 :
+> 我們都知道 Python 是一個動態的語言，代表每一個 variable 是什麼型別是在 runtime 的時候決定的，雖然很靈活可是當 code 量級上去之後因爲類型不正確引發的錯誤也會逐漸增加。但 Python 也是可以做到型別要求的，就是使用 「 Type Hint 」 或者叫 「 Type Annotation 」，中文稱呼蠻多種的例如「型別標註」、「型別提示」等等。 若有寫  Type Hint 的話，比較現代的 IDE 都會有一些自動顯示或補全輔助 :
 > {{< image classes="fancybox fig-100" src="/images/python/ide-hint.jpg" >}}
 > 
-> 而 Python 的 Type Hint 是從 `3.5` 開始萌芽逐漸引入直到現在，，故有一個發展的歷史脈絡，有一些寫法也漸漸更替，故簡單介紹和分析一下。
+> Python 的 Type Hint 是從`3.5`開始萌芽逐漸引入直到現在，故有一些發展的歷史脈絡和演變，有一些寫法也漸漸更替，故簡單介紹和分析一下。
 
 <!--more-->
 
-首次導入了 Type Hint，可見〈PEP 484 – Type Hints〉，該 PEP 提案的共同發起人除了 Python 之父 Guido van Rossum，還有 Mypy 作者，接下來的每一版 Python，都少不了對 Type Hint 的擴充與增強，以下是一些筆記和感想
+首次導入了 Type Hint 可從〈PEP 484 – Type Hints〉開始，該 PEP 提案的共同發起人除了 Python 之父 Guido van Rossum，還有 Mypy 作者，接下來的每一版 Python 都有對 Type Hint 的擴充與增強，以下是一些筆記和感想 :
 
 # Any
-如果不對 variable 或返回值進行標註，那它的默認就是 Any。但比較要注意的是 **function 返回值的標註**，可能有人會認為 function 沒有返回值的話就是 Any，但這個想法是錯誤的，**在 Python 裡若沒有顯示的返回值，則定義上是返回 None**。
+如果不對 variable 或返回值進行標註，那它的默認就是 Any。比較要注意的是 **function 返回值的標註**，可能有人會認為 function 沒有返回值的話，就是返回 Any 型別，但這個想法是錯誤的，**在 Python 裡若沒有顯示的返回值，則定義上是返回 None**。
 ```python
 from typing import Any
 
@@ -41,11 +41,11 @@ def bar2() -> None:
     print("b")
 
 # 以下寫法反而是有問題的，雖然沒有報錯，但實際語意上不應該被定爲 Any
-# def bar3() -> Any: 
-#     print("c")
+def bar3() -> Any: 
+    print("c")
 ```
 
-若這 function 它是真的不返回，可能是 raise 一個 exception或者會直接退出了程序，這個時候可以給它標註 `NoReTurn` :
+若這 function 可能是 raise 一個 exception 或者會直接退出了程序，它是真的不返回，這個時候可以給返回的型別標註 `NoReTurn` :
 ```python
 from typing import NoReturn
 
@@ -55,16 +55,16 @@ def fatal_error(message: str) -> NoReturn:
 
 {{< alert success >}}
 由於大部分是認為<**顯式**表示類型>是要好<於**隱式**不表示的>，故其實 Python 官方是鼓勵 : 
-> 無論是覺得這個地方現在還沒有想好怎麼標註，還是覺得這裡就是出入或返回什麼都行，有標註一個 Any，都是比把它留空還更好。
+> 無論是覺得這個地方現在還沒有想好怎麼標註，還是覺得這裡就是輸入或返回什麼都行，有標註一個 Any 都比把它留空還更好。
 
-但我個人會覺得可能矯枉過正了，至少在function 沒有返回值的時候，我會選擇把它留空，而不會特別標註它要返回 None，這個可以看看團隊的想法
+但我個人會覺得可能矯枉過正了，至少在 function 沒有返回值的時候，我會選擇把它留空不寫，而不會特別標註它要返回 None，目前遇到大部分人也是這樣
 {{< /alert >}}
 
 ---
 
 # Type Hint 簡單範例說明
 
-### 類別內有參數或回傳自己本身物件的型別
+### Class 內有參數或回傳自己本身 class 的型別
 
 這是一個常見的情況，舉一個簡單的會**錯誤**例子:
 
@@ -78,7 +78,7 @@ class Node:
       return self.next
 ```
 
-會報錯的原因是 function 在 Class 的裡面定義的時候，這個 Class 本身是還沒有出現的，那解決方式有 : 
+會報錯的原因是 function 在 Class 的裡面定義的時候，這個 Class 本身是還沒有出現的，所以導致 class 找不到。那解決方式有 : 
 
 - ##### 早期版本是可以把這個類型 **<兩邊加上雙引號>**，讓它變成一個 String 
   這樣就解決了循環依賴的問題，這是一個合法的操作，也是被認可的。
@@ -108,20 +108,19 @@ class Node:
 ```
 
 {{< alert success >}}
-目前我自己是偏向使用 `from __future__ import annotations`。但這兩個都有一些小缺點，主要看團隊的偏好決定就可以了
+目前我自己是偏向使用 `from __future__ import annotations`，但主要還是可以看團隊的偏好決定就可以了，我本身沒有太多堅持
 {{< /alert >}}
 
-### 標註 <列表> 裡面 item 的型別
+### 標註容器裡面 item 的型別
 
-這要注意一下，標註列表裡面 item 的型別的方式，有不同寫法
+這要注意一下，標註容器裡面 item 的型別的方式，有不同寫法，使用<列表>舉例的話：
 
 - ##### 如果是 `Python3.8` 或更舊版本的話，需要從 typing 這個 lib 裡引用`大寫 List`作為 Type Hint 的類型
   
 ```python
 from typing import List
 
-
-def duplicate_first_element(values: list[int]) -> list[int]:
+def duplicate_first_element(values: List[int]) -> List[int]: # 是使用大寫 List
   if not values:
       return []
   first = values[0]
@@ -132,7 +131,7 @@ def duplicate_first_element(values: list[int]) -> list[int]:
   
 
 ```python
-def duplicate_first_element(values: list[int]) -> list[int]:
+def duplicate_first_element(values: list[int]) -> list[int]: # 內建 list 就好，不用特別 import
   if not values:
       return []
   first = values[0]
@@ -153,7 +152,7 @@ def duplicate_first_element(values: list[int]) -> list[int]:
 {{< /alert >}}
 
 ### Literal
-Literal 是 `Python 3.8` 才加進來 `typing` 模組裡的，是用來限制變數或參數只能是某幾個特定的值。比如說有一個 Person 裡面有一個 Gender，而 Gender 想用 String 的方式存就好，可能不需要開一個 `Enum`，這個時候我可以通過 Type Hint 規定 Gender 傳只能是 Male 或者是 Female 字串，其他的都不可以 :
+Literal 是 `Python 3.8` 才加進來 `typing` 模組裡的，是用來限制變數或參數只能是某幾個特定的值。比如說有一個 Person 裡面有一個 Gender，而 Gender 想用 String 的方式存就好，可能不需要開一個 `Enum`，這個時候可以通過 Literal 規定 Gender 傳只能是 Male 或者是 Female 字串，其他的都不可以 :
 ```python
 from typing import Literal
 
@@ -170,10 +169,10 @@ gender: Literal["Male", "Female"] = "Male"
 Person("tom", gender)
 
 ```
-由於很多人會直接用 String 來表示有限的狀態，故有時候可能會出現一些 typo 打錯字的情形，這個 Literal 就可以幫忙檢查。
+由於很多人會直接用 String 來表示有限的狀態，故有時候可能會出現一些 typo 打錯字的情形，這個 Literal 就可以很幫變幫忙檢查。
 
-再來 `Literal["Male", "Female"]` 其實也蠻推薦移出來的，會有一些優點:
-- 例如要增加不同 Gender 類型時，只要在上面共同修正就好
+再來 `Literal["Male", "Female"]` 其實也蠻推薦**不要寫死當作一個型別**，可以移出來聲明一個新的型別變數，會有一些優點:
+- 例如要增加不同 Gender 類型時，只要在聲明上共同修正就好
 
 - 給這個型別取一個名稱，也能增加一些可讀性 :
 ```python
@@ -191,7 +190,7 @@ Person("tom", gender)
 ```
 
 {{< alert success >}}
-`Literal` 和 `Enum` 哪個比較好呢，其實目前我也沒有答案。 `Literal` 寫法很輕量 ;  `Enum` 可以更詳細定義一些方法例如：
+`Literal` 和 `Enum` 哪個比較好呢，其實我偏向看應用場景。 `Literal` 寫法很輕量方便 ;  `Enum` 可以更詳細定義一些方法例如：
 ```python
 from enum import Enum
 
@@ -205,12 +204,12 @@ class Status(Enum):
 ```
 故
 - 只是想要簡單型別限制 → 用 Literal。
-- 想要完整物件、功能、可擴充性 → 用 Enum。
+- 想要定義多功能、高可擴充性 → 用 Enum。
 {{< /alert >}}
 
 ### NewType
 
-像這種把型別直接換一個名字的方式也有一些壞處，就是編譯器會認為這兩個型別是等價的，例如:
+說明 NewType 之前，先舉個例子來思考，像這種**把型別直接換一個名字的方式**，有什麼壞處呢 ？ 就是編譯器會認為這兩個型別是等價的，例如:
 ```python
 UserId = int
 AttackPoint = int
@@ -236,7 +235,7 @@ print(f'player1 id: {player1.uid}') # id 100101 >>  10 ; 意外更新成 id，�
 print(f'player1 attack: {player1.attack}') # attack 還是 1 ; 攻擊力沒變
 
 ```
-由於只是給 `int` 重新起了兩個名字，編譯器就會認為 Attack 和 UID 都是 `int` ，所以 code 沒有問題，但明顯我們知道 Attack 和 UID 不應該是一樣的。為了解決這個問題， Python 引入了 NewType ，它會產生一個獨立的新型別 :
+我們有了 UserId 和 AttackPoint 這兩個新型別名稱，但由於只是給 `int` 重新起了兩個名字，編譯器就會認為 Attack 和 UID 都是 `int` ，所以編譯器沒有報錯，但明顯我們知道 Attack 和 UID 不應該是一樣的，在  `self.uid = atk` 是人為疏失寫錯。為了解決這個問題， Python 引入了 NewType ，它會產生一個獨立的新型別 :
 ```python
 from typing import NewType
 
@@ -255,7 +254,7 @@ class Player:
         self.uid = atk  # 不用運行就直接會報錯了，會出現 Cannot assign to attribute "uid" for class "Player*" "AttackPoint" is not assignable to "UserId"player1 = Player(100101, 1)
 
 ```
-當然這種用法也會產生一個問題，就是沒有辦法在用 `int` 來 assign 值了，因為編譯器認為 UserID 跟 AttackPoint 都不是 `int` 而是不同類型:
+這樣就不會發生 `self.uid = atk` 這種事情了，因為編譯器會直接幫忙指出錯誤。當然這種用法也會產生一個新問題，就是沒有辦法在用 `int` 來 assign 值了，因為編譯器認為 UserID 跟 AttackPoint 都不是 `int` 而是不同類型:
 ```python
 # 不用運行就直接會報錯了，不能單純用 int 來賦值了
 # player1 = Player(100101, 1) 
@@ -268,13 +267,9 @@ player1 = Player(UserId(100101), AttackPoint(1))
 {{< /alert >}}
 
 
----
-
-# Type Hint 進階範例說明
-
 ### Union 和 |
 
-也是一個常見的情況，例如當我們輸入 argument 的時候，有兩個或兩個以上可能的類型，即是要表達「某幾種型別，任一種都可以」，則 :
+也是一個常見的情況，例如當我們輸入 argument 的時候，有兩個或兩個以上可能的類型，即是要表達「某幾種型別內的任一種都可以」，則 :
 
 - ##### `Python3.5` 開始可以使用 Typing 模組中 Union :
 
@@ -294,9 +289,9 @@ def stringify(value: str | int) -> str:
     return str(value)
 ```
 
-### 抽象類別表示 Type Hint ，例如 Sequence ＆ Iterable
+### 用抽象類別表示 Type Hint ，例如 Sequence ＆ Iterable
 
-在實際上應用上， list 和 Tuple 用法上是幾乎一樣的，故在當作 argument 的時候常常會把 list 跟 Tuple 混著傳，所以說一般情況下不會寫死 list 當 argument 的型別 ，而是用它的一個更抽象的型別叫做 `Sequence` :
+在實際上應用上， list 和 Tuple 用法上是幾乎一樣的，故在當作 argument 的時候把 list 跟 Tuple 傳哪個都應該一樣，所以說一般情況下不會寫死 list 當 argument 的型別 ，而是用它的一個更抽象的型別叫做 `Sequence` :
 
 ```python
 from typing import Sequence
@@ -310,15 +305,17 @@ def my_sum(values: Sequence[int]) -> int:
 {{< /alert >}}
 
 還有另一種情況，是要 function 的某個 argument 可以接受任何 Iterable 物件，那會想到 Iterable 有 list、tuple、set， 所以 Typing 裡寫法會像是 `Union[set, list, tuple]` 這樣，但這有些問題，例如
-- 我**Iterable 物件**有窮舉了嗎？ 
+- **Iterable 物件**有窮舉了嗎？
+
+    {{< alert warning >}}
+其實在上述中至少還少了 `dict` 跟 `str`， 雖然這兩個型別也是可遍歷，但是沒有放入 `Union[set, list, tuple]` 中，所以無法成為 function 的輸入參數
+{{< /alert >}}
   
-  其實在 python 中我還少了 `dict` 跟 `str`， 雖然這兩個型別也可遍歷，但是他們不符合 `Union[set, list, tuple]`，所以無法放入 function
-  
-- 以補破洞方式寫成 `Union[set, list, tuple, dict, str]` 也太長了
+- 寫成 `Union[set, list, tuple, dict, str]` 也太長了
 
 - 如果是自定義了新的 Iterable 物件，也要自己記得手動加進去 Union 裡面相當麻煩
 
-所以其實蠻適合用**抽象類別**來定義型別的，只要某個類別符合該抽象類別定出的「協議」，該類別就可以是該抽象類別的一員：
+所以其實蠻適合用**抽象類別**來定義型別的，只要某個類別符合該抽象類別定出的規則，該類別就可以是該抽象類別的一員，例如說：
 - Iterable 是要實作 `__iter__()`
 - Sequence 是要實作 `__getitem__(index)` 和  `__len__()`
 
@@ -334,17 +331,17 @@ def my_sum(values: Sequence[int]) -> int:
 
 ### Optional 
 
-由於一個參數有可能是一個類型或者 None ，這個 Pattern 過於常見了，所以特別給了 `Optional` 形式 ，這代表這個參數有可能是 None，會比 Union None 更清晰一些，兩個是完全等價的，但會偏向使用 `Optional` : 
+由於一個參數有可能是一個類型或者 None ，這個 Pattern 過於常見了，所以特別給了 `Optional` 的型別形式 ，這會比 Union None 更清晰一些，兩個是完全等價的 : 
 
 ``` python
 from typing import Union, Optional
 
-# 如果是 `Union` vs `Optional`的話，比較建議使用 Optional
 def greet(name: Union[str, None]) -> str:
     if name is None:
         return "Hello, guest!"
     return f"Hello, {name}!"
 
+# 如果是 `Union` vs `Optional`的話，比較建議使用 Optional
 def greet(name: Optional[str]) -> str:
     if name is None:
         return "Hello, guest!"
@@ -441,9 +438,6 @@ def absolute(a: int) -> int:
 | 3.8          | 加入 `Literal`、`Final`、`TypedDict`（需要 `typing_extensions` 支援） |
 | 3.9          | 小寫 built-in 泛型支援（可以寫 `list[int]`、`dict[str, int]`，不用再 `List[int]`） |
 | 3.10         | 型別聯集新語法 **\|**（例如可以寫 int \| str） |
-| 3.11         | `Self` 型別正式標準化（方法回傳自己類型）、加入 `typing.assert_type`、`typing.reveal_type` |
-| 3.12         | `typing` 大改版：`TypeAliasType`、更好型別推論、優化 `ParamSpec`、支援內建 collection 使用泛型 |
-
 
 ---
 
@@ -451,9 +445,9 @@ def absolute(a: int) -> int:
 
 Python 在推廣 Type Hint 的過程中有幾個可以深思的做法 :
 
-- type-hint 是幾乎沒有 runtime 懲罰的，也就是說你並不會因為寫了 Type Hint 導致你的 code 運行變慢，這是一個非常好的工程理念：**引入一些新的 feature 不會產生其他問題**
+> - type-hint 是幾乎沒有 runtime 懲罰的，也就是說你並不會因為寫了 Type Hint 導致你的 code 運行變慢，這是一個非常好的工程理念：**引入一些新的 feature 不會產生其他問題**
 
-- gradual typing 漸進式類型標註: 這裡體現為大家可以嘗試使用  Type Hint 但並不強制要求，不是在有和沒有之間做選擇，而是可以漸漸的在自己的 code 裡逐漸加入，可以讓更多的人在無傷的情況下去嘗試增加這樣的 feature，感受到它的好處
+> - gradual typing 漸進式類型標註: 這裡體現為大家可以嘗試使用  Type Hint 但並不強制要求，不是在有和沒有之間做選擇，而是可以漸漸的在自己的 code 裡逐漸加入，可以讓更多的人在無傷的情況下去嘗試增加這樣的 feature，感受到它的好處
 
 ---
 
