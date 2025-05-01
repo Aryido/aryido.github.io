@@ -5,11 +5,11 @@ author: Aryido
 
 date: {{ .Date }}
 
-thumbnailImage: "/images/java/java-bean-logo{{ index (seq 7 | shuffle) 0 }}.jpg"
+thumbnailImage: "/images/python/python-logo.jpg"
 
 categories:
   - language
-  - java
+  - python
 
 comment: false
 
