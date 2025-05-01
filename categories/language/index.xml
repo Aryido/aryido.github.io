@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>language on Aryido Tech Note</title><link>https://aryido.github.io/categories/language/</link><description>Recent content in language on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 26 Apr 2025 14:39:56 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/language/index.xml" rel="self" type="application/rss+xml"/><item><title>Python : Type Hint</title><link>https://aryido.github.io/posts/python/type-hint/</link><pubDate>Sat, 26 Apr 2025 14:39:56 +0800</pubDate><guid>https://aryido.github.io/posts/python/type-hint/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>我們都知道 Python 是一個動態的語言，代表每一個 variable 是什麼型別是在 runtime 的時候決定的，雖然很靈活可是當 code 量級上去之後因爲類型不正確引發的錯誤也逐漸增加。但 Python 也可以做到型別要求的，就是使用 「 Type Hint 」 或者叫 「 Type Annotation 」，中文稱呼蠻多種的例如「型別標註」、「型別提示」等等。 若有寫 type hint 的話，比較現代的 IDE 都會自動顯示補全 :
+&lt;p>我們都知道 Python 是一個動態的語言，代表每一個 variable 是什麼型別是在 runtime 的時候決定的，雖然很靈活可是當 code 量級上去之後因爲類型不正確引發的錯誤也會逐漸增加。但 Python 也是可以做到型別要求的，就是使用 「 Type Hint 」 或者叫 「 Type Annotation 」，中文稱呼蠻多種的例如「型別標註」、「型別提示」等等。 若有寫 Type Hint 的話，比較現代的 IDE 都會有一些自動顯示或補全輔助 :
 &lt;div class="figure fig-100" >
 &lt;a class="fancybox" href="https://aryido.github.io/images/python/ide-hint.jpg" data-fancybox="">
 &lt;img class="fig-img" src="https://aryido.github.io/images/python/ide-hint.jpg" >
 &lt;/a>
 &lt;/div>
 &lt;/p>
-&lt;p>而 Python 的 Type Hint 是從 &lt;code>3.5&lt;/code> 開始萌芽逐漸引入直到現在，，故有一個發展的歷史脈絡，有一些寫法也漸漸更替，故簡單介紹和分析一下。&lt;/p>
+&lt;p>Python 的 Type Hint 是從&lt;code>3.5&lt;/code>開始萌芽逐漸引入直到現在，故有一些發展的歷史脈絡和演變，有一些寫法也漸漸更替，故簡單介紹和分析一下。&lt;/p>
 &lt;/blockquote></description></item><item><title>Python : Coroutine 的核心 - Event-Loop</title><link>https://aryido.github.io/posts/python/event-loop/</link><pubDate>Sun, 16 Mar 2025 22:56:39 +0800</pubDate><guid>https://aryido.github.io/posts/python/event-loop/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Python 的 Coroutine 發展已經逐漸穩定成熟，已經成為了提升 Python 程式效能的優秀解決方案之一，在之前簡單介紹 &lt;a href="https://aryido.github.io/posts/python/async-await/">Coroutine 和 await/async&lt;/a> 時，我們在範例 code 中一直有用到一個 Python buildin 模組 &lt;code>asyncio&lt;/code>，它提供了一套完整的工具和接口，用於建立非同步應用程式，其核心是 Event-Loop，會追蹤所有註冊的任務，並根據任務的狀態調度它們的執行。 故接著來了解 Event-Loop 和其工作的執行單位 Task 吧 !&lt;/p>
