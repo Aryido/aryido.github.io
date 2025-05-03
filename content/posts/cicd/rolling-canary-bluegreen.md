@@ -8,7 +8,7 @@ date: 2023-05-17T00:26:34+08:00
 thumbnailImage: "/images/others/devops.jpg"
 
 categories:
-- develop
+- ci-cd
 
 comment: false
 

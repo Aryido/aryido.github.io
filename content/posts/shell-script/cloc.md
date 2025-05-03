@@ -8,7 +8,8 @@ date: 2023-04-22T13:25:32+08:00
 thumbnailImage: "/images/linux/logo.jpg"
 
 categories:
-- develop
+  - language
+  - shell-script
 
 comment: false
 
