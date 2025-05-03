@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ci-cd on Aryido Tech Note</title><link>https://aryido.github.io/categories/ci-cd/</link><description>Recent content in ci-cd on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 17 May 2023 00:26:34 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/ci-cd/index.xml" rel="self" type="application/rss+xml"/><item><title>Rolling vs Canary vs Blue-Green</title><link>https://aryido.github.io/posts/cicd/rolling-canary-bluegreen/</link><pubDate>Wed, 17 May 2023 00:26:34 +0800</pubDate><guid>https://aryido.github.io/posts/cicd/rolling-canary-bluegreen/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>現今應用程式發展迅速， app 的更新也變得越來越頻繁，在微服務、DevOps、Cloud-native 的迭代過程中，最終都需要上線。上線就需要部署；需要部署就意味著有修改；修改則意味著有風險，要如何在&lt;strong>盡量不影響 user 的前提下，讓 app 升版呢&lt;/strong> ? 這時就有一些&lt;strong>部屬策略&lt;/strong>可以考慮。對於 Deployment Strategies 有一些基本的專有名詞和觀念，例如 :&lt;/p>
+&lt;ul>
+&lt;li>Recreate&lt;/li>
+&lt;li>Rolling&lt;/li>
+&lt;li>Blue-Green&lt;/li>
+&lt;li>Canary&lt;/li>
+&lt;/ul>
+&lt;p>對於應該使用哪種 Deployment Strategy 、它們的工作原理、優缺點等等，以下會做些基本介紹。&lt;/p>
+&lt;/blockquote></description></item></channel></rss>
