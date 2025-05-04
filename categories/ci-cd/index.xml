@@ -1,4 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ci-cd on Aryido Tech Note</title><link>https://aryido.github.io/categories/ci-cd/</link><description>Recent content in ci-cd on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 17 May 2023 00:26:34 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/ci-cd/index.xml" rel="self" type="application/rss+xml"/><item><title>Rolling vs Canary vs Blue-Green</title><link>https://aryido.github.io/posts/cicd/rolling-canary-bluegreen/</link><pubDate>Wed, 17 May 2023 00:26:34 +0800</pubDate><guid>https://aryido.github.io/posts/cicd/rolling-canary-bluegreen/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ci-cd on Aryido Tech Note</title><link>https://aryido.github.io/categories/ci-cd/</link><description>Recent content in ci-cd on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 30 Apr 2025 13:53:19 +0800</lastBuildDate><atom:link href="https://aryido.github.io/categories/ci-cd/index.xml" rel="self" type="application/rss+xml"/><item><title>Git 操作筆記</title><link>https://aryido.github.io/posts/cicd/git-cli/</link><pubDate>Wed, 30 Apr 2025 13:53:19 +0800</pubDate><guid>https://aryido.github.io/posts/cicd/git-cli/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>用 Git 來做版本管理時，偶爾會需要撤銷某些操作，但對於已經推上遠端 Github 或 Gitlab 且該分支已經有多人協作的時候，其實有蠻多需要注意的事情 ; 再來是 git 其實是有蠻多功能和一些命令的，有時不常用的話也會忘記或者錯估使用場景。那開始筆記之前先把一些名詞定義好，一般來說 Git 的操作會涉及到幾個 &lt;strong>區域&lt;/strong> ：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>硬碟區 disk&lt;/strong> : 檔案存放的一般資料夾，也被稱為 &lt;strong>workspace&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>暫存區 staging&lt;/strong> : 保存 &lt;code>git add&lt;/code> 紀錄的地方，也被稱為 &lt;strong>index&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>本地端 local&lt;/strong> : 保存 &lt;code>git commit&lt;/code> 紀錄的地方，也被稱為 &lt;strong>repository&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>遠端 remote&lt;/strong> : 保存 &lt;code>git push&lt;/code> 的倉儲，如 gitjub、gitlab 等等&lt;/li>
+&lt;/ul>
+&lt;p>而各個之間狀態變化的簡單關係如下圖所示 :
+&lt;div class="figure fig-100" >
+&lt;a class="fancybox" href="https://aryido.github.io/images/cicd/git-control-flow.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/cicd/git-control-flow.jpg" >
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/blockquote></description></item><item><title>Rolling vs Canary vs Blue-Green</title><link>https://aryido.github.io/posts/cicd/rolling-canary-bluegreen/</link><pubDate>Wed, 17 May 2023 00:26:34 +0800</pubDate><guid>https://aryido.github.io/posts/cicd/rolling-canary-bluegreen/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>現今應用程式發展迅速， app 的更新也變得越來越頻繁，在微服務、DevOps、Cloud-native 的迭代過程中，最終都需要上線。上線就需要部署；需要部署就意味著有修改；修改則意味著有風險，要如何在&lt;strong>盡量不影響 user 的前提下，讓 app 升版呢&lt;/strong> ? 這時就有一些&lt;strong>部屬策略&lt;/strong>可以考慮。對於 Deployment Strategies 有一些基本的專有名詞和觀念，例如 :&lt;/p>
 &lt;ul>

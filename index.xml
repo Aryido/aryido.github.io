@@ -7,6 +7,22 @@
 &lt;li>&lt;code>Vim&lt;/code>&lt;/li>
 &lt;/ul>
 &lt;p>然後可能也會補充一些 &lt;code>Windows PowerShell&lt;/code> 和 &lt;code>IntelliJ IDEA&lt;/code>。在日常開發中可有意識的多使用快捷鍵來加深記憶，若遺忘時這裡可以快速查看筆記，鞏固快捷鍵的知識。&lt;/p>
+&lt;/blockquote></description></item><item><title>Git 操作筆記</title><link>https://aryido.github.io/posts/cicd/git-cli/</link><pubDate>Wed, 30 Apr 2025 13:53:19 +0800</pubDate><guid>https://aryido.github.io/posts/cicd/git-cli/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>用 Git 來做版本管理時，偶爾會需要撤銷某些操作，但對於已經推上遠端 Github 或 Gitlab 且該分支已經有多人協作的時候，其實有蠻多需要注意的事情 ; 再來是 git 其實是有蠻多功能和一些命令的，有時不常用的話也會忘記或者錯估使用場景。那開始筆記之前先把一些名詞定義好，一般來說 Git 的操作會涉及到幾個 &lt;strong>區域&lt;/strong> ：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>硬碟區 disk&lt;/strong> : 檔案存放的一般資料夾，也被稱為 &lt;strong>workspace&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>暫存區 staging&lt;/strong> : 保存 &lt;code>git add&lt;/code> 紀錄的地方，也被稱為 &lt;strong>index&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>本地端 local&lt;/strong> : 保存 &lt;code>git commit&lt;/code> 紀錄的地方，也被稱為 &lt;strong>repository&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>遠端 remote&lt;/strong> : 保存 &lt;code>git push&lt;/code> 的倉儲，如 gitjub、gitlab 等等&lt;/li>
+&lt;/ul>
+&lt;p>而各個之間狀態變化的簡單關係如下圖所示 :
+&lt;div class="figure fig-100" >
+&lt;a class="fancybox" href="https://aryido.github.io/images/cicd/git-control-flow.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/cicd/git-control-flow.jpg" >
+&lt;/a>
+&lt;/div>
+&lt;/p>
 &lt;/blockquote></description></item><item><title>Python : Type Hint</title><link>https://aryido.github.io/posts/python/type-hint/</link><pubDate>Sat, 26 Apr 2025 14:39:56 +0800</pubDate><guid>https://aryido.github.io/posts/python/type-hint/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>我們都知道 Python 是一個動態的語言，代表每一個 variable 是什麼型別是在 runtime 的時候決定的，雖然很靈活可是當 code 量級上去之後因爲類型不正確引發的錯誤也會逐漸增加。但 Python 也是可以做到型別要求的，就是使用 「 Type Hint 」 或者叫 「 Type Annotation 」，中文稱呼蠻多種的例如「型別標註」、「型別提示」等等。 若有寫 Type Hint 的話，比較現代的 IDE 都會有一些自動顯示或補全輔助 :
