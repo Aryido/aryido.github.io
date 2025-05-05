@@ -12,7 +12,7 @@ categories:
 - kubernetes
 
 tags:
-- docker-file
+- docker
 
 comment: false
 
