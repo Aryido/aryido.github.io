@@ -7,6 +7,9 @@
 &lt;li>&lt;code>Vim&lt;/code>&lt;/li>
 &lt;/ul>
 &lt;p>然後可能也會補充一些 &lt;code>Windows PowerShell&lt;/code> 和 &lt;code>IntelliJ IDEA&lt;/code>。在日常開發中可有意識的多使用快捷鍵來加深記憶，若遺忘時這裡可以快速查看筆記，鞏固快捷鍵的知識。&lt;/p>
+&lt;/blockquote></description></item><item><title>GitHub Flow</title><link>https://aryido.github.io/posts/cicd/git-workflow/</link><pubDate>Thu, 01 May 2025 12:42:08 +0800</pubDate><guid>https://aryido.github.io/posts/cicd/git-workflow/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>雖然使用了 Git 作為版本管理工具，但每個人對於分支的認知可能不同，故造成每次 commit 到不同分支之後，要&lt;strong>合併&lt;/strong>要回哪個分支可能會有歧義，這時就可參考一些已存在的 Workflow 規範，只要團隊遵守這樣的 branch 的 commit 和 merge 規則，就可以有一致性。每個 Workflow 規範都不太一樣，常見有: Git Flow、&lt;strong>GitHub Flow&lt;/strong>、GitLab flow ，主要都是希望就算 Project 越來越大協作人員越來越多，也能有效管理 Git Branch，那這邊會以 &lt;strong>GitHub Flow&lt;/strong> 為主要說明，但也會筆記分析了解其他不同策略的優缺點。&lt;/p>
 &lt;/blockquote></description></item><item><title>Git 操作筆記</title><link>https://aryido.github.io/posts/cicd/git-cli/</link><pubDate>Wed, 30 Apr 2025 13:53:19 +0800</pubDate><guid>https://aryido.github.io/posts/cicd/git-cli/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>用 Git 來做版本管理時，偶爾會需要撤銷某些操作，但對於已經推上遠端 Github 或 Gitlab 且該分支已經有多人協作的時候，其實有蠻多需要注意的事情 ; 再來是 git 其實是有蠻多功能和一些命令的，有時不常用的話也會忘記或者錯估使用場景。那開始筆記之前先把一些名詞定義好，一般來說 Git 的操作會涉及到幾個 &lt;strong>區域&lt;/strong> ：&lt;/p>
