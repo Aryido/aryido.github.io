@@ -19,12 +19,12 @@ reward: false
 
 <!--BODY-->
 
-> 用 Git 來做版本管理時，偶爾會需要撤銷某些操作，但對於已經推上遠端 Github 或 Gitlab 且該分支已經有多人協作的時候，其實有蠻多需要注意的事情 ; 再來是 git 其實是有蠻多功能和一些命令的，有時不常用的話也會忘記或者錯估使用場景。那開始筆記之前先把一些名詞定義好，一般來說 Git 的操作會涉及到幾個 **區域** ：
+> 用 Git 來做版本管理時，偶爾會需要**撤銷**某些操作，但對於已經推上遠端 Github / Gitlab repository 的程式碼，並且該分支已經有多人協作的時候，如果要修正的話其實有蠻多需要注意的事情呢 ; 再來 Git 是有蠻多功能和一些命令的，有時不常用的話也會忘記或者錯估使用場景。在開始筆記之前先把一些名詞定義好，一般來說 Git 的操作會涉及到幾個**區域** ：
 >
-> - **硬碟區 disk** : 檔案存放的一般資料夾，也被稱為 **workspace**
+> - **硬碟區 disk** : 檔案存放的一般資料夾，也會被稱為 **workspace**
 > - **暫存區 staging** : 保存 `git add` 紀錄的地方，也被稱為 **index**
-> - **本地端 local** : 保存 `git commit` 紀錄的地方，也被稱為 **repository**
-> - **遠端 remote** : 保存 `git push` 的倉儲，如 gitjub、gitlab 等等
+> - **本地端 git local** : 保存 `git commit` 紀錄的地方，也被稱為 **repository**
+> - **遠端 git remote** : `git push` 的倉儲，如 **Github**、**Gitlab** 等等
 >
 > 而各個之間狀態變化的簡單關係如下圖所示 :
 > {{< image classes="fancybox fig-100" src="/images/cicd/git-control-flow.jpg" >}}
@@ -33,11 +33,11 @@ reward: false
 
 ---
 
-# 比較整理
+# 筆記事項
 
-## 另外一種形式的撤消 commit -  git revert
+## revert
 
-`git revert` 和 `git reset` 的不同點是 `git revert` 是會**增加一個反操作的 commit** :
+`git revert` 和 `git reset` 都是 Git 撤消 commit 的一種形式，但是 revert 和 reset 的不同點是 `git revert` 是會**增加一個反操作的 commit** :
 
 {{< image classes="fancybox fig-100" src="/images/cicd/revert.jpg" >}}
 
@@ -54,7 +54,7 @@ reward: false
 {{< alert danger >}}
 如果我們修改的分支是除了自己之外沒有任何其他人用，就可以用 `git reset` 把某些歷史 commit 直接砍掉，但注意這個時候想同步到遠端的話必須使用 `git push -f` 強制推送更改，因為遠端的 歷史 commit 可能和自己本地端不一樣。
 
-對於「公有分支」絕對不應該使用 `git push -f` ; 但是如果這是「個人分支」的話其實是可以使用 `git push -f`。雖然是這樣說，也是有公司希望就算是自己的 branch 也完全不要使用 `git push -f` 的，這個建議都先問一下比較好。
+對於「公有分支」絕對不應該使用 `git push -f` ; 但是如果這是「個人分支」的話其實是可以使用 `git push -f`。雖然是這樣說，也是有公司希望就算是自己的 branch 也完全不要使用 `git push -f` 的，這些規範建議都先問一下比較好。
 
 {{< /alert >}}
 
@@ -83,19 +83,16 @@ A---B---C---F----G   master, origin/master
 #### 使用 rebase 後才 merge
 
 ```
-A---B---C---F---D'---E'   master, origin/master
+A---B---C---F---D^---E^   master, origin/master
 
-# D' 和 E' 是 D 和 E 的變更內容重新套用在 F 之後的結果，commit SHA 不同。
+# D^ 和 E^ 內容其實和 D 和 E 是一樣的，只是 commit SHA 不同。
 ```
 
-{{< alert warning >}}
-
-注意都是在新的 branch 上使用 rebase ，而不是在 main/master 上使用 rebase
-
-{{< /alert >}}
-
+為什麼 commit SHA 會改變呢 ？ 因為 git commit 生成的 SHA 會依賴前一個 commit ，由於 rebase 導致依賴的前一個 commit 和原本的不一樣，所以 commit SHA 才會改變。
 
 {{< image classes="fancybox fig-100" src="/images/cicd/rebase-merge.jpg" >}}
+
+#### 表格整理
 
 | 項目             | `merge`                                 | `rebase 後才 merge`                               |
 | ---------------- | --------------------------------------- | -------------------------------------- |
@@ -105,9 +102,15 @@ A---B---C---F---D'---E'   master, origin/master
 | **操作難度**     | 相對簡單                                | 需要每步都手動確認，再來 `git rebase --continue`             |
 | **推薦使用時機** | 大範圍修改且預期有大 conflict           | 想保持線性紀錄                         |
 
+{{< alert warning >}}
+
+特別注意，是在新的 branch 上使用 rebase ，而不是在 main/master 上使用 rebase
+
+{{< /alert >}}
+
 ## 偶爾出現的 origin 是什麼
 
-在 Git 中，`origin` 是預設的遠端名稱，代表 clone 時的來源。加上 origin 是為了明確指定要從哪個 remote 抓取資料，因為可能有多個遠端如 origin、upstream 等 :
+在 Git 中，`origin` 是預設的遠端名稱，代表 clone 時的來源，有些 cli 會加上 origin 是為了明確指定要從哪個 remote 抓取資料，因為可能有多個遠端如 origin、upstream 等等 :
 
 ```bash
 # 用來查看目前專案所設定的 remote repository
@@ -116,6 +119,8 @@ git remote -v
 # Terminal:
 # origin  git@github.com:Aryido/aryido.github.io.git (fetch)
 # origin  git@github.com:Aryido/aryido.github.io.git (push)
+
+# 目前只有一個 origin 遠端
 ```
 
 那什麼情況下會有多個遠端倉庫呢？
@@ -137,7 +142,7 @@ git fetch origin
 # 從指定的 remote（如 origin）抓下特定 <branch> 更新
 git fetch origin <branch>
 
-# 對於所有，有設定的 remote ，抓取所有分支的更新，例如同時抓 origin 和 upstream 的所有 branch 更新
+# 對於所有有設定的 remote ，抓取所有分支的更新，例如同時抓 origin 和 upstream 的所有 branch 更新
 git fetch --all
 ```
 
@@ -193,30 +198,31 @@ reflog 是縮寫，全稱是 reference logs
 
 # 情境
 
-## 假設我對 file 進行了一些修改，但我發現對 file 的修改是錯誤或不必要的，所以我想測銷掉對 file 的修改
+## 1. 假設我對 file 進行了一些修改，但我發現對 file 的修改是錯誤或不必要的，所以我想測銷掉對 file 的修改
 
 ```bash
 # 沒有 `git add` 也沒有 `git commit`
 git checkout < changed_file >
 git restore < changed_file >
-# 以上兩個操作等價，由於 checkout 還有切換 branch 的功能，新版本 git 想把這兩件事分開所以有了 restore，但我個人沒用過 restore，就簡單筆記一下。
+# 以上兩個操作等價
+# 由於 checkout 還有切換 branch 的功能，新版本 git 想把這兩件事分開所以有了 restore
+# 但我個人沒用過 restore，就簡單筆記一下
 
 # 使用了 `git add` 但還沒 `git commit`， 反悔了想取消 `git add`
 git reset < changed_file >
 git restore --staged < changed_file >
-# 上面的操作兩個等價且安全，只會把文件從 staging 移出，會保留在 workspace 上的修改。
+# 上面的操作兩個等價且安全，只會把文件從 staging 移出，會保留在 workspace 上的修改
+# 個人也沒用過這個 restore，也簡單筆記一下
 
-# 但如果就是想測銷掉且直接恢復到原始狀態，可以使用
+# 如果就是想測銷掉所有改動，且直接恢復到原始狀態，可以使用
 git checkout HEAD < changed_file >
 # HEAD 代表 git 內最近一次的 commit
 
 ```
 
----
+## 2. 使用了 `git commit` 產生了一個叫 `change` 的 commit 了，但是想取消
 
-在初始狀態下 disk, staging, local, remote 這四個是保持同步的，再來假設初始狀態下已經有一個 commit 叫做 `init` :
-
-## 使用了 `git commit` 產生了一個叫 `change` 的 commit 了，但是想取消
+假設在初始狀態下 disk, staging, local, remote 這四個是保持同步的，再來假設初始狀態下已經有一個 commit 叫做 `init` ，然後又 commit 一個叫 `change` 的 commit，如果要取消這個 commit 的話:
 
 ```bash
 # 以下兩個等價，reset 的預設就是 --mixed
@@ -238,8 +244,8 @@ git reset --mixed HEAD~1
 所以在本範例 `HEAD~1` 會表示 `init` 這個 commit ，為 `change` 這個 commit 的前一個 commit。故運行完上述命令之後 :
 
 - workspace 的文件不會變，還是修改過後的樣子
-- staging 的紀錄也沒了，如果要推上去還要重新再 `git add` 才可以
-- `change` 這個在 git local 的 commit 沒了
+- **staging 的紀錄也沒了**，這就是 `--mixed` 的作用，如果要推上去還要重新再 `git add` 才可以
+- 可以發現 `change` 這個在 git local 的 commit 沒了
 
 {{< image classes="fancybox fig-100" src="/images/cicd/commit-reset-mixed.jpg" >}}
 
@@ -267,3 +273,5 @@ git reset --mixed HEAD~1
 - [Git 課程學習筆記-ep4](https://medium.com/jordanttcdesign/git-%E8%AA%B2%E7%A8%8B%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-ep4-790f010a7fa3)
 
 - [git-revert 你真的会用吗？](https://www.youtube.com/watch?v=KHkTF3MlGG0)
+
+- [Git reset三种常用模式区别和用法](https://www.youtube.com/watch?v=zjTd1Wzu5lc)
