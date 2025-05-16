@@ -78,6 +78,8 @@ reward: false
 ### 查詢
 
 - ###### 使用選取的文字進行搜尋: `command 和 e`
+  - ###### 開始搜尋後，尋找下一個: `command 和 g`
+  - ###### 開始搜尋後，尋找上一個: `command 和 shift 和 g`
 
 ---
 
