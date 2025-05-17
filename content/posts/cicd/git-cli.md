@@ -104,7 +104,7 @@ A---B---C---F---D^---E^   master, origin/master
 
 {{< alert warning >}}
 
-特別注意，是在新的 branch 上使用 rebase ，而不是在 main/master 上使用 rebase
+特別注意，是在新的 branch 上使用 rebase ，而不是在 main/master 上使用 rebase，因為 rebase 其實算是一個「危險」的操作，會改寫 commit 的歷史，實務上不會對團隊共同開發的穩定分支（像 master, main, dev,...等）下這個指令
 
 {{< /alert >}}
 
@@ -236,9 +236,9 @@ git reset --mixed HEAD~1
 - 數字和波浪線的配合，例如 : `~1` 代表往前一個 ; `~3` 代表往前三個
   
   {{< alert info >}}
-- `HEAD^`：代表上一個 commit，等價於 HEAD~1
-- `HEAD^^`：代表上上個提交 commit，等價於 HEAD~2
-
+- `HEAD^`：代表上一個 commit，等價於 `HEAD~1`
+- `HEAD^^`：代表上上個提交 commit，等價於 `HEAD~2`
+- `HEAD` 和 `@` 是等價的，故上面也可以換成 `＠^`、`＠^^`、`@~2` 等等
 {{< /alert >}}
 
 所以在本範例 `HEAD~1` 會表示 `init` 這個 commit ，為 `change` 這個 commit 的前一個 commit。故運行完上述命令之後 :
@@ -261,6 +261,39 @@ git reset --mixed HEAD~1
 
 {{< /alert >}}
 
+## 3. 整理自己的 commit
+通常會是遇到下面狀況後，會選用 `git rebase` 整理 commit，讓別人看 code 可以輕鬆一些:
+- 改寫 commit 的內容或訊息（edit / reword）
+- 刪除錯誤的 commit（drop）
+- 合併多個 commit 成一個（squash）
+
+可以配合 `-i` 進入 interactive 模式，再來是選擇要更改的 commit 範圍，可以搭配 `~` 來表示範圍，例如說最近的 8 次 commits：
+```bash
+git rebase -i HEAD~8
+```
+接下來會進入 vim 編輯畫面，例如 :
+
+```vim
+pick 2a72a71 Add file1
+pick 747f10f Add file2
+pick 3b1ca36 Add file3
+pick bb4c16c Add file4
+pick 3ebea07 Add file5
+```
+按照**從上到下**順序，把這些 commit 串起來的。比較簡單的例如
+
+- **變更 commit 的順序**，如附例子可以把 `pick 3b1ca36 Add file3` 移到最下面，儲存退出後順序就變成是 `1 -> 2 -> 4 -> 5 -> 3` 了
+
+- **刪除 commit** 的話，就把前面的 「`pick` 指令改成 `drop`」
+
+- **修改 commit message** 的話，把 「`pick` 改成 `reword`」，儲存離開之後，git 會執行套用，當執行到改成 reword commit 時會自動打開 vim 讓你改 message
+  
+  {{< alert warning >}}
+`git rebase -i` 編輯的這個畫面中，是這筆 commit 的原本 message，這段是給人類看的，例如把 `Add file1` 改成 `Add file new`，進行 rebase，不會套用改的訊息
+{{< /alert >}}
+
+- **合併 commit** 的話，譬如說想把 `Add file3` 跟 `Add file4` 合併，那就把 Add file4 的「`pick` 改成 `squash`」，會把上一個 commit 合併一起
+
 
 ---
 
@@ -275,3 +308,5 @@ git reset --mixed HEAD~1
 - [git-revert 你真的会用吗？](https://www.youtube.com/watch?v=KHkTF3MlGG0)
 
 - [Git reset三种常用模式区别和用法](https://www.youtube.com/watch?v=zjTd1Wzu5lc)
+
+- [送 PR 前，使用 Git rebase 來整理你的 commit 吧！](https://www.google.com/search?q=git+rebase+-i+HEAD~8&oq=git+rebase+-i+HEAD~8&gs_lcrp=EgRlZGdlKgYIABBFGDsyBggAEEUYOzIGCAEQRRhAMgYIAhBFGEDSAQc1NDlqMGoxqAIAsAIA&sourceid=chrome&ie=UTF-8)
