@@ -47,8 +47,7 @@
 </span></span></code></pre></div><div class="alert warning"><p><code>--abort</code> 只能在 rebase 進行中 才能使用，如果 rebase 已完成或未開始，執行 <code>--abort</code> 會出現錯誤訊息: <code>fatal: no rebase in progress</code></p></div></li><li><h6 id=執行-git-rebase-的過程中發生了-conflicts需要去選擇到底要哪一段-code>執行 git rebase 的過程中，發生了 conflicts，「需要去選擇到底要哪一段 code」</h6><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 想要快速選擇「自己分支」或「對方分支」的內容，可以使用：</span>
 </span></span><span style=display:flex><span>git checkout --ours &lt;file&gt; <span style=color:#75715e># 目前分支上的內容</span>
 </span></span><span style=display:flex><span>git checkout --theirs &lt;file&gt; <span style=color:#75715e># 要 rebase 或 merge 的來源分支內容</span>
-</span></span></code></pre></div><p>上面是可以快速選擇，但其實更常發生需要自己慢慢看並且手動找出需要的 code 的情況，都選好之後：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># mark 解決衝突的 file，就是加到 staging</span>
+</span></span></code></pre></div><p>上面是可以快速選擇，但其實更常發生需要自己慢慢看並且手動找出需要的 code 的情況，都選好之後：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># mark 解決衝突的 file，就是加到 staging</span>
 </span></span><span style=display:flex><span>git add &lt;file&gt;
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e># 因為是在 rebase 過程中，不需要 commit</span>
