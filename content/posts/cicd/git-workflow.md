@@ -121,7 +121,6 @@ git push -f origin my-feature
   上面是可以快速選擇，但其實更常發生需要自己慢慢看並且手動找出需要的 code 的情況，都選好之後：
 
   ```bash
-
   # mark 解決衝突的 file，就是加到 staging
   git add <file>
 
