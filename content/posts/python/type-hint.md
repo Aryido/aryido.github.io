@@ -30,7 +30,7 @@ reward: false
 首次導入了 Type Hint 可從〈PEP 484 – Type Hints〉開始，該 PEP 提案的共同發起人除了 Python 之父 Guido van Rossum，還有 Mypy 作者，接下來的每一版 Python 都有對 Type Hint 的擴充與增強，以下是一些筆記和感想 :
 
 # Any
-如果不對 variable 或返回值進行標註，那它的默認就是 Any。比較要注意的是 **function 返回值的標註**，可能有人會認為 function 沒有返回值的話，就是返回 Any 型別，但這個想法是錯誤的，**在 Python 裡若沒有顯示的返回值，則定義上是返回 None**。
+如果不對 variable 或返回值進行標註，那它的默認就是 Any。比較要注意的是 **function 返回值的標註**，可能有人會認為 function 沒有返回值的話，就是返回 Any 型別，但這個想法是錯誤的，**在 Python 裡若 function 沒有顯示返回值，則定義上是返回 None**。
 ```python
 from typing import Any
 
@@ -57,7 +57,7 @@ def fatal_error(message: str) -> NoReturn:
 由於大部分是認為<**顯式**表示類型>是要好<於**隱式**不表示的>，故其實 Python 官方是鼓勵 : 
 > 無論是覺得這個地方現在還沒有想好怎麼標註，還是覺得這裡就是輸入或返回什麼都行，有標註一個 Any 都比把它留空還更好。
 
-但我個人會覺得可能矯枉過正了，至少在 function 沒有返回值的時候，我會選擇把它留空不寫，而不會特別標註它要返回 None，目前遇到大部分人也是這樣
+但我個人會覺得可能矯枉過正了，至少在 function 沒有返回值的時候，我會選擇把它留空不寫，而不會特別標註它要返回 None
 {{< /alert >}}
 
 ---
@@ -113,7 +113,7 @@ class Node:
 
 ### 標註容器裡面 item 的型別
 
-這要注意一下，標註容器裡面 item 的型別的方式，有不同寫法，使用<列表>舉例的話：
+這要注意一下，標註 **python容器** 裡面 item 的型別方式，有不同寫法，使用<列表>舉例的話：
 
 - ##### 如果是 `Python3.8` 或更舊版本的話，需要從 typing 這個 lib 裡引用`大寫 List`作為 Type Hint 的類型
   
@@ -190,7 +190,7 @@ Person("tom", gender)
 ```
 
 {{< alert success >}}
-`Literal` 和 `Enum` 哪個比較好呢，其實我偏向看應用場景。 `Literal` 寫法很輕量方便 ;  `Enum` 可以更詳細定義一些方法例如：
+`Literal` 和 `Enum` 哪個比較好呢，我偏向看實際應用場景。 `Literal` 寫法很輕量方便 ，而 `Enum` 可以更詳細定義一些方法例如：
 ```python
 from enum import Enum
 
@@ -202,7 +202,6 @@ class Status(Enum):
     def with_prefix(self, prefix: str) -> str:
         return f"{prefix}{self.value}"
 ```
-故
 - 只是想要簡單型別限制 → 用 Literal。
 - 想要定義多功能、高可擴充性 → 用 Enum。
 {{< /alert >}}
@@ -235,7 +234,7 @@ print(f'player1 id: {player1.uid}') # id 100101 >>  10 ; 意外更新成 id，�
 print(f'player1 attack: {player1.attack}') # attack 還是 1 ; 攻擊力沒變
 
 ```
-我們有了 UserId 和 AttackPoint 這兩個新型別名稱，但由於只是給 `int` 重新起了兩個名字，編譯器就會認為 Attack 和 UID 都是 `int` ，所以編譯器沒有報錯，但明顯我們知道 Attack 和 UID 不應該是一樣的，在  `self.uid = atk` 是人為疏失寫錯。為了解決這個問題， Python 引入了 NewType ，它會產生一個獨立的新型別 :
+我們有了 UserId 和 AttackPoint 這兩個新型別名稱，但由於只是給 `int` 重新起了兩個名字，編譯器就會認為 Attack 和 UID 都是 `int` ，所以編譯器沒有報錯，但明顯我們知道 Attack 和 UID 不應該是一樣的，在  `self.uid = atk` 是人為疏失寫錯。為了解決這個問題， Python 引入了 NewType ˋ這個功能，它會產生一個**獨立的新型別** :
 ```python
 from typing import NewType
 
@@ -267,9 +266,9 @@ player1 = Player(UserId(100101), AttackPoint(1))
 {{< /alert >}}
 
 
-### Union 和 |
+### Union 和 bitwise or operator |
 
-也是一個常見的情況，例如當我們輸入 argument 的時候，有兩個或兩個以上可能的類型，即是要表達「某幾種型別內的任一種都可以」，則 :
+bitwise or operator 在 python 符號就是指 `|` ，英文名稱可以記憶一下。這個符號的出現其實不難想像成因，例如一個常見的情況，例如當我們輸入 argument 的時候，有兩個或兩個以上可能的類型，即是要表達「某幾種型別內的任一種都可以」，則 :
 
 - ##### `Python3.5` 開始可以使用 Typing 模組中 Union :
 
