@@ -1,0 +1,142 @@
+<!doctype html><html lang=en-us><head><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"RabbitMQ 簡介","image":"https://aryido.github.io/images/backend-system/rabbitmq-logo.jpg","datePublished":"2025-06-20T23:22:49+08:00","dateModified":"2025-06-20T23:22:49+08:00","author":{"@type":"Person","name":"李昀陽 YunYang Lee","image":"https://aryido.github.io/images/aboutme/head-shot.jpg"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aryido.github.io\/posts\/backend-system\/rabbitmq-intro\/"},"publisher":{"@type":"Organization","name":"Aryido Tech Note","logo":{"@type":"ImageObject","url":"https://aryido.github.io/images/aboutme/head-shot.jpg"}},"description":" 之前有介紹了 Message Queue 和其常見協定 MQTT 、 AMQP ，而 RabbitMQ 就是一款基於 AMQP 訊息傳遞協定實現的輕量級開源服務，由 Erlang 語言開發，能夠跨進程的傳遞訊息，且對多數主流程式語言如 Python、Java 等都有官方或社群開發 lib。 再來為了方便運維與監控，RabbitMQ 有內建一套 Web 介面，使用者可透過此介面管理檢視 queue 健康狀態，還可以處理使用者權限等操作\n","keywords":[]}</script><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Hugo 0.119.0 with theme Tranquilpeak 0.5.3-BETA"><meta name=author content="李昀陽 YunYang Lee"><meta name=keywords content><meta name=description content="
+
+之前有介紹了 Message Queue 和其常見協定 MQTT 、 AMQP ，而 RabbitMQ 就是一款基於 AMQP 訊息傳遞協定實現的輕量級開源服務，由 Erlang 語言開發，能夠跨進程的傳遞訊息，且對多數主流程式語言如 Python、Java 等都有官方或社群開發 lib。
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
+再來為了方便運維與監控，RabbitMQ 有內建一套 Web 介面，使用者可透過此介面管理檢視 queue 健康狀態，還可以處理使用者權限等操作
+"><meta property="og:description" content="
+
+之前有介紹了 Message Queue 和其常見協定 MQTT 、 AMQP ，而 RabbitMQ 就是一款基於 AMQP 訊息傳遞協定實現的輕量級開源服務，由 Erlang 語言開發，能夠跨進程的傳遞訊息，且對多數主流程式語言如 Python、Java 等都有官方或社群開發 lib。
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
+再來為了方便運維與監控，RabbitMQ 有內建一套 Web 介面，使用者可透過此介面管理檢視 queue 健康狀態，還可以處理使用者權限等操作
+"><meta property="og:type" content="article"><meta property="og:title" content="RabbitMQ 簡介"><meta name=twitter:title content="RabbitMQ 簡介"><meta property="og:url" content="https://aryido.github.io/posts/backend-system/rabbitmq-intro/"><meta property="twitter:url" content="https://aryido.github.io/posts/backend-system/rabbitmq-intro/"><meta property="og:site_name" content="Aryido Tech Note"><meta property="og:description" content="
+
+之前有介紹了 Message Queue 和其常見協定 MQTT 、 AMQP ，而 RabbitMQ 就是一款基於 AMQP 訊息傳遞協定實現的輕量級開源服務，由 Erlang 語言開發，能夠跨進程的傳遞訊息，且對多數主流程式語言如 Python、Java 等都有官方或社群開發 lib。
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
+再來為了方便運維與監控，RabbitMQ 有內建一套 Web 介面，使用者可透過此介面管理檢視 queue 健康狀態，還可以處理使用者權限等操作
+"><meta name=twitter:description content="
+
+之前有介紹了 Message Queue 和其常見協定 MQTT 、 AMQP ，而 RabbitMQ 就是一款基於 AMQP 訊息傳遞協定實現的輕量級開源服務，由 Erlang 語言開發，能夠跨進程的傳遞訊息，且對多數主流程式語言如 Python、Java 等都有官方或社群開發 lib。
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
+再來為了方便運維與監控，RabbitMQ 有內建一套 Web 介面，使用者可透過此介面管理檢視 queue 健康狀態，還可以處理使用者權限等操作
+"><meta property="og:locale" content="en-us"><meta property="article:published_time" content="2025-06-20T23:22:49"><meta property="article:modified_time" content="2025-06-20T23:22:49"><meta property="article:section" content="backend-system"><meta name=twitter:card content="summary"><meta property="og:image" content="https://aryido.github.io/images/aboutme/head-shot.jpg"><meta property="twitter:image" content="https://aryido.github.io/images/aboutme/head-shot.jpg"><meta property="og:image" content="https://aryido.github.io/images/backend-system/rabbitmq-logo.jpg"><meta property="twitter:image" content="https://aryido.github.io/images/backend-system/rabbitmq-logo.jpg"><title>RabbitMQ 簡介</title><link rel=icon href=https://aryido.github.io/favicon.png><link rel=canonical href=https://aryido.github.io/posts/backend-system/rabbitmq-intro/><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://aryido.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css></head><body><div id=blog><header id=header data-behavior=4><i id=btn-open-sidebar class="fa fa-lg fa-bars"></i><div class=header-title><a class=header-title-link href=https://aryido.github.io/ aria-label="Go to homepage">Aryido Tech Note</a></div><a class=header-right-picture href=https://aryido.github.io/#about aria-label="Open the link: /#about"><img class=header-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"></a></header><nav id=sidebar data-behavior=4><div class=sidebar-container><div class=sidebar-profile><a href=https://aryido.github.io/#about aria-label="Read more about the author"><img class=sidebar-profile-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"></a><h4 class=sidebar-profile-name>李昀陽 YunYang Lee</h4><h5 class=sidebar-profile-bio>Welcome to my Tech Note. You can read some of the chapters below.</h5></div><ul class=sidebar-buttons><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/ title=Home><i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden=true></i>
+<span class=sidebar-button-desc>Home</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/categories title=Categories><i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden=true></i>
+<span class=sidebar-button-desc>Categories</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/tags title=Tags><i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden=true></i>
+<span class=sidebar-button-desc>Tags</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://github.com/Aryido target=_blank rel=noopener title=GitHub><i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden=true></i>
+<span class=sidebar-button-desc>GitHub</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/index.xml title=RSS><i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden=true></i>
+<span class=sidebar-button-desc>RSS</span></a></li></ul><ul class=sidebar-buttons></ul><ul class=sidebar-buttons></ul></div></nav><div id=main data-behavior=4 class=hasCoverMetaIn><article class=post id=top><div class="post-header main-content-wrap text-left"><h1 class=post-title>RabbitMQ 簡介</h1><div class="postShorten-meta post-meta"><time datetime=2025-06-20T23:22:49+08:00>June 20, 2025</time>
+<span>in</span>
+<a class=category-link href=https://aryido.github.io/categories/backend-system>backend-system</a></div></div><div class="post-content markdown"><div class=main-content-wrap><blockquote><p>之前有介紹了 Message Queue 和其常見協定 MQTT 、 AMQP ，而 RabbitMQ 就是一款基於 AMQP 訊息傳遞協定實現的輕量級開源服務，由 Erlang 語言開發，能夠跨進程的傳遞訊息，且對多數主流程式語言如 Python、Java 等都有官方或社群開發 lib。<div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/backend-system/rabbitmq-architecture.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/backend-system/rabbitmq-architecture.jpg></a></div>再來為了方便運維與監控，RabbitMQ 有內建一套 Web 介面，使用者可透過此介面管理檢視 queue 健康狀態，還可以處理使用者權限等操作</p></blockquote><hr><h1 id=rabbitmq>RabbitMQ</h1><p>RabbitMQ 生產者將訊息透過 Channel 傳送到 Exchange，再來 Exchange 決定將訊息分發到哪個 queue ，最後消費者從 queue 中接收訊息。</p><div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/backend-system/rabbitmq-workflow.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/backend-system/rabbitmq-workflow.jpg></a></div><h3 id=虛擬主機-vhost>虛擬主機 (vhost)</h3><p>vhost 擁有自己的權限機制，一個 broker 內可以開設多個 vhost，用於不同用戶的權限隔離 ; vhost 之間是也完全隔離的 ; 而一個 vhost 內也可以有若干個 exchange 和 queue，同一個 vhost 裏面不能有相同名稱的 exchange。</p><p>當 RabbitMQ 運行時，預設會產生一個 virtual host 叫做 /，然後如果不特別調整的話，所有的 Queue 都是創建在這個 / 的 virtual host 裡面，而 user 預設也是被設定成能存取 / ，所以當多個不同的使用者，使用同一個 RabbitMQ server 提供的服務時，可以分割出多個 vhost，讓每個使用者在自己的 vhost 建立 exchange 和 queue 。</p><h3 id=exchange>Exchange</h3><p>Exchange 是在 Producer 與 Queue 之間，用來接收消息，根據路由鍵 routing-key 轉發 Message 到綁定的 Queue。Exchange 不具備 Message 存儲能力，主要有不同類型 type 可選擇，簡單舉例有 :</p><ul><li>Direct : 轉發 Message 到指定的 Queue</li><li>Topic : 可按照 regular exp 來匹配轉發 Message</li><li>Fan-out : 轉發 Message 到<strong>所有</strong>綁定的 Queue，類似於廣播發送</li></ul><p>而 Exchange 和 queue 之間的關係連結稱為 binding ， binding 資訊被儲存到 exchange 中的查詢表中，用於 message 的分發依據，聲明 binding 關係的時候，會使用 RoutingKey 參數。</p><hr><h1 id=rabbitmq-設計模式>RabbitMQ 設計模式</h1><p>上面有提到 Exchange 有不同的 type ，那接下來根據 <a href=https://www.rabbitmq.com/tutorials>RabbitMQ Tutorials 官方的範例</a>，以下說明幾種：</p><h3 id=routing-也稱為-direct-模式>Routing (也稱為 Direct 模式)</h3><p>Exchange type 為 direct，特性是 Exchange 與 Queue 的 binding 還會帶上 routing key，Producer 傳送訊息到 Exchange 時也會帶上 routing key 這個參數，可以多重綁定，故可以達成把 Message 給多個指定 queue 但不像 Publish/Subscribe 全部都廣播出去，因此可以達到選擇性訊息分流，不同 Consumer 只需要接受到特定 routing 的訊息。</p><div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/backend-system/rabbitmq-routing.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/backend-system/rabbitmq-routing.jpg></a></div><p>實際舉例的話，可以將 info、error、warning 這三個 routing key，綁到記錄一般 Log 的 Queue 上，然後再將 error 這個 routing key，再綁定到另一條記錄 Error Log 的 Queue 上，這樣子就可以實作出一份帶有全部 Log 的 Queue、以及一份只有 Error Log 的 Queue 了。</p><h3 id=topics>Topics</h3><p>Exchange type 為 topic，也透過 routing key 來分流訊息，差別在 topic 的特性能夠<strong>模糊綁定</strong>而非固定的 routing key，能使用 regular exp 設定 .(dot) 、 *(star) 、 #(bash) 匹配到了多個 Queue。</p><h3 id=publishsubscribe-也稱為-fanout-模式>Publish/Subscribe (也稱為 Fanout 模式)</h3><p>Exchange type 為 fanout，由於 fanout 的特性，Exchange 會把訊息廣播給所有綁定的 Queue，每個 Consumer 就會接收到相同的訊息。因此當有另外的系統需要同步接收訊息，只需增加一組 Queue + Producer，綁定這個 Exchange 即可。</p><div class="alert warning"><p>如果生產者將消息發送到沒有綁定隊列的交換機上，消息將丟失</p></div><div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/backend-system/rabbitmq-exchange-types.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/backend-system/rabbitmq-exchange-types.jpg></a></div><h3 id=work-queues>Work Queues</h3><p>Worker 模式會有多的 Consumer 從同一個 Queue 取出訊息，加速訊息處理的速度。因此只要連接同一個 Queue，就可以在多台機器上 Consumer 平行處理。當有多個 Consumer 時，如何均衡 Consumer 消費模式，主要有兩種模式：</p><ul><li><strong>輪詢模式分發</strong>：按順序輪詢分發，每個消費者獲得相同數量的消息</li><li><strong>公平分發</strong>：根據費能力公平分發，處理快的處理的多，處理慢的處理的少，按勞分配</li></ul><hr><h3 id=參考資料>參考資料</h3><ul><li><a href=https://enzochang.com/rabbitmq-introduction/>[DATA] 訊息佇列 02 - RabbitMQ 簡介與 5 種設計模式</a></li><li><a href=https://www.readfog.com/a/1669788280201252864>一文搞懂 RabbitMQ 常用模式</a></li><li><a href=https://kucw.io/blog/2020/11/rabbitmq/>RabbitMQ 介紹（二）- RabbitMQ 用法介紹</a></li><li><a href=https://godleon.github.io/blog/ChatOps/message-queue-concepts/>Message Queue 簡介(以 RabbitMQ 為例)</a></li><li><a href=https://mybaseball52.medium.com/researching-on-rabbitmq-architecture-and-concepts-476e2d912575>探索 RabbitMQ 的內部架構</a></li><li><a href=https://yoziming.github.io/post/220204-gulimall-18-rabbitmq/>RabbitMQ 與訊息確認</a></li><li><a href=https://www.cloudamqp.com/blog/part3-rabbitmq-for-beginners_the-management-interface.html>The RabbitMQ Management Interface</a></li><li><a href=https://kangshitao.github.io/2021/10/26/rabbitmq/#1-1-MQ%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5>RabbitMQ 學習筆記</a></li></ul></div></div><div id=post-footer class="post-footer main-content-wrap"><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--disabled"><i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/backend-system/amqp-mqtt/ data-tooltip="Message Queue 簡介 - MQTT & AMQP" aria-label="PREVIOUS: Message Queue 簡介 - MQTT & AMQP"><span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i></a></li></ul></nav><ul class="post-actions post-action-share"><li class="post-action hide-lg hide-md hide-sm"><a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post"><i class="fa fa-share-alt" aria-hidden=true></i></a></li><li class=post-action><a class="post-action-btn btn btn--default" href=#top aria-label="Back to top"><i class="fa fa-arrow-up" aria-hidden=true></i></a></li></ul></div></div></article><footer id=footer class=main-content-wrap><span class=copyrights>&copy; 2025 李昀陽 YunYang Lee. All Rights Reserved</span></footer></div><div id=bottom-bar class=post-bottom-bar data-behavior=4><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--disabled"><i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/backend-system/amqp-mqtt/ data-tooltip="Message Queue 簡介 - MQTT & AMQP" aria-label="PREVIOUS: Message Queue 簡介 - MQTT & AMQP"><span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i></a></li></ul></nav><ul class="post-actions post-action-share"><li class="post-action hide-lg hide-md hide-sm"><a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post"><i class="fa fa-share-alt" aria-hidden=true></i></a></li><li class=post-action><a class="post-action-btn btn btn--default" href=#top aria-label="Back to top"><i class="fa fa-arrow-up" aria-hidden=true></i></a></li></ul></div></div></div><div id=about><div id=about-card><div id=about-btn-close><i class="fa fa-times"></i></div><img id=about-card-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"><h4 id=about-card-name>李昀陽 YunYang Lee</h4><div id=about-card-bio>Welcome to my Tech Note. You can read some of the chapters below.</div><div id=about-card-job><i class="fa fa-briefcase"></i><br>Software Engineer</div><div id=about-card-location><i class="fa fa-map-marker-alt"></i><br>Taiwan</div></div></div><div id=cover style=background-image:url(https://aryido.github.io/images/background.jpg)></div><script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://aryido.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js></script>
+<script>$(document).ready(function(){hljs.configure({classPrefix:"",useBR:!1}),$("pre.code-highlight > code, pre > code").each(function(e,t){$(this).hasClass("codeblock")||$(this).addClass("codeblock"),hljs.highlightBlock(t)})})</script></body></html>

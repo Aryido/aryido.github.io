@@ -59,8 +59,6 @@
 &lt;li>Microsoft Azure : &lt;strong>Azure NAT Gateway&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;p>Cloud NAT 是以 Software-defined Networking 服務，中間不存在 proxy instance ，故性能方面比傳統 NAT 好，目前最經常是用在 VM、GKE 上，除此之外也提供 Cloud Run、Cloud Functions、App Engine 等服務，能夠透過&lt;strong>共用&lt;/strong>一組 IP 位址對外通訊，建立 NAT gateways 連線到 VPC 外部網路，由於&lt;strong>共用&lt;/strong>一組 IP，也解決了 IP 短缺問題。&lt;/p>
-&lt;/blockquote></description></item><item><title/><link>https://aryido.github.io/not-yet-finished/amqp-mqtt/</link><pubDate>Mon, 24 Jun 2024 23:26:00 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/amqp-mqtt/</guid><description>&lt;!-- raw HTML omitted -->
-&lt;blockquote>
 &lt;/blockquote></description></item><item><title>DNS 概述</title><link>https://aryido.github.io/not-yet-finished/dns/</link><pubDate>Mon, 24 Jun 2024 23:26:00 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/dns/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;/blockquote></description></item><item><title>Cloud NAT 概述</title><link>https://aryido.github.io/not-yet-finished/cloud-nat/</link><pubDate>Thu, 30 May 2024 18:52:24 +0800</pubDate><guid>https://aryido.github.io/not-yet-finished/cloud-nat/</guid><description>&lt;!-- raw HTML omitted -->

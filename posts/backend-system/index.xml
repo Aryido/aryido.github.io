@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/backend-system/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 20 Jun 2025 23:22:49 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/backend-system/index.xml" rel="self" type="application/rss+xml"/><item><title>RabbitMQ 簡介</title><link>https://aryido.github.io/posts/backend-system/rabbitmq-intro/</link><pubDate>Fri, 20 Jun 2025 23:22:49 +0800</pubDate><guid>https://aryido.github.io/posts/backend-system/rabbitmq-intro/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>之前有介紹了 Message Queue 和其常見協定 MQTT 、 AMQP ，而 RabbitMQ 就是一款基於 AMQP 訊息傳遞協定實現的輕量級開源服務，由 Erlang 語言開發，能夠跨進程的傳遞訊息，且對多數主流程式語言如 Python、Java 等都有官方或社群開發 lib。
+&lt;div class="figure fig-100" >
+&lt;a class="fancybox" href="https://aryido.github.io/images/backend-system/rabbitmq-architecture.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/backend-system/rabbitmq-architecture.jpg" >
+&lt;/a>
+&lt;/div>
+再來為了方便運維與監控，RabbitMQ 有內建一套 Web 介面，使用者可透過此介面管理檢視 queue 健康狀態，還可以處理使用者權限等操作&lt;/p>
+&lt;/blockquote></description></item><item><title>Message Queue 簡介 - MQTT &amp; AMQP</title><link>https://aryido.github.io/posts/backend-system/amqp-mqtt/</link><pubDate>Mon, 16 Jun 2025 14:58:37 +0800</pubDate><guid>https://aryido.github.io/posts/backend-system/amqp-mqtt/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>為了要把系統架構解耦，改為異步分散式處理，有時會決定使用 Message Queue 的設計來達成目標，其指的是應用程序之間通過在 Message Service 而不是直接調用彼此通訊。對於其落地的產品，常見的開源工具有 &lt;strong>Kafka&lt;/strong>、&lt;strong>RabbitMQ&lt;/strong> 等等或者雲端服務 &lt;strong>GCP-Pub/Sub&lt;/strong> 和 &lt;strong>AWS-SQS&lt;/strong> 等等。作為兩個子系統之間的通信中間層，會需要依靠協定保持有序且有效率的方式實現資訊交換，而目前廣泛使用的協定有 &lt;strong>MQTT&lt;/strong> 和 &lt;strong>AMQP&lt;/strong> ，以下也會簡單介紹一下。&lt;/p>
+&lt;/blockquote></description></item></channel></rss>
