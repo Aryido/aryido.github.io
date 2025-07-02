@@ -93,7 +93,7 @@ class Node:
 ```
 
 
-- ##### 若是使用 `Python3.7` 以上的版本，可在 code 加上 `from __future__ import annotations`
+- ##### 若是使用 `Python3.7` 以上的版本，可使用 `from __future__ import annotations`
 
 ```python
 from __future__ import annotations
@@ -107,8 +107,18 @@ class Node:
       return self.next
 ```
 
+- ##### 若是使用 `Python3.11` 以上的版本，可使用 typing 模組的 Self 型別提示: `from typing import Self`
+```
+from typing import Self
+
+class A:
+    def clone(self) -> Self:
+        return A()
+```
+
+
 {{< alert success >}}
-目前我自己是偏向使用 `from __future__ import annotations`，但主要還是可以看團隊的偏好決定就可以了，我本身沒有太多堅持
+目前推薦使用 **typing 模組的 Self 型別提示**，但主要還是可以看團隊的偏好決定就可以了，我本身沒有太多堅持
 {{< /alert >}}
 
 ### 標註容器裡面 item 的型別
