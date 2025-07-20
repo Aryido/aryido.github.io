@@ -87,9 +87,9 @@ MPEG-4 這個詞[發音是 m-peg](https://www.youtube.com/watch?v=V0DJLoi-2yM)�
 
 架構主要包含兩部分：
 - **Data**: 內容可能有 Audio Codec (例如 AAC 編碼格式) 或者 Video Codec (例如 H.264 編碼格式) 這兩種資料 ; 若是單純音樂檔就只會有 Audio Codec
-- **Metadata**: 這部分能提供支援哪些「影片播放軟體」; 也告訴軟體該如何組織 Audio Codec 和 Video Codec 並呈現出來，此外還可以提供其他資訊，例如字幕等等
+- **Metadata**: 這部分能提供支援哪些「影片播放軟體」; 也告訴軟體該如何組織 Audio Codec 和 Video Codec 並呈現出來，此外還可以提供其他資訊，例如字幕、video title 、resolution 等等
 
-每個 container 支援不同的 codecs，有些 container 僅支援單一類型的 codecs 和 video player ; 有些相容於多種類型。
+**Digital Container File 有時也會被簡稱為 Container**，是把 「Metadata」和 「Data」組合 Wrapper 到一起。而不同的 container 可能會支援不同的 codecs 和播放器，有些僅支援單一類型 ; 有些相容於多種類型。
 
 ### [Encoding](https://www.cloudflare.com/learning/video/video-encoding-formats/) 
 
@@ -97,20 +97,17 @@ MPEG-4 這個詞[發音是 m-peg](https://www.youtube.com/watch?v=V0DJLoi-2yM)�
 - 容器(Container)
 - 編解碼器(Codec)
 
-視訊編碼的格式有很多種類，我們稱為 Video encoding format 或 Video file format
+視訊編碼的格式有很多種類，我們稱為 Video encoding format 或 Video file format。不同種類的 Encoding，例如對於 Video ，我們就說是產生不同的 Video Encoding Format 或者 Video file Format，此時 Container 就會用不同的方式來組合影像和聲音資料，我們說這就是有不同的 **Digital Container File Format(有時也會被簡稱為 Digital Container Format 、 Container Format 甚至單純簡稱 Format**)
 
 
 ### 整理
-從資料上其實可以感受到一些混亂，Encoding 和 Container 基本上是綁在一起的，Encoding 後產生的資訊有 Container 和 Codec ，而 Container 內裝的真實 data 資料也有 Codec 的資訊。
+從資料上其實可以感受到一些混亂，Encoding 和 Container 基本上是綁在一起的，Encoding 後產生的資訊有 Container 和 Codec ，而 Container 內裝的真實 data 資料也有 Codec 的資訊。只有在 Codec 和 Container 都與影片播放程式相容時才能正常播放該 Video File。
 
-**Digital Container File 有時也會被簡稱為 Container**，它將 「Metadata」和 「Data」 部分: 編碼的音訊串流(Audio Codec)、編碼的影片串流(Video Codec) 組合 Wrapper 到一起，只有在 Codec 和 Container 都與影片播放程式相容時才能正常播放該 Video File。
 
-而不同種類的 Encoding，例如對於 Video ，我們就說有產生不同的 Video Encoding Format 或者 Video file Format，此時 Container 就會用不同的方式來組合影像和聲音資料，我們說這就是有不同的 **Digital Container File Format(有時也會被簡稱為 Digital Container Format 、 Container Format 甚至單純 Format**)
+所以有人說 MP4 是一個容器 「Container」 或者說是一種格式 「Format」，其實都是可以的，**那稍微正確一點的是 Container** ：
+- 稱呼為 Container ，由於比較算正規術語，Cloudflare 官網在「What is MP4」中也有寫到： **MP4 refers to the digital container file**。同時說是 Container 會比較讓人感覺到，是把 MP4  當作一個簡單的外殼容器而已，知道真正重要的是內部的 Codec
 
-所以有人說 MP4 是一個容器 「Container」 或者是一種格式 「Format」其實都是可以的，**那稍微正確一點的是 Container** ：
-- 稱呼為 Container ，由於比較算正規術語，Cloudflare 官網在「What is MP4」中就有寫： **MP4 refers to the digital container file**，同時這也會比較讓人感覺到，MP4 是把它當作一個簡單的外殼容器而已，知道真正重要的是內部的 Codec
-
-- 稱呼為 Format 會是在列出不同容器、或是比較其他不同容器的場合，也是 Cloudflare 官網用詞： **What are the most common types of video encoding formats?** ，也列出:
+- 稱呼為 Format 會是在列出不同容器、或是比較其他不同容器的場合，這也是 Cloudflare 官網寫： **What are the most common types of video encoding formats?** ，也列出:
   - {{< alert success >}}
   **MP4** 是算是最廣泛使用的 Digital Container ，是國際標準(International Standard)的，所以相容於更多串流媒體協定，而 MP4 檔案通常壓縮程度也叫高，因此比其他類型的檔案 Size 更小，其採用常見的編碼標準 MPEG-4 進行 Encoding 。
   {{< /alert >}}
@@ -137,10 +134,7 @@ MPEG-4 這個詞[發音是 m-peg](https://www.youtube.com/watch?v=V0DJLoi-2yM)�
 
 其進階為 `H.265` 全名是 High Efficiency Video Coding(高效能視訊編碼) 簡稱 HEVC，雖然提供比 H.264 更佳的畫質，此編解碼器對於 8K 影片很受歡迎，但支援的瀏覽器仍有限，所以目前主流還是 H.264。
 
-
-
 ---
-
 
 # Streaming Protocol (串流協議)
 
@@ -183,6 +177,30 @@ DASH 會把一個影片會被編碼成多個不同的版本，每一個版本都
 
 還有很多[其他串流協議](https://blendvision.com/zh-tw/blog-zh/live-streaming-protocols-comparison)，這邊就不列出來了。
 
+---
+
+# 其他名詞解釋
+
+### 下載（Downloading）& 串流（Streaming）& 直播（live Streaming）
+
+- 下載（Downloading），是指 user 需等待 Client 透過 HTTP/HTTPS 協議連接到 Server ，然後**下載完整的檔案後**才能播放影片
+
+- 串流（Streaming）是即時的，是會使用串流協議向 Server 請求小檔案，一次載入一點點而不實際儲存它 
+
+- 直播(live Streaming）)則比串流更進一步，在影片產生的時候就即時編碼壓縮、進行網路輸出發布，無需等待影片完整產生完後才切片壓縮傳給用戶
+
+### Video-On-Demand (VOD) & OTT (Over-the-top media service)
+
+- VOD 定義上是**使用串流技術作為傳輸方式來播放影片**，達到使用者自己決定什麼時候播放、暫停、快轉、倒退影片，不需要等候檔案下載完畢就可同步進行播放，不像傳統電視那樣只能定時撥出不能倒轉，可讓觀眾不再只能配合節目表觀看影片
+- OTT 指的是利用網路來提供影音內容的服務方式，內容提供者不需擁有大規模的硬體設備就能將影音內容放置於網路上，使用者也只需有穩定的網路連線與播放裝置，即可在線上隨時收看影音。常見的影音 OTT 平台如 Netflix 等等。
+
+
+### Bitrate 位元速率 (也可以寫成 bit rate)
+
+影片是由一連串的照片所組成的，一般來說會以固定的幀率進行播放(例如每秒 24 或 30 張)，再來一張圖片是由點陣 (pixel) 的陣列所組成的，而每一個 pixel 則又被編碼成數個 bit 來表達該 pixel 的亮度與顏色。
+
+Bitrate 是指在**單位時間內傳送位元的數量**。而現今評估影音串流服務的品質，蠻重要的指標就是**端到端的吞吐量**，為了讓影片持續播放不卡頓，就需要在「影片畫質」與 「Bitrate」之間做取捨，Bitrate 愈高圖片的畫質就會愈好，但當 Bitrate 高到超過平均吞吐量，對應來說就會造成卡頓而下降觀看體驗。
+
 
 ---
 
@@ -195,7 +213,3 @@ DASH 會把一個影片會被編碼成多個不同的版本，每一個版本都
 - [Computer Networking — 2.6 Video Streaming and Content Distribution Networks](https://hackmd.io/@kaeteyaruyo/computer-networking-2-6)
 
 - [影片解析度的比較：1080p、720p、480p 和 4K【如何選擇最適合你的需求】](https://www.movavi.com/zh/learning-portal/1080p-720p-4k-resolution-comparison.html)
-
-- [影片格式選擇障礙? 先來了解一下各種常見的影片編碼格式](https://jacksonlin.net/20221230-how-to-choose-format/?srsltid=AfmBOorJGhkrnpbVAzN3b22qzbQLMq55wHnT0vFLwaAwl_Sf-tzAGHQs)
-
-
