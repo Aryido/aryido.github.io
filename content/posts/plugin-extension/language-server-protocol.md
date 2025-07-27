@@ -8,7 +8,10 @@ date: 2024-05-21T23:21:38+08:00
 thumbnailImage: "/images/plugin-extension/vscode-logo.jpg"
 
 categories:
-  - plugin-extension
+  - product
+
+tags:
+  - vscode
 
 comment: false
 
