@@ -26,6 +26,7 @@ reward: false
 > <!--more-->
 
 ---
+
 {{< image classes="fancybox fig-100" src="/images/kubernetes/configmap-secret.jpg" >}}
 
 # 簡介
