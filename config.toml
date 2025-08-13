@@ -3,8 +3,11 @@ languageCode = "en-us"
 defaultContentLanguage = "en-us"
 title = 'Aryido Tech Note'
 theme = "hugo-tranquilpeak-theme"
-paginate = 6
 canonifyurls = true
+
+# paginate = 6 site config key paginate was deprecated 
+[pagination]
+  pagerSize = 6
 
 [taxonomies]
   tag = "tags"
