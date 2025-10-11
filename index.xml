@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 04 Oct 2025 21:52:30 +0800</lastBuildDate><atom:link href="https://aryido.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>uv - Python package and project manager</title><link>https://aryido.github.io/posts/python/uv/</link><pubDate>Sat, 04 Oct 2025 21:52:30 +0800</pubDate><guid>https://aryido.github.io/posts/python/uv/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>uv 是 Astral 公司推出的一款基於 Rust 編寫的「 &lt;strong>Python 套件管理工具&lt;/strong> 」，雖然 Python 套件管理生態內已經存在多種工具如 pip 、 poetry 、 conda 等等，但在效能、相容性和功能上 uv 都有出色表現，得益於使用 Rust 進行編寫，uv 工具的速度讓人驚艷 ；且從「 安裝管理 Python 版本 」、「 虛擬環境建置」、「 package 依賴 」以上 uv 全部都統整好了，其目標是取代多種現有工具，為 Python 專案的開發和管理帶來了新的選擇。 uv 也成為 Astral 公司繼 Ruff (Python 程式碼檢查器和格式化工具) 之後，另一個知名的專案了。&lt;/p>
+&lt;/blockquote></description></item><item><title>Cron</title><link>https://aryido.github.io/posts/shell-script/cron/</link><pubDate>Tue, 22 Jul 2025 23:47:43 +0800</pubDate><guid>https://aryido.github.io/posts/shell-script/cron/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>在軟體工程中，有蠻多工作都會需要排程的，而 Linux 排程是透過 crontab 與 at 這兩個，這兩個有啥異同呢？ 我們可以發現工作排程的方式基本上分成：&lt;/p>
+&lt;ul>
+&lt;li>例行性的 : 每隔一定的週期就會需要處理，那就可以使用 &lt;code>rontab&lt;/code> 這個指令設定的任務循環&lt;/li>
+&lt;li>突發性的 : 會訂一個時間點執行，但做完以後就沒有了，那就可以使用 &lt;code>at&lt;/code> 指令處理僅執行一次就結束的任務&lt;/li>
+&lt;/ul>
+&lt;p>Cron 是 Linux 系統下的一個定時任務管理服務，為了要精確表示「何時」執行， 就發明了一個抽象的 Cron 表達式，相信大家都有看過類似 &lt;code>0 12 * * *&lt;/code> 這種在定時任務中常出現的寫法，像 「 GCP Cloud Scheduler」、「 GitHub Actions」、「 SpringBoot 的 @Scheduled」，都以 Cron 表達式來定義任務觸發時間點。&lt;/p>
 &lt;/blockquote></description></item><item><title>淺談影音後端知識</title><link>https://aryido.github.io/posts/video-streaming/video-stream/</link><pubDate>Fri, 11 Jul 2025 15:48:45 +0800</pubDate><guid>https://aryido.github.io/posts/video-streaming/video-stream/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>影音串流已經融入現今生活中，OTT (Over-the-top media service) 此類利用網路來提供影音內容的服務平台也非常普遍了(如 Netflix 等等)。使用者只需有穩定的網路連線與播放裝置，即可在線上隨時收看影音 ; 而內容提供者不需擁有大規模的硬體設備就能將影音內容放置於網路上。自己對於這技術大部份的專有名詞都還有蠻多不了解的。例如說「 MP4 」、「 1080P 」、「 H.264 」 等等，這些名詞基本上都看過，但實際上對於其定義是蠻模糊的，而更進階的 Streaming Protocol (串流協議)，在讀相關資料有也些蠻多名詞冒出來的，以下就把我認為對影片處理需要知道的事情，其資料簡單整理一下。&lt;/p>
