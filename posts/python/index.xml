@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/python/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 04 Oct 2025 21:52:30 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/python/index.xml" rel="self" type="application/rss+xml"/><item><title>uv - Python package and project manager</title><link>https://aryido.github.io/posts/python/uv/</link><pubDate>Sat, 04 Oct 2025 21:52:30 +0800</pubDate><guid>https://aryido.github.io/posts/python/uv/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>uv 是 Astral 公司推出的一款基於 Rust 編寫的「 &lt;strong>Python 套件管理工具&lt;/strong> 」，雖然 Python 套件管理生態存在多種工具如 pip 、 poetry 、 conda 等，但在效能、相容性和功能上 uv 都有出色表現。得益於使用 Rust 進行編寫，uv 工具的速度讓人驚艷 ；且從&lt;/p>
-&lt;ul>
-&lt;li>安裝管理 Python 版本&lt;/li>
-&lt;li>虛擬環境使用&lt;/li>
-&lt;li>掌控 package&lt;/li>
-&lt;li>專案依賴&lt;/li>
-&lt;/ul>
-&lt;p>以上 uv 全部都統整好了，其目標是取代多種現有工具，為 Python 專案的開發和管理帶來了新的選擇。 uv 也成為 Astral 公司繼 Ruff(Python 程式碼檢查器和格式化工具) 之後，另一個知名的產品。&lt;/p>
+&lt;p>uv 是 Astral 公司推出的一款基於 Rust 編寫的「 &lt;strong>Python 套件管理工具&lt;/strong> 」，雖然 Python 套件管理生態內已經存在多種工具如 pip 、 poetry 、 conda 等等，但在效能、相容性和功能上 uv 都有出色表現，得益於使用 Rust 進行編寫，uv 工具的速度讓人驚艷 ；且從「 安裝管理 Python 版本 」、「 虛擬環境建置」、「 package 依賴 」以上 uv 全部都統整好了，其目標是取代多種現有工具，為 Python 專案的開發和管理帶來了新的選擇。 uv 也成為 Astral 公司繼 Ruff (Python 程式碼檢查器和格式化工具) 之後，另一個知名的專案了。&lt;/p>
 &lt;/blockquote></description></item><item><title>Python : Type Hint</title><link>https://aryido.github.io/posts/python/type-hint/</link><pubDate>Sat, 26 Apr 2025 14:39:56 +0800</pubDate><guid>https://aryido.github.io/posts/python/type-hint/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>我們都知道 Python 是一個動態的語言，代表每一個 variable 是什麼型別是在 runtime 的時候決定的，雖然很靈活可是當 code 量級上去之後因爲類型不正確引發的錯誤也會逐漸增加。但 Python 也是可以做到型別要求的，就是使用 「 Type Hint 」 或者叫 「 Type Annotation 」，中文稱呼蠻多種的例如「型別標註」、「型別提示」等等。 若有寫 Type Hint 的話，比較現代的 IDE 都會有一些自動顯示或補全輔助 :
