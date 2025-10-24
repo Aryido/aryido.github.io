@@ -17,7 +17,7 @@ reward: false
 ---
 
 <!--BODY-->
-> uv 是 Astral 公司推出的一款基於 Rust 編寫的「 **Python 套件管理工具** 」，雖然 Python 套件管理生態內已經存在多種工具如 pip 、 poetry 、 conda 等等，但在效能、相容性和功能上 uv 都有出色表現，得益於使用 Rust 進行編寫，uv 工具的速度讓人驚艷 ；且從「 安裝管理 Python 版本 」、「 虛擬環境建置」、「 package 依賴 」以上 uv 全部都統整好了，其目標是取代多種現有工具，為 Python 專案的開發和管理帶來了新的選擇。 uv 也成為 Astral 公司繼 Ruff (Python 程式碼檢查器和格式化工具) 之後，另一個知名的專案了。
+> uv 是 Astral 公司推出的一款基於 Rust 編寫的「 **Python 套件管理工具** 」，雖然 Python 的套件管理生態內已經存在多種工具如 pip 、 poetry 、 conda 等等，但在效能、相容性和功能上 uv 都有出色表現，得益於使用 Rust 進行編寫，uv 工具的速度讓人驚艷 ；且從「 安裝管理 Python 版本 」、「 虛擬環境建置」、「 package 依賴 」以上 uv 全部都統整好了，其目標是取代多種現有工具，為 Python 專案的開發和管理帶來了新的選擇。 uv 也成為 Astral 公司繼 Ruff (Python 程式碼檢查器和格式化工具) 之後，另一個知名的專案了。
 
 <!--more-->
 
@@ -26,12 +26,12 @@ reward: false
 {{< image classes="fancybox fig-100" src="/images/python/uv/uv-feature.jpg" >}}
 
 
-一直以來 python 開發管理環境的的各式工具，都多到讓人頭疼，多種工具分散使用如：
-- 下載 python 最新版本，有人去官網，有人用 homebrew、apt、yum ，或者 pyenv
+一直以來 python 管理開發環境的的各式工具都混亂到讓人頭疼，多種工具分散使用如：
+- 下載 python 最新版本，有人去官網，有人用 homebrew、apt、yum 或者 pyenv ...
 - 為了避免依賴衝突，使用 「venv」或者 「virtual env」建立虛擬環境
-- 安裝 package 方式也非常多種： pip 、 poetry 等等
+- 安裝 package 方式也非常多種： pip 、 poetry ...
 
-那 uv 目前集成以上所有的功能，筆記一下使用 uv 開發的常用 CLI。
+那 uv 目前集成以上所有的功能，以下筆記使用 uv 開發的常用 CLI。
 
 # uv 管理 python 版本
 
@@ -42,7 +42,10 @@ uv 可以安裝和管理不同的 Python 版本，
 uv python list
 
 #  安裝某個 python 版本
-uv python install XXXX
+uv python install XXXX7
+
+# 列出目前已安裝的 Python 路徑
+uv python dir 
 
 # 使用特定版本 python 如 3.13 執行 xxx.py ; 如果沒安裝的話會直接幫忙安裝
 uv run -p 3.13 xxx.py 
@@ -63,7 +66,9 @@ uv init -p 3.13
 
 # 選定 python 版本，指定創建專案的目錄
 uv python pin 3.11
-uv init <project dir>
+uv init <PROJECT_DIR>
+
+uv init <PROJECT_DIR> --python 3.13
 ```
 
 透過 init 建立專案之後，會**自動將專案使用 Git 來管理**，且 uv 工具會產生了一些預設檔，而 uv 主要是有兩個 file：
@@ -74,6 +79,9 @@ uv init <project dir>
   `uv.lock` 這個檔案就是專案依賴關係的完整快照，它能確保專案在不同機器上的運作環境保持一致，詳細記錄了每個套件以及它依賴的套件的情況，由 uv 自動管理，不要手動編輯
   {{< /alert >}}
 
+其他還有：
+- **.python-version** : 這個專案使用的 Python 版本，如果在 uv init 的時候沒有指定 Python 版本，那麼就會用已安裝的最高版本。
+
 ```bash
 # 同步專案依賴
 # 同步會自動尋找或下載適當的 Python 版本
@@ -83,6 +91,7 @@ uv init <project dir>
 uv sync
 
 # 新增依賴 ; 若沒有虛擬環境，這時 uv 也會順便幫忙創建 .venv
+# 會修改 pyproject.toml 與 uv.lock
 uv add XXX
 
 # 刪除依賴 
@@ -93,9 +102,16 @@ uv tree
 
 # 有使用 uv 管理專案的話，可以用 uv 的命令來運行程式碼，不要像以前那樣使用 python xxx.py 來運行
 uv run XXX.py
+# 指定 Python 3.11 版本來執行
+uv run --python 3.11 XXX.py
 
 # 目錄下生成虛擬環境
 uv venv
+
+
+# 管理臨時的虛擬環境
+uv cache dir 
+uv cache clean 
 
 ```
 
@@ -120,12 +136,14 @@ uv add ruff --dev
 
 ```bash
 uv tool list
-```
 
----
+uv tool install <PACKAGE NAME>
+uv tool upgrade <PACKAGE NAME>
+uv tool uninstall <PACKAGE NAME>
 
-# uv 配合 poetry 管理的專案
-```bash
+
+### 以下範例使用 uv 配合 poetry 管理的專案 ###
+
 # uv 管理 poetry
 uv tool install poetry
 
@@ -144,3 +162,4 @@ uv tool run poetry install
 - [Python包管理不再头疼：uv工具快速上手](https://www.cnblogs.com/wang_yb/p/18635441)
 - [uv全功能更新：统一管理Python项目、工具、脚本和环境的终极解决方案](https://segmentfault.com/a/1190000046519293)
 - [UV：基於 Rust 的超高速 Python 包管理工具](https://calpa.me/blog/uv-rust-python-package-manager/)
+- [uv 簡單介紹](https://blog.awin.one/posts/2025/uv-%E7%B0%A1%E5%96%AE%E4%BB%8B%E7%B4%B9/)
