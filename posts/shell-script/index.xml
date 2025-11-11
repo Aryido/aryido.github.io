@@ -6,6 +6,8 @@
 &lt;li>突發性的 : 會訂一個時間點執行，但做完以後就沒有了，那就可以使用 &lt;code>at&lt;/code> 指令處理僅執行一次就結束的任務&lt;/li>
 &lt;/ul>
 &lt;p>Cron 是 Linux 系統下的一個定時任務管理服務，為了要精確表示「何時」執行， 就發明了一個抽象的 Cron 表達式，相信大家都有看過類似 &lt;code>0 12 * * *&lt;/code> 這種在定時任務中常出現的寫法，像 「 GCP Cloud Scheduler」、「 GitHub Actions」、「 SpringBoot 的 @Scheduled」，都以 Cron 表達式來定義任務觸發時間點。&lt;/p>
+&lt;/blockquote></description></item><item><title>linux 指令範例: chmod</title><link>https://aryido.github.io/posts/shell-script/chmod/</link><pubDate>Tue, 16 May 2023 00:12:57 +0800</pubDate><guid>https://aryido.github.io/posts/shell-script/chmod/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
 &lt;/blockquote></description></item><item><title>cloc: code line 統計工具</title><link>https://aryido.github.io/posts/shell-script/cloc/</link><pubDate>Sat, 22 Apr 2023 13:25:32 +0800</pubDate><guid>https://aryido.github.io/posts/shell-script/cloc/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>cloc 全名是 &lt;strong>Count Lines of Code&lt;/strong> ， 為一個計算 code 和設定檔&lt;strong>行數&lt;/strong>的 CLI 工具，是使用 Perl 語言開發的開源統計工具。cloc 支援非常多程式語言、平台、格式的統計，可以快速地計算一個 project 中所有文件的行數、空行、註釋行等等。有時候在寫一些報告會用到，可以幫助整理資料。&lt;/p>
