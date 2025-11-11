@@ -20,7 +20,7 @@ reward: false
 
 <!--BODY-->
 
-> 前段時間發現自己對 Python 的 Iterable、Iterator、Generator 之間的差別並沒有很熟稔，我們都知道這三個都可以使用 for loop 來遍歷，再進一步思考一下所謂的 for-loop 是怎麼實現的。 首先已常見的 list 來說，它本身是一個有 index 的結構，可以一個一個拿出來，蠻符合 for-loop 的使用直覺 ; 但是 dict 也是可以用 for loop 走訪呀，而它並不是順序排列的 ; 甚至 open 的 file 都可以用 for loop 結構來讀取每個 row ，那這些為什麼也能用 for-loop 呢？ 這背後有兩個核心概念： **Iterable(可迭代對象)** 和 **Iterator(迭代器)** 。
+> 前段時間發現自己對 Python 的 Iterable、Iterator、Generator 之間的差別並沒有很熟，我們都知道這些的共同點是都可以使用 for loop 來遍歷。再進一步思考一下所謂的 for-loop 是怎麼實現的： 首先用常見的 list 來說，因為有 index 的結構，可以指定位置一個一個拿出來，蠻符合 for-loop 的使用直覺 ; 但是 dict 也是可以用 for loop 走訪呀，而它並不是順序排列的 ; 甚至 open 的 file 都可以用 for loop 結構來讀取每個 row ，那這些為什麼也能用 for-loop 呢？ 這背後有兩個核心概念： **Iterable(可迭代對象)** 和 **Iterator(迭代器)** 。
 >
 > 當我們了解 Iterable 和 Iterator 之後，就可以進一步來了解 Generator ，同時再來把這三個做一個比較整理。
 
@@ -28,7 +28,7 @@ reward: false
 
 # Iterable
 
-Iterable 中文是「可迭代對象」，比較像是一個 data 保存的容器 container 。而它的定義是要 implement 實現 Iterator protocol 的以下**其中一個**方法 method ：
+Iterable 中文是「可迭代對象」，比較像是一個保存  data 的容器，而它的定義是要實現 Iterator protocol: 即是要 implement 的以下**其中一個** method ：
 
 - `__getitem__()`
 - `__iter__()`
@@ -49,10 +49,10 @@ for i in Squares(5):
     print(i)
 ```
 
-for 迴圈會呼叫 `__getitem__` 直到遇到 StopIteration 或 IndexError 例外才停止。 如果沒有遇到就會無限重複下去。常見的 list、str、tuple 都有實作 `__getitem__` 方法，他們都是 Sequence 類型，本身已有這個 method 了。
+for 迴圈會自動呼叫 `__getitem__` 直到遇到 StopIteration 或 IndexError 例外才停止。 如果沒有遇到就會無限重複下去。常見的 list、str、tuple 都有實作 `__getitem__` 方法，他們都是 Sequence 類型，本身已有這個 method 了。
 
 {{< alert warning >}}
-雖然上面有拋出，但 **for 其實會自行處理 IndexError 的，不需要 try-except**
+雖然上面有拋出錯誤，但 **for 其實會自行處理 StopIteration 或 IndexError 的，不需要自己去 try-except**
 {{< /alert >}}
 
 {{< alert info >}}
@@ -83,15 +83,14 @@ for x in a:
 
 # Iterator
 
-前面提到， **`__iter__()` 方法規定必須回傳 iterator** ，那 iterator 是什麼呢？ iterator 也有必須符合的 protocol，就是必須要實作 `__next__` 方法，該方法調用時會從容器中取得下一個資料。如果已經全部取出就會拋出 StopIteration exception。
+前面提到， **`__iter__()` 方法規定必須回傳 iterator** ，那 iterator 是什麼呢？ iterator 也有必須符合的 protocol，就是必須要實作 `__next__` 方法，該方法調用時會從容器中取得下一個資料，如果已經全部取出就會拋出 StopIteration exception。
 
 除了 `__next__` 方法之外， Iterator 最好實作 `__iter__`，讓 **Iterator 也是 iterable**，實作很簡單，只要 **`__iter__` 回傳自己本身就可以了**。
 
 {{< alert warning >}}
-官網上是說建議實作 `__iter__` ，但覺得最好是把它實現會比較好，畢竟只要 **`__iter__` 回傳自己本身就可以了**，很簡單的
+官網上是說建議實作 `__iter__` ，但最好是把它實現會比較好，畢竟只要 **`__iter__` 回傳自己本身就可以了**，很簡單的
 {{< /alert >}}
 
-雖然上面說會拋出 StopIteration exception，但**for 其實也會自行處理 StopIteration 的**，也可以用 try-except 完成一樣的動作：
 
 ```python
 r = range(4)
@@ -110,16 +109,10 @@ except StopIteration:
     pass
 ```
 
-另外 python 中以 `__` 開頭並且結尾的方法稱為 special method ，它是 Python 運行時會自動被調用的，基本上平時**不要直接調用它**。例如說 Python for-loop 運行時，就自動會使用 `__iter__` 以及 `__next__` 。 從這邊也可以開始進一步理解一些錯誤，例如：
 
-```python
-for i in 5:  # <-- 5 這邊錯了
-    print(i)
 
-# TypeError: 'int' object is not iterable
-```
 
-這時可以知道說 5 這個整數 int 不是「可迭代的物件(iterable)」。
+另外 python 中以 `__` 開頭並且結尾的方法稱為 special method ，它是 Python 運行時會自動被調用的，基本上平時**不要直接調用它**。例如說 Python for-loop 運行時，就自動會使用 `__iter__` 以及 `__next__` 。 
 
 如果真的要想要使用 `__iter__` 或 `__next__` 這些 special method ，正規的做法是用 build-in 的 `iter()` 與 `next()` ，所以上面範例可以改寫成 :
 
@@ -134,7 +127,7 @@ except StopIteration:
     pass
 ```
 
-Iterator 表示一個 data streaming object ，可以使用 `__next__` 從 object 內取得下一個新的 data ，由於持續的 `__next__` ，故 Iterator 在跑完一個 for loop 後，就無法重複使用了，這也是 Iterator 和 Iterable 的主要差異:
+Iterator 表示一個 data streaming object ，會使用 `__next__` 從 object 內取得下一個新的 data ，由於持續的 `__next__` ，故 Iterator 在跑完一個 for loop 後，就無法重複使用了，這也是 Iterator 和 Iterable 的主要差異:
 
 - Iterable 能被重複迭代
 - Iterator 迭代完後就會結束了
@@ -222,11 +215,23 @@ for iter in zip_iter:
 # >> ('NA', 'NA', 'd')
 ```
 
+最後結束前，可以回憶一下一些新手時常犯的錯誤，進一步理解，例如：
+
+```python
+for i in 5:  # <-- 5 這邊錯了
+    print(i)
+
+# TypeError: 'int' object is not iterable
+```
+
+這時可以知道說 5 這個整數 int 不是「可迭代的物件(iterable)」，所以 for-loop 才會失敗。
+
+
 ---
 
 # Generator
 
-知道了 Iterable 和 Iterator ，接下來說明 Generator ，中文翻譯是「 生成器 」。由於 Generator 就是一種特殊的 Iterator，故也可以使用 next 和 for-loop 迭代。主要優勢是可以用 Generator 來迭代一個可能很大的序列，由於在迭代的過程中所產生的值都是動態的，不需要將整個序列儲存在記憶體中。以下給一個簡單的範例 ：
+知道了 Iterable 和 Iterator ，接下來說明 Generator ，中文翻譯是「 生成器 」。由於 Generator 就是一種特殊的 Iterator，故也可以使用 next 迭代。主要優勢是可以用 Generator 來迭代一個可能很大的序列，由於在迭代的過程中所產生的值都是動態的，不需要將整個序列儲存在記憶體中。以下給一個簡單的範例 ：
 
 ```python
 def gen(num):
@@ -245,15 +250,15 @@ for n in g2:
 
 ```
 
-再來介紹一下上面一直有看到的 yield 。 Python 在編譯時期發現一個 function 內有 yield 關鍵詞的時候，它就不會把這個 function 當成一個普通的 function 來處理， Python 會給這個 function 打一個標籤，指示這是一個 Generator，調用時**生成器 function 會返回一個生成器 object**。
+再來介紹一下上面一直有看到的 `yield` 。 Python 在編譯時期發現一個 function 內有 `yield` 關鍵詞的時候，它就不會把這個 function 當成一個普通的 function 來處理， Python 會給這個 function 打一個標籤，指示這是一個 Generator，調用時**生成器 function 會返回一個生成器 object**。
 
 {{< alert warning >}}
-生成器 function 和 生成器 object，我們有時候都叫生成器。
+生成器 function 和 生成器 object，我們有時候都叫生成器
 {{< /alert >}}
 
 ### Yield
 
-yield 是 python 關鍵字，繼續用上面的範例來說明：
+`yield` 是 python 關鍵字，繼續用上面的範例來說明：
 
 - `g2 = gen(5)` 代表你給 num 賦值了 5 ，因為 function 內有 yield ，故 gen(5) 不會執行函式本體，是產生一個「生成器 object」，再來賦值給 `g2`
 - `first = next(g2)` 才會開始執行函式，所以是運行 gen function 並且參數是 `num = 5` ， code 判斷了 `5 > 0`，然後就 **yield 回傳 5 並且 function 就暫停在這裡了**，此時候 `first = 5`
@@ -396,7 +401,7 @@ print(next(outer()))  # 123
 
 ### 問題 3.
 
-Python 的官方文件中，每個 function 接受什麼類型的參數都會寫出來，譬如常用的 `set(iterable)`, 文件上已經清楚表明它接受 iterable。
+Python 的官方文件中，每個 function 接受什麼類型的參數都會寫出來，譬如常用的 `set(iterable)`，文件上已經清楚表明它接受 iterable。
 
 ```python
 def generate_values():
