@@ -20,7 +20,7 @@ reward: false
 
 <!--BODY-->
 
-> 前段時間發現自己對 Python 的 Iterable、Iterator、Generator 之間的差別並沒有很熟，我們都知道這些的共同點是都可以使用 for loop 來遍歷。再進一步思考一下所謂的 for-loop 是怎麼實現的： 首先用常見的 list 來說，因為有 index 的結構，可以指定位置一個一個拿出來，蠻符合 for-loop 的使用直覺 ; 但是 dict 也是可以用 for loop 走訪呀，而它並不是順序排列的 ; 甚至 open 的 file 都可以用 for loop 結構來讀取每個 row ，那這些為什麼也能用 for-loop 呢？ 這背後有兩個核心概念： **Iterable(可迭代對象)** 和 **Iterator(迭代器)** 。
+> 前段時間發現自己對 Python 的 Iterable、Iterator、Generator 之間的差別並沒有很熟，我們都知道這些的共同點是均可使用 for loop 來遍歷。再進一步思考一下所謂的 `for-loop` 是怎麼實現呢： 首先用最簡單的 list 來說明，因為有 index 標示位置，故可以指定位置拿出來，蠻符合 for-loop 的使用直覺 ; 但是 dict 也是可以用 for loop 走訪呀，而它並不存在順序 ; 甚至 open 的 file 都可以用 for loop 結構來讀取每個 row ，那為什麼這個也能用 for-loop 呢？ 這背後有兩個核心概念： **Iterable(可迭代對象)** 和 **Iterator(迭代器)** 。
 >
 > 當我們了解 Iterable 和 Iterator 之後，就可以進一步來了解 Generator ，同時再來把這三個做一個比較整理。
 
@@ -28,15 +28,15 @@ reward: false
 
 # Iterable
 
-Iterable 中文是「可迭代對象」，比較像是一個保存  data 的容器，而它的定義是要實現 Iterator protocol: 即是要 implement 的以下**其中一個** method ：
+Iterable 中文是「可迭代對象」，比較像是一個保存 data 的容器，而它的定義是要實現 `Iterator protocol`: 即是要 implement 的以下**其中一個** method ：
 
 - `__getitem__()`
 - `__iter__()`
 
-首先來說 `__getitem__()`，以下是一個簡單實現範例 ：
+首先來說 `__getitem__()`，下面是一個簡單實現範例 ：
 
 ```python
-class Squares:
+class MySquares:
     def __init__(self, n):
         self.n = n
 
@@ -45,11 +45,11 @@ class Squares:
             raise IndexError
         return i * i
 
-for i in Squares(5):
+for i in MySquares(5):
     print(i)
 ```
 
-for 迴圈會自動呼叫 `__getitem__` 直到遇到 StopIteration 或 IndexError 例外才停止。 如果沒有遇到就會無限重複下去。常見的 list、str、tuple 都有實作 `__getitem__` 方法，他們都是 Sequence 類型，本身已有這個 method 了。
+**for 迴圈會自動呼叫 `__getitem__` 這個方法** 直到遇到 StopIteration 或 IndexError 例外才停止。 如果沒有遇到就會無限重複下去。常見的 list、str、tuple 都有實作 `__getitem__` 方法，他們都是 Sequence 類型，本身已有這個 method 了。
 
 {{< alert warning >}}
 雖然上面有拋出錯誤，但 **for 其實會自行處理 StopIteration 或 IndexError 的，不需要自己去 try-except**
@@ -83,14 +83,13 @@ for x in a:
 
 # Iterator
 
-前面提到， **`__iter__()` 方法規定必須回傳 iterator** ，那 iterator 是什麼呢？ iterator 也有必須符合的 protocol，就是必須要實作 `__next__` 方法，該方法調用時會從容器中取得下一個資料，如果已經全部取出就會拋出 StopIteration exception。
+前面範例註解中有提到， **`__iter__()` 方法規定必須回傳 iterator** ，那 iterator 是什麼呢？ iterator 也有必須符合的 protocol，就是必須要實作 `__next__` 方法，該方法調用時會從容器中取得下一個資料，如果已經全部取出就會拋出 StopIteration exception。
 
 除了 `__next__` 方法之外， Iterator 最好實作 `__iter__`，讓 **Iterator 也是 iterable**，實作很簡單，只要 **`__iter__` 回傳自己本身就可以了**。
 
 {{< alert warning >}}
 官網上是說建議實作 `__iter__` ，但最好是把它實現會比較好，畢竟只要 **`__iter__` 回傳自己本身就可以了**，很簡單的
 {{< /alert >}}
-
 
 ```python
 r = range(4)
@@ -109,12 +108,9 @@ except StopIteration:
     pass
 ```
 
+另外補充上面一直有看到的一個 Python 知識點！ Python 中以 `__` 開頭並且結尾的方法稱為 special method ，它是 Python 運行時會自動被調用的，基本上平時**不要直接調用它**。例如說 Python for-loop 運行時，就自動會使用 `__iter__` 以及 `__next__` 。
 
-
-
-另外 python 中以 `__` 開頭並且結尾的方法稱為 special method ，它是 Python 運行時會自動被調用的，基本上平時**不要直接調用它**。例如說 Python for-loop 運行時，就自動會使用 `__iter__` 以及 `__next__` 。 
-
-如果真的要想要使用 `__iter__` 或 `__next__` 這些 special method ，正規的做法是用 build-in 的 `iter()` 與 `next()` ，所以上面範例可以改寫成 :
+如果真的要想要使用 `__iter__` 或 `__next__` 這些 special method ，正規的做法是用 build-in 的 `iter()` 與 `next()` ，所以上面範例應乾要改寫成以下會比較適當 :
 
 ```
 r = range(4)
@@ -225,7 +221,6 @@ for i in 5:  # <-- 5 這邊錯了
 ```
 
 這時可以知道說 5 這個整數 int 不是「可迭代的物件(iterable)」，所以 for-loop 才會失敗。
-
 
 ---
 
@@ -413,6 +408,16 @@ set([x for x in generate_values()]) # 不要這樣寫
 
 set(generate_values()) # 這樣子寫才對
 
+```
+
+### 問題 4.
+
+用 next 搭配 generator comprehension 來獲取第一個滿足條件的元素，例如： `拿到 arr= 中的第一個正數`
+
+```python
+arr = [0, -1, 6, -2, 13]
+first = next(ele for ele in arr if ele > 0)
+print(first) # 6
 ```
 
 ---
