@@ -222,6 +222,48 @@ for i in 5:  # <-- 5 這邊錯了
 
 這時可以知道說 5 這個整數 int 不是「可迭代的物件(iterable)」，所以 for-loop 才會失敗。
 
+### 補充
+
+#### 利用了 Iterator 的消耗特性來檢查 subsequence
+
+如果想知道某個 `str s2` 是不是另一個 `str s1` 的 subsequence 可以 :
+```python
+s1 = "abcde"
+s2 = "ace"
+
+I = iter(s1)
+ans = all(c in I for c in s2)
+
+print(ans) # True
+```
+
+{{< alert warning >}}
+注意是 subsequence ， 不是 substring 喔！
+{{< /alert >}}
+
+為什麼可以這樣來檢查 subsequence 呢？來分析一下：
+- `iter(s1)` 將 string 轉換成一個 Iterator ，而 Iterator 是有「狀態」的，一旦某個元素被讀取（消耗），指標就會向後移，再也回不去了
+
+- 由於 in 讀取了 iterator ，故執行 `c in I` 時，指標就會向後移，直到找到等於 c 的字元為止，而在尋找 c 的過程中，所有被經過的字元都會被永久消耗掉
+
+- 最後有 `all` 函數檢查，因為它有短路特性（Short-circuiting），一旦其中一個字元找不到，它就會立刻停止尋找並回傳 False，不會浪費剩餘的運算資源。如果全部都成功，就代表是 subsequence
+
+因為 Subsequence（子序列）的要求是 **「字元必須按順序出現」**，以上過程完全符合定義要求，這就是一個特別的技巧寫法，可以記憶一下 ! 那一般來說要檢查 subsequence 的正規方法就是 Two Pointers:
+
+```python
+def is_subsequence(s2: str, s1: str) -> bool:
+    i, j = 0, 0
+    
+    # i 是 s2 的指針，j 是 s1 的指針
+    while i < len(s2) and j < len(s1):
+        if s2[i] == s1[j]:
+            i += 1  # 找到了，s2 指針往後移一位
+        j += 1      # 無論有沒有找到，s1 指針都要往後移
+        
+    # 如果 s2 的指針走到了最後，代表所有字元都按順序找到了
+    return i == len(s2)
+```
+
 ---
 
 # Generator
