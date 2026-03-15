@@ -5,6 +5,10 @@
 &lt;blockquote>
 &lt;p>前段時間發現自己對 Python 的 Iterable、Iterator、Generator 之間的差別並沒有很熟，我們都知道這些的共同點是均可使用 for loop 來遍歷。再進一步思考一下所謂的 &lt;code>for-loop&lt;/code> 是怎麼實現呢： 首先用最簡單的 list 來說明，因為有 index 標示位置，故可以指定位置拿出來，蠻符合 for-loop 的使用直覺 ; 但是 dict 也是可以用 for loop 走訪呀，而它並不存在順序 ; 甚至 open 的 file 都可以用 for loop 結構來讀取每個 row ，那為什麼這個也能用 for-loop 呢？ 這背後有兩個核心概念： &lt;strong>Iterable(可迭代對象)&lt;/strong> 和 &lt;strong>Iterator(迭代器)&lt;/strong> 。&lt;/p>
 &lt;p>當我們了解 Iterable 和 Iterator 之後，就可以進一步來了解 Generator ，同時再來把這三個做一個比較整理。&lt;/p>
+&lt;/blockquote></description></item><item><title>Python: Dictionary</title><link>https://aryido.github.io/posts/python/python-skill/</link><pubDate>Sun, 27 Apr 2025 22:56:56 +0800</pubDate><guid>https://aryido.github.io/posts/python/python-skill/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Dictionary 是 Python 用來儲存 key → value 的對應關係，其他語言類似的資料結構為 :
+&lt;code>HashMap(Java)&lt;/code> ; &lt;code>Object/Map(JavaScrip)&lt;/code> ; &lt;code>Map(Go)&lt;/code> 等等，以下筆記一些 Dictionary 小觀念和使用時機。注意 Dictionary 底層是 hash table，所以其 &lt;strong>key 必須是不可變的 (Immutable)&lt;/strong>，這要特別注意 ; 另外&lt;a href="https://blog.gslin.org/archives/2020/02/17/9423/python-3-7-%E4%BF%9D%E8%AD%89-dict-%E5%85%A7%E5%AE%B9%E7%9A%84%E9%A0%86%E5%BA%8F/">自 Python 3.7+ 起，Dictionary 有保證會「保留插入順序」&lt;/a>，但還是盡量不要依賴這個行為會比較好。&lt;/p>
 &lt;/blockquote></description></item><item><title>Python : Type Hint</title><link>https://aryido.github.io/posts/python/type-hint/</link><pubDate>Sat, 26 Apr 2025 14:39:56 +0800</pubDate><guid>https://aryido.github.io/posts/python/type-hint/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>我們都知道 Python 是一個動態的語言，代表每一個 variable 是什麼型別是在 runtime 的時候決定的，雖然很靈活可是當 code 量級上去之後因爲類型不正確引發的錯誤也會逐漸增加。但 Python 也是可以做到型別要求的，就是使用 「 Type Hint 」 或者叫 「 Type Annotation 」，中文稱呼蠻多種的例如「型別標註」、「型別提示」等等。 若有寫 Type Hint 的話，比較現代的 IDE 都會有一些自動顯示或補全輔助 :

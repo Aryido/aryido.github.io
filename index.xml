@@ -56,6 +56,10 @@
 &lt;/a>
 &lt;/div>
 &lt;/p>
+&lt;/blockquote></description></item><item><title>Python: Dictionary</title><link>https://aryido.github.io/posts/python/python-skill/</link><pubDate>Sun, 27 Apr 2025 22:56:56 +0800</pubDate><guid>https://aryido.github.io/posts/python/python-skill/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>Dictionary 是 Python 用來儲存 key → value 的對應關係，其他語言類似的資料結構為 :
+&lt;code>HashMap(Java)&lt;/code> ; &lt;code>Object/Map(JavaScrip)&lt;/code> ; &lt;code>Map(Go)&lt;/code> 等等，以下筆記一些 Dictionary 小觀念和使用時機。注意 Dictionary 底層是 hash table，所以其 &lt;strong>key 必須是不可變的 (Immutable)&lt;/strong>，這要特別注意 ; 另外&lt;a href="https://blog.gslin.org/archives/2020/02/17/9423/python-3-7-%E4%BF%9D%E8%AD%89-dict-%E5%85%A7%E5%AE%B9%E7%9A%84%E9%A0%86%E5%BA%8F/">自 Python 3.7+ 起，Dictionary 有保證會「保留插入順序」&lt;/a>，但還是盡量不要依賴這個行為會比較好。&lt;/p>
 &lt;/blockquote></description></item><item><title>Python : Type Hint</title><link>https://aryido.github.io/posts/python/type-hint/</link><pubDate>Sat, 26 Apr 2025 14:39:56 +0800</pubDate><guid>https://aryido.github.io/posts/python/type-hint/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>我們都知道 Python 是一個動態的語言，代表每一個 variable 是什麼型別是在 runtime 的時候決定的，雖然很靈活可是當 code 量級上去之後因爲類型不正確引發的錯誤也會逐漸增加。但 Python 也是可以做到型別要求的，就是使用 「 Type Hint 」 或者叫 「 Type Annotation 」，中文稱呼蠻多種的例如「型別標註」、「型別提示」等等。 若有寫 Type Hint 的話，比較現代的 IDE 都會有一些自動顯示或補全輔助 :
