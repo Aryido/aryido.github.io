@@ -28,6 +28,9 @@
 &lt;/blockquote></description></item><item><title>Message Queue 簡介 - MQTT &amp; AMQP</title><link>https://aryido.github.io/posts/backend-system/amqp-mqtt/</link><pubDate>Mon, 16 Jun 2025 14:58:37 +0800</pubDate><guid>https://aryido.github.io/posts/backend-system/amqp-mqtt/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>為了要把系統架構解耦，改為異步分散式處理，有時會決定使用 Message Queue 的設計來達成目標，其指的是應用程序之間通過在 Message Service 而不是直接調用彼此通訊。對於其落地的產品，常見的開源工具有 &lt;strong>Kafka&lt;/strong>、&lt;strong>RabbitMQ&lt;/strong> 等等或者雲端服務 &lt;strong>GCP-Pub/Sub&lt;/strong> 和 &lt;strong>AWS-SQS&lt;/strong> 等等。作為兩個子系統之間的通信中間層，會需要依靠協定保持有序且有效率的方式實現資訊交換，而目前廣泛使用的協定有 &lt;strong>MQTT&lt;/strong> 和 &lt;strong>AMQP&lt;/strong> ，以下也會簡單介紹一下。&lt;/p>
+&lt;/blockquote></description></item><item><title>Git Worktree 筆記</title><link>https://aryido.github.io/posts/cicd/git-worktree/</link><pubDate>Thu, 22 May 2025 10:11:23 +0800</pubDate><guid>https://aryido.github.io/posts/cicd/git-worktree/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>軟體開發有許多的已經定義的管理工作流程，例如說 Git Flow、Github Flow、GitLab Flow 等等，而這些共通點是都&lt;strong>以 Branch 來區分&lt;/strong>不同階段的開發狀態 ; 在研發過程中，也經常需要在不同的 Branch 之間切換來處理不同的任務。這時 &lt;code>git worktree&lt;/code> 就很大程度派上了用場，它可以讓&lt;strong>同一個 Git Repository 同時擁有多個工作目錄&lt;/strong>，&lt;strong>且每個目錄綁定不同 Branch&lt;/strong>，各個工作樹之間是互相獨立的。這樣就不用在「 code 寫到一半 」時，遇到臨時需要切換到不同的分支作業，卻因為「 正在更動的檔案 」與「 目標分支上的檔案」有衝突而要另外處理，故 &lt;code>git worktree&lt;/code> 很適合拿來處理緊急 hotfix 或者另外的 code-review。&lt;/p>
 &lt;/blockquote></description></item><item><title>快捷鍵筆記簿</title><link>https://aryido.github.io/posts/develop/hotkey/</link><pubDate>Mon, 12 May 2025 20:13:38 +0800</pubDate><guid>https://aryido.github.io/posts/develop/hotkey/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>在現代開發環境中，熟練掌握各種工具的快捷鍵能顯著提升工作效率，本筆記整理了自己常用開發工具的基礎操作與進階快捷鍵，幫助更高效地進行開發工作。&lt;strong>由於自己現在開發主要環境都是使用 mac os，所以快捷鍵會以 mac 的鍵盤配置為主&lt;/strong>，筆記會列出的重點工具為 :&lt;/p>
