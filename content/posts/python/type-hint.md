@@ -70,11 +70,11 @@ def fatal_error(message: str) -> NoReturn:
 
 ```python
 class Node:
-  def __init__(self, value: int, next: Node): # 不用運行就直接會報錯了: Node" is not defined
+  def __init__(self, value: int, next: Node): # 不用運行就直接會報 Node is not defined
       self.value = value
       self.next = next
 
-  def get_next(self) -> Node: # 不用運行就直接會報錯了:  ㄋ Node" is not defined
+  def get_next(self) -> Node: # 不用運行就直接會報  Node is not defined
       return self.next
 ```
 
@@ -172,7 +172,8 @@ class Person:
         self.gender = gender
 
 # 若寫成 man ，則不用運行就直接會報錯了
-# Argument of type "Literal['man']" cannot be assigned to parameter "gender" of type "Literal['Male', 'Female']"
+# Argument of type "Literal['man']" cannot be assigned to parameter 
+# "gender" of type "Literal['Male', 'Female']"
 Person("tom", "man")
 
 gender: Literal["Male", "Female"] = "Male"
@@ -367,7 +368,7 @@ def greet(name: str | None) -> str:
 ```
 
 {{< alert success >}}
-結論上由於 Python 官方 [PEP 604](https://peps.python.org/pep-0604/#proposal)是建議都用 `|` 表示，故用 `|` 可能是比較好的選擇。但在我自己的感覺上，我是比較偏好 `Optional` 的
+結論上由於 Python 官方 [PEP 604](https://peps.python.org/pep-0604/#proposal)是建議都用 `|` 表示，故用 `|` 可能是比較好的選擇。
 {{< /alert >}}
 
 ### Callable
