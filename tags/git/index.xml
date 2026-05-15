@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>git on Aryido Tech Note</title><link>https://aryido.github.io/tags/git/</link><description>Recent content in git on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 22 May 2025 10:11:23 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>Git Worktree 筆記</title><link>https://aryido.github.io/posts/cicd/git-worktree/</link><pubDate>Thu, 22 May 2025 10:11:23 +0800</pubDate><guid>https://aryido.github.io/posts/cicd/git-worktree/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>軟體開發有許多的已經定義的管理工作流程，例如說 Git Flow、Github Flow、GitLab Flow 等等，而這些共通點是都&lt;strong>以 Branch 來區分&lt;/strong>不同階段的開發狀態 ; 在研發過程中，也經常需要在不同的 Branch 之間切換來處理不同的任務。這時 &lt;code>git worktree&lt;/code> 就很大程度派上了用場，它可以讓&lt;strong>同一個 Git Repository 同時擁有多個工作目錄&lt;/strong>，&lt;strong>且每個目錄綁定不同 Branch&lt;/strong>，各個工作樹之間是互相獨立的。這樣就不用在「 code 寫到一半 」時，遇到臨時需要切換到不同的分支作業，卻因為「 正在更動的檔案 」與「 目標分支上的檔案」有衝突而要另外處理，故 &lt;code>git worktree&lt;/code> 很適合拿來處理緊急 hotfix 或者另外的 code-review。&lt;/p>
+&lt;/blockquote></description></item><item><title>Git 操作筆記</title><link>https://aryido.github.io/posts/cicd/git-cli/</link><pubDate>Wed, 30 Apr 2025 13:53:19 +0800</pubDate><guid>https://aryido.github.io/posts/cicd/git-cli/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>用 Git 來做版本管理時，偶爾會需要&lt;strong>撤銷&lt;/strong>某些操作，但對於已經推上遠端 Github / Gitlab repository 的程式碼，並且該分支已經有多人協作的時候，如果要修正的話其實有蠻多需要注意的事情呢 ; 再來 Git 是有蠻多功能和一些命令的，有時不常用的話也會忘記或者錯估使用場景。在開始筆記之前先把一些名詞定義好，一般來說 Git 的操作會涉及到幾個&lt;strong>區域&lt;/strong> ：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>硬碟區 disk&lt;/strong> : 檔案存放的一般資料夾，也會被稱為 &lt;strong>workspace&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>暫存區 staging&lt;/strong> : 保存 &lt;code>git add&lt;/code> 紀錄的地方，也被稱為 &lt;strong>index&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>本地端 git local&lt;/strong> : 保存 &lt;code>git commit&lt;/code> 紀錄的地方，也被稱為 &lt;strong>repository&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>遠端 git remote&lt;/strong> : &lt;code>git push&lt;/code> 的倉儲，如 &lt;strong>Github&lt;/strong>、&lt;strong>Gitlab&lt;/strong> 等等&lt;/li>
+&lt;/ul>
+&lt;p>而各個之間狀態變化的簡單關係如下圖所示 :
+&lt;div class="figure fig-100" >
+&lt;a class="fancybox" href="https://aryido.github.io/images/cicd/git-control-flow.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/cicd/git-control-flow.jpg" >
+&lt;/a>
+&lt;/div>
+&lt;/p>
 &lt;/blockquote></description></item></channel></rss>
