@@ -298,11 +298,69 @@ pick 3ebea07 Add file5
 
 ## 4. 想把目前的分支狀態，復原成跟遠端分支一樣的狀態
 有時候發覺自己目前的 branch 改壞了有太多問題，想直接從遠端的穩定版本「砍掉重練 ; 或者本地分支落後遠端太多，且完全不在乎本地目前的修改，想要快速同步遠端乾淨分支，這時就可以使用 :
-```
+```bash
 git reset –hard origin/<BRANCH_NAME>
 ```
 
 當然要特別注意，使用 `--hard` 代表「 所有尚未儲存的修改（Uncommitted changes）都會被直接刪除 」，如果有想保留檔案不要使用這個操作。
+
+## 5. Git Branch 命名大小寫不一樣而導致的問題
+先來說明情境，首先有創建了一個 branch 叫 `Feature/test`，這個 branch 也被推送制遠端倉庫了。這時候又創建一個 branch 叫 `feature/test2`，但是當使用 `git push --set-upstream origin feature/test2` 打算推到遠端倉庫時，卻發生：
+
+> `fatal: feature/test2 cannot be resolved to branch`
+
+
+{{< alert info >}}
+首先有個先備知識點，Windows 系統和 Mac 系統是**不區分大小寫**的 ; Linux 系統則是**區分大小寫的**，然後本人使用的 MAC 電腦。 Git 在預設情況下不區分大小寫，**但可以透過修改 git config 來改為區分大小寫**
+```bash
+git config --get core.ignorecase
+# true
+git config core.ignorecase false
+git config --get core.ignorecase
+# false
+```
+但其實不推薦修改 git 預設的配置
+{{< /alert >}}
+
+接下來分析一下 root-cause :
+
+我們知道 Git 儲存分支資訊是在 `.git/refs/heads/`， 而建立 `Feature/test` branch 時會建立一個名為 `Feature` 的大寫資料夾，裡面放一個叫 `test` 的 bob object ，接下來我們把這個 branch 推到遠端倉庫。同樣地，在建立 `feature/test2` branch 時，照理來說要建立一個名為 `feature` 的小寫資料夾，但在 Git 在打算建立一個 feature 小寫資料夾時，對 MAC 作業系統來說，因為大小寫不敏感（Case-insensitivity），所以 MAC 作業系統會認為已經有存在資料夾了，故會直接使用 `Feature` 大寫資料夾，所以會直接在 `Feature` 大寫資料夾內，建立 `test2` 的 bob object。
+
+其實這個時候本地的 ref 的狀態就有些問題了，明明 branch 是叫做 `feature/test2` ，但是 `.git/refs/heads/` 卻把引用放到 `Feature/test2`，這邊就埋下一個引爆點...，而推送 `feature/test2` branch 到遠端時就發生問題了，那發生 git 錯誤的地方，看起來是在[這裏](https://github.com/git/git/blob/59ff4886a579f4bc91e976fe18590b9ae02c7a08/refs.c#L402)，主要就是 `strcmp(buf, rest)` 這邊的檢查：
+> - buf 是 `git push --set-upstream origin feature/test2` 推上去的路徑，`feature/test2`
+> - rest 是 refs 指向的 `Feature/test2`
+
+兩個檢查後發現不一致，所以出現 fatal。
+
+
+我的想法是偏向「**branch 名稱應該要統一都小寫**」，所以我的解決做法會是：
+```bash
+# `Feature/test` branch 改名成 `feature/test` branch
+# 但在 macOS/Windows 上，如果只改大小寫， Git 會因為檔案系統不區分大小寫而報錯「分支已存在
+# 要用兩步改名法：
+
+git branch -m Feature/test Feature/test-back
+git branch -m Feature/test-back feature/test
+
+# 接下來去 refs/heads，會看到 Feature folder
+# 以防萬一可以先備份，之後直接改名成 feature
+mv Feature feature
+
+# 之前 --set-upstream 會失敗的，現在會成功
+git push --set-upstream origin feature/test2
+```
+
+大小寫問題有蠻多類似的坑，其實還蠻容易踩到的，例如說
+- 有人 branch 命名 `Modify/xxx-xxx`，然後推送上遠端倉庫了，剛好你從來沒這樣命名過，所以本地 refs 都沒有 `Modify` 資料夾，然後你正常 pull 專案，默默地就拿到這個 branch 了，所以 refs 默默產生 `Modify` 資料夾。直到某天自己命名了一個 branch 叫 `modify/yyy-yyy`，然後想推上遠端時，會發現怎麼都推不上去！？
+
+- 不只是 branch 大小寫，**檔案大小寫不同**，也會踩到坑，可以參考下面兩個連結
+  - [Git 大小寫不敏感導致提交文件衝突問題解決](https://chegva.com/6025.html)
+  - [一下子敏感, 一下子不敏感, Git 你搞得我好亂啊](https://tn710617.github.io/zh-tw/gitSensitiveness/)
+
+
+> 要避免以上問題，最好一開始組織或個人，一開始就做好**統一規範**來防止類似事情發生：
+> - 一個專案，如果參與的開發者們有使用不同的作業系統，那同一個資料夾內不要有同檔名，但大小寫不同的檔案 ; 另外 branch 也不要大小寫混用
+> - 如果是獨自開發，最好讓 Git config case-sensitiveness 的設定和作業系統是一致的
 
 ---
 
@@ -319,3 +377,4 @@ git reset –hard origin/<BRANCH_NAME>
 - [Git reset三种常用模式区别和用法](https://www.youtube.com/watch?v=zjTd1Wzu5lc)
 
 - [送 PR 前，使用 Git rebase 來整理你的 commit 吧！](https://www.google.com/search?q=git+rebase+-i+HEAD~8&oq=git+rebase+-i+HEAD~8&gs_lcrp=EgRlZGdlKgYIABBFGDsyBggAEEUYOzIGCAEQRRhAMgYIAhBFGEDSAQc1NDlqMGoxqAIAsAIA&sourceid=chrome&ie=UTF-8)
+
