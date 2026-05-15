@@ -11,6 +11,7 @@ categories:
   - ci-cd
 
 tags:
+  - git
 
 comment: false
 

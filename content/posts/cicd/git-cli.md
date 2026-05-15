@@ -296,6 +296,14 @@ pick 3ebea07 Add file5
 - **合併 commit** 的話，譬如說想把 `Add file3` 跟 `Add file4` 合併，那就把 Add file4 的「`pick` 改成 `squash`」，會把上一個 commit 合併一起
 
 
+## 4. 想把目前的分支狀態，復原成跟遠端分支一樣的狀態
+有時候發覺自己目前的 branch 改壞了有太多問題，想直接從遠端的穩定版本「砍掉重練 ; 或者本地分支落後遠端太多，且完全不在乎本地目前的修改，想要快速同步遠端乾淨分支，這時就可以使用 :
+```
+git reset –hard origin/<BRANCH_NAME>
+```
+
+當然要特別注意，使用 `--hard` 代表「 所有尚未儲存的修改（Uncommitted changes）都會被直接刪除 」，如果有想保留檔案不要使用這個操作。
+
 ---
 
 ### 參考資料
