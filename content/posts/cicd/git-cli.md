@@ -11,6 +11,7 @@ categories:
   - ci-cd
 
 tags:
+  - git
 
 comment: false
 
@@ -54,7 +55,7 @@ reward: false
 {{< alert danger >}}
 如果我們修改的分支是除了自己之外沒有任何其他人用，就可以用 `git reset` 把某些歷史 commit 直接砍掉，但注意這個時候想同步到遠端的話必須使用 `git push -f` 強制推送更改，因為遠端的 歷史 commit 可能和自己本地端不一樣。
 
-對於「公有分支」絕對不應該使用 `git push -f` ; 但是如果這是「個人分支」的話其實是可以使用 `git push -f`。雖然是這樣說，也是有公司希望就算是自己的 branch 也完全不要使用 `git push -f` 的，這些規範建議都先問一下比較好。
+對於「公有分支」絕對不應該使用 `git push -f` ; 但是如果這是「個人分支」的話其實是可以使用 `git push -f`。
 
 {{< /alert >}}
 
