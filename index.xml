@@ -49,6 +49,18 @@
 &lt;li>&lt;code>Vim&lt;/code>&lt;/li>
 &lt;/ul>
 &lt;p>然後可能也會補充一些 &lt;code>Windows PowerShell&lt;/code> 和 &lt;code>IntelliJ IDEA&lt;/code>。在日常開發中可有意識的多使用快捷鍵來加深記憶，若遺忘時這裡可以快速查看筆記，鞏固快捷鍵的知識。&lt;/p>
+&lt;/blockquote></description></item><item><title>Git Config - 多帳號管理</title><link>https://aryido.github.io/posts/cicd/git-config/</link><pubDate>Fri, 02 May 2025 09:04:47 +0800</pubDate><guid>https://aryido.github.io/posts/cicd/git-config/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>安裝完 Git 之後，可以使用 &lt;code>git config&lt;/code> CLI 取得 Git 設定組態參數，git config 是一個記錄了 git 操作的所有基本檔案資料。
+比方說:&lt;/p>
+&lt;ul>
+&lt;li>git init 創建時預設的 branch 名稱&lt;/li>
+&lt;li>寫 git commit 的顯示模板&lt;/li>
+&lt;li>當 push github 時的使用者資料&lt;/li>
+&lt;/ul>
+&lt;p>都可以在 git config 中調整修改。而在不同專案中，我們可能需要使用不同的 Git username 和 email，
+例如說個人專案中你想使用「私人 Email」 ; 而在公司專案中則需要使用「公司 Email」，若每次切換專案時都要手動更改 Git 配置會十分麻煩。
+這時 &lt;strong>Git Include&lt;/strong> 可以根據資料夾自動套用對應的用戶設定，而無需每次手動調整。&lt;/p>
 &lt;/blockquote></description></item><item><title>GitHub Flow</title><link>https://aryido.github.io/posts/cicd/git-workflow/</link><pubDate>Thu, 01 May 2025 12:42:08 +0800</pubDate><guid>https://aryido.github.io/posts/cicd/git-workflow/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>雖然使用了 Git 作為版本管理工具，但每個人對於分支的認知可能不同，故造成每次 commit 到不同分支之後，要&lt;strong>合併&lt;/strong>要回哪個分支可能會有歧義，這時就可參考一些已存在的 Workflow 規範，只要團隊遵守這樣的 branch 的 commit 和 merge 規則，就可以有一致性。每個 Workflow 規範都不太一樣，常見有: Git Flow、&lt;strong>GitHub Flow&lt;/strong>、GitLab flow ，主要都是希望就算 Project 越來越大協作人員越來越多，也能有效管理 Git Branch，那這邊會以 &lt;strong>GitHub Flow&lt;/strong> 為主要說明，但也會筆記分析了解其他不同策略的優缺點。&lt;/p>
@@ -70,7 +82,7 @@
 &lt;img class="fig-img" src="https://aryido.github.io/images/cicd/git-control-flow.jpg" >
 &lt;/a>
 &lt;/div>
-以上就是最基本的使用，在開始筆記之前先把一些名詞定義好，&lt;/p>
+以上就是最基本的使用和定義。&lt;/p>
 &lt;/blockquote></description></item><item><title>Python: Dictionary</title><link>https://aryido.github.io/posts/python/python-skill/</link><pubDate>Sun, 27 Apr 2025 22:56:56 +0800</pubDate><guid>https://aryido.github.io/posts/python/python-skill/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>Dictionary 是 Python 用來儲存 key → value 的對應關係，其他語言類似的資料結構為 :
