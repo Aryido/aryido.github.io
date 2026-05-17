@@ -1,0 +1,169 @@
+<!doctype html><html lang=en-us><head><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"SSH Key","image":"https://aryido.github.io/images/linux/ssh/ssh.jpg","datePublished":"2026-05-15T19:37:26+08:00","dateModified":"2026-05-15T19:37:26+08:00","author":{"@type":"Person","name":"李昀陽 YunYang Lee","image":"https://aryido.github.io/images/aboutme/head-shot.jpg"},"mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/aryido.github.io\/posts\/shell-script\/ssh-key\/"},"publisher":{"@type":"Organization","name":"Aryido Tech Note","logo":{"@type":"ImageObject","url":"https://aryido.github.io/images/aboutme/head-shot.jpg"}},"description":" SSH 是 Secure Shell 的縮寫，為一種通訊協定，會對裝置之間的連線進行驗證和加密，安全地傳送 command。通常用於遠端控制伺服器、管理基礎架構和傳輸檔案。SSH 是在應用層和傳輸層上執行的，透過稱為公開金鑰加密，「public key 可供任何人使用」 ; 另一個金鑰為「private key 由其擁有者保密」，兩個 key 相互對應。此外傳輸的數據是經過壓縮的，所以可以加快傳輸的速度。並且許多作業系統，包含 macOS、Linux 都天然支援。 ","keywords":[]}</script><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Hugo 0.119.0 with theme Tranquilpeak 0.5.3-BETA"><meta name=author content="李昀陽 YunYang Lee"><meta name=keywords content><meta name=description content="
+
+SSH 是 Secure Shell 的縮寫，為一種通訊協定，會對裝置之間的連線進行驗證和加密，安全地傳送 command。通常用於遠端控制伺服器、管理基礎架構和傳輸檔案。SSH 是在應用層和傳輸層上執行的，透過稱為公開金鑰加密，「public key 可供任何人使用」 ; 另一個金鑰為「private key 由其擁有者保密」，兩個 key 相互對應。此外傳輸的數據是經過壓縮的，所以可以加快傳輸的速度。並且許多作業系統，包含 macOS、Linux 都天然支援。
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
+"><meta property="og:description" content="
+
+SSH 是 Secure Shell 的縮寫，為一種通訊協定，會對裝置之間的連線進行驗證和加密，安全地傳送 command。通常用於遠端控制伺服器、管理基礎架構和傳輸檔案。SSH 是在應用層和傳輸層上執行的，透過稱為公開金鑰加密，「public key 可供任何人使用」 ; 另一個金鑰為「private key 由其擁有者保密」，兩個 key 相互對應。此外傳輸的數據是經過壓縮的，所以可以加快傳輸的速度。並且許多作業系統，包含 macOS、Linux 都天然支援。
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
+"><meta property="og:type" content="article"><meta property="og:title" content="SSH Key"><meta name=twitter:title content="SSH Key"><meta property="og:url" content="https://aryido.github.io/posts/shell-script/ssh-key/"><meta property="twitter:url" content="https://aryido.github.io/posts/shell-script/ssh-key/"><meta property="og:site_name" content="Aryido Tech Note"><meta property="og:description" content="
+
+SSH 是 Secure Shell 的縮寫，為一種通訊協定，會對裝置之間的連線進行驗證和加密，安全地傳送 command。通常用於遠端控制伺服器、管理基礎架構和傳輸檔案。SSH 是在應用層和傳輸層上執行的，透過稱為公開金鑰加密，「public key 可供任何人使用」 ; 另一個金鑰為「private key 由其擁有者保密」，兩個 key 相互對應。此外傳輸的數據是經過壓縮的，所以可以加快傳輸的速度。並且許多作業系統，包含 macOS、Linux 都天然支援。
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
+"><meta name=twitter:description content="
+
+SSH 是 Secure Shell 的縮寫，為一種通訊協定，會對裝置之間的連線進行驗證和加密，安全地傳送 command。通常用於遠端控制伺服器、管理基礎架構和傳輸檔案。SSH 是在應用層和傳輸層上執行的，透過稱為公開金鑰加密，「public key 可供任何人使用」 ; 另一個金鑰為「private key 由其擁有者保密」，兩個 key 相互對應。此外傳輸的數據是經過壓縮的，所以可以加快傳輸的速度。並且許多作業系統，包含 macOS、Linux 都天然支援。
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+
+  
+    
+  
+    
+  
+    
+  
+  
+
+
+"><meta property="og:locale" content="en-us"><meta property="article:published_time" content="2026-05-15T19:37:26"><meta property="article:modified_time" content="2026-05-15T19:37:26"><meta property="article:section" content="language"><meta property="article:section" content="shell-script"><meta property="article:section" content="ci-cd"><meta property="article:tag" content="git"><meta name=twitter:card content="summary"><meta property="og:image" content="https://aryido.github.io/images/aboutme/head-shot.jpg"><meta property="twitter:image" content="https://aryido.github.io/images/aboutme/head-shot.jpg"><meta property="og:image" content="https://aryido.github.io/images/linux/ssh/ssh.jpg"><meta property="twitter:image" content="https://aryido.github.io/images/linux/ssh/ssh.jpg"><title>SSH Key</title><link rel=icon href=https://aryido.github.io/favicon.png><link rel=canonical href=https://aryido.github.io/posts/shell-script/ssh-key/><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://aryido.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css></head><body><div id=blog><header id=header data-behavior=4><i id=btn-open-sidebar class="fa fa-lg fa-bars"></i><div class=header-title><a class=header-title-link href=https://aryido.github.io/ aria-label="Go to homepage">Aryido Tech Note</a></div><a class=header-right-picture href=https://aryido.github.io/#about aria-label="Open the link: /#about"><img class=header-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"></a></header><nav id=sidebar data-behavior=4><div class=sidebar-container><div class=sidebar-profile><a href=https://aryido.github.io/#about aria-label="Read more about the author"><img class=sidebar-profile-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"></a><h4 class=sidebar-profile-name>李昀陽 YunYang Lee</h4><h5 class=sidebar-profile-bio>Welcome to my Tech Note. You can read some of the chapters below.</h5></div><ul class=sidebar-buttons><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/ title=Home><i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden=true></i>
+<span class=sidebar-button-desc>Home</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/categories title=Categories><i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden=true></i>
+<span class=sidebar-button-desc>Categories</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/tags title=Tags><i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden=true></i>
+<span class=sidebar-button-desc>Tags</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://github.com/Aryido target=_blank rel=noopener title=GitHub><i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden=true></i>
+<span class=sidebar-button-desc>GitHub</span></a></li><li class=sidebar-button><a class=sidebar-button-link href=https://aryido.github.io/index.xml title=RSS><i class="sidebar-button-icon fas fa-lg fa-rss" aria-hidden=true></i>
+<span class=sidebar-button-desc>RSS</span></a></li></ul><ul class=sidebar-buttons></ul><ul class=sidebar-buttons></ul></div></nav><div id=main data-behavior=4 class=hasCoverMetaIn><article class=post id=top><div class="post-header main-content-wrap text-left"><h1 class=post-title>SSH Key</h1><div class="postShorten-meta post-meta"><time datetime=2026-05-15T19:37:26+08:00>May 15, 2026</time>
+<span>in</span>
+<a class=category-link href=https://aryido.github.io/categories/language>language</a>,
+<a class=category-link href=https://aryido.github.io/categories/shell-script>shell-script</a>,
+<a class=category-link href=https://aryido.github.io/categories/ci-cd>ci-cd</a></div></div><div class="post-content markdown"><div class=main-content-wrap><blockquote><p>SSH 是 Secure Shell 的縮寫，為一種通訊協定，會對裝置之間的連線進行<strong>驗證</strong>和<strong>加密</strong>，安全地傳送 command。通常用於遠端控制伺服器、管理基礎架構和傳輸檔案。SSH 是在應用層和傳輸層上執行的，透過稱為公開金鑰加密，「<strong>public key 可供任何人使用</strong>」 ; 另一個金鑰為「<strong>private key 由其擁有者保密</strong>」，兩個 key 相互對應。此外傳輸的數據是經過壓縮的，所以可以加快傳輸的速度。並且許多作業系統，包含 macOS、Linux 都天然支援。<div class="figure fig-100"><a class=fancybox href=https://aryido.github.io/images/linux/ssh/public-private-key.jpg data-fancybox><img class=fig-img src=https://aryido.github.io/images/linux/ssh/public-private-key.jpg></a></div></p></blockquote><hr><p>軟體工程師最常使用到 SSH key 的時機，大概就是設定 GitHub、 Gitlab 等等倉儲時候的了。還記得在 2021 年時，GitHub 有來個設定大改版通知，要<a href=https://github.blog/security/application-security/token-authentication-requirements-for-git-operations/>廢除輸入帳密的方式，全面改用使用 SSH 金鑰</a>。</p><h1 id=配置-github-金鑰>配置 GitHub 金鑰</h1><p>透過 SSH (Secure Shell) 協定與 GitHub 建立安全連線，設定好好以後，在 git push 或 pull 時就不需要每次輸入帳號密碼了。使用 SSH Key-based 登入時，主要就是做兩件事情：</p><ul><li>產生 key-pair</li><li>將產生的 <strong>Pub key</strong> 放到遠端服務器，在這裡也就是我們的 GitHub</li></ul><h3 id=generating-a-new-ssh-keyhttpsdocsgithubcomenauthenticationconnecting-to-github-with-sshgenerating-a-new-ssh-key-and-adding-it-to-the-ssh-agent><a href=https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent>Generating a new SSH key</a></h3><p>通常本地的 ssh-key 都是放在 <code>~/.ssh</code> 這個目錄下，然後使用 <code>ssh-keygen</code> 這個指令產生金鑰</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=display:flex><span><span style=color:#75715e># 若 .ssh目錄不存在，就自己建一個，並設定正確的權限</span>
+</span></span><span style=display:flex><span>mkdir ~/.ssh 
+</span></span><span style=display:flex><span>chmod <span style=color:#ae81ff>700</span> ~/.ssh
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 選擇 ED25519 作為金鑰的加密演算法，並使用 email 作為標籤，創建一個新的 SSH 金鑰。</span>
+</span></span><span style=display:flex><span>ssh-keygen -t ed25519 -C <span style=color:#e6db74>&#34;your_email@example.com&#34;</span>
+</span></span></code></pre></div><div class="alert info"><p>常見的 SSH 金鑰類型包括 RSA、ECDSA 和 EdDSA，它們提供不同層級的安全性和效能。Ed25519 是使用橢圓曲線的 EdDSA 簽章方案的一個版本，現在非常推薦。github 官方教學範例也是使用 <code>ed25519</code></p></div><p>在 ssh-keygen 中常用參數如下：</p><ul><li><code>-t</code>：指定金鑰的加密演算法，預設使用 rsa。現在都是推薦 ed25519 ，但可能會發生舊系統無法生成的狀況。若系統不支援，可以改回用 rsa</li><li><code>-f</code>：指定金鑰的檔名。預設檔名會隨演算法而變動，例如使用 rsa 加密時，其檔名預設為 id_rsa（私鑰id_rsa，公鑰id_rsa.pub</li><li><code>-b</code>：指定金鑰長度（bits）。在使用預設的加密演算法 rsa 時，建議把這項調到 4096</li><li><code>-C</code>：通常使用 email 標籤</li></ul><p>在產生金鑰的過程中，還會詢問一些事項(可以全部使用預設值，按 Enter略過)：</p><ul><li><p><code>Enter file in which to save the key (/home/username/.ssh/id_ed25519)</code>:</p><p>確認金鑰儲存的位置與檔名。但預設檔名無法表明金鑰的用途，所以建議都要改名，例如我是用 <strong>&lt;電腦主機> + &lt;服務></strong> 來命名 : macbook-air-m3_github</p></li><li><p><code>Enter passphrase (empty for no passphrase)</code> ; <code>Enter same passphrase again</code></p><p>再來是詢問是否設定密碼來保護 key，若有設定密碼的話，之後使用每次使用時，這把金鑰時就要輸入密碼</p></li></ul><p>完成上述設定後，會看到 fingerprint 與 randomart ，就代表產生成功了:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>Your identification has been saved in /home/username/.ssh/github_key.
+</span></span><span style=display:flex><span>Your public key has been saved in /home/username/.ssh/github_key.pub.
+</span></span><span style=display:flex><span>The key fingerprint is:
+</span></span><span style=display:flex><span>......  your_email@example.com
+</span></span><span style=display:flex><span>The key’s randomart image is:
+</span></span><span style=display:flex><span>+---<span style=color:#f92672>[</span>ED25519 256<span style=color:#f92672>]</span>----+
+</span></span><span style=display:flex><span>|                 |
+</span></span><span style=display:flex><span>|                 |
+</span></span><span style=display:flex><span>...
+</span></span><span style=display:flex><span>|                 |
+</span></span><span style=display:flex><span>|                 |
+</span></span><span style=display:flex><span>+----<span style=color:#f92672>[</span>SHA256<span style=color:#f92672>]</span>-----+
+</span></span></code></pre></div><p>這時候再去 <code>~/.ssh</code> 目錄下看，應該會發現有多出 public-key 和 private-key 。</p><h3 id=adding-your-ssh-key-to-the-ssh-agent-optional>Adding your SSH key to the ssh-agent (Optional)</h3><p>接下來就是把上面產生的產生的 public-key 放到遠端服務器，<a href=https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account>例如這邊就是放到 GitHub</a>。再來可選擇設定金鑰代理，如果<strong>有設定金鑰密碼</strong>，但又不想每次使用金鑰就要輸入一次，可以考慮設定金鑰代理，現在比較新的做法是使用 <code>~/.ssh/config</code> 檔案，讓密鑰能自動載入 ssh-agent 中，以下範例：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>Host github.com
+</span></span><span style=display:flex><span>  AddKeysToAgent yes
+</span></span><span style=display:flex><span>  UseKeychain yes
+</span></span><span style=display:flex><span>  IdentityFile ~/.ssh/&lt;private-key&gt;
+</span></span></code></pre></div><blockquote><p>Note: 沒有設定密碼，或是不想起一個 agent 在背景跑，可以跳過這個步驟</p></blockquote><p>完成金鑰上傳後，驗證下這組金鑰是不是正常工作:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>ssh -T git@github.com
+</span></span></code></pre></div><div class="alert warning"><p><p>GitHub 完成金鑰的產生與配置後，<a href=https://docs.github.com/en/get-started/git-basics/managing-remote-repositories#switching-remote-urls-from-https-to-ssh>還要更改 git remote</a>，否則即便配置 SSH，還是會走 https 的傳輸協定。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>git remote -v
+</span></span><span style=display:flex><span><span style=color:#75715e>#origin  https://github.com/&lt;user_name&gt;/&lt;repo&gt;.git (fetch)</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#origin  https://github.com/&lt;user_name&gt;/&lt;repo&gt;.git (push)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 改成 `git@github.com` 開頭，讓 Github 對於走不同的伺服器倉庫網址</span>
+</span></span><span style=display:flex><span>git remote set-url origin git@github.com:&lt;user_name&gt;/&lt;repo&gt;.git
+</span></span></code></pre></div></p></div><hr><h3 id=參考資料>參考資料</h3><ul><li><p><a href=https://www.cloudflare.com/zh-tw/learning/access-management/what-is-ssh/>什麼是 SSH？ | 安全殼層 (SSH) 通訊協定</a></p></li><li><p><a href=https://ithelp.ithome.com.tw/articles/10277498>Day21：【技術篇】SSH 的基本運作原理</a></p></li><li><p><a href=https://cynthiachuang.github.io/Generating-a-Ssh-Key-and-Adding-It-to-the-Github/>使用 SSH 金鑰與 GitHub 連線</a></p></li></ul></div></div><div id=post-footer class="post-footer main-content-wrap"><div class=post-footer-tags><span class="text-color-light text-small">TAGGED IN</span><br><a class="tag tag--primary tag--small" href=https://aryido.github.io/tags/git/>git</a></div><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--disabled"><i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/shell-script/cron/ data-tooltip="Cron " aria-label="PREVIOUS: Cron "><span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i></a></li></ul></nav><ul class="post-actions post-action-share"><li class="post-action hide-lg hide-md hide-sm"><a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post"><i class="fa fa-share-alt" aria-hidden=true></i></a></li><li class=post-action><a class="post-action-btn btn btn--default" href=#top aria-label="Back to top"><i class="fa fa-arrow-up" aria-hidden=true></i></a></li></ul></div></div></article><footer id=footer class=main-content-wrap><span class=copyrights>&copy; 2026 李昀陽 YunYang Lee. All Rights Reserved</span></footer></div><div id=bottom-bar class=post-bottom-bar data-behavior=4><div class=post-actions-wrap><nav><ul class="post-actions post-action-nav"><li class=post-action><a class="post-action-btn btn btn--disabled"><i class="fa fa-angle-left"></i>
+<span class="hide-xs hide-sm text-small icon-ml">NEXT</span></a></li><li class=post-action><a class="post-action-btn btn btn--default tooltip--top" href=https://aryido.github.io/posts/shell-script/cron/ data-tooltip="Cron " aria-label="PREVIOUS: Cron "><span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+<i class="fa fa-angle-right"></i></a></li></ul></nav><ul class="post-actions post-action-share"><li class="post-action hide-lg hide-md hide-sm"><a class="post-action-btn btn btn--default btn-open-shareoptions" href=#btn-open-shareoptions aria-label="Share this post"><i class="fa fa-share-alt" aria-hidden=true></i></a></li><li class=post-action><a class="post-action-btn btn btn--default" href=#top aria-label="Back to top"><i class="fa fa-arrow-up" aria-hidden=true></i></a></li></ul></div></div></div><div id=about><div id=about-card><div id=about-btn-close><i class="fa fa-times"></i></div><img id=about-card-picture src=https://aryido.github.io/images/aboutme/head-shot.jpg alt="Author's picture"><h4 id=about-card-name>李昀陽 YunYang Lee</h4><div id=about-card-bio>Welcome to my Tech Note. You can read some of the chapters below.</div><div id=about-card-job><i class="fa fa-briefcase"></i><br>Software Engineer</div><div id=about-card-location><i class="fa fa-map-marker-alt"></i><br>Taiwan</div></div></div><div id=cover style=background-image:url(https://aryido.github.io/images/background.jpg)></div><script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin=anonymous referrerpolicy=no-referrer></script>
+<script src=https://aryido.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js></script>
+<script async crossorigin=anonymous defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js></script>
+<script>$(document).ready(function(){hljs.configure({classPrefix:"",useBR:!1}),$("pre.code-highlight > code, pre > code").each(function(e,t){$(this).hasClass("codeblock")||$(this).addClass("codeblock"),hljs.highlightBlock(t)})})</script></body></html>
