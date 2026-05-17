@@ -59,7 +59,9 @@ git fetch --prune origin
 
 ---
 
-# 假設我對 file 進行了一些修改，但我發現對 file 的修改是錯誤或不必要的，所以我想測銷掉對 file 的修改
+# 情境
+
+### 假設我對 file 進行了一些修改，但我發現對 file 的修改是錯誤或不必要的，所以我想測銷掉對 file 的修改
 
 ```bash
 # 沒有 `git add` 也沒有 `git commit`
@@ -81,7 +83,7 @@ git checkout HEAD < changed_file >
 
 ```
 
-# 使用了 `git commit` 產生了一個叫 `change` 的 commit 了，但是想取消這個 commit
+### 使用了 `git commit` 產生了一個叫 `change` 的 commit 了，但是想取消這個 commit
 
 假設在初始狀態下 disk、staging、local、remote 這四個是保持同步的，再來假設初始狀態下已經有一個 commit 叫做 `init` ，然後又 commit 一個叫 `change` 的 commit，如果要取消 `change` 這個 commit 的話:
 
@@ -123,7 +125,7 @@ git reset --mixed HEAD~1
 
 {{< /alert >}}
 
-# 整理自己的 commit
+### 整理自己的 commit
 通常會是遇到下面狀況後，會選用 `git rebase` 整理 commit，讓別人看 code 可以輕鬆一些:
 - 改寫 commit 的內容或訊息（edit / reword）
 - 刪除錯誤的 commit（drop）
@@ -157,7 +159,7 @@ pick 3ebea07 Add file5
 - **合併 commit** 的話，譬如說想把 `Add file3` 跟 `Add file4` 合併，那就把 Add file4 的「`pick` 改成 `squash`」，會把上一個 commit 合併一起
 
 
-# 想把目前的分支狀態，復原成跟遠端分支一樣的狀態
+### 想把目前的分支狀態，復原成跟遠端分支一樣的狀態
 有時候發覺自己目前的 branch 改壞了有太多問題，想直接從遠端的穩定版本「砍掉重練 ; 或者本地分支落後遠端太多，且完全不在乎本地目前的修改，想要快速同步遠端乾淨分支，這時就可以使用 :
 ```bash
 git reset --hard origin/<BRANCH_NAME>
@@ -168,7 +170,7 @@ git reset --hard origin/<BRANCH_NAME>
 {{< /alert >}}
 
 
-# Git Branch 命名大小寫不一樣而導致的問題
+### Git Branch 命名大小寫不一樣而導致的問題
 先來說明情境，首先有創建了一個 branch 叫 `Feature/test`，這個 branch 也被推送制遠端倉庫了。這時候又創建一個 branch 叫 `feature/test2`，但是當使用 `git push --set-upstream origin feature/test2` 打算推到遠端倉庫時，卻發生：
 
 > `fatal: feature/test2 cannot be resolved to branch`
@@ -215,8 +217,6 @@ mv Feature feature
 # 之前 --set-upstream 會失敗的，現在會成功
 git push --set-upstream origin feature/test2
 ```
-
-
 
 {{< alert info >}}
 

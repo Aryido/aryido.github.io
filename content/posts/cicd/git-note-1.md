@@ -29,7 +29,7 @@ reward: false
 >
 > 而各個之間狀態變化的簡單關係如下圖所示 :
 > {{< image classes="fancybox fig-100" src="/images/cicd/git-control-flow.jpg" >}}
-> 以上就是最基本的使用，在開始筆記之前先把一些名詞定義好，
+> 以上就是最基本的使用和定義。
 
 <!--more-->
 
