@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/shell-script/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 15 May 2026 19:37:26 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/shell-script/index.xml" rel="self" type="application/rss+xml"/><item><title>SSH Key</title><link>https://aryido.github.io/posts/shell-script/ssh-key/</link><pubDate>Fri, 15 May 2026 19:37:26 +0800</pubDate><guid>https://aryido.github.io/posts/shell-script/ssh-key/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aryido Tech Note</title><link>https://aryido.github.io/posts/shell-script/</link><description>Recent content on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 22 Jul 2025 23:47:43 +0800</lastBuildDate><atom:link href="https://aryido.github.io/posts/shell-script/index.xml" rel="self" type="application/rss+xml"/><item><title>Cron</title><link>https://aryido.github.io/posts/shell-script/cron/</link><pubDate>Tue, 22 Jul 2025 23:47:43 +0800</pubDate><guid>https://aryido.github.io/posts/shell-script/cron/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>在軟體工程中，有蠻多工作都會需要排程的，而 Linux 排程可透過 crontab 與 at ，而這兩個有啥異同呢？ 我們可以發現工作排程的方式基本上分成：&lt;/p>
+&lt;ul>
+&lt;li>例行性的 : 每隔一定的週期就會需要處理，那就可以使用 &lt;code>rontab&lt;/code> 這個指令設定的任務循環&lt;/li>
+&lt;li>突發性的 : 會訂一個時間點執行，但做完以後就沒有了，那就可以使用 &lt;code>at&lt;/code> 指令處理僅執行一次就結束的任務&lt;/li>
+&lt;/ul>
+&lt;p>Cron 是 Linux 系統下的一個定時任務管理服務，為了要精確表示「何時」執行， 就發明了一個抽象的 Cron 表達式，相信大家都有看過類似 &lt;code>0 12 * * *&lt;/code> 這種在定時任務中常出現的寫法，像 「 GCP Cloud Scheduler」、「 GitHub Actions」、「 SpringBoot 的 @Scheduled」，都以 Cron 表達式來定義任務觸發時間點。&lt;/p>
+&lt;/blockquote></description></item><item><title>SSH Key</title><link>https://aryido.github.io/posts/shell-script/ssh-key/</link><pubDate>Wed, 30 Apr 2025 19:37:26 +0800</pubDate><guid>https://aryido.github.io/posts/shell-script/ssh-key/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>SSH 是 Secure Shell 的縮寫，為一種通訊協定，會對裝置之間的連線進行&lt;strong>驗證&lt;/strong>和&lt;strong>加密&lt;/strong>，安全地傳送 command。通常用於遠端控制伺服器、管理基礎架構和傳輸檔案。SSH 是在應用層和傳輸層上執行的，透過稱為公開金鑰加密，「&lt;strong>public key 可供任何人使用&lt;/strong>」 ; 另一個金鑰為「&lt;strong>private key 由其擁有者保密&lt;/strong>」，兩個 key 相互對應。此外傳輸的數據是經過壓縮的，所以可以加快傳輸的速度。並且許多作業系統，包含 macOS、Linux 都天然支援。
 &lt;div class="figure fig-100" >
@@ -7,14 +15,6 @@
 &lt;/a>
 &lt;/div>
 &lt;/p>
-&lt;/blockquote></description></item><item><title>Cron</title><link>https://aryido.github.io/posts/shell-script/cron/</link><pubDate>Tue, 22 Jul 2025 23:47:43 +0800</pubDate><guid>https://aryido.github.io/posts/shell-script/cron/</guid><description>&lt;!-- raw HTML omitted -->
-&lt;blockquote>
-&lt;p>在軟體工程中，有蠻多工作都會需要排程的，而 Linux 排程可透過 crontab 與 at ，而這兩個有啥異同呢？ 我們可以發現工作排程的方式基本上分成：&lt;/p>
-&lt;ul>
-&lt;li>例行性的 : 每隔一定的週期就會需要處理，那就可以使用 &lt;code>rontab&lt;/code> 這個指令設定的任務循環&lt;/li>
-&lt;li>突發性的 : 會訂一個時間點執行，但做完以後就沒有了，那就可以使用 &lt;code>at&lt;/code> 指令處理僅執行一次就結束的任務&lt;/li>
-&lt;/ul>
-&lt;p>Cron 是 Linux 系統下的一個定時任務管理服務，為了要精確表示「何時」執行， 就發明了一個抽象的 Cron 表達式，相信大家都有看過類似 &lt;code>0 12 * * *&lt;/code> 這種在定時任務中常出現的寫法，像 「 GCP Cloud Scheduler」、「 GitHub Actions」、「 SpringBoot 的 @Scheduled」，都以 Cron 表達式來定義任務觸發時間點。&lt;/p>
 &lt;/blockquote></description></item><item><title>linux 指令範例: chmod</title><link>https://aryido.github.io/posts/shell-script/chmod/</link><pubDate>Tue, 16 May 2023 00:12:57 +0800</pubDate><guid>https://aryido.github.io/posts/shell-script/chmod/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;/blockquote></description></item><item><title>cloc: code line 統計工具</title><link>https://aryido.github.io/posts/shell-script/cloc/</link><pubDate>Sat, 22 Apr 2023 13:25:32 +0800</pubDate><guid>https://aryido.github.io/posts/shell-script/cloc/</guid><description>&lt;!-- raw HTML omitted -->

@@ -69,6 +69,9 @@
 &lt;/blockquote></description></item><item><title>Apple M1 作業系統坑 - CPU 簡介</title><link>https://aryido.github.io/posts/develop/m1-error-1/</link><pubDate>Wed, 04 Jan 2023 23:02:30 +0800</pubDate><guid>https://aryido.github.io/posts/develop/m1-error-1/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>現在公司很多都會給新進員工配上 Apple M1 筆電，整體筆電用起來都還不錯的。但因為 Apple M1 底層處理器架構大改變，對於軟體開發在本地端測試時候，常發生一些不可預期的狀況。這邊就來記錄一下有遇到的 BUG。&lt;/p>
+&lt;/blockquote></description></item><item><title>Git - worktree</title><link>https://aryido.github.io/posts/develop/git-worktree/</link><pubDate>Wed, 04 Jan 2023 23:02:30 +0800</pubDate><guid>https://aryido.github.io/posts/develop/git-worktree/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>現在公司很多都會給新進員工配上 Apple M1 筆電，整體筆電用起來都還不錯的。但因為 Apple M1 底層處理器架構大改變，對於軟體開發在本地端測試時候，常發生一些不可預期的狀況。這邊就來記錄一下有遇到的 BUG。&lt;/p>
 &lt;/blockquote></description></item><item><title>CIDR 介紹</title><link>https://aryido.github.io/posts/develop/cidr/</link><pubDate>Sun, 13 Nov 2022 17:37:27 +0800</pubDate><guid>https://aryido.github.io/posts/develop/cidr/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>無類別域間路由（ Classless Inter-Domain Routing ，簡稱 CIDR ）是為了避免造成 IP 位址的大量浪費，於是出現的一種技術。CIDR重點有：&lt;/p>

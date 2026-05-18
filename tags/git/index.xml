@@ -1,34 +1,27 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>git on Aryido Tech Note</title><link>https://aryido.github.io/tags/git/</link><description>Recent content in git on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 15 May 2026 19:37:26 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>SSH Key</title><link>https://aryido.github.io/posts/shell-script/ssh-key/</link><pubDate>Fri, 15 May 2026 19:37:26 +0800</pubDate><guid>https://aryido.github.io/posts/shell-script/ssh-key/</guid><description>&lt;!-- raw HTML omitted -->
-&lt;blockquote>
-&lt;p>SSH 是 Secure Shell 的縮寫，為一種通訊協定，會對裝置之間的連線進行&lt;strong>驗證&lt;/strong>和&lt;strong>加密&lt;/strong>，安全地傳送 command。通常用於遠端控制伺服器、管理基礎架構和傳輸檔案。SSH 是在應用層和傳輸層上執行的，透過稱為公開金鑰加密，「&lt;strong>public key 可供任何人使用&lt;/strong>」 ; 另一個金鑰為「&lt;strong>private key 由其擁有者保密&lt;/strong>」，兩個 key 相互對應。此外傳輸的數據是經過壓縮的，所以可以加快傳輸的速度。並且許多作業系統，包含 macOS、Linux 都天然支援。
-&lt;div class="figure fig-100" >
-&lt;a class="fancybox" href="https://aryido.github.io/images/linux/ssh/public-private-key.jpg" data-fancybox="">
-&lt;img class="fig-img" src="https://aryido.github.io/images/linux/ssh/public-private-key.jpg" >
-&lt;/a>
-&lt;/div>
-&lt;/p>
-&lt;/blockquote></description></item><item><title>Git Worktree 筆記</title><link>https://aryido.github.io/posts/cicd/git-worktree/</link><pubDate>Thu, 22 May 2025 10:11:23 +0800</pubDate><guid>https://aryido.github.io/posts/cicd/git-worktree/</guid><description>&lt;!-- raw HTML omitted -->
-&lt;blockquote>
-&lt;p>軟體開發有許多的已經定義的管理工作流程，例如說 Git Flow、Github Flow、GitLab Flow 等等，而這些共通點是都&lt;strong>以 Branch 來區分&lt;/strong>不同階段的開發狀態 ; 在研發過程中，也經常需要在不同的 Branch 之間切換來處理不同的任務。這時 &lt;code>git worktree&lt;/code> 就很大程度派上了用場，它可以讓&lt;strong>同一個 Git Repository 同時擁有多個工作目錄&lt;/strong>，&lt;strong>且每個目錄綁定不同 Branch&lt;/strong>，各個工作樹之間是互相獨立的。這樣就不用在「 code 寫到一半 」時，遇到臨時需要切換到不同的分支作業，卻因為「 正在更動的檔案 」與「 目標分支上的檔案」有衝突而要另外處理，故 &lt;code>git worktree&lt;/code> 很適合拿來處理緊急 hotfix 或者另外的 code-review。&lt;/p>
-&lt;/blockquote></description></item><item><title>Git Config - 多帳號管理</title><link>https://aryido.github.io/posts/cicd/git-config/</link><pubDate>Fri, 02 May 2025 09:04:47 +0800</pubDate><guid>https://aryido.github.io/posts/cicd/git-config/</guid><description>&lt;!-- raw HTML omitted -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>git on Aryido Tech Note</title><link>https://aryido.github.io/tags/git/</link><description>Recent content in git on Aryido Tech Note</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 23 May 2025 09:04:47 +0800</lastBuildDate><atom:link href="https://aryido.github.io/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>Git Config - 多帳號管理</title><link>https://aryido.github.io/posts/cicd/git-config/</link><pubDate>Fri, 23 May 2025 09:04:47 +0800</pubDate><guid>https://aryido.github.io/posts/cicd/git-config/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>安裝完 Git 之後，可以使用 &lt;code>git config&lt;/code> CLI 取得 Git 設定組態參數，git config 是一個記錄了 git 操作的所有基本檔案資料。
-比方說:&lt;/p>
+比方說 :&lt;/p>
 &lt;ul>
 &lt;li>git init 創建時預設的 branch 名稱&lt;/li>
 &lt;li>寫 git commit 的顯示模板&lt;/li>
 &lt;li>當 push github 時的使用者資料&lt;/li>
 &lt;/ul>
-&lt;p>都可以在 git config 中調整修改。而在不同專案中，我們可能需要使用不同的 Git username 和 email，
-例如說個人專案中你想使用「私人 Email」 ; 而在公司專案中則需要使用「公司 Email」，若每次切換專案時都要手動更改 Git 配置會十分麻煩。
+&lt;p>等等設定都可以在 git config 中調整修改。而在不同專案中，可能需要使用不同的 Git username 和 email，
+例如個人專案中想使用「私人 Email」 ; 而在公司專案中則需要使用「公司 Email」，若每次切換專案時都要手動更改 Git 配置會十分麻煩。
 這時 &lt;strong>Git Include&lt;/strong> 可以根據資料夾自動套用對應的用戶設定，而無需每次手動調整。&lt;/p>
-&lt;/blockquote></description></item><item><title>GitHub Flow</title><link>https://aryido.github.io/posts/cicd/git-workflow/</link><pubDate>Thu, 01 May 2025 12:42:08 +0800</pubDate><guid>https://aryido.github.io/posts/cicd/git-workflow/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;/blockquote></description></item><item><title>Git Worktree 筆記</title><link>https://aryido.github.io/posts/cicd/git-worktree/</link><pubDate>Thu, 22 May 2025 10:11:23 +0800</pubDate><guid>https://aryido.github.io/posts/cicd/git-worktree/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>雖然使用了 Git 作為版本管理工具，但每個人對於分支的認知可能不同，故造成每次 commit 到不同分支之後，要&lt;strong>合併&lt;/strong>要回哪個分支可能會有歧義，這時就可參考一些已存在的 Workflow 規範，只要團隊遵守這樣的 branch 的 commit 和 merge 規則，就可以有一致性。每個 Workflow 規範都不太一樣，常見有: Git Flow、&lt;strong>GitHub Flow&lt;/strong>、GitLab flow ，主要都是希望就算 Project 越來越大協作人員越來越多，也能有效管理 Git Branch，那這邊會以 &lt;strong>GitHub Flow&lt;/strong> 為主要說明，但也會筆記分析了解其他不同策略的優缺點。&lt;/p>
-&lt;/blockquote></description></item><item><title>Git - 情境範例和命令補充</title><link>https://aryido.github.io/posts/cicd/git-note-2/</link><pubDate>Wed, 30 Apr 2025 17:53:19 +0800</pubDate><guid>https://aryido.github.io/posts/cicd/git-note-2/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;p>軟體開發有許多的已經定義的管理工作流程，例如說 Git Flow、Github Flow、GitLab Flow 等等，而這些共通點是都&lt;strong>以 Branch 來區分&lt;/strong>不同階段的開發狀態 ; 在研發過程中，也經常需要在不同的 Branch 之間切換來處理不同的任務。這時 &lt;code>git worktree&lt;/code> 就很大程度派上了用場，它可以讓&lt;strong>同一個 Git Repository 同時擁有多個工作目錄&lt;/strong>，&lt;strong>且每個目錄綁定不同 Branch&lt;/strong>，各個工作樹之間是互相獨立的。&lt;/p>
+&lt;p>這樣就不用在「 code 寫到一半 」時，遇到臨時需要切換到不同的分支作業，卻因為「 正在更動的檔案 」與「 目標分支上的檔案」有衝突而要另外處理，故 &lt;code>git worktree&lt;/code> 很適合拿來處理緊急 hotfix 或者另外的 code-review。&lt;/p>
+&lt;/blockquote></description></item><item><title>GitHub Flow</title><link>https://aryido.github.io/posts/cicd/git-workflow/</link><pubDate>Fri, 02 May 2025 12:42:08 +0800</pubDate><guid>https://aryido.github.io/posts/cicd/git-workflow/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
-&lt;p>軟體工程師每天都會用 Git 進行版控，雖然是經常使用，但有一些差異可能還真的沒有好好想過，所以前面有文章補充了一些&lt;a href="https://aryido.github.io/posts/cicd/git-note-1/">名詞解釋和功能比較&lt;/a>。Git 使用會遇到這是各樣的情形，雖然大部分都千篇一律，但有一些實際面對到的情況，是蠻值得記錄下來的！ 所以這篇文章把自己從菜鳥時期的到現在一些踩坑的筆記統整。若以後有想到類似情境，就直接來參考這篇文章。&lt;/p>
-&lt;/blockquote></description></item><item><title>Git - 名詞解釋和功能比較</title><link>https://aryido.github.io/posts/cicd/git-note-1/</link><pubDate>Wed, 30 Apr 2025 13:53:19 +0800</pubDate><guid>https://aryido.github.io/posts/cicd/git-note-1/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;p>雖然使用了 Git 作為版本管理工具，但每個人對於分支的認知可能不同，故造成每次 commit 到不同分支之後，要&lt;strong>合併&lt;/strong>要回哪個分支可能會有歧義，這時就可參考一些已存在的 Workflow 規範，只要團隊遵守這樣的 branch 的 commit 和 merge 規則，就可以有一致性。&lt;/p>
+&lt;p>每個 Workflow 規範都不太一樣，常見有: Git Flow、&lt;strong>GitHub Flow&lt;/strong>、GitLab flow ，主要都是希望就算 Project 越來越大協作人員越來越多，也能有效管理 Git Branch，那這邊會以 &lt;strong>GitHub Flow&lt;/strong> 為主要說明，但也會筆記分析了解其他不同策略的優缺點。&lt;/p>
+&lt;/blockquote></description></item><item><title>Git - 情境範例和命令補充</title><link>https://aryido.github.io/posts/cicd/git-note-2/</link><pubDate>Thu, 01 May 2025 17:53:19 +0800</pubDate><guid>https://aryido.github.io/posts/cicd/git-note-2/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>軟體工程師每天都會用 Git 進行版控，雖然是經常使用，但有一些差異可能還真的沒有好好想過，所以前面有文章補充了一些&lt;a href="https://aryido.github.io/posts/cicd/git-note-1/">名詞解釋和功能比較&lt;/a>。Git 使用會遇到這是各樣的情形，雖然大部分都千篇一律，但有一些實際面對到的情況，是蠻值得記錄下來的！ 所以這篇文章就筆記一下做一些 CLI 操作補充，另外也把一些踩坑的筆記統整。若以後有想到類似情境，就直接來參考這篇文章。&lt;/p>
+&lt;/blockquote></description></item><item><title>Git - 名詞解釋和功能比較</title><link>https://aryido.github.io/posts/cicd/git-note-1/</link><pubDate>Wed, 30 Apr 2025 21:53:19 +0800</pubDate><guid>https://aryido.github.io/posts/cicd/git-note-1/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>一般來說 Git 的操作會涉及到幾個&lt;strong>區域&lt;/strong> ：&lt;/p>
 &lt;ul>
@@ -44,4 +37,13 @@
 &lt;/a>
 &lt;/div>
 以上就是最基本的使用和定義。&lt;/p>
+&lt;/blockquote></description></item><item><title>SSH Key</title><link>https://aryido.github.io/posts/shell-script/ssh-key/</link><pubDate>Wed, 30 Apr 2025 19:37:26 +0800</pubDate><guid>https://aryido.github.io/posts/shell-script/ssh-key/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>SSH 是 Secure Shell 的縮寫，為一種通訊協定，會對裝置之間的連線進行&lt;strong>驗證&lt;/strong>和&lt;strong>加密&lt;/strong>，安全地傳送 command。通常用於遠端控制伺服器、管理基礎架構和傳輸檔案。SSH 是在應用層和傳輸層上執行的，透過稱為公開金鑰加密，「&lt;strong>public key 可供任何人使用&lt;/strong>」 ; 另一個金鑰為「&lt;strong>private key 由其擁有者保密&lt;/strong>」，兩個 key 相互對應。此外傳輸的數據是經過壓縮的，所以可以加快傳輸的速度。並且許多作業系統，包含 macOS、Linux 都天然支援。
+&lt;div class="figure fig-100" >
+&lt;a class="fancybox" href="https://aryido.github.io/images/linux/ssh/public-private-key.jpg" data-fancybox="">
+&lt;img class="fig-img" src="https://aryido.github.io/images/linux/ssh/public-private-key.jpg" >
+&lt;/a>
+&lt;/div>
+&lt;/p>
 &lt;/blockquote></description></item></channel></rss>
