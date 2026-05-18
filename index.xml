@@ -28,6 +28,9 @@
 &lt;/blockquote></description></item><item><title>Message Queue 簡介 - MQTT &amp; AMQP</title><link>https://aryido.github.io/posts/backend-system/amqp-mqtt/</link><pubDate>Mon, 16 Jun 2025 14:58:37 +0800</pubDate><guid>https://aryido.github.io/posts/backend-system/amqp-mqtt/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>為了要把系統架構解耦，改為異步分散式處理，有時會決定使用 Message Queue 的設計來達成目標，其指的是應用程序之間通過在 Message Service 而不是直接調用彼此通訊。對於其落地的產品，常見的開源工具有 &lt;strong>Kafka&lt;/strong>、&lt;strong>RabbitMQ&lt;/strong> 等等或者雲端服務 &lt;strong>GCP-Pub/Sub&lt;/strong> 和 &lt;strong>AWS-SQS&lt;/strong> 等等。作為兩個子系統之間的通信中間層，會需要依靠協定保持有序且有效率的方式實現資訊交換，而目前廣泛使用的協定有 &lt;strong>MQTT&lt;/strong> 和 &lt;strong>AMQP&lt;/strong> ，以下也會簡單介紹一下。&lt;/p>
+&lt;/blockquote></description></item><item><title>Git - 簡單周邊工具、實用網站介紹</title><link>https://aryido.github.io/posts/cicd/git-note-3/</link><pubDate>Sat, 24 May 2025 07:04:47 +0800</pubDate><guid>https://aryido.github.io/posts/cicd/git-note-3/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;blockquote>
+&lt;p>在軟體開發的日常中，Git 可以說已經是比肩「電腦」一樣基礎的存在了！ 因此相應其周邊生態也非常豐富，有些擴展工具或實用網站蠻直得注意一下的，這邊文章就簡單記錄一下：&lt;/p>
 &lt;/blockquote></description></item><item><title>Git Config - 多帳號管理</title><link>https://aryido.github.io/posts/cicd/git-config/</link><pubDate>Fri, 23 May 2025 09:04:47 +0800</pubDate><guid>https://aryido.github.io/posts/cicd/git-config/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;blockquote>
 &lt;p>安裝完 Git 之後，可以使用 &lt;code>git config&lt;/code> CLI 取得 Git 設定組態參數，git config 是一個記錄了 git 操作的所有基本檔案資料。
