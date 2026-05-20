@@ -36,13 +36,13 @@ reward: false
 
 ### 思路
 
-{{< image classes="fancybox fig-100" src="/images/leetcode/5-1.jpg" >}}
+{{< image classes="fancybox fig-100" src="/images/leetcode/5/5-1.jpg" >}}
 
 維護一個 2D-Matrix ，用來紀錄子問題狀態，其中 `dp[i][j]` 表示字符串區間 `[i, j]` 是否為回文串。明顯地 : 只有一個字符，肯定是 Palindrome，對應 2D-Matrix ，當 `i = j` 時，子問題是表示為只有一個字符，故 `dp[i][i] = True` ，代表可以先把表格對角線表填完(如上圖) 。
 
 再來是 Palindromic 字串的定義，「**字串的對稱位置的兩端，字母要一樣**」，故可用 `dp[i+1][j-1]` 表示**內縮一層的單字**，他一定也要是 Palindromic：
 
-{{< image classes="fancybox fig-100" src="/images/leetcode/5-4.jpg" >}}
+{{< image classes="fancybox fig-100" src="/images/leetcode/5/5-4.jpg" >}}
 
 承上述，可利用些特性寫出**狀態方程式**
 
@@ -50,7 +50,7 @@ reward: false
 
 再來要特別注意 **Palindromic 字串在 DP 表格之間的依賴關係**，無論如何都要注意**填寫表格的順序** :
 
-{{< image classes="fancybox fig-100" src="/images/leetcode/5-2.jpg" >}}
+{{< image classes="fancybox fig-100" src="/images/leetcode/5/5-2.jpg" >}}
 
 下面給出**上面表格**的正確的遍歷方式:
 
@@ -63,7 +63,7 @@ for(int j = 1 ; j < length ; j++){
 }
 ```
 
-{{< image classes="fancybox fig-100" src="/images/leetcode/5-5.jpg" >}}
+{{< image classes="fancybox fig-100" src="/images/leetcode/5/5-5.jpg" >}}
 
 因為在判斷 `dp[i][j]` 時，需要先有 `dp[i+1][j-1]` 的資訊，以錯誤的順序填表，在參考「縮小的狀態 `dp[i+1][j-1]` 時」，會因為還未填寫正確狀態而發生錯誤，所以 loop 的方式有所限制。
 
@@ -225,41 +225,43 @@ class Solution:
 - `left -= 1` 等價 `left = left -1 `
   {{< /alert >}}
 
-上面是回傳 index 方式，但其實也可以直接回傳當前位置找到的最大 Palindrome :
+上面是回傳 index 方式，但其實也可以直接回傳當前位置找到的最大 Palindrome。
+另外還可以用了一個資料前處理的小技巧：
+
+> 在字串的頭尾和中間，每隔一個字母就插入一個原字串不存在的符號 `#`
+
+這麼做的目的是可以「不用分兩個迴圈」寫，不用管給定字串的字母數，為奇數或者為偶數。例如 :
+
+'bb'和'bab'，字母數前者是偶數，後者是奇數，這樣檢查時的起點會不同，但在插入 `#` 之後分別變成 `#b#b#` 和 `#b#a#b#`，字母數都是奇數， 最後再將插入的 `#` 消除即可。由於只在演算法開頭和結尾各做一次，故也不會影響時間複雜度。
 
 ```python
 class Solution:
+    class Solution:
     def longestPalindrome(self, s: str) -> str:
         if len(s) == 1:
             return s
-
+        
+        s = '#' + ('#').join(c for c in s) + '#'
         n = len(s)
         max_length = 1
         ans = s[0]
 
         for i in range(n):
-            odd_palindrome =  self.get_the_index_max_palindrome(s, i, i)
-
-            if len(odd_palindrome) > max_length:
-                max_length = len(odd_palindrome)
-                ans = odd_palindrome
-
-        for i in range(n):
-            even_palindrome =  self.get_the_index_max_palindrome(s, i, i+1)
-
-            if len(even_palindrome) > max_length:
-                max_length = len(even_palindrome)
-                ans = even_palindrome
-
-        return ans
-
+            palindrome =  self.get_the_index_max_palindrome(s, i, i)
+            
+            if len(palindrome) > max_length:
+                max_length = len(palindrome)
+                ans = palindrome
+        
+        return ans.replace('#', '')
+    
     def get_the_index_max_palindrome(self, s: str, left: int, right: int) -> str:
-
-        while left >= 0 and right < len(s) and s[left] == s[right]:
+        while left >=0 and right < len(s) and s[left] == s[right]:
             left -= 1
             right += 1
-
+        
         return s[left+1 : right]
+
 ```
 
 ---
