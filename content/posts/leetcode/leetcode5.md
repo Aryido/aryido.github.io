@@ -22,9 +22,9 @@ reward: false
 
 <!--BODY-->
 
-> **[最長回文子串 (Longest Palindromic Substring)](https://leetcode.com/problems/longest-palindromic-substring/description/) 是常考題**。Palindrome 就是順讀逆讀，字母都一樣的詞語，比如範例給的 「 bab 」、 「 bb 」 等等，實際單字如 「 level 」 也是一個的 Palindromic 單字。
+> **[最長回文子串 (Longest Palindromic Substring)](https://leetcode.com/problems/longest-palindromic-substring/description/) 算是一個常考題**。Palindrome 的定義是順讀逆讀，字母都一樣的詞語，比如範例給的 「 bab 」、 「 bb 」 等等，實際單字如 「 level 」 也是一個的 Palindromic 單字。
 >
-> 先熟悉「 Dynamic Programming - 2D matrix 」解和「 中心擴散法 (Expand Around Center) 」就好了，還有聽過最佳解 Manacher's Algorithm，時間複雜度可優化到了 **O(n)**，之後再花其他篇幅去補充。
+> 先熟悉「 Dynamic Programming - 2D matrix 」解和「 中心擴散法 (Expand Around Center) 」就好了，還有聽過最佳解 Manacher's Algorithm，時間複雜度可優化到了 **O(n)**，[之後再花其他篇幅去補充](https://aryido.github.io/posts/algorithm/manacher/)。
 
 <!--more-->
 
