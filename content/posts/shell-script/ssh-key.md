@@ -100,9 +100,10 @@ The key’s randomart image is:
 
 ```bash
 Host github.com
+  IdentityFile ~/.ssh/<private-key-file>
+  IdentitiesOnly yes
   AddKeysToAgent yes
   UseKeychain yes
-  IdentityFile ~/.ssh/<private-key>
 ```
 
 > Note: 沒有設定密碼，或是不想起一個 agent 在背景跑，可以跳過這個步驟
@@ -130,6 +131,84 @@ git remote set-url origin git@github.com:<user_name>/<repo>.git
 
 ---
 
+# [SSH Config](#ssh-config)
+
+補充一些進階用法
+
+##### AddKeysToAgent 和 UseKeychain 經常一起使用
+```config
+Host github.com
+  # HostName github.com
+  # User Aryido
+  IdentityFile ~/.ssh/<private-key-file>
+  IdentitiesOnly yes
+  AddKeysToAgent yes
+  UseKeychain yes
+```
+
+- 「AddKeysToAgent」可以在使用私鑰連線時，自動把 key 加到 ssh-agent，減少反覆輸入
+- 「UseKeychain」 **是 macOS 專用的參數**，開放可存取 Keychain
+
+
+##### ProxyCommand
+例如已經有自己建立 gitlab 服務器：
+```config
+Host gitlab.aryido.com
+  HostName gitlab-ssh.aryido.com
+  ProxyCommand /opt/homebrew/bin/cloudflared access ssh --hostname %h
+  IdentityFile ~/.ssh/XXXXX
+  IdentitiesOnly yes
+```
+
+ProxyCommand 是 SSH 的「自訂中繼連線命令」參數，SSH 不直接連目標主機而是先執行指定的外部命令建立一條通道，再把 SSH 流量送進去
+- 常見場景是「要由跳板機（bastion）連內網主機」、「需要 SOCKS Proxy」等等
+{{< alert warning >}}
+ProxyCommand 會依賴本機工具（如 cloudflared）是否存在，要特別注意依賴
+{{< /alert >}}
+- 有一些常見的參數可以使用如：
+  - `%h`：目標主機(HostName)
+  - `%p`：目標埠號(Port)
+
+##### ProxyJump
+ProxyJump 較新故優先建議使用，需要 OpenSSH 7.3+。單純跳板機情境通常可改寫成： `ProxyJump <bastion>`
+```ini
+Host company-inner-env
+  HostName XXX.XX.XXX.X
+  User Aryido
+  ForwardAgent yes
+  IdentityFile <private_key_path>
+  IdentitiesOnly yes
+Match originalhost env-1 !exec "route -n get default | grep -q 'XXX.XX.XXX.X'"
+  ProxyJump company-bastion
+  AddKeysToAgent yes
+
+Host company-bastion
+  HostName YYY.Y.YY.Y
+  IdentityFile <private_key_path>
+  IdentitiesOnly yes
+
+```
+另外補充 `Match` 語法，它是 ssh_config 裡的「條件區塊」，成立就套用該區塊內的參數，不成立就略過，在這裡：
+
+> `Match originalhost env-1 !exec "route -n get default | grep -q 'XXX.XX.XXX.X'"`
+
+可拆成 :
+  - `originalhost env-1`: 命令列輸入的原始主機名必須是 env-1
+  -  `!exec "..."`: exec 會在本機執行 shell 命令，用「退出碼」判斷是否成立
+  
+所以這段意思是：當命令列輸入的原始主機名必須是 env-1 且 `route ... | grep ...` 找不到指定 IP 時，那就會使用跳板機 bastion。
+
+
+{{< alert danger >}}
+ForwardAgent 代表：
+把本機的 ssh-agent 轉送到遠端主機，在遠端也能「借用本機金鑰能力」再去 SSH 到其他主機
+
+雖然它不會把私鑰檔案直接複製到遠端，但遠端若被入侵，可能濫用 agent 做後續連線，所以只在必要且可信主機上開啟
+{{< /alert >}}
+
+
+---
+
 ### 參考資料
 
 - [什麼是 SSH？ | 安全殼層 (SSH) 通訊協定](https://www.cloudflare.com/zh-tw/learning/access-management/what-is-ssh/)
@@ -137,3 +216,5 @@ git remote set-url origin git@github.com:<user_name>/<repo>.git
 - [Day21：【技術篇】SSH 的基本運作原理](https://ithelp.ithome.com.tw/articles/10277498)
 
 - [使用 SSH 金鑰與 GitHub 連線](https://cynthiachuang.github.io/Generating-a-Ssh-Key-and-Adding-It-to-the-Github/)
+
+- [SSH 跳板機原理與配置：實現無縫跳板連接，一步直達目標主機](https://zhuanlan.zhihu.com/p/1895906139855627003)

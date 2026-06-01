@@ -134,26 +134,68 @@ git config --global --unset user.email
 
 ##### Step2. 生成 SSH key，然後去 github 綁定並設定 `~/.ssh/config` 內容
 
-在 `~/.ssh` 內生成 SSH key ，命名管理好並配置上 Github ，再來編輯 `~/.ssh/config`:
+
+[SSH Config](https://aryido.github.io/posts/shell-script/ssh-key/#ssh-config) 是 OpenSSH 用來集中管理連線設定的檔案，例如 MAC 通常會放在 `~/.ssh/config` 路徑下，設定完之後只要 `ssh <別名>` 就能連線。舉例如下：
+
+```ini
+Host github.com
+  # HostName github.com
+  # User Aryido
+  IdentityFile ~/.ssh/<private-key-file>
+  IdentitiesOnly yes
+```
+
+{{< alert success >}}
+OpenSSH 不要求 Host 區塊內參數順序，但建議固定排版，方便維護
+{{< /alert >}}
+
+- ##### 「以 Host 區塊」來管理「主機別名」，本範例使用 `github.com`
+  - 例如說上面範例 `HostName` 並沒有使用，所以預設會解析的主機名為 `github.com`
+      {{< alert warning >}}
+  **主機別名可以是自己另外取的名字**，但如果 「主機別名」 用其他名稱，那就要寫上 `HostName`，要不然DNS 會嘗試解析「自己另外取的別名」
+  {{< /alert >}}
+  - HostName 也可以是 IPV4 地址
+  - 可用「通配符」例如 `Host *.dev` 來作用在所有匹配的主機上
+  - 後面 Host 規則會覆蓋前面規則
+
+
+- ##### User 沒寫，會用目前本機電腦使用名稱
+  - SSH 連上 GitHub 時通常建議明寫「User」，但如果 git remote URL，使用者已在 URL 裡定義了，那 User 可省略（可以使用 `git remote -v` 來查看）
+
+- ##### IdentityFile 和 IdentitiesOnly
+  - 「IdentityFile」 指定「要拿哪把私鑰」
+    - 可寫多行，代表依序嘗試多把 key
+    - 若不寫，SSH client 會嘗試預設檔名（如 id_rsa、id_ed25519）以及 agent 裡的 key
+
+  - 「IdentitiesOnly」 限制 SSH「只用明確指定的 key」
+    - 設定 yes 之後，只送設定的 key，不亂試 agent 裡其他 key
+    - 可避免因為送太多錯誤 key 而回 Too many authentication failures
+    - 可避免把不相關的 key 暴露給遠端主機（隱私）
+
+
+所以在這邊，要做的事情是在 `~/.ssh` 內生成 SSH key ，命名管理好並配置上 Github 並編輯 `~/.ssh/config`:
 
 ```ini
 # default
 Host github.com
-HostName github.com
-User git
-IdentityFile ~/.ssh/<key-1>
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/<key-1>
+  IdentitiesOnly yes
 
 # 第二個帳戶，要建立 github 別名
 Host two.github.com
-HostName github.com
-User user1
-IdentityFile ~/.ssh/<key-2>
+  HostName github.com
+  User user1
+  IdentityFile ~/.ssh/<key-2>
+  IdentitiesOnly yes
 
 # 第三個帳戶，要建立 github 別名
 Host three.github.com
-HostName github.com
-User user2
-IdentityFile ~/.ssh/<key-3>
+  HostName github.com
+  User user2
+  IdentityFile ~/.ssh/<key-3>
+  IdentitiesOnly yes
 ```
 
 如果 SSH Key 都有配上 github 了，可以測試 ssh 連結，例如：
