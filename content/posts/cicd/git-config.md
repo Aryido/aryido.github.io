@@ -68,7 +68,7 @@ git config --global --edit
 
 # Git 多帳號管理
 
-初次使用 GitHub 時，大家都會先以 SSH 方式連接到 GitHub，並綁定唯一的公鑰，前面也有文章說明了 [SSH](https://aryido.github.io/posts/shell-script/ssh-key/)。
+初次使用 GitHub 時，大家都會先以 SSH 方式連接到 GitHub，並綁定唯一的公鑰，前面也有文章說明了 [SSH](https://aryido.github.io/posts/shell-script/ssh-key/#ssh-config)。
 另外可能會遇到需要管理更多的 GitHub 帳號的情況，這時就會遇到一個問題：「**要如何讓一臺電腦同時管理多個 GitHub 帳號呢？**」
 
 ### includeIf
