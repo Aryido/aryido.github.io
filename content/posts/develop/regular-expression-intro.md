@@ -58,6 +58,8 @@ regex 在處理 data 時很常使用，但在使用不同程式語言時，可�
 
 - [fluent bit 的 PARSER 是使用和 Ruby regex 一樣的 lib，官方推薦用這個測試](https://rubular.com/)
 
+- [Pyrexp](https://pythonium.net/regex)
+
 Regex101 網站還蠻有用的，主要是在右側的 EXPLANATION 區域會顯示出對輸入的正則表達式的詳細解釋，另外還可以找一些別人寫好的 patterns。
 
 ---
