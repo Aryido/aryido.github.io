@@ -154,7 +154,7 @@ class Solution:
 # K Sum
 
 通過之前的題目，可以得出對於 KSum 來說，就是要固定 K-2 的個 index，剩下兩個 index 藉由排序過後的 nums 來進行雙指標選擇。
-如果要進一步寫出通用解法，就不能手動加 K-2 個 for 迴圈了，所以用遞歸來做。
+如果要進一步寫出通用解法，就不能手動加 K-2 個 for 迴圈了，所以用遞歸來做 :
 
 
 ```python
@@ -220,6 +220,41 @@ class Solution:
         return result
 ```
 
+再來是練習使用 `set` 來去除重複:
+```python
+class Solution:
+    def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
+        nums.sort()
+        return [result for result in self.k_sum(nums, target, 4)]
+    
+    def k_sum(self, nums: List[int], target: int, k: int)-> List[set[int]]:
+        result = set()
+
+        n= len(nums)
+
+        if k == 2:
+            l = 0
+            r =  n - 1
+            while l < r:
+                cur = nums[l] + nums[r]
+                if cur == target:
+                    result.add((nums[l], nums[r]))
+                    l += 1
+                    r -= 1
+                elif cur < target:
+                    l += 1
+                else:
+                    r -= 1
+
+        else:
+            for i in range(n - k + 1):
+                for arr in self.k_sum(nums[i+1:], target - nums[i], k-1):
+                    result.add((nums[i],) + arr)
+        
+        return result
+```
+
+
 ---
 
 # 時間空間複雜度
@@ -237,11 +272,6 @@ kSum 的時間複雜度是 `O(N^(k-1))`
 ### 空間複雜度：`O(k)`
 
 遞迴深度為 `O(k)`
-
----
-
-
-
 
 ---
 
