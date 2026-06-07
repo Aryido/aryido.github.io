@@ -12,6 +12,7 @@ categories:
   - python
 
 tags:
+  - linked-list
 
 comment: false
 
@@ -20,11 +21,17 @@ reward: false
 
 <!--BODY-->
 
-> 前段時間發現自己對 Python 的 Iterable、Iterator、Generator 之間的差別並沒有很熟，我們都知道這些的共同點是均可使用 for loop 來遍歷。再進一步思考一下所謂的 `for-loop` 是怎麼實現呢： 首先用最簡單的 list 來說明，因為有 index 標示位置，故可以指定位置拿出來，蠻符合 for-loop 的使用直覺 ; 但是 dict 也是可以用 for loop 走訪呀，而它並不存在順序 ; 甚至 open 的 file 都可以用 for loop 結構來讀取每個 row ，那為什麼這個也能用 for-loop 呢？ 這背後有兩個核心概念： **Iterable(可迭代對象)** 和 **Iterator(迭代器)** 。
->
-> 當我們了解 Iterable 和 Iterator 之後，就可以進一步來了解 Generator ，同時再來把這三個做一個比較整理。
-
+> 前段時間發現自己對 Python 的 Iterable、Iterator、Generator 之間的差別並沒有很熟，我們都知道這些的共同點是均可使用 for loop 來遍歷。 
+> 
+> 再進一步思考一下所謂的 `for-loop` 是怎麼實現呢： 首先用最簡單的 list 來說明，因為有 index 標示位置，故可以指定位置拿出來，蠻符合 for-loop 的使用直覺 ; 但是 dict 也是可以用 for loop 走訪呀，而它並不存在順序 ; 甚至 open 的 file 都可以用 for loop 結構來讀取每個 row ，那為什麼這個也能用 for-loop 呢？這背後有兩個核心概念： 
+> - **Iterable(可迭代對象)** 
+> - **Iterator(迭代器)** 
 <!--more-->
+
+---
+
+當我們了解 Iterable 和 Iterator 之後，就可以進一步來了解 Generator ，同時再來把這三個做一個比較整理。
+
 
 # Iterable
 
@@ -108,9 +115,13 @@ except StopIteration:
     pass
 ```
 
-另外補充上面一直有看到的一個 Python 知識點！ Python 中以 `__` 開頭並且結尾的方法稱為 special method ，它是 Python 運行時會自動被調用的，基本上平時**不要直接調用它**。例如說 Python for-loop 運行時，就自動會使用 `__iter__` 以及 `__next__` 。
+另外補充上面一直有看到的一個 Python 知識點！ 
 
-如果真的要想要使用 `__iter__` 或 `__next__` 這些 special method ，正規的做法是用 build-in 的 `iter()` 與 `next()` ，所以上面範例應乾要改寫成以下會比較適當 :
+Python 中以 `__` 開頭並且結尾的方法稱為 「**special method**」 ，它是 Python 運行時會自動被調用的，基本上平時**不要直接調用它**。
+
+例如說 Python for-loop 運行時，就自動會使用 `__iter__` 以及 `__next__` 。
+
+如果真的要想要使用 `__iter__` 或 `__next__` 這些 special method ，正規的做法是用 build-in 的 `iter()` 與 `next()` ，所以上面範例應該要改寫成以下會比較適當 :
 
 ```
 r = range(4)
