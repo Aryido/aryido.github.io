@@ -35,30 +35,26 @@ reward: false
 
 兩個重點條件限制 :
 
-- [**In-place**](https://en.wikipedia.org/wiki/In-place_algorithm)，這個片語意思，代表直接對輸入的 data-structure 進行操作，不另開額外空間
-
-in-place algorithm 會應用在一些不希望大量增加記憶體使用量，是拿時間換取空間的概念。
+- [**In-place**](https://en.wikipedia.org/wiki/In-place_algorithm)，這個片語意思，代表直接對輸入的 data-structure 進行操作，不另開額外空間。in-place algorithm 會應用在一些不希望大量增加記憶體使用量，是拿時間換取空間的概念。
 
 - The relative order of the elements should be kept the same.
 
 以下使用各種方式來解題，當作練習
 
-# 思路
+
+# 解答
 
 使用**快慢指針**來遍歷 array :
 
 - **lower** 和 **faster** 都從 index 0 開始
 - **lower**之前的 index 都是處理好的數字
+- **faster** 代表是現在掃描到的 index
 
 接下來開始循環邏輯 :
 
-- 若 `faster == 0` ，則為初始狀態，**快慢指針**都前進。
+- 若 `faster == 0` ，則為初始狀態，**兩個指針**都先前進。
 
-- 因為定義 **lower** 之前的 index 均為處理好的資料，故若條件 `nums[lower - 1 ] != nums[faster]` ，則 **快慢指針**都前進，並把 `nums[lower]` 換成 `nums[faster]`
-
----
-
-# 解答
+- 因為定義 **lower** 之前的 index 均為處理好的資料，代表不重複值。若條件 `nums[lower - 1 ] != nums[faster]` 成立，代表  **lower** 當下位置可以替換，把 `nums[lower]` 換成 `nums[faster]`之後，**兩個指針**都前進 ; 若條件不成立，則就只有 **faster** 前進。
 
 ```java
 class Solution {
@@ -80,10 +76,26 @@ class Solution {
 `faster == 0 || nums[lower - 1] != nums[faster]` 中的 `faster == 0` 很重要，避免 `lower - ` 超出 array range
 {{< /alert >}}
 
-
 {{< alert success >}}
 ` nums[lower++] = nums[faster++];` 是個蠻簡潔不錯的寫法，可以在賦值完之後，才再讓指針前進。想提醒自己這個部分，才特別註記筆記這題的。
 {{< /alert >}}
+
+再來刷一次題時，發現第 0 個元素一定會保留，故第二個元素開始就可以了
+```python
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        faster = 1
+        lower = 1
+        while faster < len(nums):
+            if nums[lower - 1] != nums[faster]:
+                nums[lower] = nums[faster]
+                lower += 1
+                
+            faster +=1
+        
+        return lower
+
+```
 
 思考了一下，這題的條件 : **The relative order of the elements should be kept the same.** 並沒有什麼用，上面的寫法完全不會改變相對排序。
 
@@ -142,13 +154,9 @@ class Solution:
         for i in range(1, n):
             if nums[i] != nums[index]:
                 index +=1
-                self.swap(nums, index, i)
+                nums[index] = nums[i]
         
         return index + 1
-                
-    
-    def swap(self,nums: List[int], i , j):
-        nums[i], nums[j] = nums[j], nums[i]
 ```
 ---
 
@@ -167,3 +175,7 @@ class Solution:
 ### 參考資料
 
 - [Grandyang](https://www.cnblogs.com/grandyang/p/4329128.html)
+
+- [[LeetCode]26. Remove Duplicates from Sorted Array 中文](https://www.youtube.com/watch?v=nSYALuTFsP4)
+
+- [Array题型：双指针Two Pointers套路【LeetCode刷题套路教程2】](https://www.youtube.com/watch?v=86GHTcY0K4I)
