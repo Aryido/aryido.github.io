@@ -10,6 +10,9 @@ thumbnailImage: "/images/others/hotkey/command.jpg"
 categories:
   - develop
 
+tags:
+  - vscode
+
 comment: false
 
 reward: false
