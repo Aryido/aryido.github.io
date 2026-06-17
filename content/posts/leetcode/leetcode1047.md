@@ -22,7 +22,7 @@ reward: false
 
 <!--BODY-->
 
-> [1047. Remove All Adjacent Duplicates In String](https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/description/)
+> [1047. Remove All Adjacent Duplicates In String](https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/description/)，最直觀的還是 stack 方式解答。
 
 <!--more-->
 
@@ -44,13 +44,18 @@ class Solution:
 ```
 
 雙指針寫法我自己是覺得不直觀，但就當作練習，核心想法：
-- 先做出 chars 字母 array
-- index: 指向一個可寫入字母的位置
+- 先初始化一個長度和 s 一樣的 array
+  {{< alert info >}}
+  用雙指標，chars 必須先有空間。例如只寫 `chars = []`，又直接 `chars[index]`，會發生 IndexError
+{{< /alert >}}
+- index: 指向下一個可寫入字母的位置，也代表「目前答案長度」
+- for-loop 遍歷字串，每個字母放入 index 位置，比較 index 和 index-1 位置的字母，從而調整 index 的走向
 
 ```python
 class Solution:
     def removeDuplicates(self, s: str) -> str:
-        chars = list(s)
+        chars = [ "_" for _ in range(len(s))]
+        
         index = 0
         for i in range(len(s)):
             chars[index] = s[i]
@@ -63,11 +68,17 @@ class Solution:
         return ''.join(chars[:index])
 ```
 以 s = `abbaca` 為例：
-- `chars = [a(index)(i), b, b, a, c, a]` 
-- `chars = [a, b(index)(i), b, a, c, a]`
-- `chars = [a, b, b(index)(i), a, c, a]`，兩個 b 重複，index 回頭，變成 `chars = [a, b(index), b(i), a, c, a]`
-- `chars = [a, a(index), b, a(i), c, a]`，兩個 a 重複，index 回頭，變成 `chars = [a(index), a, b, a(i), c, a]`
-- `chars = [c, a(index), b, a, c(i), a]`
-- `chars = [c, a(index), b, a, c, a(i)]`
+- `chars = [a(index)(i), _, _, _, _, _]` 
+- `chars = [a, b(index)(i), _, _, _, _]`
+- `chars = [a, b, b(index)(i), _, _, _]`，兩個 b 重複，故 index 會回頭，變成 `chars = [a, b(index), b(i), _, _, _]`
+- `chars = [a, a(index), b, a(i), _, _]`，兩個 a 重複，index 回頭，變成 `chars = [a(index), a, b, a(i), _, _]`
+- `chars = [c, a(index), b, a, c(i), _]`
+- `chars = [c, a(index), b, a, c, _(i)]`
 
-最後答案是 "ca"
+最後答案是 `''.join(chars[:index])` 為 `ca`，時間空間複雜度均為 `O(N)`。
+
+{{< alert info >}}
+雙指標寫法也是在模擬 stack：
+- index 左邊的數字，相對於 stack 內保留下來的字元
+- index - 1 相對於 stack top
+{{< /alert >}}
