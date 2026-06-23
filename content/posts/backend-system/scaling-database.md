@@ -19,9 +19,8 @@ reward: false
 ---
 
 <!--BODY-->
-> 一旦使用者逐漸增加，線上應用流量開始因為業務而持續上升，多到系統無法承受時，就需要讓系統具備擴充能力，來要關注怎麼樣去做 scaling，或者說**可伸縮性 Scalability** ，其中又有「**垂直擴充 vertical scaling**」 和「**水平擴充 horizontal scaling**」 兩種擴充方向。
-> {{< image classes="fancybox fig-100" src="/images/backend-system/system-design/scalability/scalability-type.jpg" >}}
-> vertical scaling 是直接給機器換上像是更強的 CPU、更多的記憶體、更大的硬碟等等，但這個通常不是系統設計想考察的 ; 通常說的 scalability 都是指 horizontal scaling（簡稱 scaling），而此方式可以細分成以下三種方法 :
+> 一旦使用者逐漸增加，線上應用流量開始因為業務而持續上升，多到系統無法承受時，就需要讓系統具備擴充能力，來要關注怎麼樣去做 scaling，或者說**可伸縮性 Scalability** ，其中又有「**垂直擴充 Vertical scaling**」 和「**水平擴充 Horizontal scaling**」 兩種擴充方向。
+> Vertical scaling 是直接給機器換上像是更強的 CPU、更多的記憶體、更大的硬碟等等，但這個通常不是系統設計想考察的 ; 通常說的 Scalability 都是指 Horizontal scaling（簡稱 Scaling），而此方式可以細分成以下三種方法 :
 > - **增加副本** : 將資料複製成多份 Scale Cube ，放在更多的地方
 > - **資料分區** : 會在每台機器上會保留**一部分資料**
 > - **功能分區** : 將一個系統按照功能，去拆分為更小的子系統
@@ -29,6 +28,9 @@ reward: false
 <!--more-->
 
 ---
+
+{{< image classes="fancybox fig-100" src="/images/backend-system/system-design/scalability/scalability-type.jpg" >}}
+
 
 線上 Application 在現今時代，經常可藉由 cloud 擴展機器或者容器化技術如 k8s pod 擴容等等來應對高流量，但當這樣做時，若還是只有一個資料庫時，則多個 server 服務同時向單一資料庫做操作還是會不堪負荷。故 Database 也會需要 Scaling，這基本上主要有兩個方案 :
 - replication
@@ -75,7 +77,7 @@ Binlog 完整的記錄了數據庫的所有操作和狀態：
 現今常說的「資料庫復原」，底層關鍵都是使用 Binlog 將資料恢復到誤操作之前的狀態
 {{< /alert >}}
 
-特別注意 Binlog 的傳送是有延遲的，所以 Master 上的操作一定短時間內無法立刻反映在 Slave 上。解決最常用的方式是繞過問題的核心：
+Replication 提高了可用性(availability)和容錯能力(fault tolerance) ，但同時也使一致性(consistency)和協調性(coordination)變得複雜。注意 Binlog 的傳送是有延遲的，所以 Master 上的操作一定短時間內無法立刻反映在 Slave 上。解決最常用的方式是繞過問題的核心：
 
 - 在某些場景下，可以讓讀操作也強制在 master 上來執行。
   {{< alert info >}}
@@ -151,11 +153,10 @@ select wait_for_executed_gtid_set('8a4fefaa-a5d4-11ee-b295-c46516bca2d4:1-40035'
 
 # Sharding Database
 
-讀寫分離架構下，雖然能有效降低讀取的壓力，但是仍然是「單一主機寫」的架構，面對大量寫入流量或者單表上億的資料量，還是沒辦法解決的。在這個情況下就需要引入 「**Sharding**」 的機制。
+讀寫分離架構下，僅適合大量讀、少量寫的情境，雖然能有效降低讀取的壓力，但是仍然是「單一主機寫」的架構，面對大量寫入流量或者單表上億的資料量，還是沒辦法解決的。在這個情況下就需要引入 「**Sharding**」 的機制，這也可以被叫資料庫分割 (database partitioning)。
 
-所謂 Sharding 的意思，就是把原本集中在一台機器的資料分散放到多台機器上，對應之前說到的資料分區(Data Partition)分類。
 
-當需要存取或讀取資料的時候，可以只操作擁有對應資料的分片，而不需要跟所有機器進行通信。其中又有「**垂直分散 vertical sharding**」 和「**水平分散 horizontal sharding**」 兩種方向：
+所謂 Sharding 的意思，就是把原本集中在一台機器的資料分散放到多台機器上，對應之前說到的資料分區(Data Partition)分類。當需要存取或讀取資料的時候，可以只操作擁有對應資料的分片，而不需要跟所有機器進行通信。其中又有「**垂直分散 vertical sharding**」 和「**水平分散 horizontal sharding**」 兩種方向：
 - Vertical sharding 就是把不同公用的 table 放到不同的機器上，把資料庫按照 **功能分區** 進行分庫，例如用戶、訂單、產品、等業務類型進行拆分。額外的好處是即使個別 Database 發生故障，也能有效隔離不同業務也同時受創的風險。
 
 - Horizontal sharding 則是透過某種規則，將同一個 table 的不同筆資料打散到不同的機器上。隨著業務的發展，即使是單一業務也可能達到單台資料庫處理的上限，這時就可以開始考慮這樣的「橫向拆表」。一般情況下，好的 sharding 規則能讓達到最極致的分散擴充效果。
