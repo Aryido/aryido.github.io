@@ -21,9 +21,9 @@ reward: false
 <!--BODY-->
 > 一旦使用者逐漸增加，線上應用流量開始因為業務而持續上升，多到系統無法承受時，就需要讓系統具備擴充能力，來要關注怎麼樣去做 scaling，或者說**可伸縮性 Scalability** ，其中又有「**垂直擴充 Vertical scaling**」 和「**水平擴充 Horizontal scaling**」 兩種擴充方向。
 > Vertical scaling 是直接給機器換上像是更強的 CPU、更多的記憶體、更大的硬碟等等，但這個通常不是系統設計想考察的 ; 通常說的 Scalability 都是指 Horizontal scaling（簡稱 Scaling），而此方式可以細分成以下三種方法 :
-> - **增加副本** : 將資料複製成多份 Scale Cube ，放在更多的地方
-> - **資料分區** : 會在每台機器上會保留**一部分資料**
-> - **功能分區** : 將一個系統按照功能，去拆分為更小的子系統
+> - **增加副本 replication** : 將資料複製成多份 Scale Cube ，放在更多的地方
+> - **資料分區 sharding** : 會在每台機器上會保留**一部分資料**
+> - **功能分區 functional partitioning** : 將一個系統按照功能，去拆分為更小的子系統，也稱 Federation
 
 <!--more-->
 
