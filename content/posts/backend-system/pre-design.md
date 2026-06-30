@@ -19,7 +19,7 @@ reward: false
 > 在做 System Design 時，可以有幾個階段來協助思考，分別是：
 > - 釐清探索需求 **Requirement**，而對於產品有所謂的 :
 >    - **Functional** 功能需求 : 是從使用者的角度來看，以「User 要能夠...」來思考產品本身要達到的功能
->    - **Non-Functional** 非功能需求 : 從系統的角度來看，以「系統要能夠...」來思考，可以把這類需求理解成「品質」要求，例如 : Scalability、Reliability 、高 Performance 低 latency、可承受高 QPS 等等
+>    - **Non-Functional** 非功能需求 : 從系統的角度來看，以「系統要能夠...」來思考，可以把這類需求理解成「品質」要求，例如 : Scalability、Reliability 、高 Performance 低 latency、可承受高 QPS 、成本效益等等
 > - 架構 **High-Level Architecture Design** : 給初步的系統架構，依照**資料流**把會用到的相關元件展示出來，思考每一個部件優缺點，並概略把流程串起來
 > - **Detail Deep dive** : 更深入的說明要用的工具、算法、資料結構、框架，流程上資料怎麼進入、儲存、處理、輸出格式等等
 > 
@@ -59,7 +59,7 @@ reward: false
 影片相關的話，可以去了解 ffmpeg 之類的 video 編解碼相關軟體
 {{< /alert >}}
 
-這種類型最常見的問題是：「**可能會在極短時間湧入極大量的流量**」，且社群媒體系統都偏向 read-heavy system，經常會使用 cache 和 pre-build 優化檢索，需專注如何處理尖峰時段的吞吐量問題。
+這一類的系統，基本上 function requirement 就是處理 Data 「Flow In」/「Flow Out」這兩件事情，具體來說就是使用者 upload 自己的東西，其他人可以 read 這種需求，而這種類型最常見的問題是：「**可能會在極短時間湧入極大量的流量**」，且系統都偏向 read-heavy system，經常會使用 cache 和 pre-build 優化檢索，需專注如何處理尖峰時段的吞吐量問題。
 
 {{< alert info >}}
 網頁相關服務，壓縮到 latency 壓到 200ms 以下是比較好的體驗
