@@ -22,7 +22,7 @@ canonifyurls = true
 # ------
 # Author
 # ------
-[author]
+[params.Author]
   name = "李昀陽 YunYang Lee"
   bio = "Welcome to my Tech Note. You can read some of the chapters below."
   job = "Software Engineer"
@@ -79,6 +79,9 @@ canonifyurls = true
   thumbnailImage = true
   thumbnailImagePosition = "left"
   autoThumbnailImage = true
+
+  [params.footer]
+    copyright = "李昀陽 YunYang Lee"
 
   [[params.customJS]]
     src = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"
