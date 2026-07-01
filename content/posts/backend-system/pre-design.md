@@ -17,34 +17,43 @@ reward: false
 
 <!--BODY-->
 > 在做 System Design 時，可以有幾個階段來協助思考，分別是：
-> - 釐清探索需求 **Requirement**，而對於產品有所謂的 :
->    - **Functional** 功能需求 : 是從使用者的角度來看，以「User 要能夠...」來思考產品本身要達到的功能
->    - **Non-Functional** 非功能需求 : 從系統的角度來看，以「系統要能夠...」來思考，可以把這類需求理解成「品質」要求，例如 : Scalability、Reliability 、高 Performance 低 latency、可承受高 QPS 、成本效益等等
-> - 架構 **High-Level Architecture Design** : 給初步的系統架構，依照**資料流**把會用到的相關元件展示出來，思考每一個部件優缺點，並概略把流程串起來
-> - **Detail Deep dive** : 更深入的說明要用的工具、算法、資料結構、框架，流程上資料怎麼進入、儲存、處理、輸出格式等等
-> 
+> - 釐清探索需求 **Requirement**，其中有還有分**功能需求** 和 **非功能需求** 
+> - 架構 **High-Level Architecture Design**
+> - **Detail Deep dive**
+>  
+> {{< image classes="fancybox fig-100" src="/images/backend-system/system-design/interview.jpg" >}}
 > 除了以上事情之外，其實定義出「**什麼不在討論範圍內 (out of scope)**」也是非常重要的，可以展示出「排定優先順序的能力」。雖然 System Design 範圍很大，但其實也是有不少**模板和套路**可以練習。可以多看看各式各樣系統的 high-level 設計，順便把其中自己不熟悉的知識補上。
 
 <!--more-->
 
 ---
 
-{{< image classes="fancybox fig-100" src="/images/backend-system/system-design/interview.jpg" >}}
+# 前言
+
+對於產品 **Requirement**，有所謂的 :
+   - **Functional Requirement** 功能需求 : 這是從使用者的角度來看，以「User 要能夠...」來思考產品本身要達到的功能
+   - **Non-Functional Requirement** 非功能需求 : 這裏是從系統的角度來看，以「系統要能夠...」來思考，可以把這類需求理解成「品質」要求，例如 : Scalability、Reliability 、高 Performance 低 latency、可承受高 QPS 、成本效益等等
+   {{< alert info >}}
+如果 service 能夠以資源成比例增加的方式提升 Performance ，則稱該服務具有 Scalability。
+- Performance Problem : 表示系統對於單一使用者來說運作緩慢
+- Scalability Problem : 在單一使用者使用時速度很快，但在高負載下速度會變慢
+{{< /alert >}}
+  {{< alert info >}}
+可用性與一致性 Availability vs Consistency，這邊可以參考 [CAP theorem](https://www.youtube.com/watch?v=vVDhlwXdVb8)，在分散式電腦系統中，網路保證不穩定，因此一定會有分區容錯 Partition Tolerance，故需要在軟體層面上權衡 Consistency 和 Availability。
+{{< /alert >}}
+
+給初步的 **High-Level Architecture Design** 系統架構，依照**資料流**把會用到的相關元件展示出來，思考每一個部件優缺點，並概略把流程串起來 ; 與此相對的是 **Low-Level Architecture Design**，針對一個主題 **Detail Deep dive**，更深入的說明要用的工具、算法、資料結構、框架，流程上資料怎麼進入、儲存、處理、輸出格式等等
+
+{{< image classes="fancybox fig-100" src="/images/backend-system/system-design/hld-lld.jpg" >}}
 
 系統設計從職能分工上也會分成：
 - 前端系統設計
 - 後端系統設計
 
-兩者會有重疊的部分，但又有其專門的地方。例如有一些前端才會要特別側重的點 : UI呈現、使用體驗、無障礙化 (a11y)、國際化 (i18n)等等，還可以參考 [The Elements of UI Engineering](https://overreacted.io/the-elements-of-ui-engineering/) ，這些主題對前端工程師重要，但一般通用系統設計就不會問到這類問題。對於後端系統設計則主要包括 Horizontal scaling、Caching、Load balancing、Database replication/sharding 、非同步、避免單點故障、監控等等，甚至是「節約架構 (The Frugal Architect)」等等，還需要分析 high-level trade-offs ，例如 : 
+兩者會有重疊的部分，但又有其專門的地方。例如有一些前端才會要特別側重的點 : UI呈現、使用體驗、無障礙化 (a11y)、國際化 (i18n)等等，還可以參考 [The Elements of UI Engineering](https://overreacted.io/the-elements-of-ui-engineering/) ，這些主題對前端工程師重要，但一般通用系統設計就不會問到這類問題。
 
-- 效能與可擴展性 Performance vs Scalability
-  > 如果 service 能夠以資源成比例增加的方式提升 Performance ，則稱該服務具有 Scalability。
-  > - Performance Problem : 表示系統對於單一使用者來說運作緩慢
-  > - Scalability Problem : 在單一使用者使用時速度很快，但在高負載下速度會變慢
-
-- 可用性與一致性 Availability vs Consistency
-  > 可以參考 [CAP theorem](https://www.youtube.com/watch?v=vVDhlwXdVb8)，在分散式電腦系統中，網路保證不穩定，因此一定會有分區容錯 partition tolerance，故需要在軟體層面上權衡consistency 和 Availability。
-
+對於後端系統設計則主要包括 Horizontal scaling、Caching、Load balancing、Database replication/sharding 、非同步、避免單點故障、監控等等，甚至是和省錢相關的「節約架構 (The Frugal Architect)」等等，還需要分析 high-level trade-offs。
+  
 ---
 
 # 系統設計模板類
@@ -61,6 +70,8 @@ reward: false
 
 這一類的系統，基本上 function requirement 就是處理 Data 「Flow In」/「Flow Out」這兩件事情，具體來說就是使用者 upload 自己的東西，其他人可以 read 這種需求，而這種類型最常見的問題是：「**可能會在極短時間湧入極大量的流量**」，且系統都偏向 read-heavy system，經常會使用 cache 和 pre-build 優化檢索，需專注如何處理尖峰時段的吞吐量問題。
 
+目前眾多系統設計架構中，比較公認入門系統設計範例，大概就是社群平台系統設計，可以先熟悉。
+
 {{< alert info >}}
 網頁相關服務，壓縮到 latency 壓到 200ms 以下是比較好的體驗
 {{< /alert >}}
@@ -73,7 +84,7 @@ reward: false
 - 聊天室: 即時雙向溝通
 - 直播平台: 實時影音傳輸
 
-這種類型概念上是「即時資料雙向傳輸」應用場景，這時候就會 WebSocket 這種傳輸協定 protocol。最好可以有實作或應用 Polling、Long-Polling、WebSocket 的經驗。
+這種類型概念上是「即時資料雙向傳輸」應用場景，這時候就會 WebSocket 這種傳輸協定 protocol。最好可以有實作或應用 Polling、SSE 伺服器推送事件 (Server-Sent Events)、WebSocket 的經驗。
 
 ### 搜尋、發現，地理地圖位置相關
 讓使用者快速找到「附近的、適合的、現在可用的」目標，這一類的本質通常是搜尋、排序、即時狀態更新 :
@@ -81,7 +92,7 @@ reward: false
 - 訂房服務
 - 搜尋系統
 
-共通重點有 Search index ; Geo index 範圍查詢 ; Ranking 依距離、價格、可用性、相關性排序。想像一下 Uber ，用戶請求乘車，平台必須盡快找到附近的司機，這就是使用地理空間索引和記憶體位置儲存的好時機：
+共通重點有 Search index、Geo index 範圍查詢 、Ranking(依距離、價格、可用性、相關性排序)。想像一下 Uber ，用戶請求乘車，平台必須盡快找到附近的司機，這就是使用地理空間索引和記憶體位置儲存的好時機：
 - 司機會按地理區域不斷分組，因此可以在幾毫秒內找到附近的匹配項
 - 司機位置資訊高度動態，且會被持續查詢，故將即時位置資料保存在記憶體中，以最大限度地減少查找延遲
   {{< alert info >}}
@@ -133,10 +144,6 @@ reward: false
 - Tool calling / agent workflow
 - Model routing
 - GPU batching / throughput optimization -->
-
-目前眾多系統設計架構中，比較公認入門系統設計範例，大概就是社群平台系統設計，之後會先以此為基礎來討論 :
-
-> {{< image classes="fancybox fig-100" src="/images/backend-system/system-design/social-web.jpg" >}}
 
 ---
 

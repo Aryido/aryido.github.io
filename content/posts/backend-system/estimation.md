@@ -16,7 +16,7 @@ reward: false
 ---
 
 <!--BODY-->
-> back-of-the-envelope calculations 中文翻譯是「**粗略估算**」，英文字面上的意思就是在一張信封後面就能隨手計算這樣，雖然簡單但卻**一定要有一些事實根據來判斷和計算數字**。真的開始在系統設計之前，會跟面試官或者是 PM 或者是自己調查，得到一些參數比如說 Daily active user 有多少等等的，再來會需要由這些假設的參數來「估算一下」系統性能會需要承擔多少，例如有以下常見的指標: 
+> back-of-the-envelope calculations 中文翻譯是「**粗略估算**」，英文字面上的意思就是在一張信封後面就能隨手計算這樣，雖然簡單但卻**一定要有一些事實根據來判斷和計算數字**。真的開始在系統設計之前，應該先得到一些參數，再來會需要由這些假設的參數來當定錨點，「估算一下」系統性能會需要承擔多少，例如有以下常見的指標: 
 > - **QPS(Queries Per Second)**
 > - **Latency**
 > - **Storage Size**
@@ -29,14 +29,14 @@ reward: false
 ---
 
 # 每個人都應該知道的一些數字
-蠻多數值是取自 [Google Pro Tip: Use Back-of-the-envelope-calculations to Choose the Best Design](https://highscalability.com/google-pro-tip-use-back-of-the-envelope-calculations-to-choo/)給的數值，以下列出一些：
+蠻多數值是取自 [Google Pro Tip: Use Back-of-the-envelope-calculations to Choose the Best Design](https://highscalability.com/google-pro-tip-use-back-of-the-envelope-calculations-to-choo/) 給的數值，以下列出一些：
 - `L1 Cache 0.5 ns`：如果換算成日常尺度，大約是 0.5 秒
 - `L2 Cache 7 ns`：如果換算成日常尺度，大約是 7 秒
 - `DRAM 100 ns`： 如果換算成日常尺度，大約是 100 秒
 - `SSD 150,000 ns`：如果換算成日常尺度，大約是 1.7 天
 - `HDD 10,000,000 ns`： 如果換算成日常尺度，大約是 16.5 週
   {{< alert info >}}
-HDD的存取速度大約比 SSD 慢 20 倍
+承上大概可以大概推估， HDD 的存取速度大約比 SSD 慢 20 倍，數量級上是吻合的
 {{< /alert >}}
 - `Network Storage 約 30,000,000 ns`：如果換算成日常尺度，大約是 11.4 個月
 
@@ -60,8 +60,9 @@ HDD的存取速度大約比 SSD 慢 20 倍
 | Cross-country    | 40–80 ms            |
 | Cross-continent  | 100–200 ms          |
 
-這就是為什麼全球應用程式會在邊緣位置、CDN 和區域部署方面投入大量資金的原因。
-
+{{< alert info >}}
+以上數字也可以了解，為什麼對於全球級的 APP 應用程式，都會在邊緣位置、CDN 和區域部署方面投入大量資金的原因
+{{< /alert >}}
 
 再來是一些計算時會用的一些推估數值：
 
@@ -74,18 +75,25 @@ HDD的存取速度大約比 SSD 慢 20 倍
 database 對於寫入，因為要建立索引所以會比讀取的時候慢，大約會低上一個數量級
 {{< /alert >}}
 -  單機 MySQL database 在儲存 `100 萬` row 以內的資料，其實都沒什麼問題，但差不多到 100 萬這個數字後，就可以開始考慮分庫分表了
-- 對於參數的假設，如果有真實產品支持的資料，提出來會蠻有說服力的，例如說 twitter：
-  - 每則推文大小為 `140 個字元`，故有 `280 bytes`
-  - metadata 為 `30 bytes`
+- 作為 in-memory storage 服務器 memory 基本都 `64 GB` 起跳，單台在 `100 GB` 內都算正常，並且使用率達到 `90%` 也都算可以接受的
+
+
+
+{{< alert success >}}
+對於參數的假設，如果有真實產品支持的資料，提出來會蠻有說服力的，例如說 twitter：
+- 每則推文大小為 `140 個字元`，故有 `280 bytes`
+- metadata 為 `30 bytes`
+{{< /alert >}}
 
 
 以下是一些經驗法則數值：
 - 峰值 peak 經常假設為一般數值的 `3～5 倍`
 - 大部分業務可以假設是 `80％ 讀取 20 % 寫入`
 - 熱門與非熱門的比率，也經常使用 `80/20 法則`
+
+對於一些文章為主的社群平台，如 X-twitter ; facebook 等等
 - 約 20% 的文章文包含圖片，每張照片：`200 KB`
 - 約 10% 的文章包含影片，每支影片：`2 MB`，其中只有 30% 的影片會被點開觀看
-- 作為 in-memory storage 服務器 memory 基本都 `64 GB` 起跳，單台在 `100 GB` 內都算正常，並且使用率達到 `90%` 也都算可以接受的
 
 
 # Estimation 範例
