@@ -1,5 +1,5 @@
 ---
-title: "Video Sharing Platform: 進階分析上傳影片"
+title: "Video Sharing Platform: 影片上傳技術細節"
 
 author: Aryido
 
@@ -19,7 +19,13 @@ reward: false
 ---
 
 <!--BODY-->
-> 前面有討論了 Video Sharing Platform 大概的 Data FlowIn 設計，但是還可以繼續深入討論「影片上傳」這個部分細節和實作，並不只是簡單的把檔案寫進儲存系統就好了而已，還牽涉到**安全性把控**如 : User 驗證、Data 驗證、error handling、資料轉換、 是否影響 server 處理能力等等，應把它視為一條長流程、非同步、且容易受到網路品質影響的工作，而不是單次同步請求。
+> [前面有討論了 Video Sharing Platform 大概的 Data FlowIn 設計](https://aryido.github.io/posts/video-streaming/backend/)，接著繼續深入「影片上傳」這個部分的細節和實作。並不只是簡單的把檔案藉由後端 server 寫進儲存系統而已，還牽涉到如：
+> - **安全性相關** : User 驗證、Data 驗證等等
+> - **錯誤處裡**: 上傳網路中斷、資料格式不符、error handling
+> - **資料轉換**: 對應需求，可能對資料做前處理或後處理
+> - **系統能力**: Latency 或者是否影響 server 穩定
+> 
+> 應把它視為一條長流程、非同步、且容易受到網路品質影響的工作，而不是單次同步請求，這樣才能面對突發狀況。
 
 <!--more-->
 ---
@@ -42,17 +48,17 @@ flowchart LR
     W1 --> blob_storage[Blob Storage: <br/> processed video]
     W1 --> metadata_storage
 ```
-接下來針對流程細節再做些說明：
+接下來針對流程細節再做進一步補充：
 
-#  Upload Flow  上傳流程細節
+#  Upload Flow  上傳影片流程細節
 如何處理檔案上傳，現在已經有一些公認的準則了 :
-- **一定不要將整個大檔案，直接載入後端伺服器的 memory 中**
-- **為了確保安全性，使用有效期短、作用範圍限定 pre-signed URL 直接把檔案上傳到 Blob storage**
-- **為了支援不穩定的連接，上傳操作應採用分段上傳和斷點續傳的方式**
+- **最好不要將整個大檔案，直接載入後端伺服器的 memory 中**
+- **使用有效期短、作用範圍限定 pre-signed URL 直接把檔案上傳到 Blob storage**
+- **為了支援不穩定的連接，上傳操作採用「分段上傳」和「斷點續傳」**
 
 ### Client 從 Upload Service 取得 Tmp Blob Storage 的 pre-signed URL 後將影片上傳
 
-這裏規劃一個 TMP Blob Storage 去存原始 video，例如說使用 AWS S3 創建一個臨時 bucket 將原始影片上傳到這裡儲存。且為了確保安全性
+這裏規劃一個 Tmp Blob Storage 去存原始 video，例如說使用 AWS S3 創建一個臨時 bucket 將原始影片上傳到這裡儲存，且為了確保安全性 :
 - 使用 [presigned URL](https://blog.bitipcman.com/post/s3-presign-url-upload/) 來獲得臨時 object storage 存取權限
 - presigned URL 另外還可以設定過期時間，當有效期超過之後，用 url 存取文件會提示 403。
 
@@ -68,7 +74,7 @@ s3_client.generate_presigned_post(
   ExpiresIn=expire_after_sec, # 代表 pre-signed URL 上授權可以用多久，url 多久後失效
 )
 ```
-pre-signed URL 由後端 Upload Service 來頒發，而設定的參數值也會做簽名以防篡改。
+pre-signed URL 由後端 Upload Service 來頒發，其設定的參數值 `generate_presigned_post` 函數會做簽名以防篡改。
 
 此外通常 Upload Service 前面會**加一個 auth/ratelimit service 來對做 client 詳細認證**，例如：
 - 短時間調用太多次就暫時不給 url
@@ -84,7 +90,13 @@ flowchart LR
     upload --> |return presigned URL| client
     
 ```
-以上做法可以讓 upload 安全性增加不少。另外**頒發 pre-signed URL 之後也要在 metadata storage 內寫入相關訊息**，代表影片的 init 初始化。
+以上做法可以讓 upload 安全性增加不少。
+
+
+另外**頒發 pre-signed URL 之後也要在 metadata storage 內寫入相關訊息**，代表影片的 init 初始化，主要原因是：pre-signed URL 的頒發本身只代表「後端允許某個 client 直接上傳到 object storage」，**不代表系統內已經正式建立一筆可追蹤的 upload**，先建立 upload 的 init 狀態，**後續整個流程才有一致的可參考點**，後續處理才有依據，也就是 : 
+- 狀態管理：可以明確區分 init、done、failed，而不是只看 bucket 裡有沒有檔案
+- 安全控制：若 metadata 中沒有對應初始化紀錄，即使 bucket 出現檔案，也可以視為非預期物件，不進行後續流程
+- 過期清理：若 URL 已頒發但 client 沒有真的上傳完成，可依 init 紀錄做清理
 
 {{< alert success >}}
 關於 video metadata 應該用 Relational Database 儲存 ; 還是用 NoSQL 去存呢？
@@ -99,7 +111,7 @@ flowchart LR
 
 ### 影片完整上傳到 Tmp Blob Storage 之後，Storage 發出 Task Event，然後 Worker 接收到 Event 後會對影片進行處理
 
-這邊提到「**影片完整上傳**」到 Tmp Blob Storage，所謂的 **完整上傳** 是什麼意思呢？因為考慮到「**上傳影片 Latency**」 問題，故「**上傳的方式**」會有不同手法，例如 :
+這邊提到「**影片完整上傳**」到 Tmp Blob Storage，那所謂的 **完整上傳** 是什麼意思呢？因為考慮到「**上傳影片 Latency**」 問題，故「**上傳的方式**」會有不同手法，例如 :
 
 - ##### Client 把 video 切成小份 chunk 上傳到 Tmp Blob Storage
 
@@ -160,7 +172,7 @@ client = boto3.client(
 
 無論是哪個上傳方式，最後當影片完整成功儲存到 S3 之後，都會有[ event 事件發出通知](https://docs.aws.amazon.com/zh_tw/AmazonS3/latest/userguide/enable-event-notifications.html)，從高層設計上，「由 storage 發出 Task Event 給 message queue 中間件，而 worker pool 內的 worker 進行異步處理 queue 內 Task」，前面整個敘述架構為**非同步系統**。
 
-這在實作上有非常多的選擇，這裏就簡單參考 [Tutorial: Batch-transcoding videos with S3 Batch Operations](https://docs.aws.amazon.com/AmazonS3/latest/userguide/tutorial-s3-batchops-lambda-mediaconvert-video.html#batchops-s3-step4) 這個 AWS 官方教學簡介，並再把其架構進一步簡化，拿掉 S3 batch 組件，則架構和流程就是:
+這在實作上有非常多的選擇，這裏就不自己實作了，決定使用現成雲端服務 AWS Elemental MediaConvert，參考 [Tutorial: Batch-transcoding videos with S3 Batch Operations](https://docs.aws.amazon.com/AmazonS3/latest/userguide/tutorial-s3-batchops-lambda-mediaconvert-video.html#batchops-s3-step4) 這個 AWS 官方教學簡介，並再把其架構再進一步簡化，拿掉 S3 batch 組件，則架構和流程就是:
 
 ```mermaid
 flowchart LR
@@ -178,8 +190,10 @@ flowchart LR
 ```
 
 {{< alert info >}}
-非同步系統的 message queue 和 worker pool，整個實作用 Lambda 和 AWS Elemental MediaConvert 實現
+high-level design 的非同步系統的 message queue 和 worker pool，整個實作用 AWS Lambda 和 AWS Elemental MediaConvert 實現
 {{< /alert >}}
+
+所以流程再下一步就是：
 
 ### S3 Source Bucket 發出 Task Event 後，藉由 AWS Elemental MediaConvert 進行影片轉檔，再把結果儲存到 S3 Destination Bucket
 
@@ -189,7 +203,14 @@ flowchart LR
 - `AWS Elemental MediaConvert` 根據 job 內容排程執行，轉出設定檔案
 - 最後其結果儲存到 `S3 Destination Bucket`
 
+
+{{< alert info >}}
 如果不想使用 `AWS Elemental MediaConvert`，就會需要自己研究 FFmpeg，然後架設集群去轉檔，這方面也可以做很多研究。
+{{< /alert >}}
+
+{{< alert info >}}
+Netflix 在 2015 年從固定比特率編碼(content-aware encoding)轉向按內容編碼(per-title or per-shot encoding)，在不損失明顯畫質的情況下，頻寬節省高達 20%，缺點是轉碼過程中需要耗費更多時間
+{{< /alert >}}
 
 ---
 
@@ -203,9 +224,7 @@ flowchart LR
 - `EventBridge` rule 中定義了 MediaConvert 的事件
 - 創建關於 MediaConvert 的事件 `SNS topic`
 - 新增 `Lambda` 並訂閱 `SNS topic`
-- 觸發 `Lambda` 之後：
-  - 回傳狀態給 client
-  - 寫入狀態到 metadata table 內
+- 轉檔完成會觸發 `Lambda` 
 
 以上架構如下：
 
@@ -232,19 +251,22 @@ flowchart LR
     lambda2[Lambda: Notification] --> |subscribe| t1 
     t1 --> lambda2
     
-    lambda2 --> receive[Receive Service]
-    receive --> client
-    receive --> metadata_storage[SQL Database: <br/> metadata]
+    lambda2 -->|Send notification|r((<br/>))
 ```
 影片轉檔完成之後，由於有在 `EventBridge` rule 中定義了 MediaConvert 的事件，當 MediaConvert job 有變動時會送出該事件到指定 `SNS topic` ，然後 `Lambda: Notification` 因為有訂閱該 `SNS topic`，所以觸發了啟動。
 {{< alert warning >}}
 為了讓 MediaConvert 轉檔成功的消息能被發出來，這邊又多建立了 EventBridge、SNS topic、Lambda 。有時候使用雲端功能時，實作複雜性也會上升呢
 {{< /alert >}}
 
-`Lambda: Notification` 要做的事情，是要讓 client 能感知到影片已經處理完了這件事情，在這裡 lambda 可擔任一個簡單的 dispatcher，把任務傳給 `Receive Service` 來做。
+`Lambda: Notification` 要後續的任，是要讓 client 能感知到影片已經處理完了這件事情，在這裡 lambda 可以簡單一點，只做 dispatcher，把任務傳給 `Receive System` 來做。`Receive System` 要做什麼呢？ 主要任務至少要做：
+- 轉檔狀態寫入  metadata storage
+- 通知 client 端轉檔任務完成
 
-> `Receive Service` 要做什麼事情呢？
+{{< alert warning >}}
+先寫 DB，再發通知，不要反過來。client 收到通知後，最好再 call 一次 status API 確認最終狀態
+{{< /alert >}}
 
+##### 轉檔狀態寫入  metadata storage
 回想一下之前在一開始上傳影片的時候，有提到「頒發 pre-signed URL 後要在 metadata storage 內寫入相關訊息，代表影片的 init 初始化」，而這裡就**需要在 metadata storage 內寫入影片最後轉檔成功/失敗的訊息**。
 
 > 那 metadata table 要更新什麼呢？ 
@@ -264,6 +286,14 @@ flowchart LR
     Retry -->|yes| Failed
     Retry -->|no| Ready
 ```
+
+##### 通知 client 端轉檔任務完成
+最後的通知方式也是一個系統設計，簡單可以分成：
+- **Polling**: client 定時打 GET /videos/{video_id}/status，雖然最簡單但缺點是不即時，也會多一些 request
+- **WebSocket**: client 上傳影片時，要訂閱 video_id
+- **SSE**: 標準「伺服器單向通知 client」場景
+
+通常 Client 端可能會有比較多情形會導致連線停掉，所以基本上一定要有 Polling status API 做最後保底其他時候可以靠 WebSocket 和 SSE 來提升體驗。
 
 ---
 
