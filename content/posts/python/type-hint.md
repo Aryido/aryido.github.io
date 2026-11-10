@@ -3,7 +3,7 @@ title: "Python : Type Hint"
 
 author: Aryido
 
-date: 2025-04-26T14:39:56+08:00
+date: 2026-04-26T14:39:56+08:00
 
 thumbnailImage: "/images/python/python-logo.jpg"
 
@@ -12,6 +12,7 @@ categories:
   - python
 
 tags:
+  - type-hint
 
 comment: false
 
