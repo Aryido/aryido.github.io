@@ -39,9 +39,18 @@ reward: false
 ---
 
 # 時間複雜度(Time Complexity)
-想要描述一個演算法執行速度有多快，直覺的方式是測量時間。但是由於執行時間深受機器規格與實作方式影響，故傾向的分析是**統計演算法步驟數**。
+想要描述一個演算法執行速度有多快，直覺的方式是測量時間。但是由於執行時間會受「機器規格」、「coding 語言」與「實作方式」影響，目前比較公平的分析是**統計演算法步驟數**。
 
-- **Recursion tree**的時間複雜度，主要注意**節點的單一子問題代價**，是指每次函數執行中，除去遞歸調用以外的代價。明確了單一代價，整個遞歸樹的總代價就可以計算了，就是**樹中所有節點的代價和**。
+這裡比較要提醒的是 **Recursion tree** 的時間複雜度，主要注意**節點的單一子問題代價**，是指每次函數執行中，除去遞歸調用以外的代價。明確了單一代價，整個遞歸樹的總代價就可以計算了，就是**樹中所有節點的代價和**。
+
+在 LeetCode、HackerRank 等等平台上解決問題時，有時候會先嘗試用暴力破解法，但即使邏輯正確，仍可能因 TLE（時間超過）錯誤而失敗。這裡有個經驗法則：
+{{< image classes="fancybox fig-100" src="/images/algorithm/complexity/estimate-complexity.jpg" >}}
+
+看圖大概可以知道，若解法超過 `10^8` 運算次數，基本上都會超時失敗 ; 若是 `10^5`，那解法必須在大約 `O(n)` 或 `O(n log n)` 的時間內執行，超過 `O(n^2)` 甚至沒有優化 `O(n^2)`大概也會失敗。
+
+{{< alert info >}}
+演算法競賽和刷題社群常用的粗略估計 Python 每秒約 `10^7` 次簡單運算（C++ 通常估 `10^8～10^9`）
+{{< /alert >}}
 
 ---
 
@@ -61,7 +70,7 @@ reward: false
 
 假設 n 為足夠大時 : ```
 1 < logn < n < nlogn < n^2 < 2^n < n!```
-{{< image classes="fancybox fig-100" src="/images/algorithm/big-o-1.jpg" >}}
+{{< image classes="fancybox fig-100" src="/images/algorithm/complexity/big-o-1.jpg" >}}
 如上圖所示，可以知道 Big-O 複雜度越高，隨著數據規模增長，效率就會越來越差，因此 n 越大時，寫好演算法就越重要。
 
 - **Leetcode 509 Fibonacci**
@@ -100,7 +109,7 @@ reward: false
 
 ## Big O Notation 表格
 
-{{< image classes="fancybox fig-100" src="/images/algorithm/big-o-2.jpg" >}}
+{{< image classes="fancybox fig-100" src="/images/algorithm/complexity/big-o-2.jpg" >}}
 
 | Big O Notation | 別名             | 常見演算法           |
 | -------------- | ---------------- | -------------------- |
@@ -124,3 +133,5 @@ reward: false
 - [Hank Guo's Blog](https://hankguo93.com/2021/11/05/%E7%A9%BA%E9%96%93%E8%A4%87%E9%9B%9C%E5%BA%A6-space-complexity/)
 
 - [Algorithm Analysis](https://web.ntnu.edu.tw/~algo/AlgorithmAnalysis.html)
+
+- [How to Avoid TLE (Time Limit Exceeded) Errors in Coding Problems](https://medium.com/@bpratikshya30/how-to-not-get-a-tle-8159bb06c3bd)

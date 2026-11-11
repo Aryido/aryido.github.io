@@ -151,6 +151,11 @@ Java 和 Python 分別在「指針移動之前」和「指針移動之後」，�
 - 排序的時間複雜度為 `O(NlogN)`
 - for loop 遍歷 nums，且內部有一個 while loop 再遍歷 nums，是 `O(N^2)`
 
+{{< alert info >}}
+那一直以來 3SUM 的時間複雜度，都被公認是 `O(N^2)`，無法再壓下去。但在 2026/10/09 號 Anthropic 使用 AI 把複雜度降到 `O(N^1.9992)`
+{{< /alert >}}
+
+
 ##### 空間複雜度：`O(1)`
 
 演算法過程只需要存儲 `i, j, k` ，花費`O(1)`空間而已。
@@ -204,3 +209,4 @@ class Solution:
 
 - [[LeetCode]15. 3Sum 中文](https://www.youtube.com/watch?v=2tbi1W7ce1c&t=378s)
 - [[LeetCode 解題紀錄] 15. 3Sum](https://medium.com/%E6%8A%80%E8%A1%93%E7%AD%86%E8%A8%98/leetcode-%E8%A7%A3%E9%A1%8C%E7%B4%80%E9%8C%84-15-3sum-196ddd83efd8)
+- [三個數加起來等於 0，指數 2 終於掉了 0.0008：預印本宣稱推翻 3SUM 與 APSP 假說，從 1962 年的一頁論文到 Claude｜AI 寫的數學](https://www.youtube.com/watch?v=GEQ8qyIaGdc)
