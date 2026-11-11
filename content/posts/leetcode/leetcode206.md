@@ -224,7 +224,7 @@ class Solution:
 - 「head 的下一個 Node 的 next ，指向 head 本身」，這個相當於把當前正在進行的節點，變成反轉後 Linked List 最尾 Node
 - 因為是回溯的操作，所以當前正在進行的結點的下一個結點，總是在上一輪被移動到最尾了
 - 再把當前 Node，原本連結到下一個節點的路徑切斷。若沒有這一個操作，例如要反轉，`1 -> 2 -> 3`，最後會得到 `3 -> 2 <-> 1`，**在反轉的鏈表的末尾得到一個循環**，當試圖遍歷這個鏈表時，會陷入無窮循環
-
+- `reversed` 從最底層拿到 node 之後，每一層都沒改它，只是往上傳，它的作用就是記住「整條反轉後的 linked-list 從哪開始」。如果改成 return head，最外層會拿到一開始的 head，但 head.next 已經是 None 代表最末端了，所以你只會得到一個節點，其他節點全部找不到。
 
 {{< alert success >}}
 一般對於 Linked List 都是使用 **Bottom up recursion**，因為 Recursion 其實是 **call stack** 概念，是**先進後出的概念**，這個對於解從後往前的 Linked List 題目非常適合。
