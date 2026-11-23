@@ -23,7 +23,9 @@ reward: false
 
 <!--BODY-->
 
-> [是 Two Sum 的一種另類進階](https://leetcode.com/problems/3sum/description/)，要從 nums 中找出和為 `0` 的三個 element ，由於答案可能有多種，故答案會是個 **List of list** 。特別注意，題目中有提到**不能有兩個內容一樣的 list**，故要做去重處理。 也因為題目解答並沒有對 _nums_ 的 _index_ 有任何要求，故可以**把 nums 排序**，為解題拓開另一種思路。
+> [是 Two Sum 的一種另類進階](https://leetcode.com/problems/3sum/description/)，要從 nums 中找出和為 `0` 的三個 element ，由於答案可能有多組，故答案型別定義為 **List of List** 且特別注意，題目中有提到**不能有兩個內容一樣的 list**，故需要做去重處理。
+>
+> 也因為題目解答並沒有對 _nums_ 的 _index_ 有任何要求，故可以**把 nums 排序**，為解題拓開另一種思路。
 
 <!--more-->
 
@@ -37,9 +39,9 @@ reward: false
 
 比較優的解法的使用重點，是想到可以對原 **nums** 進行排序，這樣對指針的移動就會清楚很多。那指針該如何移動呢？ 首先是先固定一個指針 _i_，相對位置如圖例：
 
-```
+```text
 nums = [-4, -1, -1, 0, 1, 2]
-        i   j              k
+         i   j            k
 ```
 
 - 三數和小於 `0`，則將左邊那個指針 _j_ 右移，使得三數和增大一些。
@@ -48,7 +50,7 @@ nums = [-4, -1, -1, 0, 1, 2]
 
 這裡也可以注意，_i_ 不用遍歷到最後一個，而是到倒數第三個就可以了(因為是 3 sum)。
 
-另外題目有特別提到，**must not contain duplicate triplets**，故需要思考一下遇到「重複的 triplets」該怎麼辦呢 ? 常見的處理方式是 「while 跳過」或者是 「使用 set 儲存」，選用 「while 跳過」會好一些，空間複雜度比較優。
+另外題目有特別提到，**must not contain duplicate triplets**，故需要思考一下遇到「重複的 triplets」該怎麼辦呢 ? 常見的處理方式是 「while 跳過」或者是 「使用 set 儲存」，選用 「while 跳過」會好一些，空間複雜度比較優，但我覺得 set 寫法可讀性較高。
 
 再來可以加個 `if(nums[i] == 0) break;` 判斷來優化。因為把 **nums** 進行由小到大排序了，所以若是`nums[i] == 0`，代表之後的元素都大於等於零，又因為三數大於零的數加起來，基本一定大於等於零，故可以直接 break，省略許多判斷。
 
@@ -152,7 +154,7 @@ Java 和 Python 分別在「指針移動之前」和「指針移動之後」，�
 - for loop 遍歷 nums，且內部有一個 while loop 再遍歷 nums，是 `O(N^2)`
 
 {{< alert info >}}
-那一直以來 3SUM 的時間複雜度，都被公認是 `O(N^2)`，無法再壓下去。但在 2026/10/09 號 Anthropic 使用 AI 把複雜度降到 `O(N^1.9992)`
+那一直以來 3SUM 的時間複雜度，都被**公認是 `O(N^2)` 完全無法再壓下去**。但在 2026/10/09 號 Anthropic 使用 AI 發表的最新論文，把複雜度降到 `O(N^1.9992)`
 {{< /alert >}}
 
 
@@ -175,7 +177,8 @@ class Solution:
         n = len(nums)
         for i in range(n - 2):
 
-            if i > 0 and nums[i] == nums[i-1]:
+            if i > 0 and nums[i] == nums[i-1]: # `i > 0`：因為第一個元素沒有「前一個」可以比
+                # 用來加速的，可以不用考慮重複的答案
                 continue
 
             seen = set()
