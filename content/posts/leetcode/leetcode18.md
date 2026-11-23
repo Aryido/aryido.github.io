@@ -154,14 +154,15 @@ class Solution:
 # K Sum
 
 通過之前的題目，可以得出對於 KSum 來說，就是要固定 K-2 的個 index，剩下兩個 index 藉由排序過後的 nums 來進行雙指標選擇。
-如果要進一步寫出通用解法，就不能手動加 K-2 個 for 迴圈了，所以用遞歸來做 :
+如果要進一步寫出通用解法，就不能手動加 K-2 個 for 迴圈了，另一個思路就是用遞歸來做 :
 
 
 ```python
 class Solution:
     def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
         nums.sort()
-        return self.k_sum(nums, target, 0, 4)
+        data = self.k_sum(nums, target, 0, 4)
+        return [list(t) for t in set(map(tuple, data))]
     
     def k_sum(self, nums: List[int], target: int, index: int, k: int)-> List[List[int]]:
         result = []
@@ -187,7 +188,6 @@ class Solution:
                 result.append([nums[i]] + arr)
                 
         return result
-
 
 
     def two_sum(self, nums: List[int], target: int, index: int) -> List[List[int]]:
@@ -220,52 +220,70 @@ class Solution:
         return result
 ```
 
-再來是練習使用 `set` 來去除重複:
+如果把許多加速運算的部分拿掉的話，可以再更簡潔一些：
+
 ```python
 class Solution:
     def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
         nums.sort()
-        return [result for result in self.k_sum(nums, target, 4)]
+        data = self.k_sum(nums, target, 0, 4)
+        return [list(t) for t in set(map(tuple, data))]
     
-    def k_sum(self, nums: List[int], target: int, k: int)-> List[set[int]]:
-        result = set()
-
-        n= len(nums)
+    def k_sum(self, nums: List[int], target: int, index: int, k: int)-> List[List[int]]:
+        result = []
+        n = len(nums)
 
         if k == 2:
-            l = 0
-            r =  n - 1
-            while l < r:
-                cur = nums[l] + nums[r]
-                if cur == target:
-                    result.add((nums[l], nums[r]))
-                    l += 1
-                    r -= 1
-                elif cur < target:
-                    l += 1
-                else:
-                    r -= 1
+            return self.two_sum(nums, target, index)
+        
+        for i in range(index, n  - k + 1):
+            
+			# 固定 nums[i]，剩下做 k-1 Sum
+            for arr in self.k_sum(nums, target - nums[i], i + 1, k - 1):
+                result.append([nums[i]] + arr)
+                
+        return result
 
-        else:
-            for i in range(n - k + 1):
-                for arr in self.k_sum(nums[i+1:], target - nums[i], k-1):
-                    result.add((nums[i],) + arr)
+    def two_sum(self, nums: List[int], target: int, index: int) -> List[List[int]]:
+        result = []
+        n = len(nums)
+        k, l = index, n - 1
+
+        while k < l:
+            cur = nums[k] + nums[l]
+
+            if cur == target:
+                result.append([nums[k], nums[l]])
+                k += 1
+                l -= 1
+            elif cur < target:
+                k += 1
+            else:
+                l -= 1
         
         return result
 ```
+
+{{< alert warning >}}
+簡單跑幾次測試，大概是
+- 666 ms 
+- 20 ms
+
+有沒有跳過一些步驟來加速還是差蠻多的
+{{< /alert >}}
 
 
 ---
 
 # 時間空間複雜度
 
-### 時間複雜度: `O(N^(k-1))`
+### 時間複雜度: `O(N^(k-1)), k=4` 
 
 - nums 排序的時間複雜度為 `O(NlogN)`。
 - 遞迴關係：
 	- 2Sum 用雙指針是 `O(N)`
-	- 3Sum 固定一個 index，下降維度變成 2Sum，所以是 `O(N*N)`
-	- 4Sum 固定一個 index，下降維度變成 3Sum，所以是 `O(N*N^2)`
+	- 3Sum 固定一個 index，下降維度變成 2Sum，所以是 `O(N*N)=O(N^2)`
+	- 4Sum 固定一個 index，下降維度變成 3Sum，所以是 `O(N*N^2)=O(N^3)`
 
 kSum 的時間複雜度是 `O(N^(k-1))`
 
